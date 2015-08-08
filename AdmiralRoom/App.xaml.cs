@@ -16,6 +16,10 @@ namespace Huoyaoyuan.AdmiralRoom
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            Helper.SetIEEmulation(11001);
+            Helper.SetGPURendering(true);
+            Helper.SetMMCSSTask();
+
             this.MainWindow = new MainWindow();
             ThemeService.EnableAero(true);
             MainWindow.Show();

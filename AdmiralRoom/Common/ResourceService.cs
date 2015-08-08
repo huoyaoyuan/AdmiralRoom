@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    class ResourceService : NotifyBase
+    internal class ResourceService : NotifyBase
     {
         public static ResourceService Current { get; } = new ResourceService();
         public static IReadOnlyCollection<CultureInfo> SupportedCultures { get; }=

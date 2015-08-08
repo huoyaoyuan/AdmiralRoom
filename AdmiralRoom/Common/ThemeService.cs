@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    abstract class ThemeService
+    internal static class ThemeService
     {
         public static void EnableAero(bool Enable)
         {
