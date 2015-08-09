@@ -20,8 +20,9 @@ namespace Huoyaoyuan.AdmiralRoom
             Helper.SetGPURendering(true);
             Helper.SetMMCSSTask();
 
+            ThemeService.ChangeTheme("Office 2010 Silver");
             this.MainWindow = new MainWindow();
-            ThemeService.EnableAero(true);
+            ThemeService.SetDontUseDwm(true);
             MainWindow.Show();
         }
     }
