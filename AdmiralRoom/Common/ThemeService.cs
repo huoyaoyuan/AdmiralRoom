@@ -15,19 +15,16 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
                 "pack://application:,,,/Fluent;Component/Themes/Office2010/Silver.xaml",
-                "/PresentationFramework.Aero;component/themes/aero.normalcolor.xaml"
             },
             ["Office 2010 Black"] = new[]
             {
                 "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
                 "pack://application:,,,/Fluent;Component/Themes/Office2010/Black.xaml",
-                "/PresentationFramework.Aero;component/themes/aero.normalcolor.xaml"
             },
             ["Office 2010 Blue"] = new[]
             {
                 "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
                 "pack://application:,,,/Fluent;Component/Themes/Office2010/Blue.xaml",
-                "/PresentationFramework.Aero;component/themes/aero.normalcolor.xaml"
             },
             ["Office 2013"] = new[]
             {
@@ -64,6 +61,18 @@ namespace Huoyaoyuan.AdmiralRoom
                 wnd.AllowsTransparency = false;
                 wnd.WindowStyle = WindowStyle.SingleBorderWindow;
                 wnd.DontUseDwm = false;
+            }
+        }
+        public static void EnableAeroControls(bool Enable)
+        {
+            Window window = Application.Current.MainWindow;
+            if (Enable)
+            {
+                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("/PresentationFramework.Aero;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+            }
+            else
+            {
+                window.Resources.MergedDictionaries.Clear();
             }
         }
     }
