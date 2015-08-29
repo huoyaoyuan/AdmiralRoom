@@ -20,7 +20,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Helper.SetGPURendering(true);
             Helper.SetMMCSSTask();
 
-            ThemeService.ChangeTheme("Office 2010 Black");
+            ThemeService.ChangeTheme("Office 2010 Blue");
             this.MainWindow = new MainWindow();
             ThemeService.EnableAeroControls(true);
             (MainWindow as Fluent.RibbonWindow).DontUseDwm = true;

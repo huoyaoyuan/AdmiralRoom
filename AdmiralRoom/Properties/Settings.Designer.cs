@@ -22,5 +22,14 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.dmm.com/netgame_s/kancolle/")]
+        public string GameUrl {
+            get {
+                return ((string)(this["GameUrl"]));
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             InitializeComponent();
             if(!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-                this.Loaded += (_, __) => WebBrowser.Navigate("http://www.dmm.com/netgame_s/kancolle/");
+                this.Loaded += (_, __) => WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
             WebBrowser.LoadCompleted += HandleLoadCompleted;
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)
