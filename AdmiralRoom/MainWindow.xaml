@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         FontFamily="DengXian"
         FontSize="15"
-        Title="提督の部屋" MinWidth="{Binding MinWidth, ElementName=GameHost}">
+        Title="提督の部屋">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -24,23 +24,30 @@
             <ribbon:Ribbon.Menu>
                 <ribbon:Backstage Header="提督の部屋" KeyTip="T">
                     <ribbon:BackstageTabControl>
-                        <ribbon:BackstageTabItem Header="关于">
-                            
-                        </ribbon:BackstageTabItem>
+                        <ribbon:BackstageTabItem Header="关于"/>
                     </ribbon:BackstageTabControl>
                 </ribbon:Backstage>
             </ribbon:Ribbon.Menu>
-            <ribbon:RibbonTabItem Header="舰队" KeyTip="F">
-
-            </ribbon:RibbonTabItem>
+            <ribbon:RibbonTabItem Header="舰队" KeyTip="F"/>
             <ribbon:RibbonTabItem Header="浏览" KeyTip="B">
                 <ribbon:RibbonGroupBox Header="浏览器">
-                    <ribbon:Button Header="后退" KeyTip="B" x:Name="BrowserBack" IsEnabled="{Binding Browser.CanGoBack, ElementName=GameHost, Mode=OneWay}"/>
-                    <ribbon:Button Header="前进" KeyTip="F" x:Name="BrowserForward" IsEnabled="{Binding Browser.CanGoForward, ElementName=GameHost, Mode=OneWay}"/>
-                    <TextBox x:Name="BrowserAddr" Width="720"/>
+                    <ribbon:Button Header="后退" KeyTip="B" x:Name="BrowserBack"/>
+                    <ribbon:Button Header="前进" KeyTip="F" x:Name="BrowserForward"/>
+                    <TextBox x:Name="BrowserAddr" Width="400"/>
                     <ribbon:Button Header="转到" KeyTip="G" x:Name="BrowserGoto"/>
                     <ribbon:Button Header="刷新" KeyTip="R" x:Name="BrowserRefresh"/>
                     <ribbon:Button Header="回到游戏" KeyTip="H" x:Name="BrowserBackToGame"/>
+                </ribbon:RibbonGroupBox>
+            </ribbon:RibbonTabItem>
+            <ribbon:RibbonTabItem Header="界面" KeyTip="V">
+                <ribbon:RibbonGroupBox Header="字体">
+                    <ribbon:ComboBox/>
+                    <ribbon:ComboBox/>
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="主题">
+                    <ribbon:ComboBox x:Name="Themes" IsEditable="False"/>
+                    <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM"/>
+                    <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
@@ -48,7 +55,7 @@
         <local:MainContent Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
         <local:DownContent Grid.Row="2"/>
         <ribbon:StatusBar Grid.Row="3" Grid.ColumnSpan="2" FontFamily="DengXian" FontSize="18">
-            <ribbon:StatusBarItem HorizontalAlignment="Left">就绪</ribbon:StatusBarItem>
+            <ribbon:StatusBarItem HorizontalAlignment="Left" Content="就绪"/>
             <Separator HorizontalAlignment="Left"/>
         </ribbon:StatusBar>
     </Grid>

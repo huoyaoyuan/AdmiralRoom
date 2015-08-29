@@ -28,7 +28,8 @@ namespace Huoyaoyuan.AdmiralRoom
             },
             ["Office 2013"] = new[]
             {
-                "pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml",
+                "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
+                "pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml"
             }
         };
         public static IReadOnlyCollection<string> SupportedThemes => themes.Keys;
@@ -44,7 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     Application.Current.Resources.MergedDictionaries.Add(res);
                 }
             }
-            catch { }
+            catch { ChangeTheme(SupportedThemes.First()); }
         }
         public static void SetDontUseDwm(bool dontuse)
         {
