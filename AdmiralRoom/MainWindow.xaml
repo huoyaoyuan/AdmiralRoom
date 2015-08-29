@@ -6,8 +6,33 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ribbon="urn:fluent-ribbon"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="提督の部屋" MinWidth="{Binding MinWidth, ElementName=GameHost}">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ribbon:Ribbon Grid.ColumnSpan="2">
+            <ribbon:Ribbon.Menu>
+                <ribbon:Backstage Header="提督の部屋">
+                    <ribbon:BackstageTabControl>
+                        <ribbon:BackstageTabItem Header="关于">
+
+                        </ribbon:BackstageTabItem>
+                    </ribbon:BackstageTabControl>
+                </ribbon:Backstage>
+            </ribbon:Ribbon.Menu>
+            <ribbon:RibbonTabItem Header="舰队">
+
+            </ribbon:RibbonTabItem>
+        </ribbon:Ribbon>
+        <local:KanColleBrowser Grid.Row="1" x:Name="GameHost"/>
+        <local:MainContent Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+        <local:DownContent Grid.Row="2"/>
     </Grid>
 </ribbon:RibbonWindow>
