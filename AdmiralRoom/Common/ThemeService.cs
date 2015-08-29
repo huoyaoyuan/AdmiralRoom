@@ -14,17 +14,17 @@ namespace Huoyaoyuan.AdmiralRoom
             ["Office 2010 Silver"] = new[]
             {
                 "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2010/Silver.xaml",
+                "pack://application:,,,/Fluent;Component/Themes/Office2010/Silver.xaml"
             },
             ["Office 2010 Black"] = new[]
             {
                 "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2010/Black.xaml",
+                "pack://application:,,,/Fluent;Component/Themes/Office2010/Black.xaml"
             },
             ["Office 2010 Blue"] = new[]
             {
                 "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2010/Blue.xaml",
+                "pack://application:,,,/Fluent;Component/Themes/Office2010/Blue.xaml"
             },
             ["Office 2013"] = new[]
             {
