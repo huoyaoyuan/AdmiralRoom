@@ -52,7 +52,23 @@ namespace Huoyaoyuan.AdmiralRoom
             Themes.SelectionChanged += (s, _) =>ThemeService.ChangeTheme((s as ComboBox).SelectedValue.ToString());
             Themes.SelectedIndex = 0;
             UseAeroControl.Click += (s, _) =>ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
-            
+
+            //Font handler
+            var FontFamilies = (new System.Drawing.Text.InstalledFontCollection()).Families;
+            List<string> FontNames = new List<string>();
+            foreach (var font in FontFamilies)
+            {
+                FontNames.Add(font.Name);
+            }
+            SelectFontFamily.ItemsSource = FontNames;
+            SelectFontFamily.SelectionChanged += (s, _) => { try {
+                    this.FontFamily = new FontFamily((s as ComboBox).SelectedValue.ToString());
+                } catch { } };
+            SelectFontFamily.SelectedValue = "等线";
+            TextFontSize.DataContext = this;
+            TextFontSize.SetBinding(TextBox.TextProperty, new Binding { Source = this.ribbonWindow, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay });
+            FontLarge.Click += (_, __) => this.FontSize += 1;
+            FontSmall.Click += (_, __) => this.FontSize -= 1;
         }
     }
 }
