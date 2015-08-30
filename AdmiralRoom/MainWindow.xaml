@@ -21,6 +21,13 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ribbon:Ribbon Grid.ColumnSpan="2">
+            <ribbon:Ribbon.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="Icons\VectorIcons.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ribbon:Ribbon.Resources>
             <ribbon:Ribbon.Menu>
                 <ribbon:Backstage Header="提督の部屋" KeyTip="T">
                     <ribbon:BackstageTabControl>
@@ -31,12 +38,12 @@
             <ribbon:RibbonTabItem Header="舰队" KeyTip="F"/>
             <ribbon:RibbonTabItem Header="浏览" KeyTip="B">
                 <ribbon:RibbonGroupBox Header="浏览器">
-                    <ribbon:Button Header="后退" KeyTip="B" x:Name="BrowserBack"/>
-                    <ribbon:Button Header="前进" KeyTip="F" x:Name="BrowserForward"/>
+                    <ribbon:Button Header="后退" KeyTip="B" x:Name="BrowserBack" IsEnabled="False" LargeIcon="{StaticResource IconBack}"/>
+                    <ribbon:Button Header="前进" KeyTip="F" x:Name="BrowserForward" IsEnabled="False" LargeIcon="{StaticResource IconForward}"/>
                     <TextBox x:Name="BrowserAddr" Width="400"/>
-                    <ribbon:Button Header="转到" KeyTip="G" x:Name="BrowserGoto"/>
-                    <ribbon:Button Header="刷新" KeyTip="R" x:Name="BrowserRefresh"/>
-                    <ribbon:Button Header="回到游戏" KeyTip="H" x:Name="BrowserBackToGame"/>
+                    <ribbon:Button Header="转到" KeyTip="G" x:Name="BrowserGoto" LargeIcon="{StaticResource IconGoto}"/>
+                    <ribbon:Button Header="刷新" KeyTip="R" x:Name="BrowserRefresh" LargeIcon="{StaticResource IconRefresh}"/>
+                    <ribbon:Button Header="回到游戏" KeyTip="H" x:Name="BrowserBackToGame" LargeIcon="{StaticResource IconGame}"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="界面" KeyTip="V">
@@ -61,8 +68,8 @@
                         </ribbon:RibbonToolBar.LayoutDefinitions>
                         <ribbon:ComboBox x:Name="SelectFontFamily" KeyTip="FF" IsEditable="True" SizeDefinition="Small"/>
                         <TextBox x:Name="TextFontSize"/>
-                        <ribbon:Button x:Name="FontSmall" SizeDefinition="Small" KeyTip="FS" Icon="pack://application:,,,/AdmiralRoom;component/Images/ShrinkFont.png"/>
-                        <ribbon:Button x:Name="FontLarge" SizeDefinition="Small" KeyTip="FL" Icon="pack://application:,,,/AdmiralRoom;component/Images/GrowFont.png"/>
+                        <ribbon:Button x:Name="FontSmall" SizeDefinition="Small" KeyTip="FS" Icon="Images\ShrinkFont.png"/>
+                        <ribbon:Button x:Name="FontLarge" SizeDefinition="Small" KeyTip="FL" Icon="Images\GrowFont.png"/>
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>

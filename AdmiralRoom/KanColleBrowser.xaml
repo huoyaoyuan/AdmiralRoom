@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
-             mc:Ignorable="d" 
-             MinWidth="{Binding MinWidth, ElementName=WebBrowser}" MinHeight="{Binding MinHeight, ElementName=WebBrowser}">
+             mc:Ignorable="d">
     <WebBrowser x:Name="WebBrowser" MinWidth="800" MinHeight="480"/>
 </UserControl>
