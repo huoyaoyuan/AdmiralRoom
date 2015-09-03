@@ -19,13 +19,13 @@ namespace Huoyaoyuan.AdmiralRoom
             Helper.SetIEEmulation(11001);
             Helper.SetGPURendering(true);
             Helper.SetMMCSSTask();
-
-            ThemeService.ChangeTheme("Office 2010 Blue");
-            this.MainWindow = new MainWindow();
-            ThemeService.EnableAeroControls(true);
-            (MainWindow as Fluent.RibbonWindow).DontUseDwm = true;
+            Config.Current = Config.Load();
             MainWindow.Show();
-            //ThemeService.SetDontUseDwm(true);
+        }
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            Config.Current.Save();
         }
     }
 }

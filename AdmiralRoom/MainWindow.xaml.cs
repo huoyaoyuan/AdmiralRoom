@@ -48,10 +48,12 @@ namespace Huoyaoyuan.AdmiralRoom
 
             //Theme button handler
             NoDWM.Click += (s, _) =>this.DontUseDwm = (s as CheckBox).IsChecked.Value;
+            NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;
             Themes.ItemsSource = ThemeService.SupportedThemes;
             Themes.SelectionChanged += (s, _) =>ThemeService.ChangeTheme((s as ComboBox).SelectedValue.ToString());
-            Themes.SelectedIndex = 0;
+            ThemeService.ChangeTheme(Themes.SelectedValue.ToString());
             UseAeroControl.Click += (s, _) =>ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
+            UseAeroControl.IsChecked = Config.Current.Aero;
 
             //Font handler
             var FontFamilies = (new System.Drawing.Text.InstalledFontCollection()).Families;

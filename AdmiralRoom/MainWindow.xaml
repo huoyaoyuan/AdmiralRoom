@@ -48,9 +48,9 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="界面" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="主题">
-                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="T"/>
-                    <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM" KeyTip="D"/>
-                    <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl" KeyTip="A"/>
+                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="T" SelectedIndex="{Binding Theme, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
+                    <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM" KeyTip="D" IsChecked="{Binding NoDWM, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
+                    <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl" KeyTip="A" IsChecked="{Binding Aero, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="字体">
                     <ribbon:RibbonToolBar DataContext="ribbonWindow">
