@@ -57,6 +57,36 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+        #region EnableProxy
+        private bool _enableproxy;
+        public bool EnableProxy
+        {
+            get { return _enableproxy; }
+            set
+            {
+                if(value!= _enableproxy)
+                {
+                    _enableproxy = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+        #region Proxy
+        private Officer.Proxy _proxy;
+        public Officer.Proxy Proxy
+        {
+            get { return _proxy; }
+            set
+            {
+                if (value != _proxy)
+                {
+                    _proxy = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
         public static Config Load()
         {
             XmlSerializer s = new XmlSerializer(typeof(Config));

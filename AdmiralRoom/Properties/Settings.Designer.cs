@@ -34,7 +34,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("62534")]
+        [global::System.Configuration.DefaultSettingValueAttribute("39175")]
         public int ListenPort {
             get {
                 return ((int)(this["ListenPort"]));

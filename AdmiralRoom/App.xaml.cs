@@ -22,7 +22,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Config.Current = Config.Load();
 
             Officer.Staff.Current.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
-            Helper.RefreshIESettings($"localhost:{AdmiralRoom.Properties.Settings.Default.ListenPort}");
+            Officer.Staff.Current.Proxy = Config.Current.Proxy;
 
             this.MainWindow = new MainWindow();
             this.MainWindow.Show();

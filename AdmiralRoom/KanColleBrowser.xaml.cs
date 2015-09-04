@@ -39,8 +39,6 @@ namespace Huoyaoyuan.AdmiralRoom
         public KanColleBrowser()
         {
             InitializeComponent();
-            if(!System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-                this.Loaded += (_, __) => WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
             WebBrowser.LoadCompleted += HandleLoadCompleted;
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)

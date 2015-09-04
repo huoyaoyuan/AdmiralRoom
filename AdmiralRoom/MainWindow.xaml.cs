@@ -54,6 +54,7 @@ namespace Huoyaoyuan.AdmiralRoom
             ThemeService.ChangeTheme(Themes.SelectedValue.ToString());
             UseAeroControl.Click += (s, _) =>ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
             UseAeroControl.IsChecked = Config.Current.Aero;
+            ThemeService.EnableAeroControls(Config.Current.Aero);
 
             //Font handler
             var FontFamilies = (new System.Drawing.Text.InstalledFontCollection()).Families;
@@ -71,6 +72,8 @@ namespace Huoyaoyuan.AdmiralRoom
             TextFontSize.SetBinding(TextBox.TextProperty, new Binding { Source = this.ribbonWindow, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay });
             FontLarge.Click += (_, __) => this.FontSize += 1;
             FontSmall.Click += (_, __) => this.FontSize -= 1;
+
+            this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
         }
     }
 }
