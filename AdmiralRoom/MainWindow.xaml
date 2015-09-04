@@ -76,8 +76,8 @@
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
         <local:KanColleBrowser Grid.Row="1" x:Name="GameHost"/>
-        <local:MainContent Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
-        <local:DownContent Grid.Row="2"/>
+        <local:MainContent Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" DataContext="{x:Static Models:MainModel.Current}"/>
+        <local:DownContent Grid.Row="2" DataContext="{x:Static Models:DownModel.Current}"/>
         <ribbon:StatusBar Grid.Row="3" Grid.ColumnSpan="2" FontSize="18" DataContext="{x:Static Models:StatusModel.Current}">
             <ribbon:StatusBarItem HorizontalAlignment="Left" Content="{Binding StatusText}"/>
             <Separator HorizontalAlignment="Left"/>

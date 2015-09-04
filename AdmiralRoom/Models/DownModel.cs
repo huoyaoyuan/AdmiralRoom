@@ -8,5 +8,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
 {
     class DownModel : NotifyBase
     {
+        public static DownModel Current { get; } = new DownModel();
+
     }
 }

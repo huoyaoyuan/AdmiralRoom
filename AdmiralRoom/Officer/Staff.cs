@@ -11,6 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public static Staff Current { get; } = new Staff();
         public Proxy Proxy { get; set; }
+        private UTF8Encoding Encoder = new UTF8Encoding();
         public void Start(int port = 39175)
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
@@ -24,7 +25,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (oSession.uriContains("/kcsapi/"))
             {
-                Models.StatusModel.Current.StatusText = "已读取"+oSession.url;
+                Models.StatusModel.Current.StatusText = "已读取" + oSession.url;
+                Models.MainModel.Current.TestText = UnicodeEscape.Decode(Encoder.GetString(oSession.ResponseBody));
             }
         }
 

@@ -96,6 +96,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DownContent.xaml.cs">
       <DependentUpon>DownContent.xaml</DependentUpon>
