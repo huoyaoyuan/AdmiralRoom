@@ -31,5 +31,14 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
                 return ((string)(this["GameUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("62534")]
+        public int ListenPort {
+            get {
+                return ((int)(this["ListenPort"]));
+            }
+        }
     }
 }

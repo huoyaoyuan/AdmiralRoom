@@ -20,11 +20,17 @@ namespace Huoyaoyuan.AdmiralRoom
             Helper.SetGPURendering(true);
             Helper.SetMMCSSTask();
             Config.Current = Config.Load();
-            MainWindow.Show();
+
+            Officer.Staff.Current.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
+            Helper.RefreshIESettings($"localhost:{AdmiralRoom.Properties.Settings.Default.ListenPort}");
+
+            this.MainWindow = new MainWindow();
+            this.MainWindow.Show();
         }
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
+            Officer.Staff.Current.Stop();
             Config.Current.Save();
         }
     }
