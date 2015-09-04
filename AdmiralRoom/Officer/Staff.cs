@@ -15,9 +15,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
             FiddlerApplication.BeforeRequest += FiddlerApplication_BeforeRequest;
-            System.Diagnostics.Debug.WriteLine(FiddlerApplication.IsStarted());
+            FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
 
             Helper.RefreshIESettings($"localhost:{port}");
+        }
+
+        private void AfterSessionComplete(Session oSession)
+        {
+            if (oSession.uriContains("/kcsapi/"))
+            {
+                Models.StatusModel.Current.StatusText = "已读取"+oSession.url;
+            }
         }
 
         private void FiddlerApplication_BeforeRequest(Session oSession)

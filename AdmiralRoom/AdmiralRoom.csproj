@@ -106,6 +106,9 @@
     <Compile Include="MainContent.xaml.cs">
       <DependentUpon>MainContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DownModel.cs" />
+    <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Officer\Proxy.cs" />
     <Compile Include="Officer\Staff.cs" />
     <Compile Include="Win32\NativeMethods.cs" />

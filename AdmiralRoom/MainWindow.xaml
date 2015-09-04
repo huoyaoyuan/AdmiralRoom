@@ -1,10 +1,11 @@
-﻿<ribbon:RibbonWindow x:Name="ribbonWindow" x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
+﻿<ribbon:RibbonWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ribbon="urn:fluent-ribbon"
+        xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models" x:Name="ribbonWindow" x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
         mc:Ignorable="d"
         FontFamily="DengXian"
         FontSize="15"
@@ -48,9 +49,9 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="界面" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="主题">
-                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="T" SelectedIndex="{Binding Theme, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
-                    <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM" KeyTip="D" IsChecked="{Binding NoDWM, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
-                    <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl" KeyTip="A" IsChecked="{Binding Aero, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
+                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="T" SelectedIndex="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM" KeyTip="D" IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl" KeyTip="A" IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="字体">
                     <ribbon:RibbonToolBar DataContext="ribbonWindow">
@@ -77,8 +78,8 @@
         <local:KanColleBrowser Grid.Row="1" x:Name="GameHost"/>
         <local:MainContent Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
         <local:DownContent Grid.Row="2"/>
-        <ribbon:StatusBar Grid.Row="3" Grid.ColumnSpan="2" FontSize="18">
-            <ribbon:StatusBarItem HorizontalAlignment="Left" Content="就绪"/>
+        <ribbon:StatusBar Grid.Row="3" Grid.ColumnSpan="2" FontSize="18" DataContext="{x:Static Models:StatusModel.Current}">
+            <ribbon:StatusBarItem HorizontalAlignment="Left" Content="{Binding StatusText}"/>
             <Separator HorizontalAlignment="Left"/>
         </ribbon:StatusBar>
     </Grid>
