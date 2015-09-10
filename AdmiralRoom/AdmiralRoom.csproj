@@ -54,6 +54,10 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FiddlerCore4, Version=4.5.1.0, Culture=neutral, PublicKeyToken=67cb91587178ac5a, processorArchitecture=MSIL">
       <HintPath>..\packages\FiddlerCore.4.5.1.0\lib\net40\FiddlerCore4.dll</HintPath>
@@ -110,6 +114,7 @@
     <Compile Include="Models\DownModel.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Models\StatusModel.cs" />
+    <Compile Include="Officer\Converter\TransparencyConverter.cs" />
     <Compile Include="Officer\Proxy.cs" />
     <Compile Include="Officer\Staff.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
@@ -170,6 +175,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -197,6 +205,9 @@
   <ItemGroup>
     <Resource Include="Images\GrowFont.png" />
     <Resource Include="Images\ShrinkFont.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
