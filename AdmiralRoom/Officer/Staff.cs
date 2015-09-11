@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (oSession.uriContains("/kcsapi/"))
             {
                 Models.StatusModel.Current.StatusText = "已读取" + oSession.url;
-                Models.MainModel.Current.TestText = UnicodeEscape.Decode(Encoder.GetString(oSession.ResponseBody));
+                //Models.MainModel.Current.TestText = UnicodeEscape.Decode(Encoder.GetString(oSession.ResponseBody));
             }
         }
 

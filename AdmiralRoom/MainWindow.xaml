@@ -6,22 +6,20 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ribbon="urn:fluent-ribbon"
         xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models" x:Name="ribbonWindow" x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
+        xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
         mc:Ignorable="d"
         FontFamily="DengXian"
         FontSize="15"
+        Loaded="LoadLayout" Unloaded="SaveLayout"
         Title="提督の部屋" d:DesignWidth="1920" d:DesignHeight="1080">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ribbon:Ribbon Grid.ColumnSpan="2">
+        <ribbon:Ribbon>
             <ribbon:Ribbon.Resources>
                 <ResourceDictionary>
                     <ResourceDictionary.MergedDictionaries>
@@ -36,7 +34,6 @@
                     </ribbon:BackstageTabControl>
                 </ribbon:Backstage>
             </ribbon:Ribbon.Menu>
-            <ribbon:RibbonTabItem Header="舰队" KeyTip="F"/>
             <ribbon:RibbonTabItem Header="浏览" KeyTip="B">
                 <ribbon:RibbonGroupBox Header="浏览器">
                     <ribbon:Button Header="后退" KeyTip="B" x:Name="BrowserBack" IsEnabled="False" LargeIcon="{StaticResource IconBack}"/>
@@ -75,10 +72,21 @@
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
-        <local:KanColleBrowser Grid.Row="1" x:Name="GameHost"/>
-        <local:MainContent Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" DataContext="{x:Static Models:MainModel.Current}"/>
-        <local:DownContent Grid.Row="2" DataContext="{x:Static Models:DownModel.Current}"/>
-        <ribbon:StatusBar Grid.Row="3" Grid.ColumnSpan="2" FontSize="18" DataContext="{x:Static Models:StatusModel.Current}">
+        <Dock:DockingManager Grid.Row="1" x:Name="DockMan">
+            <Dock:DockingManager.Theme>
+                <Theme2010:VS2010Theme/>
+            </Dock:DockingManager.Theme>
+            <Dock:LayoutRoot>
+                <Dock:LayoutPanel>
+                    <Dock:LayoutDocumentPane>
+                        <Dock:LayoutDocument ContentId="GameHost" Title="浏览器" CanClose="False">
+                            <local:KanColleBrowser x:Name="GameHost"/>
+                        </Dock:LayoutDocument>
+                    </Dock:LayoutDocumentPane>
+                </Dock:LayoutPanel>
+            </Dock:LayoutRoot>
+        </Dock:DockingManager>
+        <ribbon:StatusBar Grid.Row="2" FontSize="18" DataContext="{x:Static Models:StatusModel.Current}">
             <ribbon:StatusBarItem HorizontalAlignment="Left" Content="{Binding StatusText}"/>
             <Separator HorizontalAlignment="Left"/>
         </ribbon:StatusBar>

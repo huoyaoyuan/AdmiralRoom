@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.AvalonDock.Layout;
+using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -74,6 +76,22 @@ namespace Huoyaoyuan.AdmiralRoom
             FontSmall.Click += (_, __) => this.FontSize -= 1;
 
             this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
+        }
+
+        private void LoadLayout(object sender, RoutedEventArgs e)
+        {
+            var s = new XmlLayoutSerializer(DockMan);
+            s.LayoutSerializationCallback += (_, args) => args.Content = args.Content;
+            try
+            {
+                s.Deserialize("layout.xml");
+            }
+            catch { }
+        }
+        private void SaveLayout(object sender, RoutedEventArgs e)
+        {
+            var s = new XmlLayoutSerializer(DockMan);
+            s.Serialize("layout.xml");
         }
     }
 }

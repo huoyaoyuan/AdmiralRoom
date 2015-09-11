@@ -67,11 +67,13 @@ namespace Huoyaoyuan.AdmiralRoom
             Window window = Application.Current.MainWindow;
             if (Enable)
             {
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("/PresentationFramework.Aero;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                window.Resources.MergedDictionaries.Clear();
+                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
             else
             {
                 window.Resources.MergedDictionaries.Clear();
+                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero2;component/themes/aero2.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
         }
     }
