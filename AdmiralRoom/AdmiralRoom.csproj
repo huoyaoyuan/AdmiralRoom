@@ -132,10 +132,14 @@
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\APIModel.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Officer\Converter\TransparencyConverter.cs" />
     <Compile Include="Officer\Proxy.cs" />
     <Compile Include="Officer\Staff.cs" />
+    <Compile Include="Views\APIView.xaml.cs">
+      <DependentUpon>APIView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\Helper.cs" />
     <Page Include="Icons\VectorIcons.xaml">
@@ -161,6 +165,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\APIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

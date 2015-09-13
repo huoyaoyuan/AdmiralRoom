@@ -8,11 +8,12 @@
         xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models" x:Name="ribbonWindow" x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
         xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
+        xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
         mc:Ignorable="d"
         FontFamily="DengXian"
         FontSize="15"
         Loaded="LoadLayout" Unloaded="SaveLayout"
-        Title="提督の部屋" d:DesignWidth="1920" d:DesignHeight="1080">
+        Title="提督の部屋" d:DesignWidth="1920" d:DesignHeight="1080" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -71,6 +72,11 @@
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
+            <ribbon:RibbonTabItem Header="窗口">
+                <ribbon:RibbonGroupBox Header="Debug">
+                    <ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>
+                </ribbon:RibbonGroupBox>
+            </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
         <Dock:DockingManager Grid.Row="1" x:Name="DockMan">
             <Dock:DockingManager.Theme>
@@ -84,6 +90,11 @@
                         </Dock:LayoutDocument>
                     </Dock:LayoutDocumentPane>
                 </Dock:LayoutPanel>
+                <Dock:LayoutRoot.Hidden>
+                    <Dock:LayoutAnchorable ContentId="APIView" Title="APIView">
+                        <Views:APIView DataContext="{x:Static Models:APIModel.Current}"/>
+                    </Dock:LayoutAnchorable>
+                </Dock:LayoutRoot.Hidden>
             </Dock:LayoutRoot>
         </Dock:DockingManager>
         <ribbon:StatusBar Grid.Row="2" FontSize="18" DataContext="{x:Static Models:StatusModel.Current}">
