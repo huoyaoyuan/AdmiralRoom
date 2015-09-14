@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Huoyaoyuan.AdmiralRoom;
+using Fiddler;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
@@ -24,5 +26,14 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             }
         }
         #endregion
+        private APIModel()
+        {
+            Officer.Staff.Current.RegisterHandler("", APIViewerHandler);
+        }
+
+        void APIViewerHandler(Session oSession)
+        {
+            Current.APIText = UnicodeEscape.Decode(Officer.Staff.Current.Encoder.GetString(oSession.ResponseBody));
+        }
     }
 }
