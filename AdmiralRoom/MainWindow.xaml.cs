@@ -59,6 +59,18 @@ namespace Huoyaoyuan.AdmiralRoom
             UseAeroControl.IsChecked = Config.Current.Aero;
             ThemeService.EnableAeroControls(Config.Current.Aero);
 
+            //Proxy button handler
+            UpdateProxySetting.Click += (_, __) =>
+            {
+                Config.Current.Proxy.Host = ProxyHost.Text;
+                Config.Current.Proxy.Port = ProxyPort.Text;
+            };
+            CancelProxySetting.Click += (_, __) =>
+            {
+                ProxyHost.Text = Config.Current.Proxy.Host;
+                ProxyPort.Text = Config.Current.Proxy.Port;
+            };
+
             //Font handler
             var FontFamilies = (new System.Drawing.Text.InstalledFontCollection()).Families;
             List<string> FontNames = new List<string>();

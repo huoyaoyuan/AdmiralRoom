@@ -44,6 +44,24 @@
                     <ribbon:Button Header="刷新" KeyTip="R" x:Name="BrowserRefresh" LargeIcon="{StaticResource IconRefresh}"/>
                     <ribbon:Button Header="回到游戏" KeyTip="H" x:Name="BrowserBackToGame" LargeIcon="{StaticResource IconGame}"/>
                 </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="代理">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Width="100" x:Name="ProxyHost" Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Width="100" x:Name="ProxyPort" Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                    </Grid>
+                    <ribbon:Button Header="更新" x:Name="UpdateProxySetting"/>
+                    <ribbon:Button Header="撤销" x:Name="CancelProxySetting"/>
+                </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="界面" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="主题">
