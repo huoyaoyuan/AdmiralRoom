@@ -79,6 +79,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Fluent.Ribbon.3.5.1.198\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -127,6 +129,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\APIData.cs" />
+    <Compile Include="API\APIHelper.cs" />
+    <Compile Include="API\svdata.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
@@ -225,6 +230,7 @@
     <Resource Include="Images\GrowFont.png" />
     <Resource Include="Images\ShrinkFont.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
