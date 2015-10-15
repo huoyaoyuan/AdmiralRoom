@@ -6,6 +6,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class Proxy
     {
         public string Host { get; set; } = "";
-        public string Port { get; set; } = "";
+        public int Port { get; set; } = 0;
     }
 }

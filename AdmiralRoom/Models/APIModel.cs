@@ -28,12 +28,12 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         #endregion
         private APIModel()
         {
-            Officer.Staff.Current.RegisterHandler("", APIViewerHandler);
+            Officer.Staff.RegisterHandler("", APIViewerHandler);
         }
 
         void APIViewerHandler(Session oSession)
         {
-            Current.APIText = UnicodeEscape.Decode(Officer.Staff.Current.Encoder.GetString(oSession.ResponseBody));
+            APIText = Officer.Staff.Encoder.GetString(oSession.ResponseBody).UnicodeDecode();
         }
     }
 }

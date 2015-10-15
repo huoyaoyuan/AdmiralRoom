@@ -59,10 +59,10 @@ namespace Huoyaoyuan.AdmiralRoom
             Size dpi = GetSystemDpi();
             if (styleSheetApplied)
             {
-                this.WebBrowser.MinWidth = kanColleSize.Width * OriginDpi / dpi.Width;
-                this.WebBrowser.MinHeight = kanColleSize.Height * OriginDpi / dpi.Height;
-                this.WebBrowser.Width = this.WebBrowser.MinWidth;
-                this.WebBrowser.Height = this.WebBrowser.MinHeight;
+                this.WebBrowser.Width = kanColleSize.Width * OriginDpi / dpi.Width;
+                this.WebBrowser.Height = kanColleSize.Height * OriginDpi / dpi.Height;
+                //this.WebBrowser.Width = this.WebBrowser.MinWidth;
+                //this.WebBrowser.Height = this.WebBrowser.MinHeight;
             }
         }
         private void ApplyStyleSheet()

@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-             xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
+             xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
              mc:Ignorable="d" 
              Background="White"
+             DataContext="{x:Static models:APIModel.Current}"
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <TextBlock TextWrapping="Wrap" Text="{Binding APIText}"/>

@@ -1,20 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Windows.Threading;
 using Fiddler;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     class Staff
     {
-        public static Staff Current { get; } = new Staff();
-        public Proxy Proxy { get; set; }
-        public UTF8Encoding Encoder = new UTF8Encoding();
-        private Dictionary<string, Action<Session>> Handlers = new Dictionary<string, Action<Session>>();
-        public void Start(int port = 39175)
+        private static Staff _current;
+        public static Staff Current
+        {
+            get
+            {
+                if (_current == null) _current = new Staff();
+                return _current;
+            }
+        }
+        public Dispatcher Dispatcher { get; set; }
+        public static Proxy Proxy { get; set; }
+        public static UTF8Encoding Encoder = new UTF8Encoding();
+        private static Dictionary<string, Action<Session>> Handlers = new Dictionary<string, Action<Session>>();
+        public static void Start(int port = 39175)
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
             FiddlerApplication.BeforeRequest += FiddlerApplication_BeforeRequest;
@@ -23,7 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Helper.RefreshIESettings($"localhost:{port}");
         }
 
-        private void AfterSessionComplete(Session oSession)
+        private static void AfterSessionComplete(Session oSession)
         {
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
@@ -33,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        private void FiddlerApplication_BeforeRequest(Session oSession)
+        private static void FiddlerApplication_BeforeRequest(Session oSession)
         {
             if (Proxy != null && Config.Current.EnableProxy)
             {
@@ -41,14 +49,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        public void Stop()
+        public static void Stop()
         {
             FiddlerApplication.BeforeRequest -= FiddlerApplication_BeforeRequest;
             FiddlerApplication.AfterSessionComplete -= AfterSessionComplete;
             FiddlerApplication.Shutdown();
         }
 
-        private void Distribute(object o)
+        private static void Distribute(object o)
         {
             Session oSession = o as Session;
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
@@ -61,7 +69,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        public void RegisterHandler(string apiname,Action<Session> handler)
+        public static void RegisterHandler(string apiname,Action<Session> handler)
         {
             Action<Session> Handler;
             Handlers.TryGetValue(apiname, out Handler);
@@ -72,5 +80,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             else Handler += handler;
         }
+        public Admiral Admiral { get; } = new Admiral();
+        public Homeport Homeport { get; } = new Homeport();
+        public MasterData MasterData { get; } = new MasterData();
     }
 }

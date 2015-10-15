@@ -21,17 +21,18 @@ namespace Huoyaoyuan.AdmiralRoom
             Helper.SetMMCSSTask();
             Config.Current = Config.Load();
 
-            Officer.Staff.Current.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
-            Officer.Staff.Current.Proxy = Config.Current.Proxy;
+            Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
+            Officer.Staff.Proxy = Config.Current.Proxy;
 
             this.MainWindow = new MainWindow();
+            Officer.Staff.Current.Dispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
             Models.StatusModel.Current.StatusText = "就绪";
         }
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
-            Officer.Staff.Current.Stop();
+            Officer.Staff.Stop();
             Config.Current.Save();
         }
     }

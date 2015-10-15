@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.FleetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns:Converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Converter:HPColorConverter x:Key="HPColorConverter"/>
+        <Converter:VisibilityConverter x:Key="VisibilityConverter"/>
+        <Converter:CondColorConverter x:Key="CondColorConverter"/>
+    </UserControl.Resources>
+    <TabControl ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
+        <!--<TabControl.ItemContainerStyle>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate DataType="{x:Type officer:Fleet}">
+                            <Border Background="LightGreen">
+                                <TextBlock Text="{Binding Name}"/>
+                            </Border>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </TabControl.ItemContainerStyle>-->
+        <TabControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type officer:Fleet}">
+                <TextBlock Text="{Binding Name}" FontSize="18"/>
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate DataType="{x:Type officer:Fleet}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding MissionState}"/>
+                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Ships}" Grid.IsSharedSizeScope="True">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type officer:Ship}">
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Exp"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Condition"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Charge"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,4,0">
+                                                <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}"/>
+                                                <TextBlock FontSize="15" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom"/>
+                                            </StackPanel>
+                                            <control:ExpBar Grid.Column="1" Width="80" Margin="0,0,4,0"
+												Level="{Binding Level}"
+												Exp="{Binding Exp}"
+												VerticalAlignment="Center"/>
+                                            <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,4,0">
+                                                <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
+                                                    <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text=" / "/><Run Text="{Binding HP.Max}"/>
+                                                </TextBlock>
+                                                <ProgressBar Width="120" Height="16"
+													Minimum="0" Maximum="{Binding HP.Max}"
+													Value="{Binding HP.Current}"
+													Visibility="{Binding IsRepairing, ConverterParameter=False, Converter={StaticResource VisibilityConverter}}"
+													Foreground="{Binding HP, Converter={StaticResource HPColorConverter}}"
+                                                    Background="Transparent"/>
+                                                <ProgressBar Width="120" Height="16"
+													Visibility="{Binding IsRepairing, ConverterParameter=True, Converter={StaticResource VisibilityConverter}}"
+                                                    IsIndeterminate="True"
+													Foreground="Aqua"
+                                                    Background="Transparent"/>
+                                            </StackPanel>
+                                            <Grid Grid.Column="3" Margin="0,0,8,0" VerticalAlignment="Stretch">
+                                                <Ellipse Fill="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=False, Mode=OneWay}">
+                                                    <Ellipse.Effect>
+                                                        <BlurEffect Radius="48"/>
+                                                    </Ellipse.Effect>
+                                                </Ellipse>
+                                                <TextBlock FontSize="12" VerticalAlignment="Center" Foreground="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=True, Mode=OneWay}">
+                                                    <Run FontStyle="Italic">cond.</Run>
+                                                    <Run FontSize="18" Text="{Binding Condition, Mode=OneWay}"/>
+                                                </TextBlock>
+                                            </Grid>
+                                            <Grid Grid.Column="4" Margin="0,0,4,0" VerticalAlignment="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
+                                                <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Ammo.png"/>
+                                                <ProgressBar Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
+                                                             Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
+                                                             Background="Transparent"
+                                                             Foreground="{Binding Fuel, Converter={StaticResource HPColorConverter}}"/>
+                                                <ProgressBar Margin="0,1,0,0" Grid.Row="1" Grid.Column="1" Width="80" Height="12"
+                                                             Minimum="0" Maximum="{Binding Bull.Max}" Value="{Binding Bull.Current}"
+                                                             Background="Transparent"
+                                                             Foreground="{Binding Bull, Converter={StaticResource HPColorConverter}}"/>
+                                            </Grid>
+                                        </Grid>
+                                        <Rectangle Height="1" Fill="Gray" Margin="2"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
+</UserControl>

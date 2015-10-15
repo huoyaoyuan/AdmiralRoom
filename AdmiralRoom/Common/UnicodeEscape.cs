@@ -3,10 +3,10 @@ using System.Text.RegularExpressions;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    class UnicodeEscape
+    static class UnicodeEscape
     {
         static Regex reUnicode = new Regex(@"\\u([0-9a-fA-F]{4})", RegexOptions.Compiled);
-        public static string Decode(string s)
+        public static string UnicodeDecode(this string s)
         {
             return reUnicode.Replace(s, m =>
             {

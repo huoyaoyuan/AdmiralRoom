@@ -10,9 +10,9 @@ namespace Huoyaoyuan.AdmiralRoom.API
     [Serializable]
     public class svdata<T>
     {
-        public int api_result { get; set; }
-        public string api_result_msg { get; set; }
-        public T data { get; set; }
+        public int api_result;
+        public string api_result_msg;
+        public T api_data = default(T);
         [NonSerialized]
         private static DataContractJsonSerializer _serializer = null;
         public static DataContractJsonSerializer Serializer

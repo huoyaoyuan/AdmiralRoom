@@ -131,22 +131,63 @@
     </ApplicationDefinition>
     <Compile Include="API\APIData.cs" />
     <Compile Include="API\APIHelper.cs" />
+    <Compile Include="API\api_ship.cs" />
+    <Compile Include="API\api_start2.cs" />
+    <Compile Include="API\getmember_basic.cs" />
+    <Compile Include="API\getmember_deck.cs" />
+    <Compile Include="API\getmember_material.cs" />
+    <Compile Include="API\getmember_ndock.cs" />
+    <Compile Include="API\getmember_record.cs" />
+    <Compile Include="API\port_port.cs" />
     <Compile Include="API\svdata.cs" />
+    <Compile Include="Common\DateTimeHelper.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ConstData.cs" />
+    <Compile Include="Controls\ExpBar.xaml.cs">
+      <DependentUpon>ExpBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\APIModel.cs" />
+    <Compile Include="Models\Exp.cs" />
     <Compile Include="Models\StatusModel.cs" />
-    <Compile Include="Officer\Converter\TransparencyConverter.cs" />
+    <Compile Include="Officer\Admiral.cs" />
+    <Compile Include="Officer\EquipInfo.cs" />
+    <Compile Include="Officer\EquipType.cs" />
+    <Compile Include="Officer\Fleet.cs" />
+    <Compile Include="Officer\General\GameObject.cs" />
+    <Compile Include="Officer\Homeport.cs" />
+    <Compile Include="Officer\General\IDTable.cs" />
+    <Compile Include="Officer\General\IIdentifiable.cs" />
+    <Compile Include="Officer\General\LimitedValue.cs" />
+    <Compile Include="Officer\MasterData.cs" />
+    <Compile Include="Officer\Material.cs" />
+    <Compile Include="Officer\General\Modernizable.cs" />
     <Compile Include="Officer\Proxy.cs" />
+    <Compile Include="Officer\Ship.cs" />
+    <Compile Include="Officer\ShipInfo.cs" />
+    <Compile Include="Officer\ShipType.cs" />
     <Compile Include="Officer\Staff.cs" />
+    <Compile Include="Views\AdmiralView.xaml.cs">
+      <DependentUpon>AdmiralView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\APIView.xaml.cs">
       <DependentUpon>APIView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converter\CondColorConverter.cs" />
+    <Compile Include="Views\Converter\HPColorConverter.cs" />
+    <Compile Include="Views\Converter\VisibilityConverter.cs" />
+    <Compile Include="Views\FleetView.xaml.cs">
+      <DependentUpon>FleetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\Helper.cs" />
+    <Page Include="Controls\ExpBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Icons\VectorIcons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,7 +211,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AdmiralView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\APIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FleetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,8 +280,27 @@
     <Resource Include="Images\ShrinkFont.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SampleData\" />
+    <Resource Include="Images\Material\Ammo.png" />
+    <Resource Include="Images\Material\Bauxite.png" />
+    <Resource Include="Images\Material\Fuel.png" />
+    <Resource Include="Images\Material\Steel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Material\InstantRepair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Material\DevelopmentKit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Material\InstantBuild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Material\ImprovementKit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Material\FurnitureCoin.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

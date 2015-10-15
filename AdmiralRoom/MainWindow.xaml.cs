@@ -63,12 +63,12 @@ namespace Huoyaoyuan.AdmiralRoom
             UpdateProxySetting.Click += (_, __) =>
             {
                 Config.Current.Proxy.Host = ProxyHost.Text;
-                Config.Current.Proxy.Port = ProxyPort.Text;
+                Config.Current.Proxy.Port = int.Parse(ProxyPort.Text);
             };
             CancelProxySetting.Click += (_, __) =>
             {
                 ProxyHost.Text = Config.Current.Proxy.Host;
-                ProxyPort.Text = Config.Current.Proxy.Port;
+                ProxyPort.Text = Config.Current.Proxy.Port.ToString();
             };
 
             //Font handler
@@ -116,6 +116,10 @@ namespace Huoyaoyuan.AdmiralRoom
                 s.Deserialize("layout.xml");
             }
             catch { }
+            foreach (var view in DockMan.Layout.Hidden.Where(x => x.PreviousContainerIndex == -1).ToArray())
+            {
+                DockMan.Layout.Hidden.Remove(view);
+            }
             MakeViewList(DockMan.Layout);
         }
         private void SaveLayout(object sender, RoutedEventArgs e)
@@ -126,7 +130,9 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private Dictionary<string, Type> ViewTypeList = new Dictionary<string, Type>()
         {
-            ["APIView"] = typeof(APIView),
+            //[nameof(APIView)] = typeof(APIView),
+            [nameof(AdmiralView)] = typeof(AdmiralView),
+            [nameof(FleetView)]=typeof(FleetView)
         };
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
@@ -135,27 +141,32 @@ namespace Huoyaoyuan.AdmiralRoom
             string ViewName = (sender as Control).Tag as string;
             //var TargetView = FindView(DockMan.Layout, ViewName);
             LayoutAnchorable TargetView;
+            Type ViewType;
+            if (!ViewTypeList.TryGetValue((sender as Control).Tag as string, out ViewType))
+            {
+                System.Diagnostics.Debug.WriteLine($"Invalid View name: {ViewName}");
+                return;
+            }
+            if (!ViewType.IsSubclassOf(typeof(Control)))
+            {
+                System.Diagnostics.Debug.WriteLine($"Invalid View type: {ViewName}");
+                return;
+            }
             if (!ViewList.TryGetValue(ViewName, out TargetView))
             {
-                Type ViewType;
-                if(!ViewTypeList.TryGetValue((sender as Control).Tag as string, out ViewType))
-                {
-                    System.Diagnostics.Debug.WriteLine($"Invalid View name: {ViewName}");
-                    return;
-                }
-                if (!ViewType.IsSubclassOf(typeof(Control)))
-                {
-                    System.Diagnostics.Debug.WriteLine($"Invalid View type: {ViewName}");
-                    return;
-                }
                 TargetView = new LayoutAnchorable();
-                TargetView.Content = ViewType.GetConstructor(new Type[0]).Invoke(new object[0]);
-                TargetView.ContentId = ViewName;
-                TargetView.Title = ViewName;
-#warning 从资源里读取View Title!
                 ViewList.Add(ViewName, TargetView);
                 TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Right);
                 TargetView.Hide();
+            }
+            if(TargetView.Content == null)
+            {
+                TargetView.Content = ViewType.GetConstructor(new Type[0]).Invoke(new object[0]);
+                if ((TargetView.Content as Control).DataContext == null)
+                    (TargetView.Content as Control).DataContext = Officer.Staff.Current;
+                TargetView.ContentId = ViewName;
+                TargetView.Title = ViewName;
+#warning 从资源里读取View Title!
             }
             ToggleBinding.Source = TargetView;
             ToggleBinding.Path = new PropertyPath("IsVisible");

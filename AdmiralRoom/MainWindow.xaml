@@ -92,7 +92,9 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="窗口">
                 <ribbon:RibbonGroupBox Header="Debug">
-                    <ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>
+                    <!--<ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>-->
+                    <ribbon:ToggleButton Header="司令部" Tag="AdmiralView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Header="舰队" Tag="FleetView" Loaded="SetToggleBinding"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
@@ -108,11 +110,14 @@
                         </Dock:LayoutDocument>
                     </Dock:LayoutDocumentPane>
                 </Dock:LayoutPanel>
-                <Dock:LayoutRoot.Hidden>
+                <!--<Dock:LayoutRoot.Hidden>
                     <Dock:LayoutAnchorable ContentId="APIView" Title="APIView">
                         <Views:APIView DataContext="{x:Static Models:APIModel.Current}"/>
                     </Dock:LayoutAnchorable>
-                </Dock:LayoutRoot.Hidden>
+                    <Dock:LayoutAnchorable ContentId="AdmiralView" Title="司令部">
+                        <Views:AdmiralView DataContext="{x:Static Models:AdmiralModel.Current}"/>
+                    </Dock:LayoutAnchorable>
+                </Dock:LayoutRoot.Hidden>-->
             </Dock:LayoutRoot>
         </Dock:DockingManager>
         <ribbon:StatusBar Grid.Row="2" FontSize="18" DataContext="{x:Static Models:StatusModel.Current}">

@@ -10,12 +10,13 @@ namespace Huoyaoyuan.AdmiralRoom.API
 {
     public class APIData<T>
     {
-        public svdata<T> Data { get; private set; }
+        public svdata<T> SvData { get; private set; }
+        public T Data => this.SvData.api_data;
         public NameValueCollection Request { get; private set; }
-        public bool IsSuccess => this.Data.api_result == 1;
+        public bool IsSuccess => this.SvData.api_result == 1;
         public APIData(svdata<T> data, string request)
         {
-            Data = data;
+            SvData = data;
             Request = HttpUtility.ParseQueryString(request);
         }
     }
