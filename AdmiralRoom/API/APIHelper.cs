@@ -8,6 +8,24 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     public static class APIHelper
     {
+        public static APIData Parse(this Session oSession)
+        {
+            var resarr = oSession.ResponseBody;
+            var mms = new MemoryStream(resarr, 7, resarr.Length - 7, false);
+            var serializer = svdata.Serializer;
+            svdata _svdata = null;
+            try
+            {
+                _svdata = serializer.ReadObject(mms) as svdata;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Debugger.Break();
+                _svdata = new svdata();
+            }
+            return new APIData(_svdata, oSession.GetRequestBodyAsString());
+        }
         public static APIData<T> Parse<T>(this Session oSession)
         {
             var resarr = oSession.ResponseBody;

@@ -11,7 +11,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_port/port", x => PortHandler(x.Parse<port_port>().Data));
             Staff.RegisterHandler("api_get_member/deck", x => DecksHandler(x.Parse<getmember_deck[]>().Data));
             Staff.RegisterHandler("api_get_member/slot_item", x => ItemsHandler(x.Parse<getmember_slotitem[]>().Data));
-            Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse<object>().Request));
+            Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse().Request));
+            Staff.RegisterHandler("api_get_member/ship3", x => Ship3Handler(x.Parse<getmember_ship3>().Data));
         }
 
         public Material Material { get; } = new Material();
@@ -125,6 +126,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Equipments = equips;
             Staff.Current.Admiral.EquipCount = api.Length;
         }
+
         void ChangeHandler(NameValueCollection api)
         {
             int idx = int.Parse(api["api_ship_idx"]);
@@ -160,6 +162,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     }
                 }
             });
+        }
+
+        void Ship3Handler(getmember_ship3 api)
+        {
+            foreach(var ship in api.api_ship_data)
+            {
+                Ships[ship.api_id]?.Update(ship);
+            }
+            foreach(var fleet in api.api_deck_data)
+            {
+                Fleet f = new Fleet(fleet);
+                if (f.Ships.Count != Fleets[fleet.api_id].Ships.Count)//沉船&？
+                    Fleets[fleet.api_id] = f;
+            }
         }
     }
 }

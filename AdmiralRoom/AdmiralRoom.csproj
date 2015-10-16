@@ -138,6 +138,7 @@
     <Compile Include="API\getmember_material.cs" />
     <Compile Include="API\getmember_ndock.cs" />
     <Compile Include="API\getmember_record.cs" />
+    <Compile Include="API\getmember_ship3.cs" />
     <Compile Include="API\getmember_slotitem.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\svdata.cs" />
