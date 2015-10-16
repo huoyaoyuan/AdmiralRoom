@@ -17,7 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     if (item.Id == id) return item;
                 }
-                return null;
+                return default(T);
             }
             set
             {

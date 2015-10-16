@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Models;
 
@@ -14,22 +16,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Exp Exp => new Exp(rawdata.api_exp);
         public LimitedValue HP { get; private set; }
         public ShootRange Range => (ShootRange)rawdata.api_leng;
-        #region Slot
-        private int[] _slot = new int[4];
-        public int[] Slot
+
+        #region Slots
+        private ObservableCollection<Equipment> _slots;
+        public ObservableCollection<Equipment> Slots
         {
-            get { return _slot; }
+            get { return _slots; }
             set
             {
-                if (_slot != value)
+                if (_slots != value)
                 {
-                    _slot = value;
+                    _slots = value;
                     OnPropertyChanged();
                 }
             }
         }
         #endregion
-        //public int[] OnSlot => rawdata.api_onslot;
 
         #region Aircrafts
         private LimitedValue[] _aircrafts;
@@ -126,6 +128,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 ac[i] = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
             }
             Aircrafts = ac;
+            var slots = new List<Equipment>();
+            foreach(int id in rawdata.api_slot)
+            {
+                if (id != -1)
+                    slots.Add(Staff.Current.Homeport.Equipments[id]);
+            }
+            Slots = new ObservableCollection<Equipment>(slots);
         }
     }
     public enum ShootRange { None = 0, Short = 1, Long = 2, VLong = 3 }

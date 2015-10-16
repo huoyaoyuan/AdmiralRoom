@@ -117,6 +117,18 @@
                                                              Background="Transparent"
                                                              Foreground="{Binding Bull, Converter={StaticResource HPColorConverter}}"/>
                                             </Grid>
+                                            <ItemsControl Grid.Column="5" Margin="0,0,4,0" ItemsSource="{Binding Slots}" VerticalAlignment="Center">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="{x:Type officer:Equipment}">
+                                                        
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
                                         </Grid>
                                         <Rectangle Height="1" Fill="Gray" Margin="2"/>
                                     </StackPanel>

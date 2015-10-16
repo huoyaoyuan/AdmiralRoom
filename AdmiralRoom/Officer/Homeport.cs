@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.RegisterHandler("api_port/port", x => PortHandler(x.Parse<port_port>().Data));
             Staff.RegisterHandler("api_get_member/deck", x => DecksHandler(x.Parse<getmember_deck[]>().Data));
+            Staff.RegisterHandler("api_get_member/slot_item", x => ItemsHandler(x.Parse<getmember_slotitem[]>().Data));
         }
 
         public Material Material { get; } = new Material();
@@ -66,6 +67,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region Equipments
+        private IDTable<Equipment> _equipments;
+        public IDTable<Equipment> Equipments
+        {
+            get { return _equipments; }
+            set
+            {
+                if (_equipments != value)
+                {
+                    _equipments = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         void PortHandler(port_port api)
         {
             Material.GetMemberMaterial(api.api_material);
@@ -99,6 +116,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     }
                 });
             }
+        }
+
+        void ItemsHandler(getmember_slotitem[] api)
+        {
+            var equips = new IDTable<Equipment>();
+            foreach(var equip in api)
+            {
+                equips.Add(new Equipment(equip));
+            }
+            Equipments = equips;
         }
     }
 }

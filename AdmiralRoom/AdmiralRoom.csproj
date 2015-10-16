@@ -138,6 +138,7 @@
     <Compile Include="API\getmember_material.cs" />
     <Compile Include="API\getmember_ndock.cs" />
     <Compile Include="API\getmember_record.cs" />
+    <Compile Include="API\getmember_slotitem.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\svdata.cs" />
     <Compile Include="Common\DateTimeHelper.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\EquipInfo.cs" />
+    <Compile Include="Officer\Equipment.cs" />
     <Compile Include="Officer\EquipType.cs" />
     <Compile Include="Officer\Fleet.cs" />
     <Compile Include="Officer\General\GameObject.cs" />

@@ -10,7 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class ShipInfo : GameObject<api_mst_ship>, IIdentifiable
     {
         public int Id => rawdata.api_id;
-        public string Name => rawdata.api_name;
+        public string Name => rawdata.api_name ?? "？？？";
         public int SortNo => rawdata.api_sort_no;
         public string Yomi => rawdata.api_yomi;
         public ShipSpeed Speed => (ShipSpeed)rawdata.api_soku;
