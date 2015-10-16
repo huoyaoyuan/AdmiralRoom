@@ -40,7 +40,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             foreach (int shipid in rawdata.api_ship)
             {
                 if (shipid != -1)
+                {
                     ships.Add(Staff.Current.Homeport.Ships[shipid]);
+                    Staff.Current.Homeport.Ships[shipid].InFleet = this;
+                }
             }
             Ships = new ObservableCollection<Ship>(ships);
         }

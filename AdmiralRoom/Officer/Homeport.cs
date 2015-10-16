@@ -136,14 +136,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (idx == -1)//旗艦以外全解除
                 {
                     for (int i = 2; i <= fleet.Ships.Count; i++)
+                    {
+                        fleet.Ships[i].InFleet = null;
                         fleet.Ships.Remove(fleet.Ships[i]);
+                    }
                 }
                 else
                 {
                     if (shipid == -1)//はずす
+                    {
+                        fleet.Ships[idx].InFleet = null;
                         fleet.Ships.Remove(fleet.Ships[idx]);
+                    }
                     else
-                        fleet.Ships[idx] = Ships[shipid];
+                    {
+                        var ship = Ships[shipid];
+                        var destf = ship.InFleet;
+                        if(destf != null)
+                        {
+                            destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                        }
+                        fleet.Ships[idx] = ship;
+                    }
                 }
             });
         }

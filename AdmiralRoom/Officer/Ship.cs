@@ -126,6 +126,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
+        public Fleet InFleet { get; set; }
 
         protected override void UpdateProp()
         {
