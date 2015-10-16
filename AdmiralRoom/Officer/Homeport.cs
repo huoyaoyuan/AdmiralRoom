@@ -126,6 +126,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 equips.Add(new Equipment(equip));
             }
             Equipments = equips;
+            Staff.Current.Admiral.EquipCount = api.Length;
         }
     }
 }

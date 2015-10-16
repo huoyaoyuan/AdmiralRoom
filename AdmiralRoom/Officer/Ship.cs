@@ -111,9 +111,26 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region RepairingHP
+        private int _repairingHP;
+        public int RepairingHP
+        {
+            get { return _repairingHP; }
+            set
+            {
+                if (_repairingHP != value)
+                {
+                    _repairingHP = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         protected override void UpdateProp()
         {
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
+            RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
             ASW = new LimitedValue(rawdata.api_taisen);
             ViewRange = new LimitedValue(rawdata.api_sakuteki);

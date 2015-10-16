@@ -16,19 +16,6 @@
         <Converter:CondColorConverter x:Key="CondColorConverter"/>
     </UserControl.Resources>
     <TabControl ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
-        <!--<TabControl.ItemContainerStyle>
-            <Style TargetType="{x:Type TabItem}">
-                <Setter Property="HeaderTemplate">
-                    <Setter.Value>
-                        <DataTemplate DataType="{x:Type officer:Fleet}">
-                            <Border Background="LightGreen">
-                                <TextBlock Text="{Binding Name}"/>
-                            </Border>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </TabControl.ItemContainerStyle>-->
         <TabControl.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
                 <TextBlock Text="{Binding Name}" FontSize="18"/>
@@ -81,8 +68,9 @@
 													Foreground="{Binding HP, Converter={StaticResource HPColorConverter}}"
                                                     Background="Transparent"/>
                                                 <ProgressBar Width="120" Height="16"
+                                                    Minimum="0" Maximum="{Binding HP.Max}"
+                                                    Value="{Binding RepairingHP}"
 													Visibility="{Binding IsRepairing, ConverterParameter=True, Converter={StaticResource VisibilityConverter}}"
-                                                    IsIndeterminate="True"
 													Foreground="Aqua"
                                                     Background="Transparent"/>
                                             </StackPanel>
