@@ -18,8 +18,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public ShootRange Range => (ShootRange)rawdata.api_leng;
 
         #region Slots
-        private ObservableCollection<Equipment> _slots;
-        public ObservableCollection<Equipment> Slots
+        private ObservableCollection<Slot> _slots;
+        public ObservableCollection<Slot> Slots
         {
             get { return _slots; }
             set
@@ -32,24 +32,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-
-        #region Aircrafts
-        private LimitedValue[] _aircrafts;
-        public LimitedValue[] Aircrafts
-        {
-            get { return _aircrafts; }
-            set
-            {
-                if (_aircrafts != value)
-                {
-                    _aircrafts = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
-
-        public int SlotEx => rawdata.api_slot_ex;
+        
+        public Slot SlotEx { get; private set; }
         public Modernizable Firepower { get; private set; }
         public Modernizable Torpedo { get; private set; }
         public Modernizable AA { get; private set; }
@@ -142,19 +126,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Luck = new Modernizable(ShipInfo.Luck, rawdata.api_kyouka[4], rawdata.api_lucky[0]);
             Fuel = new LimitedValue(rawdata.api_fuel, ShipInfo.MaxFuel);
             Bull = new LimitedValue(rawdata.api_bull, ShipInfo.MaxBull);
-            var ac = new LimitedValue[4];
-            for(int i = 0; i < 4; i++)
-            {
-                ac[i] = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
-            }
-            Aircrafts = ac;
-            var slots = new List<Equipment>();
+            var slots = new List<Slot>();
             foreach(int id in rawdata.api_slot)
             {
                 if (id != -1)
-                    slots.Add(Staff.Current.Homeport.Equipments[id]);
+                    slots.Add(new Slot() { Item = Staff.Current.Homeport.Equipments[id] });
             }
-            Slots = new ObservableCollection<Equipment>(slots);
+            for(int i = 0; i < rawdata.api_onslot.Length; i++)
+            {
+                if (slots[i] != null)
+                    slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
+            }
+            Slots = new ObservableCollection<Slot>(slots);
+            SlotEx = new Slot();
+            if (rawdata.api_slot_ex == 0) SlotEx.IsLocked = true;
+            else if (rawdata.api_slot_ex != -1) SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
         }
     }
     public enum ShootRange { None = 0, Short = 1, Long = 2, VLong = 3 }

@@ -172,6 +172,7 @@
     <Compile Include="Officer\Ship.cs" />
     <Compile Include="Officer\ShipInfo.cs" />
     <Compile Include="Officer\ShipType.cs" />
+    <Compile Include="Officer\Slot.cs" />
     <Compile Include="Officer\Staff.cs" />
     <Compile Include="Views\AdmiralView.xaml.cs">
       <DependentUpon>AdmiralView.xaml</DependentUpon>

@@ -9,7 +9,7 @@
              xmlns:Converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="720">
     <UserControl.Resources>
         <Converter:HPColorConverter x:Key="HPColorConverter"/>
         <Converter:VisibilityConverter x:Key="VisibilityConverter"/>
@@ -114,11 +114,22 @@
                                                     </ItemsPanelTemplate>
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
-                                                    <DataTemplate DataType="{x:Type officer:Equipment}">
-                                                        <Image Source="{Binding EquipInfo.Icon, Mode=OneTime}" Height="32" Width="32" Margin="0,0,4,0" ToolTip="{Binding}"/>
+                                                    <DataTemplate DataType="{x:Type officer:Slot}">
+                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36">
+                                                            <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" Canvas.Left="2" Canvas.Top="2" ToolTip="{Binding Item}"/>
+                                                            <TextBlock Height="16" Canvas.Left="0" Canvas.Top="20" FontSize="16" Text="{Binding AirCraft.Current}"
+                                                                       Foreground="{Binding AirCraft, Converter={StaticResource HPColorConverter}}"
+                                                                       Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
+                                                            
+                                                        </Canvas>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="6"
+                                                        Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
+                                                <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
+                                                <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" ToolTip="{Binding SlotEx.Item}"/>
+                                            </StackPanel>
                                         </Grid>
                                         <Rectangle Height="1" Fill="Gray" Margin="2"/>
                                     </StackPanel>
