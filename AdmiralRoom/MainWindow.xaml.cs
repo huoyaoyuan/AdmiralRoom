@@ -166,7 +166,9 @@ namespace Huoyaoyuan.AdmiralRoom
                     (TargetView.Content as Control).DataContext = Officer.Staff.Current;
                 TargetView.ContentId = ViewName;
                 TargetView.Title = ViewName;
-#warning 从资源里读取View Title!
+                Binding titlebinding = new Binding("Resources.ViewTitle_" + ViewName);
+                titlebinding.Source = ResourceService.Current;
+                BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
             }
             ToggleBinding.Source = TargetView;
             ToggleBinding.Path = new PropertyPath("IsVisible");

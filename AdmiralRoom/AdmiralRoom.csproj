@@ -238,12 +238,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.jp.resx">
-      <DependentUpon>Resources.resx</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en.resx">
       <DependentUpon>Resources.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

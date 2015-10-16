@@ -59,5 +59,41 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 装备数： 的本地化字符串。
+        /// </summary>
+        public static string ItemCount {
+            get {
+                return ResourceManager.GetString("ItemCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 舰娘数： 的本地化字符串。
+        /// </summary>
+        public static string ShipCount {
+            get {
+                return ResourceManager.GetString("ShipCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 司令部 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_AdmiralView {
+            get {
+                return ResourceManager.GetString("ViewTitle_AdmiralView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 舰队 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_FleetView {
+            get {
+                return ResourceManager.GetString("ViewTitle_FleetView", resourceCulture);
+            }
+        }
     }
 }
