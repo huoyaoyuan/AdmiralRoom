@@ -115,7 +115,7 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type officer:Equipment}">
-                                                        <Image Source="{Binding EquipInfo.Icon, Mode=OneTime}" Height="32" Width="32" Margin="0,0,4,0"/>
+                                                        <Image Source="{Binding EquipInfo.Icon, Mode=OneTime}" Height="32" Width="32" Margin="0,0,4,0" ToolTip="{Binding}"/>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>

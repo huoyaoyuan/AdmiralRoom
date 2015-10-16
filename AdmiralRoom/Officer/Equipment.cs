@@ -21,5 +21,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// </summary>
         public int AirProficiency => rawdata.api_alv;
         public Equipment(getmember_slotitem api) : base(api) { }
+        public override string ToString()
+        {
+            string s = EquipInfo.Name;
+            if (ImproveLevel > 0) s += $" ★+{ImproveLevel}";
+            if (AirProficiency > 0) s += $" +{AirProficiency}";
+            return s;
+        }
     }
 }

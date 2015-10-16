@@ -79,7 +79,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-
+        public Ship Secratary => Fleets[1].Ships[0];
         void PortHandler(port_port api)
         {
             Material.GetMemberMaterial(api.api_material);
@@ -135,7 +135,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (idx == -1)//旗艦以外全解除
                 {
-                    for (int i = 2; i <= fleet.Ships.Count; i++)
+                    for (int i = 1; i < fleet.Ships.Count; i++)
                     {
                         fleet.Ships[i].InFleet = null;
                         fleet.Ships.Remove(fleet.Ships[i]);

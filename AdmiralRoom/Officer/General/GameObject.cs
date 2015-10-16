@@ -12,7 +12,7 @@
         {
             rawdata = data;
             UpdateProp();
-            OnPropertyChanged();
+            OnPropertyChanged(null);
         }
         protected virtual void UpdateProp() { }
     }
