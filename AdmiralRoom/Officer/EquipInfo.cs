@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -14,6 +16,25 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public string Name => rawdata.api_name;
         public EquipType EquipType => Staff.Current.MasterData.EquipTypes[rawdata.api_type[2]];
         public int IconID => rawdata.api_type[3];
+        private ImageSource _icon;
+        public ImageSource Icon
+        {
+            get
+            {
+                if (_icon == null)
+                {
+                    try
+                    {
+                        _icon = new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/Equip/{IconID}.png", UriKind.Absolute));
+                    }
+                    catch
+                    {
+                        _icon = new BitmapImage(new Uri("pack://application:,,,/AdmiralRoom;component/Images/Equip/Misc.png", UriKind.Absolute));
+                    }
+                }
+                return _icon;
+            }
+        }
         public int FirePower => rawdata.api_houg;
         public int Torpedo => rawdata.api_raig;
         public int Armor => rawdata.api_souk;

@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// <summary>
         /// 改修等级
         /// </summary>
-        public int EnforceLevel => rawdata.api_level;
+        public int ImproveLevel => rawdata.api_level;
         /// <summary>
         /// 熟练度
         /// </summary>
