@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -15,6 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_port/port", x => PortHandler(x.Parse<port_port>().Data));
             Staff.RegisterHandler("api_get_member/deck", x => DecksHandler(x.Parse<getmember_deck[]>().Data));
             Staff.RegisterHandler("api_get_member/slot_item", x => ItemsHandler(x.Parse<getmember_slotitem[]>().Data));
+            Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse<object>().Request));
         }
 
         public Material Material { get; } = new Material();
@@ -127,6 +124,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             Equipments = equips;
             Staff.Current.Admiral.EquipCount = api.Length;
+        }
+        void ChangeHandler(NameValueCollection api)
+        {
+            int idx = int.Parse(api["api_ship_idx"]);
+            int fleetid = int.Parse(api["api_id"]);
+            int shipid = int.Parse(api["api_ship_id"]);
+            var fleet = Fleets[fleetid];
+            Staff.Current.Dispatcher.Invoke(() =>
+            {
+                if (idx == -1)//旗艦以外全解除
+                {
+                    for (int i = 2; i <= fleet.Ships.Count; i++)
+                        fleet.Ships.Remove(fleet.Ships[i]);
+                }
+                else
+                {
+                    if (shipid == -1)//はずす
+                        fleet.Ships.Remove(fleet.Ships[idx]);
+                    else
+                        fleet.Ships[idx] = Ships[shipid];
+                }
+            });
         }
     }
 }

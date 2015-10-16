@@ -17,7 +17,8 @@
                 </DrawingGroup.Children>
             </DrawingGroup>
         </DrawingImage.Drawing>
-    </DrawingImage>    <DrawingImage x:Key="IconForward">
+    </DrawingImage>
+    <DrawingImage x:Key="IconForward">
         <DrawingImage.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
