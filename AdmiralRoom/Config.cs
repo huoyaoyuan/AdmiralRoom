@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
+using System.Globalization;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -13,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public static Config Current { get; set; } = new Config();
         #region Language
-        private string _language = "zh-CN";
+        private string _language;
         public string Language
         {
             get { return _language; }
@@ -28,7 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
         #region Theme
-        private string _theme = "Office 2010 Blue";
+        private string _theme;
         public string Theme
         {
             get { return _theme; }
@@ -43,7 +44,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
         #region NoDWM
-        private bool _nodwm = false;
+        private bool _nodwm;
         public bool NoDWM
         {
             get { return _nodwm; }
@@ -58,7 +59,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
         #region Aero
-        private bool _aero = true;
+        private bool _aero;
         public bool Aero
         {
             get { return _aero; }
@@ -102,19 +103,47 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+        public Config()
+        {
+            _theme = "Office 2010 Blue";
+            var thisculture = CultureInfo.CurrentUICulture;
+            foreach(var culture in ResourceService.SupportedCultures)
+            {
+                if (thisculture.ThreeLetterWindowsLanguageName == culture.ThreeLetterWindowsLanguageName) 
+                {
+                    _language = culture.Name;
+                    break;
+                }
+            }
+            if (_language == null) _language = "en";
+            var OSVersion = Environment.OSVersion.Version;
+            if (OSVersion.Major >= 10)//Windows 10
+            {
+                _nodwm = true;
+                _aero = false;
+            }
+            else if(OSVersion.Minor >= 2)//Windows 8
+            {
+                _nodwm = false;
+                _aero = true;
+            }
+            else//Windows 7
+            {
+                _nodwm = false;
+                _aero = false;
+            }
+        }
         public static Config Load()
         {
             XmlSerializer s = new XmlSerializer(typeof(Config));
-            Config c = new Config();
             try
             {
                 using (var r = File.OpenText("config.xml"))
                 {
-                    c = (Config)s.Deserialize(r);
+                    return (Config)s.Deserialize(r);
                 }
             }
-            catch { }
-            return c;
+            catch { return new Config(); }
         }
         public void Save()
         {

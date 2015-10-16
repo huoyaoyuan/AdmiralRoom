@@ -8,7 +8,7 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public static ResourceService Current { get; } = new ResourceService();
         public static IReadOnlyCollection<CultureInfo> SupportedCultures { get; }=
-            new[] {"zh-CN","ja","en" }
+            new[] {"zh-Hans","ja","en" }
             .Select(x => {
                 try { return CultureInfo.GetCultureInfo(x); }
                 catch { return null; }
