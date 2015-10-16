@@ -139,6 +139,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AA = new Modernizable(ShipInfo.AA, rawdata.api_kyouka[2], rawdata.api_taiku[0]);
             Armor = new Modernizable(ShipInfo.Armor, rawdata.api_kyouka[3], rawdata.api_soukou[0]);
             Luck = new Modernizable(ShipInfo.Luck, rawdata.api_kyouka[4], rawdata.api_lucky[0]);
+            Fuel = new LimitedValue(rawdata.api_fuel, ShipInfo.MaxFuel);
+            Bull = new LimitedValue(rawdata.api_bull, ShipInfo.MaxBull);
             var ac = new LimitedValue[4];
             for(int i = 0; i < 4; i++)
             {
