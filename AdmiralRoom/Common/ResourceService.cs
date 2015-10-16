@@ -16,12 +16,12 @@ namespace Huoyaoyuan.AdmiralRoom
             .Where(x => x != null)
 			.ToList();
 
-        public static Properties.Resources Resources { get; } = new Properties.Resources();
+        public Properties.Resources Resources { get; } = new Properties.Resources();
         public void ChangeCulture(string CultureName)
         {
             CultureInfo culture = SupportedCultures.SingleOrDefault(x => x.Name == CultureName);
             if (culture != null) Properties.Resources.Culture = culture;
-            OnPropertyChanged();
+            OnPropertyChanged("Resources");
         }
     }
 }

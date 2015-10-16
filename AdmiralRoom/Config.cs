@@ -12,9 +12,24 @@ namespace Huoyaoyuan.AdmiralRoom
     public class Config : NotifyBase
     {
         public static Config Current { get; set; } = new Config();
+        #region Language
+        private string _language = "zh-CN";
+        public string Language
+        {
+            get { return _language; }
+            set
+            {
+                if (_language != value)
+                {
+                    _language = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
         #region Theme
-        private int _theme = 2;
-        public int Theme
+        private string _theme = "Office 2010 Blue";
+        public string Theme
         {
             get { return _theme; }
             set

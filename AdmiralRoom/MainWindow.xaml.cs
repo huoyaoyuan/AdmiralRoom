@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 using Huoyaoyuan.AdmiralRoom.Views;
@@ -48,6 +41,11 @@ namespace Huoyaoyuan.AdmiralRoom
             };
             BrowserRefresh.Click += (_, __) => GameHost.WebBrowser.Refresh();
             BrowserBackToGame.Click += (_, __) => GameHost.WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
+
+            //Language handler
+            LanguageBox.ItemsSource = ResourceService.SupportedCultures;
+            LanguageBox.SelectionChanged += (s, _) => ResourceService.Current.ChangeCulture((s as ComboBox).SelectedValue.ToString());
+            ResourceService.Current.ChangeCulture(LanguageBox.SelectedValue.ToString());
 
             //Theme button handler
             NoDWM.Click += (s, _) =>this.DontUseDwm = (s as CheckBox).IsChecked.Value;
@@ -132,7 +130,7 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             //[nameof(APIView)] = typeof(APIView),
             [nameof(AdmiralView)] = typeof(AdmiralView),
-            [nameof(FleetView)]=typeof(FleetView)
+            [nameof(FleetView)] = typeof(FleetView)
         };
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
