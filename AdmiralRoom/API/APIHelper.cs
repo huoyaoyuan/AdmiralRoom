@@ -21,6 +21,8 @@ namespace Huoyaoyuan.AdmiralRoom
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                var apistring = (new System.Text.UTF8Encoding()).GetString(mms.ToArray());
+                Debug.WriteLine(apistring);
                 Debugger.Break();
                 _svdata = new svdata();
             }
@@ -39,6 +41,8 @@ namespace Huoyaoyuan.AdmiralRoom
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                var apistring = (new System.Text.UTF8Encoding()).GetString(mms.ToArray());
+                Debug.WriteLine(apistring);
                 Debugger.Break();
                 svdata = new svdata<T>();
             }

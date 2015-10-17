@@ -140,6 +140,7 @@
     <Compile Include="API\getmember_record.cs" />
     <Compile Include="API\getmember_ship_deck.cs" />
     <Compile Include="API\getmember_slotitem.cs" />
+    <Compile Include="API\hokyu_charge.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\svdata.cs" />
     <Compile Include="Common\DateTimeHelper.cs" />

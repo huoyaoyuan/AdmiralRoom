@@ -30,16 +30,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        #region Ammo
-        private int _ammo;
-        public int Ammo
+        #region Bull
+        private int _bull;
+        public int Bull
         {
-            get { return _ammo; }
+            get { return _bull; }
             set
             {
-                if (_ammo != value)
+                if (_bull != value)
                 {
-                    _ammo = value;
+                    _bull = value;
                     OnPropertyChanged();
                 }
             }
@@ -153,7 +153,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         Fuel = mat.api_value;
                         break;
                     case 2:
-                        Ammo = mat.api_value;
+                        Bull = mat.api_value;
                         break;
                     case 3:
                         Steel = mat.api_value;

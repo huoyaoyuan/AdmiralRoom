@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse().Request));
             Staff.RegisterHandler("api_get_member/ship3", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
             Staff.RegisterHandler("api_get_member/ship_deck", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
+            Staff.RegisterHandler("api_req_hokyu/charge", x => ChargeHandler(x.Parse<hokyu_charge>().Data));
         }
 
         public Material Material { get; } = new Material();
@@ -180,6 +181,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (f.Ships.Count != Fleets[fleet.api_id].Ships.Count)//沉船&？
                     Fleets[fleet.api_id] = f;
             }
+        }
+
+        void ChargeHandler(hokyu_charge api)
+        {
+            foreach(var ship in api.api_ship)
+            {
+                var Ship = Ships[ship.api_id];
+                Ship.Fuel = new LimitedValue(ship.api_fuel, Ship.Fuel.Max);
+                Ship.Bull = new LimitedValue(ship.api_bull, Ship.Bull.Max);
+                for (int i = 0; i < Ship.Slots.Count; i++)
+                    Ship.Slots[i].AirCraft = new LimitedValue(ship.api_onslot[i], Ship.Slots[i].AirCraft.Max);
+            }
+            Material.Fuel = api.api_material[0];
+            Material.Bull = api.api_material[1];
+            Material.Steel = api.api_material[2];
+            Material.Bauxite = api.api_material[3];
         }
     }
 }

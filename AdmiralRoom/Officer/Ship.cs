@@ -49,7 +49,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public LimitedValue Fuel
         {
             get { return _fuel; }
-            private set
+            set
             {
                 _fuel = value;
                 OnPropertyChanged();
@@ -62,7 +62,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public LimitedValue Bull
         {
             get { return _bull; }
-            private set
+            set
             {
                 _bull = value;
                 OnPropertyChanged();
