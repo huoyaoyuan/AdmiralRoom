@@ -49,18 +49,42 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
-                        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Width="100" x:Name="ProxyHost" Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Width="100" x:Name="ProxyPort" Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <CheckBox Content="使用代理" Grid.ColumnSpan="2" x:Name="EnableProxy" IsChecked="{Binding EnableProxy, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyHost" Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyPort" Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                     </Grid>
                     <ribbon:Button Header="更新" x:Name="UpdateProxySetting"/>
                     <ribbon:Button Header="撤销" x:Name="CancelProxySetting"/>
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="HTTPS">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="使用单独的HTTPS代理" Grid.ColumnSpan="2" x:Name="EnableProxyHTTPS" IsChecked="{Binding EnableProxyHTTPS, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyHostHTTPS"
+                                 IsEnabled="{Binding IsChecked, ElementName=EnableProxyHTTPS}"
+                                 Text="{Binding HTTPSProxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyPortHTTPS"
+                                 IsEnabled="{Binding IsChecked, ElementName=EnableProxyHTTPS}"
+                                 Text="{Binding HTTPSProxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                    </Grid>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="界面" KeyTip="V">

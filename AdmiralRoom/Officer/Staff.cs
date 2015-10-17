@@ -25,7 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static void Start(int port = 39175)
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
-            FiddlerApplication.BeforeRequest += FiddlerApplication_BeforeRequest;
+            FiddlerApplication.BeforeRequest += SetSessionProxy;
             FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
 
             Helper.RefreshIESettings($"localhost:{port}");
@@ -41,17 +41,32 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        private static void FiddlerApplication_BeforeRequest(Session oSession)
+        private static void SetSessionProxy(Session oSession)
         {
+            if (IsSessionHTTPS(oSession))
+            {
+                if (Config.Current.EnableProxyHTTPS && Config.Current.HTTPSProxy != null)
+                {
+                    oSession["X-OverrideGateway"] = $"[{Config.Current.HTTPSProxy.Host}]:{Config.Current.HTTPSProxy.Port}";
+                    return;
+                }
+            }
             if (Proxy != null && Config.Current.EnableProxy)
             {
                 oSession["X-OverrideGateway"] = $"[{Proxy.Host}]:{Proxy.Port}";
             }
         }
 
+        public static bool IsSessionHTTPS(Session oSession)
+        {
+            if (oSession.isHTTPS) return true;
+            if (oSession.url.Contains(":443")) return true;
+            return false;
+        }
+
         public static void Stop()
         {
-            FiddlerApplication.BeforeRequest -= FiddlerApplication_BeforeRequest;
+            FiddlerApplication.BeforeRequest -= SetSessionProxy;
             FiddlerApplication.AfterSessionComplete -= AfterSessionComplete;
             FiddlerApplication.Shutdown();
         }

@@ -155,7 +155,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     {
                         var ship = Ships[shipid];
                         var destf = ship.InFleet;
-                        fleet.Ships[idx].InFleet = destf;
+                        if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
                         if(destf != null)
                         {
                             destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];

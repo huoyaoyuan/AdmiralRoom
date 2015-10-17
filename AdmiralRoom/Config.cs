@@ -13,6 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom
     public class Config : NotifyBase
     {
         public static Config Current { get; set; } = new Config();
+
         #region Language
         private string _language;
         public string Language
@@ -28,6 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+
         #region Theme
         private string _theme;
         public string Theme
@@ -43,6 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+
         #region NoDWM
         private bool _nodwm;
         public bool NoDWM
@@ -58,6 +61,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+
         #region Aero
         private bool _aero;
         public bool Aero
@@ -73,6 +77,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+
         #region EnableProxy
         private bool _enableproxy;
         public bool EnableProxy
@@ -88,6 +93,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+
         #region Proxy
         private Officer.Proxy _proxy;
         public Officer.Proxy Proxy
@@ -103,6 +109,39 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
         #endregion
+
+        #region EnableProxyHTTPS
+        private bool _enalbeproxyhttps;
+        public bool EnableProxyHTTPS
+        {
+            get { return _enalbeproxyhttps; }
+            set
+            {
+                if (_enalbeproxyhttps != value)
+                {
+                    _enalbeproxyhttps = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region HTTPSProxy
+        private Officer.Proxy _httpsproxy;
+        public Officer.Proxy HTTPSProxy
+        {
+            get { return _httpsproxy; }
+            set
+            {
+                if (_httpsproxy != value)
+                {
+                    _httpsproxy = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Config()
         {
             _theme = "Office 2010 Blue";
@@ -132,6 +171,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 _nodwm = false;
                 _aero = false;
             }
+            _proxy = new Officer.Proxy();
+            _httpsproxy = new Officer.Proxy();
         }
         public static Config Load()
         {

@@ -62,11 +62,19 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 Config.Current.Proxy.Host = ProxyHost.Text;
                 Config.Current.Proxy.Port = int.Parse(ProxyPort.Text);
+                Config.Current.EnableProxy = EnableProxy.IsChecked.Value;
+                Config.Current.HTTPSProxy.Host = ProxyHostHTTPS.Text;
+                Config.Current.HTTPSProxy.Port = int.Parse(ProxyPortHTTPS.Text);
+                Config.Current.EnableProxyHTTPS = EnableProxyHTTPS.IsChecked.Value;
             };
             CancelProxySetting.Click += (_, __) =>
             {
                 ProxyHost.Text = Config.Current.Proxy.Host;
                 ProxyPort.Text = Config.Current.Proxy.Port.ToString();
+                EnableProxy.IsChecked = Config.Current.EnableProxy;
+                ProxyHostHTTPS.Text = Config.Current.HTTPSProxy.Host;
+                ProxyPortHTTPS.Text = Config.Current.HTTPSProxy.Port.ToString();
+                EnableProxyHTTPS.IsChecked = Config.Current.EnableProxyHTTPS;
             };
 
             //Font handler
