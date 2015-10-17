@@ -59,7 +59,7 @@
 												VerticalAlignment="Center"/>
                                             <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,4,0">
                                                 <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
-                                                    <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text=" / "/><Run Text="{Binding HP.Max}"/>
+                                                    <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text="{Binding HP.Max, StringFormat={} / {0}}"/>
                                                 </TextBlock>
                                                 <!--<ProgressBar Width="120" Height="16"
 													Minimum="0" Maximum="{Binding HP.Max}"

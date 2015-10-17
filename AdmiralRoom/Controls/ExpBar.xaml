@@ -15,14 +15,8 @@
             <RowDefinition Height="6"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="18">Lv.</TextBlock>
-            <TextBlock FontSize="18" Text="{Binding Level, ElementName=control}"/>
-        </StackPanel>
+        <TextBlock FontSize="18" Text="{Binding Level, ElementName=control, StringFormat=Lv. {0}}"/>
         <ProgressBar x:Name="BarExp" Grid.Row="1" Background="Transparent"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <TextBlock FontSize="12">Next: </TextBlock>
-            <TextBlock FontSize="12" Text="{Binding Exp.Next, ElementName=control}"/>
-        </StackPanel>
+        <TextBlock FontSize="12" Grid.Row="2" Text="{Binding Exp.Next, ElementName=control, StringFormat=Next. {0}}"/>
     </Grid>
 </UserControl>

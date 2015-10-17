@@ -31,7 +31,6 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.Resources>
                     <Style TargetType="TextBlock">
@@ -42,10 +41,8 @@
                 <TextBlock Grid.Column="0" Grid.Row="1" FontSize="12" Text="{Binding Resources.ItemCount, Source={x:Static res:ResourceService.Current}, Mode=OneWay}"></TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row="0" FontSize="16" Text="{Binding Admiral.ShipCount}"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" FontSize="16" Text="{Binding Admiral.EquipCount}"/>
-                <TextBlock Grid.Column="2" Grid.Row="0" FontSize="12" Text=" / "/>
-                <TextBlock Grid.Column="2" Grid.Row="1" FontSize="12" Text=" / "/>
-                <TextBlock Grid.Column="3" Grid.Row="0" FontSize="12" Text="{Binding Admiral.MaxShip}"/>
-                <TextBlock Grid.Column="3" Grid.Row="1" FontSize="12" Text="{Binding Admiral.MaxEquip}"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" FontSize="12" Text="{Binding Admiral.MaxShip, StringFormat={} / {0}}"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" FontSize="12" Text="{Binding Admiral.MaxEquip, StringFormat={} / {0}}"/>
             </Grid>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
