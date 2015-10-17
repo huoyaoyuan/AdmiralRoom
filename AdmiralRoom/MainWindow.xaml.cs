@@ -138,7 +138,8 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             //[nameof(APIView)] = typeof(APIView),
             [nameof(AdmiralView)] = typeof(AdmiralView),
-            [nameof(FleetView)] = typeof(FleetView)
+            [nameof(FleetView)] = typeof(FleetView),
+            [nameof(MissionView)] = typeof(MissionView)
         };
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
@@ -162,16 +163,22 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 TargetView = new LayoutAnchorable();
                 ViewList.Add(ViewName, TargetView);
-                TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Right);
+                TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
+                TargetView.Float();
                 TargetView.Hide();
             }
             if(TargetView.Content == null)
             {
-                TargetView.Content = ViewType.GetConstructor(new Type[0]).Invoke(new object[0]);
-                if ((TargetView.Content as Control).DataContext == null)
-                    (TargetView.Content as Control).DataContext = Officer.Staff.Current;
+                Control content = ViewType.GetConstructor(new Type[0]).Invoke(new object[0]) as Control;
+                TargetView.Content = content;
+                if (content.DataContext == null)
+                    content.DataContext = Officer.Staff.Current;
                 TargetView.ContentId = ViewName;
                 TargetView.Title = ViewName;
+                TargetView.FloatingHeight = content.Height;
+                TargetView.FloatingWidth = content.Width;
+                TargetView.FloatingTop = this.ActualHeight / 2;
+                TargetView.FloatingWidth = this.ActualWidth / 2;
                 Binding titlebinding = new Binding("Resources.ViewTitle_" + ViewName);
                 titlebinding.Source = ResourceService.Current;
                 BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);

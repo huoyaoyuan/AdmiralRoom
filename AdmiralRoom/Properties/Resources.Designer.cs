@@ -95,5 +95,14 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
                 return ResourceManager.GetString("ViewTitle_FleetView", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 远征 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_MissionView {
+            get {
+                return ResourceManager.GetString("ViewTitle_MissionView", resourceCulture);
+            }
+        }
     }
 }

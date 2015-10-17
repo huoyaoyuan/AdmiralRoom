@@ -126,4 +126,7 @@
   <data name="ItemCount" xml:space="preserve">
     <value>装备数：</value>
   </data>
+  <data name="ViewTitle_MissionView" xml:space="preserve">
+    <value>远征</value>
+  </data>
 </root>

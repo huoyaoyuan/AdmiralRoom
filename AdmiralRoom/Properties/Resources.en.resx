@@ -109,4 +109,7 @@
   <data name="ItemCount" xml:space="preserve">
     <value>Equips: </value>
   </data>
+  <data name="ViewTitle_MissionView" xml:space="preserve">
+    <value>Mission</value>
+  </data>
 </root>
