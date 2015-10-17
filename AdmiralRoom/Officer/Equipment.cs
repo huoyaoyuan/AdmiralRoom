@@ -20,6 +20,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// 熟练度
         /// </summary>
         public int AirProficiency => rawdata.api_alv;
+        public Equipment() { }
         public Equipment(getmember_slotitem api) : base(api) { }
         public override string ToString()
         {

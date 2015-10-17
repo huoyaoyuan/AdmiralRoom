@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class IDTable<T> : ObservableCollection<T>
-        where T : class, IIdentifiable
+        where T : class, IIdentifiable, new()
     {
         public IDTable():base() { }
         public IDTable(List<T> list):base(list) { }
         public IDTable(T[] array) : base(array) { }
+        public IDTable(IEnumerable<T> collection) : base(collection) { }
         public new T this[int id]
         {
             get
@@ -21,6 +24,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             set
             {
+                if (value.Id != id) throw new ArgumentException();
                 for(int i = 0; i< Count; i++)
                 {
                     var item = base[i];
@@ -32,6 +36,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     Add(value);
                 }
             }
+        }
+
+        public void UpdateAll<T2>(T2[] source, Func<T2, int> getid)
+        {
+            var deletelist = this.ToList();
+            foreach(T2 e in source)
+            {
+                var item = this[getid(e)];
+                if (item != null)
+                {
+                    (item as IUpdatable<T2>).Update(e);
+                    deletelist.Remove(item);
+                }
+                else
+                {
+                    item = new T();
+                    (item as IUpdatable<T2>).Update(e);
+                    Add(item);
+                }
+            }
+            foreach (T item in deletelist)
+                Remove(item);
         }
     }
 }

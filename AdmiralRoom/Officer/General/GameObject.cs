@@ -1,8 +1,9 @@
 ﻿namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public abstract class GameObject<T> : NotifyBase
+    public abstract class GameObject<T> : NotifyBase, IUpdatable<T>
     {
         protected T rawdata;
+        public GameObject() { }
         public GameObject(T data)
         {
             rawdata = data;

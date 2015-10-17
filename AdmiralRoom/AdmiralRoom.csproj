@@ -143,6 +143,7 @@
     <Compile Include="API\hokyu_charge.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\svdata.cs" />
+    <Compile Include="Common\CollectionHelper.cs" />
     <Compile Include="Common\DateTimeHelper.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Officer\EquipType.cs" />
     <Compile Include="Officer\Fleet.cs" />
     <Compile Include="Officer\General\GameObject.cs" />
+    <Compile Include="Officer\General\IUpdatable.cs" />
     <Compile Include="Officer\Homeport.cs" />
     <Compile Include="Officer\General\IDTable.cs" />
     <Compile Include="Officer\General\IIdentifiable.cs" />

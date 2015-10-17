@@ -49,6 +49,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int Rare => rawdata.api_backs;
         public string Message => rawdata.api_getmes;
         public ShipType ShipType => Staff.Current.MasterData.ShipTypes[rawdata.api_stype];
+        public ShipInfo() { }
         public ShipInfo(api_mst_ship api) : base(api) { }
         protected override void UpdateProp()
         {

@@ -8,6 +8,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Ship : GameObject<api_ship>, IIdentifiable
     {
+        public Ship() { }
         public Ship(api_ship api) : base(api) { }
         public int Id => rawdata.api_id;
         public int SortNo => rawdata.api_sortno;

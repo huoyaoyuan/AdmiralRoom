@@ -48,6 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int Rare => rawdata.api_rare;
         public int[] DestroyMaterial => rawdata.api_broken;
         public string Info => rawdata.api_info;
+        public EquipInfo() { }
         public EquipInfo(api_mst_slotitem api) : base(api) { }
     }
 }

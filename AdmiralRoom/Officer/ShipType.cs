@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int SortNo => rawdata.api_sortno;
         public int RepairTimeRatio => rawdata.api_scnt;
         public int BuildShape => rawdata.api_kcnt;
+        public ShipType() { }
         public ShipType(api_mst_stype api) : base(api) { }
     }
 }

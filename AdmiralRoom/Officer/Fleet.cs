@@ -32,7 +32,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-        
+
+        public Fleet() { }
         public Fleet(getmember_deck api) : base(api) { }
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
 
