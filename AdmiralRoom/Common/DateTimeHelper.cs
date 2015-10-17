@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -10,8 +6,14 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public static DateTime FromUnixTime(long unixtime)
         {
-            DateTime starttime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            DateTime starttime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             return starttime.AddMilliseconds(unixtime);
+        }
+        public static TimeSpan Remain(this DateTime time)
+        {
+            if (time.ToLocalTime() > DateTime.Now)
+                return time.ToLocalTime() - DateTime.Now;
+            else return new TimeSpan(0);
         }
     }
 }

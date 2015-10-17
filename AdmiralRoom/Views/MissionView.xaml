@@ -22,7 +22,13 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
                 <Grid Visibility="{Binding CanMission, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
-                    <TextBlock Text="{Binding BackTime}"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Id, StringFormat=/{0}}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding BackTimeRemain, StringFormat={}{0:hh\\:mm\\:ss}}"/>
                 </Grid>
             </DataTemplate>
         </ItemsControl.ItemTemplate>

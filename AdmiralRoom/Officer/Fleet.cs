@@ -14,6 +14,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public FleetMissionState MissionState => (FleetMissionState)rawdata.api_mission[0];
         public int MissionID => (int)rawdata.api_mission[1];
         public DateTime BackTime { get; private set; }
+        public DateTime BackTimeLocal => BackTime.ToLocalTime();
+        public TimeSpan BackTimeRemain => BackTime.Remain();
 
         #region Ships
         private ObservableCollection<Ship> _ships;
