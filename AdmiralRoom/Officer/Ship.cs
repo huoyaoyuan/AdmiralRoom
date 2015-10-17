@@ -127,15 +127,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Fuel = new LimitedValue(rawdata.api_fuel, ShipInfo.MaxFuel);
             Bull = new LimitedValue(rawdata.api_bull, ShipInfo.MaxBull);
             var slots = new List<Slot>();
-            foreach(int id in rawdata.api_slot)
+            for(int i = 0; i < SlotNum; i++)
             {
-                if (id != -1)
-                    slots.Add(new Slot() { Item = Staff.Current.Homeport.Equipments[id] });
+                var slot = new Slot();
+                if (rawdata.api_slot[i] != -1)
+                    slot.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot[i]];
+                slots.Add(slot);
             }
-            for(int i = 0; i < rawdata.api_onslot.Length; i++)
+            for(int i = 0; i < slots.Count; i++)
             {
-                if (slots[i] != null)
-                    slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
+                slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
             }
             Slots = new ObservableCollection<Slot>(slots);
             SlotEx = new Slot();

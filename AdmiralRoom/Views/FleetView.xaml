@@ -115,12 +115,14 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type officer:Slot}">
-                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36">
+                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36"
+                                                                Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                                                             <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" Canvas.Left="2" Canvas.Top="2" ToolTip="{Binding Item}"/>
-                                                            <TextBlock Height="16" Canvas.Left="0" Canvas.Top="20" FontSize="16" Text="{Binding AirCraft.Current}"
+                                                            <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
                                                                        Foreground="{Binding AirCraft, Converter={StaticResource HPColorConverter}}"
-                                                                       Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
-                                                            
+                                                                       Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
+                                                            <Image Height="16" Width="16" Canvas.Top="0" Canvas.Right="0"
+                                                                   Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
                                                         </Canvas>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>

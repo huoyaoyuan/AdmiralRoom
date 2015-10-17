@@ -12,7 +12,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_get_member/deck", x => DecksHandler(x.Parse<getmember_deck[]>().Data));
             Staff.RegisterHandler("api_get_member/slot_item", x => ItemsHandler(x.Parse<getmember_slotitem[]>().Data));
             Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse().Request));
-            Staff.RegisterHandler("api_get_member/ship3", x => Ship3Handler(x.Parse<getmember_ship3>().Data));
+            Staff.RegisterHandler("api_get_member/ship3", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
+            Staff.RegisterHandler("api_get_member/ship_deck", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
         }
 
         public Material Material { get; } = new Material();
@@ -137,7 +138,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (idx == -1)//旗艦以外全解除
                 {
-                    for (int i = 1; i < fleet.Ships.Count; i++)
+                    for (int i = fleet.Ships.Count - 1; i > 0; i--) 
                     {
                         fleet.Ships[i].InFleet = null;
                         fleet.Ships.Remove(fleet.Ships[i]);
@@ -154,17 +155,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     {
                         var ship = Ships[shipid];
                         var destf = ship.InFleet;
+                        fleet.Ships[idx].InFleet = destf;
                         if(destf != null)
                         {
                             destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
                         }
-                        fleet.Ships[idx] = ship;
+                        if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
+                        else fleet.Ships[idx] = ship;
+                        ship.InFleet = fleet;
                     }
                 }
             });
         }
 
-        void Ship3Handler(getmember_ship3 api)
+        void Ship3Handler(getmember_ship_deck api)
         {
             foreach(var ship in api.api_ship_data)
             {
