@@ -68,7 +68,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region Equipments
-        private IDTable<Equipment> _equipments;
+        private IDTable<Equipment> _equipments = new IDTable<Equipment>();
         public IDTable<Equipment> Equipments
         {
             get { return _equipments; }
@@ -87,10 +87,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Material.GetMemberMaterial(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
-            var ships = new List<Ship>();
-            foreach (var ship in api.api_ship)
-                ships.Add(new Ship(ship));
-            Ships = new IDTable<Ship>(ships);
+            Ships.UpdateAll(api.api_ship, x => x.api_id);
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
             DecksHandler(api.api_deck_port);
         }
@@ -99,33 +96,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (Fleets == null)
             {
-                var fleets = new IDTable<Fleet>();
-                foreach (var deck in api)
-                    fleets.Add(new Fleet(deck));
-                Fleets = fleets;
+                Fleets = new IDTable<Fleet>(api.ArrayOperation(x => new Fleet(x)));
                 SelectedFleet = 0;
             }
             else
             {
-                Staff.Current.Dispatcher.Invoke(() =>
-                {
-                    foreach (var deck in api)
-                    {
-                        if (Fleets[deck.api_id] != null) Fleets[deck.api_id].Update(deck);
-                        else Fleets[deck.api_id] = new Fleet(deck);
-                    }
-                });
+                Staff.Current.Dispatcher.Invoke(() => Fleets.UpdateAll(api, x => x.api_id));
             }
         }
 
         void ItemsHandler(getmember_slotitem[] api)
         {
-            var equips = new IDTable<Equipment>();
-            foreach(var equip in api)
-            {
-                equips.Add(new Equipment(equip));
-            }
-            Equipments = equips;
+            Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
         }
 
@@ -179,7 +161,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 Fleet f = new Fleet(fleet);
                 if (f.Ships.Count != Fleets[fleet.api_id].Ships.Count)//沉船&？
-                    Fleets[fleet.api_id] = f;
+                    Fleets[fleet.api_id].Update(fleet);
             }
         }
 

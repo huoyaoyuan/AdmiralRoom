@@ -15,21 +15,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public IDTable<EquipInfo> EquipInfo { get; private set; }
         void MasterHandler(api_start2 api)
         {
-            ShipTypes = new IDTable<ShipType>();
-            foreach(var type in api.api_mst_stype)
-                ShipTypes.Add(new ShipType(type));
-
-            ShipInfo = new IDTable<ShipInfo>();
-            foreach(var ship in api.api_mst_ship)
-                ShipInfo.Add(new ShipInfo(ship));
-
-            EquipTypes = new IDTable<EquipType>();
-            foreach(var type in api.api_mst_slotitem_equiptype)
-                EquipTypes.Add(new EquipType(type));
-
-            EquipInfo = new IDTable<EquipInfo>();
-            foreach (var item in api.api_mst_slotitem)
-                EquipInfo.Add(new EquipInfo(item));
+            ShipTypes = new IDTable<ShipType>(api.api_mst_stype.ArrayOperation(x => new ShipType(x)));
+            ShipInfo = new IDTable<ShipInfo>(api.api_mst_ship.ArrayOperation(x => new ShipInfo(x)));
+            EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.ArrayOperation(x => new EquipType(x)));
+            EquipInfo = new IDTable<EquipInfo>(api.api_mst_slotitem.ArrayOperation(x => new EquipInfo(x)));
         }
     }
 }
