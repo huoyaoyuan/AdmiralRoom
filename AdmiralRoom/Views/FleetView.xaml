@@ -61,7 +61,7 @@
                                                 <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
                                                     <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text=" / "/><Run Text="{Binding HP.Max}"/>
                                                 </TextBlock>
-                                                <ProgressBar Width="120" Height="16"
+                                                <!--<ProgressBar Width="120" Height="16"
 													Minimum="0" Maximum="{Binding HP.Max}"
 													Value="{Binding HP.Current}"
 													Visibility="{Binding IsRepairing, ConverterParameter=False, Converter={StaticResource VisibilityConverter}}"
@@ -72,7 +72,14 @@
                                                     Value="{Binding RepairingHP}"
 													Visibility="{Binding IsRepairing, ConverterParameter=True, Converter={StaticResource VisibilityConverter}}"
 													Foreground="Aqua"
-                                                    Background="Transparent"/>
+                                                    Background="Transparent"/>-->
+                                                <control:PredicateProgressBar Width="120" Height="16"
+                                                                              Minimum="0" Maximum="{Binding HP.Max}"
+                                                                              Value="{Binding HP.Current}"
+                                                                              PredictValue="{Binding RepairingHP}"
+                                                                              Foreground="{Binding HP, Converter={StaticResource HPColorConverter}}"
+                                                                              PredictForeground="Aqua"
+                                                                              Background="Transparent"/>
                                             </StackPanel>
                                             <Grid Grid.Column="3" Margin="0,0,8,0" VerticalAlignment="Stretch">
                                                 <Ellipse Fill="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=False, Mode=OneWay}">

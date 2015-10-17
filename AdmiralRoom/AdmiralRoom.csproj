@@ -149,6 +149,9 @@
     <Compile Include="Controls\ExpBar.xaml.cs">
       <DependentUpon>ExpBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PredicateProgressBar.xaml.cs">
+      <DependentUpon>PredicateProgressBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\Helper.cs" />
     <Page Include="Controls\ExpBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PredicateProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
