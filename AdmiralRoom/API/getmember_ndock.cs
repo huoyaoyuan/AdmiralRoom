@@ -7,6 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.API
         public int api_member_id { get; set; }
         public int api_id { get; set; }
         public int api_state { get; set; }
+        public int api_ship_id { get; set; }
         public long api_complete_time { get; set; }
         public string api_complete_time_str { get; set; }
         public int api_item1 { get; set; }

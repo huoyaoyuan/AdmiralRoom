@@ -122,5 +122,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Homeport Homeport { get; } = new Homeport();
         public MasterData MasterData { get; } = new MasterData();
         public System.Timers.Timer Ticker { get; } = new System.Timers.Timer(1000) { Enabled = true };
+        public Shipyard Shipyard { get; } = new Shipyard();
     }
 }

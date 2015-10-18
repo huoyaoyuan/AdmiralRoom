@@ -175,6 +175,8 @@
     <Compile Include="Officer\General\Modernizable.cs" />
     <Compile Include="Officer\MissionInfo.cs" />
     <Compile Include="Officer\Proxy.cs" />
+    <Compile Include="Officer\RepairDock.cs" />
+    <Compile Include="Officer\Shipyard.cs" />
     <Compile Include="Officer\Ship.cs" />
     <Compile Include="Officer\ShipInfo.cs" />
     <Compile Include="Officer\ShipType.cs" />

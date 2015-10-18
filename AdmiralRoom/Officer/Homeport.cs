@@ -91,6 +91,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));
             else Ships.UpdateAll(api.api_ship, x => x.api_id);
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
+            Staff.Current.Shipyard.NDockHandler(api.api_ndock);
             DecksHandler(api.api_deck_port);
         }
 
