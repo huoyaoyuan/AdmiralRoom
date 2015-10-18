@@ -24,6 +24,24 @@
                 <StackPanel x:Name="content" Orientation="Horizontal">
                     <TextBlock Text="{Binding Id, StringFormat=/{0}}" FontSize="18"/>
                     <TextBlock x:Name="time" Text="{Binding BackTimeRemain, StringFormat={} - {0:hh\\:mm\\:ss}}" FontSize="14" VerticalAlignment="Center"/>
+                    <StackPanel.ToolTip>
+                        <ToolTip x:Name="tooltip">
+                            <TextBlock MaxWidth="150" TextWrapping="Wrap">
+                                <Run Text="{Binding Name, Mode=OneWay}" FontWeight="Black"/>
+                                <LineBreak/>
+                                <Run Text="远征"/>
+                                <Run Text="{Binding MissionID, Mode=OneWay}"/>
+                                <Run Text="{Binding MissionInfo.Name, Mode=OneWay, StringFormat={} - {0}}"/>
+                                <LineBreak/>
+                                <Run Text="{Binding BackTimeLocal, Mode=OneWay, StringFormat=返回时间：{0:MM/dd HH:mm}}"/>
+                                <LineBreak/>
+                                <Run Text="{Binding BackTimeRemain, Mode=OneWay, StringFormat=剩余时间：{0:hh\\:mm\\:ss}}"/>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run Text="{Binding MissionInfo.Details, Mode=OneWay}"/>
+                            </TextBlock>
+                        </ToolTip>
+                    </StackPanel.ToolTip>
                 </StackPanel>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding Id}" Value="1">
@@ -34,6 +52,7 @@
                     <DataTrigger Binding="{Binding MissionState}" Value="None">
                         <DataTrigger.Setters>
                             <Setter TargetName="time" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="tooltip" Property="Visibility" Value="Collapsed"/>
                         </DataTrigger.Setters>
                     </DataTrigger>
                 </DataTemplate.Triggers>

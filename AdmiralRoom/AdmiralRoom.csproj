@@ -173,6 +173,7 @@
     <Compile Include="Officer\MasterData.cs" />
     <Compile Include="Officer\Material.cs" />
     <Compile Include="Officer\General\Modernizable.cs" />
+    <Compile Include="Officer\MissionInfo.cs" />
     <Compile Include="Officer\Proxy.cs" />
     <Compile Include="Officer\Ship.cs" />
     <Compile Include="Officer\ShipInfo.cs" />

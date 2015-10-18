@@ -13,6 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public string Name => rawdata.api_name;
         public FleetMissionState MissionState => (FleetMissionState)rawdata.api_mission[0];
         public int MissionID => (int)rawdata.api_mission[1];
+        public MissionInfo MissionInfo => Staff.Current.MasterData.MissionInfo[MissionID];
         public DateTime BackTime { get; private set; }
         public DateTime BackTimeLocal => BackTime.ToLocalTime();
         public TimeSpan BackTimeRemain => BackTime.Remain();
