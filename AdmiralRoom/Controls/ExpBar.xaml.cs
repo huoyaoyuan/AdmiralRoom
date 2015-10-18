@@ -40,7 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         private static void OnExpChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as ExpBar;
-            Exp exp = e.NewValue as Exp;
+            Exp exp = e.NewValue as Exp ?? new Exp();
             control.ToolTipText.Text = $"{exp.Current}/{exp.NextLevel}";
             if (exp.Percent == -1)
             {

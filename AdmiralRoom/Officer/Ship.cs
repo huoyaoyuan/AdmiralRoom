@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int SortNo => rawdata.api_sortno;
         public int ShipId => rawdata.api_ship_id;
         public int Level => rawdata.api_lv;
-        public Exp Exp => new Exp(rawdata.api_exp);
+        public Exp Exp { get; private set; }
         public LimitedValue HP { get; private set; }
         public ShootRange Range => (ShootRange)rawdata.api_leng;
 
@@ -115,6 +115,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         protected override void UpdateProp()
         {
+            Exp = new Exp(rawdata.api_exp);
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
             RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
