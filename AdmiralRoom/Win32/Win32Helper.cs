@@ -5,12 +5,8 @@ using Microsoft.Win32;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    internal static class Helper
+    internal static class Win32Helper
     {
-        public static bool IsWin8OrGreater =>
-            (Environment.OSVersion.Version.Major == 6 &&
-            Environment.OSVersion.Version.Minor >= 2)
-            || Environment.OSVersion.Version.Major > 6;
         public static void SetIEEmulation(int mode)
         {
             try
@@ -31,10 +27,12 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch { }
         }
+        [DllImport("Avrt.dll")]
+        public static extern IntPtr AvSetMmThreadCharacteristics(string taskName, ref uint taskIndex);
         public static void SetMMCSSTask()
         {
             uint index = 0;
-            NativeMethods.AvSetMmThreadCharacteristics("Games", ref index);
+            AvSetMmThreadCharacteristics("Games", ref index);
         }
         public struct Struct_INTERNET_PROXY_INFO
         {

@@ -194,8 +194,7 @@
     <Compile Include="Views\MissionView.xaml.cs">
       <DependentUpon>MissionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Win32\NativeMethods.cs" />
-    <Compile Include="Win32\Helper.cs" />
+    <Compile Include="Win32\Win32Helper.cs" />
     <Page Include="Controls\ExpBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

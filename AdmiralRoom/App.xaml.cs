@@ -16,9 +16,9 @@ namespace Huoyaoyuan.AdmiralRoom
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Helper.SetIEEmulation(11001);
-            Helper.SetGPURendering(true);
-            Helper.SetMMCSSTask();
+            Win32Helper.SetIEEmulation(11001);
+            Win32Helper.SetGPURendering(true);
+            Win32Helper.SetMMCSSTask();
             Config.Current = Config.Load();
 
             Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);

@@ -28,7 +28,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FiddlerApplication.BeforeRequest += SetSessionProxy;
             FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
 
-            Helper.RefreshIESettings($"localhost:{port}");
+            Win32Helper.RefreshIESettings($"localhost:{port}");
         }
 
         private static void AfterSessionComplete(Session oSession)
