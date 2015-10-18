@@ -35,7 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int[] inndock = { };
         public void NDockHandler(getmember_ndock[] api)
         {
-            RepairDocks.UpdateAll(api, x => x.api_id);
+            Staff.Current.Dispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
             var newindock = api.ArrayOperation(x => x.api_ship_id).ToArray();
             foreach(var ship in Staff.Current.Homeport.Ships)
             {

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.RepairView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns:Converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Converter:HPColorConverter x:Key="HPColorConverter"/>
+    </UserControl.Resources>
+    <ItemsControl ItemsSource="{Binding Shipyard.RepairDocks}" Grid.IsSharedSizeScope="True">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Vertical"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type officer:RepairDock}">
+                <Grid Height="18" Margin="2">
+                    <control:PredicateProgressBar x:Name="progress"
+                                                  Minimum="0" Maximum="{Binding Ship.HP.Max}"
+                                                  Value="{Binding Ship.HP.Current}"
+                                                  PredictValue="{Binding Ship.RepairingHP}"
+                                                  Foreground="{Binding Ship.HP, Converter={StaticResource HPColorConverter}}"
+                                                  PredictForeground="Aqua"
+                                                  Background="Transparent"
+                                                  Visibility="Collapsed"/>
+                    <TextBlock x:Name="text" FontSize="15"/>
+                    <Grid x:Name="ship" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" SharedSizeGroup="ShipName"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Time"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="16" Text="{Binding Ship.ShipInfo.Name}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding CompleteTimeRemain, StringFormat={} - {0:hh\\:mm\\:ss}}" FontSize="14" VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding State}" Value="Locked">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="text" Property="Text" Value="未开放"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding State}" Value="Empty">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="text" Property="Text" Value="未使用"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding State}" Value="Repairing">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

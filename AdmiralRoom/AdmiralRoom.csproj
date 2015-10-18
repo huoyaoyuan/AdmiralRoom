@@ -197,6 +197,9 @@
     <Compile Include="Views\MissionView.xaml.cs">
       <DependentUpon>MissionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RepairView.xaml.cs">
+      <DependentUpon>RepairView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Win32\Win32Helper.cs" />
     <Page Include="Controls\ExpBar.xaml">
       <SubType>Designer</SubType>
@@ -246,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MissionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RepairView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

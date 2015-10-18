@@ -14,7 +14,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Ship Ship { get; private set; }
         public int UseFuel => rawdata.api_item1;
         public int UseSteel => rawdata.api_item3;
-        public RepairDock() { }
+        public RepairDock()
+        {
+            Staff.Current.Ticker.Elapsed += Tick;
+        }
         public RepairDock(getmember_ndock api) : base(api)
         {
             Staff.Current.Ticker.Elapsed += Tick;

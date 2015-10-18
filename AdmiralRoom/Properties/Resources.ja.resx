@@ -132,4 +132,7 @@
   <data name="ViewTitle_MissionView" xml:space="preserve">
     <value>遠征</value>
   </data>
+  <data name="ViewTitle_RepairView" xml:space="preserve">
+    <value>入渠</value>
+  </data>
 </root>

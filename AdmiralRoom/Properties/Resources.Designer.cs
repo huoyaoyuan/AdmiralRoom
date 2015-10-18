@@ -104,5 +104,14 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
                 return ResourceManager.GetString("ViewTitle_MissionView", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 入渠 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_RepairView {
+            get {
+                return ResourceManager.GetString("ViewTitle_RepairView", resourceCulture);
+            }
+        }
     }
 }
