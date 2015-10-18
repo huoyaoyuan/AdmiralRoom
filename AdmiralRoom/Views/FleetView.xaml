@@ -23,45 +23,39 @@
         </TabControl.ItemTemplate>
         <TabControl.ContentTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding MissionState}"/>
-                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Ships}" Grid.IsSharedSizeScope="True">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type officer:Ship}">
-                                    <StackPanel Orientation="Vertical">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Exp"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Condition"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Charge"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,4,0">
-                                                <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}"/>
-                                                <TextBlock FontSize="15" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom"/>
-                                            </StackPanel>
-                                            <control:ExpBar Grid.Column="1" Width="80" Margin="0,0,4,0"
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Ships}" Grid.IsSharedSizeScope="True">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type officer:Ship}">
+                                <StackPanel Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Exp"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Condition"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Charge"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,4,0">
+                                            <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}"/>
+                                            <TextBlock FontSize="14" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom"/>
+                                        </StackPanel>
+                                        <control:ExpBar Grid.Column="1" Width="80" Margin="0,0,4,0"
 												Level="{Binding Level}"
 												Exp="{Binding Exp}"
 												VerticalAlignment="Center"/>
-                                            <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,4,0">
-                                                <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
+                                        <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,4,0">
+                                            <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
                                                     <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text="{Binding HP.Max, StringFormat={} / {0}}"/>
-                                                </TextBlock>
-                                                <!--<ProgressBar Width="120" Height="16"
+                                            </TextBlock>
+                                            <!--<ProgressBar Width="120" Height="16"
 													Minimum="0" Maximum="{Binding HP.Max}"
 													Value="{Binding HP.Current}"
 													Visibility="{Binding IsRepairing, ConverterParameter=False, Converter={StaticResource VisibilityConverter}}"
@@ -73,80 +67,79 @@
 													Visibility="{Binding IsRepairing, ConverterParameter=True, Converter={StaticResource VisibilityConverter}}"
 													Foreground="Aqua"
                                                     Background="Transparent"/>-->
-                                                <control:PredicateProgressBar Width="120" Height="16"
+                                            <control:PredicateProgressBar Width="120" Height="16"
                                                                               Minimum="0" Maximum="{Binding HP.Max}"
                                                                               Value="{Binding HP.Current}"
                                                                               PredictValue="{Binding RepairingHP}"
                                                                               Foreground="{Binding HP, Converter={StaticResource HPColorConverter}}"
                                                                               PredictForeground="Aqua"
                                                                               Background="Transparent"/>
-                                            </StackPanel>
-                                            <Grid Grid.Column="3" Margin="0,0,8,0" VerticalAlignment="Stretch">
-                                                <Ellipse Fill="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=False, Mode=OneWay}">
-                                                    <Ellipse.Effect>
-                                                        <BlurEffect Radius="48"/>
-                                                    </Ellipse.Effect>
-                                                </Ellipse>
-                                                <TextBlock FontSize="12" VerticalAlignment="Center" Foreground="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=True, Mode=OneWay}">
+                                        </StackPanel>
+                                        <Grid Grid.Column="3" Margin="0,0,8,0" VerticalAlignment="Stretch">
+                                            <Ellipse Fill="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=False, Mode=OneWay}">
+                                                <Ellipse.Effect>
+                                                    <BlurEffect Radius="48"/>
+                                                </Ellipse.Effect>
+                                            </Ellipse>
+                                            <TextBlock FontSize="12" VerticalAlignment="Center" Foreground="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=True, Mode=OneWay}">
                                                     <Run FontStyle="Italic">cond.</Run>
                                                     <Run FontSize="18" Text="{Binding Condition, Mode=OneWay}"/>
-                                                </TextBlock>
-                                            </Grid>
-                                            <Grid Grid.Column="4" Margin="0,0,4,0" VerticalAlignment="Center">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
-                                                <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Ammo.png"/>
-                                                <control:AnimateProgress Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
+                                            </TextBlock>
+                                        </Grid>
+                                        <Grid Grid.Column="4" Margin="0,0,4,0" VerticalAlignment="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
+                                            <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Ammo.png"/>
+                                            <control:AnimateProgress Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
                                                              Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
                                                              ToolTip="{Binding Fuel}"
                                                              Background="Transparent"
                                                              Foreground="{Binding Fuel, Converter={StaticResource HPColorConverter}}"/>
-                                                <control:AnimateProgress Margin="0,1,0,0" Grid.Row="1" Grid.Column="1" Width="80" Height="12"
+                                            <control:AnimateProgress Margin="0,1,0,0" Grid.Row="1" Grid.Column="1" Width="80" Height="12"
                                                              Minimum="0" Maximum="{Binding Bull.Max}" Value="{Binding Bull.Current}"
                                                              ToolTip="{Binding Bull}"
                                                              Background="Transparent"
                                                              Foreground="{Binding Bull, Converter={StaticResource HPColorConverter}}"/>
-                                            </Grid>
-                                            <ItemsControl Grid.Column="5" Margin="0,0,4,0" ItemsSource="{Binding Slots}" VerticalAlignment="Center">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <StackPanel Orientation="Horizontal"/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate DataType="{x:Type officer:Slot}">
-                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36"
+                                        </Grid>
+                                        <ItemsControl Grid.Column="5" Margin="0,0,4,0" ItemsSource="{Binding Slots}" VerticalAlignment="Center">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type officer:Slot}">
+                                                    <Canvas Margin="0,0,4,0" Height="36" Width="36"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
-                                                            <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" Canvas.Left="2" Canvas.Top="2" ToolTip="{Binding Item}"/>
-                                                            <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
+                                                        <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" Canvas.Left="2" Canvas.Top="2" ToolTip="{Binding Item}"/>
+                                                        <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
                                                                        Foreground="{Binding AirCraft, Converter={StaticResource HPColorConverter}}"
                                                                        Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
-                                                            <Image Height="16" Width="16" Canvas.Top="0" Canvas.Right="0"
+                                                        <Image Height="16" Width="16" Canvas.Top="0" Canvas.Right="0"
                                                                    Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
-                                                        </Canvas>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                            <StackPanel Orientation="Horizontal" Grid.Column="6"
+                                                    </Canvas>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <StackPanel Orientation="Horizontal" Grid.Column="6"
                                                         Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
-                                                <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
-                                                <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" ToolTip="{Binding SlotEx.Item}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                        <Rectangle Height="1" Fill="Gray" Margin="2"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Grid>
+                                            <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
+                                            <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" ToolTip="{Binding SlotEx.Item}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Rectangle Height="1" Fill="Gray" Margin="2"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </DataTemplate>
         </TabControl.ContentTemplate>
     </TabControl>

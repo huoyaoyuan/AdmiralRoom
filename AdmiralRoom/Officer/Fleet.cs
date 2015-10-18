@@ -11,7 +11,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public int Id => rawdata.api_id;
         public string Name => rawdata.api_name;
-        public bool CanMission => Id != 1;
         public FleetMissionState MissionState => (FleetMissionState)rawdata.api_mission[0];
         public int MissionID => (int)rawdata.api_mission[1];
         public DateTime BackTime { get; private set; }

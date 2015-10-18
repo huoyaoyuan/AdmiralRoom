@@ -21,15 +21,22 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
-                <Grid Visibility="{Binding CanMission, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Id, StringFormat=/{0}}"/>
-                    <TextBlock Grid.Column="2" Text="{Binding BackTimeRemain, StringFormat={}{0:hh\\:mm\\:ss}}"/>
-                </Grid>
+                <StackPanel x:Name="content" Orientation="Horizontal">
+                    <TextBlock Text="{Binding Id, StringFormat=/{0}}" FontSize="18"/>
+                    <TextBlock x:Name="time" Text="{Binding BackTimeRemain, StringFormat={} - {0:hh\\:mm\\:ss}}" FontSize="14" VerticalAlignment="Center"/>
+                </StackPanel>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Id}" Value="1">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="content" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding MissionState}" Value="None">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="time" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
