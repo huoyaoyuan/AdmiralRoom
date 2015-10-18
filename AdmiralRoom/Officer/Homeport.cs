@@ -36,7 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region Ships
-        private IDTable<Ship> _ships = new IDTable<Ship>();
+        private IDTable<Ship> _ships;
         public IDTable<Ship> Ships
         {
             get { return _ships; }
@@ -68,7 +68,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region Equipments
-        private IDTable<Equipment> _equipments = new IDTable<Equipment>();
+        private IDTable<Equipment> _equipments;
         public IDTable<Equipment> Equipments
         {
             get { return _equipments; }
@@ -87,7 +87,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Material.GetMemberMaterial(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
-            Ships.UpdateAll(api.api_ship, x => x.api_id);
+            if(Ships == null)
+                Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));
+            else Ships.UpdateAll(api.api_ship, x => x.api_id);
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
             DecksHandler(api.api_deck_port);
         }
@@ -107,7 +109,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void ItemsHandler(getmember_slotitem[] api)
         {
-            Equipments.UpdateAll(api, x => x.api_id);
+            if (Equipments == null)
+                Equipments = new IDTable<Equipment>(api.ArrayOperation(x => new Equipment(x)));
+            else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
         }
 
