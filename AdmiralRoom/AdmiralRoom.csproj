@@ -148,14 +148,10 @@
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConstData.cs" />
-    <Compile Include="Controls\AnimateProgress.xaml.cs">
-      <DependentUpon>AnimateProgress.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\AnimateProgress.cs" />
+    <Compile Include="Controls\PredicateProgressBar.cs" />
     <Compile Include="Controls\ExpBar.xaml.cs">
       <DependentUpon>ExpBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PredicateProgressBar.xaml.cs">
-      <DependentUpon>PredicateProgressBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
@@ -200,15 +196,7 @@
     </Compile>
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\Helper.cs" />
-    <Page Include="Controls\AnimateProgress.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ExpBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\PredicateProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,9 +223,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Styles\CustomAero.xaml">
+    <Page Include="Themes\Aero.NormalColor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AdmiralView.xaml">
       <SubType>Designer</SubType>

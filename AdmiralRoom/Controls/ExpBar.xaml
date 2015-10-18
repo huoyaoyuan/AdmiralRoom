@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock FontSize="18" Text="{Binding Level, ElementName=control, StringFormat=Lv. {0}}"/>
-        <ProgressBar x:Name="BarExp" Grid.Row="1" Background="Transparent"/>
+        <local:AnimateProgress x:Name="BarExp" Grid.Row="1" Background="Transparent"/>
         <TextBlock FontSize="12" Grid.Row="2" Text="{Binding Exp.Next, ElementName=control, StringFormat=Next. {0}}"/>
     </Grid>
 </UserControl>

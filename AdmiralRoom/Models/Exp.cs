@@ -97,5 +97,9 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 Percent = -1;
             }
         }
+        public override string ToString()
+        {
+            return $"{Current}/{NextLevel}";
+        }
     }
 }

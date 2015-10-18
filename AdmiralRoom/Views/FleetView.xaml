@@ -103,12 +103,12 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
                                                 <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Ammo.png"/>
-                                                <ProgressBar Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
+                                                <control:AnimateProgress Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
                                                              Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
                                                              ToolTip="{Binding Fuel}"
                                                              Background="Transparent"
                                                              Foreground="{Binding Fuel, Converter={StaticResource HPColorConverter}}"/>
-                                                <ProgressBar Margin="0,1,0,0" Grid.Row="1" Grid.Column="1" Width="80" Height="12"
+                                                <control:AnimateProgress Margin="0,1,0,0" Grid.Row="1" Grid.Column="1" Width="80" Height="12"
                                                              Minimum="0" Maximum="{Binding Bull.Max}" Value="{Binding Bull.Current}"
                                                              ToolTip="{Binding Bull}"
                                                              Background="Transparent"

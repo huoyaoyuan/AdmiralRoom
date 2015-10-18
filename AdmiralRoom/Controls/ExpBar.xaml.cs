@@ -41,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         {
             var control = d as ExpBar;
             Exp exp = e.NewValue as Exp ?? new Exp();
-            control.ToolTipText.Text = $"{exp.Current}/{exp.NextLevel}";
+            control.ToolTipText.Text = exp.ToString();
             if (exp.Percent == -1)
             {
                 int thislevelexp = ConstData.GetAdmiralExp(control.Level);

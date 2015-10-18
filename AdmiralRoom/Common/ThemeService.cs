@@ -69,7 +69,7 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 window.Resources.MergedDictionaries.Clear();
                 window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("AdmiralRoom;component/styles/customaero.xaml", UriKind.Relative)) as ResourceDictionary);
+                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("AdmiralRoom;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
             else
             {
