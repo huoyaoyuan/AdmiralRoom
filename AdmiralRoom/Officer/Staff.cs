@@ -36,8 +36,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
                 Models.StatusModel.Current.StatusText = "已读取" + oSession.url;
-                Thread th = new Thread(new ParameterizedThreadStart(Distribute));
-                th.Start(oSession);
+                //Thread th = new Thread(new ParameterizedThreadStart(Distribute));
+                //th.Start(oSession);
+                Distribute(oSession);
             }
         }
 
@@ -74,14 +75,36 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private static void Distribute(object o)
         {
             Session oSession = o as Session;
-            System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
+            //System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             foreach(string key in Handlers.Keys)
             {
                 if (oSession.PathAndQuery.Contains(key))
                 {
-                    Handlers[key].BeginInvoke(oSession, null, null);
+                    //Handlers[key].BeginInvoke(oSession, null, null);
+                    foreach(var Handler in Handlers[key].GetInvocationList())
+                    {
+                        ExceptionCatcherDelegate.BeginInvoke(Handler as Action<Session>, oSession, null, null);
+                    }
+                    //ExceptionCatcherDelegate.BeginInvoke(Handlers[key], oSession, null, null);
                 }
             }
+        }
+
+        private static readonly Action<Action<Session>, Session> ExceptionCatcherDelegate = ExceptionCatcher;
+        private static void ExceptionCatcher(Action<Session> action, Session parameter)
+        {
+#if DEBUG == false
+            try
+            {
+#endif
+                action(parameter);
+#if DEBUG == false
+            }
+            catch(Exception ex)
+            {
+                Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
+            }
+#endif
         }
 
         public static void RegisterHandler(string apiname,Action<Session> handler)
