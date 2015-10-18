@@ -18,7 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public TimeSpan BackTimeRemain => BackTime.Remain();
 
         #region Ships
-        private ObservableCollection<Ship> _ships;
+        private ObservableCollection<Ship> _ships = new ObservableCollection<Ship>();
         public ObservableCollection<Ship> Ships
         {
             get { return _ships; }
@@ -40,16 +40,42 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         protected override void UpdateProp()
         {
             BackTime = DateTimeHelper.FromUnixTime(rawdata.api_mission[2]);
-            var ships = new List<Ship>();
-            foreach (int shipid in rawdata.api_ship)
+            //var ships = new List<Ship>();
+            bool needupdate = false;
+            for(int i = 0; i < rawdata.api_ship.Length; i++)
             {
-                if (shipid != -1)
+                if (rawdata.api_ship[i] == -1)
                 {
-                    ships.Add(Staff.Current.Homeport.Ships[shipid]);
-                    Staff.Current.Homeport.Ships[shipid].InFleet = this;
+                    if(Ships.Count > i)
+                    {
+                        needupdate = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (Ships.Count <= i || Ships[i].Id != rawdata.api_ship[i] || Ships[i].InFleet != this) 
+                    {
+                        needupdate = true;
+                        break;
+                    }
                 }
             }
-            Ships = new ObservableCollection<Ship>(ships);
+            //foreach (int shipid in rawdata.api_ship)
+            //{
+            //    if (shipid != -1)
+            //    {
+            //        ships.Add(Staff.Current.Homeport.Ships[shipid]);
+            //        Staff.Current.Homeport.Ships[shipid].InFleet = this;
+            //    }
+            //}
+            if (needupdate)
+                Ships = new ObservableCollection<Ship>(rawdata.api_ship.ArrayOperation(x =>
+                {
+                    if (x == -1) return null;
+                    Staff.Current.Homeport.Ships[x].InFleet = this;
+                    return Staff.Current.Homeport.Ships[x];
+                }));
         }
     }
 }

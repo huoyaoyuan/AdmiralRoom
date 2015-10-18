@@ -12,7 +12,9 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             foreach(T1 s in source)
             {
-                yield return func(s);
+                T2 res = func(s);
+                if (res == null) yield break;
+                else yield return res;
             }
         }
     }
