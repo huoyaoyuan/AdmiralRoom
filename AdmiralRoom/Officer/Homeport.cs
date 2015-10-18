@@ -159,9 +159,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             foreach(var fleet in api.api_deck_data)
             {
-                Fleet f = new Fleet(fleet);
-                if (f.Ships.Count != Fleets[fleet.api_id].Ships.Count)//沉船&？
-                    Fleets[fleet.api_id].Update(fleet);
+                using (Fleet f = new Fleet(fleet))
+                    if (f.Ships.Count != Fleets[fleet.api_id].Ships.Count)//沉船&？
+                        Fleets[fleet.api_id].Update(fleet);
             }
         }
 

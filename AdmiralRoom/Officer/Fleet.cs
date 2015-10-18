@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Timers;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Fleet : GameObject<getmember_deck>, IIdentifiable
+    public class Fleet : GameObject<getmember_deck>, IIdentifiable, IDisposable
     {
 
         public int Id => rawdata.api_id;
@@ -34,13 +35,24 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         public Fleet() { }
-        public Fleet(getmember_deck api) : base(api) { }
+        public Fleet(getmember_deck api) : base(api)
+        {
+            Staff.Current.Ticker.Elapsed += Tick;
+        }
+        public void Dispose()
+        {
+            Staff.Current.Ticker.Elapsed -= Tick;
+        }
+        private void Tick(object sender, ElapsedEventArgs e)
+        {
+            OnPropertyChanged("BackTimeRemain");
+        }
+
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
 
         protected override void UpdateProp()
         {
             BackTime = DateTimeHelper.FromUnixTime(rawdata.api_mission[2]);
-            //var ships = new List<Ship>();
             bool needupdate = false;
             for(int i = 0; i < rawdata.api_ship.Length; i++)
             {
@@ -61,14 +73,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     }
                 }
             }
-            //foreach (int shipid in rawdata.api_ship)
-            //{
-            //    if (shipid != -1)
-            //    {
-            //        ships.Add(Staff.Current.Homeport.Ships[shipid]);
-            //        Staff.Current.Homeport.Ships[shipid].InFleet = this;
-            //    }
-            //}
             if (needupdate)
                 Ships = new ObservableCollection<Ship>(rawdata.api_ship.ArrayOperation(x =>
                 {

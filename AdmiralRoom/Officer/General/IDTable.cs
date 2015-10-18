@@ -57,7 +57,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             }
             foreach (T item in deletelist)
+            {
+                if (item is IDisposable)
+                    (item as IDisposable).Dispose();
                 Remove(item);
+            }
         }
     }
 }
