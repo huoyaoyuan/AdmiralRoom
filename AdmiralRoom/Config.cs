@@ -144,7 +144,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
         public Config()
         {
-            _theme = "Office 2010 Blue";
+            _theme = "Office 2013";
             var thisculture = CultureInfo.CurrentUICulture;
             foreach(var culture in ResourceService.SupportedCultures)
             {
@@ -191,7 +191,7 @@ namespace Huoyaoyuan.AdmiralRoom
             XmlSerializer s = new XmlSerializer(typeof(Config));
             try
             {
-                using (var fs = File.Open("config.xml", FileMode.Truncate))
+                using (var fs = File.Open("config.xml", FileMode.Create))
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
