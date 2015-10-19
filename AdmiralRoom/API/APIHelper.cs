@@ -61,7 +61,6 @@ namespace Huoyaoyuan.AdmiralRoom
         public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
         {
             var str = req[name];
-            str = str.Substring(1, str.Length - 2);
             return str.Split(',').ArrayOperation(x => int.Parse(x));
         }
     }
