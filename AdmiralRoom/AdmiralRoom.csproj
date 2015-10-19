@@ -311,24 +311,6 @@
     <Resource Include="Images\ShrinkFont.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Material\Ammo.png" />
-    <Resource Include="Images\Material\Bauxite.png" />
-    <Resource Include="Images\Material\Fuel.png" />
-    <Resource Include="Images\Material\Steel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Material\InstantRepair.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Material\DevelopmentKit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Material\InstantBuild.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Material\ImprovementKit.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Material\FurnitureCoin.png" />
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +358,16 @@
       <Project>{89286eb4-b4a1-418c-839a-067b00f442d8}</Project>
       <Name>Xceed.Wpf.AvalonDock.Themes.VS2013</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Material\Fuel.png" />
+    <Resource Include="Images\Material\Bull.png" />
+    <Resource Include="Images\Material\Steel.png" />
+    <Resource Include="Images\Material\Bauxite.png" />
+    <Resource Include="Images\Material\InstantBuild.png" />
+    <Resource Include="Images\Material\InstantRepair.png" />
+    <Resource Include="Images\Material\DevelopmentKit.png" />
+    <Resource Include="Images\Material\ImprovementKit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
