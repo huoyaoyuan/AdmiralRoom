@@ -55,18 +55,6 @@
                                             <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
                                                     <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text="{Binding HP.Max, StringFormat={} / {0}}"/>
                                             </TextBlock>
-                                            <!--<ProgressBar Width="120" Height="16"
-													Minimum="0" Maximum="{Binding HP.Max}"
-													Value="{Binding HP.Current}"
-													Visibility="{Binding IsRepairing, ConverterParameter=False, Converter={StaticResource VisibilityConverter}}"
-													Foreground="{Binding HP, Converter={StaticResource HPColorConverter}}"
-                                                    Background="Transparent"/>
-                                                <ProgressBar Width="120" Height="16"
-                                                    Minimum="0" Maximum="{Binding HP.Max}"
-                                                    Value="{Binding RepairingHP}"
-													Visibility="{Binding IsRepairing, ConverterParameter=True, Converter={StaticResource VisibilityConverter}}"
-													Foreground="Aqua"
-                                                    Background="Transparent"/>-->
                                             <control:PredicateProgressBar Width="120" Height="16"
                                                                               Minimum="0" Maximum="{Binding HP.Max}"
                                                                               Value="{Binding HP.Current}"
@@ -118,7 +106,7 @@
                                                 <DataTemplate DataType="{x:Type officer:Slot}">
                                                     <Canvas Margin="0,0,4,0" Height="36" Width="36"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
-                                                        <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" Canvas.Left="2" Canvas.Top="2" ToolTip="{Binding Item}"/>
+                                                        <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="48" Width="48" Canvas.Left="-6" Canvas.Top="-6" ToolTip="{Binding Item}"/>
                                                         <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
                                                                        Foreground="{Binding AirCraft, Converter={StaticResource HPColorConverter}}"
                                                                        Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
@@ -131,7 +119,9 @@
                                         <StackPanel Orientation="Horizontal" Grid.Column="6"
                                                         Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                                             <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
-                                            <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}" Height="32" Width="32" ToolTip="{Binding SlotEx.Item}"/>
+                                            <Canvas Height="36" Width="36">
+                                                <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}" Height="48" Width="48" Canvas.Left="-6" Canvas.Top="-6" ToolTip="{Binding SlotEx.Item}"/>
+                                            </Canvas>
                                         </StackPanel>
                                     </Grid>
                                     <Rectangle Height="1" Fill="Gray" Margin="2"/>
