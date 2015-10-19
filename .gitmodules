@@ -1,0 +1,3 @@
+[submodule "AvalonDock.Themes.VS2013"]
+	path = AvalonDock.Themes.VS2013
+	url = https://github.com/tgjones/AvalonDock.Themes.VS2013.git

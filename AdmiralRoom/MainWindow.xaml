@@ -8,6 +8,7 @@
         xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models" x:Name="ribbonWindow" x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
         xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
+        xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
         xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
         mc:Ignorable="d"
         FontFamily="DengXian"
@@ -131,12 +132,13 @@
         </ribbon:Ribbon>
         <Dock:DockingManager Grid.Row="1" x:Name="DockMan">
             <Dock:DockingManager.Theme>
-                <Theme2010:VS2010Theme/>
+                <!--<Theme2010:VS2010Theme/>-->
+                <Theme2013:Vs2013BlueTheme/>
             </Dock:DockingManager.Theme>
             <Dock:LayoutRoot>
                 <Dock:LayoutPanel>
                     <Dock:LayoutDocumentPane>
-                        <Dock:LayoutDocument ContentId="GameHost" Title="浏览器" CanClose="False">
+                        <Dock:LayoutDocument ContentId="GameHost" Title="浏览器" CanClose="False" CanFloat="False">
                             <local:KanColleBrowser x:Name="GameHost"/>
                         </Dock:LayoutDocument>
                     </Dock:LayoutDocumentPane>
