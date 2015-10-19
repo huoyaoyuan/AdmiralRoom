@@ -40,14 +40,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.Current.Ticker.Elapsed += Tick;
         }
-        public void Dispose()
-        {
-            Staff.Current.Ticker.Elapsed -= Tick;
-        }
-        private void Tick(object sender, ElapsedEventArgs e)
-        {
-            OnPropertyChanged("BackTimeRemain");
-        }
+        public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
+        private void Tick(object sender, ElapsedEventArgs e) => OnPropertyChanged("BackTimeRemain");
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
 

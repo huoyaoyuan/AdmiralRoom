@@ -22,14 +22,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.Current.Ticker.Elapsed += Tick;
         }
-        public void Dispose()
-        {
-            Staff.Current.Ticker.Elapsed -= Tick;
-        }
-        private void Tick(object sender, ElapsedEventArgs e)
-        {
-            OnPropertyChanged("CompleteTimeRemain");
-        }
+        public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
+        private void Tick(object sender, ElapsedEventArgs e) => OnPropertyChanged("CompleteTimeRemain");
         protected override void UpdateProp()
         {
             CompleteTime = DateTimeHelper.FromUnixTime(rawdata.api_complete_time);

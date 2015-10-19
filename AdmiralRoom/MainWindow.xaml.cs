@@ -39,7 +39,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
                 catch { }
             };
-            BrowserRefresh.Click += (_, __) => GameHost.WebBrowser.Refresh();
+            BrowserRefresh.Click += (_, __) => GameHost.WebBrowser.Navigate(GameHost.WebBrowser.Source);
             BrowserBackToGame.Click += (_, __) => GameHost.WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
 
             //Language handler
