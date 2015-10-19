@@ -1,49 +1,40 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class IDTable<T> : ObservableCollection<T>
+    public class IDTable<T> : ICollection<T>
         where T : class, IIdentifiable, new()
     {
+        private Dictionary<int, T> dict = new Dictionary<int, T>();
         public IDTable():base() { }
-        public IDTable(List<T> list):base(list) { }
-        public IDTable(T[] array) : base(array) { }
-        public IDTable(IEnumerable<T> collection) : base(collection) { }
-        public new T this[int id]
+        public IDTable(IEnumerable<T> collection) { dict = new Dictionary<int, T>(collection.ToDictionary(x => x.Id)); }
+        public void Add(T item) => dict.Add(item.Id, item);
+        public bool Remove(T item) => dict.Remove(item.Id);
+        IEnumerator IEnumerable.GetEnumerator() => dict.Values.GetEnumerator();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => dict.Values.GetEnumerator();
+        public void Clear() => dict.Clear();
+        public bool Contains(T item) => dict.ContainsValue(item);
+        public void CopyTo(T[] array, int index) { throw new NotSupportedException(); }
+        public int Count => dict.Count;
+        public bool IsReadOnly => false;
+        public T this[int index]
         {
-            get
-            {
-                foreach(var item in this)
-                {
-                    if (item.Id == id) return item;
-                }
-                return default(T);
-            }
+            get { return dict[index]; }
             set
             {
-                if (value.Id != id) throw new ArgumentException();
-                for(int i = 0; i< Count; i++)
-                {
-                    var item = base[i];
-                    if(item.Id == id)
-                    {
-                        base[i] = value;
-                        return;
-                    }
-                    Add(value);
-                }
+                if (value.Id != index) throw new ArgumentException();
+                dict[index] = value;
             }
         }
-
         public void UpdateAll<T2>(IEnumerable<T2> source, Func<T2, int> getid)
         {
-            var deletelist = this.ToList();
+            var deletelist = dict.Values.ToList();
             foreach(T2 e in source)
             {
-                var item = this[getid(e)];
+                var item = dict[getid(e)];
                 if (item != null)
                 {
                     (item as IUpdatable<T2>).Update(e);
@@ -68,7 +59,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             foreach (T2 e in source)
             {
-                var item = this[getid(e)];
+                var item = dict[getid(e)];
                 if (item != null)
                 {
                     (item as IUpdatable<T2>).Update(e);
