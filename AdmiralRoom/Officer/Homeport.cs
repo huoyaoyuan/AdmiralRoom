@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -105,6 +106,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void PortHandler(port_port api)
         {
+            System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             Material.GetMemberMaterial(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             if(Ships == null)
@@ -184,14 +186,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void ChargeHandler(hokyu_charge api)
         {
-            foreach(var ship in api.api_ship)
-            {
-                var Ship = Ships[ship.api_id];
-                Ship.Fuel = new LimitedValue(ship.api_fuel, Ship.Fuel.Max);
-                Ship.Bull = new LimitedValue(ship.api_bull, Ship.Bull.Max);
-                for (int i = 0; i < Ship.Slots.Count; i++)
-                    Ship.Slots[i].AirCraft = new LimitedValue(ship.api_onslot[i], Ship.Slots[i].AirCraft.Max);
-            }
+            Ships.UpdateWithoutRemove(api.api_ship, x => x.api_id);
             Material.Fuel = api.api_material[0];
             Material.Bull = api.api_material[1];
             Material.Steel = api.api_material[2];
