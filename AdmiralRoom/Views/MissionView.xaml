@@ -10,9 +10,6 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <Converter:VisibilityConverter x:Key="VisibilityConverter"/>
-    </UserControl.Resources>
     <ItemsControl ItemsSource="{Binding Homeport.Fleets}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

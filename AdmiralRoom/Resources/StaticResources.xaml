@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
+                    xmlns:converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter">
+    <converter:HPColorConverter x:Key="HPColorConverter"/>
+    <converter:VisibilityConverter x:Key="VisibilityConverter"/>
+    <converter:CondColorConverter x:Key="CondColorConverter"/>
+</ResourceDictionary>

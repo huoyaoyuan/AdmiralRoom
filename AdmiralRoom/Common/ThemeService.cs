@@ -68,13 +68,13 @@ namespace Huoyaoyuan.AdmiralRoom
             if (Enable)
             {
                 window.Resources.MergedDictionaries.Clear();
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
                 window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("AdmiralRoom;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
             else
             {
                 window.Resources.MergedDictionaries.Clear();
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero2;component/themes/aero2.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
         }
     }

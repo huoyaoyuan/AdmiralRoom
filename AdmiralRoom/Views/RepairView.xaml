@@ -11,9 +11,6 @@
              Background="White"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <Converter:HPColorConverter x:Key="HPColorConverter"/>
-    </UserControl.Resources>
     <ItemsControl ItemsSource="{Binding Shipyard.RepairDocks}" Grid.IsSharedSizeScope="True">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

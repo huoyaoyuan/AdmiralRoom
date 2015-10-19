@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom">
     <Application.Resources>
-         
+         <ResourceDictionary Source="Resources/StaticResources.xaml"/>
     </Application.Resources>
 </Application>

@@ -10,11 +10,6 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="400" d:DesignWidth="720">
-    <UserControl.Resources>
-        <Converter:HPColorConverter x:Key="HPColorConverter"/>
-        <Converter:VisibilityConverter x:Key="VisibilityConverter"/>
-        <Converter:CondColorConverter x:Key="CondColorConverter"/>
-    </UserControl.Resources>
     <TabControl ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
         <TabControl.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
