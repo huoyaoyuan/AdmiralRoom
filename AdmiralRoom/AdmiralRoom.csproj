@@ -185,6 +185,9 @@
     <Compile Include="Views\APIView.xaml.cs">
       <DependentUpon>APIView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BuildingView.xaml.cs">
+      <DependentUpon>BuildingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\HPColorConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\APIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuildingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

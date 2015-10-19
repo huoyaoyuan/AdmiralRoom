@@ -123,10 +123,11 @@
             <ribbon:RibbonTabItem Header="窗口">
                 <ribbon:RibbonGroupBox Header="Debug">
                     <!--<ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>-->
-                    <ribbon:ToggleButton Header="司令部" Margin="0,0,4,0" Tag="AdmiralView" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Header="舰队" Margin="0,0,4,0" Tag="FleetView" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Header="远征" Margin="0,0,4,0" Tag="MissionView" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Header="入渠" Margin="0,0,4,0" Tag="RepairView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="AdmiralView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="FleetView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="MissionView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="RepairView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="BuildingView" Loaded="SetToggleBinding"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>

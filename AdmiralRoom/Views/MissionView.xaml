@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
-             xmlns:Converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
              Background="White"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"

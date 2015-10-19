@@ -142,6 +142,22 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region ShowBuildingShipName
+        private bool _showbuildingshipname;
+        public bool ShowBuildingShipName
+        {
+            get { return _showbuildingshipname; }
+            set
+            {
+                if (_showbuildingshipname != value)
+                {
+                    _showbuildingshipname = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Config()
         {
             _theme = "Office 2013";

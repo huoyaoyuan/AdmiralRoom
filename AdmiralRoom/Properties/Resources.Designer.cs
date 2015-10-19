@@ -88,6 +88,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 建造 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_BuildingView {
+            get {
+                return ResourceManager.GetString("ViewTitle_BuildingView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 舰队 的本地化字符串。
         /// </summary>
         public static string ViewTitle_FleetView {

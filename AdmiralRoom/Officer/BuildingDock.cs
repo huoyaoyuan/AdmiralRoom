@@ -11,6 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public DateTime CompleteTime { get; private set; }
         public DateTime CompleteTimeLocal => CompleteTime.ToLocalTime();
         public TimeSpan CompleteTimeRemain => CompleteTime.Remain();
+        public TimeSpan DuringTime => CreatedShip?.BuildTime - CompleteTimeRemain ?? TimeSpan.FromSeconds(0);
         public int UseFuel => rawdata.api_item1;
         public int UseBull => rawdata.api_item2;
         public int UseSteel => rawdata.api_item3;
@@ -34,6 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void Tick(object sender, ElapsedEventArgs e)
         {
             OnPropertyChanged("CompleteTimeRemain");
+            OnPropertyChanged("DuringTime");
         }
         protected override void UpdateProp()
         {

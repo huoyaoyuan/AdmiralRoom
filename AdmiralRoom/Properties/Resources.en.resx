@@ -135,4 +135,7 @@
   <data name="ViewTitle_RepairView" xml:space="preserve">
     <value>Repairing</value>
   </data>
+  <data name="ViewTitle_BuildingView" xml:space="preserve">
+    <value>Building</value>
+  </data>
 </root>

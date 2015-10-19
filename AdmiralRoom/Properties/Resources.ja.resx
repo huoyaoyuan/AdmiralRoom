@@ -135,4 +135,7 @@
   <data name="ViewTitle_RepairView" xml:space="preserve">
     <value>入渠</value>
   </data>
+  <data name="ViewTitle_BuildingView" xml:space="preserve">
+    <value>建造</value>
+  </data>
 </root>

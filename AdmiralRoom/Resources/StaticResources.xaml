@@ -5,4 +5,13 @@
     <converter:HPColorConverter x:Key="HPColorConverter"/>
     <converter:VisibilityConverter x:Key="VisibilityConverter"/>
     <converter:CondColorConverter x:Key="CondColorConverter"/>
+    <LinearGradientBrush x:Key="BuildingProgressForegroundKey" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="Red"/>
+        <GradientStop Offset="0.17" Color="Orange"/>
+        <GradientStop Offset="0.33" Color="Yellow"/>
+        <GradientStop Offset="0.5" Color="Green"/>
+        <GradientStop Offset="0.67" Color="Cyan"/>
+        <GradientStop Offset="0.83" Color="Blue"/>
+        <GradientStop Offset="1" Color="Violet"/>
+    </LinearGradientBrush>
 </ResourceDictionary>

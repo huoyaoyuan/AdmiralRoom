@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             xmlns:Converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="400" d:DesignWidth="720">
@@ -79,7 +78,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
-                                            <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Ammo.png"/>
+                                            <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Bull.png"/>
                                             <control:AnimateProgress Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
                                                              Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
                                                              ToolTip="{Binding Fuel}"

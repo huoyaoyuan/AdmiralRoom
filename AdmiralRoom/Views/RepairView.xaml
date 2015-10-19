@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             xmlns:Converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
              mc:Ignorable="d" 
              Background="White"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"

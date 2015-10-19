@@ -140,7 +140,8 @@ namespace Huoyaoyuan.AdmiralRoom
             [nameof(AdmiralView)] = typeof(AdmiralView),
             [nameof(FleetView)] = typeof(FleetView),
             [nameof(MissionView)] = typeof(MissionView),
-            [nameof(RepairView)] = typeof(RepairView)
+            [nameof(RepairView)] = typeof(RepairView),
+            [nameof(BuildingView)] = typeof(BuildingView)
         };
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
@@ -183,6 +184,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 Binding titlebinding = new Binding("Resources.ViewTitle_" + ViewName);
                 titlebinding.Source = ResourceService.Current;
                 BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
+                (sender as Fluent.ToggleButton).SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
             }
             ToggleBinding.Source = TargetView;
             ToggleBinding.Path = new PropertyPath("IsVisible");
