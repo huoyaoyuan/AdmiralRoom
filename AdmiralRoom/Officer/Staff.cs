@@ -38,6 +38,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Models.StatusModel.Current.StatusText = "已读取" + oSession.url;
                 //Thread th = new Thread(new ParameterizedThreadStart(Distribute));
                 //th.Start(oSession);
+                oSession.utilDecodeResponse();
                 Distribute(oSession);
             }
         }
