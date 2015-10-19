@@ -3,9 +3,9 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class EquipType : GameObject<api_mst_slotitem_equiptype>, IIdentifiable
+    public class EquipType : GameObject<api_mst_slotitem_equiptype>
     {
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public string Name => rawdata.api_name ?? "？？？";
         private static readonly int[] Planes = { 6, 7, 8, 9, 10, 11, 41 };
         public bool IsAirPlane => Planes.Contains(Id);

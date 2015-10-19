@@ -6,11 +6,11 @@ using Huoyaoyuan.AdmiralRoom.Models;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Ship : GameObject<api_ship>, IIdentifiable
+    public class Ship : GameObject<api_ship>
     {
         public Ship() { }
         public Ship(api_ship api) : base(api) { }
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public int SortNo => rawdata.api_sortno;
         public int ShipId => rawdata.api_ship_id;
         public int Level => rawdata.api_lv;

@@ -9,9 +9,9 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class EquipInfo : GameObject<api_mst_slotitem>, IIdentifiable
+    public class EquipInfo : GameObject<api_mst_slotitem>
     {
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public int SortNo => rawdata.api_sortno;
         public string Name => rawdata.api_name;
         public EquipType EquipType => Staff.Current.MasterData.EquipTypes[rawdata.api_type[2]];

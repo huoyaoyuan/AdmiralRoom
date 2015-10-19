@@ -3,9 +3,9 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class MissionInfo : GameObject<api_mst_mission>, IIdentifiable
+    public class MissionInfo : GameObject<api_mst_mission>
     {
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public int MapArea => rawdata.api_maparea_id;
         public string Name => rawdata.api_name;
         public string Details => rawdata.api_details;

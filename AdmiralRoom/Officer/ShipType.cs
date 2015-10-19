@@ -7,9 +7,9 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class ShipType : GameObject<api_mst_stype>, IIdentifiable
+    public class ShipType : GameObject<api_mst_stype>
     {
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public string Name => rawdata.api_name ?? "？？？";
         public int SortNo => rawdata.api_sortno;
         public int RepairTimeRatio => rawdata.api_scnt;

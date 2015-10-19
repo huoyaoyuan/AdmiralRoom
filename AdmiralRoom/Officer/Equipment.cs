@@ -7,9 +7,9 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Equipment : GameObject<getmember_slotitem>, IIdentifiable
+    public class Equipment : GameObject<getmember_slotitem>
     {
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public EquipInfo EquipInfo => Staff.Current.MasterData.EquipInfo[rawdata.api_slotitem_id];
         public bool IsLocked => rawdata.api_locked != 0;
         /// <summary>

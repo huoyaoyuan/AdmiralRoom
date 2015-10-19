@@ -129,6 +129,7 @@
     <Compile Include="API\api_start2.cs" />
     <Compile Include="API\getmember_basic.cs" />
     <Compile Include="API\getmember_deck.cs" />
+    <Compile Include="API\getmember_kdock.cs" />
     <Compile Include="API\getmember_material.cs" />
     <Compile Include="API\getmember_ndock.cs" />
     <Compile Include="API\getmember_record.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="API\getmember_slotitem.cs" />
     <Compile Include="API\hokyu_charge.cs" />
     <Compile Include="API\port_port.cs" />
+    <Compile Include="API\req_getship.cs" />
     <Compile Include="API\svdata.cs" />
     <Compile Include="Common\CollectionHelper.cs" />
     <Compile Include="Common\DateTimeHelper.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Models\Exp.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Officer\Admiral.cs" />
+    <Compile Include="Officer\BuildingDock.cs" />
     <Compile Include="Officer\EquipInfo.cs" />
     <Compile Include="Officer\Equipment.cs" />
     <Compile Include="Officer\EquipType.cs" />

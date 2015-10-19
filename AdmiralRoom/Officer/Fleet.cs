@@ -6,10 +6,10 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Fleet : GameObject<getmember_deck>, IIdentifiable, IDisposable
+    public class Fleet : GameObject<getmember_deck>, IDisposable
     {
 
-        public int Id => rawdata.api_id;
+        public override int Id => rawdata.api_id;
         public string Name => rawdata.api_name;
         public FleetMissionState MissionState => (FleetMissionState)rawdata.api_mission[0];
         public int MissionID => (int)rawdata.api_mission[1];

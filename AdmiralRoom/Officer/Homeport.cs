@@ -118,9 +118,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void ChangeHandler(NameValueCollection api)
         {
-            int idx = int.Parse(api["api_ship_idx"]);
-            int fleetid = int.Parse(api["api_id"]);
-            int shipid = int.Parse(api["api_ship_id"]);
+            int idx = api.GetInt("api_ship_idx");
+            int fleetid = api.GetInt("api_id");
+            int shipid = api.GetInt("api_ship_id");
             var fleet = Fleets[fleetid];
             Staff.Current.Dispatcher.Invoke(() =>
             {

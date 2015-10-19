@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using Fiddler;
@@ -51,6 +52,10 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             }
             return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
+        }
+        public static int GetInt(this NameValueCollection req,string name)
+        {
+            return int.Parse(req[name]);
         }
     }
 }
