@@ -136,6 +136,10 @@
     <Compile Include="API\getmember_ship_deck.cs" />
     <Compile Include="API\getmember_slotitem.cs" />
     <Compile Include="API\hokyu_charge.cs" />
+    <Compile Include="API\kaisou_powerup.cs" />
+    <Compile Include="API\kousyou_createitem.cs" />
+    <Compile Include="API\kousyou_destroyitem2.cs" />
+    <Compile Include="API\kousyou_destroyship.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\req_getship.cs" />
     <Compile Include="API\svdata.cs" />

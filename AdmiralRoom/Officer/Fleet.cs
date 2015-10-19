@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Timers;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -50,17 +51,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
 
+        private bool needupdateship = false;
         protected override void UpdateProp()
         {
             BackTime = DateTimeHelper.FromUnixTime(rawdata.api_mission[2]);
-            bool needupdate = false;
+            needupdateship = false;
             for(int i = 0; i < rawdata.api_ship.Length; i++)
             {
                 if (rawdata.api_ship[i] == -1)
                 {
                     if(Ships.Count > i)
                     {
-                        needupdate = true;
+                        needupdateship = true;
                         break;
                     }
                 }
@@ -68,18 +70,29 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     if (Ships.Count <= i || Ships[i].Id != rawdata.api_ship[i] || Ships[i].InFleet != this) 
                     {
-                        needupdate = true;
+                        needupdateship = true;
                         break;
                     }
                 }
             }
-            if (needupdate)
+            if (needupdateship)
                 Ships = new ObservableCollection<Ship>(rawdata.api_ship.ArrayOperation(x =>
                 {
                     if (x == -1) return null;
                     Staff.Current.Homeport.Ships[x].InFleet = this;
                     return Staff.Current.Homeport.Ships[x];
                 }));
+        }
+        
+        protected override void OnAllPropertyChanged()
+        {
+            OnPropertyChanged("Name");
+            OnPropertyChanged("MissionState");
+            OnPropertyChanged("MissionID");
+            OnPropertyChanged("MissionInfo");
+            OnPropertyChanged("BackTime");
+            OnPropertyChanged("BackTimeLocal");
+            if (needupdateship) OnPropertyChanged("Ships");
         }
     }
 }

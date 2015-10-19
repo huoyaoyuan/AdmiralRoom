@@ -83,6 +83,26 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
         public Ship Secratary => Fleets[1].Ships[0];
+
+        public void UpdateCounts()
+        {
+            Staff.Current.Admiral.ShipCount = Ships.Count;
+            Staff.Current.Admiral.EquipCount = Equipments.Count;
+        }
+
+        public void RemoveShip(Ship ship)
+        {
+            if (ship.InFleet != null)
+                Staff.Current.Dispatcher.Invoke(() => ship.InFleet.Ships.Remove(ship));
+            foreach (var slot in ship.Slots)
+                if (slot.HasItem)
+                    Equipments.Remove(slot.Item);
+            if (ship.SlotEx.HasItem)
+                Equipments.Remove(ship.SlotEx.Item);
+            Ships.Remove(ship);
+            UpdateCounts();
+        }
+
         void PortHandler(port_port api)
         {
             Material.GetMemberMaterial(api.api_material);
@@ -158,16 +178,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void Ship3Handler(getmember_ship_deck api)
         {
-            foreach(var ship in api.api_ship_data)
-            {
-                Ships[ship.api_id]?.Update(ship);
-            }
-            foreach(var fleet in api.api_deck_data)
-            {
-                using (Fleet f = new Fleet(fleet))
-                    if (f.Ships.Count != Fleets[fleet.api_id].Ships.Count)//沉船&？
-                        Fleets[fleet.api_id].Update(fleet);
-            }
+            Ships.UpdateWithoutRemove(api.api_ship_data, x => x.api_id);
+            Fleets.UpdateWithoutRemove(api.api_deck_data, x => x.api_id);
         }
 
         void ChargeHandler(hokyu_charge api)

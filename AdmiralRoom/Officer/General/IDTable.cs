@@ -38,7 +38,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        public void UpdateAll<T2>(T2[] source, Func<T2, int> getid)
+        public void UpdateAll<T2>(IEnumerable<T2> source, Func<T2, int> getid)
         {
             var deletelist = this.ToList();
             foreach(T2 e in source)
@@ -61,6 +61,24 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (item is IDisposable)
                     (item as IDisposable).Dispose();
                 Remove(item);
+            }
+        }
+
+        public void UpdateWithoutRemove<T2>(IEnumerable<T2> source,Func<T2,int> getid)
+        {
+            foreach (T2 e in source)
+            {
+                var item = this[getid(e)];
+                if (item != null)
+                {
+                    (item as IUpdatable<T2>).Update(e);
+                }
+                else
+                {
+                    item = new T();
+                    (item as IUpdatable<T2>).Update(e);
+                    Add(item);
+                }
             }
         }
     }

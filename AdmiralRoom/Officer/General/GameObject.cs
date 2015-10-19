@@ -13,7 +13,7 @@
         {
             rawdata = data;
             UpdateProp();
-            OnPropertyChanged(null);
+            OnAllPropertyChanged();
         }
         protected virtual void UpdateProp() { }
         public abstract int Id { get; }

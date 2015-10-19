@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
@@ -53,9 +54,15 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
         }
-        public static int GetInt(this NameValueCollection req,string name)
+        public static int GetInt(this NameValueCollection req, string name)
         {
             return int.Parse(req[name]);
+        }
+        public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
+        {
+            var str = req[name];
+            str = str.Substring(1, str.Length - 2);
+            return str.Split(',').ArrayOperation(x => int.Parse(x));
         }
     }
 }
