@@ -6,7 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom.API
     {
         public int api_member_id { get; set; }
         public string api_nickname { get; set; }
-        public int api_nickname_id { get; set; }
+        //public int api_nickname_id { get; set; }
         //public int api_active_flag;
         public long api_starttime { get; set; }
         public int api_level { get; set; }
@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.API
         public int api_experience { get; set; }
         public string api_fleetname { get; set; }
         public string api_comment { get; set; }
-        public int api_comment_id { get; set; }
+        //public int api_comment_id { get; set; }
         public int api_max_chara { get; set; }
         public int api_max_slotitem { get; set; }
         public int api_max_kagu { get; set; }
