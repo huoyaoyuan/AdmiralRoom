@@ -92,6 +92,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     Staff.Current.Homeport.Equipments.Add(new Equipment(item));
             Staff.Current.Homeport.Ships.Add(new Ship(api.api_ship));
             Staff.Current.Homeport.UpdateCounts();
+            BuildingDocks.UpdateAll(api.api_kdock, x => x.api_id);
         }
         void DestroyShipHandler(APIData<kousyou_destroyship> api)
         {
