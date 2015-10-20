@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_get_member/slot_item", x => ItemsHandler(x.Parse<getmember_slotitem[]>().Data));
             Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse().Request));
             Staff.RegisterHandler("api_get_member/ship3", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
+            Staff.RegisterHandler("api_get_member/ship2", x => Ship2Handler(x.Parse<getmember_ship2>().Data));
             Staff.RegisterHandler("api_get_member/ship_deck", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
             Staff.RegisterHandler("api_req_hokyu/charge", x => ChargeHandler(x.Parse<hokyu_charge>().Data));
         }
@@ -182,6 +183,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Ships.UpdateWithoutRemove(api.api_ship_data, x => x.api_id);
             Fleets.UpdateWithoutRemove(api.api_deck_data, x => x.api_id);
+        }
+
+        void Ship2Handler(getmember_ship2 api)
+        {
+            Ships.UpdateWithoutRemove(api.api_data, x => x.api_id);
+            Fleets.UpdateWithoutRemove(api.api_data_deck, x => x.api_id);
         }
 
         void ChargeHandler(hokyu_charge api)
