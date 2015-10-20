@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
                 LimitedValue HP = (LimitedValue)value;
                 if (HP.IsMax) return new SolidColorBrush(Colors.SpringGreen);
                 else if (HP.Current * 4 > HP.Max * 3) return new SolidColorBrush(Colors.Aquamarine);
-                else if (HP.Current * 2 > HP.Max) return new SolidColorBrush(Colors.Gold);
+                else if (HP.Current * 2 > HP.Max) return new SolidColorBrush(Colors.GreenYellow);
                 else if (HP.Current * 4 > HP.Max) return new SolidColorBrush(Colors.Orange);
                 else return new SolidColorBrush(Colors.Red);
             }

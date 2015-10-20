@@ -186,7 +186,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void ChargeHandler(hokyu_charge api)
         {
-            Ships.UpdateWithoutRemove(api.api_ship, x => x.api_id);
+            foreach (var ship in api.api_ship)
+            {
+                var Ship = Ships[ship.api_id];
+                Ship.Fuel = new LimitedValue(ship.api_fuel, Ship.Fuel.Max);
+                Ship.Bull = new LimitedValue(ship.api_bull, Ship.Bull.Max);
+                for (int i = 0; i < Ship.Slots.Count; i++)
+                    Ship.Slots[i].AirCraft = new LimitedValue(ship.api_onslot[i], Ship.Slots[i].AirCraft.Max);
+            }
             Material.Fuel = api.api_material[0];
             Material.Bull = api.api_material[1];
             Material.Steel = api.api_material[2];
