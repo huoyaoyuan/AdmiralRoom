@@ -25,6 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
             return r;
         }
+        public bool Remove(int id) => Remove(dict[id]);
         IEnumerator IEnumerable.GetEnumerator() => dict.Values.GetEnumerator();
         IEnumerator<T> IEnumerable<T>.GetEnumerator() => dict.Values.GetEnumerator();
         public void Clear()

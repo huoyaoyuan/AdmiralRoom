@@ -107,7 +107,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             foreach (int id in api.Request.GetInts("api_slotitem_ids")) 
             {
-                Staff.Current.Homeport.Equipments.Remove(Staff.Current.Homeport.Equipments[id]);
+                Staff.Current.Homeport.Equipments.Remove(id);
             }
             Staff.Current.Homeport.UpdateCounts();
             Staff.Current.Homeport.Material.Fuel += api.Data.api_get_material[0];
