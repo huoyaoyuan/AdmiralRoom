@@ -95,6 +95,8 @@ namespace Huoyaoyuan.AdmiralRoom
             FontSmall.Click += (_, __) => this.FontSize -= 1;
 
             this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
+            this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
+            this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
         }
         
         private void MakeViewList(ILayoutElement elem)

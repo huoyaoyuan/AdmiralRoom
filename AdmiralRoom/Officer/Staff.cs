@@ -35,7 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
-                Models.StatusModel.Current.StatusText = "已读取" + oSession.url;
+                Models.Status.Current.StatusText = "已读取" + oSession.url;
                 //Thread th = new Thread(new ParameterizedThreadStart(Distribute));
                 //th.Start(oSession);
                 oSession.utilDecodeResponse();

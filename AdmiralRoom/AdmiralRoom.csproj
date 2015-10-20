@@ -59,6 +59,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CoreAudioApi, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\assemblies\CoreAudioApi.dll</HintPath>
+    </Reference>
     <Reference Include="FiddlerCore4, Version=4.5.1.0, Culture=neutral, PublicKeyToken=67cb91587178ac5a, processorArchitecture=MSIL">
       <HintPath>..\packages\FiddlerCore.4.5.1.0\lib\net40\FiddlerCore4.dll</HintPath>
       <Private>True</Private>
@@ -158,7 +162,8 @@
     </Compile>
     <Compile Include="Models\APIModel.cs" />
     <Compile Include="Models\Exp.cs" />
-    <Compile Include="Models\StatusModel.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Volume.cs" />
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
     <Compile Include="Officer\EquipInfo.cs" />

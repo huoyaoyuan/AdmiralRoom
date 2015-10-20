@@ -27,7 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom
             this.MainWindow = new MainWindow();
             Officer.Staff.Current.Dispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
-            Models.StatusModel.Current.StatusText = "就绪";
+            Models.Status.Current.StatusText = "就绪";
         }
         protected override void OnExit(ExitEventArgs e)
         {

@@ -16,6 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public IDTable<MissionInfo> MissionInfo { get; private set; }
         void MasterHandler(api_start2 api)
         {
+            Models.Status.Current.IsGameLoaded = true;
             ShipTypes = new IDTable<ShipType>(api.api_mst_stype.ArrayOperation(x => new ShipType(x)));
             ShipInfo = new IDTable<ShipInfo>(api.api_mst_ship.ArrayOperation(x => new ShipInfo(x)));
             EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.ArrayOperation(x => new EquipType(x)));
