@@ -23,6 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_req_kousyou/destroyitem2", x => DestroyItemHandler(x.Parse<kousyou_destroyitem2>()));
             Staff.RegisterHandler("api_req_kaisou/powerup", x => PowerUpHandler(x.Parse<kaisou_powerup>()));
             Staff.RegisterHandler("api_req_kousyou/createitem", x => CreateItemHandler(x.Parse<kousyou_createitem>()));
+            Staff.RegisterHandler("api_req_kousyou/createship_speedchange", x => SpeedChangeHandler(x.Parse().Request));
         }
 
         #region RepairDocks
@@ -134,6 +135,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Material.Bull = api.Data.api_material[1];
             Staff.Current.Homeport.Material.Steel = api.Data.api_material[2];
             Staff.Current.Homeport.Material.Bauxite = api.Data.api_material[3];
+        }
+        void SpeedChangeHandler(NameValueCollection req)
+        {
+            var dock = BuildingDocks[req.GetInt("api_kdock_id")];
+            dock.State = DockState.BuildComplete;
+            dock.CompleteTime = DateTime.UtcNow;
+            Staff.Current.Homeport.Material.InstantBuild -= dock.IsLSC ? 10 : 1;
         }
     }
 }

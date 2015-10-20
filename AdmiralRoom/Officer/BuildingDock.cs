@@ -7,8 +7,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class BuildingDock : GameObject<getmember_kdock>, IDisposable
     {
         public override int Id => rawdata.api_id;
-        public DockState State => (DockState)rawdata.api_state;
-        public DateTime CompleteTime { get; private set; }
+        public DockState State { get; set; }
+        public DateTime CompleteTime { get; set; }
         public DateTime CompleteTimeLocal => CompleteTime.ToLocalTime();
         public TimeSpan CompleteTimeRemain => CompleteTime.Remain();
         public TimeSpan DuringTime => CreatedShip?.BuildTime - CompleteTimeRemain ?? TimeSpan.FromSeconds(0);
@@ -38,6 +38,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             CompleteTime = DateTimeHelper.FromUnixTime(rawdata.api_complete_time);
             CreatedShip = Staff.Current.MasterData.ShipInfo[rawdata.api_created_ship_id];
+            State = (DockState)rawdata.api_state;
+            IsLSC = UseFuel > 999;
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             //System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             foreach(string key in Handlers.Keys)
             {
-                if (oSession.PathAndQuery.Contains(key))
+                if (oSession.PathAndQuery.EndsWith(key))
                 {
                     //Handlers[key].BeginInvoke(oSession, null, null);
                     foreach(var Handler in Handlers[key].GetInvocationList())
