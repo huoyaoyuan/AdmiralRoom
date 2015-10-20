@@ -39,7 +39,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public event NotifyCollectionChangedEventHandler CollectionChanged;
         public T this[int index]
         {
-            get { return dict[index]; }
+            get
+            {
+                T item;
+                dict.TryGetValue(index, out item);
+                return item;
+            }
             set
             {
                 if (value.Id != index) throw new ArgumentException();
