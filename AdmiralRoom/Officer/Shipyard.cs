@@ -25,6 +25,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_req_kaisou/powerup", x => PowerUpHandler(x.Parse<kaisou_powerup>()));
             Staff.RegisterHandler("api_req_kousyou/createitem", x => CreateItemHandler(x.Parse<kousyou_createitem>()));
             Staff.RegisterHandler("api_req_kousyou/createship_speedchange", x => SpeedChangeHandler(x.Parse().Request));
+            Staff.RegisterHandler("api_req_kaisou/open_exslot", x =>
+                Staff.Current.Homeport.Ships[x.Parse().Request.GetInt("api_id")].SlotEx.IsLocked = false);
+            Staff.RegisterHandler("api_req_kousyou/remodel_slot", x => RemodelItemHandler(x.Parse<kousyou_remodel_slot>().Data));
         }
 
         #region RepairDocks
@@ -115,10 +118,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void DestroyShipHandler(APIData<kousyou_destroyship> api)
         {
             Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[api.Request.GetInt("api_ship_id")]);
-            Staff.Current.Homeport.Material.Fuel = api.Data.api_material[0];
-            Staff.Current.Homeport.Material.Bull = api.Data.api_material[1];
-            Staff.Current.Homeport.Material.Steel = api.Data.api_material[2];
-            Staff.Current.Homeport.Material.Bauxite = api.Data.api_material[3];
+            Staff.Current.Homeport.Material.UpdateMaterial(api.Data.api_material);
         }
         void DestroyItemHandler(APIData<kousyou_destroyitem2> api)
         {
@@ -156,10 +156,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.Data.api_fdata.Split(',')[1])];
             }
             Staff.Current.Dispatcher.Invoke(() => Development.Add(dev));
-            Staff.Current.Homeport.Material.Fuel = api.Data.api_material[0];
-            Staff.Current.Homeport.Material.Bull = api.Data.api_material[1];
-            Staff.Current.Homeport.Material.Steel = api.Data.api_material[2];
-            Staff.Current.Homeport.Material.Bauxite = api.Data.api_material[3];
+            Staff.Current.Homeport.Material.UpdateMaterial(api.Data.api_material);
             Staff.Current.Homeport.Material.DevelopmentKit -= api.Data.api_shizai_flag;
         }
         void SpeedChangeHandler(NameValueCollection req)
@@ -168,6 +165,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             dock.State = DockState.BuildComplete;
             dock.CompleteTime = DateTime.UtcNow;
             Staff.Current.Homeport.Material.InstantBuild -= dock.IsLSC ? 10 : 1;
+        }
+
+        void RemodelItemHandler(kousyou_remodel_slot api)
+        {
+            if (api.api_remodel_flag != 0)
+                Staff.Current.Homeport.Equipments[api.api_after_slot.api_id].Update(api.api_after_slot);
+            if (api.api_use_slot_id != null)
+                foreach (int id in api.api_use_slot_id)
+                    Staff.Current.Homeport.Equipments.Remove(id);
+            Staff.Current.Homeport.Material.UpdateMaterial(api.api_after_material);
         }
     }
 }

@@ -176,5 +176,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             }
         }
+
+        public void UpdateMaterial(int[] material)
+        {
+            if (material.Length >= 1) Fuel = material[0];
+            if (material.Length >= 2) Bull = material[1];
+            if (material.Length >= 3) Steel = material[2];
+            if (material.Length >= 4) Bauxite = material[3];
+            if (material.Length >= 5) InstantBuild = material[4];
+            if (material.Length >= 6) InstantRepair = material[5];
+            if (material.Length >= 7) DevelopmentKit = material[6];
+            if (material.Length >= 8) ImprovementKit = material[7];
+        }
     }
 }
