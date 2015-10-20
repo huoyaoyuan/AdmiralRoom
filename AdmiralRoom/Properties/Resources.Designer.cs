@@ -97,6 +97,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 开发 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_DevelopView {
+            get {
+                return ResourceManager.GetString("ViewTitle_DevelopView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 舰队 的本地化字符串。
         /// </summary>
         public static string ViewTitle_FleetView {

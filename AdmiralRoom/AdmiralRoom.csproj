@@ -166,6 +166,7 @@
     <Compile Include="Models\Volume.cs" />
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
+    <Compile Include="Officer\DevelopmentInfo.cs" />
     <Compile Include="Officer\EquipInfo.cs" />
     <Compile Include="Officer\Equipment.cs" />
     <Compile Include="Officer\EquipType.cs" />
@@ -200,6 +201,9 @@
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\HPColorConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
+    <Compile Include="Views\DevelopView.xaml.cs">
+      <DependentUpon>DevelopView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FleetView.xaml.cs">
       <DependentUpon>FleetView.xaml</DependentUpon>
     </Compile>
@@ -258,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BuildingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DevelopView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (_buildingdocks != value)
                 {
                     _buildingdocks = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region Development
+        private ObservableCollection<DevelopmentInfo> _development = new ObservableCollection<DevelopmentInfo>();
+        public ObservableCollection<DevelopmentInfo> Development
+        {
+            get { return _development; }
+            set
+            {
+                if (_development != value)
+                {
+                    _development = value;
                     OnPropertyChanged();
                 }
             }
@@ -126,15 +143,24 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         void CreateItemHandler(APIData<kousyou_createitem> api)
         {
-            if (api.Data.api_create_flag == 1)
+            var dev = new DevelopmentInfo();
+            dev.IsSuccess = api.Data.api_create_flag != 0;
+            if (dev.IsSuccess)
             {
                 Staff.Current.Homeport.Equipments.Add(new Equipment(api.Data.api_slot_item));
                 Staff.Current.Homeport.UpdateCounts();
+                dev.Equip = Staff.Current.MasterData.EquipInfo[api.Data.api_slot_item.api_slotitem_id];
             }
+            else
+            {
+                dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.Data.api_fdata.Split(',')[1])];
+            }
+            Staff.Current.Dispatcher.Invoke(() => Development.Add(dev));
             Staff.Current.Homeport.Material.Fuel = api.Data.api_material[0];
             Staff.Current.Homeport.Material.Bull = api.Data.api_material[1];
             Staff.Current.Homeport.Material.Steel = api.Data.api_material[2];
             Staff.Current.Homeport.Material.Bauxite = api.Data.api_material[3];
+            Staff.Current.Homeport.Material.DevelopmentKit -= api.Data.api_shizai_flag;
         }
         void SpeedChangeHandler(NameValueCollection req)
         {

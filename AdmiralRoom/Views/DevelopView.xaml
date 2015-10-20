@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.DevelopView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="content" ItemsSource="{Binding Shipyard.Development}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type officer:DevelopmentInfo}">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Margin="2" x:Name="issuccess">
+                                <TextBlock x:Name="successtext"/>
+                            </Border>
+                            <TextBlock Text="{Binding Equip.Name}"/>
+                        </StackPanel>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSuccess}" Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter TargetName="issuccess" Property="Background" Value="Cyan"/>
+                                    <Setter TargetName="successtext" Property="Text" Value="成功"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSuccess}" Value="False">
+                                <DataTrigger.Setters>
+                                    <Setter TargetName="issuccess" Property="Background" Value="Gray"/>
+                                    <Setter TargetName="successtext" Property="Text" Value="失败"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Button Grid.Row="1" Click="ClearButton_Click">清空</Button>
+    </Grid>
+</UserControl>

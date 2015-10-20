@@ -138,4 +138,7 @@
   <data name="ViewTitle_BuildingView" xml:space="preserve">
     <value>Building</value>
   </data>
+  <data name="ViewTitle_DevelopView" xml:space="preserve">
+    <value>Development</value>
+  </data>
 </root>

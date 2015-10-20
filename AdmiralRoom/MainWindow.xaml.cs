@@ -143,7 +143,8 @@ namespace Huoyaoyuan.AdmiralRoom
             [nameof(FleetView)] = typeof(FleetView),
             [nameof(MissionView)] = typeof(MissionView),
             [nameof(RepairView)] = typeof(RepairView),
-            [nameof(BuildingView)] = typeof(BuildingView)
+            [nameof(BuildingView)] = typeof(BuildingView),
+            [nameof(DevelopView)] = typeof(DevelopView)
         };
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)

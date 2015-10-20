@@ -133,6 +133,7 @@
                     <ribbon:ToggleButton Margin="0,0,4,0" Tag="MissionView" Loaded="SetToggleBinding"/>
                     <ribbon:ToggleButton Margin="0,0,4,0" Tag="RepairView" Loaded="SetToggleBinding"/>
                     <ribbon:ToggleButton Margin="0,0,4,0" Tag="BuildingView" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="DevelopView" Loaded="SetToggleBinding"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
