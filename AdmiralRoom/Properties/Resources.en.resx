@@ -141,4 +141,7 @@
   <data name="ViewTitle_DevelopView" xml:space="preserve">
     <value>Development</value>
   </data>
+  <data name="ViewTitle_QuestOverview" xml:space="preserve">
+    <value>Quest In Progress</value>
+  </data>
 </root>

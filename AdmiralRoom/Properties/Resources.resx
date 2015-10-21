@@ -138,4 +138,7 @@
   <data name="ViewTitle_DevelopView" xml:space="preserve">
     <value>开发</value>
   </data>
+  <data name="ViewTitle_QuestOverview" xml:space="preserve">
+    <value>已接任务</value>
+  </data>
 </root>

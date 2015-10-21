@@ -215,6 +215,9 @@
     <Compile Include="Views\MissionView.xaml.cs">
       <DependentUpon>MissionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuestOverview.xaml.cs">
+      <DependentUpon>QuestOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RepairView.xaml.cs">
       <DependentUpon>RepairView.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MissionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuestOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -400,6 +407,15 @@
     <Resource Include="Images\Material\InstantRepair.png" />
     <Resource Include="Images\Material\DevelopmentKit.png" />
     <Resource Include="Images\Material\ImprovementKit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Quest\progress50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Quest\progress80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Quest\complete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

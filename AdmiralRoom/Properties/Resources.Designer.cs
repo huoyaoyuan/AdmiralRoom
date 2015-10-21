@@ -124,6 +124,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 已接任务 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_QuestOverview {
+            get {
+                return ResourceManager.GetString("ViewTitle_QuestOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 入渠 的本地化字符串。
         /// </summary>
         public static string ViewTitle_RepairView {
