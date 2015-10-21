@@ -15,5 +15,11 @@ namespace Huoyaoyuan.AdmiralRoom
                 return time.ToLocalTime() - DateTime.Now;
             else return new TimeSpan(0);
         }
+        public static DateTime WeekStart(this DateTime time)
+        {
+            int dayofweek = (int)time.DayOfWeek - 1;
+            if (dayofweek < 0) dayofweek += 7;
+            return time.Date.AddDays(-dayofweek);
+        }
     }
 }

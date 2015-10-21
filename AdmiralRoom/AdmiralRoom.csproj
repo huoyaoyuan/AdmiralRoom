@@ -136,6 +136,7 @@
     <Compile Include="API\getmember_kdock.cs" />
     <Compile Include="API\getmember_material.cs" />
     <Compile Include="API\getmember_ndock.cs" />
+    <Compile Include="API\getmember_questlist.cs" />
     <Compile Include="API\getmember_record.cs" />
     <Compile Include="API\getmember_ship2.cs" />
     <Compile Include="API\getmember_ship_deck.cs" />
@@ -184,6 +185,8 @@
     <Compile Include="Officer\General\Modernizable.cs" />
     <Compile Include="Officer\MissionInfo.cs" />
     <Compile Include="Officer\Proxy.cs" />
+    <Compile Include="Officer\Quest.cs" />
+    <Compile Include="Officer\QuestManager.cs" />
     <Compile Include="Officer\RepairDock.cs" />
     <Compile Include="Officer\Shipyard.cs" />
     <Compile Include="Officer\Ship.cs" />

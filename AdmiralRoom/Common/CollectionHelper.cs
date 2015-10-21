@@ -17,5 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 else yield return res;
             }
         }
+        public static T First<T>(this T[] array) => array[0];
+        public static T Last<T>(this T[] array) => array[array.Length - 1];
     }
 }
