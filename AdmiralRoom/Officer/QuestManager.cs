@@ -9,16 +9,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public QuestManager()
         {
-            Staff.RegisterHandler("api_get_member/questlist", x => CheckQuestPage(x.Parse<getmember_questlist>().Data));
+            Staff.RegisterHandler("api_get_member/questlist", x => CheckQuestPage(x.ParseQuest().Data));
         }
         public IDTable<Quest> AvilableQuests = new IDTable<Quest>();
         public IList<Quest> QuestInProgress
         {
             get
             {
-                List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress).ToList();
+                List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress || x.State == QuestState.Complete).ToList();
                 while (list.Count < InProgressCount)
                     list.Add(new Quest(new API.api_quest()));
+                list.Sort();
                 return list;
             }
         }

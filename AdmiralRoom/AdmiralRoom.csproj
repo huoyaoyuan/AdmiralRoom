@@ -160,6 +160,7 @@
     <Compile Include="Controls\ExpBar.xaml.cs">
       <DependentUpon>ExpBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DynamicJson.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>

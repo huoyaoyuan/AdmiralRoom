@@ -1,6 +1,8 @@
-﻿namespace Huoyaoyuan.AdmiralRoom.Officer
+﻿using System;
+
+namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public abstract class GameObject<T> : NotifyBase, IUpdatable<T>, IIdentifiable
+    public abstract class GameObject<T> : NotifyBase, IUpdatable<T>, IIdentifiable, IComparable<GameObject<T>>
     {
         protected T rawdata;
         public GameObject() { }
@@ -17,5 +19,9 @@
         }
         protected virtual void UpdateProp() { }
         public abstract int Id { get; }
+        public int CompareTo(GameObject<T> other)
+        {
+            return Id - other.Id;
+        }
     }
 }
