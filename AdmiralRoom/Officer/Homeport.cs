@@ -7,6 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Homeport : NotifyBase
     {
+        private port_port lastport;
         public Homeport()
         {
             Staff.RegisterHandler("api_port/port", x => PortHandler(x.Parse<port_port>().Data));
@@ -107,6 +108,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void PortHandler(port_port api)
         {
+            lastport = api;
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             Material.GetMemberMaterial(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
@@ -137,6 +139,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Equipments = new IDTable<Equipment>(api.ArrayOperation(x => new Equipment(x)));
             else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
+            PortHandler(lastport);
         }
 
         void ChangeHandler(NameValueCollection api)
@@ -169,7 +172,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
                         if(destf != null)
                         {
-                            destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                            if (idx < fleet.Ships.Count)
+                                destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                            else destf.Ships.Remove(ship);
                         }
                         if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
                         else fleet.Ships[idx] = ship;

@@ -6,11 +6,54 @@ using System.Threading.Tasks;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Slot
+    public class Slot : NotifyBase
     {
-        public bool IsLocked { get; set; }
-        public Equipment Item { get; set; }
-        public LimitedValue AirCraft { get; set; }
+
+        #region IsLocked
+        private bool _islocked;
+        public bool IsLocked
+        {
+            get { return _islocked; }
+            set
+            {
+                if (_islocked != value)
+                {
+                    _islocked = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+        
+        #region Item
+        private Equipment _item;
+        public Equipment Item
+        {
+            get { return _item; }
+            set
+            {
+                if (_item != value)
+                {
+                    _item = value;
+                    OnAllPropertyChanged();
+                }
+            }
+        }
+        #endregion
+        
+        #region AirCraft
+        private LimitedValue _ac;
+        public LimitedValue AirCraft
+        {
+            get { return _ac; }
+            set
+            {
+                _ac = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         public bool HasItem => Item != null;
     }
 }
