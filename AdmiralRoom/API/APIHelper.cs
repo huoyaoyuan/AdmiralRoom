@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    var apistring = (new System.Text.UTF8Encoding()).GetString(mms.ToArray());
+                    var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
                     Debug.WriteLine(apistring);
                     Debugger.Break();
                     _svdata = new svdata();
@@ -47,9 +47,10 @@ namespace Huoyaoyuan.AdmiralRoom
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    var apistring = (new System.Text.UTF8Encoding()).GetString(mms.ToArray());
+                    var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
                     Debug.WriteLine(apistring);
                     Debugger.Break();
+                    System.Windows.MessageBox.Show(ex.Message);
                     svdata = new svdata<T>();
                 }
             }
@@ -70,7 +71,7 @@ namespace Huoyaoyuan.AdmiralRoom
             svdata<getmember_questlist> svdata = new svdata<getmember_questlist>();
             using (var mms = new MemoryStream(oSession.ResponseBody, 7, oSession.ResponseBody.Length - 7, false))
             {
-                res = DynamicJson.Parse(mms);
+                res = DynamicJson.Parse(mms, new UTF8Encoding());
             }
             svdata.api_result = Convert.ToInt32(res.api_result);
             svdata.api_result_msg = Convert.ToString(res.api_result_msg);
@@ -81,20 +82,24 @@ namespace Huoyaoyuan.AdmiralRoom
                 api_page_count = Convert.ToInt32(res.api_data.api_page_count),
                 api_exec_count = Convert.ToInt32(res.api_data.api_exec_count),
             };
-            var list = new List<api_quest>();
-            var serializer = new DataContractJsonSerializer(typeof(api_quest));
-            foreach (var x in (object[])res.api_data.api_list)
+            try
             {
-                var mms = new MemoryStream(Encoding.UTF8.GetBytes(x.ToString()));
-                try
+                var list = new List<api_quest>();
+                var serializer = new DataContractJsonSerializer(typeof(api_quest));
+                foreach (var x in (object[])res.api_data.api_list)
                 {
-                    list.Add(serializer.ReadObject(mms) as api_quest);
+                    var mms = new MemoryStream(Encoding.UTF8.GetBytes(x.ToString()));
+                    try
+                    {
+                        list.Add(serializer.ReadObject(mms) as api_quest);
+                    }
+                    catch { }
+                    finally { mms.Dispose(); }
                 }
-                catch { }
-                finally { mms.Dispose(); }
+                data.api_list = list.ToArray();
+                svdata.api_data = data;
             }
-            data.api_list = list.ToArray();
-            svdata.api_data = data;
+            catch { }
             return new APIData<getmember_questlist>(svdata, oSession.GetRequestBodyAsString());
         }
         public static APIData<dynamic> ParseDynamic(this Session oSession)

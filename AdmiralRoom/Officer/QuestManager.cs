@@ -32,7 +32,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void CheckQuestPage(getmember_questlist api)
         {
             int checkfrom, checkto;
-            if(api.api_list== null)
+            if(api.api_list == null)
             {
                 if (api.api_disp_page == 1) AvilableQuests.Clear();
                 return;
@@ -49,7 +49,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (checktime.Date != lastcheckedtime.Date)
                 foreach (var item in AvilableQuests.Where(x => x.IsDaily).ToList())
                     AvilableQuests.Remove(item);
-            if(checktime.WeekStart()!=lastcheckedtime.WeekStart())
+            if (checktime.WeekStart() != lastcheckedtime.WeekStart()) 
                 foreach (var item in AvilableQuests.Where(x => x.Period == QuestPeriod.Weekly).ToList())
                     AvilableQuests.Remove(item);
             AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
