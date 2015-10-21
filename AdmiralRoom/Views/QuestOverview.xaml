@@ -17,16 +17,22 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Quest}">
-                <Grid Margin="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" SharedSizeGroup="Type"/>
-                        <ColumnDefinition Width="*" SharedSizeGroup="Name"/>
-                        <ColumnDefinition Width="Auto" SharedSizeGroup="Progress"/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Height="14" Width="14" x:Name="type" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Title}" VerticalAlignment="Center"/>
-                    <Image Grid.Column="2" x:Name="progress" Height="14" Stretch="Fill"/>
-                </Grid>
+                <TextBlock TextWrapping="Wrap" Margin="1">
+                    <Image Height="14" Stretch="Uniform" Source="{Binding Icon}"/>
+                    <Run Text="{Binding Title, Mode=OneWay}"/>
+                    <Image x:Name="progress" Height="14" Stretch="Uniform"/>
+                    <TextBlock.ToolTip>
+                        <TextBlock MaxWidth="150" TextWrapping="Wrap">
+                            <Run FontWeight="Bold" Text="{Binding Title, Mode=OneWay}"/>
+                            <LineBreak/>
+                            <Run x:Name="type"/>
+                            <Run x:Name="period"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="{Binding Detail, Mode=OneWay}"/>
+                        </TextBlock>
+                    </TextBlock.ToolTip>
+                </TextBlock>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding Progress}" Value="Percent50">
                         <DataTrigger.Setters>
@@ -41,6 +47,76 @@
                     <DataTrigger Binding="{Binding State}" Value="Complete">
                         <DataTrigger.Setters>
                             <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/complete.png"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Fleet">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="编成任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Battle">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="出击任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Exercise">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="演习任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Expedition">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="远征任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Charge">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="补给/入渠任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Shipyard">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="工厂任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Powerup">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="改修任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Type}" Value="Other">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="type" Property="Text" Value="其它任务"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Period}" Value="Once">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="period" Property="Text" Value="一次性"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Period}" Value="Daily">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="period" Property="Text" Value="日常"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Period}" Value="Weekly">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="period" Property="Text" Value="周常"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Period}" Value="Monthly">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="period" Property="Text" Value="月常"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Period}" Value="Day037">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="period" Property="Text" Value="日期尾数0，3，7时可用"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Period}" Value="Day28">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="period" Property="Text" Value="日期尾数2，8时可用"/>
                         </DataTrigger.Setters>
                     </DataTrigger>
                 </DataTemplate.Triggers>

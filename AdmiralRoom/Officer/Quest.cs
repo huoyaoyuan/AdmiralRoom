@@ -1,4 +1,7 @@
-﻿using Huoyaoyuan.AdmiralRoom.API;
+﻿using System;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -20,6 +23,25 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public bool Invalid => rawdata.api_invalid_flag != 0;
         public Quest() { }
         public Quest(api_quest api) : base(api) { }
+        private ImageSource _icon;
+        public ImageSource Icon
+        {
+            get
+            {
+                if (_icon == null)
+                {
+                    try
+                    {
+                        _icon = new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/Quest/{(int)Type}.png", UriKind.Absolute));
+                    }
+                    catch
+                    {
+                        _icon = new BitmapImage(new Uri("pack://application:,,,/AdmiralRoom;component/Images/Quest/8.png", UriKind.Absolute));
+                    }
+                }
+                return _icon;
+            }
+        }
     }
     public enum QuestType { Unknown = 0, Fleet = 1, Battle = 2, Exercise = 3, Expedition = 4, Charge = 5, Shipyard = 6, Powerup = 7, Other = 8 }
     public enum QuestPeriod { Once = 1, Daily = 2, Weekly = 3, Day037 = 4, Day28 = 5, Monthly = 6 }
