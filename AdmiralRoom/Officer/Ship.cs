@@ -145,6 +145,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (rawdata.api_slot_ex == 0) SlotEx.IsLocked = true;
             else if (rawdata.api_slot_ex != -1) SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
         }
+
+        public void SetRepaired()
+        {
+            RepairingHP = HP.Max;
+            rawdata.api_ndock_time = 0;
+            rawdata.api_ndock_item = new[] { 0, 0 };
+            IsRepairing = false;
+        }
     }
     public enum ShootRange { None = 0, Short = 1, Long = 2, VLong = 3 }
 }

@@ -24,10 +24,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.RegisterHandler("api_req_kousyou/destroyitem2", x => DestroyItemHandler(x.Parse<kousyou_destroyitem2>()));
             Staff.RegisterHandler("api_req_kaisou/powerup", x => PowerUpHandler(x.Parse<kaisou_powerup>()));
             Staff.RegisterHandler("api_req_kousyou/createitem", x => CreateItemHandler(x.Parse<kousyou_createitem>()));
-            Staff.RegisterHandler("api_req_kousyou/createship_speedchange", x => SpeedChangeHandler(x.Parse().Request));
+            Staff.RegisterHandler("api_req_kousyou/createship_speedchange", x => KSpeedChangeHandler(x.Parse().Request));
             Staff.RegisterHandler("api_req_kaisou/open_exslot", x =>
                 Staff.Current.Homeport.Ships[x.Parse().Request.GetInt("api_id")].SlotEx.IsLocked = false);
             Staff.RegisterHandler("api_req_kousyou/remodel_slot", x => RemodelItemHandler(x.Parse<kousyou_remodel_slot>().Data));
+            Staff.RegisterHandler("api_req_nyukyo/speedchange", x => NSpeedChangeHandler(x.Parse().Request));
         }
 
         #region RepairDocks
@@ -89,8 +90,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     ship.IsRepairing = true;
                 else if (inndock.Contains(ship.Id))
                 {
-                    ship.IsRepairing = false;
-                    ship.RepairingHP = ship.HP.Max;
+                    ship.SetRepaired();
                 }
                 else ship.IsRepairing = false;
             }
@@ -98,7 +98,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         void NStartHandler(NameValueCollection req)
         {
-            inndock[req.GetInt("api_ndock_id") - 1] = req.GetInt("api_ship_id");
+            int shipid = req.GetInt("api_ship_id");
+            inndock[req.GetInt("api_ndock_id") - 1] = shipid;
+            if (req.GetInt("api_highspeed") != 0)
+            {
+                Staff.Current.Homeport.Ships[shipid].SetRepaired();
+                Staff.Current.Homeport.Material.InstantRepair--;
+            }
+        }
+        void NSpeedChangeHandler(NameValueCollection req)
+        {
+            RepairDocks[req.GetInt("api_ndock_id")].Ship.SetRepaired();
+            Staff.Current.Homeport.Material.InstantRepair--;
         }
         void CreateShipHandler(NameValueCollection req)
         {
@@ -159,7 +170,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Material.UpdateMaterial(api.Data.api_material);
             Staff.Current.Homeport.Material.DevelopmentKit -= api.Data.api_shizai_flag;
         }
-        void SpeedChangeHandler(NameValueCollection req)
+        void KSpeedChangeHandler(NameValueCollection req)
         {
             var dock = BuildingDocks[req.GetInt("api_kdock_id")];
             dock.State = DockState.BuildComplete;
