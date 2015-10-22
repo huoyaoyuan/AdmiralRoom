@@ -36,7 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         protected override void UpdateProp()
         {
-            CompleteTime = DateTimeHelper.FromUnixTime(rawdata.api_complete_time);
+            CompleteTime = DateTimeEx.FromUnixTime(rawdata.api_complete_time);
             CreatedShip = Staff.Current.MasterData.ShipInfo[rawdata.api_created_ship_id];
             State = (DockState)rawdata.api_state;
             IsLSC = UseFuel > 999;

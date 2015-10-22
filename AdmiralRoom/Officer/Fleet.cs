@@ -48,7 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private bool needupdateship = false;
         protected override void UpdateProp()
         {
-            BackTime = DateTimeHelper.FromUnixTime(rawdata.api_mission[2]);
+            BackTime = DateTimeEx.FromUnixTime(rawdata.api_mission[2]);
             needupdateship = false;
             for(int i = 0; i < rawdata.api_ship.Length; i++)
             {

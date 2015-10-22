@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    static class DateTimeHelper
+    static class DateTimeEx
     {
         public static DateTime FromUnixTime(long unixtime)
         {

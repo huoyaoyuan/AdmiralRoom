@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public QuestManager()
         {
-            Staff.RegisterHandler("api_get_member/questlist", x => CheckQuestPage(x.ParseQuest().Data));
+            Staff.Subscribe("api_get_member/questlist", x => CheckQuestPage(x.ParseQuest().Data));
         }
         public IDTable<Quest> AvilableQuests = new IDTable<Quest>();
         public IList<Quest> QuestInProgress

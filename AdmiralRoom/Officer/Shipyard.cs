@@ -13,22 +13,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Shipyard()
         {
-            Staff.RegisterHandler("api_get_member/ndock", x => NDockHandler(x.Parse<getmember_ndock[]>().Data));
-            Staff.RegisterHandler("api_req_nyukyo/start", x => NStartHandler(x.Parse().Request));
-            Staff.RegisterHandler("api_get_member/kdock", x =>
+            Staff.Subscribe<getmember_ndock[]>("api_get_member/ndock", NDockHandler);
+            Staff.Subscribe("api_req_nyukyo/start", NStartHandler);
+            Staff.Subscribe<getmember_kdock[]>("api_get_member/kdock", x =>
                 Staff.Current.Dispatcher.Invoke(() =>
-                BuildingDocks.UpdateAll(x.Parse<getmember_kdock[]>().Data, api => api.api_id)));
-            Staff.RegisterHandler("api_req_kousyou/createship", x => CreateShipHandler(x.Parse().Request));
-            Staff.RegisterHandler("api_req_kousyou/getship", x => GetShipHandler(x.Parse<req_getship>().Data));
-            Staff.RegisterHandler("api_req_kousyou/destroyship", x => DestroyShipHandler(x.Parse<kousyou_destroyship>()));
-            Staff.RegisterHandler("api_req_kousyou/destroyitem2", x => DestroyItemHandler(x.Parse<kousyou_destroyitem2>()));
-            Staff.RegisterHandler("api_req_kaisou/powerup", x => PowerUpHandler(x.Parse<kaisou_powerup>()));
-            Staff.RegisterHandler("api_req_kousyou/createitem", x => CreateItemHandler(x.Parse<kousyou_createitem>()));
-            Staff.RegisterHandler("api_req_kousyou/createship_speedchange", x => KSpeedChangeHandler(x.Parse().Request));
-            Staff.RegisterHandler("api_req_kaisou/open_exslot", x =>
-                Staff.Current.Homeport.Ships[x.Parse().Request.GetInt("api_id")].SlotEx.IsLocked = false);
-            Staff.RegisterHandler("api_req_kousyou/remodel_slot", x => RemodelItemHandler(x.Parse<kousyou_remodel_slot>().Data));
-            Staff.RegisterHandler("api_req_nyukyo/speedchange", x => NSpeedChangeHandler(x.Parse().Request));
+                BuildingDocks.UpdateAll(x, api => api.api_id)));
+            Staff.Subscribe("api_req_kousyou/createship", CreateShipHandler);
+            Staff.Subscribe<req_getship>("api_req_kousyou/getship", GetShipHandler);
+            Staff.Subscribe<kousyou_destroyship>("api_req_kousyou/destroyship", DestroyShipHandler);
+            Staff.Subscribe<kousyou_destroyitem2>("api_req_kousyou/destroyitem2", DestroyItemHandler);
+            Staff.Subscribe<kaisou_powerup>("api_req_kaisou/powerup", PowerUpHandler);
+            Staff.Subscribe<kousyou_createitem>("api_req_kousyou/createitem", CreateItemHandler);
+            Staff.Subscribe("api_req_kousyou/createship_speedchange", KSpeedChangeHandler);
+            Staff.Subscribe("api_req_kaisou/open_exslot", x =>
+                Staff.Current.Homeport.Ships[x.GetInt("api_id")].SlotEx.IsLocked = false);
+            Staff.Subscribe<kousyou_remodel_slot>("api_req_kousyou/remodel_slot", RemodelItemHandler);
+            Staff.Subscribe("api_req_nyukyo/speedchange", NSpeedChangeHandler);
         }
 
         #region RepairDocks
@@ -126,49 +126,49 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.UpdateCounts();
             BuildingDocks.UpdateAll(api.api_kdock, x => x.api_id);
         }
-        void DestroyShipHandler(APIData<kousyou_destroyship> api)
+        void DestroyShipHandler(NameValueCollection req, kousyou_destroyship api)
         {
-            Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[api.Request.GetInt("api_ship_id")]);
-            Staff.Current.Homeport.Material.UpdateMaterial(api.Data.api_material);
+            Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[req.GetInt("api_ship_id")]);
+            Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
         }
-        void DestroyItemHandler(APIData<kousyou_destroyitem2> api)
+        void DestroyItemHandler(NameValueCollection req, kousyou_destroyitem2 api)
         {
-            foreach (int id in api.Request.GetInts("api_slotitem_ids")) 
+            foreach (int id in req.GetInts("api_slotitem_ids")) 
             {
                 Staff.Current.Homeport.Equipments.Remove(id);
             }
             Staff.Current.Homeport.UpdateCounts();
-            Staff.Current.Homeport.Material.Fuel += api.Data.api_get_material[0];
-            Staff.Current.Homeport.Material.Bull += api.Data.api_get_material[1];
-            Staff.Current.Homeport.Material.Steel += api.Data.api_get_material[2];
-            Staff.Current.Homeport.Material.Bauxite += api.Data.api_get_material[3];
+            Staff.Current.Homeport.Material.Fuel += api.api_get_material[0];
+            Staff.Current.Homeport.Material.Bull += api.api_get_material[1];
+            Staff.Current.Homeport.Material.Steel += api.api_get_material[2];
+            Staff.Current.Homeport.Material.Bauxite += api.api_get_material[3];
         }
-        void PowerUpHandler(APIData<kaisou_powerup> api)
+        void PowerUpHandler(NameValueCollection req, kaisou_powerup api)
         {
-            foreach (int id in api.Request.GetInts("api_id_items")) 
+            foreach (int id in req.GetInts("api_id_items")) 
             {
                 Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[id]);
             }
-            Staff.Current.Homeport.Ships.UpdateWithoutRemove(api.Data.api_ship, x => x.api_id);
-            Staff.Current.Homeport.Fleets.UpdateWithoutRemove(api.Data.api_deck, x => x.api_id);
+            Staff.Current.Homeport.Ships.UpdateWithoutRemove(api.api_ship, x => x.api_id);
+            Staff.Current.Homeport.Fleets.UpdateWithoutRemove(api.api_deck, x => x.api_id);
         }
-        void CreateItemHandler(APIData<kousyou_createitem> api)
+        void CreateItemHandler(kousyou_createitem api)
         {
             var dev = new DevelopmentInfo();
-            dev.IsSuccess = api.Data.api_create_flag != 0;
+            dev.IsSuccess = api.api_create_flag != 0;
             if (dev.IsSuccess)
             {
-                Staff.Current.Homeport.Equipments.Add(new Equipment(api.Data.api_slot_item));
+                Staff.Current.Homeport.Equipments.Add(new Equipment(api.api_slot_item));
                 Staff.Current.Homeport.UpdateCounts();
-                dev.Equip = Staff.Current.MasterData.EquipInfo[api.Data.api_slot_item.api_slotitem_id];
+                dev.Equip = Staff.Current.MasterData.EquipInfo[api.api_slot_item.api_slotitem_id];
             }
             else
             {
-                dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.Data.api_fdata.Split(',')[1])];
+                dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.api_fdata.Split(',')[1])];
             }
             Staff.Current.Dispatcher.Invoke(() => Development.Add(dev));
-            Staff.Current.Homeport.Material.UpdateMaterial(api.Data.api_material);
-            Staff.Current.Homeport.Material.DevelopmentKit -= api.Data.api_shizai_flag;
+            Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
+            Staff.Current.Homeport.Material.DevelopmentKit -= api.api_shizai_flag;
         }
         void KSpeedChangeHandler(NameValueCollection req)
         {

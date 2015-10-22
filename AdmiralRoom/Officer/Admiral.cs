@@ -8,8 +8,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Admiral()
         {
-            Staff.RegisterHandler("api_get_member/record", x => RecordHandler(x.Parse<getmember_record>().Data));
-            Staff.RegisterHandler("api_get_member/basic", x => BasicHandler(x.Parse<getmember_basic>().Data));
+            Staff.Subscribe<getmember_record>("api_get_member/record", RecordHandler);
+            Staff.Subscribe<getmember_basic>("api_get_member/basic", BasicHandler);
         }
 
         #region Level

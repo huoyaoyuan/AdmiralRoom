@@ -9,14 +9,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Homeport()
         {
-            Staff.RegisterHandler("api_port/port", x => PortHandler(x.Parse<port_port>().Data));
-            Staff.RegisterHandler("api_get_member/deck", x => DecksHandler(x.Parse<getmember_deck[]>().Data));
-            Staff.RegisterHandler("api_get_member/slot_item", x => ItemsHandler(x.Parse<getmember_slotitem[]>().Data));
-            Staff.RegisterHandler("api_req_hensei/change", x => ChangeHandler(x.Parse().Request));
-            Staff.RegisterHandler("api_get_member/ship3", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
-            Staff.RegisterHandler("api_get_member/ship2", x => Ship2Handler(x.Parse<getmember_ship2>().Data));
-            Staff.RegisterHandler("api_get_member/ship_deck", x => Ship3Handler(x.Parse<getmember_ship_deck>().Data));
-            Staff.RegisterHandler("api_req_hokyu/charge", x => ChargeHandler(x.Parse<hokyu_charge>().Data));
+            Staff.Subscribe<port_port>("api_port/port", PortHandler);
+            Staff.Subscribe<getmember_deck[]>("api_get_member/deck", DecksHandler);
+            Staff.Subscribe<getmember_slotitem[]>("api_get_member/slot_item", ItemsHandler);
+            Staff.Subscribe("api_req_hensei/change", ChangeHandler);
+            Staff.Subscribe<getmember_ship_deck>("api_get_member/ship3", Ship3Handler);
+            Staff.Subscribe<getmember_ship2>("api_get_member/ship2", Ship2Handler);
+            Staff.Subscribe<getmember_ship_deck>("api_get_member/ship_deck", Ship3Handler);
+            Staff.Subscribe<hokyu_charge>("api_req_hokyu/charge", ChargeHandler);
         }
 
         public Material Material { get; } = new Material();
@@ -108,7 +108,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void PortHandler(port_port api)
         {
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
-            Material.GetMemberMaterial(api.api_material);
+            Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             if(Ships == null)
                 Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));

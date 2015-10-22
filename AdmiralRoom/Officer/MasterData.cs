@@ -6,7 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public MasterData()
         {
-            Staff.RegisterHandler("api_start2", x => MasterHandler(x.Parse<api_start2>().Data));
+            Staff.Subscribe<api_start2>("api_start2", MasterHandler);
         }
 
         public IDTable<ShipInfo> ShipInfo { get; private set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.Threading;
 using System.Windows.Threading;
@@ -108,7 +109,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 #endif
         }
 
-        public static void RegisterHandler(string apiname,Action<Session> handler)
+        public static void Subscribe(string apiname, Action<Session> handler)
         {
             Action<Session> Handler;
             Handlers.TryGetValue(apiname, out Handler);
@@ -119,6 +120,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             else Handler += handler;
         }
+        public static void Subscribe<T>(string apiname, Action<T> handler) => Subscribe(apiname, x => handler(x.Parse<T>().Data));
+        public static void Subscribe(string apiname, Action<NameValueCollection> handler) => Subscribe(apiname, x => handler(x.Parse().Request));
+        public static void Subscribe<T>(string apiname, Action<NameValueCollection, T> handler) => Subscribe(apiname, x =>
+        {
+            var svdata = x.Parse<T>();
+            handler(svdata.Request, svdata.Data);
+        });
         public Admiral Admiral { get; } = new Admiral();
         public Homeport Homeport { get; } = new Homeport();
         public MasterData MasterData { get; } = new MasterData();

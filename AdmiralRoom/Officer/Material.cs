@@ -11,7 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Material()
         {
-            Staff.RegisterHandler("api_get_member/material", x => GetMemberMaterial(x.Parse<getmember_material[]>().Data));
+            Staff.Subscribe<getmember_material[]>("api_get_member/material", MaterialHandler);
         }
 
         #region Fuel
@@ -142,7 +142,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        public void GetMemberMaterial(getmember_material[] api)
+        public void MaterialHandler(getmember_material[] api)
         {
             if (api == null) return;
             foreach(var mat in api)

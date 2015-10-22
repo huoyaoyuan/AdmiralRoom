@@ -28,7 +28,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         #endregion
         private APIModel()
         {
-            Officer.Staff.RegisterHandler("", APIViewerHandler);
+            Officer.Staff.Subscribe("", APIViewerHandler);
         }
 
         void APIViewerHandler(Session oSession)

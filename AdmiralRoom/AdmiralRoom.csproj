@@ -150,8 +150,8 @@
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\req_getship.cs" />
     <Compile Include="API\svdata.cs" />
-    <Compile Include="Common\CollectionHelper.cs" />
-    <Compile Include="Common\DateTimeHelper.cs" />
+    <Compile Include="Common\CollectionEx.cs" />
+    <Compile Include="Common\DateTimeEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConstData.cs" />

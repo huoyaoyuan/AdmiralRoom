@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void Tick(object sender, ElapsedEventArgs e) => OnPropertyChanged("CompleteTimeRemain");
         protected override void UpdateProp()
         {
-            CompleteTime = DateTimeHelper.FromUnixTime(rawdata.api_complete_time);
+            CompleteTime = DateTimeEx.FromUnixTime(rawdata.api_complete_time);
             Ship = Staff.Current.Homeport.Ships[rawdata.api_ship_id];
         }
     }
