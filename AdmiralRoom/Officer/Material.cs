@@ -11,7 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Material()
         {
-            Staff.Subscribe<getmember_material[]>("api_get_member/material", MaterialHandler);
+            Staff.API("api_get_member/material").Subscribe<getmember_material[]>(MaterialHandler);
         }
 
         #region Fuel

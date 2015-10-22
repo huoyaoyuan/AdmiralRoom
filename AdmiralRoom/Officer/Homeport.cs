@@ -9,14 +9,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Homeport()
         {
-            Staff.Subscribe<port_port>("api_port/port", PortHandler);
-            Staff.Subscribe<getmember_deck[]>("api_get_member/deck", DecksHandler);
-            Staff.Subscribe<getmember_slotitem[]>("api_get_member/slot_item", ItemsHandler);
-            Staff.Subscribe("api_req_hensei/change", ChangeHandler);
-            Staff.Subscribe<getmember_ship_deck>("api_get_member/ship3", Ship3Handler);
-            Staff.Subscribe<getmember_ship2>("api_get_member/ship2", Ship2Handler);
-            Staff.Subscribe<getmember_ship_deck>("api_get_member/ship_deck", Ship3Handler);
-            Staff.Subscribe<hokyu_charge>("api_req_hokyu/charge", ChargeHandler);
+            Staff.API("api_port/port").Subscribe<port_port>(PortHandler);
+            Staff.API("api_get_member/deck").Subscribe<getmember_deck[]>(DecksHandler);
+            Staff.API("api_get_member/slot_item").Subscribe<getmember_slotitem[]>(ItemsHandler);
+            Staff.API("api_req_hensei/change").Subscribe(ChangeHandler);
+            Staff.API("api_get_member/ship3").Subscribe<getmember_ship_deck>(Ship3Handler);
+            Staff.API("api_get_member/ship2").Subscribe<getmember_ship2>(Ship2Handler);
+            Staff.API("api_get_member/ship_deck").Subscribe<getmember_ship_deck>(Ship3Handler);
+            Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
         }
 
         public Material Material { get; } = new Material();

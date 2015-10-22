@@ -4,12 +4,12 @@ using Huoyaoyuan.AdmiralRoom.Models;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    class Admiral : NotifyBase
+    public class Admiral : NotifyBase
     {
         public Admiral()
         {
-            Staff.Subscribe<getmember_record>("api_get_member/record", RecordHandler);
-            Staff.Subscribe<getmember_basic>("api_get_member/basic", BasicHandler);
+            Staff.API("api_get_member/record").Subscribe<getmember_record>(RecordHandler);
+            Staff.API("api_get_member/basic").Subscribe<getmember_basic>(BasicHandler);
         }
 
         #region Level

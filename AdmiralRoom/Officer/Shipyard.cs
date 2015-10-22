@@ -13,22 +13,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Shipyard()
         {
-            Staff.Subscribe<getmember_ndock[]>("api_get_member/ndock", NDockHandler);
-            Staff.Subscribe("api_req_nyukyo/start", NStartHandler);
-            Staff.Subscribe<getmember_kdock[]>("api_get_member/kdock", x =>
+            Staff.API("api_get_member/ndock").Subscribe<getmember_ndock[]>(NDockHandler);
+            Staff.API("api_req_nyukyo/start").Subscribe(NStartHandler);
+            Staff.API("api_get_member/kdock").Subscribe<getmember_kdock[]>(x =>
                 Staff.Current.Dispatcher.Invoke(() =>
                 BuildingDocks.UpdateAll(x, api => api.api_id)));
-            Staff.Subscribe("api_req_kousyou/createship", CreateShipHandler);
-            Staff.Subscribe<req_getship>("api_req_kousyou/getship", GetShipHandler);
-            Staff.Subscribe<kousyou_destroyship>("api_req_kousyou/destroyship", DestroyShipHandler);
-            Staff.Subscribe<kousyou_destroyitem2>("api_req_kousyou/destroyitem2", DestroyItemHandler);
-            Staff.Subscribe<kaisou_powerup>("api_req_kaisou/powerup", PowerUpHandler);
-            Staff.Subscribe<kousyou_createitem>("api_req_kousyou/createitem", CreateItemHandler);
-            Staff.Subscribe("api_req_kousyou/createship_speedchange", KSpeedChangeHandler);
-            Staff.Subscribe("api_req_kaisou/open_exslot", x =>
+            Staff.API("api_req_kousyou/createship").Subscribe(CreateShipHandler);
+            Staff.API("api_req_kousyou/getship").Subscribe<req_getship>(GetShipHandler);
+            Staff.API("api_req_kousyou/destroyship").Subscribe<kousyou_destroyship>(DestroyShipHandler);
+            Staff.API("api_req_kousyou/destroyitem2").Subscribe<kousyou_destroyitem2>(DestroyItemHandler);
+            Staff.API("api_req_kaisou/powerup").Subscribe<kaisou_powerup>(PowerUpHandler);
+            Staff.API("api_req_kousyou/createitem").Subscribe<kousyou_createitem>(CreateItemHandler);
+            Staff.API("api_req_kousyou/createship_speedchange").Subscribe(KSpeedChangeHandler);
+            Staff.API("api_req_kaisou/open_exslot").Subscribe(x =>
                 Staff.Current.Homeport.Ships[x.GetInt("api_id")].SlotEx.IsLocked = false);
-            Staff.Subscribe<kousyou_remodel_slot>("api_req_kousyou/remodel_slot", RemodelItemHandler);
-            Staff.Subscribe("api_req_nyukyo/speedchange", NSpeedChangeHandler);
+            Staff.API("api_req_kousyou/remodel_slot").Subscribe<kousyou_remodel_slot>(RemodelItemHandler);
+            Staff.API("api_req_nyukyo/speedchange").Subscribe(NSpeedChangeHandler);
         }
 
         #region RepairDocks

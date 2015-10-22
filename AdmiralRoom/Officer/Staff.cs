@@ -8,7 +8,7 @@ using Fiddler;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    class Staff
+    public class Staff
     {
         private static Staff _current;
         public static Staff Current
@@ -22,7 +22,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Dispatcher Dispatcher { get; set; }
         public static Proxy Proxy { get; set; }
         public static UTF8Encoding Encoder = new UTF8Encoding();
-        private static Dictionary<string, Action<Session>> Handlers = new Dictionary<string, Action<Session>>();
+        //private static Dictionary<string, Action<Session>> Handlers = new Dictionary<string, Action<Session>>();
+        private static Dictionary<string, APIObservable> apisource = new Dictionary<string, APIObservable>();
+        public static APIObservable API(string apiname)
+        {
+            APIObservable v;
+            apisource.TryGetValue(apiname, out v);
+            if (v == null) 
+            {
+                v = new APIObservable();
+                apisource.Add(apiname, v);
+            }
+            return v;
+        }
         public static void Start(int port = 39175)
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
@@ -78,22 +90,23 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Session oSession = o as Session;
             //System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
-            foreach(string key in Handlers.Keys)
+            foreach(string key in apisource.Keys)
             {
                 if (oSession.PathAndQuery.EndsWith(key))
                 {
+                    var Handlers = apisource[key].Handler;
                     //Handlers[key].BeginInvoke(oSession, null, null);
-                    foreach(var Handler in Handlers[key].GetInvocationList())
+                    foreach(var Handler in Handlers.GetInvocationList())
                     {
-                        ExceptionCatcherDelegate.BeginInvoke(Handler as Action<Session>, oSession, null, null);
+                        ExceptionCatcherDelegate.BeginInvoke(Handler as SessionStateHandler, oSession, null, null);
                     }
                     //ExceptionCatcherDelegate.BeginInvoke(Handlers[key], oSession, null, null);
                 }
             }
         }
 
-        private static readonly Action<Action<Session>, Session> ExceptionCatcherDelegate = ExceptionCatcher;
-        private static void ExceptionCatcher(Action<Session> action, Session parameter)
+        private static readonly Action<SessionStateHandler, Session> ExceptionCatcherDelegate = ExceptionCatcher;
+        private static void ExceptionCatcher(SessionStateHandler action, Session parameter)
         {
 #if DEBUG == false
             try
@@ -108,30 +121,30 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
 #endif
         }
-
-        public static void Subscribe(string apiname, Action<Session> handler)
-        {
-            Action<Session> Handler;
-            Handlers.TryGetValue(apiname, out Handler);
-            if (Handler == null)
-            {
-                Handler = new Action<Session>(handler);
-                Handlers.Add(apiname, Handler);
-            }
-            else Handler += handler;
-        }
-        public static void Subscribe<T>(string apiname, Action<T> handler) => Subscribe(apiname, x => handler(x.Parse<T>().Data));
-        public static void Subscribe(string apiname, Action<NameValueCollection> handler) => Subscribe(apiname, x => handler(x.Parse().Request));
-        public static void Subscribe<T>(string apiname, Action<NameValueCollection, T> handler) => Subscribe(apiname, x =>
-        {
-            var svdata = x.Parse<T>();
-            handler(svdata.Request, svdata.Data);
-        });
         public Admiral Admiral { get; } = new Admiral();
         public Homeport Homeport { get; } = new Homeport();
         public MasterData MasterData { get; } = new MasterData();
         public System.Timers.Timer Ticker { get; } = new System.Timers.Timer(1000) { Enabled = true };
         public Shipyard Shipyard { get; } = new Shipyard();
         public QuestManager Quests { get; } = new QuestManager();
+        public class APIObservable
+        {
+            public SessionStateHandler Handler;
+            public void Subscribe(SessionStateHandler handler) => Handler += handler;
+            public void Subscribe<T>(Action<T> handler) => Subscribe(x => handler(x.Parse<T>().Data));
+            public void Subscribe(Action<NameValueCollection> handler) => Subscribe(x => handler(x.Parse().Request));
+            public void Subscribe<T>(Action<NameValueCollection, T> handler) => Subscribe(x =>
+            {
+                var svdata = x.Parse<T>();
+                handler(svdata.Request, svdata.Data);
+            });
+            public SubObservable<T> Where<T>(Func<T, bool> selector) => new SubObservable<T>() { Parent = this, Selector = selector };
+        }
+        public class SubObservable<T>
+        {
+            public APIObservable Parent { get; set; }
+            public Func<T,bool> Selector { get; set; }
+            public void Subscribe(Action<T> handler) => Parent.Subscribe<T>(x => { if (Selector(x)) handler(x); });
+        }
     }
 }
