@@ -18,6 +18,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnAllPropertyChanged();
         }
         protected virtual void UpdateProp() { }
+        public void Update()
+        {
+            UpdateProp();
+            OnAllPropertyChanged();
+        }
         public abstract int Id { get; }
         public int CompareTo(GameObject<T> other)
         {

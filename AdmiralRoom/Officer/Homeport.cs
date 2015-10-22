@@ -7,7 +7,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Homeport : NotifyBase
     {
-        private port_port lastport;
         public Homeport()
         {
             Staff.RegisterHandler("api_port/port", x => PortHandler(x.Parse<port_port>().Data));
@@ -108,7 +107,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void PortHandler(port_port api)
         {
-            lastport = api;
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             Material.GetMemberMaterial(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
@@ -139,8 +137,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Equipments = new IDTable<Equipment>(api.ArrayOperation(x => new Equipment(x)));
             else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
-            if (lastport != null)
-                PortHandler(lastport);
+            Ships?.ArrayOperation(x => x.Update());
         }
 
         void ChangeHandler(NameValueCollection api)
