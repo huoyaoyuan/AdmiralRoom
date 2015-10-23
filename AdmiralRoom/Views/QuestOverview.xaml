@@ -20,6 +20,9 @@
                 <TextBlock TextWrapping="Wrap" Margin="1">
                     <Image Height="14" Stretch="Uniform" Source="{Binding Icon}"/>
                     <Run Text="{Binding Title, Mode=OneWay}"/>
+                    <Border Background="{Binding Progress, Converter={StaticResource HPColorConverter}}" CornerRadius="4" Padding="2">
+                        <TextBlock Text="{Binding Counter.Progress}" FontSize="10" HorizontalAlignment="Center"/>
+                    </Border>
                     <Image x:Name="progress" Height="14" Stretch="Uniform"/>
                     <TextBlock.ToolTip>
                         <TextBlock MaxWidth="150" TextWrapping="Wrap">

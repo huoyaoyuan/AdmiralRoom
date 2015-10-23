@@ -98,15 +98,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     //Handlers[key].BeginInvoke(oSession, null, null);
                     foreach(var Handler in Handlers.GetInvocationList())
                     {
-                        ExceptionCatcherDelegate.BeginInvoke(Handler as SessionStateHandler, oSession, null, null);
+                        ExceptionCatcherDelegate.BeginInvoke(Handler as Action<Session>, oSession, null, null);
                     }
                     //ExceptionCatcherDelegate.BeginInvoke(Handlers[key], oSession, null, null);
                 }
             }
         }
 
-        private static readonly Action<SessionStateHandler, Session> ExceptionCatcherDelegate = ExceptionCatcher;
-        private static void ExceptionCatcher(SessionStateHandler action, Session parameter)
+        private static readonly Action<Action<Session>, Session> ExceptionCatcherDelegate = ExceptionCatcher;
+        private static void ExceptionCatcher(Action<Session> action, Session parameter)
         {
 #if DEBUG == false
             try
