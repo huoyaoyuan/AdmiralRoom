@@ -22,12 +22,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        protected QuestTarget() { }
-
-        public QuestTarget(ICounter counter)
+        public QuestTarget(ICounter counter, int questid, QuestPeriod period, int max, string description = "")
         {
             Counter = counter;
             counter.Increased += Increase;
+            QuestId = questid;
+            Period = period;
+            Progress = new LimitedValue(0, max);
+            Description = description;
         }
 
         void Increase(int n)
@@ -40,5 +42,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
 
         public void Dispose() => Counter.Increased -= Increase;
+
+        public void SetProgress(int n)
+        {
+            if (_progress.Current < n)
+            {
+                _progress.Current = n;
+                OnAllPropertyChanged();
+            }
+        }
+
+        public void Set50() => SetProgress((int)Math.Ceiling(_progress.Max * 0.5));
+        public void Set80() => SetProgress((int)Math.Ceiling(_progress.Max * 0.8));
     }
 }

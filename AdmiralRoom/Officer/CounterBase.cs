@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
+namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class CounterBase : ICounter
     {
