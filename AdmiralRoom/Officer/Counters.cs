@@ -51,4 +51,32 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 		}
 		public static BattleWinCounter Instance { get; } = new BattleWinCounter();
 	}
+	public class PracticeCounter : CounterBase
+	{
+		private PracticeCounter()
+		{
+			Staff.API("api_req_practice/battle_result")
+				.Subscribe((Session x) => Increase());
+		}
+		public static PracticeCounter Instance { get; } = new PracticeCounter();
+	}
+	public class PracticeWinCounter : CounterBase
+	{
+		private PracticeWinCounter()
+		{
+			Staff.API("api_req_practice/battle_result")
+				.Where<sortie_battleresult>(x => ConstData.RanksWin.Contains(x.api_win_rank))
+				.Subscribe((x) => Increase());
+		}
+		public static PracticeWinCounter Instance { get; } = new PracticeWinCounter();
+	}
+	public class ItemDestroyCounter : CounterBase
+	{
+		private ItemDestroyCounter()
+		{
+			Staff.API("api_req_kousyou/destroyitem2")
+				.Subscribe((Session x) => Increase());
+		}
+		public static ItemDestroyCounter Instance { get; } = new ItemDestroyCounter();
+	}
 }

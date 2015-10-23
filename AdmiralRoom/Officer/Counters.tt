@@ -11,7 +11,10 @@ var counters = new[]
 	"Repair,api_req_nyukyo/start,",
 	"Sortie,api_req_map/start,",
 	"Battle,api_req_sortie/battleresult,",
-	"BattleWin,api_req_sortie/battleresult,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)"
+	"BattleWin,api_req_sortie/battleresult,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
+	"Practice,api_req_practice/battle_result,",
+	"PracticeWin,api_req_practice/battle_result,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
+	"ItemDestroy,api_req_kousyou/destroyitem2,",
 };
 #>
 using System.Collections.Specialized;

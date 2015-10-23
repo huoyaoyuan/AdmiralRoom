@@ -24,6 +24,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public static QuestTarget Map4 = new QuestTarget(StaticCounters.Map4Counter, 229, QuestPeriod.Weekly, 12);
             public static QuestTarget Map1_5W = new QuestTarget(StaticCounters.Map1_5Counter, 261, QuestPeriod.Weekly, 3);
             public static QuestTarget Map1_5M = new QuestTarget(StaticCounters.Map1_5Counter, 265, QuestPeriod.Monthly, 10);
+            public static QuestTarget Practice3 = new QuestTarget(Counters.PracticeCounter.Instance, 303, QuestPeriod.Daily, 3);
+            public static QuestTarget Practice5 = new QuestTarget(Counters.PracticeWinCounter.Instance, 304, QuestPeriod.Daily, 5, Practice7);
+            public static QuestTarget Practice20 = new QuestTarget(Counters.PracticeWinCounter.Instance, 302, QuestPeriod.Weekly, 20);
+            public static QuestTarget Practice7 = new QuestTarget(Counters.PracticeWinCounter.Instance, 311, QuestPeriod.Daily, 7, Practice5);
+            public static QuestTarget Repair = new QuestTarget(Counters.RepairCounter.Instance, 503, QuestPeriod.Daily, 5);
+            public static QuestTarget Charge = new QuestTarget(Counters.ChargeCounter.Instance, 504, QuestPeriod.Daily, 15);
+            public static QuestTarget Destroy = new QuestTarget(Counters.ItemDestroyCounter.Instance, 613, QuestPeriod.Weekly, 24);
         }
         public static class KnownQuests
         {
@@ -50,6 +57,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Known.Add(new QuestInfo(Map4));
                 Known.Add(new QuestInfo(Map1_5M));
                 Known.Add(new QuestInfo(Map1_5W));
+                Known.Add(new QuestInfo(Practice3));
+                Known.Add(new QuestInfo(Practice5));
+                Known.Add(new QuestInfo(Practice7));
+                Known.Add(new QuestInfo(Practice20));
+                Known.Add(new QuestInfo(Repair));
+                Known.Add(new QuestInfo(Charge));
+                Known.Add(new QuestInfo(Destroy));
             }
         }
     }
