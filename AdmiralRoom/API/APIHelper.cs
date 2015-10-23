@@ -97,9 +97,9 @@ namespace Huoyaoyuan.AdmiralRoom
                     finally { mms.Dispose(); }
                 }
                 data.api_list = list.ToArray();
-                svdata.api_data = data;
             }
             catch { }
+            svdata.api_data = data;
             return new APIData<getmember_questlist>(svdata, oSession.GetRequestBodyAsString());
         }
         public static APIData<dynamic> ParseDynamic(this Session oSession)
