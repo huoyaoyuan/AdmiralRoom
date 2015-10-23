@@ -42,6 +42,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 return _icon;
             }
         }
+        public QuestInfo Counter { get; set; }
+        protected override void UpdateProp()
+        {
+            Counter = QuestManager.KnownQuests.Known[Id];
+        }
     }
     public enum QuestType { Unknown = 0, Fleet = 1, Battle = 2, Exercise = 3, Expedition = 4, Charge = 5, Shipyard = 6, Powerup = 7, Other = 8 }
     public enum QuestPeriod { Once = 1, Daily = 2, Weekly = 3, Day037 = 4, Day28 = 5, Monthly = 6 }
