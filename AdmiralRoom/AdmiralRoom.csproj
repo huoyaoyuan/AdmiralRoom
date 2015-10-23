@@ -193,9 +193,11 @@
     <Compile Include="Officer\Material.cs" />
     <Compile Include="Officer\General\Modernizable.cs" />
     <Compile Include="Officer\MissionInfo.cs" />
+    <Compile Include="Officer\MultiQuestTarget.cs" />
     <Compile Include="Officer\Proxy.cs" />
     <Compile Include="Officer\Quest.cs" />
     <Compile Include="Officer\QuestManager.cs" />
+    <Compile Include="Officer\QuestTarget.cs" />
     <Compile Include="Officer\RepairDock.cs" />
     <Compile Include="Officer\Shipyard.cs" />
     <Compile Include="Officer\Ship.cs" />

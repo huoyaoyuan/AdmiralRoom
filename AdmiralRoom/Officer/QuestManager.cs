@@ -13,17 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_quest/clearitemget").Subscribe(x => AvilableQuests.Remove(x.GetInt("api_quest_id")));
         }
         public IDTable<Quest> AvilableQuests = new IDTable<Quest>();
-        public IList<Quest> QuestInProgress
-        {
-            get
-            {
-                List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress || x.State == QuestState.Complete).ToList();
-                while (list.Count < InProgressCount)
-                    list.Add(new Quest(new API.api_quest()));
-                list.Sort();
-                return list;
-            }
-        }
+        public IDTable<Quest> QuestInProgress { get; private set; }
         public int InProgressCount { get; private set; }
         public int AvilableCount { get; private set; }
         private int lastcheckedpage;
@@ -64,7 +54,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             lastcheckedfrom = checkfrom;
             lastcheckedto = checkto;
             lastcheckedtime = checktime;
+            UpdateInProgress();
             OnAllPropertyChanged();
+        }
+        private void UpdateInProgress()
+        {
+            List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress || x.State == QuestState.Complete).ToList();
+            while (list.Count < InProgressCount)
+                list.Add(new Quest(new api_quest()));
+            list.Sort();
+            QuestInProgress = new IDTable<Quest>(list);
         }
         public static readonly TimeZoneInfo QuestPeriodTime = TimeZoneInfo.CreateCustomTimeZone("KancolleQuest", TimeSpan.FromHours(4), "", "");
     }
