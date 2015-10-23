@@ -22,7 +22,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        public QuestTarget(ICounter counter, int questid, QuestPeriod period, int max, string description = "")
+        private QuestTarget SharedWith;
+        public QuestTarget(ICounter counter, int questid, QuestPeriod period, int max, QuestTarget sharedwith = null, string description = "")
         {
             Counter = counter;
             counter.Increased += Increase;
@@ -30,6 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Period = period;
             Progress = new LimitedValue(0, max);
             Description = description;
+            SharedWith = sharedwith;
         }
 
         void Increase(int n)
@@ -38,7 +40,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 _progress.Current += n;
                 OnPropertyChanged("Progress");
+                SharedWith?.SharedIncrease(n);
             }
+        }
+
+        void SharedIncrease(int n)
+        {
+            _progress.Current += n;
+            OnPropertyChanged("Progress");
         }
 
         public void Dispose() => Counter.Increased -= Increase;
