@@ -5,7 +5,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class QuestManager : NotifyBase
+    public partial class QuestManager : NotifyBase
     {
         public QuestManager()
         {
@@ -23,7 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void CheckQuestPage(getmember_questlist api)
         {
             int checkfrom, checkto;
-            if(api.api_list == null)
+            if (api.api_list == null)
             {
                 if (api.api_disp_page == 1) AvilableQuests.Clear();
                 return;
@@ -40,7 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (checktime.Date != lastcheckedtime.Date)
                 foreach (var item in AvilableQuests.Where(x => x.IsDaily).ToList())
                     AvilableQuests.Remove(item);
-            if (checktime.WeekStart() != lastcheckedtime.WeekStart()) 
+            if (checktime.WeekStart() != lastcheckedtime.WeekStart())
                 foreach (var item in AvilableQuests.Where(x => x.Period == QuestPeriod.Weekly).ToList())
                     AvilableQuests.Remove(item);
             AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
@@ -66,16 +66,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             QuestInProgress = new IDTable<Quest>(list);
         }
         public static readonly TimeZoneInfo QuestPeriodTime = TimeZoneInfo.CreateCustomTimeZone("KancolleQuest", TimeSpan.FromHours(4), "", "");
-        public static class KnownQuestTargets
-        {
-            public static QuestTarget Daily10 = new QuestTarget(Counters.BattleCounter.Instance, 210, QuestPeriod.Daily, 10);
-            public static QuestTarget Trans3 = new QuestTarget(StaticCounters.TransportCounter, 218, QuestPeriod.Daily, 3);
-            public static QuestTarget CV3 = new QuestTarget(StaticCounters.CVCounter, 211, QuestPeriod.Daily, 3);
-
-        }
-        public static class KnownQuests
-        {
-
-        }
     }
 }

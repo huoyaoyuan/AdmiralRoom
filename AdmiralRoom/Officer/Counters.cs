@@ -23,6 +23,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 		}
 		public static RepairCounter Instance { get; } = new RepairCounter();
 	}
+	public class SortieCounter : CounterBase
+	{
+		private SortieCounter()
+		{
+			Staff.API("api_req_map/start")
+				.Subscribe((Session x) => Increase());
+		}
+		public static SortieCounter Instance { get; } = new SortieCounter();
+	}
 	public class BattleCounter : CounterBase
 	{
 		private BattleCounter()

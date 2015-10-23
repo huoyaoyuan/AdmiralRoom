@@ -189,11 +189,12 @@
     <Compile Include="Officer\General\IIdentifiable.cs" />
     <Compile Include="Officer\General\LimitedValue.cs" />
     <Compile Include="Officer\General\ICounter.cs" />
+    <Compile Include="Officer\KnownQuests.cs" />
     <Compile Include="Officer\MasterData.cs" />
     <Compile Include="Officer\Material.cs" />
     <Compile Include="Officer\General\Modernizable.cs" />
     <Compile Include="Officer\MissionInfo.cs" />
-    <Compile Include="Officer\QuestTargetSet.cs" />
+    <Compile Include="Officer\QuestInfo.cs" />
     <Compile Include="Officer\Proxy.cs" />
     <Compile Include="Officer\Quest.cs" />
     <Compile Include="Officer\QuestManager.cs" />

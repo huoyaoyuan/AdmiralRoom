@@ -9,6 +9,7 @@ var counters = new[]
 {
 	"Charge,api_req_hokyu/charge,",
 	"Repair,api_req_nyukyo/start,",
+	"Sortie,api_req_map/start,",
 	"Battle,api_req_sortie/battleresult,",
 	"BattleWin,api_req_sortie/battleresult,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)"
 };
