@@ -1,0 +1,41 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+var counters = new[]
+{
+	"Charge,api_req_hokyu/charge,((Session x) => Increase())",
+	"Repair,api_req_nyukyo/start,((Session x) => Increase())"
+};
+#>
+using System.Collections.Specialized;
+using Fiddler;
+namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
+{
+<#
+	foreach (var line in counters)
+	{
+		var para = line.Split(',');
+#>
+	public class <#= para[0] #>Counter : CounterBase
+	{
+		private <#= para[0] #>Counter()
+		{
+			Staff.API("<#= para[1] #>")
+<#
+		if (para.Length >= 4)
+		{
+#>				.Where(x => <#= para[3] #>)
+<#
+		}
+#>				.Subscribe<#= para[2] #>;
+		}
+		public static <#= para[0] #>Counter Instance { get; } = new <#= para[0] #>Counter();
+	}
+<#
+	}
+#>
+}

@@ -129,8 +129,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public QuestManager Quests { get; } = new QuestManager();
         public class APIObservable
         {
-            public SessionStateHandler Handler;
-            public void Subscribe(SessionStateHandler handler) => Handler += handler;
+            public Action<Session> Handler;
+            public void Subscribe(Action<Session> handler) => Handler += handler;
             public void Subscribe<T>(Action<T> handler) => Subscribe(x => handler(x.Parse<T>().Data));
             public void Subscribe(Action<NameValueCollection> handler) => Subscribe(x => handler(x.Parse().Request));
             public void Subscribe<T>(Action<NameValueCollection, T> handler) => Subscribe(x =>

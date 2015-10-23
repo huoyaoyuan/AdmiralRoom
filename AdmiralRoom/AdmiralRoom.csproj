@@ -170,7 +170,12 @@
     <Compile Include="Models\Volume.cs" />
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
-    <Compile Include="Officer\General\CounterBase.cs" />
+    <Compile Include="Officer\CounterBase.cs" />
+    <Compile Include="Officer\Counters.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Counters.tt</DependentUpon>
+    </Compile>
     <Compile Include="Officer\DevelopmentInfo.cs" />
     <Compile Include="Officer\EquipInfo.cs" />
     <Compile Include="Officer\Equipment.cs" />
@@ -429,6 +434,15 @@
     <Resource Include="Images\Quest\7.png" />
     <Resource Include="Images\Quest\8.png" />
     <Resource Include="Images\Quest\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Officer\Counters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Counters.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
