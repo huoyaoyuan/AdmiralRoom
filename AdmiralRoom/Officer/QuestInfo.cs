@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -28,6 +29,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 target.PropertyChanged += (_, __) => OnAllPropertyChanged();
             }
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var target in Targets)
+            {
+                sb.Append(target.Description);
+                sb.Append(' ');
+                sb.AppendLine(target.Progress.ToString());
+            }
+            return sb.ToString();
         }
         public void Set50()
         {
