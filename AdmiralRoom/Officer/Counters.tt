@@ -7,18 +7,24 @@
 <#
 var counters = new[]
 {
-	"Charge,api_req_hokyu/charge,((Session x) => Increase())",
-	"Repair,api_req_nyukyo/start,((Session x) => Increase())"
+	"Charge,api_req_hokyu/charge,",
+	"Repair,api_req_nyukyo/start,",
+	"Battle,api_req_sortie/battleresult,",
+	"BattleWin,api_req_sortie/battleresult,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)"
 };
 #>
 using System.Collections.Specialized;
+using System.Linq;
 using Fiddler;
+using Huoyaoyuan.AdmiralRoom.API;
+
 namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 {
 <#
 	foreach (var line in counters)
 	{
 		var para = line.Split(',');
+		if (para[2] == "") para[2] = "Increase()";
 #>
 	public class <#= para[0] #>Counter : CounterBase
 	{
@@ -26,12 +32,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 		{
 			Staff.API("<#= para[1] #>")
 <#
-		if (para.Length >= 4)
+		if (para.Length >= 5)
 		{
-#>				.Where(x => <#= para[3] #>)
+#>				.Where<<#= para[3] #>>(x => <#= para[4] #>)
 <#
 		}
-#>				.Subscribe<#= para[2] #>;
+#>				.Subscribe<# if (para.Length == 4){ #><<#= para[3] #>><# } #>((<#if (para.Length == 3){#>Session <#} #>x) => <#= para[2] #>);
 		}
 		public static <#= para[0] #>Counter Instance { get; } = new <#= para[0] #>Counter();
 	}

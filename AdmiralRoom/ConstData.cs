@@ -36,5 +36,6 @@ namespace Huoyaoyuan.AdmiralRoom
             catch { return 0; }
         }
         public static string[] AdmiralRanks { get; } = { "", "元帥", "大将", "中将", "少将", "大佐", "中佐", "新米中佐", "少佐", "中堅少佐", "新米少佐" };
+        public static string[] RanksWin = { "S", "A", "B" };
     }
 }
