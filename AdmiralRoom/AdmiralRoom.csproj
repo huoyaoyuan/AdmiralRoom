@@ -170,6 +170,7 @@
     <Compile Include="Models\Volume.cs" />
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
+    <Compile Include="Officer\General\CounterBase.cs" />
     <Compile Include="Officer\DevelopmentInfo.cs" />
     <Compile Include="Officer\EquipInfo.cs" />
     <Compile Include="Officer\Equipment.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Officer\General\IDTable.cs" />
     <Compile Include="Officer\General\IIdentifiable.cs" />
     <Compile Include="Officer\General\LimitedValue.cs" />
+    <Compile Include="Officer\General\ICounter.cs" />
     <Compile Include="Officer\MasterData.cs" />
     <Compile Include="Officer\Material.cs" />
     <Compile Include="Officer\General\Modernizable.cs" />
