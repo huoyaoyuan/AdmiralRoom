@@ -147,6 +147,7 @@
     <Compile Include="API\kousyou_destroyitem2.cs" />
     <Compile Include="API\kousyou_destroyship.cs" />
     <Compile Include="API\kousyou_remodel_slot.cs" />
+    <Compile Include="API\mission_result.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\req_getship.cs" />
     <Compile Include="API\sortie_battleresult.cs" />

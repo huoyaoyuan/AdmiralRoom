@@ -79,4 +79,24 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 		}
 		public static ItemDestroyCounter Instance { get; } = new ItemDestroyCounter();
 	}
+	public class ExpeditionCounter : CounterBase
+	{
+		private ExpeditionCounter()
+		{
+			Staff.API("api_req_mission/result")
+				.Where<mission_result>(x => x.api_clear_result>0)
+				.Subscribe((x) => Increase());
+		}
+		public static ExpeditionCounter Instance { get; } = new ExpeditionCounter();
+	}
+	public class ExpeditionTokyoCounter : CounterBase
+	{
+		private ExpeditionTokyoCounter()
+		{
+			Staff.API("api_req_mission/result")
+				.Where<mission_result>(x => x.api_quest_name.Contains("東京急行"))
+				.Subscribe((x) => Increase());
+		}
+		public static ExpeditionTokyoCounter Instance { get; } = new ExpeditionTokyoCounter();
+	}
 }

@@ -31,6 +31,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public static QuestTarget Repair = new QuestTarget(Counters.RepairCounter.Instance, 503, QuestPeriod.Daily, 5);
             public static QuestTarget Charge = new QuestTarget(Counters.ChargeCounter.Instance, 504, QuestPeriod.Daily, 15);
             public static QuestTarget Destroy = new QuestTarget(Counters.ItemDestroyCounter.Instance, 613, QuestPeriod.Weekly, 24);
+            public static QuestTarget Expedition3 = new QuestTarget(Counters.ExpeditionCounter.Instance, 402, QuestPeriod.Daily, 3);
+            public static QuestTarget Expedition10 = new QuestTarget(Counters.ExpeditionCounter.Instance, 403, QuestPeriod.Daily, 10);
+            public static QuestTarget Expedition30 = new QuestTarget(Counters.ExpeditionCounter.Instance, 404, QuestPeriod.Weekly, 30);
+            public static QuestTarget ExpeditionTokyo = new QuestTarget(Counters.ExpeditionTokyoCounter.Instance, 411, QuestPeriod.Weekly, 6);
         }
         public static class KnownQuests
         {
@@ -64,6 +68,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Known.Add(new QuestInfo(Repair));
                 Known.Add(new QuestInfo(Charge));
                 Known.Add(new QuestInfo(Destroy));
+                Known.Add(new QuestInfo(Expedition3));
+                Known.Add(new QuestInfo(Expedition10));
+                Known.Add(new QuestInfo(Expedition30));
+                Known.Add(new QuestInfo(ExpeditionTokyo));
             }
         }
     }
