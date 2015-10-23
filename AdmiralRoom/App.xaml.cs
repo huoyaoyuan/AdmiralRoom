@@ -24,6 +24,8 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
             Officer.Staff.Proxy = Config.Current.Proxy;
 
+            Officer.Staff.Current.Quests.Load();
+
             this.MainWindow = new MainWindow();
             Officer.Staff.Current.Dispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
@@ -34,6 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom
             base.OnExit(e);
             Officer.Staff.Stop();
             Config.Current.Save();
+            Officer.Staff.Current.Quests.Save();
         }
     }
 }

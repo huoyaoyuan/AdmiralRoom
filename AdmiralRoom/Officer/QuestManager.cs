@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -80,5 +82,44 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             QuestInProgress = new IDTable<Quest>(list);
         }
         public static readonly TimeZoneInfo QuestPeriodTime = TimeZoneInfo.CreateCustomTimeZone("KancolleQuest", TimeSpan.FromHours(4), "", "");
+        public void Load()
+        {
+            try
+            {
+                using (var file = new StreamReader(@"logs\questcount.txt"))
+                    while (!file.EndOfStream)
+                    {
+                        string line = file.ReadLine().Trim();
+                        if (string.IsNullOrEmpty(line)) continue;
+                        var parts = line.Split(':');
+                        var quest = KnownQuests.Known[int.Parse(parts[0])];
+                        if (quest == null) continue;
+                        var values = parts[1].Split(',');
+                        for (int i = 0; i < values.Length; i++)
+                            if (quest.Targets.Length > i) quest.Targets[i].SetProgress(int.Parse(values[i]));
+                    }
+            }
+            catch { }
+        }
+        public void Save()
+        {
+            Directory.CreateDirectory("logs");
+            using (var file = new StreamWriter(@"logs\questcount.txt"))
+            {
+                foreach (var quest in KnownQuests.Known)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(quest.Id);
+                    sb.Append(':');
+                    foreach (var target in quest.Targets)
+                    {
+                        sb.Append(target.Progress.Current);
+                        sb.Append(',');
+                    }
+                    sb.Remove(sb.Length - 1, 1);
+                    file.WriteLine(sb.ToString());
+                }
+            }
+        }
     }
 }

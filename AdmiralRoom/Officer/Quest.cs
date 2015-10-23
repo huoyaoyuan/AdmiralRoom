@@ -46,6 +46,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         protected override void UpdateProp()
         {
             Counter = QuestManager.KnownQuests.Known[Id];
+            if (Progress == QuestProgress.Percent50) Counter?.Set50();
+            else if (Progress == QuestProgress.Percent80) Counter?.Set80();
         }
     }
     public enum QuestType { Unknown = 0, Fleet = 1, Battle = 2, Exercise = 3, Expedition = 4, Charge = 5, Shipyard = 6, Powerup = 7, Other = 8 }

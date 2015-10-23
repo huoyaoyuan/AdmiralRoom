@@ -29,5 +29,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 target.PropertyChanged += (_, __) => OnAllPropertyChanged();
             }
         }
+        public void Set50()
+        {
+            if (Targets.Length == 1) MainTarget.Set50();
+        }
+        public void Set80()
+        {
+            if (Targets.Length == 1) MainTarget.Set80();
+        }
     }
 }
