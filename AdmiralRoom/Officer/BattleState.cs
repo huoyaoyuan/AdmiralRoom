@@ -19,6 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             });
             Staff.API("api_req_map/start").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
+            Staff.API("api_req_sortie/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
         }
 
         #region InSortie
@@ -73,6 +74,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];
             CurrentNode = new MapNode(api);
+        }
+        void BattleResultHandler(sortie_battleresult api)
+        {
+            if (CurrentNode.Type == MapNodeType.BOSS)
+            {
+                StaticCounters.BossCounter.Increase();
+                if (ConstData.RanksWin.Contains(api.api_win_rank))
+                {
+                    StaticCounters.BossWinCounter.Increase();
+                    if (CurrentMap.AreaNo == 2) StaticCounters.Map2Counter.Increase();
+                    else if (CurrentMap.AreaNo == 3 && CurrentMap.No >= 3) StaticCounters.Map3Counter.Increase();
+                    else if (CurrentMap.AreaNo == 4) StaticCounters.Map4Counter.Increase();
+                    else if (CurrentMap.Id == 15) StaticCounters.Map1_5Counter.Increase();
+                }
+            }
         }
     }
 }
