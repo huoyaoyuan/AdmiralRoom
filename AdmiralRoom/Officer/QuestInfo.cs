@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -48,6 +49,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void Set80()
         {
             if (Targets.Length == 1) MainTarget.Set80();
+        }
+        public void SetIsTook(bool v)
+        {
+            foreach (var target in Targets)
+                target.IsTook = v;
         }
     }
 }

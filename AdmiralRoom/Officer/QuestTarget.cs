@@ -23,6 +23,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         private QuestTarget SharedWith;
+        private bool _istook;
+        public bool IsTook
+        {
+            get
+            {
+                if (Staff.Current.Quests.QuestInProgress != null)
+                    _istook = Staff.Current.Quests.QuestInProgress?[QuestId] != null;
+                return _istook;
+            }
+            set
+            {
+                _istook = value;
+            }
+        }
         public QuestTarget(ICounter counter, int questid, QuestPeriod period, int max, QuestTarget sharedwith = null, string description = "")
         {
             Counter = counter;
@@ -36,7 +50,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void Increase(int n)
         {
-            if (Staff.Current.Quests.QuestInProgress[QuestId] != null)
+            if (IsTook)
             {
                 _progress.Current += n;
                 OnPropertyChanged("Progress");

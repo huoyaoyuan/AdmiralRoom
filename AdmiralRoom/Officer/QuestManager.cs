@@ -94,9 +94,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         var parts = line.Split(':');
                         var quest = KnownQuests.Known[int.Parse(parts[0])];
                         if (quest == null) continue;
-                        var values = parts[1].Split(',');
+                        bool istook = bool.Parse(parts[1]);
+                        quest.SetIsTook(istook);
+                        var values = parts[2].Split(',');
                         for (int i = 0; i < values.Length; i++)
-                            if (quest.Targets.Length > i) quest.Targets[i].SetProgress(int.Parse(values[i]));
+                            if (quest.Targets.Length > i)
+                                quest.Targets[i].SetProgress(int.Parse(values[i]));
                     }
             }
             catch { }
@@ -110,6 +113,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append(quest.Id);
+                    sb.Append(':');
+                    sb.Append(quest.MainTarget.IsTook);
                     sb.Append(':');
                     foreach (var target in quest.Targets)
                     {
