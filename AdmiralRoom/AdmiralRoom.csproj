@@ -148,6 +148,7 @@
     <Compile Include="API\kousyou_destroyitem2.cs" />
     <Compile Include="API\kousyou_destroyship.cs" />
     <Compile Include="API\kousyou_remodel_slot.cs" />
+    <Compile Include="API\map_start_next.cs" />
     <Compile Include="API\mission_result.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\req_getship.cs" />
@@ -172,7 +173,7 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Volume.cs" />
     <Compile Include="Officer\Admiral.cs" />
-    <Compile Include="Officer\BattleManager.cs" />
+    <Compile Include="Officer\BattleState.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
     <Compile Include="Officer\CounterBase.cs" />
     <Compile Include="Officer\Counters.cs">
@@ -195,6 +196,7 @@
     <Compile Include="Officer\KnownQuests.cs" />
     <Compile Include="Officer\MapArea.cs" />
     <Compile Include="Officer\MapInfo.cs" />
+    <Compile Include="Officer\MapNode.cs" />
     <Compile Include="Officer\MasterData.cs" />
     <Compile Include="Officer\Material.cs" />
     <Compile Include="Officer\General\Modernizable.cs" />
