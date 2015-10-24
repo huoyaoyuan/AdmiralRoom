@@ -6,7 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class MissionInfo : GameObject<api_mst_mission>
     {
         public override int Id => rawdata.api_id;
-        public int MapArea => rawdata.api_maparea_id;
+        public MapArea MapArea => Staff.Current.MasterData.MapAreas[rawdata.api_maparea_id];
         public string Name => rawdata.api_name;
         public string Details => rawdata.api_details;
         public TimeSpan Time => TimeSpan.FromMinutes(rawdata.api_time);

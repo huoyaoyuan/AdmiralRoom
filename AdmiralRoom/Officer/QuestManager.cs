@@ -28,6 +28,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (api.api_list == null)
             {
                 if (api.api_disp_page == 1) AvilableQuests.Clear();
+                OnAllPropertyChanged();
                 return;
             }
             checkfrom = api.api_list.First().api_no;

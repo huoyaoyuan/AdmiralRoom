@@ -9,6 +9,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_start2").Subscribe<api_start2>(MasterHandler);
         }
 
+        public IDTable<MapArea> MapAreas { get; private set; }
+        public IDTable<MapInfo> MapInfos { get; private set; }
         public IDTable<ShipInfo> ShipInfo { get; private set; }
         public IDTable<ShipType> ShipTypes { get; private set; }
         public IDTable<EquipType> EquipTypes { get; private set; }
@@ -17,6 +19,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void MasterHandler(api_start2 api)
         {
             Models.Status.Current.IsGameLoaded = true;
+            MapAreas = new IDTable<MapArea>(api.api_mst_maparea.ArrayOperation(x => new MapArea(x)));
+            MapInfos = new IDTable<MapInfo>(api.api_mst_mapinfo.ArrayOperation(x => new MapInfo(x)));
             ShipTypes = new IDTable<ShipType>(api.api_mst_stype.ArrayOperation(x => new ShipType(x)));
             ShipInfo = new IDTable<ShipInfo>(api.api_mst_ship.ArrayOperation(x => new ShipInfo(x)));
             EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.ArrayOperation(x => new EquipType(x)));

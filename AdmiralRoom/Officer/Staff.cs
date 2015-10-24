@@ -121,12 +121,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
 #endif
         }
-        public Admiral Admiral { get; } = new Admiral();
-        public Homeport Homeport { get; } = new Homeport();
-        public MasterData MasterData { get; } = new MasterData();
-        public System.Timers.Timer Ticker { get; } = new System.Timers.Timer(1000) { Enabled = true };
-        public Shipyard Shipyard { get; } = new Shipyard();
-        public QuestManager Quests { get; } = new QuestManager();
         public class APIObservable
         {
             public Action<Session> Handler;
@@ -146,5 +140,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public Func<T,bool> Selector { get; set; }
             public void Subscribe(Action<T> handler) => Parent.Subscribe<T>(x => { if (Selector(x)) handler(x); });
         }
+        public Admiral Admiral { get; } = new Admiral();
+        public Homeport Homeport { get; } = new Homeport();
+        public MasterData MasterData { get; } = new MasterData();
+        public System.Timers.Timer Ticker { get; } = new System.Timers.Timer(1000) { Enabled = true };
+        public Shipyard Shipyard { get; } = new Shipyard();
+        public QuestManager Quests { get; } = new QuestManager();
+        public BattleManager Battle { get; } = new BattleManager();
     }
 }

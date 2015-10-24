@@ -171,6 +171,7 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Volume.cs" />
     <Compile Include="Officer\Admiral.cs" />
+    <Compile Include="Officer\BattleManager.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
     <Compile Include="Officer\CounterBase.cs" />
     <Compile Include="Officer\Counters.cs">
@@ -191,6 +192,8 @@
     <Compile Include="Officer\General\LimitedValue.cs" />
     <Compile Include="Officer\General\ICounter.cs" />
     <Compile Include="Officer\KnownQuests.cs" />
+    <Compile Include="Officer\MapArea.cs" />
+    <Compile Include="Officer\MapInfo.cs" />
     <Compile Include="Officer\MasterData.cs" />
     <Compile Include="Officer\Material.cs" />
     <Compile Include="Officer\General\Modernizable.cs" />
