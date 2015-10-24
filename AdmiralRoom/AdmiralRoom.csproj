@@ -141,6 +141,7 @@
     <Compile Include="API\getmember_ship2.cs" />
     <Compile Include="API\getmember_ship_deck.cs" />
     <Compile Include="API\getmember_slotitem.cs" />
+    <Compile Include="API\getmembet_mapinfo.cs" />
     <Compile Include="API\hokyu_charge.cs" />
     <Compile Include="API\kaisou_powerup.cs" />
     <Compile Include="API\kousyou_createitem.cs" />

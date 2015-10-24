@@ -23,7 +23,67 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public bool IsNormalFleet => rawdata.api_sally_flag[0] == 1;
         public bool CanCombinedCarrier => (rawdata.api_sally_flag[1] & 1) != 0;
         public bool CanCombinedSurface => (rawdata.api_sally_flag[1] & 2) != 0;
+
+        #region DefeatedCount
+        private int _defeatedcount;
+        public int DefeatedCount
+        {
+            get { return _defeatedcount; }
+            set
+            {
+                if (_defeatedcount != value)
+                {
+                    _defeatedcount = value;
+                    OnAllPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NowHP
+        private int _nowhp;
+        public int NowHP
+        {
+            get { return _nowhp; }
+            set
+            {
+                if (_nowhp != value)
+                {
+                    _nowhp = value;
+                    OnAllPropertyChanged();
+                }
+            }
+        }
+        #endregion
+        
+        #region IsClear
+        private bool _isclear;
+        public bool IsClear
+        {
+            get { return _isclear; }
+            set
+            {
+                if (_isclear != value)
+                {
+                    _isclear = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        public LimitedValue HPMeter
+        {
+            get
+            {
+                if (MapHP != 0) return new LimitedValue(NowHP, MapHP);
+                else if (RequiredDefeatCount > 1) return new LimitedValue(RequiredDefeatCount - DefeatedCount, RequiredDefeatCount);
+                else return new LimitedValue(1, 1);
+            }
+        }
+        public EventMapDifficulty Difficulty { get; set; }
         public MapInfo() { }
         public MapInfo(api_mst_mapinfo api) : base(api) { }
     }
+    public enum EventMapDifficulty { None = 0, Easy = 1, Normal = 2, Hard = 3 }
 }
