@@ -20,7 +20,7 @@
                 <TextBlock TextWrapping="Wrap" Margin="1">
                     <Image Height="16" Stretch="Uniform" Source="{Binding Icon}"/>
                     <Run Text="{Binding Title, Mode=OneWay}"/>
-                    <Border Background="{Binding Progress, Converter={StaticResource HPColorConverter}}" CornerRadius="4" Padding="2">
+                    <Border x:Name="counter" Background="{Binding Progress, Converter={StaticResource HPColorConverter}}" CornerRadius="4" Padding="2">
                         <TextBlock Text="{Binding Counter.Progress}" Foreground="White" FontSize="14"/>
                     </Border>
                     <Image x:Name="progress" Height="16" Stretch="Uniform"/>
@@ -38,6 +38,11 @@
                     </TextBlock.ToolTip>
                 </TextBlock>
                 <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Counter}" Value="{x:Null}">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="counter" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding Progress}" Value="Percent50">
                         <DataTrigger.Setters>
                             <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/progress50.png"/>
