@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public static QuestTarget MissionAPart1 = new QuestTarget(Counters.SortieCounter.Instance, 214, QuestPeriod.Weekly, 36);
             public static QuestTarget MissionAPart2 = new QuestTarget(StaticCounters.BossCounter, 214, QuestPeriod.Weekly, 24);
             public static QuestTarget MissionAPart3 = new QuestTarget(StaticCounters.BossWinCounter, 214, QuestPeriod.Weekly, 12);
-            public static QuestTarget MissionAPart4 = new QuestTarget(StaticCounters.SRankCounter, 214, QuestPeriod.Weekly, 6);
+            public static QuestTarget MissionAPart4 = new QuestTarget(Counters.BattleSRankCounter.Instance, 214, QuestPeriod.Weekly, 6);
             public static QuestTarget MissionI = new QuestTarget(StaticCounters.CVCounter, 220, QuestPeriod.Weekly, 20);
             public static QuestTarget Trans20 = new QuestTarget(StaticCounters.TransportCounter, 213, QuestPeriod.Weekly, 20);
             public static QuestTarget MissionRo = new QuestTarget(StaticCounters.TransportCounter, 221, QuestPeriod.Weekly, 50);

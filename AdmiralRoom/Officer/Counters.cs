@@ -51,6 +51,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 		}
 		public static BattleWinCounter Instance { get; } = new BattleWinCounter();
 	}
+	public class BattleSRankCounter : CounterBase
+	{
+		private BattleSRankCounter()
+		{
+			Staff.API("api_req_sortie/battleresult")
+				.Where<sortie_battleresult>(x => x.api_win_rank == "S")
+				.Subscribe((x) => Increase());
+		}
+		public static BattleSRankCounter Instance { get; } = new BattleSRankCounter();
+	}
 	public class PracticeCounter : CounterBase
 	{
 		private PracticeCounter()

@@ -13,8 +13,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static CounterBase TransportCounter { get; } = new CounterBase();
         public static CounterBase BossCounter { get; } = new CounterBase();
         public static CounterBase BossWinCounter { get; } = new CounterBase();
-        public static CounterBase SortieCounter { get; } = new CounterBase();
-        public static CounterBase SRankCounter { get; } = new CounterBase();
         public static CounterBase Map2Counter { get; } = new CounterBase();
         public static CounterBase Map3Counter { get; } = new CounterBase();
         public static CounterBase Map4Counter { get; } = new CounterBase();
