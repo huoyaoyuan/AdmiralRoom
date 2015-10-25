@@ -224,6 +224,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Ship.Bull = new LimitedValue(ship.api_bull, Ship.Bull.Max);
                 for (int i = 0; i < Ship.Slots.Count; i++)
                     Ship.Slots[i].AirCraft = new LimitedValue(ship.api_onslot[i], Ship.Slots[i].AirCraft.Max);
+                Ship.UpdateStatus();
             }
             Material.Fuel = api.api_material[0];
             Material.Bull = api.api_material[1];

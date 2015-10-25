@@ -144,6 +144,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             SlotEx = new Slot();
             if (rawdata.api_slot_ex == 0) SlotEx.IsLocked = true;
             else if (rawdata.api_slot_ex != -1) SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
+            UpdateStatus();
         }
 
         public void SetRepaired()
@@ -152,6 +153,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             rawdata.api_ndock_time = 0;
             rawdata.api_ndock_item = new[] { 0, 0 };
             IsRepairing = false;
+        }
+        public int[] AirFightPower { get; private set; }
+        public void UpdateStatus()
+        {
+            AirFightPower = new int[8];
+            foreach (var slot in Slots)
+                for (int i = 0; i < 8; i++)
+                    AirFightPower[i] += (int)slot.AirFightPower[i];
+            OnPropertyChanged("AirFightPower");
+            InFleet?.UpdateStatus();
         }
     }
     public enum ShootRange { None = 0, Short = 1, Long = 2, VLong = 3 }

@@ -49,11 +49,41 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             set
             {
                 _ac = value;
-                OnPropertyChanged();
+                OnAllPropertyChanged();
             }
         }
         #endregion
 
         public bool HasItem => Item != null;
+        static readonly int[] fighttype = { 6, 7, 8, 11 };
+        static readonly double[] bonus1 = { 0, 0, 2, 5, 9, 14, 14, 22 };//舰战
+        static readonly double[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆
+        static readonly int[] inner = { 0, 10, 25, 40, 55, 70, 85, 100, 120 };
+        public bool CanProvideAirFightPower => fighttype.Contains(Item?.EquipInfo.EquipType.Id ?? 0);
+        /// <summary>
+        /// [0]:总min [1]:总max [2]:除攻击机min [3]:除攻击机max [4]:裸 [5]:除攻击机裸 [6]:熟练度加成min [7]:熟练度加成max
+        /// </summary>
+        public double[] AirFightPower
+        {
+            get
+            {
+                double[] res = new double[8];
+                int itemtype = Item?.EquipInfo.EquipType.Id ?? 0;
+                if (CanProvideAirFightPower)
+                    res[4] = Math.Sqrt(AirCraft.Current) * Item.EquipInfo.AA;
+                else return res;
+                int level = Item.AirProficiency;
+                res[5] = itemtype == 6 ? res[4] : 0;
+                if (itemtype == 6) res[6] = res[7] = bonus1[level];
+                else if (itemtype == 11) res[6] = res[7] = bonus2[level];
+                res[6] += Math.Sqrt(inner[level] / 10.0);
+                res[7] += Math.Sqrt((inner[level + 1] - 1) / 10.0);
+                res[3] = itemtype == 6 ? res[4] + res[7] : 0;
+                res[2] = itemtype == 6 ? res[4] + res[6] : 0;
+                res[1] = res[4] + res[7];
+                res[0] = res[4] + res[6];
+                return res;
+            }
+        }
     }
 }

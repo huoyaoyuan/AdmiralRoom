@@ -158,6 +158,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }));
             UpdateStatus();
         }
+        public int[] AirFightPower { get; private set; }
         public void UpdateStatus()
         {
             bool f1 = false, f2 = false, f3 = false;
@@ -178,6 +179,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             else if (NeedCharge || HeavilyDamaged || LowCondition)
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
+            AirFightPower = new int[8];
+            foreach (var ship in Ships)
+                for (int i = 0; i < 8; i++)
+                    AirFightPower[i] += ship.AirFightPower[i];
+            OnPropertyChanged("AirFightPower");
         }
         
         protected override void OnAllPropertyChanged()
