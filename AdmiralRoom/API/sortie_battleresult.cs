@@ -35,7 +35,7 @@
         public class get_ship
         {
             public int api_ship_id { get; set; }
-            public int api_ship_type { get; set; }
+            public string api_ship_type { get; set; }
             public string api_ship_name { get; set; }
             public string api_ship_getmes { get; set; }
         }
