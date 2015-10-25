@@ -39,21 +39,15 @@
                 </Grid>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding State}" Value="Locked">
-                        <DataTrigger.Setters>
-                            <Setter TargetName="text" Property="Text" Value="未开放"/>
-                        </DataTrigger.Setters>
+                        <Setter TargetName="text" Property="Text" Value="未开放"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding State}" Value="Empty">
-                        <DataTrigger.Setters>
-                            <Setter TargetName="text" Property="Text" Value="未使用"/>
-                        </DataTrigger.Setters>
+                        <Setter TargetName="text" Property="Text" Value="未使用"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding State}" Value="Repairing">
-                        <DataTrigger.Setters>
-                            <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
-                        </DataTrigger.Setters>
+                        <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
+                        <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
+                        <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>

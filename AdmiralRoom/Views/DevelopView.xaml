@@ -31,22 +31,18 @@
                         </StackPanel>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSuccess}" Value="True">
-                                <DataTrigger.Setters>
-                                    <Setter TargetName="issuccess" Property="Background" Value="Cyan"/>
-                                    <Setter TargetName="successtext" Property="Text" Value="成功"/>
-                                </DataTrigger.Setters>
+                                <Setter TargetName="issuccess" Property="Background" Value="Cyan"/>
+                                <Setter TargetName="successtext" Property="Text" Value="成功"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsSuccess}" Value="False">
-                                <DataTrigger.Setters>
-                                    <Setter TargetName="issuccess" Property="Background" Value="Gray"/>
-                                    <Setter TargetName="successtext" Property="Text" Value="失败"/>
-                                </DataTrigger.Setters>
+                                <Setter TargetName="issuccess" Property="Background" Value="Gray"/>
+                                <Setter TargetName="successtext" Property="Text" Value="失败"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Button Grid.Row="1" Click="ClearButton_Click">清空</Button>
+        <Button Grid.Row="1" Margin="2" Click="ClearButton_Click">清空</Button>
     </Grid>
 </UserControl>

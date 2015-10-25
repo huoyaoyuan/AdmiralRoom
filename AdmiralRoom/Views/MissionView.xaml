@@ -41,15 +41,11 @@
                 </StackPanel>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding Id}" Value="1">
-                        <DataTrigger.Setters>
-                            <Setter TargetName="content" Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger.Setters>
+                        <Setter TargetName="content" Property="Visibility" Value="Collapsed"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding MissionState}" Value="None">
-                        <DataTrigger.Setters>
-                            <Setter TargetName="time" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="tooltip" Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger.Setters>
+                        <Setter TargetName="time" Property="Visibility" Value="Collapsed"/>
+                        <Setter TargetName="tooltip" Property="Visibility" Value="Collapsed"/>
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>

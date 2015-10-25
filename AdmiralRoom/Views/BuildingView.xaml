@@ -44,34 +44,24 @@
                     </Grid>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding ShowBuildingShipName, Source={x:Static root:Config.Current}}" Value="False">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="shipname" Property="Text" Value="？？？"/>
-                            </DataTrigger.Setters>
+                            <Setter TargetName="shipname" Property="Text" Value="？？？"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="Locked">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="text" Property="Text" Value="未开放"/>
-                            </DataTrigger.Setters>
+                            <Setter TargetName="text" Property="Text" Value="未开放"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="Empty">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="text" Property="Text" Value="未使用"/>
-                            </DataTrigger.Setters>
+                            <Setter TargetName="text" Property="Text" Value="未使用"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="Building">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
-                                <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
-                            </DataTrigger.Setters>
+                            <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="BuildComplete">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
-                                <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="time" Property="Text" Value=" - 完成！"/>
-                            </DataTrigger.Setters>
+                            <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="time" Property="Text" Value=" - 完成！"/>
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
