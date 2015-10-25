@@ -66,13 +66,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public void Dispose() => Counter.Increased -= Increase;
 
-        public void SetProgress(int n)
+        public void SetProgress(int n, bool force)
         {
-            _progress.Current = n;
-            OnAllPropertyChanged();
+            if (force || _progress.Current < n)
+            {
+                _progress.Current = n;
+                OnAllPropertyChanged();
+            }
         }
 
-        public void Set50() => SetProgress((int)Math.Ceiling(_progress.Max * 0.5));
-        public void Set80() => SetProgress((int)Math.Ceiling(_progress.Max * 0.8));
+        public void Set50() => SetProgress((int)Math.Ceiling(_progress.Max * 0.5), false);
+        public void Set80() => SetProgress((int)Math.Ceiling(_progress.Max * 0.8), false);
     }
 }

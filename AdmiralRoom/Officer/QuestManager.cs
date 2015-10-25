@@ -47,21 +47,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 foreach (var item in AvilableQuests.Where(x => x.IsDaily).ToList())
                     AvilableQuests.Remove(item);
                 foreach (var target in targets.Where(x => x.Period == QuestPeriod.Daily))
-                    target.SetProgress(0);
+                    target.SetProgress(0, true);
             }
             if (checktime.WeekStart() != lastcheckedtime.WeekStart())
             {
                 foreach (var item in AvilableQuests.Where(x => x.Period == QuestPeriod.Weekly).ToList())
                     AvilableQuests.Remove(item);
                 foreach (var target in targets.Where(x => x.Period == QuestPeriod.Weekly))
-                    target.SetProgress(0);
+                    target.SetProgress(0, true);
             }
             if (checktime.Month != lastcheckedtime.Month)
             {
                 foreach (var item in AvilableQuests.Where(x => x.Period == QuestPeriod.Monthly).ToList())
                     AvilableQuests.Remove(item);
                 foreach (var target in targets.Where(x => x.Period == QuestPeriod.Monthly))
-                    target.SetProgress(0);
+                    target.SetProgress(0, true);
             }
             AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
             AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
@@ -103,7 +103,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         var values = parts[2].Split(',');
                         for (int i = 0; i < values.Length; i++)
                             if (quest.Targets.Length > i)
-                                quest.Targets[i].SetProgress(int.Parse(values[i]));
+                                quest.Targets[i].SetProgress(int.Parse(values[i]), true);
                     }
                 }
             }
