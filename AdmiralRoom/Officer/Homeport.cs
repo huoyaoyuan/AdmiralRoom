@@ -113,6 +113,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (ship.InFleet != null)
                 Staff.Current.Dispatcher.Invoke(() => ship.InFleet.Ships.Remove(ship));
+            ship.InFleet?.UpdateStatus();
             foreach (var slot in ship.Slots)
                 if (slot.HasItem)
                     Equipments.Remove(slot.Item);
@@ -191,12 +192,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                             if (idx < fleet.Ships.Count)
                                 destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
                             else destf.Ships.Remove(ship);
+                            destf.UpdateStatus();
                         }
                         if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
                         else fleet.Ships[idx] = ship;
                         ship.InFleet = fleet;
                     }
                 }
+                fleet.UpdateStatus();
             });
         }
 
@@ -226,6 +229,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Material.Bull = api.api_material[1];
             Material.Steel = api.api_material[2];
             Material.Bauxite = api.api_material[3];
+            Fleets.ArrayOperation(x => x.UpdateStatus());
         }
     }
 }
