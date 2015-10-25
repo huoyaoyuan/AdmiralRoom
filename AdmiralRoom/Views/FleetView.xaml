@@ -145,15 +145,39 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type officer:Slot}">
-                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36"
+                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36" x:Name="item" ToolTip="{Binding Item}"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
-                                                            <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="48" Width="48" Canvas.Left="-6" Canvas.Top="-6" ToolTip="{Binding Item}"/>
+                                                            <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="48" Width="48" Canvas.Left="-6" Canvas.Top="-6"/>
                                                             <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
                                                                        Foreground="{Binding AirCraft, Converter={StaticResource HPColorConverter}}"
                                                                        Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
                                                             <Image Height="16" Width="16" Canvas.Top="0" Canvas.Right="0"
                                                                    Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
                                                         </Canvas>
+                                                        <DataTemplate.Triggers>
+                                                            <DataTrigger Binding="{Binding CanProvideAirFightPower}" Value="True">
+                                                                <Setter TargetName="item" Property="ToolTip">
+                                                                    <Setter.Value>
+                                                                        <TextBlock>
+                                                                            <Run Text="{Binding Item, StringFormat={}{0}}"/>
+                                                                            <LineBreak/>
+                                                                            制空
+                                                                            <Run>
+                                                                                <Run.Text>
+                                                                                    <MultiBinding StringFormat="{}{0:F2}~{1:F2} ({2:F2} + {3:F2}~{4:F2})" Mode="OneWay">
+                                                                                        <Binding Path="AirFightPower[0]"/>
+                                                                                        <Binding Path="AirFightPower[1]"/>
+                                                                                        <Binding Path="AirFightPower[4]"/>
+                                                                                        <Binding Path="AirFightPower[6]"/>
+                                                                                        <Binding Path="AirFightPower[7]"/>
+                                                                                    </MultiBinding>
+                                                                                </Run.Text>
+                                                                            </Run>
+                                                                        </TextBlock>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+                                                        </DataTemplate.Triggers>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
@@ -171,6 +195,32 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="制空：{0}~{1}" Mode="OneWay">
+                                    <Binding Path="AirFightPower[0]"/>
+                                    <Binding Path="AirFightPower[1]"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                            <TextBlock.ToolTip>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="制空：{0}~{1}&#13;  基础：{4}  熟练度加成：{6}~{7}&#13;不含攻击机：{2}~{3}  基础：{5}" Mode="OneWay">
+                                            <Binding Path="AirFightPower[0]"/>
+                                            <Binding Path="AirFightPower[1]"/>
+                                            <Binding Path="AirFightPower[2]"/>
+                                            <Binding Path="AirFightPower[3]"/>
+                                            <Binding Path="AirFightPower[4]"/>
+                                            <Binding Path="AirFightPower[5]"/>
+                                            <Binding Path="AirFightPower[6]"/>
+                                            <Binding Path="AirFightPower[7]"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </DataTemplate>
         </TabControl.ContentTemplate>
