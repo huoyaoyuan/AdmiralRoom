@@ -50,7 +50,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
                     Debug.WriteLine(apistring);
                     Debugger.Break();
-                    System.Windows.MessageBox.Show(ex.Message);
+                    App.Current.MainWindow.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
                     svdata = new svdata<T>();
                 }
             }
