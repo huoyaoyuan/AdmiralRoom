@@ -12,7 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 InSortie = false;
                 CurrentMap = null;
                 CurrentNode = null;
-                sortiefleet1.InSortie = false;
+                if (sortiefleet1 != null) sortiefleet1.InSortie = false;
                 if (sortiefleet2 != null) sortiefleet2.InSortie = false;
                 sortiefleet1 = null;
                 sortiefleet2 = null;

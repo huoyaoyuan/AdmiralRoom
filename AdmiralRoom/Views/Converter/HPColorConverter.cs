@@ -24,7 +24,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new InvalidOperationException();
+            throw new InvalidCastException();
         }
     }
 }
