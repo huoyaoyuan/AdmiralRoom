@@ -42,7 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Modernizable Luck { get; private set; }
         public LimitedValue Evasion { get; private set; }
         public LimitedValue ASW { get; private set; }
-        public LimitedValue ViewRange { get; private set; }
+        public LimitedValue LOS { get; private set; }
         public int Rare => rawdata.api_backs;
 
         #region Fuel
@@ -120,7 +120,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
             ASW = new LimitedValue(rawdata.api_taisen);
-            ViewRange = new LimitedValue(rawdata.api_sakuteki);
+            LOS = new LimitedValue(rawdata.api_sakuteki);
             Firepower = new Modernizable(ShipInfo.FirePower, rawdata.api_kyouka[0], rawdata.api_karyoku[0]);
             Torpedo = new Modernizable(ShipInfo.Torpedo, rawdata.api_kyouka[1], rawdata.api_raisou[0]);
             AA = new Modernizable(ShipInfo.AA, rawdata.api_kyouka[2], rawdata.api_taiku[0]);
