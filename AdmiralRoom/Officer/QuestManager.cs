@@ -89,6 +89,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             try
             {
                 using (var file = new StreamReader(@"logs\questcount.txt"))
+                {
+                    lastcheckedtime = DateTime.Parse(file.ReadLine());
                     while (!file.EndOfStream)
                     {
                         string line = file.ReadLine().Trim();
@@ -103,6 +105,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                             if (quest.Targets.Length > i)
                                 quest.Targets[i].SetProgress(int.Parse(values[i]));
                     }
+                }
             }
             catch { }
         }
@@ -111,6 +114,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Directory.CreateDirectory("logs");
             using (var file = new StreamWriter(@"logs\questcount.txt"))
             {
+                file.WriteLine(lastcheckedtime.ToShortDateString());
                 foreach (var quest in KnownQuests.Known)
                 {
                     StringBuilder sb = new StringBuilder();

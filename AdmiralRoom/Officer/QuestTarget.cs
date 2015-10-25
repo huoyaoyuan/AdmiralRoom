@@ -68,11 +68,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public void SetProgress(int n)
         {
-            if (_progress.Current < n)
-            {
-                _progress.Current = n;
-                OnAllPropertyChanged();
-            }
+            _progress.Current = n;
+            OnAllPropertyChanged();
         }
 
         public void Set50() => SetProgress((int)Math.Ceiling(_progress.Max * 0.5));
