@@ -84,6 +84,23 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
+
+        #region CombinedFleet
+        private int _combinedfleet;
+        public int CombinedFleet
+        {
+            get { return _combinedfleet; }
+            set
+            {
+                if (_combinedfleet != value)
+                {
+                    _combinedfleet = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Ship Secratary => Fleets[1].Ships[0];
 
         public void UpdateCounts()
@@ -116,6 +133,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
             Staff.Current.Shipyard.NDockHandler(api.api_ndock);
             DecksHandler(api.api_deck_port);
+            CombinedFleet = api.api_combined_flag;
         }
 
         void DecksHandler(getmember_deck[] api)

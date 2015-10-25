@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -16,11 +12,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 InSortie = false;
                 CurrentMap = null;
                 CurrentNode = null;
+                sortiefleet1.InSortie = false;
+                if (sortiefleet2 != null) sortiefleet2.InSortie = false;
+                sortiefleet1 = null;
+                sortiefleet2 = null;
             });
             Staff.API("api_req_map/start").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_sortie/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
+            Staff.API("api_req_map/start").Subscribe((System.Collections.Specialized.NameValueCollection x) =>
+            {
+                InSortie = true;
+                sortiefleet1 = Staff.Current.Homeport.Fleets[x.GetInt("api_deck_id")];
+                sortiefleet1.InSortie = true;
+                if(Staff.Current.Homeport.CombinedFleet>0)
+                {
+                    sortiefleet2 = Staff.Current.Homeport.Fleets[2];
+                    sortiefleet2.InSortie = true;
+                }
+            });
         }
+        private Fleet sortiefleet1, sortiefleet2;
 
         #region InSortie
         private bool _insortie;

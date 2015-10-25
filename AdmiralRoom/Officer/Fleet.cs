@@ -45,6 +45,86 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
 
+        #region NeedCharge
+        private bool _needcharge;
+        public bool NeedCharge
+        {
+            get { return _needcharge; }
+            set
+            {
+                if (_needcharge != value)
+                {
+                    _needcharge = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region LowCondition
+        private bool _lowcondition;
+        public bool LowCondition
+        {
+            get { return _lowcondition; }
+            set
+            {
+                if (_lowcondition != value)
+                {
+                    _lowcondition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region HeavilyDamaged
+        private bool _heavilydamaged;
+        public bool HeavilyDamaged
+        {
+            get { return _heavilydamaged; }
+            set
+            {
+                if (_heavilydamaged != value)
+                {
+                    _heavilydamaged = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region Status
+        private FleetStatus _status;
+        public FleetStatus Status
+        {
+            get { return _status; }
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region InSortie
+        private bool _insortie;
+        public bool InSortie
+        {
+            get { return _insortie; }
+            set
+            {
+                if (_insortie != value)
+                {
+                    _insortie = value;
+                    UpdateStatus();
+                }
+            }
+        }
+        #endregion
+
         private bool needupdateship = false;
         protected override void UpdateProp()
         {
@@ -76,6 +156,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     Staff.Current.Homeport.Ships[x].InFleet = this;
                     return Staff.Current.Homeport.Ships[x];
                 }));
+            UpdateStatus();
+        }
+        public void UpdateStatus()
+        {
+            bool f1 = false, f2 = false, f3 = false;
+            foreach (var ship in Ships)
+            {
+                if (ship.Condition < 40) f1 = true;
+                if (ship.HP.Current * 4 <= ship.HP.Max) f2 = true;
+                if (!(ship.Fuel.IsMax && ship.Bull.IsMax)) f3 = true;
+            }
+            LowCondition = f1;
+            HeavilyDamaged = f2;
+            NeedCharge = f3;
+            if (InSortie)
+                if (HeavilyDamaged) Status = FleetStatus.Warning;
+                else Status = FleetStatus.InSortie;
+            else if (MissionState != FleetMissionState.None)
+                Status = FleetStatus.InMission;
+            else if (NeedCharge || HeavilyDamaged || LowCondition)
+                Status = FleetStatus.NotReady;
+            else Status = FleetStatus.Ready;
         }
         
         protected override void OnAllPropertyChanged()
@@ -89,4 +191,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (needupdateship) OnPropertyChanged("Ships");
         }
     }
+    public enum FleetStatus { Ready, NotReady, InSortie, InMission, Warning }
 }
