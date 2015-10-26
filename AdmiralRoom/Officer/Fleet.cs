@@ -178,6 +178,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int LevelSum => Ships.ArrayOperation(x => x.Level).Sum();
         public double LevelAverage => Ships.ArrayOperation(x => (double)x.Level).Average();
         public double LoSInMap => Ships.ArrayOperation(x => x.LoSInMap).Sum() - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
+        public int[] ChargeCost => new[]
+        {
+            Ships.ArrayOperation(x => x.Fuel.Shortage).Sum(),
+            Ships.ArrayOperation(x => x.Bull.Shortage).Sum(),
+            Ships.ArrayOperation(x => x.Slots.ArrayOperation(y => y.AirCraft.Shortage).Sum()).Sum() * 5
+        };
+        public int[] RepairCost => new[] { Ships.ArrayOperation(x => x.RepairFuel).Sum(), Ships.ArrayOperation(x => x.RepairSteel).Sum() };
         public void UpdateStatus()
         {
             bool f1 = false, f2 = false, f3 = false, f4 = false;
@@ -208,6 +215,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("LevelSum");
             OnPropertyChanged("LevelAverage");
             OnPropertyChanged("LoSInMap");
+            OnPropertyChanged("ChargeCost");
+            OnPropertyChanged("RepairCost");
         }
         
         protected override void OnAllPropertyChanged()

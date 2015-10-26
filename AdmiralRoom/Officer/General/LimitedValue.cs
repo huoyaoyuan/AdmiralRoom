@@ -12,6 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int Max { get; set; }
         public bool IsMax => Current >= Max;
         public double Percentage => (double)Current / Max;
+        public int Shortage => Max - Current;
         public LimitedValue(int current = 0,int max = 0)
         {
             Current = current;

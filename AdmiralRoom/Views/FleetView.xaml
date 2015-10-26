@@ -67,6 +67,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="2">
                         <Rectangle x:Name="statuscolor"/>
@@ -153,7 +154,7 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type officer:Slot}">
-                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36" x:Name="item" ToolTip="{Binding Item}"
+                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36" x:Name="item" ToolTip="{Binding}"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                                                             <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="48" Width="48" Canvas.Left="-6" Canvas.Top="-6"/>
                                                             <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
@@ -167,7 +168,7 @@
                                                                 <Setter TargetName="item" Property="ToolTip">
                                                                     <Setter.Value>
                                                                         <TextBlock>
-                                                                            <Run Text="{Binding Item, StringFormat={}{0}}"/>
+                                                                            <Run Text="{Binding Mode=OneWay}"/>
                                                                             <LineBreak/>
                                                                             制空
                                                                             <Run>
@@ -204,6 +205,20 @@
                         </ItemsControl>
                     </ScrollViewer>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock>补给消耗</TextBlock>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
+                        <TextBlock Text="{Binding ChargeCost[0]}"/>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/Bull.png"/>
+                        <TextBlock Text="{Binding ChargeCost[1]}"/>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/Bauxite.png"/>
+                        <TextBlock Text="{Binding ChargeCost[2]}"/>
+                        <TextBlock Margin="10,0,0,0">修理消耗</TextBlock>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
+                        <TextBlock Text="{Binding RepairCost[0]}"/>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/Steel.png"/>
+                        <TextBlock Text="{Binding RepairCost[1]}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="制空：{0}~{1}" Mode="OneWay">
@@ -267,11 +282,27 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InMission">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Aqua"/>
-                        <Setter TargetName="statustext" Property="Text" Value="远征中"/>
+                        <Setter TargetName="statustext" Property="Text">
+                            <Setter.Value>
+                                <MultiBinding StringFormat="远征中 - {0} {1:hh\:mm\:ss}">
+                                    <Binding Path="MissionInfo.Name"/>
+                                    <Binding Path="BackTimeRemain"/>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InSortie">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>
-                        <Setter TargetName="statustext" Property="Text" Value="战斗中"/>
+                        <Setter TargetName="statustext" Property="Text">
+                            <Setter.Value>
+                                <MultiBinding StringFormat="出击中 {0}-{1} {2} {3}">
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.AreaNo"/>
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.No"/>
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.Name"/>
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.OperationName"/>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Warning">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>
