@@ -220,6 +220,14 @@
                                 </TextBlock>
                             </TextBlock.ToolTip>
                         </TextBlock>
+                        <TextBlock Margin="10,0,0,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="总等级：{0}  平均等级：{1:F2}" Mode="OneWay">
+                                    <Binding Path="LevelSum"/>
+                                    <Binding Path="LevelAverage"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>

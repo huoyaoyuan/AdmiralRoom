@@ -159,6 +159,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             UpdateStatus();
         }
         public int[] AirFightPower { get; private set; }
+        public int LevelSum => Ships.ArrayOperation(x => x.Level).Sum();
+        public double LevelAverage => Ships.ArrayOperation(x => (double)x.Level).Average();
         public void UpdateStatus()
         {
             bool f1 = false, f2 = false, f3 = false;
@@ -184,6 +186,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 for (int i = 0; i < 8; i++)
                     AirFightPower[i] += ship.AirFightPower[i];
             OnPropertyChanged("AirFightPower");
+            OnPropertyChanged("LevelSum");
+            OnPropertyChanged("LevelAverage");
         }
         
         protected override void OnAllPropertyChanged()
