@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Models;
 
@@ -42,7 +43,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Modernizable Luck { get; private set; }
         public LimitedValue Evasion { get; private set; }
         public LimitedValue ASW { get; private set; }
-        public LimitedValue LOS { get; private set; }
+        public LimitedValue LoS { get; private set; }
         public int Rare => rawdata.api_backs;
 
         #region Fuel
@@ -119,8 +120,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
             RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
-            ASW = new LimitedValue(rawdata.api_taisen);
-            LOS = new LimitedValue(rawdata.api_sakuteki);
+            int asw = rawdata.api_taisen[0];
+            int los = rawdata.api_sakuteki[0];
+            //ASW = new LimitedValue(rawdata.api_taisen);
+            //LoS = new LimitedValue(rawdata.api_sakuteki);
             Firepower = new Modernizable(ShipInfo.FirePower, rawdata.api_kyouka[0], rawdata.api_karyoku[0]);
             Torpedo = new Modernizable(ShipInfo.Torpedo, rawdata.api_kyouka[1], rawdata.api_raisou[0]);
             AA = new Modernizable(ShipInfo.AA, rawdata.api_kyouka[2], rawdata.api_taiku[0]);
@@ -133,9 +136,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 var slot = new Slot();
                 if (rawdata.api_slot[i] != -1)
+                {
                     slot.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot[i]];
+                    asw -= slot.Item?.EquipInfo.ASW ?? 0;
+                    los -= slot.Item?.EquipInfo.LoS ?? 0;
+                }
                 slots.Add(slot);
             }
+            ASW = new LimitedValue(asw, rawdata.api_taisen[1]);
+            LoS = new LimitedValue(los, rawdata.api_sakuteki[1]);
             for(int i = 0; i < slots.Count; i++)
             {
                 slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
@@ -155,6 +164,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             IsRepairing = false;
         }
         public int[] AirFightPower { get; private set; }
+        public double LoSInMap => Slots.ArrayOperation(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;
         public void UpdateStatus()
         {
             AirFightPower = new int[8];
@@ -162,6 +172,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 for (int i = 0; i < 8; i++)
                     AirFightPower[i] += (int)slot.AirFightPower[i];
             OnPropertyChanged("AirFightPower");
+            OnPropertyChanged("LoSInMap");
             InFleet?.UpdateStatus();
         }
     }

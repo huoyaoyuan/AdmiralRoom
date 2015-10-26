@@ -93,6 +93,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region Repairing
+        private bool _repairing;
+        public bool Repairing
+        {
+            get { return _repairing; }
+            set
+            {
+                if (_repairing != value)
+                {
+                    _repairing = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         #region Status
         private FleetStatus _status;
         public FleetStatus Status
@@ -161,24 +177,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int[] AirFightPower { get; private set; }
         public int LevelSum => Ships.ArrayOperation(x => x.Level).Sum();
         public double LevelAverage => Ships.ArrayOperation(x => (double)x.Level).Average();
+        public double LoSInMap => Ships.ArrayOperation(x => x.LoSInMap).Sum() - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
         public void UpdateStatus()
         {
-            bool f1 = false, f2 = false, f3 = false;
+            bool f1 = false, f2 = false, f3 = false, f4 = false;
             foreach (var ship in Ships)
             {
                 if (ship.Condition < 40) f1 = true;
                 if (ship.HP.Current * 4 <= ship.HP.Max) f2 = true;
                 if (!(ship.Fuel.IsMax && ship.Bull.IsMax)) f3 = true;
+                if (ship.IsRepairing) f4 = true;
             }
             LowCondition = f1;
             HeavilyDamaged = f2;
             NeedCharge = f3;
+            Repairing = f4;
             if (InSortie)
                 if (HeavilyDamaged) Status = FleetStatus.Warning;
                 else Status = FleetStatus.InSortie;
             else if (MissionState != FleetMissionState.None)
                 Status = FleetStatus.InMission;
-            else if (NeedCharge || HeavilyDamaged || LowCondition)
+            else if (NeedCharge || HeavilyDamaged || LowCondition || Repairing)
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
             AirFightPower = new int[8];
@@ -188,6 +207,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("AirFightPower");
             OnPropertyChanged("LevelSum");
             OnPropertyChanged("LevelAverage");
+            OnPropertyChanged("LoSInMap");
         }
         
         protected override void OnAllPropertyChanged()

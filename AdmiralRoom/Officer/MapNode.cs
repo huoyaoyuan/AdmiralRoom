@@ -11,7 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MapInfo Map => MapArea[MapNo];
         public int Forewards => rawdata.api_next;
         public MapNodeType Type { get; private set; }
-        public bool LOSAlert => rawdata.api_production_kind == 1;
+        public bool LoSAlert => rawdata.api_production_kind == 1;
         public int ItemType { get; private set; }
         public int ItemCount { get; private set; }
         public bool ItemLostReduced { get; private set; }

@@ -72,6 +72,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (CanProvideAirFightPower)
                     res[4] = Math.Sqrt(AirCraft.Current) * Item.EquipInfo.AA;
                 else return res;
+                if (AirCraft.Current == 0) return res;
                 int level = Item.AirProficiency;
                 res[5] = itemtype == 6 ? res[4] : 0;
                 if (itemtype == 6) res[6] = res[7] = bonus1[level];
@@ -83,6 +84,48 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 res[1] = res[4] + res[7];
                 res[0] = res[4] + res[6];
                 return res;
+            }
+        }
+        public double LoSInMap
+        {
+            get
+            {
+                if (!HasItem) return 0;
+                double factor = 0;
+                switch (Item.EquipInfo.EquipType.Id)
+                {
+                    case 7://艦上爆撃機
+                        factor = 1.04;
+                        break;
+                    case 8://艦上攻撃機
+                        factor = 1.37;
+                        break;
+                    case 9://艦上偵察機
+                        factor = 1.66;
+                        break;
+                    case 10://水上偵察機
+                        factor = 2.00;
+                        break;
+                    case 11://水上爆撃機
+                        factor = 1.78;
+                        break;
+                    case 12://小型電探
+                        factor = 1.00;
+                        break;
+                    case 13://大型電探
+                        factor = 0.99;
+                        break;
+                    case 29://探照灯
+                        factor = 0.91;
+                        break;
+                    case 42://大型探照灯
+                        factor = 0.91;
+                        break;
+                    case 93://大型電探(II)
+                        factor = 0.99;
+                        break;
+                }
+                return factor * Item.EquipInfo.LoS;
             }
         }
     }

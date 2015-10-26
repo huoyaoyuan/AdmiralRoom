@@ -39,7 +39,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int ASW => rawdata.api_tais;
         public int Accuracy => rawdata.api_houm;
         public int Evasion => rawdata.api_houk;
-        public int LOS => rawdata.api_saku;
+        public int LoS => rawdata.api_saku;
         public ShootRange Range => (ShootRange)rawdata.api_leng;
         public int Rare => rawdata.api_rare;
         public int[] DestroyMaterial => rawdata.api_broken;
