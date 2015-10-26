@@ -62,9 +62,17 @@
         </TabControl.ItemTemplate>
         <TabControl.ContentTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding Status}"/>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="2">
+                        <Rectangle x:Name="statuscolor"/>
+                        <TextBlock Grid.Row="0" Margin="2" x:Name="statustext"/>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding Ships}" Grid.IsSharedSizeScope="True">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -195,7 +203,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="制空：{0}~{1}" Mode="OneWay">
@@ -236,7 +244,61 @@
                             </TextBlock.Text>
                         </TextBlock>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Ready">
+                        <Setter TargetName="statuscolor" Property="Fill" Value="SpringGreen"/>
+                        <Setter TargetName="statustext" Property="Text" Value="出击准备完毕"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="NotReady">
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Orange"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding NeedCharge}" Value="True">
+                        <Setter TargetName="statustext" Property="Text" Value="需要补给"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding LowCondition}" Value="True">
+                        <Setter TargetName="statustext" Property="Text" Value="疲劳未恢复"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding HeavilyDamaged}" Value="True">
+                        <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Repairing}" Value="True">
+                        <Setter TargetName="statustext" Property="Text" Value="有舰娘正在入渠中"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="InMission">
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Aqua"/>
+                        <Setter TargetName="statustext" Property="Text" Value="远征中"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="InSortie">
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>
+                        <Setter TargetName="statustext" Property="Text" Value="战斗中"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Warning">
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>
+                        <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态"/>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="statuscolor"
+                                                                  Storyboard.TargetProperty="Opacity">
+                                        <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
+                                        <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                                        <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="statuscolor"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="1" To="1" Duration="1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
             </DataTemplate>
         </TabControl.ContentTemplate>
     </TabControl>

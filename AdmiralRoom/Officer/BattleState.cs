@@ -101,6 +101,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (CurrentMap.Id == 15) StaticCounters.Map1_5Counter.Increase();
                 }
             }
+            Staff.Current.Quests.Save();
         }
     }
 }
