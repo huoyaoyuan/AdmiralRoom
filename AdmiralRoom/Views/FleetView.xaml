@@ -101,6 +101,10 @@
 												Level="{Binding Level}"
 												Exp="{Binding Exp}"
 												VerticalAlignment="Center"/>
+                                            <Border Grid.Column="2" Background="Wheat" Margin="0,0,4,0"
+                                                    Visibility="{Binding IsRepairing, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
+                                                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="12" Foreground="Gray" Text="入渠中"/>
+                                            </Border>
                                             <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,4,0">
                                                 <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
                                                     <Run Text="HP: "/><Run FontSize="20" Text="{Binding HP.Current}"/><Run Text="{Binding HP.Max, StringFormat={} / {0}}"/>
@@ -272,7 +276,14 @@
                         <Setter TargetName="statustext" Property="Text" Value="需要补给"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding LowCondition}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="疲劳未恢复"/>
+                        <Setter TargetName="statustext" Property="Text">
+                            <Setter.Value>
+                                <MultiBinding StringFormat="疲劳恢复中 - {0:hh\:mm\:ss} (±{1}s)">
+                                    <Binding Path="ConditionTimeRemain"/>
+                                    <Binding Path="ConditionTimeOffset"/>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding HeavilyDamaged}" Value="True">
                         <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态"/>

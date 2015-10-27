@@ -175,6 +175,7 @@
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\BattleState.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
+    <Compile Include="Officer\ConditionHelper.cs" />
     <Compile Include="Officer\CounterBase.cs" />
     <Compile Include="Officer\Counters.cs">
       <AutoGen>True</AutoGen>

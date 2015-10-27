@@ -17,6 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/ship2").Subscribe<getmember_ship2>(Ship2Handler);
             Staff.API("api_get_member/ship_deck").Subscribe<getmember_ship_deck>(Ship3Handler);
             Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
+            Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition = true));
         }
 
         public Material Material { get; } = new Material();
@@ -128,9 +129,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
+            ConditionHelper.Instance.BeginUpdate();
             if(Ships == null)
                 Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));
             else Ships.UpdateAll(api.api_ship, x => x.api_id);
+            ConditionHelper.Instance.EndUpdate();
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
             Staff.Current.Shipyard.NDockHandler(api.api_ndock);
             DecksHandler(api.api_deck_port);

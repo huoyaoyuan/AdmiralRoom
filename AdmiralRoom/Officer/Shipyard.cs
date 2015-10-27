@@ -29,6 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Staff.Current.Homeport.Ships[x.GetInt("api_id")].SlotEx.IsLocked = false);
             Staff.API("api_req_kousyou/remodel_slot").Subscribe<kousyou_remodel_slot>(RemodelItemHandler);
             Staff.API("api_req_nyukyo/speedchange").Subscribe(NSpeedChangeHandler);
+            Staff.API("api_req_kaisou/remodeling").Subscribe(x => Staff.Current.Homeport.Ships[x.GetInt("api_id")].IgnoreNextCondition = true);
         }
 
         #region RepairDocks
@@ -95,6 +96,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 else ship.IsRepairing = false;
             }
             inndock = newindock;
+            Staff.Current.Homeport.Fleets?.ArrayOperation(x => x.UpdateStatus());
         }
         void NStartHandler(NameValueCollection req)
         {

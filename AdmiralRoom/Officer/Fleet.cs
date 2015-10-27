@@ -18,6 +18,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public DateTime BackTime { get; private set; }
         public DateTime BackTimeLocal => BackTime.ToLocalTime();
         public TimeSpan BackTimeRemain => BackTime.Remain();
+        public TimeSpan ConditionTimeRemain => ConditionHelper.Instance.Remain(Ships.ArrayOperation(x => x.Condition).Min());
+        public int ConditionTimeOffset => (int)ConditionHelper.Instance.Offset.TotalSeconds;
 
         #region Ships
         private ObservableCollection<Ship> _ships = new ObservableCollection<Ship>();
@@ -41,7 +43,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Ticker.Elapsed += Tick;
         }
         public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
-        private void Tick(object sender, ElapsedEventArgs e) => OnPropertyChanged("BackTimeRemain");
+        private void Tick(object sender, ElapsedEventArgs e)
+        {
+            OnPropertyChanged("BackTimeRemain");
+            OnPropertyChanged("ConditionTimeRemain");
+        }
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
 
@@ -227,6 +233,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("MissionInfo");
             OnPropertyChanged("BackTime");
             OnPropertyChanged("BackTimeLocal");
+            OnPropertyChanged("BackTimeRemain");
+            OnPropertyChanged("ConditionTimeRemain");
+            OnPropertyChanged("ConditionTimeOffset");
             if (needupdateship) OnPropertyChanged("Ships");
         }
     }

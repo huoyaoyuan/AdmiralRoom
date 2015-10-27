@@ -76,7 +76,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int RepairFuel => rawdata.api_ndock_item[0];
         public int RepairSteel => rawdata.api_ndock_item[1];
         public int MordenizeRate => rawdata.api_srate;
-        public int Condition => rawdata.api_cond;
+        public int Condition { get; private set; } = 49;
         public bool Locked => rawdata.api_locked != 0;
         public bool LockedEquip => rawdata.api_locked_equip != 0;
         public ShipInfo ShipInfo => Staff.Current.MasterData.ShipInfo[ShipId];
@@ -114,6 +114,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
         public Fleet InFleet { get; set; }
 
+        public bool IgnoreNextCondition { private get; set; }
         protected override void UpdateProp()
         {
             Exp = new Exp(rawdata.api_exp);
@@ -124,6 +125,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int los = rawdata.api_sakuteki[0];
             //ASW = new LimitedValue(rawdata.api_taisen);
             //LoS = new LimitedValue(rawdata.api_sakuteki);
+            if (IgnoreNextCondition) IgnoreNextCondition = false;
+            else if (rawdata.api_cond <= 49)
+                ConditionHelper.Instance.OnCondition(rawdata.api_cond - Condition);
+            Condition = rawdata.api_cond;
             Firepower = new Modernizable(ShipInfo.FirePower, rawdata.api_kyouka[0], rawdata.api_karyoku[0]);
             Torpedo = new Modernizable(ShipInfo.Torpedo, rawdata.api_kyouka[1], rawdata.api_raisou[0]);
             AA = new Modernizable(ShipInfo.AA, rawdata.api_kyouka[2], rawdata.api_taiku[0]);
@@ -162,6 +167,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             rawdata.api_ndock_time = 0;
             rawdata.api_ndock_item = new[] { 0, 0 };
             IsRepairing = false;
+            IgnoreNextCondition = true;
         }
         public int[] AirFightPower { get; private set; }
         public double LoSInMap => Slots.ArrayOperation(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;

@@ -25,7 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 InSortie = true;
                 sortiefleet1 = Staff.Current.Homeport.Fleets[x.GetInt("api_deck_id")];
                 sortiefleet1.InSortie = true;
-                if(Staff.Current.Homeport.CombinedFleet>0)
+                if (Staff.Current.Homeport.CombinedFleet > 0)
                 {
                     sortiefleet2 = Staff.Current.Homeport.Fleets[2];
                     sortiefleet2.InSortie = true;
@@ -86,9 +86,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];
             CurrentNode = new MapNode(api);
+            sortiefleet1?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
+            sortiefleet2?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
         }
         void BattleResultHandler(sortie_battleresult api)
         {
+            sortiefleet1?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
+            sortiefleet2?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
             if (CurrentNode.Type == MapNodeType.BOSS)
             {
                 StaticCounters.BossCounter.Increase();
