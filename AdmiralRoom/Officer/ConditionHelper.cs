@@ -7,10 +7,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static ConditionHelper Instance { get; } = new ConditionHelper();
         private ConditionHelper() { }
         private int maxup;
-        private DateTime increasefrom, increaseto, lastcheck, brokentime;
-        private bool broken = true;
+        private DateTime increasefrom, increaseto, lastcheck;
         private bool updating;
-        private readonly TimeSpan maxerror = TimeSpan.FromSeconds(2);
+        private bool changed = false;
+        private readonly TimeSpan maxerror = TimeSpan.FromSeconds(2), period = TimeSpan.FromMinutes(3);
         public void OnCondition(int d)
         {
             if (updating)
@@ -25,22 +25,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             updating = false;
             var checktime = DateTime.UtcNow;
-            if (brokentime == DateTime.MinValue)//first time
+            if (increasefrom == DateTime.MinValue)//first time
             {
                 lastcheck = checktime;
-                brokentime = checktime;
+                increasefrom = checktime - period;
+                increaseto = checktime;
                 return;
             }
             if (maxup == 0)
             {
                 lastcheck = checktime;
-                return;
-            }
-            if (broken)
-            {
-                increasefrom = lastcheck;
-                increaseto = checktime;
-                broken = false;
+                while (increaseto + period + maxerror < checktime)
+                {
+                    increasefrom += period;
+                    increaseto += period;
+                    changed = true;
+                }
                 return;
             }
             maxup = (int)Math.Ceiling(maxup / 3.0) * 3;
@@ -51,14 +51,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 increasefrom += TimeSpan.FromMinutes(3);
                 increaseto += TimeSpan.FromMinutes(3);
             }
-            //if (increasefrom > checktime + maxerror)//broken
-            //{
-            //    maxup = 0;
-            //    lastcheck = checktime;
-            //    broken = true;
-            //    brokentime = checktime;
-            //    return;
-            //}
             if (increasefrom < lastcheck) increasefrom = lastcheck;
             if (increaseto > checktime) increaseto = checktime;
             if (increasefrom > increaseto)//swap
@@ -67,25 +59,30 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 increasefrom = increaseto;
                 increaseto = temp;
             }
-            broken = false;
             lastcheck = checktime;
+            changed = true;
         }
+        private DateTime _basetime;
         public DateTime BaseTime
         {
             get
             {
-                if (broken) return brokentime;
-                else return increaseto;
+                if (changed)
+                    _basetime = increaseto - Offset;
+                changed = false;
+                return _basetime;
             }
         }
+        private TimeSpan _offset;
         public TimeSpan Offset
         {
             get
             {
-                if (broken) return TimeSpan.FromMinutes(3);
-                else return increaseto - increasefrom;
+                if (changed)
+                    _offset = TimeSpan.FromSeconds((increaseto - increasefrom).TotalSeconds / 2);
+                return _offset;
             }
         }
-        public TimeSpan Remain(int cond) => (BaseTime + TimeSpan.FromMinutes((int)Math.Ceiling((40 - cond) / 3.0) * 3)).Remain();
+        public TimeSpan Remain(int cond) => (BaseTime.AddMinutes((int)Math.Ceiling((40 - cond) / 3.0) * 3)).Remain();
     }
 }

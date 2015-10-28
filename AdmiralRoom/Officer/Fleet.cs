@@ -18,7 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public DateTime BackTime { get; private set; }
         public DateTime BackTimeLocal => BackTime.ToLocalTime();
         public TimeSpan BackTimeRemain => BackTime.Remain();
-        public TimeSpan ConditionTimeRemain => ConditionHelper.Instance.Remain(Ships.ArrayOperation(x => x.Condition).Min());
+        public TimeSpan ConditionTimeRemain => ConditionHelper.Instance.Remain(mincondition);
         public int ConditionTimeOffset => (int)ConditionHelper.Instance.Offset.TotalSeconds;
 
         #region Ships
@@ -191,6 +191,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Ships.ArrayOperation(x => x.Slots.ArrayOperation(y => y.AirCraft.Shortage).Sum()).Sum() * 5
         };
         public int[] RepairCost => new[] { Ships.ArrayOperation(x => x.RepairFuel).Sum(), Ships.ArrayOperation(x => x.RepairSteel).Sum() };
+        private int mincondition = 49;
         public void UpdateStatus()
         {
             bool f1 = false, f2 = false, f3 = false, f4 = false;
@@ -217,6 +218,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             foreach (var ship in Ships)
                 for (int i = 0; i < 8; i++)
                     AirFightPower[i] += ship.AirFightPower[i];
+            mincondition = Ships.ArrayOperation(x => x.Condition).Min();
             OnPropertyChanged("AirFightPower");
             OnPropertyChanged("LevelSum");
             OnPropertyChanged("LevelAverage");
