@@ -34,6 +34,19 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             return new APIData(_svdata, oSession.GetRequestBodyAsString());
         }
+        public static bool TryParse(this Session oSession,out APIData result)
+        {
+            try
+            {
+                result = oSession.Parse();
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
         public static APIData<T> Parse<T>(this Session oSession)
         {
             var serializer = svdata<T>.Serializer;
@@ -55,6 +68,19 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             }
             return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
+        }
+        public static bool TryParse<T>(this Session oSession, out APIData<T> result)
+        {
+            try
+            {
+                result = oSession.Parse<T>();
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
         }
         public static int GetInt(this NameValueCollection req, string name)
         {

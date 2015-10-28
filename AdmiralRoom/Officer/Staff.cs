@@ -129,13 +129,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             public Action<Session> Handler;
             public void Subscribe(Action<Session> handler) => Handler += handler;
-            public void Subscribe<T>(Action<T> handler) => Subscribe(x => handler(x.Parse<T>().Data));
-            public void Subscribe(Action<NameValueCollection> handler) => Subscribe(x => handler(x.Parse().Request));
+            public void Subscribe<T>(Action<T> handler) => Subscribe(x =>
+            {
+                API.APIData<T> svdata;
+                if (x.TryParse(out svdata)) handler(svdata.Data);
+            });
+            public void Subscribe(Action<NameValueCollection> handler) => Subscribe(x =>
+            {
+                API.APIData svdata;
+                if (x.TryParse(out svdata)) handler(svdata.Request);
+            });
             public void Subscribe<T>(Action<NameValueCollection, T> handler) => Subscribe(x =>
-                {
-                    var svdata = x.Parse<T>();
-                    handler(svdata.Request, svdata.Data);
-                });
+            {
+                API.APIData<T> svdata;
+                if (x.TryParse(out svdata)) handler(svdata.Request, svdata.Data);
+            });
             public void SubscribeDynamic(Action<dynamic> handler) => Subscribe(x => handler(x.ParseDynamic().Data));
             public void SubscribeDynamic(Action<NameValueCollection, dynamic> handler) => Subscribe(x =>
                {
