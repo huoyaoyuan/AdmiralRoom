@@ -214,8 +214,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         void Ship2Handler(getmember_ship2 api)
         {
-            Ships.UpdateWithoutRemove(api.api_data, x => x.api_id);
-            Fleets.UpdateWithoutRemove(api.api_data_deck, x => x.api_id);
+            Ships.UpdateAll(api.api_data, x => x.api_id);
+            Fleets.UpdateAll(api.api_data_deck, x => x.api_id);
         }
 
         void ChargeHandler(hokyu_charge api)

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Huoyaoyuan.AdmiralRoom.API
+﻿namespace Huoyaoyuan.AdmiralRoom.API
 {
     public class getmember_basic
     {

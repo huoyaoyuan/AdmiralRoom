@@ -19,8 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public bool Remove(T item)
         {
-            if (item is IDisposable)
-                (item as IDisposable).Dispose();
+            (item as IDisposable)?.Dispose();
             bool r = dict.Remove(item.Id);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
             return r;
@@ -65,13 +64,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 T item;
                 if(dict.TryGetValue(getid(e),out item))
                 {
-                    (item as IUpdatable<T2>).Update(e);
+                    ((IUpdatable<T2>)item).Update(e);
                     deletelist.Remove(item);
                 }
                 else
                 {
                     item = new T();
-                    (item as IUpdatable<T2>).Update(e);
+                    ((IUpdatable<T2>)item).Update(e);
                     Add(item);
                 }
             }
@@ -86,12 +85,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 T item;
                 if (dict.TryGetValue(getid(e), out item))
                 {
-                    (item as IUpdatable<T2>).Update(e);
+                    ((IUpdatable<T2>)item).Update(e);
                 }
                 else
                 {
                     item = new T();
-                    (item as IUpdatable<T2>).Update(e);
+                    ((IUpdatable<T2>)item).Update(e);
                     Add(item);
                 }
             }

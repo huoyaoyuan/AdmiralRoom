@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Huoyaoyuan.AdmiralRoom.API
+﻿namespace Huoyaoyuan.AdmiralRoom.API
 {
     public class kousyou_createitem
     {
