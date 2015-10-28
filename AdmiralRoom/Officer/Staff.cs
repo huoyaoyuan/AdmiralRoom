@@ -85,27 +85,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FiddlerApplication.Shutdown();
         }
 
-        private static WaitHandle[] waithandles;
+        private static SemaphoreSlim signal = new SemaphoreSlim(1, 1);
         private static void Distribute(object o)
         {
             Session oSession = o as Session;
-            //System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
-            if (waithandles != null)
-                WaitHandle.WaitAll(waithandles);
-            foreach(string key in apisource.Keys)
+            signal.Wait();
+            var asyncresults = new List<IAsyncResult>();
+            foreach (string key in apisource.Keys)
             {
                 if (oSession.PathAndQuery.EndsWith(key))
                 {
                     var Handlers = apisource[key].Handler;
                     var list = Handlers.GetInvocationList();
-                    waithandles = new WaitHandle[list.Length];
                     for (int i = 0; i < list.Length; i++)
                     {
                         IAsyncResult r = ExceptionCatcherDelegate.BeginInvoke(list[i] as Action<Session>, oSession, null, null);
-                        waithandles[i] = r.AsyncWaitHandle;
+                        asyncresults.Add(r);
                     }
                 }
             }
+            foreach (var ar in asyncresults)
+                ExceptionCatcherDelegate.EndInvoke(ar);
+            signal.Release();
         }
 
         private static readonly Action<Action<Session>, Session> ExceptionCatcherDelegate = ExceptionCatcher;

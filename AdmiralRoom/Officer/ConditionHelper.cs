@@ -30,6 +30,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 lastcheck = checktime;
                 increasefrom = checktime - period;
                 increaseto = checktime;
+                changed = true;
                 return;
             }
             if (maxup == 0)
