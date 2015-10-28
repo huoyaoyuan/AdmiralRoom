@@ -49,10 +49,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
                 Models.Status.Current.StatusText = "已读取" + oSession.url;
-                //Thread th = new Thread(new ParameterizedThreadStart(Distribute));
-                //th.Start(oSession);
                 oSession.utilDecodeResponse();
-                Distribute(oSession);
+                Thread th = new Thread(new ParameterizedThreadStart(Distribute));
+                th.Start(oSession);
             }
         }
 
@@ -86,21 +85,25 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FiddlerApplication.Shutdown();
         }
 
+        private static WaitHandle[] waithandles;
         private static void Distribute(object o)
         {
             Session oSession = o as Session;
             //System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
+            if (waithandles != null)
+                WaitHandle.WaitAll(waithandles);
             foreach(string key in apisource.Keys)
             {
                 if (oSession.PathAndQuery.EndsWith(key))
                 {
                     var Handlers = apisource[key].Handler;
-                    //Handlers[key].BeginInvoke(oSession, null, null);
-                    foreach(var Handler in Handlers.GetInvocationList())
+                    var list = Handlers.GetInvocationList();
+                    waithandles = new WaitHandle[list.Length];
+                    for (int i = 0; i < list.Length; i++)
                     {
-                        ExceptionCatcherDelegate.BeginInvoke(Handler as Action<Session>, oSession, null, null);
+                        IAsyncResult r = ExceptionCatcherDelegate.BeginInvoke(list[i] as Action<Session>, oSession, null, null);
+                        waithandles[i] = r.AsyncWaitHandle;
                     }
-                    //ExceptionCatcherDelegate.BeginInvoke(Handlers[key], oSession, null, null);
                 }
             }
         }

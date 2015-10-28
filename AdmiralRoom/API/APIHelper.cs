@@ -29,7 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
                     Debug.WriteLine(apistring);
                     Debugger.Break();
-                    _svdata = new svdata();
+                    throw ex;
                 }
             }
             return new APIData(_svdata, oSession.GetRequestBodyAsString());
@@ -51,7 +51,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     Debug.WriteLine(apistring);
                     Debugger.Break();
                     Officer.Staff.Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
-                    svdata = new svdata<T>();
+                    throw ex;
                 }
             }
             return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
