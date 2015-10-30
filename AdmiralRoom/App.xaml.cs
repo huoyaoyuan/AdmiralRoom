@@ -26,6 +26,10 @@ namespace Huoyaoyuan.AdmiralRoom
 
             Officer.Staff.Current.Quests.Load();
 
+            if (ToastNotifier.IsSupported) Notifier.Current = new ToastNotifier();
+            else Notifier.Current = new BallonNotifier();
+            Notifier.Current.Initialize();
+
             this.MainWindow = new MainWindow();
             Officer.Staff.Current.Dispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
