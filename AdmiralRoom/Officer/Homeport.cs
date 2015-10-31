@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/slot_item").Subscribe<getmember_slotitem[]>(ItemsHandler);
             Staff.API("api_req_hensei/change").Subscribe(ChangeHandler);
             Staff.API("api_get_member/ship3").Subscribe<getmember_ship_deck>(Ship3Handler);
-            Staff.API("api_get_member/ship2").Subscribe<getmember_ship2>(Ship2Handler);
+            Staff.API("api_get_member/ship2").Subscribe<api_ship[]>(x => Ships.UpdateAll(x, y => y.api_id));
             Staff.API("api_get_member/ship_deck").Subscribe<getmember_ship_deck>(Ship3Handler);
             Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
             Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition = true));
@@ -211,13 +211,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Ships.UpdateWithoutRemove(api.api_ship_data, x => x.api_id);
             Fleets.UpdateWithoutRemove(api.api_deck_data, x => x.api_id);
         }
-
-        void Ship2Handler(getmember_ship2 api)
-        {
-            Ships.UpdateAll(api.api_data, x => x.api_id);
-            Fleets.UpdateAll(api.api_data_deck, x => x.api_id);
-        }
-
+        
         void ChargeHandler(hokyu_charge api)
         {
             foreach (var ship in api.api_ship)
