@@ -3,7 +3,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Homeport : NotifyBase
+    public class Homeport : NotificationObject
     {
         public Homeport()
         {

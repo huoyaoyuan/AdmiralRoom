@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class QuestInfo : NotifyBase, IIdentifiable
+    public class QuestInfo : NotificationObject, IIdentifiable
     {
         public int Id => MainTarget.QuestId;
         public QuestTarget[] Targets { get; set; }

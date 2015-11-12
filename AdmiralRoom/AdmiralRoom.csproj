@@ -263,7 +263,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Common\NotifyBase.cs" />
+    <Compile Include="Common\NotificationObject.cs" />
     <Compile Include="Common\ResourceService.cs" />
     <Compile Include="Common\ThemeService.cs" />
     <Compile Include="MainWindow.xaml.cs">

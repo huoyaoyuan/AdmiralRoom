@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public abstract class GameObject<T> : NotifyBase, IUpdatable<T>, IIdentifiable, IComparable<GameObject<T>>
+    public abstract class GameObject<T> : NotificationObject, IUpdatable<T>, IIdentifiable, IComparable<GameObject<T>>
     {
         protected T rawdata;
         public GameObject() { }

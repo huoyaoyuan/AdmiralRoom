@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class QuestTarget : NotifyBase, IDisposable
+    public class QuestTarget : NotificationObject, IDisposable
     {
         public ICounter Counter { get; private set; }
         public int QuestId { get; set; }

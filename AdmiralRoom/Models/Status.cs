@@ -1,6 +1,6 @@
 ﻿namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class Status : NotifyBase
+    class Status : NotificationObject
     {
         public static Status Current { get; } = new Status();
 

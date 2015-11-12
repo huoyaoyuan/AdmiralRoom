@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Slot : NotifyBase
+    public class Slot : NotificationObject
     {
 
         #region IsLocked

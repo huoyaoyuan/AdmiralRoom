@@ -7,7 +7,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public partial class QuestManager : NotifyBase
+    public partial class QuestManager : NotificationObject
     {
         public QuestManager()
         {

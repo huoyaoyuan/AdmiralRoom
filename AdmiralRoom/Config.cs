@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Huoyaoyuan.AdmiralRoom
 {
     [Serializable]
-    public class Config : NotifyBase
+    public class Config : NotificationObject
     {
         public static Config Current { get; set; } = new Config();
 

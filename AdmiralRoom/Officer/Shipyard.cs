@@ -6,7 +6,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Shipyard : NotifyBase
+    public class Shipyard : NotificationObject
     {
         public Shipyard()
         {

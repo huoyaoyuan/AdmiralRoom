@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Material : NotifyBase
+    public class Material : NotificationObject
     {
         public Material()
         {

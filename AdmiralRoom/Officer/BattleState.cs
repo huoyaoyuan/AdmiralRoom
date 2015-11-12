@@ -3,7 +3,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class BattleState : NotifyBase
+    public class BattleState : NotificationObject
     {
         public BattleState()
         {

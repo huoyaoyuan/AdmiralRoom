@@ -3,7 +3,7 @@ using Huoyaoyuan.AdmiralRoom.Models;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Admiral : NotifyBase
+    public class Admiral : NotificationObject
     {
         public Admiral()
         {

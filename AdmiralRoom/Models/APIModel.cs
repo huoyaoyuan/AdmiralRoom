@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class APIModel : NotifyBase
+    class APIModel : NotificationObject
     {
         public static APIModel Current { get; } = new APIModel();
         #region APIText

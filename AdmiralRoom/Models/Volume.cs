@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class Volume : NotifyBase
+    class Volume : NotificationObject
     {
         private SimpleAudioVolume simpleaudiovolume;
 

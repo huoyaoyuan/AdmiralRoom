@@ -1,6 +1,6 @@
 ﻿namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    public class Exp : NotifyBase
+    public class Exp : NotificationObject
     {
 
         #region Current
