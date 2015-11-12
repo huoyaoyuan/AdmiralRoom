@@ -42,7 +42,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.Current.Ticker.Elapsed += Tick;
         }
-        public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
+        public void Dispose()
+        {
+            Staff.Current.Ticker.Elapsed -= Tick;
+            Ships.ArrayOperation(x => x.InFleet = null);
+        }
         private void Tick(object sender, ElapsedEventArgs e)
         {
             OnPropertyChanged("BackTimeRemain");
@@ -152,11 +156,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             BackTime = DateTimeEx.FromUnixTime(rawdata.api_mission[2]);
             needupdateship = false;
-            for(int i = 0; i < rawdata.api_ship.Length; i++)
+            for (int i = 0; i < rawdata.api_ship.Length; i++)
             {
                 if (rawdata.api_ship[i] == -1)
                 {
-                    if(Ships.Count > i)
+                    if (Ships.Count > i)
                     {
                         needupdateship = true;
                         break;
@@ -164,7 +168,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
                 else
                 {
-                    if (Ships.Count <= i || Ships[i].Id != rawdata.api_ship[i] || Ships[i].InFleet != this) 
+                    if (Ships.Count <= i || Ships[i].Id != rawdata.api_ship[i] || Ships[i].InFleet != this)
                     {
                         needupdateship = true;
                         break;
@@ -226,7 +230,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("ChargeCost");
             OnPropertyChanged("RepairCost");
         }
-        
+
         protected override void OnAllPropertyChanged()
         {
             OnPropertyChanged("Name");

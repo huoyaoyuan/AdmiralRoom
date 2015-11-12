@@ -34,7 +34,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-        
+
         public Slot SlotEx { get; private set; }
         public Modernizable Firepower { get; private set; }
         public Modernizable Torpedo { get; private set; }
@@ -137,7 +137,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Fuel = new LimitedValue(rawdata.api_fuel, ShipInfo.MaxFuel);
             Bull = new LimitedValue(rawdata.api_bull, ShipInfo.MaxBull);
             var slots = new List<Slot>();
-            for(int i = 0; i < SlotNum; i++)
+            for (int i = 0; i < SlotNum; i++)
             {
                 var slot = new Slot();
                 if (rawdata.api_slot[i] != -1)
@@ -150,7 +150,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             ASW = new LimitedValue(asw, rawdata.api_taisen[1]);
             LoS = new LimitedValue(los, rawdata.api_sakuteki[1]);
-            for(int i = 0; i < slots.Count; i++)
+            for (int i = 0; i < slots.Count; i++)
             {
                 slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
             }
@@ -179,6 +179,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     AirFightPower[i] += (int)slot.AirFightPower[i];
             OnPropertyChanged("AirFightPower");
             OnPropertyChanged("LoSInMap");
+            if (InFleet != null && InFleet.Ships.IndexOf(this) == -1) InFleet = null;
             InFleet?.UpdateStatus();
         }
     }

@@ -18,6 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/ship_deck").Subscribe<getmember_ship_deck>(Ship3Handler);
             Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
             Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition = true));
+            Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
         }
 
         public Material Material { get; } = new Material();
@@ -130,7 +131,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             ConditionHelper.Instance.BeginUpdate();
-            if(Ships == null)
+            if (Ships == null)
                 Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));
             else Ships.UpdateAll(api.api_ship, x => x.api_id);
             ConditionHelper.Instance.EndUpdate();
@@ -172,7 +173,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (idx == -1)//旗艦以外全解除
                 {
-                    for (int i = fleet.Ships.Count - 1; i > 0; i--) 
+                    for (int i = fleet.Ships.Count - 1; i > 0; i--)
                     {
                         fleet.Ships[i].InFleet = null;
                         fleet.Ships.Remove(fleet.Ships[i]);
@@ -190,12 +191,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         var ship = Ships[shipid];
                         var destf = ship.InFleet;
                         if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
-                        if(destf != null)
+                        if (destf != null)
                         {
-                            if (idx < fleet.Ships.Count)
-                                destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
-                            else destf.Ships.Remove(ship);
-                            destf.UpdateStatus();
+                            try
+                            {
+                                if (idx < fleet.Ships.Count)
+                                    destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                                else destf.Ships.Remove(ship);
+                                destf.UpdateStatus();
+                            }
+                            catch { }
                         }
                         if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
                         else fleet.Ships[idx] = ship;
@@ -206,12 +211,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             });
         }
 
+        void PresetHandler(NameValueCollection req, getmember_deck api)
+        {
+            int deck = req.GetInt("api_deck_id");
+            Fleets[deck].Dispose();
+            Fleets[deck] = new Fleet(api);
+        }
+
         void Ship3Handler(getmember_ship_deck api)
         {
             Ships.UpdateWithoutRemove(api.api_ship_data, x => x.api_id);
             Fleets.UpdateWithoutRemove(api.api_deck_data, x => x.api_id);
         }
-        
+
         void ChargeHandler(hokyu_charge api)
         {
             foreach (var ship in api.api_ship)
