@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Huoyaoyuan.AdmiralRoom.API;
+﻿using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -145,7 +140,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void MaterialHandler(getmember_material[] api)
         {
             if (api == null) return;
-            foreach(var mat in api)
+            foreach (var mat in api)
             {
                 switch (mat.api_id)
                 {

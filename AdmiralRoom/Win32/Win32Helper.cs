@@ -58,7 +58,7 @@ namespace Huoyaoyuan.AdmiralRoom
             try
             {
                 Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION",
-                    Process.GetCurrentProcess().ProcessName+".exe",
+                    Process.GetCurrentProcess().ProcessName + ".exe",
                     mode, RegistryValueKind.DWord);
             }
             catch { }

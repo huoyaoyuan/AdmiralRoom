@@ -1,5 +1,4 @@
-﻿using Fiddler;
-using Huoyaoyuan.AdmiralRoom.API;
+﻿using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Models;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -187,7 +186,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-        
+
         #region Furniture
         private int _furniture;
         public int Furniture

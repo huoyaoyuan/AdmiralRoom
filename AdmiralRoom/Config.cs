@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
 using System.Globalization;
@@ -37,7 +33,7 @@ namespace Huoyaoyuan.AdmiralRoom
             get { return _theme; }
             set
             {
-                if(value!= _theme)
+                if (value != _theme)
                 {
                     _theme = value;
                     OnPropertyChanged();
@@ -85,7 +81,7 @@ namespace Huoyaoyuan.AdmiralRoom
             get { return _enableproxy; }
             set
             {
-                if(value!= _enableproxy)
+                if (value != _enableproxy)
                 {
                     _enableproxy = value;
                     OnPropertyChanged();
@@ -162,9 +158,9 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             _theme = "Office 2013";
             var thisculture = CultureInfo.CurrentUICulture;
-            foreach(var culture in ResourceService.SupportedCultures)
+            foreach (var culture in ResourceService.SupportedCultures)
             {
-                if (thisculture.ThreeLetterWindowsLanguageName == culture.ThreeLetterWindowsLanguageName) 
+                if (thisculture.ThreeLetterWindowsLanguageName == culture.ThreeLetterWindowsLanguageName)
                 {
                     _language = culture.Name;
                     break;
@@ -177,7 +173,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 _nodwm = true;
                 _aero = false;
             }
-            else if(OSVersion.Minor >= 2)//Windows 8
+            else if (OSVersion.Minor >= 2)//Windows 8
             {
                 _nodwm = false;
                 _aero = true;
@@ -207,12 +203,9 @@ namespace Huoyaoyuan.AdmiralRoom
             XmlSerializer s = new XmlSerializer(typeof(Config));
             try
             {
-                using (var fs = File.Open("config.xml", FileMode.Create))
+                using (var w = File.CreateText("config.xml"))
                 {
-                    using (StreamWriter sw = new StreamWriter(fs))
-                    {
-                        s.Serialize(sw, this);
-                    }
+                    s.Serialize(w, this);
                 }
             }
             catch { }

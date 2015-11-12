@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -85,7 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.Current.Dispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
             var newindock = api.ArrayOperation(x => x.api_ship_id).ToArray();
-            foreach(var ship in Staff.Current.Homeport.Ships)
+            foreach (var ship in Staff.Current.Homeport.Ships)
             {
                 if (newindock.Contains(ship.Id))
                     ship.IsRepairing = true;
@@ -135,7 +132,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         void DestroyItemHandler(NameValueCollection req, kousyou_destroyitem2 api)
         {
-            foreach (int id in req.GetInts("api_slotitem_ids")) 
+            foreach (int id in req.GetInts("api_slotitem_ids"))
             {
                 Staff.Current.Homeport.Equipments.Remove(id);
             }
@@ -147,7 +144,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         void PowerUpHandler(NameValueCollection req, kaisou_powerup api)
         {
-            foreach (int id in req.GetInts("api_id_items")) 
+            foreach (int id in req.GetInts("api_id_items"))
             {
                 Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[id]);
             }

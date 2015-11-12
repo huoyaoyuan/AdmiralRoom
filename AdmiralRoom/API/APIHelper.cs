@@ -29,12 +29,12 @@ namespace Huoyaoyuan.AdmiralRoom
                     var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
                     Debug.WriteLine(apistring);
                     Debugger.Break();
-                    throw ex;
+                    throw;
                 }
             }
             return new APIData(_svdata, oSession.GetRequestBodyAsString());
         }
-        public static bool TryParse(this Session oSession,out APIData result)
+        public static bool TryParse(this Session oSession, out APIData result)
         {
             try
             {

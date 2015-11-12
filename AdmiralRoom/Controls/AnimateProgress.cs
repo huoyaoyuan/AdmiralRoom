@@ -5,7 +5,7 @@ using System.Windows.Media.Animation;
 
 namespace Huoyaoyuan.AdmiralRoom.Controls
 {
-    [TemplatePart(Name = "PART_Progress",Type = typeof(RangeBase))]
+    [TemplatePart(Name = "PART_Progress", Type = typeof(RangeBase))]
     public class AnimateProgress : RangeBase
     {
         static AnimateProgress()
@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
             MaximumProperty.OverrideMetadata(typeof(AnimateProgress), new FrameworkPropertyMetadata(100.0));
         }
         private RangeBase PART_Progress;
-        
+
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
@@ -27,7 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
             };
             PART_Progress?.BeginAnimation(ValueProperty, animation);
         }
-        
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

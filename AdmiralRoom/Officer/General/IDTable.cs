@@ -10,7 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         where T : class, IIdentifiable, new()
     {
         private Dictionary<int, T> dict = new Dictionary<int, T>();
-        public IDTable():base() { }
+        public IDTable() : base() { }
         public IDTable(IEnumerable<T> collection) { dict = new Dictionary<int, T>(collection.ToDictionary(x => x.Id)); }
         public void Add(T item)
         {
@@ -59,10 +59,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void UpdateAll<T2>(IEnumerable<T2> source, Func<T2, int> getid)
         {
             var deletelist = dict.Values.ToList();
-            foreach(T2 e in source)
+            foreach (T2 e in source)
             {
                 T item;
-                if(dict.TryGetValue(getid(e),out item))
+                if (dict.TryGetValue(getid(e), out item))
                 {
                     ((IUpdatable<T2>)item).Update(e);
                     deletelist.Remove(item);
@@ -78,7 +78,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Remove(item);
         }
 
-        public void UpdateWithoutRemove<T2>(IEnumerable<T2> source,Func<T2,int> getid)
+        public void UpdateWithoutRemove<T2>(IEnumerable<T2> source, Func<T2, int> getid)
         {
             foreach (T2 e in source)
             {

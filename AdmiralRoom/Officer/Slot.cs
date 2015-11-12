@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -24,7 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-        
+
         #region Item
         private Equipment _item;
         public Equipment Item
@@ -40,7 +37,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-        
+
         #region AirCraft
         private LimitedValue _ac;
         public LimitedValue AirCraft

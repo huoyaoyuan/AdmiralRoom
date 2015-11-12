@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -26,7 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         void SetEvents()
         {
-            foreach (var target in Targets) 
+            foreach (var target in Targets)
             {
                 target.PropertyChanged += (_, __) => OnAllPropertyChanged();
             }

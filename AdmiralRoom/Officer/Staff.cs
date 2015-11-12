@@ -28,7 +28,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             APIObservable v;
             apisource.TryGetValue(apiname, out v);
-            if (v == null) 
+            if (v == null)
             {
                 v = new APIObservable();
                 apisource.Add(apiname, v);
@@ -119,7 +119,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 action(parameter);
 #if DEBUG == false
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.StackTrace, ex.Message));
             }
@@ -155,7 +155,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public class SubObservable<T>
         {
             public APIObservable Parent { get; set; }
-            public Func<T,bool> Selector { get; set; }
+            public Func<T, bool> Selector { get; set; }
             public void Subscribe(Action<T> handler) => Parent.Subscribe<T>(x => { if (Selector(x)) handler(x); });
         }
         public Admiral Admiral { get; } = new Admiral();

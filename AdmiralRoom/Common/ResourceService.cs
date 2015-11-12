@@ -7,14 +7,15 @@ namespace Huoyaoyuan.AdmiralRoom
     internal class ResourceService : NotifyBase
     {
         public static ResourceService Current { get; } = new ResourceService();
-        public static IReadOnlyCollection<CultureInfo> SupportedCultures { get; }=
-            new[] {"zh-Hans","ja","en" }
-            .Select(x => {
+        public static IReadOnlyCollection<CultureInfo> SupportedCultures { get; } =
+            new[] { "zh-Hans", "ja", "en" }
+            .Select(x =>
+            {
                 try { return CultureInfo.GetCultureInfo(x); }
                 catch { return null; }
             })
             .Where(x => x != null)
-			.ToList();
+            .ToList();
 
         public Properties.Resources Resources { get; } = new Properties.Resources();
         public void ChangeCulture(string CultureName)

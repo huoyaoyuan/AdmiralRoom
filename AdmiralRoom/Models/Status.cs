@@ -3,8 +3,8 @@
     class Status : NotifyBase
     {
         public static Status Current { get; } = new Status();
-        
-        private  Volume _volume;
+
+        private Volume _volume;
         public Volume Volume
         {
             get
@@ -21,7 +21,7 @@
             get { return _statustext; }
             set
             {
-                if(_statustext != value)
+                if (_statustext != value)
                 {
                     _statustext = value;
                     OnPropertyChanged();

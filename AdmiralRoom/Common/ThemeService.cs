@@ -37,7 +37,7 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 var themeres = themes[theme];
                 Application.Current.Resources.MergedDictionaries.Clear();
-                foreach(var resname in themeres)
+                foreach (var resname in themeres)
                 {
                     var res = new ResourceDictionary { Source = new Uri(resname) };
                     Application.Current.Resources.MergedDictionaries.Add(res);

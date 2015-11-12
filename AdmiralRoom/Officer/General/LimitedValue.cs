@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Huoyaoyuan.AdmiralRoom.Officer
+﻿namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public struct LimitedValue
     {
@@ -13,7 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public bool IsMax => Current >= Max;
         public double Percentage => (double)Current / Max;
         public int Shortage => Max - Current;
-        public LimitedValue(int current = 0,int max = 0)
+        public LimitedValue(int current = 0, int max = 0)
         {
             Current = current;
             Max = max;

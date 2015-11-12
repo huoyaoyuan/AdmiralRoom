@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Huoyaoyuan.AdmiralRoom;
-using Fiddler;
+﻿using Fiddler;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class APIModel :NotifyBase
+    class APIModel : NotifyBase
     {
         public static APIModel Current { get; } = new APIModel();
         #region APIText
