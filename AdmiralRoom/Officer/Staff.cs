@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 using Fiddler;
 
@@ -90,22 +91,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Session oSession = o as Session;
             signal.Wait();
-            var asyncresults = new List<IAsyncResult>();
             foreach (string key in apisource.Keys)
-            {
                 if (oSession.PathAndQuery.EndsWith(key))
-                {
-                    var Handlers = apisource[key].Handler;
-                    var list = Handlers.GetInvocationList();
-                    for (int i = 0; i < list.Length; i++)
-                    {
-                        IAsyncResult r = ExceptionCatcherDelegate.BeginInvoke(list[i] as Action<Session>, oSession, null, null);
-                        asyncresults.Add(r);
-                    }
-                }
-            }
-            foreach (var ar in asyncresults)
-                ExceptionCatcherDelegate.EndInvoke(ar);
+                    Parallel.ForEach(apisource[key].Handler.GetInvocationList(), x => ExceptionCatcher(x as Action<Session>, oSession));
             signal.Release();
         }
 
