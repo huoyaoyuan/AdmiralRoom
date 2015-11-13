@@ -114,7 +114,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
         public Fleet InFleet { get; set; }
 
-        public bool IgnoreNextCondition { private get; set; }
+        private bool _ignorenextcondition = true;
+        public void IgnoreNextCondition() => _ignorenextcondition = true;
         protected override void UpdateProp()
         {
             Exp = new Exp(rawdata.api_exp);
@@ -125,7 +126,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int los = rawdata.api_sakuteki[0];
             //ASW = new LimitedValue(rawdata.api_taisen);
             //LoS = new LimitedValue(rawdata.api_sakuteki);
-            if (IgnoreNextCondition) IgnoreNextCondition = false;
+            if (_ignorenextcondition) _ignorenextcondition = false;
             else if (rawdata.api_cond <= 49)
                 ConditionHelper.Instance.OnCondition(rawdata.api_cond - Condition);
             Condition = rawdata.api_cond;
@@ -167,7 +168,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             rawdata.api_ndock_time = 0;
             rawdata.api_ndock_item = new[] { 0, 0 };
             IsRepairing = false;
-            IgnoreNextCondition = true;
+            _ignorenextcondition = true;
         }
         public int[] AirFightPower { get; private set; }
         public double LoSInMap => Slots.ArrayOperation(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;

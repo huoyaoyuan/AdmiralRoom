@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/ship2").Subscribe<api_ship[]>(x => Ships.UpdateAll(x, y => y.api_id));
             Staff.API("api_get_member/ship_deck").Subscribe<getmember_ship_deck>(Ship3Handler);
             Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
-            Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition = true));
+            Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition()));
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
         }
 
@@ -129,6 +129,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             ConditionHelper.Instance.BeginUpdate();
+            Staff.Current.Shipyard.RepairDocks.ArrayOperation(x => x.Ship?.IgnoreNextCondition());
             if (Ships == null)
                 Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));
             else Ships.UpdateAll(api.api_ship, x => x.api_id);

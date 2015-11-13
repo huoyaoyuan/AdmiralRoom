@@ -86,13 +86,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];
             CurrentNode = new MapNode(api);
-            sortiefleet1?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
-            sortiefleet2?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
+            sortiefleet1?.Ships.ArrayOperation(y => y.IgnoreNextCondition());
+            sortiefleet2?.Ships.ArrayOperation(y => y.IgnoreNextCondition());
         }
         void BattleResultHandler(sortie_battleresult api)
         {
-            sortiefleet1?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
-            sortiefleet2?.Ships.ArrayOperation(y => y.IgnoreNextCondition = true);
+            sortiefleet1?.Ships.ArrayOperation(y => y.IgnoreNextCondition());
+            sortiefleet2?.Ships.ArrayOperation(y => y.IgnoreNextCondition());
             if (CurrentNode.Type == MapNodeType.BOSS)
             {
                 StaticCounters.BossCounter.Increase();

@@ -27,7 +27,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         protected override void UpdateProp()
         {
             CompleteTime = DateTimeEx.FromUnixTime(rawdata.api_complete_time);
-            Ship = Staff.Current.Homeport.Ships[rawdata.api_ship_id];
+            if (State == DockState.Repairing)
+                Ship = Staff.Current.Homeport.Ships[rawdata.api_ship_id];
         }
     }
     public enum DockState { Locked = -1, Empty = 0, Repairing = 1, Building = 2, BuildComplete = 3 }
