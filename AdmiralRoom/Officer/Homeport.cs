@@ -17,6 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
             Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition()));
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
+            Staff.API("api_req_kaisou/slot_exchange_index").Subscribe(ExchangeHandler);
         }
 
         public Material Material { get; } = new Material();
@@ -240,6 +241,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Material.Steel = api.api_material[2];
             Material.Bauxite = api.api_material[3];
             Fleets.ArrayOperation(x => x.UpdateStatus());
+        }
+
+        void ExchangeHandler(NameValueCollection req)
+        {
+            var ship = Ships[req.GetInt("api_id")];
+            int src = req.GetInt("api_src_idx");
+            int dst = req.GetInt("api_dst_idx");
+            var item1 = ship.Slots[src].Item;
+            var item2 = ship.Slots[dst].Item;
+            ship.Slots[src].Item = item2;
+            ship.Slots[dst].Item = item1;
+            ship.UpdateStatus();
         }
     }
 }
