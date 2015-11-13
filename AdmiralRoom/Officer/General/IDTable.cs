@@ -48,10 +48,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             set
             {
                 if (value.Id != index) throw new ArgumentException();
+                var olditem = dict[index];
                 if (dict.ContainsKey(index))
                 {
-                    CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, value, dict[index]));
                     dict[index] = value;
+                    int rawindex = dict.Values.ToList().IndexOf(value);
+                    CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, value, olditem, rawindex));
                 }
                 else Add(value);
             }

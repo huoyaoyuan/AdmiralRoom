@@ -212,8 +212,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void PresetHandler(NameValueCollection req, getmember_deck api)
         {
             int deck = req.GetInt("api_deck_id");
-            Fleets[deck].Dispose();
-            Fleets[deck] = new Fleet(api);
+            var fleet = Fleets[deck];
+            fleet.Ships.ArrayOperation(x => x.InFleet = null);
+            fleet.Update(api);
         }
 
         void Ship3Handler(getmember_ship_deck api)
