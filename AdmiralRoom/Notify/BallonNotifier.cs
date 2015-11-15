@@ -5,12 +5,15 @@ using Application = System.Windows.Application;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    public class BallonNotifier : Notifier
+    public class BallonNotifier : Notifier, IDisposable
     {
         NotifyIcon notifyIcon;
+
+        public void Dispose() => notifyIcon.Dispose();
+
         public override void Initialize()
         {
-            const string iconUri = "pack://application:,,,/AdmiralRoom;Component/Images/Material/InstantRepair.png";
+            const string iconUri = "pack://application:,,,/AdmiralRoom;Component/Icons/app.ico";
 
             Uri uri;
             if (!Uri.TryCreate(iconUri, UriKind.Absolute, out uri))

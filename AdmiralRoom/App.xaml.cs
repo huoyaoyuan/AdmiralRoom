@@ -25,10 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Proxy = Config.Current.Proxy;
 
             Officer.Staff.Current.Quests.Load();
-
-            if (ToastNotifier.IsSupported) Notifier.Current = new ToastNotifier();
-            else Notifier.Current = new BallonNotifier();
-            Notifier.Current.Initialize();
+            Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
             this.MainWindow = new MainWindow();
             Officer.Staff.Current.Dispatcher = MainWindow.Dispatcher;
@@ -41,6 +38,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Stop();
             Config.Current.Save();
             Officer.Staff.Current.Quests.Save();
+            (Notifier.Current as IDisposable)?.Dispose();
         }
     }
 }

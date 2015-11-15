@@ -62,10 +62,12 @@ namespace Huoyaoyuan.AdmiralRoom
 
             // Fill in the text elements
             XmlNodeList stringElements = toastXml.GetElementsByTagName("text");
-            for (int i = 0; i < stringElements.Length; i++)
-            {
-                stringElements[i].AppendChild(toastXml.CreateTextNode("Line " + i));
-            }
+            //for (int i = 0; i < stringElements.Length; i++)
+            //{
+            //    stringElements[i].AppendChild(toastXml.CreateTextNode("Line " + i));
+            //}
+            stringElements[0].AppendChild(toastXml.CreateTextNode(title));
+            stringElements[1].AppendChild(toastXml.CreateTextNode(detail));
 
             // Create the toast and attach event listeners
             ToastNotification toast = new ToastNotification(toastXml);
@@ -76,32 +78,32 @@ namespace Huoyaoyuan.AdmiralRoom
             // Show the toast. Be sure to specify the AppUserModelId on your application's shortcut!
             ToastNotificationManager.CreateToastNotifier(APP_ID).Show(toast);
         }
-        private void ToastActivated(ToastNotification sender, object e)
-        {
+        //private void ToastActivated(ToastNotification sender, object e)
+        //{
             
-        }
+        //}
 
-        private void ToastDismissed(ToastNotification sender, ToastDismissedEventArgs e)
-        {
-            string outputText = "";
-            switch (e.Reason)
-            {
-                case ToastDismissalReason.ApplicationHidden:
-                    outputText = "The app hid the toast using ToastNotifier.Hide";
-                    break;
-                case ToastDismissalReason.UserCanceled:
-                    outputText = "The user dismissed the toast";
-                    break;
-                case ToastDismissalReason.TimedOut:
-                    outputText = "The toast has timed out";
-                    break;
-            }
-            System.Windows.MessageBox.Show(outputText);
-        }
+        //private void ToastDismissed(ToastNotification sender, ToastDismissedEventArgs e)
+        //{
+        //    string outputText = "";
+        //    switch (e.Reason)
+        //    {
+        //        case ToastDismissalReason.ApplicationHidden:
+        //            outputText = "The app hid the toast using ToastNotifier.Hide";
+        //            break;
+        //        case ToastDismissalReason.UserCanceled:
+        //            outputText = "The user dismissed the toast";
+        //            break;
+        //        case ToastDismissalReason.TimedOut:
+        //            outputText = "The toast has timed out";
+        //            break;
+        //    }
+        //    System.Windows.MessageBox.Show(outputText);
+        //}
 
-        private void ToastFailed(ToastNotification sender, ToastFailedEventArgs e)
-        {
+        //private void ToastFailed(ToastNotification sender, ToastFailedEventArgs e)
+        //{
             
-        }
+        //}
     }
 }

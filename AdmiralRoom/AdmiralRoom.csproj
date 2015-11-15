@@ -59,6 +59,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\app.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CoreAudioApi, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -469,6 +472,7 @@
     <Resource Include="Images\Quest\1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Icons\app.ico" />
     <Content Include="Officer\Counters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Counters.cs</LastGenOutput>

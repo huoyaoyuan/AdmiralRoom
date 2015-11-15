@@ -158,6 +158,23 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region PreferToastNotify
+        private bool _prefertoast;
+        public bool PreferToastNotify
+        {
+            get { return _prefertoast; }
+            set
+            {
+                if (_prefertoast != value)
+                {
+                    _prefertoast = value;
+                    Notifier.SetNotifier(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Config()
         {
             _theme = "Office 2013";
@@ -189,6 +206,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
+            _prefertoast = ToastNotifier.IsSupported;
         }
         public static Config Load()
         {
