@@ -29,6 +29,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         IEnumerator<T> IEnumerable<T>.GetEnumerator() => dict.Values.GetEnumerator();
         public void Clear()
         {
+            foreach (var item in dict)
+                (item as IDisposable)?.Dispose();
             dict.Clear();
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }

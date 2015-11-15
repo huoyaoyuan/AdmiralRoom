@@ -160,7 +160,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Equipments = new IDTable<Equipment>(api.ArrayOperation(x => new Equipment(x)));
             else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
-            Ships?.ArrayOperation(x => x.Update());
+            if (Staff.Current.Battle.ItemsAfterShips)
+                Ships.ArrayOperation(x => x.Update());
+            Staff.Current.Battle.ItemsAfterShips = false;
         }
 
         void ChangeHandler(NameValueCollection api)

@@ -152,6 +152,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public System.Timers.Timer Ticker { get; } = new System.Timers.Timer(1000) { Enabled = true };
         public Shipyard Shipyard { get; } = new Shipyard();
         public QuestManager Quests { get; } = new QuestManager();
-        public BattleState Battle { get; } = new BattleState();
+        public BattleManager Battle { get; } = new BattleManager();
     }
 }

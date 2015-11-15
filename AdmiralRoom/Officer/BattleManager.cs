@@ -3,9 +3,9 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class BattleState : NotificationObject
+    public class BattleManager : NotificationObject
     {
-        public BattleState()
+        public BattleManager()
         {
             Staff.API("api_port/port").Subscribe((Fiddler.Session x) =>
             {
@@ -30,6 +30,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     sortiefleet2 = Staff.Current.Homeport.Fleets[2];
                     sortiefleet2.InSortie = true;
                 }
+                ItemsAfterShips = true;
             });
         }
         private Fleet sortiefleet1, sortiefleet2;
@@ -81,7 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-
+        public bool ItemsAfterShips = false;
         void StartNextHandler(map_start_next api)
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];

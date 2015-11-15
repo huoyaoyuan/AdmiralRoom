@@ -194,7 +194,7 @@
     <Compile Include="Notify\ToastNotifier.cs" />
     <Compile Include="Notify\ShellHelpers.cs" />
     <Compile Include="Officer\Admiral.cs" />
-    <Compile Include="Officer\BattleState.cs" />
+    <Compile Include="Officer\BattleManager.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
     <Compile Include="Officer\ConditionHelper.cs" />
     <Compile Include="Officer\CounterBase.cs" />
