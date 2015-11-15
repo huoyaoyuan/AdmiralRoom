@@ -124,6 +124,12 @@
                         <ribbon:Button x:Name="FontLarge" SizeDefinition="Small" KeyTip="FL" Icon="Images\GrowFont.png"/>
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="通知">
+                    <CheckBox Content="使用Toast通知"
+                              IsEnabled="{x:Static local:ToastNotifier.IsSupported}"
+                              IsChecked="{Binding PreferToastNotify, Source={x:Static local:Config.Current}}"
+                              ToolTip="Windows 10强制使用Toast通知，只能通过更改注册表来启用Ballon"/>
+                </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="窗口">
                 <ribbon:RibbonGroupBox Header="Debug">
