@@ -7,7 +7,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
-using Huoyaoyuan.AdmiralRoom.Views;
+using Huoyaoyuan.AdmiralRoom.Views.Standalone;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -48,12 +48,12 @@ namespace Huoyaoyuan.AdmiralRoom
             ResourceService.Current.ChangeCulture(LanguageBox.SelectedValue.ToString());
 
             //Theme button handler
-            NoDWM.Click += (s, _) =>this.DontUseDwm = (s as CheckBox).IsChecked.Value;
+            NoDWM.Click += (s, _) => this.DontUseDwm = (s as CheckBox).IsChecked.Value;
             NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;
             Themes.ItemsSource = ThemeService.SupportedThemes;
-            Themes.SelectionChanged += (s, _) =>ThemeService.ChangeTheme((s as ComboBox).SelectedValue.ToString());
+            Themes.SelectionChanged += (s, _) => ThemeService.ChangeTheme((s as ComboBox).SelectedValue.ToString());
             ThemeService.ChangeTheme(Themes.SelectedValue.ToString());
-            UseAeroControl.Click += (s, _) =>ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
+            UseAeroControl.Click += (s, _) => ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
             UseAeroControl.IsChecked = Config.Current.Aero;
             ThemeService.EnableAeroControls(Config.Current.Aero);
 
@@ -85,9 +85,14 @@ namespace Huoyaoyuan.AdmiralRoom
                 FontNames.Add(font.Name);
             }
             SelectFontFamily.ItemsSource = FontNames;
-            SelectFontFamily.SelectionChanged += (s, _) => { try {
+            SelectFontFamily.SelectionChanged += (s, _) =>
+            {
+                try
+                {
                     this.FontFamily = new FontFamily((s as ComboBox).SelectedValue.ToString());
-                } catch { } };
+                }
+                catch { }
+            };
             SelectFontFamily.SelectedValue = "等线";
             TextFontSize.DataContext = this;
             TextFontSize.SetBinding(TextBox.TextProperty, new Binding { Source = this.ribbonWindow, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay });
@@ -98,10 +103,10 @@ namespace Huoyaoyuan.AdmiralRoom
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
             this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
         }
-        
+
         private void MakeViewList(ILayoutElement elem)
         {
-            if(elem is LayoutAnchorable)
+            if (elem is LayoutAnchorable)
             {
                 ViewList.Add((elem as LayoutAnchorable).ContentId, elem as LayoutAnchorable);
                 return;
@@ -136,30 +141,14 @@ namespace Huoyaoyuan.AdmiralRoom
             s.Serialize("layout.xml");
         }
 
-        private Dictionary<string, Type> ViewTypeList = new Dictionary<string, Type>()
-        {
-            //[nameof(APIView)] = typeof(APIView),
-            [nameof(AdmiralView)] = typeof(AdmiralView),
-            [nameof(FleetView)] = typeof(FleetView),
-            [nameof(MissionView)] = typeof(MissionView),
-            [nameof(RepairView)] = typeof(RepairView),
-            [nameof(BuildingView)] = typeof(BuildingView),
-            [nameof(DevelopView)] = typeof(DevelopView),
-            [nameof(QuestOverview)] = typeof(QuestOverview)
-        };
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
         {
             Binding ToggleBinding = new Binding();
-            string ViewName = (sender as Control).Tag as string;
+            Type ViewType = (sender as Control).Tag as Type;
+            string ViewName = ViewType.Name;
             //var TargetView = FindView(DockMan.Layout, ViewName);
             LayoutAnchorable TargetView;
-            Type ViewType;
-            if (!ViewTypeList.TryGetValue((sender as Control).Tag as string, out ViewType))
-            {
-                System.Diagnostics.Debug.WriteLine($"Invalid View name: {ViewName}");
-                return;
-            }
             if (!ViewType.IsSubclassOf(typeof(Control)))
             {
                 System.Diagnostics.Debug.WriteLine($"Invalid View type: {ViewName}");
@@ -173,9 +162,9 @@ namespace Huoyaoyuan.AdmiralRoom
                 TargetView.Float();
                 TargetView.Hide();
             }
-            if(TargetView.Content == null)
+            if (TargetView.Content == null)
             {
-                Control content = ViewType.GetConstructor(new Type[0]).Invoke(new object[0]) as Control;
+                Control content = Activator.CreateInstance(ViewType) as Control;
                 TargetView.Content = content;
                 if (content.DataContext == null)
                     content.DataContext = Officer.Staff.Current;
@@ -194,6 +183,12 @@ namespace Huoyaoyuan.AdmiralRoom
             ToggleBinding.Path = new PropertyPath("IsVisible");
             ToggleBinding.Mode = BindingMode.TwoWay;
             (sender as Fluent.ToggleButton).SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
+        }
+
+        private void SetUniqueWindowCommand(object sender, RoutedEventArgs e)
+        {
+            Type windowtype = (sender as Control).Tag as Type;
+            UniqueWindow.ShowOrActivate(windowtype);
         }
     }
 }

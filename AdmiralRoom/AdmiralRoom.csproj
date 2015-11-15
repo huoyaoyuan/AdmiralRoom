@@ -263,6 +263,7 @@
     <Compile Include="Views\RepairView.xaml.cs">
       <DependentUpon>RepairView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Standalone\UniqueWindow.cs" />
     <Compile Include="Win32\Win32Helper.cs" />
     <Page Include="Controls\ExpBar.xaml">
       <SubType>Designer</SubType>
