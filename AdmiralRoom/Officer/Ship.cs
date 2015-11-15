@@ -170,6 +170,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             IsRepairing = false;
             _ignorenextcondition = true;
         }
+        public int ApplyMarriage(int raw) => Level >= 100 ? (int)(raw * 0.85) : raw;
         public int[] AirFightPower { get; private set; }
         public double LoSInMap => Slots.ArrayOperation(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;
         public void UpdateStatus()
