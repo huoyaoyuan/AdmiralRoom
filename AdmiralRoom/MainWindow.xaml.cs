@@ -7,7 +7,6 @@ using System.Windows.Data;
 using System.Windows.Media;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
-using Huoyaoyuan.AdmiralRoom.Views.Standalone;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -145,15 +144,9 @@ namespace Huoyaoyuan.AdmiralRoom
         private void SetToggleBinding(object sender, RoutedEventArgs e)
         {
             Binding ToggleBinding = new Binding();
-            Type ViewType = (sender as Control).Tag as Type;
-            string ViewName = ViewType.Name;
-            //var TargetView = FindView(DockMan.Layout, ViewName);
+            Control content = (sender as Control).Tag as Control;
+            string ViewName = content.GetType().Name;
             LayoutAnchorable TargetView;
-            if (!ViewType.IsSubclassOf(typeof(Control)))
-            {
-                System.Diagnostics.Debug.WriteLine($"Invalid View type: {ViewName}");
-                return;
-            }
             if (!ViewList.TryGetValue(ViewName, out TargetView))
             {
                 TargetView = new LayoutAnchorable();
@@ -164,7 +157,6 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             if (TargetView.Content == null)
             {
-                Control content = Activator.CreateInstance(ViewType) as Control;
                 TargetView.Content = content;
                 if (content.DataContext == null)
                     content.DataContext = Officer.Staff.Current;
@@ -187,8 +179,30 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private void SetUniqueWindowCommand(object sender, RoutedEventArgs e)
         {
-            Type windowtype = (sender as Control).Tag as Type;
-            UniqueWindow.ShowOrActivate(windowtype);
+            Button control = sender as Button;
+            Type windowtype = control.Tag as Type;
+
+            control.Content = windowtype.Name;
+            Binding titlebinding = new Binding("Resources.ViewTitle_" + windowtype.Name);
+            titlebinding.Source = ResourceService.Current;
+            control.SetBinding(ContentProperty, titlebinding);
+
+            control.Click += UniqueCommandClick;
+        }
+
+        private void UniqueCommandClick(object sender, RoutedEventArgs e)
+        {
+            Button control = sender as Button;
+            Window w;
+            if (control.Tag is Type)
+            {
+                w = Activator.CreateInstance(control.Tag as Type) as Window;
+                w.Closed += (_, __) => control.Tag = w.GetType();
+                control.Tag = w;
+            }
+            else w = control.Tag as Window;
+            w.Show();
+            w.Activate();
         }
     }
 }

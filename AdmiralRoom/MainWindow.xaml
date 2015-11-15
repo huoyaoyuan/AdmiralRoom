@@ -10,7 +10,6 @@
                      xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
                      xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
                      xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-                     xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
                      mc:Ignorable="d"
                      FontFamily="DengXian"
                      FontSize="15"
@@ -135,13 +134,41 @@
             <ribbon:RibbonTabItem Header="窗口">
                 <ribbon:RibbonGroupBox Header="Debug">
                     <!--<ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>-->
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:AdmiralView}" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:FleetView}" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:MissionView}" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:RepairView}" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:BuildingView}" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:DevelopView}" Loaded="SetToggleBinding"/>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Tag="{x:Type Views:QuestOverview}" Loaded="SetToggleBinding"/>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:AdmiralView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:FleetView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:MissionView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:RepairView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:BuildingView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:DevelopView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:QuestOverview/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
