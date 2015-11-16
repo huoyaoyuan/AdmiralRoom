@@ -14,9 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public FleetMissionState MissionState => (FleetMissionState)rawdata.api_mission[0];
         public int MissionID => (int)rawdata.api_mission[1];
         public MissionInfo MissionInfo => Staff.Current.MasterData.MissionInfo[MissionID];
-        public DateTime BackTime { get; private set; }
-        public DateTime BackTimeLocal => BackTime.ToLocalTime();
-        public TimeSpan BackTimeRemain => BackTime.Remain();
+        public DateTimeOffset BackTime { get; private set; }
         public TimeSpan ConditionTimeRemain => ConditionHelper.Instance.Remain(mincondition);
         public int ConditionTimeOffset => (int)ConditionHelper.Instance.Offset.TotalSeconds;
 
@@ -48,7 +46,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
-            OnPropertyChanged("BackTimeRemain");
+            OnPropertyChanged("BackTime");
             OnPropertyChanged("ConditionTimeRemain");
         }
 
@@ -153,7 +151,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private bool needupdateship = false;
         protected override void UpdateProp()
         {
-            BackTime = DateTimeEx.FromUnixTime(rawdata.api_mission[2]);
+            BackTime = DateTimeOffset.FromUnixTimeMilliseconds(rawdata.api_mission[2]);
             needupdateship = false;
             for (int i = 0; i < rawdata.api_ship.Length; i++)
             {
@@ -237,8 +235,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("MissionID");
             OnPropertyChanged("MissionInfo");
             OnPropertyChanged("BackTime");
-            OnPropertyChanged("BackTimeLocal");
-            OnPropertyChanged("BackTimeRemain");
             OnPropertyChanged("ConditionTimeRemain");
             OnPropertyChanged("ConditionTimeOffset");
             if (needupdateship) OnPropertyChanged("Ships");

@@ -4,22 +4,21 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     static class DateTimeEx
     {
-        public static DateTime FromUnixTime(long unixtime)
+        public static TimeSpan Remain(this DateTimeOffset time)
         {
-            DateTime starttime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            return starttime.AddMilliseconds(unixtime);
-        }
-        public static TimeSpan Remain(this DateTime time)
-        {
-            if (time.ToLocalTime() > DateTime.Now)
-                return time.ToLocalTime() - DateTime.Now;
+            if (time.ToLocalTime() > DateTimeOffset.Now)
+                return time - DateTimeOffset.Now;
             else return new TimeSpan(0);
         }
-        public static DateTime WeekStart(this DateTime time)
+        public static DateTimeOffset WeekStart(this DateTimeOffset time)
         {
-            int dayofweek = (int)time.DayOfWeek - 1;
-            if (dayofweek < 0) dayofweek += 7;
-            return time.Date.AddDays(-dayofweek);
+            try
+            {
+                int dayofweek = (int)time.DayOfWeek - 1;
+                if (dayofweek < 0) dayofweek += 7;
+                return time.Date.AddDays(-dayofweek);
+            }
+            catch { return DateTimeOffset.MinValue; }
         }
     }
 }

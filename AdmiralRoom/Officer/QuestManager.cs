@@ -21,7 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int lastcheckedpage;
         private int lastcheckedfrom;
         private int lastcheckedto;
-        private DateTime lastcheckedtime;
+        private DateTimeOffset lastcheckedtime;
         void CheckQuestPage(getmember_questlist api)
         {
             int checkfrom, checkto;
@@ -41,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 AvilableQuests.Remove(item);
             var targets = new List<QuestTarget>();
             foreach (var quest in KnownQuests.Known) targets.AddRange(quest.Targets);
-            DateTime checktime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, QuestPeriodTime);
+            DateTimeOffset checktime = DateTimeOffset.UtcNow.ToOffset(QuestUpdateTime);
             if (checktime.Date != lastcheckedtime.Date)
             {
                 foreach (var item in AvilableQuests.Where(x => x.IsDaily).ToList())
@@ -83,14 +83,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             list.Sort();
             QuestInProgress = new IDTable<Quest>(list);
         }
-        public static readonly TimeZoneInfo QuestPeriodTime = TimeZoneInfo.CreateCustomTimeZone("KancolleQuest", TimeSpan.FromHours(4), "", "");
+        public static readonly TimeSpan QuestUpdateTime = TimeSpan.FromHours(4);
         public void Load()
         {
             try
             {
                 using (var file = new StreamReader(@"logs\questcount.txt"))
                 {
-                    lastcheckedtime = DateTime.Parse(file.ReadLine());
+                    lastcheckedtime = new DateTimeOffset(DateTime.Parse(file.ReadLine()), QuestUpdateTime);
                     while (!file.EndOfStream)
                     {
                         string line = file.ReadLine().Trim();
@@ -114,7 +114,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Directory.CreateDirectory("logs");
             using (var file = new StreamWriter(@"logs\questcount.txt"))
             {
-                file.WriteLine(lastcheckedtime.ToShortDateString());
+                file.WriteLine(lastcheckedtime.LocalDateTime.ToShortDateString());
                 foreach (var quest in KnownQuests.Known)
                 {
                     StringBuilder sb = new StringBuilder();

@@ -8,10 +8,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public override int Id => rawdata.api_id;
         public DockState State { get; set; }
-        public DateTime CompleteTime { get; set; }
-        public DateTime CompleteTimeLocal => CompleteTime.ToLocalTime();
-        public TimeSpan CompleteTimeRemain => CompleteTime.Remain();
-        public TimeSpan DuringTime => CreatedShip?.BuildTime - CompleteTimeRemain ?? TimeSpan.FromSeconds(0);
+        public DateTimeOffset CompleteTime { get; set; }
+        public TimeSpan DuringTime => CreatedShip?.BuildTime - CompleteTime.Remain() ?? TimeSpan.FromSeconds(0);
         public int UseFuel => rawdata.api_item1;
         public int UseBull => rawdata.api_item2;
         public int UseSteel => rawdata.api_item3;
@@ -31,12 +29,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
         private void Tick(object sender, ElapsedEventArgs e)
         {
-            OnPropertyChanged("CompleteTimeRemain");
+            OnPropertyChanged("CompleteTime");
             OnPropertyChanged("DuringTime");
         }
         protected override void UpdateProp()
         {
-            CompleteTime = DateTimeEx.FromUnixTime(rawdata.api_complete_time);
+            CompleteTime = DateTimeOffset.FromUnixTimeMilliseconds(rawdata.api_complete_time);
             CreatedShip = Staff.Current.MasterData.ShipInfo[rawdata.api_created_ship_id];
             State = (DockState)rawdata.api_state;
             IsLSC = UseFuel > 999;

@@ -246,6 +246,7 @@
       <DependentUpon>BuildingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Converter\CondColorConverter.cs" />
+    <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\HPColorConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
     <Compile Include="Views\DevelopView.xaml.cs">

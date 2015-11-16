@@ -7,7 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static ConditionHelper Instance { get; } = new ConditionHelper();
         private ConditionHelper() { }
         private int maxup;
-        private DateTime increasefrom, increaseto, lastcheck;
+        private DateTimeOffset increasefrom, increaseto, lastcheck;
         private bool updating;
         private bool changed = false;
         private readonly TimeSpan maxerror = TimeSpan.FromSeconds(2), period = TimeSpan.FromMinutes(3);
@@ -24,8 +24,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void EndUpdate()
         {
             updating = false;
-            var checktime = DateTime.UtcNow;
-            if (increasefrom == DateTime.MinValue)//first time
+            var checktime = DateTimeOffset.UtcNow;
+            if (increasefrom == DateTimeOffset.MinValue)//first time
             {
                 lastcheck = checktime;
                 increasefrom = checktime - period;
@@ -63,8 +63,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             lastcheck = checktime;
             changed = true;
         }
-        private DateTime _basetime;
-        public DateTime BaseTime
+        private DateTimeOffset _basetime;
+        public DateTimeOffset BaseTime
         {
             get
             {

@@ -39,7 +39,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Time"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock FontSize="16" x:Name="shipname" Text="{Binding CreatedShip.Name}"/>
-                            <TextBlock Grid.Column="1" x:Name="time" Text="{Binding CompleteTimeRemain, StringFormat={} - {0:hh\\:mm\\:ss}}" FontSize="14" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" x:Name="time" Text="{Binding CompleteTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0:hh\\:mm\\:ss}}" FontSize="14" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
                     <DataTemplate.Triggers>
