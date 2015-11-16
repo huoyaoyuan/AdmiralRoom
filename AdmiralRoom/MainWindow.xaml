@@ -10,6 +10,7 @@
                      xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
                      xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
                      xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+                     xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
                      mc:Ignorable="d"
                      FontFamily="DengXian"
                      FontSize="15"
@@ -30,7 +31,7 @@
                 </ResourceDictionary>
             </ribbon:Ribbon.Resources>
             <ribbon:Ribbon.Menu>
-                <ribbon:Backstage Header="提督の部屋" KeyTip="T">
+                <ribbon:Backstage Header="提督の部屋" KeyTip="H">
                     <ribbon:BackstageTabControl>
                         <ribbon:BackstageTabItem Header="关于"/>
                     </ribbon:BackstageTabControl>
@@ -64,8 +65,12 @@
                         <CheckBox Content="使用代理" Grid.ColumnSpan="2" x:Name="EnableProxy" IsChecked="{Binding EnableProxy, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
                         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyHost" Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyPort" Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyHost"
+                                 IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
+                                 Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyPort"
+                                 IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
+                                 Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                     </Grid>
                     <ribbon:Button Header="更新" x:Name="UpdateProxySetting"/>
                     <ribbon:Button Header="撤销" x:Name="CancelProxySetting"/>
@@ -99,7 +104,7 @@
                                      SelectedValuePath="Name" SelectedValue="{Binding Language, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="主题">
-                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="T"
+                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="TH"
                                      SelectedValue="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                     <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM" KeyTip="D" IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                     <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl" KeyTip="A" IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
@@ -131,8 +136,8 @@
                               ToolTip="Windows 10强制使用Toast通知，只能通过更改注册表来启用Ballon"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem Header="窗口">
-                <ribbon:RibbonGroupBox Header="Debug">
+            <ribbon:RibbonTabItem Header="窗口" KeyTip="W">
+                <ribbon:RibbonGroupBox Header="子窗口">
                     <!--<ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>-->
                     <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
                         <ribbon:ToggleButton.Tag>
@@ -169,6 +174,9 @@
                             <Views:QuestOverview/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="独立窗口">
+                    <Button Tag="{x:Type ViewStandalone:AllShips}" Loaded="SetUniqueWindowCommand"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>

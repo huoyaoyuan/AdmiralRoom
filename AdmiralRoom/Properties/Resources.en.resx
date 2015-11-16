@@ -144,4 +144,7 @@
   <data name="ViewTitle_QuestOverview" xml:space="preserve">
     <value>Quest In Progress</value>
   </data>
+  <data name="ViewTitle_AllShips" xml:space="preserve">
+    <value>All Ships</value>
+  </data>
 </root>
