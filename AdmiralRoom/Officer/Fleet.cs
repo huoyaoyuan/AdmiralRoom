@@ -42,7 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void Dispose()
         {
             Staff.Current.Ticker.Elapsed -= Tick;
-            Ships.ArrayOperation(x => x.InFleet = null);
+            Ships.ForEach(x => x.InFleet = null);
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
@@ -173,25 +173,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             }
             if (needupdateship)
-                Ships = new ObservableCollection<Ship>(rawdata.api_ship.ArrayOperation(x =>
-                {
-                    if (x == -1) return null;
-                    Staff.Current.Homeport.Ships[x].InFleet = this;
-                    return Staff.Current.Homeport.Ships[x];
-                }));
+                Ships = new ObservableCollection<Ship>(rawdata.api_ship
+                    .Where(x => x != -1)
+                    .Select(x =>
+                    {
+                        if (x == -1) return null;
+                        Staff.Current.Homeport.Ships[x].InFleet = this;
+                        return Staff.Current.Homeport.Ships[x];
+                    }));
             UpdateStatus();
         }
         public int[] AirFightPower { get; private set; }
-        public int LevelSum => Ships.ArrayOperation(x => x.Level).Sum();
-        public double LevelAverage => Ships.ArrayOperation(x => (double)x.Level).Average();
-        public double LoSInMap => Ships.ArrayOperation(x => x.LoSInMap).Sum() - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
+        public int LevelSum => Ships.Select(x => x.Level).Sum();
+        public double LevelAverage => Ships.Select(x => (double)x.Level).Average();
+        public double LoSInMap => Ships.Select(x => x.LoSInMap).Sum() - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
         public int[] ChargeCost => new[]
         {
-            Ships.ArrayOperation(x => x.ApplyMarriage(x.Fuel.Shortage)).Sum(),
-            Ships.ArrayOperation(x => x.ApplyMarriage(x.Bull.Shortage)).Sum(),
-            Ships.ArrayOperation(x => x.Slots.ArrayOperation(y => y.AirCraft.Shortage).Sum()).Sum() * 5
+            Ships.Select(x => x.ApplyMarriage(x.Fuel.Shortage)).Sum(),
+            Ships.Select(x => x.ApplyMarriage(x.Bull.Shortage)).Sum(),
+            Ships.Select(x => x.Slots.Select(y => y.AirCraft.Shortage).Sum()).Sum() * 5
         };
-        public int[] RepairCost => new[] { Ships.ArrayOperation(x => x.RepairFuel).Sum(), Ships.ArrayOperation(x => x.RepairSteel).Sum() };
+        public int[] RepairCost => new[] { Ships.Select(x => x.RepairFuel).Sum(), Ships.Select(x => x.RepairSteel).Sum() };
         private int mincondition = 49;
         public void UpdateStatus()
         {
@@ -215,11 +217,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             else if (NeedCharge || HeavilyDamaged || LowCondition || Repairing)
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
-            AirFightPower = new int[8];
-            foreach (var ship in Ships)
-                for (int i = 0; i < 8; i++)
-                    AirFightPower[i] += ship.AirFightPower[i];
-            mincondition = Ships.ArrayOperation(x => x.Condition).Min();
+            AirFightPower = Ships.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + b).ToArray());
+            mincondition = Ships.Select(x => x.Condition).Min();
             OnPropertyChanged("AirFightPower");
             OnPropertyChanged("LevelSum");
             OnPropertyChanged("LevelAverage");

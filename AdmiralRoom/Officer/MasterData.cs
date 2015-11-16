@@ -1,4 +1,5 @@
-﻿using Huoyaoyuan.AdmiralRoom.API;
+﻿using System.Linq;
+using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -20,13 +21,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void MasterHandler(api_start2 api)
         {
             Models.Status.Current.IsGameLoaded = true;
-            MapAreas = new IDTable<MapArea>(api.api_mst_maparea.ArrayOperation(x => new MapArea(x)));
+            MapAreas = new IDTable<MapArea>(api.api_mst_maparea.Select(x => new MapArea(x)));
             MapInfos.UpdateAll(api.api_mst_mapinfo, x => x.api_id);
-            ShipTypes = new IDTable<ShipType>(api.api_mst_stype.ArrayOperation(x => new ShipType(x)));
-            ShipInfo = new IDTable<ShipInfo>(api.api_mst_ship.ArrayOperation(x => new ShipInfo(x)));
-            EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.ArrayOperation(x => new EquipType(x)));
-            EquipInfo = new IDTable<EquipInfo>(api.api_mst_slotitem.ArrayOperation(x => new EquipInfo(x)));
-            MissionInfo = new IDTable<MissionInfo>(api.api_mst_mission.ArrayOperation(x => new MissionInfo(x)));
+            ShipTypes = new IDTable<ShipType>(api.api_mst_stype.Select(x => new ShipType(x)));
+            ShipInfo = new IDTable<ShipInfo>(api.api_mst_ship.Select(x => new ShipInfo(x)));
+            EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.Select(x => new EquipType(x)));
+            EquipInfo = new IDTable<EquipInfo>(api.api_mst_slotitem.Select(x => new EquipInfo(x)));
+            MissionInfo = new IDTable<MissionInfo>(api.api_mst_mission.Select(x => new MissionInfo(x)));
         }
         void RefreshMapInfo(getmembet_mapinfo[] api)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using Codeplex.Data;
@@ -89,7 +90,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
         {
             var str = req[name];
-            return str.Split(',').ArrayOperation(x => int.Parse(x));
+            return str.Split(',').Select(x => int.Parse(x));
         }
         public static APIData<getmember_questlist> ParseQuest(this Session oSession)
         {

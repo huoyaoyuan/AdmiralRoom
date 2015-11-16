@@ -171,14 +171,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             _ignorenextcondition = true;
         }
         public int ApplyMarriage(int raw) => Level >= 100 ? (int)(raw * 0.85) : raw;
-        public int[] AirFightPower { get; private set; }
-        public double LoSInMap => Slots.ArrayOperation(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;
+        public int[] AirFightPower => Slots.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + (int)b).ToArray());
+        public double LoSInMap => Slots.Select(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;
         public void UpdateStatus()
         {
-            AirFightPower = new int[8];
-            foreach (var slot in Slots)
-                for (int i = 0; i < 8; i++)
-                    AirFightPower[i] += (int)slot.AirFightPower[i];
             OnPropertyChanged("AirFightPower");
             OnPropertyChanged("LoSInMap");
             if (InFleet != null && InFleet.Ships.IndexOf(this) == -1) InFleet = null;

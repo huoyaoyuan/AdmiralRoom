@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -15,7 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/ship2").Subscribe<api_ship[]>(x => Ships.UpdateAll(x, y => y.api_id));
             Staff.API("api_get_member/ship_deck").Subscribe<getmember_ship_deck>(Ship3Handler);
             Staff.API("api_req_hokyu/charge").Subscribe<hokyu_charge>(ChargeHandler);
-            Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ArrayOperation(y => y.IgnoreNextCondition()));
+            Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ForEach(y => y.IgnoreNextCondition()));
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
             Staff.API("api_req_kaisou/slot_exchange_index").Subscribe(ExchangeHandler);
         }
@@ -130,9 +131,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             ConditionHelper.Instance.BeginUpdate();
-            Staff.Current.Shipyard.RepairDocks.ArrayOperation(x => x.Ship?.IgnoreNextCondition());
+            Staff.Current.Shipyard.RepairDocks.ForEach(x => x.Ship?.IgnoreNextCondition());
             if (Ships == null)
-                Ships = new IDTable<Ship>(api.api_ship.ArrayOperation(x => new Ship(x)));
+                Ships = new IDTable<Ship>(api.api_ship.Select(x => new Ship(x)));
             else Ships.UpdateAll(api.api_ship, x => x.api_id);
             ConditionHelper.Instance.EndUpdate();
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
@@ -145,7 +146,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (Fleets == null)
             {
-                Fleets = new IDTable<Fleet>(api.ArrayOperation(x => new Fleet(x)));
+                Fleets = new IDTable<Fleet>(api.Select(x => new Fleet(x)));
                 SelectedFleet = 0;
             }
             else
@@ -157,11 +158,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void ItemsHandler(getmember_slotitem[] api)
         {
             if (Equipments == null)
-                Equipments = new IDTable<Equipment>(api.ArrayOperation(x => new Equipment(x)));
+                Equipments = new IDTable<Equipment>(api.Select(x => new Equipment(x)));
             else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
             if (Staff.Current.Battle.ItemsAfterShips)
-                Ships.ArrayOperation(x => x.Update());
+                Ships.ForEach(x => x.Update());
             Staff.Current.Battle.ItemsAfterShips = false;
         }
 
@@ -217,7 +218,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             int deck = req.GetInt("api_deck_id");
             var fleet = Fleets[deck];
-            fleet.Ships.ArrayOperation(x => x.InFleet = null);
+            fleet.Ships.ForEach(x => x.InFleet = null);
             fleet.Update(api);
         }
 
@@ -242,7 +243,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Material.Bull = api.api_material[1];
             Material.Steel = api.api_material[2];
             Material.Bauxite = api.api_material[3];
-            Fleets.ArrayOperation(x => x.UpdateStatus());
+            Fleets.ForEach(x => x.UpdateStatus());
         }
 
         void ExchangeHandler(NameValueCollection req)

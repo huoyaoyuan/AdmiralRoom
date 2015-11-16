@@ -81,7 +81,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void NDockHandler(getmember_ndock[] api)
         {
             Staff.Current.Dispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
-            var newindock = api.ArrayOperation(x => x.api_ship_id).ToArray();
+            var newindock = api.Select(x => x.api_ship_id).ToArray();
             foreach (var ship in Staff.Current.Homeport.Ships)
             {
                 if (newindock.Contains(ship.Id))
@@ -93,7 +93,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 else ship.IsRepairing = false;
             }
             inndock = newindock;
-            Staff.Current.Homeport.Fleets?.ArrayOperation(x => x.UpdateStatus());
+            Staff.Current.Homeport.Fleets?.ForEach(x => x.UpdateStatus());
         }
         void NStartHandler(NameValueCollection req)
         {

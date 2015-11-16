@@ -59,8 +59,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             else return Item?.ToString();
         }
         static readonly int[] fighttype = { 6, 7, 8, 11 };
-        static readonly double[] bonus1 = { 0, 0, 2, 5, 9, 14, 14, 22 };//舰战
-        static readonly double[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆
+        static readonly int[] bonus1 = { 0, 0, 2, 5, 9, 14, 14, 22 };//舰战
+        static readonly int[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆
         static readonly int[] inner = { 0, 10, 25, 40, 55, 70, 85, 100, 121 };
         public bool CanProvideAirFightPower => fighttype.Contains(Item?.EquipInfo.EquipType.Id ?? 0);
         /// <summary>

@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public QuestTarget[] Targets { get; set; }
         public QuestTarget MainTarget { get; set; }
         public LimitedValue Progress => MainTarget.Progress;
-        public double Percentage => Targets.ArrayOperation(x => x.Progress.Percentage).Average();
+        public double Percentage => Targets.Select(x => x.Progress.Percentage).Average();
         public QuestInfo() { }
         public QuestInfo(QuestTarget target)
         {
