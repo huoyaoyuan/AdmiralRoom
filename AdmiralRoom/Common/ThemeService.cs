@@ -33,14 +33,15 @@ namespace Huoyaoyuan.AdmiralRoom
         public static IReadOnlyCollection<string> SupportedThemes => themes.Keys;
         public static void ChangeTheme(string theme)
         {
+            Window window = Application.Current.MainWindow;
             try
             {
                 var themeres = themes[theme];
-                Application.Current.Resources.MergedDictionaries.Clear();
+                window.Resources.MergedDictionaries.Clear();
                 foreach (var resname in themeres)
                 {
                     var res = new ResourceDictionary { Source = new Uri(resname) };
-                    Application.Current.Resources.MergedDictionaries.Add(res);
+                    window.Resources.MergedDictionaries.Add(res);
                 }
             }
             catch { ChangeTheme(SupportedThemes.First()); }
@@ -64,17 +65,16 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static void EnableAeroControls(bool Enable)
         {
-            Window window = Application.Current.MainWindow;
             if (Enable)
             {
-                window.Resources.MergedDictionaries.Clear();
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("AdmiralRoom;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("AdmiralRoom;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
             else
             {
-                window.Resources.MergedDictionaries.Clear();
-                window.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
             }
         }
     }

@@ -9,7 +9,7 @@
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
-        Title="{Binding Resources.ViewTitle_AllShips, Mode=OneWay, Source={x:Static root:ResourceService.Current}}" Height="800">
+        Title="{Binding Resources.ViewTitle_ShipCatalog, Mode=OneWay, Source={x:Static root:ResourceService.Current}}" Height="800">
     <Grid>
         <ListView ItemsSource="{Binding ShownShips}">
             <ListView.View>
