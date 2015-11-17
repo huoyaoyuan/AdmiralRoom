@@ -23,7 +23,7 @@
                                                   Minimum="0" Maximum="{Binding Ship.HP.Max}"
                                                   Value="{Binding Ship.HP.Current}"
                                                   PredictValue="{Binding Ship.RepairingHP}"
-                                                  Foreground="{Binding Ship.HP, Converter={StaticResource HPColorConverter}}"
+                                                  Foreground="{Binding Ship.HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
                                                   PredictForeground="Aqua"
                                                   Background="Transparent"
                                                   Visibility="Collapsed"/>

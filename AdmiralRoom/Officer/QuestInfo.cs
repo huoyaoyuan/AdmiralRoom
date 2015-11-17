@@ -49,6 +49,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (Targets.Length == 1) MainTarget.Set80();
         }
+        public void Set100()
+        {
+            Targets.ForEach(x => x.Set100());
+        }
         public void SetIsTook(bool v)
         {
             foreach (var target in Targets)

@@ -39,7 +39,7 @@
                             <BeginStoryboard>
                                 <Storyboard RepeatBehavior="Forever">
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="status"
-                                                                  Storyboard.TargetProperty="Opacity">
+                                                                   Storyboard.TargetProperty="Opacity">
                                         <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
                                         <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
                                         <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
@@ -98,9 +98,9 @@
                                                 <TextBlock FontSize="14" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom"/>
                                             </StackPanel>
                                             <control:ExpBar Grid.Column="1" Width="80" Margin="0,0,4,0"
-												Level="{Binding Level}"
-												Exp="{Binding Exp}"
-												VerticalAlignment="Center"/>
+                                                            Level="{Binding Level}"
+                                                            Exp="{Binding Exp}"
+                                                            VerticalAlignment="Center"/>
                                             <Border Grid.Column="2" Background="Wheat" Margin="0,0,4,0"
                                                     Visibility="{Binding IsRepairing, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                                                 <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="12" Foreground="Gray" Text="入渠中"/>
@@ -113,7 +113,7 @@
                                                                               Minimum="0" Maximum="{Binding HP.Max}"
                                                                               Value="{Binding HP.Current}"
                                                                               PredictValue="{Binding RepairingHP}"
-                                                                              Foreground="{Binding HP, Converter={StaticResource HPColorConverter}}"
+                                                                              Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
                                                                               PredictForeground="Aqua"
                                                                               Background="Transparent"/>
                                             </StackPanel>
@@ -140,15 +140,15 @@
                                                 <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
                                                 <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Bull.png"/>
                                                 <control:AnimateProgress Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
-                                                             Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
-                                                             ToolTip="{Binding Fuel}"
-                                                             Background="Transparent"
-                                                             Foreground="{Binding Fuel, Converter={StaticResource HPColorConverter}}"/>
+                                                                         Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
+                                                                         ToolTip="{Binding Fuel}"
+                                                                         Background="Transparent"
+                                                                         Foreground="{Binding Fuel, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"/>
                                                 <control:AnimateProgress Margin="0,1,0,0" Grid.Row="1" Grid.Column="1" Width="80" Height="12"
-                                                             Minimum="0" Maximum="{Binding Bull.Max}" Value="{Binding Bull.Current}"
-                                                             ToolTip="{Binding Bull}"
-                                                             Background="Transparent"
-                                                             Foreground="{Binding Bull, Converter={StaticResource HPColorConverter}}"/>
+                                                                         Minimum="0" Maximum="{Binding Bull.Max}" Value="{Binding Bull.Current}"
+                                                                         ToolTip="{Binding Bull}"
+                                                                         Background="Transparent"
+                                                                         Foreground="{Binding Bull, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"/>
                                             </Grid>
                                             <ItemsControl Grid.Column="5" Margin="0,0,4,0" ItemsSource="{Binding Slots}" VerticalAlignment="Center">
                                                 <ItemsControl.ItemsPanel>
@@ -161,8 +161,8 @@
                                                         <Canvas Margin="0,0,4,0" Height="36" Width="36" x:Name="item" ToolTip="{Binding}"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                                                             <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}" Height="48" Width="48" Canvas.Left="-6" Canvas.Top="-6"/>
-                                                            <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}"
-                                                                       Foreground="{Binding AirCraft, Converter={StaticResource HPColorConverter}}"
+                                                            <TextBlock Height="16" Canvas.Left="0" Canvas.Bottom="0" FontSize="16" Text="{Binding AirCraft.Current}" FontWeight="Bold"
+                                                                       Foreground="{Binding AirCraft, Converter={StaticResource LVColorConverter}, ConverterParameter=AirCraft}"
                                                                        Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
                                                             <Image Height="16" Width="16" Canvas.Top="0" Canvas.Right="0"
                                                                    Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"/>
@@ -322,7 +322,7 @@
                             <BeginStoryboard>
                                 <Storyboard RepeatBehavior="Forever">
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="statuscolor"
-                                                                  Storyboard.TargetProperty="Opacity">
+                                                                   Storyboard.TargetProperty="Opacity">
                                         <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
                                         <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
                                         <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1"/>

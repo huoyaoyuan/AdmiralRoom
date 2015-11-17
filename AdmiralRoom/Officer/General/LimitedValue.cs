@@ -17,6 +17,11 @@
             Current = value?[0] ?? 0;
             Max = value?[1] ?? 0;
         }
+        public void CheckCurrent()
+        {
+            if (Current > Max) Current = Max;
+            if (Current < 0) Current = 0;
+        }
         public override string ToString()
         {
             return $"{Current}/{Max}";

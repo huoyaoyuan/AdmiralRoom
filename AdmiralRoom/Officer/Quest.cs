@@ -43,11 +43,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         public QuestInfo Counter { get; set; }
+        public bool HasCounter => Counter != null;
         protected override void UpdateProp()
         {
             Counter = QuestManager.KnownQuests.Known[Id];
             if (Progress == QuestProgress.Percent50) Counter?.Set50();
             else if (Progress == QuestProgress.Percent80) Counter?.Set80();
+            if (State == QuestState.Complete) Counter?.Set100();
             Counter?.SetIsTook(State == QuestState.InProgress);
         }
     }

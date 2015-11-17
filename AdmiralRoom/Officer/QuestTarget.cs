@@ -53,6 +53,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (IsTook)
             {
                 _progress.Current += n;
+                _progress.CheckCurrent();
                 OnPropertyChanged("Progress");
                 SharedWith?.SharedIncrease(n);
             }
@@ -61,6 +62,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         void SharedIncrease(int n)
         {
             _progress.Current += n;
+            _progress.CheckCurrent();
             OnPropertyChanged("Progress");
         }
 
@@ -77,5 +79,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public void Set50() => SetProgress((int)Math.Ceiling(_progress.Max * 0.5), false);
         public void Set80() => SetProgress((int)Math.Ceiling(_progress.Max * 0.8), false);
+        public void Set100() => SetProgress(_progress.Max, true);
     }
 }
