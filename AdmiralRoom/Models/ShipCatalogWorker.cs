@@ -35,8 +35,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public static ShipCatalogWorker Instance { get; } = new ShipCatalogWorker();
 
         #region ShownShips
-        private IEnumerable<Ship> _shownships;
-        public IEnumerable<Ship> ShownShips
+        private IEnumerable<ItemWithIndex<Ship>> _shownships;
+        public IEnumerable<ItemWithIndex<Ship>> ShownShips
         {
             get { return _shownships; }
             set
@@ -88,7 +88,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             if (baseships == null) return;
             int[] typeid = ShipTypes.Select(x => x.ShipType.Id).ToArray();
             baseships = baseships.Where(x => typeid.Contains(x.ShipInfo.ShipType.Id));
-            ShownShips = baseships.ToArray();
+            ShownShips = baseships.Select(ItemWithIndex<Ship>.Generator).ToArray();
         }
         public void SelectTypes(int[] types)
         {

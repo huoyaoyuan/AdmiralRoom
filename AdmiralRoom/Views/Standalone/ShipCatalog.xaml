@@ -134,17 +134,18 @@
         <ListView Grid.Row="2" ItemsSource="{Binding ShownShips}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="舰种" DisplayMemberBinding="{Binding ShipInfo.ShipType.Name}"/>
-                    <GridViewColumn Header="舰名" DisplayMemberBinding="{Binding ShipInfo.Name}"/>
-                    <GridViewColumn Header="等级" DisplayMemberBinding="{Binding Level}"/>
-                    <GridViewColumn Header="Cond." DisplayMemberBinding="{Binding Condition}"/>
-                    <GridViewColumn Header="火力" DisplayMemberBinding="{Binding Firepower}"/>
-                    <GridViewColumn Header="雷装" DisplayMemberBinding="{Binding Torpedo}"/>
-                    <GridViewColumn Header="对空" DisplayMemberBinding="{Binding AA}"/>
-                    <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Armor}"/>
-                    <GridViewColumn Header="运" DisplayMemberBinding="{Binding Luck}"/>
-                    <GridViewColumn Header="索敌" DisplayMemberBinding="{Binding LoS.Current}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Index}"/>
+                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Item.Id}"/>
+                    <GridViewColumn Header="舰种" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
+                    <GridViewColumn Header="舰名" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
+                    <GridViewColumn Header="等级" DisplayMemberBinding="{Binding Item.Level}"/>
+                    <GridViewColumn Header="Cond." DisplayMemberBinding="{Binding Item.Condition}"/>
+                    <GridViewColumn Header="火力" DisplayMemberBinding="{Binding Item.Firepower}"/>
+                    <GridViewColumn Header="雷装" DisplayMemberBinding="{Binding Item.Torpedo}"/>
+                    <GridViewColumn Header="对空" DisplayMemberBinding="{Binding Item.AA}"/>
+                    <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Item.Armor}"/>
+                    <GridViewColumn Header="运" DisplayMemberBinding="{Binding Item.Luck}"/>
+                    <GridViewColumn Header="索敌" DisplayMemberBinding="{Binding Item.LoS.Current}"/>
                     <GridViewColumn Header="装备">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
