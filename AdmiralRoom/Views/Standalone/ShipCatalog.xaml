@@ -1,0 +1,33 @@
+﻿<Window x:Class="Huoyaoyuan.AdmiralRoom.Views.Standalone.ShipCatalog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+        xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+        xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+        xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
+        Title="{Binding Resources.ViewTitle_AllShips, Mode=OneWay, Source={x:Static root:ResourceService.Current}}" Height="800">
+    <Grid>
+        <ListView ItemsSource="{Binding ShownShips}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="舰种" DisplayMemberBinding="{Binding ShipInfo.ShipType.Name}"/>
+                    <GridViewColumn Header="舰名" DisplayMemberBinding="{Binding ShipInfo.Name}"/>
+                    <GridViewColumn Header="等级" DisplayMemberBinding="{Binding Level}"/>
+                    <GridViewColumn Header="Cond." DisplayMemberBinding="{Binding Condition}"/>
+                    <GridViewColumn Header="火力" DisplayMemberBinding="{Binding Firepower.Current}"/>
+                    <GridViewColumn Header="雷装" DisplayMemberBinding="{Binding Torpedo.Current}"/>
+                    <GridViewColumn Header="对空" DisplayMemberBinding="{Binding AA.Current}"/>
+                    <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Armor.Current}"/>
+                    <GridViewColumn Header="运" DisplayMemberBinding="{Binding Luck.Current}"/>
+                    <GridViewColumn Header="索敌" DisplayMemberBinding="{Binding LoS.Current}"/>
+                    <GridViewColumn Header="装备" DisplayMemberBinding="{Binding Slots}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

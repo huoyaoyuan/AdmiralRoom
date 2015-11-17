@@ -35,7 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
         public bool Contains(T item) => dict.ContainsValue(item);
-        public void CopyTo(T[] array, int index) { throw new NotSupportedException(); }
+        public void CopyTo(T[] array, int index) => dict.Values.CopyTo(array, index);
         public int Count => dict.Count;
         public bool IsReadOnly => false;
         public event NotifyCollectionChangedEventHandler CollectionChanged;

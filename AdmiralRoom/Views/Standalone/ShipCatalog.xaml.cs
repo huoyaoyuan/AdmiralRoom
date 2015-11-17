@@ -17,11 +17,14 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
     /// <summary>
     /// AllShips.xaml 的交互逻辑
     /// </summary>
-    public partial class AllShips : Window
+    public partial class ShipCatalog : Window
     {
-        public AllShips()
+        public ShipCatalog()
         {
             InitializeComponent();
+            worker.Update();
+            this.DataContext = worker;
         }
+        Models.ShipCatalogWorker worker = Models.ShipCatalogWorker.Instance;
     }
 }

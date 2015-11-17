@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="Models\APIModel.cs" />
     <Compile Include="Models\Exp.cs" />
+    <Compile Include="Models\ShipCatalogWorker.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Volume.cs" />
     <Compile Include="Notify\BallonNotifier.cs" />
@@ -264,8 +265,8 @@
     <Compile Include="Views\RepairView.xaml.cs">
       <DependentUpon>RepairView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Standalone\AllShips.xaml.cs">
-      <DependentUpon>AllShips.xaml</DependentUpon>
+    <Compile Include="Views\Standalone\ShipCatalog.xaml.cs">
+      <DependentUpon>ShipCatalog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Win32\Win32Helper.cs" />
     <Page Include="Controls\ExpBar.xaml">
@@ -339,7 +340,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Standalone\AllShips.xaml">
+    <Page Include="Views\Standalone\ShipCatalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

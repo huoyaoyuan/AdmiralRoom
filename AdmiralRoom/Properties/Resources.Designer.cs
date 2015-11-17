@@ -88,15 +88,6 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 所有舰娘一览 的本地化字符串。
-        /// </summary>
-        public static string ViewTitle_AllShips {
-            get {
-                return ResourceManager.GetString("ViewTitle_AllShips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 建造 的本地化字符串。
         /// </summary>
         public static string ViewTitle_BuildingView {
@@ -147,6 +138,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string ViewTitle_RepairView {
             get {
                 return ResourceManager.GetString("ViewTitle_RepairView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 所有舰娘一览 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_ShipCatalog {
+            get {
+                return ResourceManager.GetString("ViewTitle_ShipCatalog", resourceCulture);
             }
         }
     }

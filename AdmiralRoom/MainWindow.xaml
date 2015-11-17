@@ -176,7 +176,7 @@
                     </ribbon:ToggleButton>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="独立窗口">
-                    <Button Tag="{x:Type ViewStandalone:AllShips}" Loaded="SetUniqueWindowCommand"/>
+                    <Button Tag="{x:Type ViewStandalone:ShipCatalog}" Loaded="SetUniqueWindowCommand"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>

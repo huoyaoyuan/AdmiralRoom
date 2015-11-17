@@ -144,7 +144,7 @@
   <data name="ViewTitle_QuestOverview" xml:space="preserve">
     <value>遂行中任務</value>
   </data>
-  <data name="ViewTitle_AllShips" xml:space="preserve">
+  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
   </data>
 </root>
