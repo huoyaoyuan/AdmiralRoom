@@ -16,5 +16,6 @@
             Upgrated = upgradedata;
             ShowValue = showdata;
         }
+        public override string ToString() => IsMax ? $"{Current} (Max)" : $"{Current} (+{Upward})";
     }
 }
