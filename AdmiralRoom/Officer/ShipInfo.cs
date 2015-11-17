@@ -53,6 +53,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Torpedo = new LimitedValue(rawdata.api_raig);
             AA = new LimitedValue(rawdata.api_tyku);
             Armor = new LimitedValue(rawdata.api_souk);
+            Luck = new LimitedValue(rawdata.api_luck);
         }
     }
     public enum ShipSpeed { None = 0, Low = 5, High = 10 }
