@@ -141,11 +141,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             for (int i = 0; i < SlotNum; i++)
             {
                 var slot = new Slot();
-                if (rawdata.api_slot[i] != -1)
+                if (rawdata.api_slot[i] != -1 && (slot.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot[i]]) != null)
                 {
-                    slot.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot[i]];
-                    asw -= slot.Item?.EquipInfo.ASW ?? 0;
-                    los -= slot.Item?.EquipInfo.LoS ?? 0;
+                    slot.Item.OnShip = this;
+                    asw -= slot.Item.EquipInfo.ASW;
+                    los -= slot.Item.EquipInfo.LoS;
                 }
                 slots.Add(slot);
             }
@@ -162,6 +162,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             UpdateStatus();
         }
 
+        public bool FindEquipment(int itemid) => rawdata.api_slot.Contains(itemid) || (SlotEx.HasItem && SlotEx.Item.Id == itemid);
         public void SetRepaired()
         {
             RepairingHP = HP.Max;

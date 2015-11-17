@@ -15,6 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// 熟练度
         /// </summary>
         public int AirProficiency => rawdata.api_alv;
+        public Ship OnShip { get; set; }
         public Equipment() { }
         public Equipment(getmember_slotitem api) : base(api) { }
         public override string ToString()
@@ -23,6 +24,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (ImproveLevel > 0) s += $" ★+{ImproveLevel}";
             if (AirProficiency > 0) s += $" +{AirProficiency}";
             return s;
+        }
+        protected override void UpdateProp()
+        {
+            if (OnShip != null && !OnShip.FindEquipment(Id)) OnShip = null;
         }
     }
 }
