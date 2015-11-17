@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -12,5 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static T First<T>(this T[] array) => array[0];
         public static T Last<T>(this T[] array) => array[array.Length - 1];
+        public static bool HasItem<T>(this IEnumerable<T> source) => source?.Any() ?? false;
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => !source.HasItem();
     }
 }

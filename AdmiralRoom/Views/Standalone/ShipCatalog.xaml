@@ -123,6 +123,36 @@
                             </Button.Tag>
                         </Button>
                     </WrapPanel>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl ItemsSource="{Binding Filters}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="2" BorderThickness="1" CornerRadius="5" Padding="2" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.RowSpan="3" Text="{Binding Title}"/>
+                                            <RadioButton Grid.Column="1" Grid.Row="0" Content="全部" IsChecked="{Binding NoneSelected}"/>
+                                            <RadioButton Grid.Column="1" Grid.Row="1" Content="{Binding TrueText}" IsChecked="{Binding TrueSelected}"/>
+                                            <RadioButton Grid.Column="1" Grid.Row="2" Content="{Binding FalseText}" IsChecked="{Binding FalseSelected}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </StackPanel>
             </Border>
         </Expander>
