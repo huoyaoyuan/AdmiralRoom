@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
@@ -19,8 +16,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public static EquipmentCatalogWorker Instance { get; } = new EquipmentCatalogWorker();
 
         #region Groups
-        private IReadOnlyCollection<EquipmentGroup> _groups;
-        public IReadOnlyCollection<EquipmentGroup> Groups
+        private IEnumerable<EquipmentGroup> _groups;
+        public IEnumerable<EquipmentGroup> Groups
         {
             get { return _groups; }
             set
@@ -50,7 +47,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 group.Items.Add(item);
                 if (item.OnShip == null) group.Left++;
             }
-            Groups = d.Values.ToArray();
+            Groups = d.Values.OrderBy(x => x.Item.EquipType.Id).ThenBy(x => x.Item.Id).ToArray();
         }
     }
 }

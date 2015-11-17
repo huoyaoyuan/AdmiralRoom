@@ -3,14 +3,135 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
-        Height="800">
+        Height="800"
+        FontFamily="DengXian" FontSize="16">
     <Grid>
-        <ListView ItemsSource="{Binding ShownShips}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Expander IsExpanded="True" Header="筛选">
+            <Border Margin="2" BorderThickness="1" CornerRadius="5" Padding="2" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Margin="2" Content="全选" IsChecked="{Binding SelectAll}"/>
+                    <ItemsControl ItemsSource="{Binding ShipTypes}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding ShipType.DisplayName}" IsChecked="{Binding IsSelected}" Margin="2"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <WrapPanel Orientation="Horizontal">
+                        <Button Margin="2" Content="驱逐舰" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>2</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="轻巡/雷巡" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>3</sys:Int32>
+                                    <sys:Int32>4</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="重巡/航巡" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>5</sys:Int32>
+                                    <sys:Int32>6</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="巡洋舰" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>3</sys:Int32>
+                                    <sys:Int32>4</sys:Int32>
+                                    <sys:Int32>5</sys:Int32>
+                                    <sys:Int32>6</sys:Int32>
+                                    <sys:Int32>21</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="战舰" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>8</sys:Int32>
+                                    <sys:Int32>9</sys:Int32>
+                                    <sys:Int32>10</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="航空母舰" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>7</sys:Int32>
+                                    <sys:Int32>11</sys:Int32>
+                                    <sys:Int32>18</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="正规/装甲空母" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>11</sys:Int32>
+                                    <sys:Int32>18</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="潜水舰" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>13</sys:Int32>
+                                    <sys:Int32>14</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="航战/航巡" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>6</sys:Int32>
+                                    <sys:Int32>10</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                        <Button Margin="2" Content="特种舰" Click="SelectTypesCommand">
+                            <Button.Tag>
+                                <x:Array Type="sys:Int32">
+                                    <sys:Int32>16</sys:Int32>
+                                    <sys:Int32>17</sys:Int32>
+                                    <sys:Int32>19</sys:Int32>
+                                    <sys:Int32>20</sys:Int32>
+                                    <sys:Int32>21</sys:Int32>
+                                    <sys:Int32>22</sys:Int32>
+                                </x:Array>
+                            </Button.Tag>
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Expander>
+        <Expander Grid.Row="1" Header="排序">
+            <Border Margin="2" BorderThickness="1" CornerRadius="5" Padding="2" BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+
+            </Border>
+        </Expander>
+        <ListView Grid.Row="2" ItemsSource="{Binding ShownShips}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="id" DisplayMemberBinding="{Binding Id}"/>
@@ -24,7 +145,24 @@
                     <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Armor}"/>
                     <GridViewColumn Header="运" DisplayMemberBinding="{Binding Luck}"/>
                     <GridViewColumn Header="索敌" DisplayMemberBinding="{Binding LoS.Current}"/>
-                    <GridViewColumn Header="装备" DisplayMemberBinding="{Binding Slots}"/>
+                    <GridViewColumn Header="装备">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding Slots}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Height="16" Width="16" Source="{Binding Item.EquipInfo.Icon}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
