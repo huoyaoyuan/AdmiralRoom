@@ -186,6 +186,7 @@
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\APIModel.cs" />
+    <Compile Include="Models\EquipmentCatalogWorker.cs" />
     <Compile Include="Models\Exp.cs" />
     <Compile Include="Models\ShipCatalogWorker.cs" />
     <Compile Include="Models\Status.cs" />

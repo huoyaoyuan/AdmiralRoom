@@ -22,6 +22,9 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         public EquipmentCatalog()
         {
             InitializeComponent();
+            worker.Update();
+            this.DataContext = worker;
         }
+        Models.EquipmentCatalogWorker worker = Models.EquipmentCatalogWorker.Instance;
     }
 }
