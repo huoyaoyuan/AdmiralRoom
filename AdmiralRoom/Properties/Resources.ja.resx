@@ -147,4 +147,7 @@
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
   </data>
+  <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
+    <value>所有装備一覧</value>
+  </data>
 </root>

@@ -106,6 +106,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 所有装备一览 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_EquipmentCatalog {
+            get {
+                return ResourceManager.GetString("ViewTitle_EquipmentCatalog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 舰队 的本地化字符串。
         /// </summary>
         public static string ViewTitle_FleetView {

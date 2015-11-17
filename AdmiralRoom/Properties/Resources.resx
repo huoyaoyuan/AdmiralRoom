@@ -144,4 +144,7 @@
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有舰娘一览</value>
   </data>
+  <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
+    <value>所有装备一览</value>
+  </data>
 </root>

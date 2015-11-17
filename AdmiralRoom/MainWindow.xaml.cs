@@ -198,6 +198,9 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 w = Activator.CreateInstance(control.Tag as Type) as Window;
                 w.Closed += (_, __) => control.Tag = w.GetType();
+                Binding titlebinding = new Binding("Resources.ViewTitle_" + w.GetType().Name);
+                titlebinding.Source = ResourceService.Current;
+                w.SetBinding(TitleProperty, titlebinding);
                 control.Tag = w;
             }
             else w = control.Tag as Window;

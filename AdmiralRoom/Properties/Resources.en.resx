@@ -147,4 +147,7 @@
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>All Ships</value>
   </data>
+  <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
+    <value>All Equipments</value>
+  </data>
 </root>
