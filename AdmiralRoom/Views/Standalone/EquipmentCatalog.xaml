@@ -33,7 +33,7 @@
                     <GridViewColumn Header="装备舰船" Width="650">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Items}">
+                                <ItemsControl ItemsSource="{Binding Equipped}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel Orientation="Horizontal"/>
@@ -41,14 +41,22 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock>
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0}(Lv.{1}) ">
-                                                        <Binding Path="OnShip.ShipInfo.Name"/>
-                                                        <Binding Path="OnShip.Level"/>
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0}(Lv.{1}) ">
+                                                            <Binding Path="Key.ShipInfo.Name"/>
+                                                            <Binding Path="Key.Level"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                                <TextBlock x:Name="count" Text="{Binding Value, StringFormat=x{0}}" Margin="2,0,0,0" Opacity="0.6"/>
+                                            </StackPanel>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Value}" Value="1">
+                                                    <Setter TargetName="count" Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

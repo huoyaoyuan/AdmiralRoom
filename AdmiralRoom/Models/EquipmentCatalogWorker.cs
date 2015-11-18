@@ -10,7 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         {
             public EquipInfo Item { get; set; }
             public int Left { get; set; }
-            public List<Equipment> Items { get; set; }
+            public Dictionary<Ship, int> Equipped { get; set; }
         }
         private EquipmentCatalogWorker() { }
         public static EquipmentCatalogWorker Instance { get; } = new EquipmentCatalogWorker();
@@ -41,11 +41,15 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 EquipmentGroup group;
                 if (!d.TryGetValue(typeid, out group))
                 {
-                    group = new EquipmentGroup { Item = item.EquipInfo, Items = new List<Equipment>() };
+                    group = new EquipmentGroup { Item = item.EquipInfo, Equipped = new Dictionary<Ship, int>() };
                     d.Add(typeid, group);
                 }
-                group.Items.Add(item);
-                if (item.OnShip == null) group.Left++;
+                if (item.OnShip != null)
+                {
+                    if (group.Equipped.ContainsKey(item.OnShip)) group.Equipped[item.OnShip]++;
+                    else group.Equipped.Add(item.OnShip, 1);
+                }
+                else group.Left++;
             }
             Groups = d.Values.OrderBy(x => x.Item.EquipType.Id).ThenBy(x => x.Item.Id).ToArray();
         }
