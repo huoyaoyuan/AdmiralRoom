@@ -40,6 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Modernizable Torpedo { get; private set; }
         public Modernizable AA { get; private set; }
         public Modernizable Armor { get; private set; }
+        public bool IsMaxModernized => Firepower.IsMax && Torpedo.IsMax && AA.IsMax && Armor.IsMax;
         public Modernizable Luck { get; private set; }
         public LimitedValue Evasion { get; private set; }
         public LimitedValue ASW { get; private set; }
@@ -77,7 +78,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int RepairSteel => rawdata.api_ndock_item[1];
         public int MordenizeRate => rawdata.api_srate;
         public int Condition { get; private set; } = 49;
-        public bool Locked => rawdata.api_locked != 0;
+        public bool IsLocked => rawdata.api_locked != 0;
         public bool LockedEquip => rawdata.api_locked_equip != 0;
         public ShipInfo ShipInfo => Staff.Current.MasterData.ShipInfo[ShipId];
 

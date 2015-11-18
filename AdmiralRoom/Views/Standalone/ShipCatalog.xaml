@@ -143,7 +143,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.RowSpan="3" Text="{Binding Title}"/>
+                                            <TextBlock Grid.RowSpan="3" Text="{Binding Title}" VerticalAlignment="Center"/>
                                             <RadioButton Grid.Column="1" Grid.Row="0" Content="全部" IsChecked="{Binding NoneSelected}"/>
                                             <RadioButton Grid.Column="1" Grid.Row="1" Content="{Binding TrueText}" IsChecked="{Binding TrueSelected}"/>
                                             <RadioButton Grid.Column="1" Grid.Row="2" Content="{Binding FalseText}" IsChecked="{Binding FalseSelected}"/>
@@ -179,7 +179,7 @@
                     <GridViewColumn Header="装备">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Slots}">
+                                <ItemsControl ItemsSource="{Binding Item.Slots}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal"/>

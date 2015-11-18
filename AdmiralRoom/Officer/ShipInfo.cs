@@ -27,7 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public bool CanUpgrade => rawdata.api_aftershipid != 0;
         public int UpgradeLevel => rawdata.api_afterlv;
-        public int UpgradeTo => rawdata.api_aftershipid;
+        public ShipInfo UpgradeTo => Staff.Current.MasterData.ShipInfo[rawdata.api_aftershipid];
         public LimitedValue FirePower { get; private set; }
         public LimitedValue Torpedo { get; private set; }
         public LimitedValue AA { get; private set; }
