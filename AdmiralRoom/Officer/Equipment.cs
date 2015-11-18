@@ -16,6 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// </summary>
         public int AirProficiency => rawdata.api_alv;
         public Ship OnShip { get; set; }
+        public void SetNotOnShip() => OnShip = null;
         public Equipment() { }
         public Equipment(getmember_slotitem api) : base(api) { }
         public override string ToString()
