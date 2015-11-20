@@ -158,7 +158,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             Slots?.ForEach(x => x.Item?.SetNotOnShip());
             Slots = new ObservableCollection<Slot>(slots);
-            SlotEx.Item?.SetNotOnShip();
+            SlotEx?.Item?.SetNotOnShip();
             SlotEx = new Slot();
             if (rawdata.api_slot_ex == 0) SlotEx.IsLocked = true;
             else if (rawdata.api_slot_ex != -1) SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];

@@ -264,13 +264,26 @@
                         </TextBlock>
                     </StackPanel>
                 </Grid>
+                <DataTemplate.Resources>
+                    <Storyboard x:Key="endwarning">
+                        <DoubleAnimation Storyboard.TargetName="statuscolor"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="1" To="1" Duration="1"/>
+                    </Storyboard>
+                </DataTemplate.Resources>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding Status}" Value="Ready">
                         <Setter TargetName="statuscolor" Property="Fill" Value="SpringGreen"/>
                         <Setter TargetName="statustext" Property="Text" Value="出击准备完毕"/>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource endwarning}"/>
+                        </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NotReady">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Orange"/>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource endwarning}"/>
+                        </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding LowCondition}" Value="True">
                         <Setter TargetName="statustext" Property="Text">
@@ -297,7 +310,7 @@
                             <Setter.Value>
                                 <MultiBinding StringFormat="远征中 - {0} {1:hh\:mm\:ss}">
                                     <Binding Path="MissionInfo.Name"/>
-                                    <Binding Path="BackTimeRemain"/>
+                                    <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
@@ -331,13 +344,7 @@
                             </BeginStoryboard>
                         </DataTrigger.EnterActions>
                         <DataTrigger.ExitActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="statuscolor"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="1" To="1" Duration="1"/>
-                                </Storyboard>
-                            </BeginStoryboard>
+                            <BeginStoryboard Storyboard="{StaticResource endwarning}"/>
                         </DataTrigger.ExitActions>
                     </DataTrigger>
                 </DataTemplate.Triggers>
