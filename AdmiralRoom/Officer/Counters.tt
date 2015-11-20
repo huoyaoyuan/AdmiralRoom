@@ -7,17 +7,17 @@
 <#
 var counters = new[]
 {
-	"Charge,api_req_hokyu/charge,",
-	"Repair,api_req_nyukyo/start,",
-	"Sortie,api_req_map/start,",
-	"Battle,api_req_sortie/battleresult,",
-	"BattleWin,api_req_sortie/battleresult,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
-	"BattleSRank,api_req_sortie/battleresult,,sortie_battleresult,x.api_win_rank == \"S\"",
-	"Practice,api_req_practice/battle_result,",
-	"PracticeWin,api_req_practice/battle_result,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
-	"ItemDestroy,api_req_kousyou/destroyitem2,",
-	"Expedition,api_req_mission/result,,mission_result,x.api_clear_result>0",
-	"ExpeditionTokyo,api_req_mission/result,,mission_result,x.api_quest_name.Contains(\"東京急行\")"
+    "Charge,api_req_hokyu/charge,",
+    "Repair,api_req_nyukyo/start,",
+    "Sortie,api_req_map/start,",
+    "Battle,api_req_sortie/battleresult|api_req_combined_battle/battleresult,",
+    "BattleWin,api_req_sortie/battleresult|api_req_combined_battle/battleresult,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
+    "BattleSRank,api_req_sortie/battleresult|api_req_combined_battle/battleresult,,sortie_battleresult,x.api_win_rank == \"S\"",
+    "Practice,api_req_practice/battle_result,",
+    "PracticeWin,api_req_practice/battle_result,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
+    "ItemDestroy,api_req_kousyou/destroyitem2,",
+    "Expedition,api_req_mission/result,,mission_result,x.api_clear_result > 0",
+    "ExpeditionTokyo,api_req_mission/result,,mission_result,x.api_quest_name.Contains(\"東京急行\")"
 };
 #>
 using System.Collections.Specialized;
@@ -28,27 +28,34 @@ using Huoyaoyuan.AdmiralRoom.API;
 namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
 {
 <#
-	foreach (var line in counters)
-	{
-		var para = line.Split(',');
-		if (para[2] == "") para[2] = "Increase()";
+    foreach (var line in counters)
+    {
+        var para = line.Split(',');
+        if (para[2] == "") para[2] = "Increase()";
 #>
-	public class <#= para[0] #>Counter : CounterBase
-	{
-		private <#= para[0] #>Counter()
-		{
-			Staff.API("<#= para[1] #>")
+    public class <#= para[0] #>Counter : CounterBase
+    {
+        private <#= para[0] #>Counter()
+        {
 <#
-		if (para.Length >= 5)
-		{
-#>				.Where<<#= para[3] #>>(x => <#= para[4] #>)
+        foreach (var api in para[1].Split('|'))
+        {
+#>
+            Staff.API("<#= api #>")
 <#
-		}
-#>				.Subscribe<# if (para.Length == 4){ #><<#= para[3] #>><# } #>((<#if (para.Length == 3){#>Session <#} #>x) => <#= para[2] #>);
-		}
-		public static <#= para[0] #>Counter Instance { get; } = new <#= para[0] #>Counter();
-	}
+        if (para.Length >= 5)
+        {
+#>                .Where<<#= para[3] #>>(x => <#= para[4] #>)
 <#
-	}
+        }
+#>                .Subscribe<# if (para.Length == 4){ #><<#= para[3] #>><# } #>((<#if (para.Length == 3){#>Session <#} #>x) => <#= para[2] #>);
+<#
+        }
+#>
+        }
+        public static <#= para[0] #>Counter Instance { get; } = new <#= para[0] #>Counter();
+    }
+<#
+    }
 #>
 }
