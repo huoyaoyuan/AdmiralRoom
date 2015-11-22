@@ -25,7 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 InSortie = true;
                 sortiefleet1 = Staff.Current.Homeport.Fleets[x.GetInt("api_deck_id")];
                 sortiefleet1.InSortie = true;
-                if (Staff.Current.Homeport.CombinedFleet > 0)
+                if (sortiefleet1.Id == 1 && Staff.Current.Homeport.CombinedFleet > 0)
                 {
                     sortiefleet2 = Staff.Current.Homeport.Fleets[2];
                     sortiefleet2.InSortie = true;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -91,7 +92,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Session oSession = o as Session;
             signal.Wait();
-            foreach (string key in apisource.Keys)
+            foreach (string key in apisource.Keys.ToArray())
                 if (oSession.PathAndQuery.EndsWith(key))
                     Parallel.ForEach(apisource[key].Handler.GetInvocationList(), x => ExceptionCatcher(x as Action<Session>, oSession));
             signal.Release();
