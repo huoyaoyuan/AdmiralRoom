@@ -109,7 +109,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch (Exception ex)
             {
-                Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.StackTrace, ex.Message));
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(ex, true);
+                StringBuilder sb = new StringBuilder();
+                foreach (var frame in trace.GetFrames())
+                {
+                    sb.AppendLine(frame.GetMethod().Name.ToString());
+                    sb.Append(frame.GetFileName());
+                    sb.Append(" 行：");
+                    sb.AppendLine(frame.GetFileLineNumber().ToString());
+                }
+                Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(sb.ToString(), ex.Message));
             }
 #endif
         }

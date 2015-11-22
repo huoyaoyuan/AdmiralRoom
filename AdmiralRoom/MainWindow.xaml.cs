@@ -134,7 +134,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             MakeViewList(DockMan.Layout);
         }
-        private void SaveLayout(object sender, RoutedEventArgs e)
+        private void SaveLayout(object sender, EventArgs e)
         {
             var s = new XmlLayoutSerializer(DockMan);
             s.Serialize("layout.xml");

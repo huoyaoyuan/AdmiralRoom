@@ -14,7 +14,7 @@
                      mc:Ignorable="d"
                      FontFamily="DengXian"
                      FontSize="15"
-                     Loaded="LoadLayout" Unloaded="SaveLayout"
+                     Loaded="LoadLayout" Closed="SaveLayout"
                      Title="提督の部屋">
     <Grid>
         <Grid.RowDefinitions>
