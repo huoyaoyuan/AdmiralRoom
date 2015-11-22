@@ -314,6 +314,9 @@
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource endwarning}"/>
+                        </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InSortie">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>
@@ -327,6 +330,9 @@
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource endwarning}"/>
+                        </DataTrigger.EnterActions>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Warning">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>

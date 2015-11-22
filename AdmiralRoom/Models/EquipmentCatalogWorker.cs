@@ -9,6 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public class EquipmentGroup
         {
             public EquipInfo Item { get; set; }
+            public int Count { get; set; }
             public int Left { get; set; }
             public Dictionary<Ship, int> Equipped { get; set; }
         }
@@ -44,6 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                     group = new EquipmentGroup { Item = item.EquipInfo, Equipped = new Dictionary<Ship, int>() };
                     d.Add(typeid, group);
                 }
+                group.Count++;
                 if (item.OnShip != null)
                 {
                     if (group.Equipped.ContainsKey(item.OnShip)) group.Equipped[item.OnShip]++;

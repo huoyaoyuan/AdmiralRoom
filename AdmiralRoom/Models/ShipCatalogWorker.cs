@@ -142,7 +142,10 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             }
             set
             {
+                disableupdate = true;
                 ShipTypes.ForEach(x => x.IsSelected = value.Value);
+                disableupdate = false;
+                Update();
                 OnPropertyChanged();
             }
         }
@@ -158,8 +161,10 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         {
             ShipTypes = Staff.Current.MasterData.ShipTypes?.Select(x => new ShipTypeSelector(x, this)).ToArray() ?? new ShipTypeSelector[0];
         }
+        private bool disableupdate = false;
         public void Update()
         {
+            if (disableupdate) return;
             IEnumerable<Ship> baseships = Staff.Current.Homeport.Ships;
             if (baseships == null) return;
             int[] typeid = ShipTypes.Where(x => x.IsSelected).Select(x => x.ShipType.Id).ToArray();
@@ -169,10 +174,13 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         }
         public void SelectTypes(int[] types)
         {
+            disableupdate = true;
             foreach (var selector in ShipTypes)
             {
                 selector.IsSelected = types.Contains(selector.ShipType.Id);
             }
+            disableupdate = false;
+            Update();
         }
     }
 }

@@ -181,6 +181,7 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             Button control = sender as Button;
             Type windowtype = control.Tag as Type;
+            if (windowtype == null) return;
 
             control.Content = windowtype.Name;
             Binding titlebinding = new Binding("Resources.ViewTitle_" + windowtype.Name);
