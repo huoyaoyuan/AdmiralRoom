@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
@@ -96,7 +97,75 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 Source.Update();
             }
         }
-        private ShipCatalogWorker() { Filters.ForEach(x => x.Source = this); }
+        public class ShipSortColumn
+        {
+            public string Name { get; set; } = "（无）";
+            public Func<Ship, Ship, int> Comparer { get; set; } = (_, __) => 0;
+            public bool IsDefaultDescend { get; set; }
+            public override string ToString() => Name;
+        }
+        public class ShipSortSelector : NotificationObject
+        {
+            public ShipCatalogWorker Source { get; set; }
+            public ShipSortColumn Sorter => Source.Sortings[SelectedIndex];
+            public bool IsDescend => DescendBoxIndex == 1;
+
+            #region SelectedIndex
+            private int _selectedindex = 0;
+            public int SelectedIndex
+            {
+                get { return _selectedindex; }
+                set
+                {
+                    if (_selectedindex != value)
+                    {
+                        bool islast = Source.Selectors.IndexOf(this) == Source.Selectors.Count - 1;
+                        if (value == 0 & !islast)
+                        {
+                            Source.Selectors.Remove(this);
+                            return;
+                        }
+                        if (value != 0 && islast)
+                            Source.Selectors.Add(new ShipSortSelector { Source = this.Source });
+                        _selectedindex = value;
+                        OnAllPropertyChanged();
+                    }
+                }
+            }
+            #endregion
+
+            #region DescendBoxIndex
+            private int _descendboxindex = -1;
+            public int DescendBoxIndex
+            {
+                get
+                {
+                    if (_descendboxindex == -1)
+                        _descendboxindex = Sorter.IsDefaultDescend ? 1 : 0;
+                    return _descendboxindex;
+                }
+                set
+                {
+                    if (_descendboxindex != value)
+                    {
+                        _descendboxindex = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+            #endregion
+
+            protected override void OnAllPropertyChanged()
+            {
+                base.OnAllPropertyChanged();
+                Source.Update();
+            }
+        }
+        private ShipCatalogWorker()
+        {
+            Filters.ForEach(x => x.Source = this);
+            Selectors = new ObservableCollection<ShipSortSelector> { new ShipSortSelector { Source = this } };
+        }
         public static ShipCatalogWorker Instance { get; } = new ShipCatalogWorker();
 
         #region ShownShips
@@ -157,6 +226,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             new ShipFilter { Title = "改造", TrueText = "改造完毕", FalseText = "改造未完", Value = null, Filter = x => !x.ShipInfo.CanUpgrade },
             new ShipFilter { Title = "近代化改修", TrueText = "改修完毕", FalseText = "改修未完", Value = null, Filter = x => x.IsMaxModernized }
         };
+        public ShipSortColumn[] Sortings { get; }
+        public ObservableCollection<ShipSortSelector> Selectors { get; }
         public void Initialize()
         {
             ShipTypes = Staff.Current.MasterData.ShipTypes?.Select(x => new ShipTypeSelector(x, this)).ToArray() ?? new ShipTypeSelector[0];
