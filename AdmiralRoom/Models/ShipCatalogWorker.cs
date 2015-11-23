@@ -93,7 +93,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public class ShipSortColumn
         {
             public string Name { get; set; } = "（无）";
-            public Func<Ship, Ship, int> Comparer { get; set; } = (_, __) => 0;
+            public Func<Ship, int> KeySelector { get; set; } = x => 0;
             public bool IsDefaultDescend { get; set; }
             public override string ToString() => Name;
         }
@@ -111,15 +111,16 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 {
                     if (_selectedindex != value)
                     {
-                        bool islast = Source.Selectors.IndexOf(this) == Source.Selectors.Count - 1;
-                        if (value == 0 & !islast)
+                        if (Source?.Selectors != null)
                         {
-                            Source.Selectors.Remove(this);
-                            return;
+                            bool islast = Source.Selectors.IndexOf(this) == Source.Selectors.Count - 1;
+                            if (value == 0 & !islast)
+                                Source.Selectors.Remove(this);
+                            if (value != 0 && islast)
+                                Source.Selectors.Add(new ShipSortSelector { Source = this.Source });
                         }
-                        if (value != 0 && islast)
-                            Source.Selectors.Add(new ShipSortSelector { Source = this.Source });
                         _selectedindex = value;
+                        _descendboxindex = -1;
                         OnAllPropertyChanged();
                     }
                 }
@@ -151,7 +152,12 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         private ShipCatalogWorker()
         {
             Filters.ForEach(x => x.Source = this);
-            Selectors = new ObservableCollection<ShipSortSelector> { new ShipSortSelector { Source = this } };
+            Selectors = new ObservableCollection<ShipSortSelector>
+            {
+                new ShipSortSelector { Source = this, SelectedIndex = 2 },
+                new ShipSortSelector { Source = this }
+            };
+            ready = true;
         }
         public static ShipCatalogWorker Instance { get; } = new ShipCatalogWorker();
 
@@ -198,9 +204,9 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             }
             set
             {
-                disableupdate = true;
+                ready = false;
                 ShipTypes.ForEach(x => x.IsSelected = value.Value);
-                disableupdate = false;
+                ready = true;
                 Update();
                 OnPropertyChanged();
             }
@@ -213,31 +219,51 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             new ShipFilter { Title = "改造", TrueText = "改造完毕", FalseText = "改造未完", Value = null, Filter = x => !x.ShipInfo.CanUpgrade },
             new ShipFilter { Title = "近代化改修", TrueText = "改修完毕", FalseText = "改修未完", Value = null, Filter = x => x.IsMaxModernized }
         };
-        public ShipSortColumn[] Sortings { get; }
+        public ShipSortColumn[] Sortings { get; } =
+        {
+            new ShipSortColumn(),
+            new ShipSortColumn { Name = "Id", KeySelector = x => x.Id, IsDefaultDescend = false },
+            new ShipSortColumn { Name = "等级与经验", KeySelector = x => x.Exp.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "舰种", KeySelector = x => x.ShipInfo.ShipType.SortNo, IsDefaultDescend = false },
+            new ShipSortColumn { Name = "舰名", KeySelector = x => x.ShipInfo.SortNo, IsDefaultDescend = false },
+            new ShipSortColumn { Name = "疲劳", KeySelector = x => x.Condition, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "火力", KeySelector = x => x.Firepower.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "雷装", KeySelector = x => x.Torpedo.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "对空", KeySelector = x => x.AA.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "装甲", KeySelector = x => x.Armor.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "运", KeySelector = x => x.Luck.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "回避", KeySelector = x => x.Evasion.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "对潜", KeySelector = x => x.ASW.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "索敌", KeySelector = x => x.LoS.Current, IsDefaultDescend = true },
+            new ShipSortColumn { Name = "修理时间", KeySelector = x => (int)x.RepairTime.TotalSeconds, IsDefaultDescend = true }
+        };
         public ObservableCollection<ShipSortSelector> Selectors { get; }
         public void Initialize()
         {
             ShipTypes = Staff.Current.MasterData.ShipTypes?.Select(x => new ShipTypeSelector(x, this)).ToArray() ?? new ShipTypeSelector[0];
         }
-        private bool disableupdate = false;
+        private bool ready = false;
         public void Update()
         {
-            if (disableupdate) return;
+            if (!ready) return;
             IEnumerable<Ship> baseships = Staff.Current.Homeport.Ships;
             if (baseships == null) return;
             int[] typeid = ShipTypes.Where(x => x.IsSelected).Select(x => x.ShipType.Id).ToArray();
             baseships = baseships.Where(x => typeid.Contains(x.ShipInfo.ShipType.Id));
             Filters.ForEach(x => baseships = x.Apply(baseships));
-            ShownShips = baseships.Select(ItemWithIndex<Ship>.Generator).ToArray();
+            Ship[] sortedships = baseships.ToArray();
+            MultiComparer<Ship> comparer = new MultiComparer<Ship> { Selectors = Selectors.TakeWhile(x => x.SelectedIndex != 0).Select(x => new Tuple<Func<Ship, int>, bool>(x.Sorter.KeySelector, x.IsDescend)) };
+            Array.Sort(sortedships, comparer);
+            ShownShips = sortedships.Select(ItemWithIndex<Ship>.Generator).ToArray();
         }
         public void SelectTypes(int[] types)
         {
-            disableupdate = true;
+            ready = false;
             foreach (var selector in ShipTypes)
             {
                 selector.IsSelected = types.Contains(selector.ShipType.Id);
             }
-            disableupdate = false;
+            ready = true;
             Update();
         }
     }
