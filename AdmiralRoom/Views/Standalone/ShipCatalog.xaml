@@ -187,7 +187,9 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Image Height="16" Width="16" Source="{Binding Item.EquipInfo.Icon}"/>
+                                            <Canvas Height="15" Width="15" ToolTip="{Binding}">
+                                                <Image Source="{Binding Item.EquipInfo.Icon}" Height="20" Width="20" Canvas.Left="-2.5" Canvas.Top="-2.5"/>
+                                            </Canvas>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

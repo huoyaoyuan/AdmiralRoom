@@ -236,6 +236,14 @@
                         <TextBlock Text="{Binding RepairCost[0]}"/>
                         <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/Steel.png"/>
                         <TextBlock Text="{Binding RepairCost[1]}"/>
+                        <TextBlock Margin="10,0,0,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="疲劳恢复 {0:hh\:mm\:ss} (±{1}s)">
+                                    <Binding Path="ConditionTimeRemain"/>
+                                    <Binding Path="ConditionTimeOffset"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Row="3" Orientation="Horizontal">
                         <TextBlock>

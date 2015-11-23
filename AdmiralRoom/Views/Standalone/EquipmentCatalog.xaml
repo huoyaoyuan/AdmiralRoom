@@ -18,7 +18,9 @@
                     <GridViewColumn Header="">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Item.Icon}" Height="16" Width="16"/>
+                                <Canvas Height="15" Width="15">
+                                    <Image Source="{Binding Item.Icon}" Height="20" Width="20" Canvas.Left="-2.5" Canvas.Top="-2.5"/>
+                                </Canvas>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
