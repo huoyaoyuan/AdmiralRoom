@@ -6,11 +6,10 @@ using Huoyaoyuan.AdmiralRoom.Officer;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class ShipCatalogWorker : NotificationObject
+    class ShipCatalogWorker : NotificationObject, IUpdatable
     {
-        public class ShipTypeSelector : NotificationObject
+        public class ShipTypeSelector : NotifySourceObject<ShipCatalogWorker>
         {
-            ShipCatalogWorker Source;
             public ShipType ShipType { get; private set; }
             public ShipTypeSelector(ShipType type, ShipCatalogWorker source) { ShipType = type; Source = source; }
 
@@ -33,9 +32,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             #endregion
 
         }
-        public class ShipFilter : NotificationObject
+        public class ShipFilter : NotifySourceObject<ShipCatalogWorker>
         {
-            public ShipCatalogWorker Source { get; set; }
             public string Title { get; set; }
             public string TrueText { get; set; }
             public string FalseText { get; set; }
@@ -91,11 +89,6 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 if (!Value.HasValue) return source;
                 else return Value.Value ? source.Where(Filter) : source.Where(x => !Filter(x));
             }
-            protected override void OnAllPropertyChanged()
-            {
-                base.OnAllPropertyChanged();
-                Source.Update();
-            }
         }
         public class ShipSortColumn
         {
@@ -104,9 +97,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             public bool IsDefaultDescend { get; set; }
             public override string ToString() => Name;
         }
-        public class ShipSortSelector : NotificationObject
+        public class ShipSortSelector : NotifySourceObject<ShipCatalogWorker>
         {
-            public ShipCatalogWorker Source { get; set; }
             public ShipSortColumn Sorter => Source.Sortings[SelectedIndex];
             public bool IsDescend => DescendBoxIndex == 1;
 
@@ -155,11 +147,6 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             }
             #endregion
 
-            protected override void OnAllPropertyChanged()
-            {
-                base.OnAllPropertyChanged();
-                Source.Update();
-            }
         }
         private ShipCatalogWorker()
         {

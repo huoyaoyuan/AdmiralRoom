@@ -173,6 +173,7 @@
     <Compile Include="API\svdata.cs" />
     <Compile Include="Common\CollectionEx.cs" />
     <Compile Include="Common\DateTimeEx.cs" />
+    <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConstData.cs" />
@@ -212,7 +213,7 @@
     <Compile Include="Officer\EquipType.cs" />
     <Compile Include="Officer\Fleet.cs" />
     <Compile Include="Officer\General\GameObject.cs" />
-    <Compile Include="Officer\General\IUpdatable.cs" />
+    <Compile Include="Common\IUpdatable.cs" />
     <Compile Include="Officer\Homeport.cs" />
     <Compile Include="Officer\General\IDTable.cs" />
     <Compile Include="Officer\General\IIdentifiable.cs" />
