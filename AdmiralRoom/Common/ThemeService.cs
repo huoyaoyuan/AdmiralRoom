@@ -11,23 +11,23 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             ["Office 2010 Silver"] = new[]
             {
-                "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2010/Silver.xaml"
+                "Fluent;Component/Themes/Generic.xaml",
+                "Fluent;Component/Themes/Office2010/Silver.xaml"
             },
             ["Office 2010 Black"] = new[]
             {
-                "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2010/Black.xaml"
+                "Fluent;Component/Themes/Generic.xaml",
+                "Fluent;Component/Themes/Office2010/Black.xaml"
             },
             ["Office 2010 Blue"] = new[]
             {
-                "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2010/Blue.xaml"
+                "Fluent;Component/Themes/Generic.xaml",
+                "Fluent;Component/Themes/Office2010/Blue.xaml"
             },
             ["Office 2013"] = new[]
             {
-                "pack://application:,,,/Fluent;Component/Themes/Generic.xaml",
-                "pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml"
+                "Fluent;Component/Themes/Generic.xaml",
+                "Fluent;Component/Themes/Office2013/Generic.xaml"
             }
         };
         public static IReadOnlyCollection<string> SupportedThemes => themes.Keys;
@@ -71,12 +71,22 @@ namespace Huoyaoyuan.AdmiralRoom
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
                 Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("AdmiralRoom;component/themes/aero.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                Application.Current.MainWindow.SetTheme("Aero", new[]
+                {
+                    "PresentationFramework.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aero.normalcolor.xaml",
+                    "AdmiralRoom;component/themes/aero.normalcolor.xaml"
+                });
             }
             else
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                Application.Current.MainWindow.SetTheme("Aero", new[]
+                {
+                    "PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml",
+                });
             }
+            Application.Current.MainWindow.SetThemePrior("Aero");
         }
     }
 }
