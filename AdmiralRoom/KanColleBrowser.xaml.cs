@@ -42,20 +42,23 @@ namespace Huoyaoyuan.AdmiralRoom
         private static readonly Size browserSize = new Size(960.0, 572.0);
         private static readonly int OriginDpi = 96;
         private bool styleSheetApplied;
+        private double zoomFactor = 1;
 
         public WebBrowser Browser => this.WebBrowser;
 
         public KanColleBrowser()
         {
             InitializeComponent();
+            WebBrowser.Navigated += (_, __) => ApplyZoomFactor(zoomFactor);
             WebBrowser.LoadCompleted += HandleLoadCompleted;
+            SetSilence(true);
+            SetAllowDrop(false);
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)
         {
             this.ApplyStyleSheet();
-            //WebBrowserHelper.SetScriptErrorsSuppressed(this.WebBrowser, true);
 
-            this.Update();
+            this.UpdateSize();
 
             var window = Window.GetWindow(this.WebBrowser);
             if (window != null)
@@ -63,13 +66,13 @@ namespace Huoyaoyuan.AdmiralRoom
                 window.Width = this.WebBrowser.Width;
             }
         }
-        private void Update()
+        private void UpdateSize()
         {
             Size dpi = GetSystemDpi();
             if (styleSheetApplied)
             {
-                this.WebBrowser.Width = kanColleSize.Width * OriginDpi / dpi.Width;
-                this.WebBrowser.Height = kanColleSize.Height * OriginDpi / dpi.Height;
+                this.WebBrowser.Width = kanColleSize.Width * zoomFactor * OriginDpi / dpi.Width;
+                this.WebBrowser.Height = kanColleSize.Height * zoomFactor * OriginDpi / dpi.Height;
                 //this.WebBrowser.Width = this.WebBrowser.MinWidth;
                 //this.WebBrowser.Height = this.WebBrowser.MinHeight;
             }
@@ -111,11 +114,17 @@ namespace Huoyaoyuan.AdmiralRoom
         private static Size GetSystemDpi()
         {
             Size dpi;
-            using (var graphics = System.Drawing.Graphics.FromHwnd(IntPtr.Zero))
+            using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
             {
                 dpi = new Size(graphics.DpiX, graphics.DpiY);
             }
             return dpi;
+        }
+        private static double GetSystemDpiRate()
+        {
+            var dpi = GetSystemDpi();
+            if (dpi.Height == dpi.Width) return dpi.Height / OriginDpi;
+            else return 1;
         }
 
         /// <remarks>
@@ -218,6 +227,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public void ApplyZoomFactor(double zoomFactor)
         {
+            this.zoomFactor = zoomFactor;
             try
             {
                 var provider = this.WebBrowser.Document as IServiceProvider;
@@ -228,15 +238,23 @@ namespace Huoyaoyuan.AdmiralRoom
                 var webBrowser = ppvObject as IWebBrowser2;
                 if (webBrowser == null) return;
 
-                object pvaIn = zoomFactor;
+                object pvaIn = (int)(zoomFactor * GetSystemDpiRate() * 100);
                 webBrowser.ExecWB(OLECMDID.OLECMDID_OPTICAL_ZOOM, OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, ref pvaIn);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
+            UpdateSize();
         }
-        public void SetSilence(bool issilence)
+        void SetAllowDrop(bool allowdrop)
+        {
+            var axIWebBrowser2Prop = typeof(WebBrowser).GetProperty("AxIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
+            dynamic axIWebBrowser2 = axIWebBrowser2Prop.GetValue(this.WebBrowser);
+            axIWebBrowser2.RegisterAsDropTarget = allowdrop;
+            //axIWebBrowser2.GetType().InvokeMember("RegisterAsDropTarget", BindingFlags.SetProperty, null, axIWebBrowser2, new object[] { false });
+        }
+        void SetSilence(bool issilence)
         {
             var axIWebBrowser2Prop = typeof(WebBrowser).GetProperty("AxIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
             dynamic axIWebBrowser2 = axIWebBrowser2Prop.GetValue(this.WebBrowser);

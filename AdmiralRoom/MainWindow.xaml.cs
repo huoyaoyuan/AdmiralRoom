@@ -210,5 +210,8 @@ namespace Huoyaoyuan.AdmiralRoom
             w.Show();
             w.Activate();
         }
+
+        private void SetBrowserZoomFactor(object sender, RoutedPropertyChangedEventArgs<double> e)
+            => this.GameHost.ApplyZoomFactor(e.NewValue);
     }
 }

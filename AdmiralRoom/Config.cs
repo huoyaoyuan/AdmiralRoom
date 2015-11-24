@@ -170,6 +170,22 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region BrowserZoomFactor
+        private double _browserzoomfactor;
+        public double BrowserZoomFactor
+        {
+            get { return _browserzoomfactor; }
+            set
+            {
+                if (_browserzoomfactor != value)
+                {
+                    _browserzoomfactor = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         #region ScreenShotFolder
         private string _screenshotfolder;
         public string ScreenShotFolder
@@ -286,6 +302,7 @@ namespace Huoyaoyuan.AdmiralRoom
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
             _prefertoast = ToastNotifier.IsSupported;
+            _browserzoomfactor = 1;
             _screenshotfolder = Path.Combine(Environment.CurrentDirectory, "ScreenShots");
             _screenshotnameformat = "KanColle-{0}";
             _screenshotfileformat = "png";

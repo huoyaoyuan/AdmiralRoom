@@ -205,6 +205,16 @@
         <ribbon:StatusBar Grid.Row="2" FontSize="18" DataContext="{x:Static Models:Status.Current}">
             <ribbon:StatusBarItem HorizontalAlignment="Left" Content="{Binding StatusText}"/>
             <Separator HorizontalAlignment="Left"/>
+            <ribbon:StatusBarItem HorizontalAlignment="Right" Margin="0,0,10,0">
+                <TextBlock Text="{Binding BrowserZoomFactor, StringFormat={}{0:P0}, Source={x:Static local:Config.Current}}"/>
+            </ribbon:StatusBarItem>
+            <ribbon:StatusBarItem HorizontalAlignment="Right">
+                <Slider Width="100" Minimum="0.5" Maximum="2"
+                        IsSnapToTickEnabled="True"
+                        Ticks="0.5,0.75,1,1.25,1.5,1.75,2"
+                        Value="{Binding BrowserZoomFactor, Source={x:Static local:Config.Current}}"
+                        ValueChanged="SetBrowserZoomFactor"/>
+            </ribbon:StatusBarItem>
         </ribbon:StatusBar>
     </Grid>
 </ribbon:RibbonWindow>
