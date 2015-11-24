@@ -50,8 +50,8 @@ namespace Huoyaoyuan.AdmiralRoom
             NoDWM.Click += (s, _) => this.DontUseDwm = (s as CheckBox).IsChecked.Value;
             NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;
             Themes.ItemsSource = ThemeService.SupportedThemes;
-            Themes.SelectionChanged += (s, _) => ThemeService.ChangeTheme((s as ComboBox).SelectedValue.ToString());
-            ThemeService.ChangeTheme(Themes.SelectedValue.ToString());
+            Themes.SelectionChanged += (s, _) => ThemeService.ChangeRibbonTheme((s as ComboBox).SelectedValue.ToString());
+            ThemeService.ChangeRibbonTheme(Themes.SelectedValue.ToString());
             UseAeroControl.Click += (s, _) => ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
             UseAeroControl.IsChecked = Config.Current.Aero;
             ThemeService.EnableAeroControls(Config.Current.Aero);

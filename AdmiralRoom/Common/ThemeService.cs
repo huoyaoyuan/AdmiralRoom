@@ -31,20 +31,21 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         };
         public static IReadOnlyCollection<string> SupportedThemes => themes.Keys;
-        public static void ChangeTheme(string theme)
+        public static void ChangeRibbonTheme(string theme)
         {
             Window window = Application.Current.MainWindow;
             try
             {
                 var themeres = themes[theme];
-                window.Resources.MergedDictionaries.Clear();
-                foreach (var resname in themeres)
-                {
-                    var res = new ResourceDictionary { Source = new Uri(resname) };
-                    window.Resources.MergedDictionaries.Add(res);
-                }
+                //window.Resources.MergedDictionaries.Clear();
+                //foreach (var resname in themeres)
+                //{
+                //    var res = new ResourceDictionary { Source = new Uri(resname) };
+                //    window.Resources.MergedDictionaries.Add(res);
+                //}
+                window.SetTheme("Ribbon", themeres);
             }
-            catch { ChangeTheme(SupportedThemes.First()); }
+            catch { ChangeRibbonTheme(SupportedThemes.First()); }
         }
         public static void SetDontUseDwm(bool dontuse)
         {
