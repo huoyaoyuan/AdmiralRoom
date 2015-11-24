@@ -5,7 +5,6 @@ using System.Globalization;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    [Serializable]
     public class Config : NotificationObject
     {
         public static Config Current { get; set; } = new Config();
@@ -171,6 +170,90 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region ScreenShotFolder
+        private string _screenshotfolder;
+        public string ScreenShotFolder
+        {
+            get { return _screenshotfolder; }
+            set
+            {
+                if (_screenshotfolder != value)
+                {
+                    _screenshotfolder = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region ScreenShotNameFormat
+        private string _screenshotnameformat;
+        public string ScreenShotNameFormat
+        {
+            get { return _screenshotnameformat; }
+            set
+            {
+                if (_screenshotnameformat != value)
+                {
+                    if (!value.Contains("{0}")) value = value + "{0}";
+                    _screenshotnameformat = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region ScreenShotFileFormat
+        private string _screenshotfileformat;
+        public string ScreenShotFileFormat
+        {
+            get { return _screenshotfileformat; }
+            set
+            {
+                if (_screenshotfileformat != value)
+                {
+                    _screenshotfileformat = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        [XmlIgnore]
+        public bool IsScreenShotJpg
+        {
+            get
+            {
+                return ScreenShotFileFormat.ToLower() == "jpg";
+            }
+            set
+            {
+                if (value)
+                {
+                    ScreenShotFileFormat = "jpg";
+                }
+                OnPropertyChanged();
+                OnPropertyChanged("IsScreenShotPng");
+            }
+        }
+
+        [XmlIgnore]
+        public bool IsScreenShotPng
+        {
+            get
+            {
+                return ScreenShotFileFormat.ToLower() == "png";
+            }
+            set
+            {
+                if (value)
+                {
+                    ScreenShotFileFormat = "png";
+                }
+                OnPropertyChanged();
+                OnPropertyChanged("IsScreenShotJpg");
+            }
+        }
         public Config()
         {
             _theme = "Office 2013";
@@ -203,6 +286,9 @@ namespace Huoyaoyuan.AdmiralRoom
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
             _prefertoast = ToastNotifier.IsSupported;
+            _screenshotfolder = Path.Combine(Environment.CurrentDirectory, "ScreenShots");
+            _screenshotnameformat = "KanColle-{0}";
+            _screenshotfileformat = "png";
         }
         public static Config Load()
         {
@@ -228,5 +314,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch { }
         }
+        public string GenerateScreenShotFileName() =>
+            Path.Combine(ScreenShotFolder, string.Format(ScreenShotNameFormat, DateTime.Now.ToString("yyMMdd-HHmmssff")) + "." + ScreenShotFileFormat.ToLower());
     }
 }

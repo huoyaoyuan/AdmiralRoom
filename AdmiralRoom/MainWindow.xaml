@@ -33,7 +33,12 @@
             <ribbon:Ribbon.Menu>
                 <ribbon:Backstage Header="提督の部屋" KeyTip="H">
                     <ribbon:BackstageTabControl>
-                        <ribbon:BackstageTabItem Header="关于"/>
+                        <ribbon:BackstageTabItem Header="选项" KeyTip="O">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                <Views:Settings DataContext="{x:Static local:Config.Current}"/>
+                            </ScrollViewer>
+                        </ribbon:BackstageTabItem>
+                        <ribbon:BackstageTabItem Header="关于" KeyTip="A"/>
                     </ribbon:BackstageTabControl>
                 </ribbon:Backstage>
             </ribbon:Ribbon.Menu>
@@ -50,6 +55,7 @@
                     <ribbon:ToggleButton Header="静音" KeyTip="M"
                                          IsChecked="{Binding Volume.IsMute, Source={x:Static Models:Status.Current}}"
                                          IsEnabled="{Binding IsGameLoaded, Source={x:Static Models:Status.Current}}"/>
+                    <ribbon:Button Header="截图" KeyTip="S" x:Name="ScreenShotButton"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="代理">
                     <Grid>

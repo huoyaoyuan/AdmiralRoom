@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=root:Config}">
+    <Grid>
+        <GroupBox Header="截图" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="2">截图文件夹：</TextBlock>
+                    <TextBox Margin="2" Width="200" Text="{Binding ScreenShotFolder}"/>
+                    <Button Margin="2" Click="SelectScreenFolder">选择</Button>
+                    <Button Margin="2" Click="OpenScreenShotFolder">打开</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton IsChecked="{Binding IsScreenShotPng}" Margin="2">PNG</RadioButton>
+                    <RadioButton IsChecked="{Binding IsScreenShotJpg}" Margin="2">JPG</RadioButton>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

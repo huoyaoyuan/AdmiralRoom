@@ -98,6 +98,8 @@ namespace Huoyaoyuan.AdmiralRoom
             FontLarge.Click += (_, __) => this.FontSize += 1;
             FontSmall.Click += (_, __) => this.FontSize -= 1;
 
+            ScreenShotButton.Click += (_, __) => GameHost.TakeScreenShot(Config.Current.GenerateScreenShotFileName());
+
             this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
             this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
