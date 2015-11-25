@@ -105,7 +105,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             try
             {
 #endif
-                action(parameter);
+            action(parameter);
 #if DEBUG == false
             }
             catch (Exception ex)
@@ -142,12 +142,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 API.APIData<T> svdata;
                 if (x.TryParse(out svdata)) handler(svdata.Request, svdata.Data);
             });
-            public void SubscribeDynamic(Action<dynamic> handler) => Subscribe(x => handler(x.ParseDynamic().Data));
+            public void SubscribeDynamic(Action<dynamic> handler) => Subscribe(x =>
+            {
+                API.APIData<dynamic> svdata;
+                if (x.TryParseDynamic(out svdata)) handler(svdata.Request);
+            });
             public void SubscribeDynamic(Action<NameValueCollection, dynamic> handler) => Subscribe(x =>
-               {
-                   var svdata = x.ParseDynamic();
-                   handler(svdata.Request, svdata.Data);
-               });
+            {
+                API.APIData<dynamic> svdata;
+                if (x.TryParseDynamic(out svdata)) handler(svdata.Request, svdata.Data);
+            });
             public SubObservable<T> Where<T>(Func<T, bool> selector) => new SubObservable<T>() { Parent = this, Selector = selector };
         }
         public class SubObservable<T>

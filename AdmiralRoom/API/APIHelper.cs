@@ -40,7 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom
             try
             {
                 result = oSession.Parse();
-                return true;
+                return result.IsSuccess;
             }
             catch
             {
@@ -75,7 +75,7 @@ namespace Huoyaoyuan.AdmiralRoom
             try
             {
                 result = oSession.Parse<T>();
-                return true;
+                return result.IsSuccess;
             }
             catch
             {
@@ -141,6 +141,19 @@ namespace Huoyaoyuan.AdmiralRoom
             svdata.api_result = res.api_result;
             svdata.api_result_msg = res.api_result_msg;
             return new APIData<dynamic>(svdata, oSession.GetRequestBodyAsString());
+        }
+        public static bool TryParseDynamic(this Session oSession, out APIData<dynamic> result)
+        {
+            try
+            {
+                result = oSession.ParseDynamic();
+                return result.IsSuccess;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
         }
     }
 }
