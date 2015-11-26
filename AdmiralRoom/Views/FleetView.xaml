@@ -152,8 +152,8 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
-                                                <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/Bull.png"/>
+                                                <Image Margin="0,0,2,1" Grid.Row="0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                                                <Image Margin="0,1,2,0" Grid.Row="1" Height="16" Source="/AdmiralRoom;component/Images/Material/2.png"/>
                                                 <control:AnimateProgress Margin="0,0,0,1" Grid.Row="0" Grid.Column="1" Width="80" Height="12"
                                                                          Minimum="0" Maximum="{Binding Fuel.Max}" Value="{Binding Fuel.Current}"
                                                                          ToolTip="{Binding Fuel}"

@@ -257,7 +257,6 @@
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
-    <Compile Include="Views\Converter\StringToImageConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
     <Compile Include="Views\DevelopView.xaml.cs">
       <DependentUpon>DevelopView.xaml</DependentUpon>

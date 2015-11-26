@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public override int Id => rawdata.api_id;
         public int SortNo => rawdata.api_sortno;
-        public string Name => rawdata.api_name;
+        public string Name => rawdata.api_name ?? "？？？";
         public EquipType EquipType => Staff.Current.MasterData.EquipTypes[rawdata.api_type[2]];
         public int IconID => rawdata.api_type[3];
         private ImageSource _icon;

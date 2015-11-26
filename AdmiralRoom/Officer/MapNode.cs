@@ -1,4 +1,7 @@
-﻿using Huoyaoyuan.AdmiralRoom.API;
+﻿using System;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -15,9 +18,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int Forewards => rawdata.api_next;
         public MapNodeType Type { get; private set; }
         public bool LoSAlert => rawdata.api_production_kind == 1;
-        public int ItemType { get; private set; }
-        public int ItemCount { get; private set; }
-        public bool ItemLostReduced { get; private set; }
+        public class MaterialInfo
+        {
+            public int ItemType { get; set; }
+            public int ItemCount { get; set; }
+            private ImageSource _itemicon;
+            public ImageSource ItemIcon
+            {
+                get
+                {
+                    try
+                    {
+                        if (_itemicon == null)
+                            _itemicon = new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/Material/{ItemType}.png", UriKind.Absolute));
+                        return _itemicon;
+                    }
+                    catch { return null; }
+                }
+            }
+            public bool ItemLostReduced { get; set; }
+        }
+        public MaterialInfo Material { get; private set; }
         public int AirSearchType { get; private set; }
         public int AirSearchResult { get; private set; }
         public MapNode() { }
@@ -28,14 +49,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 case 2:
                     Type = MapNodeType.ItemGet;
-                    ItemType = rawdata.api_itemget.api_id;
-                    ItemCount = rawdata.api_itemget.api_getcount;
+                    Material = new MaterialInfo
+                    {
+                        ItemType = rawdata.api_itemget.api_id,
+                        ItemCount = rawdata.api_itemget.api_getcount
+                    };
                     break;
                 case 3:
                     Type = MapNodeType.ItemLost;
-                    ItemType = rawdata.api_happening.api_mst_id;
-                    ItemCount = rawdata.api_happening.api_count;
-                    ItemLostReduced = rawdata.api_happening.api_dentan != 0;
+                    Material = new MaterialInfo
+                    {
+                        ItemType = rawdata.api_happening.api_mst_id,
+                        ItemCount = rawdata.api_happening.api_count,
+                        ItemLostReduced = rawdata.api_happening.api_dentan != 0
+                    };
                     break;
                 case 5:
                     Type = MapNodeType.BOSS;
@@ -54,8 +81,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     break;
                 case 8:
                     Type = MapNodeType.Guard;
-                    ItemType = rawdata.api_itemget_eo_comment.api_id;
-                    ItemCount = rawdata.api_itemget_eo_comment.api_getcount;
+                    Material = new MaterialInfo
+                    {
+                        ItemType = rawdata.api_itemget_eo_comment.api_id,
+                        ItemCount = rawdata.api_itemget_eo_comment.api_getcount
+                    };
                     break;
                 default:
                     switch (rawdata.api_event_kind)
