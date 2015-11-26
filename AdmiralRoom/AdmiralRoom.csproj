@@ -251,6 +251,9 @@
     <Compile Include="Views\BuildingView.xaml.cs">
       <DependentUpon>BuildingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CompassView.xaml.cs">
+      <DependentUpon>CompassView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
@@ -330,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BuildingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CompassView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,6 +9,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MapArea MapArea => Staff.Current.MasterData.MapAreas[MapAreaId];
         public int MapNo => rawdata.api_mapinfo_no;
         public MapInfo Map => MapArea[MapNo];
+        /// <summary>
+        /// 后续分歧个数
+        /// </summary>
         public int Forewards => rawdata.api_next;
         public MapNodeType Type { get; private set; }
         public bool LoSAlert => rawdata.api_production_kind == 1;
@@ -38,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     Type = MapNodeType.BOSS;
                     break;
                 case 6:
-                    Type = MapNodeType.None;
+                    Type = MapNodeType.Imagination;
                     break;
                 case 7:
                     if (rawdata.api_event_kind == 0)
@@ -67,12 +70,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                             Type = MapNodeType.NightToDayBattle;
                             break;
                         default:
-                            Type = MapNodeType.None;
+                            Type = MapNodeType.Unknown;
                             break;
                     }
                     break;
             }
         }
     }
-    public enum MapNodeType { None, ItemGet, ItemLost, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard }
+    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard }
 }

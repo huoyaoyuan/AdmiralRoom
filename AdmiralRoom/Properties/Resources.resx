@@ -147,4 +147,7 @@
   <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
     <value>所有装备一览</value>
   </data>
+  <data name="ViewTitle_CompassView" xml:space="preserve">
+    <value>罗盘</value>
+  </data>
 </root>
