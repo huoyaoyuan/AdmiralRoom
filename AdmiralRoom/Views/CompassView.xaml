@@ -34,6 +34,7 @@
                                                Cursor="Hand"
                                                Opacity="0.1"/>
                                     <TextBlock Text="{TemplateBinding Header}"
+                                               Cursor="Hand"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"
                                                Margin="10,5"/>
@@ -121,6 +122,22 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
+                            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                                <StackPanel.Style>
+                                    <Style TargetType="{x:Type StackPanel}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentNode.Type}" Value="ItemGet">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding CurrentNode.Type}" Value="ItemLost">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                                <Image Height="16" Width="16" Source="{Binding CurrentNode.ItemType, Converter={StaticResource StringToImageConverter}, ConverterParameter=AdmiralRoom;component/Images/Material/{0}.png}"/>
+                                <TextBlock Text="{Binding CurrentNode.ItemCount}" VerticalAlignment="Bottom"/>
+                            </StackPanel>
                         </TextBlock>
                     </StackPanel>
                 </ScrollViewer>

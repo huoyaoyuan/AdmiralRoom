@@ -257,6 +257,7 @@
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
+    <Compile Include="Views\Converter\StringToImageConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
     <Compile Include="Views\DevelopView.xaml.cs">
       <DependentUpon>DevelopView.xaml</DependentUpon>
@@ -480,14 +481,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Material\Fuel.png" />
-    <Resource Include="Images\Material\Bull.png" />
-    <Resource Include="Images\Material\Steel.png" />
-    <Resource Include="Images\Material\Bauxite.png" />
-    <Resource Include="Images\Material\InstantBuild.png" />
-    <Resource Include="Images\Material\InstantRepair.png" />
-    <Resource Include="Images\Material\DevelopmentKit.png" />
-    <Resource Include="Images\Material\ImprovementKit.png" />
+    <Resource Include="Images\Material\1.png" />
+    <Resource Include="Images\Material\2.png" />
+    <Resource Include="Images\Material\3.png" />
+    <Resource Include="Images\Material\4.png" />
+    <Resource Include="Images\Material\5.png" />
+    <Resource Include="Images\Material\6.png" />
+    <Resource Include="Images\Material\7.png" />
+    <Resource Include="Images\Material\8.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Quest\progress50.png" />

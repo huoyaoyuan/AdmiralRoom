@@ -61,20 +61,20 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/Fuel.png"/>
-                <Image Grid.Column="0" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/Bull.png"/>
+                <Image Grid.Column="0" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                <Image Grid.Column="0" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/2.png"/>
                 <TextBlock Grid.Column="1" Grid.Row="0" FontSize="16" Text="{Binding Homeport.Material.Fuel}" Margin="0,0,5,0"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" FontSize="16" Text="{Binding Homeport.Material.Bull}" Margin="0,0,5,0"/>
-                <Image Grid.Column="2" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/Steel.png"/>
-                <Image Grid.Column="2" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/Bauxite.png"/>
+                <Image Grid.Column="2" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/3.png"/>
+                <Image Grid.Column="2" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/4.png"/>
                 <TextBlock Grid.Column="3" Grid.Row="0" FontSize="16" Text="{Binding Homeport.Material.Steel}" Margin="0,0,5,0"/>
                 <TextBlock Grid.Column="3" Grid.Row="1" FontSize="16" Text="{Binding Homeport.Material.Bauxite}" Margin="0,0,5,0"/>
-                <Image Grid.Column="4" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/InstantRepair.png"/>
-                <Image Grid.Column="4" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/InstantBuild.png"/>
+                <Image Grid.Column="4" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/6.png"/>
+                <Image Grid.Column="4" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/5.png"/>
                 <TextBlock Grid.Column="5" Grid.Row="0" FontSize="16" Text="{Binding Homeport.Material.InstantRepair}" Margin="0,0,5,0"/>
                 <TextBlock Grid.Column="5" Grid.Row="1" FontSize="16" Text="{Binding Homeport.Material.InstantBuild}" Margin="0,0,5,0"/>
-                <Image Grid.Column="6" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/DevelopmentKit.png"/>
-                <Image Grid.Column="6" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/ImprovementKit.png"/>
+                <Image Grid.Column="6" Grid.Row="0" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/7.png"/>
+                <Image Grid.Column="6" Grid.Row="1" Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/8.png"/>
                 <TextBlock Grid.Column="7" Grid.Row="0" FontSize="16" Text="{Binding Homeport.Material.DevelopmentKit}" Margin="0,0,5,0"/>
                 <TextBlock Grid.Column="7" Grid.Row="1" FontSize="16" Text="{Binding Homeport.Material.ImprovementKit}" Margin="0,0,5,0"/>
             </Grid>
