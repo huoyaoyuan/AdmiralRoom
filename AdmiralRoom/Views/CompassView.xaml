@@ -122,7 +122,9 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal"
+                                        Visibility="Collapsed"
+                                        TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
                                 <StackPanel.Style>
                                     <Style TargetType="{x:Type StackPanel}">
                                         <Style.Triggers>

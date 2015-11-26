@@ -30,10 +30,14 @@
                             <Image Height="16" Stretch="Uniform" Source="{Binding Icon}"/>
                             <TextBlock Grid.Column="1" TextWrapping="Wrap" Margin="1">
                                 <Run Text="{Binding Title, Mode=OneWay}"/>
-                                <Border x:Name="counter" Background="{Binding Counter.Progress, Converter={StaticResource LVColorConverter}, ConverterParameter=Quest}" CornerRadius="4" Padding="2">
+                                <Border x:Name="counter" Background="{Binding Counter.Progress, Converter={StaticResource LVColorConverter}, ConverterParameter=Quest}"
+                                        CornerRadius="4" Padding="2"
+                                        TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
                                     <TextBlock Text="{Binding Counter.Progress}" Foreground="White" FontSize="14"/>
                                 </Border>
-                                <Image x:Name="progress" Height="16" Stretch="Uniform" Visibility="{Binding HasCounter, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
+                                <Image x:Name="progress" Height="16" Stretch="Uniform"
+                                       TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}"
+                                       Visibility="{Binding HasCounter, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
                                 <TextBlock.ToolTip>
                                     <TextBlock MaxWidth="150" TextWrapping="Wrap">
                                         <Run FontWeight="Bold" Text="{Binding Title, Mode=OneWay}"/>
