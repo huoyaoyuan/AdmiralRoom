@@ -138,6 +138,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Luck = new Modernizable(ShipInfo.Luck, rawdata.api_kyouka[4], rawdata.api_lucky[0]);
             Fuel = new LimitedValue(rawdata.api_fuel, ShipInfo.MaxFuel);
             Bull = new LimitedValue(rawdata.api_bull, ShipInfo.MaxBull);
+            Slots?.ForEach(x => x.Item?.SetNotOnShip());
             var slots = new List<Slot>();
             for (int i = 0; i < SlotNum; i++)
             {
@@ -156,12 +157,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
             }
-            Slots?.ForEach(x => x.Item?.SetNotOnShip());
             Slots = new ObservableCollection<Slot>(slots);
             SlotEx?.Item?.SetNotOnShip();
             SlotEx = new Slot();
             if (rawdata.api_slot_ex == 0) SlotEx.IsLocked = true;
-            else if (rawdata.api_slot_ex != -1) SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
+            else if (rawdata.api_slot_ex != -1)
+            {
+                SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
+                SlotEx.Item.OnShip = this;
+            }
             UpdateStatus();
         }
 
