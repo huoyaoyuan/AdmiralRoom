@@ -10,7 +10,8 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool v = (bool)value;
-            bool para = bool.Parse(parameter.ToString());
+            bool para = true;
+            if (parameter != null) para = bool.Parse(parameter.ToString());
             if (v == para) return Visibility.Visible;
             else return Visibility.Collapsed;
         }

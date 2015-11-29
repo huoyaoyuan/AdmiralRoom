@@ -75,6 +75,6 @@
         </ScrollViewer>
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Visibility="{Binding Homeport.MapsInProgress, Converter={StaticResource NullVisibleConverter}}">No Data</TextBlock>
+                   Visibility="{Binding Homeport.MapsInProgress, Converter={StaticResource NotNullVisibleConverter}, ConverterParameter=False}">No Data</TextBlock>
     </Grid>
 </UserControl>

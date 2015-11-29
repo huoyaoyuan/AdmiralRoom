@@ -16,23 +16,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public IDTable<Quest> AvilableQuests = new IDTable<Quest>();
         public IDTable<Quest> QuestInProgress { get; private set; }
-
-        #region NoData
-        private bool _nodata = true;
-        public bool NoData
-        {
-            get { return _nodata; }
-            set
-            {
-                if (_nodata != value)
-                {
-                    _nodata = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
-
         public int InProgressCount { get; private set; }
         public int AvilableCount { get; private set; }
         private int lastcheckedpage;
@@ -41,7 +24,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private DateTimeOffset lastcheckedtime;
         void CheckQuestPage(getmember_questlist api)
         {
-            NoData = false;
             int checkfrom, checkto;
             if (api.api_list == null)
             {

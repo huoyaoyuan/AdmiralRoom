@@ -10,7 +10,7 @@
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Visibility="{Binding Quests.NoData, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}"
+        <TextBlock Visibility="{Binding Quests.QuestInProgress, Converter={StaticResource NotNullVisibleConverter},ConverterParameter=False}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center">No Data</TextBlock>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
