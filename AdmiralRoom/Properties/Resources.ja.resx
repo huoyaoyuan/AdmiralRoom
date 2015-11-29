@@ -153,4 +153,7 @@
   <data name="ViewTitle_CompassView" xml:space="preserve">
     <value>羅針盤</value>
   </data>
+  <data name="ViewTitle_MapHPView" xml:space="preserve">
+    <value>HPゲージ</value>
+  </data>
 </root>

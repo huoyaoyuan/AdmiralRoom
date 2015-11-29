@@ -19,6 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ForEach(y => y.IgnoreNextCondition()));
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
             Staff.API("api_req_kaisou/slot_exchange_index").Subscribe(ExchangeHandler);
+            Staff.API("api_get_member/mapinfo").Subscribe<getmembet_mapinfo[]>(RefreshMapInfo);
         }
 
         public Material Material { get; } = new Material();
@@ -97,6 +98,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (_combinedfleet != value)
                 {
                     _combinedfleet = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region MapsInProgress
+        private MapInfo[] _mapsinprogress;
+        public MapInfo[] MapsInProgress
+        {
+            get { return _mapsinprogress; }
+            set
+            {
+                if (_mapsinprogress != value)
+                {
+                    _mapsinprogress = value;
                     OnPropertyChanged();
                 }
             }
@@ -256,6 +273,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             ship.Slots[src].Item = item2;
             ship.Slots[dst].Item = item1;
             ship.UpdateStatus();
+        }
+
+        void RefreshMapInfo(getmembet_mapinfo[] api)
+        {
+            foreach (var info in api)
+            {
+                var map = Staff.Current.MasterData.MapInfos[info.api_id];
+                map.IsClear = info.api_cleared != 0;
+                map.DefeatedCount = info.api_defeated_count;
+                map.Difficulty = (EventMapDifficulty)(info.api_eventmap?.api_selected_rank ?? 0);
+                map.MaxHP = info.api_eventmap?.api_max_maphp ?? 0;
+                map.NowHP = info.api_eventmap?.api_now_maphp ?? 0;
+            }
+            MapsInProgress = Staff.Current.MasterData.MapInfos.Where(x => !x.IsClear).ToArray();
         }
     }
 }

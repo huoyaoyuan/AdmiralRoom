@@ -185,6 +185,11 @@
                             <Views:CompassView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:MapHPView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="独立窗口">
                     <Button Margin="2" Tag="{x:Type ViewStandalone:ShipCatalog}" Loaded="SetUniqueWindowCommand"/>

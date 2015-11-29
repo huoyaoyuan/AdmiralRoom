@@ -133,6 +133,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 HP计量条 的本地化字符串。
+        /// </summary>
+        public static string ViewTitle_MapHPView {
+            get {
+                return ResourceManager.GetString("ViewTitle_MapHPView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 远征 的本地化字符串。
         /// </summary>
         public static string ViewTitle_MissionView {

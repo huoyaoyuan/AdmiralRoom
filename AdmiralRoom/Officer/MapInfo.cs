@@ -13,7 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public string OperationName => rawdata.api_opetext;
         public string Info => rawdata.api_infotext.Replace("<br>", "");
         public int[] GetItem => rawdata.api_item;
-        public int MapHP => rawdata.api_maphp ?? 0;
+        public int MapHP => rawdata.api_max_maphp ?? 0;
         public int RequiredDefeatCount => rawdata.api_required_defeat_count ?? 1;
         public bool IsNormalFleet => rawdata.api_sally_flag[0] == 1;
         public bool CanCombinedCarrier => (rawdata.api_sally_flag[1] & 1) != 0;
@@ -51,6 +51,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region MaxHP
+        private int _maxhp;
+        public int MaxHP
+        {
+            get { return _maxhp; }
+            set
+            {
+                if (_maxhp != value)
+                {
+                    _maxhp = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         #region IsClear
         private bool _isclear;
         public bool IsClear
@@ -71,7 +87,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             get
             {
-                if (MapHP != 0) return new LimitedValue(NowHP, MapHP);
+                if (MaxHP != 0) return new LimitedValue(NowHP, MaxHP);
+                else if (IsClear) return new LimitedValue(0, RequiredDefeatCount);
                 else if (RequiredDefeatCount > 1) return new LimitedValue(RequiredDefeatCount - DefeatedCount, RequiredDefeatCount);
                 else return new LimitedValue(1, 1);
             }
@@ -80,5 +97,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MapInfo() { }
         public MapInfo(api_mst_mapinfo api) : base(api) { }
     }
-    public enum EventMapDifficulty { None = 0, Easy = 1, Normal = 2, Hard = 3 }
+    public enum EventMapDifficulty { None = 0, Easy = 1, Medium = 2, Hard = 3 }
 }

@@ -8,7 +8,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MasterData()
         {
             Staff.API("api_start2").Subscribe<api_start2>(MasterHandler);
-            Staff.API("api_get_member/mapinfo").Subscribe<getmembet_mapinfo[]>(RefreshMapInfo);
         }
 
         public IDTable<MapArea> MapAreas { get; private set; }
@@ -28,17 +27,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.Select(x => new EquipType(x)));
             EquipInfo = new IDTable<EquipInfo>(api.api_mst_slotitem.Select(x => new EquipInfo(x)));
             MissionInfo = new IDTable<MissionInfo>(api.api_mst_mission.Select(x => new MissionInfo(x)));
-        }
-        void RefreshMapInfo(getmembet_mapinfo[] api)
-        {
-            foreach (var info in api)
-            {
-                var map = MapInfos[info.api_id];
-                map.IsClear = info.api_cleared != 0;
-                map.DefeatedCount = info.api_defeated_count;
-                map.Difficulty = (EventMapDifficulty)(info.api_eventmap?.api_selected_rank ?? 0);
-                map.NowHP = info.api_eventmap?.api_now_maphp ?? 0;
-            }
         }
     }
 }

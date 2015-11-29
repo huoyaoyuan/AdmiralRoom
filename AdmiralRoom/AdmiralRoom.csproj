@@ -257,13 +257,16 @@
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
-    <Compile Include="Views\Converter\NotNullVisibleConverter.cs" />
+    <Compile Include="Views\Converter\NullVisibleConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
     <Compile Include="Views\DevelopView.xaml.cs">
       <DependentUpon>DevelopView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FleetView.xaml.cs">
       <DependentUpon>FleetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapHPView.xaml.cs">
+      <DependentUpon>MapHPView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MissionView.xaml.cs">
       <DependentUpon>MissionView.xaml</DependentUpon>
@@ -346,6 +349,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FleetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MapHPView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

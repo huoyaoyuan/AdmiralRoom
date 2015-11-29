@@ -153,4 +153,7 @@
   <data name="ViewTitle_CompassView" xml:space="preserve">
     <value>Compass</value>
   </data>
+  <data name="ViewTitle_MapHPView" xml:space="preserve">
+    <value>Map HP</value>
+  </data>
 </root>
