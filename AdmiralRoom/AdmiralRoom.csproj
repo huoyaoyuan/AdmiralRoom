@@ -179,6 +179,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="ConstData.cs" />
     <Compile Include="Controls\AnimateProgress.cs" />
+    <Compile Include="Controls\ContentNullChooser.cs" />
     <Compile Include="Controls\PredicateProgressBar.cs" />
     <Compile Include="Controls\ExpBar.xaml.cs">
       <DependentUpon>ExpBar.xaml</DependentUpon>
@@ -257,7 +258,6 @@
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
-    <Compile Include="Views\Converter\NotNullVisibleConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
     <Compile Include="Views\DevelopView.xaml.cs">
       <DependentUpon>DevelopView.xaml</DependentUpon>

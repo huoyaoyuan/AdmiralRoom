@@ -6,7 +6,6 @@
     <converter:VisibilityConverter x:Key="VisibilityConverter"/>
     <converter:CondColorConverter x:Key="CondColorConverter"/>
     <converter:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter"/>
-    <converter:NotNullVisibleConverter x:Key="NotNullVisibleConverter"/>
     <LinearGradientBrush x:Key="BuildingProgressForegroundKey" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Offset="0" Color="Red"/>
         <GradientStop Offset="0.17" Color="Orange"/>

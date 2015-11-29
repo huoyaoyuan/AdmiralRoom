@@ -4,31 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              Background="White"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Visibility="{Binding Quests.QuestInProgress, Converter={StaticResource NotNullVisibleConverter},ConverterParameter=False}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center">No Data</TextBlock>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Quests.QuestInProgress}" Grid.IsSharedSizeScope="True">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type officer:Quest}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Icon"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Height="16" Stretch="Uniform" Source="{Binding Icon}"/>
-                            <TextBlock Grid.Column="1" TextWrapping="Wrap" Margin="1">
+    <control:ContentNullChooser ContentChooser="{Binding Quests.QuestInProgress}">
+        <control:ContentNullChooser.NullContent>
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center">No Data</TextBlock>
+        </control:ContentNullChooser.NullContent>
+        <control:ContentNullChooser.NotNullContent>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Quests.QuestInProgress}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type officer:Quest}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Icon"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Height="16" Stretch="Uniform" Source="{Binding Icon}"/>
+                                <TextBlock Grid.Column="1" TextWrapping="Wrap" Margin="1">
                                 <Run Text="{Binding Title, Mode=OneWay}"/>
                                 <Border x:Name="counter" Background="{Binding Counter.Progress, Converter={StaticResource LVColorConverter}, ConverterParameter=Quest}"
                                         CornerRadius="4" Padding="2"
@@ -52,69 +55,70 @@
                                     </TextBlock>
                                 </TextBlock.ToolTip>
                             </TextBlock>
-                        </Grid>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Counter}" Value="{x:Null}">
-                                <Setter TargetName="counter" Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Progress}" Value="Percent50">
-                                <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/progress50.png"/>
-                                <Setter TargetName="percent" Property="Text" Value="(50%)"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Progress}" Value="Percent80">
-                                <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/progress80.png"/>
-                                <Setter TargetName="percent" Property="Text" Value="(80%)"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding State}" Value="Complete">
-                                <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/complete.png"/>
-                                <Setter TargetName="percent" Property="Text" Value="(100%)"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Fleet">
-                                <Setter TargetName="type" Property="Text" Value="编成任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Battle">
-                                <Setter TargetName="type" Property="Text" Value="出击任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Exercise">
-                                <Setter TargetName="type" Property="Text" Value="演习任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Expedition">
-                                <Setter TargetName="type" Property="Text" Value="远征任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Charge">
-                                <Setter TargetName="type" Property="Text" Value="补给/入渠任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Shipyard">
-                                <Setter TargetName="type" Property="Text" Value="工厂任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Powerup">
-                                <Setter TargetName="type" Property="Text" Value="改修任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Other">
-                                <Setter TargetName="type" Property="Text" Value="其它任务"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Period}" Value="Once">
-                                <Setter TargetName="period" Property="Text" Value="一次性"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Period}" Value="Daily">
-                                <Setter TargetName="period" Property="Text" Value="日常"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Period}" Value="Weekly">
-                                <Setter TargetName="period" Property="Text" Value="周常"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Period}" Value="Monthly">
-                                <Setter TargetName="period" Property="Text" Value="月常"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Period}" Value="Day037">
-                                <Setter TargetName="period" Property="Text" Value="日期尾数0，3，7时可用"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Period}" Value="Day28">
-                                <Setter TargetName="period" Property="Text" Value="日期尾数2，8时可用"/>
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Counter}" Value="{x:Null}">
+                                    <Setter TargetName="counter" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Progress}" Value="Percent50">
+                                    <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/progress50.png"/>
+                                    <Setter TargetName="percent" Property="Text" Value="(50%)"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Progress}" Value="Percent80">
+                                    <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/progress80.png"/>
+                                    <Setter TargetName="percent" Property="Text" Value="(80%)"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding State}" Value="Complete">
+                                    <Setter TargetName="progress" Property="Source" Value="/AdmiralRoom;component/Images/Quest/complete.png"/>
+                                    <Setter TargetName="percent" Property="Text" Value="(100%)"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Fleet">
+                                    <Setter TargetName="type" Property="Text" Value="编成任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Battle">
+                                    <Setter TargetName="type" Property="Text" Value="出击任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Exercise">
+                                    <Setter TargetName="type" Property="Text" Value="演习任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Expedition">
+                                    <Setter TargetName="type" Property="Text" Value="远征任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Charge">
+                                    <Setter TargetName="type" Property="Text" Value="补给/入渠任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Shipyard">
+                                    <Setter TargetName="type" Property="Text" Value="工厂任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Powerup">
+                                    <Setter TargetName="type" Property="Text" Value="改修任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Other">
+                                    <Setter TargetName="type" Property="Text" Value="其它任务"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Period}" Value="Once">
+                                    <Setter TargetName="period" Property="Text" Value="一次性"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Period}" Value="Daily">
+                                    <Setter TargetName="period" Property="Text" Value="日常"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Period}" Value="Weekly">
+                                    <Setter TargetName="period" Property="Text" Value="周常"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Period}" Value="Monthly">
+                                    <Setter TargetName="period" Property="Text" Value="月常"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Period}" Value="Day037">
+                                    <Setter TargetName="period" Property="Text" Value="日期尾数0，3，7时可用"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Period}" Value="Day28">
+                                    <Setter TargetName="period" Property="Text" Value="日期尾数2，8时可用"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </control:ContentNullChooser.NotNullContent>
+    </control:ContentNullChooser>
 </UserControl>

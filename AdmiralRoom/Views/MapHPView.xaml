@@ -9,72 +9,75 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance officer:Staff}"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Homeport.MapsInProgress}" Grid.IsSharedSizeScope="True">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="MapId"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Difficulty"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="MapName"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="DefeatCount"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" FontSize="24">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{} {0}-{1}">
-                                            <Binding Path="AreaNo" Mode="OneWay"/>
-                                            <Binding Path="No" Mode="OneWay"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                <TextBlock Grid.Column="1" Grid.RowSpan="2" Margin="4"
+    <control:ContentNullChooser ContentChooser="{Binding Homeport.MapsInProgress}">
+        <control:ContentNullChooser.NullContent>
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center">No Data</TextBlock>
+        </control:ContentNullChooser.NullContent>
+        <control:ContentNullChooser.NotNullContent>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Homeport.MapsInProgress}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="MapId"/>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Difficulty"/>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="MapName"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="DefeatCount"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" FontSize="24">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{} {0}-{1}">
+                                                <Binding Path="AreaNo" Mode="OneWay"/>
+                                                <Binding Path="No" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.RowSpan="2" Margin="4"
                                        FontSize="24" x:Name="difficulty"/>
-                                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Bottom"/>
-                                <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding OperationName}" VerticalAlignment="Top"/>
-                                <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center">
+                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Bottom"/>
+                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding OperationName}" VerticalAlignment="Top"/>
+                                    <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center">
                                     <Run FontSize="20" Text="{Binding HPMeter.Current}"/>
                                     <Run FontSize="16" Text="{Binding HPMeter.Max, StringFormat={} / {0}}"/>
-                                </TextBlock>
-                                <control:AnimateProgress Grid.Column="3" Grid.Row="1"
+                                    </TextBlock>
+                                    <control:AnimateProgress Grid.Column="3" Grid.Row="1"
                                                          Maximum="{Binding HPMeter.Max}"
                                                          Value="{Binding HPMeter.Current}"
                                                          Margin="4,0"/>
-                                <TextBlock Grid.Column="4" Grid.RowSpan="2">
-                                    
-                                </TextBlock>
-                            </Grid>
-                            <Rectangle Height="1" Fill="Gray" Margin="2"/>
-                        </StackPanel>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Difficulty}" Value="Hard">
-                                <Setter TargetName="difficulty" Property="Text" Value="甲"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Difficulty}" Value="Medium">
-                                <Setter TargetName="difficulty" Property="Text" Value="乙"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Difficulty}" Value="Easy">
-                                <Setter TargetName="difficulty" Property="Text" Value="丙"/>
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Visibility="{Binding Homeport.MapsInProgress, Converter={StaticResource NotNullVisibleConverter}, ConverterParameter=False}">No Data</TextBlock>
-    </Grid>
+                                    <TextBlock Grid.Column="4" Grid.RowSpan="2">
+
+                                    </TextBlock>
+                                </Grid>
+                                <Rectangle Height="1" Fill="Gray" Margin="2"/>
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Difficulty}" Value="Hard">
+                                    <Setter TargetName="difficulty" Property="Text" Value="甲"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Difficulty}" Value="Medium">
+                                    <Setter TargetName="difficulty" Property="Text" Value="乙"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Difficulty}" Value="Easy">
+                                    <Setter TargetName="difficulty" Property="Text" Value="丙"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </control:ContentNullChooser.NotNullContent>
+    </control:ContentNullChooser>
 </UserControl>
