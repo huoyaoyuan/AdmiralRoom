@@ -1,10 +1,6 @@
 ﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.CompassView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance officer:Staff}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -18,8 +14,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TabPanel IsItemsHost="True"/>
-                        <ContentPresenter ContentSource="SelectedContent" Grid.Row="1"
-                                          x:Name="PART_SelectedContentHost"/>
+                        <ContentPresenter ContentSource="SelectedContent" Grid.Row="1" x:Name="PART_SelectedContentHost"/>
                     </Grid>
                 </ControlTemplate>
             </TabControl.Template>
@@ -31,12 +26,10 @@
                                 <Grid>
                                     <Rectangle x:Name="bd"
                                                Fill="{TemplateBinding Background}"
-                                               Cursor="Hand"
-                                               Opacity="0.1"/>
+                                               Cursor="Hand" Opacity="0.1"/>
                                     <TextBlock Text="{TemplateBinding Header}"
                                                Cursor="Hand"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
                                                Margin="10,5"/>
                                 </Grid>
                                 <ControlTemplate.Triggers>
@@ -53,14 +46,13 @@
                 </Style>
             </TabControl.Resources>
             <TabItem Header="看剧透" Background="SpringGreen">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel Orientation="Vertical" DataContext="{Binding Battle}"
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical"
+                                DataContext="{Binding Battle}"
                                 d:DataContext="{d:DesignInstance officer:BattleManager}"
                                 Visibility="{Binding InSortie, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                         <TextBlock>
-                            出击海域：
-                            <Run>
+                            出击海域：<Run>
                                 <Run.Text>
                                     <MultiBinding StringFormat="{}{0}-{1}">
                                         <Binding Path="CurrentMap.AreaNo" Mode="OneWay"/>
@@ -72,8 +64,7 @@
                             <Run Text="{Binding CurrentMap.Name, Mode=OneWay}"/>
                             <Run Text="{Binding CurrentMap.OperationName, Mode=OneWay}"/>
                             <LineBreak/>
-                            地点：
-                            <Run Text="{Binding CurrentNode.Id, Mode=OneWay}"/>
+                            地点：<Run Text="{Binding CurrentNode.Id, Mode=OneWay}"/>
                             <TextBlock>
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
@@ -122,8 +113,7 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <StackPanel Orientation="Horizontal"
-                                        TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
+                            <StackPanel Orientation="Horizontal" TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
                                 <Image Height="16" Width="16" Source="{Binding CurrentNode.Material.ItemIcon}"/>
                                 <TextBlock Text="{Binding CurrentNode.Material.ItemCount}" VerticalAlignment="Bottom"/>
                             </StackPanel>

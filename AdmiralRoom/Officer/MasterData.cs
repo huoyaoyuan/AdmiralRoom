@@ -17,7 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public IDTable<EquipType> EquipTypes { get; private set; }
         public IDTable<EquipInfo> EquipInfo { get; private set; }
         public IDTable<MissionInfo> MissionInfo { get; private set; }
-        void MasterHandler(api_start2 api)
+        private void MasterHandler(api_start2 api)
         {
             Models.Status.Current.IsGameLoaded = true;
             MapAreas = new IDTable<MapArea>(api.api_mst_maparea.Select(x => new MapArea(x)));

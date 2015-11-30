@@ -5,7 +5,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Slot : NotificationObject
     {
-
         #region IsLocked
         private bool _islocked;
         public bool IsLocked
@@ -58,10 +57,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 return Item.ToString() + " (" + AirCraft.ToString() + ")";
             else return Item?.ToString();
         }
-        static readonly int[] fighttype = { 6, 7, 8, 11 };
-        static readonly int[] bonus1 = { 0, 0, 2, 5, 9, 14, 14, 22 };//舰战
-        static readonly int[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆
-        static readonly int[] inner = { 0, 10, 25, 40, 55, 70, 85, 100, 121 };
+        private static readonly int[] fighttype = { 6, 7, 8, 11 };
+        private static readonly int[] bonus1 = { 0, 0, 2, 5, 9, 14, 14, 22 };//舰战
+        private static readonly int[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆
+        private static readonly int[] inner = { 0, 10, 25, 40, 55, 70, 85, 100, 121 };
         public bool CanProvideAirFightPower => fighttype.Contains(Item?.EquipInfo.EquipType.Id ?? 0);
         /// <summary>
         /// [0]:总min [1]:总max [2]:除攻击机min [3]:除攻击机max [4]:裸 [5]:除攻击机裸 [6]:熟练度加成min [7]:熟练度加成max

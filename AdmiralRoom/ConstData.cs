@@ -2,15 +2,15 @@
 {
     static class ConstData
     {
-        static int[] f99exp;
-        static int[] ad100exp =
+        private static int[] f99exp;
+        private static int[] ad100exp =
         {
             1300000,1600000,1900000,2200000,2600000,3000000,
             3500000,4000000,4600000,5200000,5900000,
             6600000,7400000,8200000,9100000,10000000,
             11000000,12000000,13000000,14000000,15000000
         };
-        static int[] ship100exp;
+        private static int[] ship100exp;
         static ConstData()
         {
             //generate exp table

@@ -22,7 +22,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int lastcheckedfrom;
         private int lastcheckedto;
         private DateTimeOffset lastcheckedtime;
-        void CheckQuestPage(getmember_questlist api)
+        private void CheckQuestPage(getmember_questlist api)
         {
             int checkfrom, checkto;
             if (api.api_list == null)

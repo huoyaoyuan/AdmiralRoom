@@ -1,12 +1,7 @@
 ﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.RepairView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
-             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             mc:Ignorable="d" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer" xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             mc:Ignorable="d"
              Background="White"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -20,13 +15,12 @@
             <DataTemplate DataType="{x:Type officer:RepairDock}">
                 <Grid Height="18" Margin="2">
                     <control:PredicateProgressBar x:Name="progress"
-                                                  Minimum="0" Maximum="{Binding Ship.HP.Max}"
+                                                  Minimum="0"
+                                                  Maximum="{Binding Ship.HP.Max}"
                                                   Value="{Binding Ship.HP.Current}"
                                                   PredictValue="{Binding Ship.RepairingHP}"
                                                   Foreground="{Binding Ship.HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
-                                                  PredictForeground="Aqua"
-                                                  Background="Transparent"
-                                                  Visibility="Collapsed"/>
+                                                  PredictForeground="Aqua" Background="Transparent" Visibility="Collapsed"/>
                     <TextBlock x:Name="text" FontSize="15"/>
                     <Grid x:Name="ship" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
@@ -34,7 +28,10 @@
                             <ColumnDefinition Width="Auto" SharedSizeGroup="Time"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock FontSize="16" Text="{Binding Ship.ShipInfo.Name}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding CompleteTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0:hh\\:mm\\:ss}}" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CompleteTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0:hh\\:mm\\:ss}}"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"/>
                     </Grid>
                 </Grid>
                 <DataTemplate.Triggers>

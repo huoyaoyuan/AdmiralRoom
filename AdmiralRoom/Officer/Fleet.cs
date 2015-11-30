@@ -8,7 +8,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Fleet : GameObject<getmember_deck>, IDisposable
     {
-
         public override int Id => rawdata.api_id;
         public string Name => rawdata.api_name;
         public FleetMissionState MissionState => (FleetMissionState)rawdata.api_mission[0];

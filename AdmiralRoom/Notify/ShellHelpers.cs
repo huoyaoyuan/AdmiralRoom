@@ -114,7 +114,6 @@ namespace Huoyaoyuan.AdmiralRoom.ShellHelpers
         UInt32 Commit();
     }
 
-
     [ComImport,
     Guid(ShellIIDGuid.CShellLink),
     ClassInterface(ClassInterfaceType.None)]

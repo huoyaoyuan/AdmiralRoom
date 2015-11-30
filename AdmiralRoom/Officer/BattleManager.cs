@@ -82,15 +82,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
+
         public bool ItemsAfterShips = false;
-        void StartNextHandler(map_start_next api)
+        private void StartNextHandler(map_start_next api)
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];
             CurrentNode = new MapNode(api);
             sortiefleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
             sortiefleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
         }
-        void BattleResultHandler(sortie_battleresult api)
+        private void BattleResultHandler(sortie_battleresult api)
         {
             sortiefleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
             sortiefleet2?.Ships.ForEach(y => y.IgnoreNextCondition());

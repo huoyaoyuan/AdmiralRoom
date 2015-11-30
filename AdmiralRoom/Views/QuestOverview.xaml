@@ -1,19 +1,13 @@
 ﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.QuestOverview"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls" xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              Background="White"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <control:ContentNullChooser ContentChooser="{Binding Quests.QuestInProgress}">
         <control:ContentNullChooser.NullContent>
-            <TextBlock VerticalAlignment="Center"
-                       HorizontalAlignment="Center">No Data</TextBlock>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">No Data</TextBlock>
         </control:ContentNullChooser.NullContent>
         <control:ContentNullChooser.NotNullContent>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -32,29 +26,32 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Height="16" Stretch="Uniform" Source="{Binding Icon}"/>
                                 <TextBlock Grid.Column="1" TextWrapping="Wrap" Margin="1">
-                                <Run Text="{Binding Title, Mode=OneWay}"/>
-                                <Border x:Name="counter" Background="{Binding Counter.Progress, Converter={StaticResource LVColorConverter}, ConverterParameter=Quest}"
-                                        CornerRadius="4" Padding="2"
-                                        TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
-                                    <TextBlock Text="{Binding Counter.Progress}" Foreground="White" FontSize="14"/>
-                                </Border>
-                                <Image x:Name="progress" Height="16" Stretch="Uniform"
-                                       TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}"
-                                       Visibility="{Binding HasCounter, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
-                                <TextBlock.ToolTip>
-                                    <TextBlock MaxWidth="150" TextWrapping="Wrap">
-                                        <Run FontWeight="Bold" Text="{Binding Title, Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run x:Name="type"/>
-                                        <Run x:Name="period"/>
-                                        <Run x:Name="percent"/>
-                                        <LineBreak/>
-                                        <Run Text="{Binding Counter, StringFormat={}{0}}"/>
-                                        <LineBreak/>
-                                        <Run Text="{Binding Detail, Mode=OneWay}"/>
-                                    </TextBlock>
-                                </TextBlock.ToolTip>
-                            </TextBlock>
+                                    <Run Text="{Binding Title, Mode=OneWay}"/>
+                                    <Border x:Name="counter"
+                                            Background="{Binding Counter.Progress, Converter={StaticResource LVColorConverter}, ConverterParameter=Quest}"
+                                            CornerRadius="4" Padding="2"
+                                            TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
+                                        <TextBlock Text="{Binding Counter.Progress}" Foreground="White" FontSize="14"/>
+                                    </Border>
+                                    <Image x:Name="progress"
+                                           Height="16"
+                                           Stretch="Uniform"
+                                           TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}"
+                                           Visibility="{Binding HasCounter, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
+                                    <TextBlock.ToolTip>
+                                        <TextBlock MaxWidth="150" TextWrapping="Wrap">
+                                            <Run FontWeight="Bold" Text="{Binding Title, Mode=OneWay}"/>
+                                            <LineBreak/>
+                                            <Run x:Name="type"/>
+                                            <Run x:Name="period"/>
+                                            <Run x:Name="percent"/>
+                                            <LineBreak/>
+                                            <Run Text="{Binding Counter, StringFormat={}{0}}"/>
+                                            <LineBreak/>
+                                            <Run Text="{Binding Detail, Mode=OneWay}"/>
+                                        </TextBlock>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
                             </Grid>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding Counter}" Value="{x:Null}">

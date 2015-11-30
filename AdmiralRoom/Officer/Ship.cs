@@ -72,6 +72,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
+
         public int SlotNum => rawdata.api_slotnum;
         public TimeSpan RepairTime => TimeSpan.FromMilliseconds(rawdata.api_ndock_time);
         public int RepairFuel => rawdata.api_ndock_item[0];
@@ -113,6 +114,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
+
         public Fleet InFleet { get; set; }
 
         private bool _ignorenextcondition = true;

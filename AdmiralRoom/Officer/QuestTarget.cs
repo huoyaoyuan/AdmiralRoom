@@ -48,7 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             SharedWith = sharedwith;
         }
 
-        void Increase(int n)
+        private void Increase(int n)
         {
             if (IsTook)
             {
@@ -59,7 +59,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        void SharedIncrease(int n)
+        private void SharedIncrease(int n)
         {
             _progress.Current += n;
             _progress.CheckCurrent();

@@ -2,7 +2,6 @@
 {
     public class Exp : NotificationObject
     {
-
         #region Current
         private int _current;
         public int Current

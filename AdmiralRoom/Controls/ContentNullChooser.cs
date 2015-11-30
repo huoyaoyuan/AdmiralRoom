@@ -5,8 +5,6 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 {
     class ContentNullChooser : ContentControl
     {
-
-
         public object NullContent
         {
             get { return GetValue(NullContentProperty); }
@@ -17,8 +15,6 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         public static readonly DependencyProperty NullContentProperty =
             DependencyProperty.Register("NullContent", typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
 
-
-
         public object NotNullContent
         {
             get { return GetValue(NotNullContentProperty); }
@@ -28,8 +24,6 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         // Using a DependencyProperty as the backing store for NotNullContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NotNullContentProperty =
             DependencyProperty.Register("NotNullContent", typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
-
-
 
         public object ContentChooser
         {

@@ -13,7 +13,7 @@
         //public object api_event_object;
         public int api_parallel_quest_count { get; set; }
     }
-    
+
     public class api_log
     {
         public int api_no { get; set; }

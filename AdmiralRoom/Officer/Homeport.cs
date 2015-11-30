@@ -142,7 +142,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             UpdateCounts();
         }
 
-        void PortHandler(port_port api)
+        private void PortHandler(port_port api)
         {
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             Material.MaterialHandler(api.api_material);
@@ -159,7 +159,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             CombinedFleet = api.api_combined_flag;
         }
 
-        void DecksHandler(getmember_deck[] api)
+        private void DecksHandler(getmember_deck[] api)
         {
             if (Fleets == null)
             {
@@ -172,7 +172,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
 
-        void ItemsHandler(getmember_slotitem[] api)
+        private void ItemsHandler(getmember_slotitem[] api)
         {
             if (Equipments == null)
                 Equipments = new IDTable<Equipment>(api.Select(x => new Equipment(x)));
@@ -183,7 +183,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Battle.ItemsAfterShips = false;
         }
 
-        void ChangeHandler(NameValueCollection api)
+        private void ChangeHandler(NameValueCollection api)
         {
             int idx = api.GetInt("api_ship_idx");
             int fleetid = api.GetInt("api_id");
@@ -231,7 +231,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             });
         }
 
-        void PresetHandler(NameValueCollection req, getmember_deck api)
+        private void PresetHandler(NameValueCollection req, getmember_deck api)
         {
             int deck = req.GetInt("api_deck_id");
             var fleet = Fleets[deck];
@@ -239,13 +239,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             fleet.Update(api);
         }
 
-        void Ship3Handler(getmember_ship_deck api)
+        private void Ship3Handler(getmember_ship_deck api)
         {
             Ships.UpdateWithoutRemove(api.api_ship_data, x => x.api_id);
             Fleets.UpdateWithoutRemove(api.api_deck_data, x => x.api_id);
         }
 
-        void ChargeHandler(hokyu_charge api)
+        private void ChargeHandler(hokyu_charge api)
         {
             foreach (var ship in api.api_ship)
             {
@@ -263,7 +263,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Fleets.ForEach(x => x.UpdateStatus());
         }
 
-        void ExchangeHandler(NameValueCollection req)
+        private void ExchangeHandler(NameValueCollection req)
         {
             var ship = Ships[req.GetInt("api_id")];
             int src = req.GetInt("api_src_idx");
@@ -275,7 +275,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             ship.UpdateStatus();
         }
 
-        void RefreshMapInfo(getmembet_mapinfo[] api)
+        private void RefreshMapInfo(getmembet_mapinfo[] api)
         {
             foreach (var info in api)
             {

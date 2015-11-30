@@ -95,7 +95,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             inndock = newindock;
             Staff.Current.Homeport.Fleets?.ForEach(x => x.UpdateStatus());
         }
-        void NStartHandler(NameValueCollection req)
+        private void NStartHandler(NameValueCollection req)
         {
             int shipid = req.GetInt("api_ship_id");
             inndock[req.GetInt("api_ndock_id") - 1] = shipid;
@@ -105,18 +105,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Staff.Current.Homeport.Material.InstantRepair--;
             }
         }
-        void NSpeedChangeHandler(NameValueCollection req)
+        private void NSpeedChangeHandler(NameValueCollection req)
         {
             RepairDocks[req.GetInt("api_ndock_id")].Ship.SetRepaired();
             Staff.Current.Homeport.Material.InstantRepair--;
         }
-        void CreateShipHandler(NameValueCollection req)
+        private void CreateShipHandler(NameValueCollection req)
         {
             int dockid = req.GetInt("api_kdock_id");
             BuildingDocks[dockid].IsLSC = req.GetInt("api_large_flag") != 0;
             BuildingDocks[dockid].Secratary = Staff.Current.Homeport.Secratary;
         }
-        void GetShipHandler(req_getship api)
+        private void GetShipHandler(req_getship api)
         {
             if (api.api_slotitem != null)
                 foreach (var item in api.api_slotitem)
@@ -125,12 +125,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.UpdateCounts();
             BuildingDocks.UpdateAll(api.api_kdock, x => x.api_id);
         }
-        void DestroyShipHandler(NameValueCollection req, kousyou_destroyship api)
+        private void DestroyShipHandler(NameValueCollection req, kousyou_destroyship api)
         {
             Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[req.GetInt("api_ship_id")]);
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
         }
-        void DestroyItemHandler(NameValueCollection req, kousyou_destroyitem2 api)
+        private void DestroyItemHandler(NameValueCollection req, kousyou_destroyitem2 api)
         {
             foreach (int id in req.GetInts("api_slotitem_ids"))
             {
@@ -142,7 +142,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Material.Steel += api.api_get_material[2];
             Staff.Current.Homeport.Material.Bauxite += api.api_get_material[3];
         }
-        void PowerUpHandler(NameValueCollection req, kaisou_powerup api)
+        private void PowerUpHandler(NameValueCollection req, kaisou_powerup api)
         {
             foreach (int id in req.GetInts("api_id_items"))
             {
@@ -151,7 +151,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Ships.UpdateWithoutRemove(api.api_ship, x => x.api_id);
             Staff.Current.Homeport.Fleets.UpdateWithoutRemove(api.api_deck, x => x.api_id);
         }
-        void CreateItemHandler(kousyou_createitem api)
+        private void CreateItemHandler(kousyou_createitem api)
         {
             var dev = new DevelopmentInfo();
             dev.IsSuccess = api.api_create_flag != 0;
@@ -169,7 +169,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
             Staff.Current.Homeport.Material.DevelopmentKit -= api.api_shizai_flag;
         }
-        void KSpeedChangeHandler(NameValueCollection req)
+        private void KSpeedChangeHandler(NameValueCollection req)
         {
             var dock = BuildingDocks[req.GetInt("api_kdock_id")];
             dock.State = DockState.BuildComplete;
@@ -177,7 +177,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Material.InstantBuild -= dock.IsLSC ? 10 : 1;
         }
 
-        void RemodelItemHandler(kousyou_remodel_slot api)
+        private void RemodelItemHandler(kousyou_remodel_slot api)
         {
             if (api.api_remodel_flag != 0)
                 Staff.Current.Homeport.Equipments[api.api_after_slot.api_id].Update(api.api_after_slot);

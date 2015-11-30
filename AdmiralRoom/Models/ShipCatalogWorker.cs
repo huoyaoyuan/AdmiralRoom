@@ -30,7 +30,6 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 }
             }
             #endregion
-
         }
         public class ShipFilter : NotifySourceObject<ShipCatalogWorker>
         {
@@ -147,7 +146,6 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 }
             }
             #endregion
-
         }
         private ShipCatalogWorker()
         {

@@ -23,7 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MainTarget = targets[main];
             SetEvents();
         }
-        void SetEvents()
+        private void SetEvents()
         {
             foreach (var target in Targets)
             {

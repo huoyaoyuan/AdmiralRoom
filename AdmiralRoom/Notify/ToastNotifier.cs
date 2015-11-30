@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using Huoyaoyuan.AdmiralRoom.ShellHelpers;
-using MS.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
-using Windows.UI.Notifications;
+using MS.WindowsAPICodePack.Internal;
 using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -80,7 +80,6 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         //private void ToastActivated(ToastNotification sender, object e)
         //{
-            
         //}
 
         //private void ToastDismissed(ToastNotification sender, ToastDismissedEventArgs e)
@@ -103,7 +102,6 @@ namespace Huoyaoyuan.AdmiralRoom
 
         //private void ToastFailed(ToastNotification sender, ToastFailedEventArgs e)
         //{
-            
         //}
     }
 }

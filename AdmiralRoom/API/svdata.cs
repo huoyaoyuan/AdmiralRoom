@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization.Json;
+﻿using System.Runtime.Serialization.Json;
 
 namespace Huoyaoyuan.AdmiralRoom.API
 {

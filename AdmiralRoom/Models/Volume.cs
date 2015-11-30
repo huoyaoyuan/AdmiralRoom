@@ -1,5 +1,5 @@
-﻿using CoreAudioApi;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using CoreAudioApi;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {

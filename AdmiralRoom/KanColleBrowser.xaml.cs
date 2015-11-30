@@ -247,14 +247,14 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             UpdateSize();
         }
-        void SetAllowDrop(bool allowdrop)
+        private void SetAllowDrop(bool allowdrop)
         {
             var axIWebBrowser2Prop = typeof(WebBrowser).GetProperty("AxIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
             dynamic axIWebBrowser2 = axIWebBrowser2Prop.GetValue(this.WebBrowser);
             axIWebBrowser2.RegisterAsDropTarget = allowdrop;
             //axIWebBrowser2.GetType().InvokeMember("RegisterAsDropTarget", BindingFlags.SetProperty, null, axIWebBrowser2, new object[] { false });
         }
-        void SetSilence(bool issilence)
+        private void SetSilence(bool issilence)
         {
             var axIWebBrowser2Prop = typeof(WebBrowser).GetProperty("AxIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
             dynamic axIWebBrowser2 = axIWebBrowser2Prop.GetValue(this.WebBrowser);

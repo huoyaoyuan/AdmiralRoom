@@ -1,20 +1,9 @@
-﻿<ribbon:RibbonWindow x:Name="ribbonWindow" x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
-                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
-                     xmlns:ribbon="urn:fluent-ribbon"
-                     xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
-                     xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock"
-                     xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
-                     xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
-                     xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-                     xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+﻿<ribbon:RibbonWindow x:Name="ribbonWindow"
+                     x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom" xmlns:ribbon="urn:fluent-ribbon" xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models" xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock" xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010" xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013" xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
                      mc:Ignorable="d"
-                     FontFamily="DengXian"
-                     FontSize="15"
-                     Loaded="LoadLayout" Closed="SaveLayout"
+                     FontFamily="DengXian" FontSize="15" Loaded="LoadLayout" Closed="SaveLayout"
                      Title="提督の部屋">
     <Grid>
         <Grid.RowDefinitions>
@@ -44,12 +33,24 @@
             </ribbon:Ribbon.Menu>
             <ribbon:RibbonTabItem Header="浏览" KeyTip="B">
                 <ribbon:RibbonGroupBox Header="浏览器">
-                    <ribbon:Button Header="后退" KeyTip="B" x:Name="BrowserBack" IsEnabled="False" LargeIcon="{StaticResource IconBack}"/>
-                    <ribbon:Button Header="前进" KeyTip="F" x:Name="BrowserForward" IsEnabled="False" LargeIcon="{StaticResource IconForward}"/>
+                    <ribbon:Button Header="后退" KeyTip="B"
+                                   x:Name="BrowserBack"
+                                   IsEnabled="False"
+                                   LargeIcon="{StaticResource IconBack}"/>
+                    <ribbon:Button Header="前进" KeyTip="F"
+                                   x:Name="BrowserForward"
+                                   IsEnabled="False"
+                                   LargeIcon="{StaticResource IconForward}"/>
                     <TextBox x:Name="BrowserAddr" Width="400"/>
-                    <ribbon:Button Header="转到" KeyTip="G" x:Name="BrowserGoto" LargeIcon="{StaticResource IconGoto}"/>
-                    <ribbon:Button Header="刷新" KeyTip="R" x:Name="BrowserRefresh" LargeIcon="{StaticResource IconRefresh}"/>
-                    <ribbon:Button Header="回到游戏" KeyTip="H" x:Name="BrowserBackToGame" LargeIcon="{StaticResource IconGame}"/>
+                    <ribbon:Button Header="转到" KeyTip="G"
+                                   x:Name="BrowserGoto"
+                                   LargeIcon="{StaticResource IconGoto}"/>
+                    <ribbon:Button Header="刷新" KeyTip="R"
+                                   x:Name="BrowserRefresh"
+                                   LargeIcon="{StaticResource IconRefresh}"/>
+                    <ribbon:Button Header="回到游戏" KeyTip="H"
+                                   x:Name="BrowserBackToGame"
+                                   LargeIcon="{StaticResource IconGame}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="操作">
                     <ribbon:ToggleButton Header="静音" KeyTip="M"
@@ -68,13 +69,20 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="使用代理" Grid.ColumnSpan="2" x:Name="EnableProxy" IsChecked="{Binding EnableProxy, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <CheckBox Content="使用代理"
+                                  Grid.ColumnSpan="2"
+                                  x:Name="EnableProxy"
+                                  IsChecked="{Binding EnableProxy, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyHost"
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Margin="2" Width="100"
+                                 x:Name="ProxyHost"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
                                  Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyPort"
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 Margin="2" Width="100"
+                                 x:Name="ProxyPort"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
                                  Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                     </Grid>
@@ -92,13 +100,20 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="使用单独的HTTPS代理" Grid.ColumnSpan="2" x:Name="EnableProxyHTTPS" IsChecked="{Binding EnableProxyHTTPS, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
+                        <CheckBox Content="使用单独的HTTPS代理"
+                                  Grid.ColumnSpan="2"
+                                  x:Name="EnableProxyHTTPS"
+                                  IsChecked="{Binding EnableProxyHTTPS, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyHostHTTPS"
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 Margin="2" Width="100"
+                                 x:Name="ProxyHostHTTPS"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxyHTTPS}"
                                  Text="{Binding HTTPSProxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Width="100" x:Name="ProxyPortHTTPS"
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 Margin="2" Width="100"
+                                 x:Name="ProxyPortHTTPS"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxyHTTPS}"
                                  Text="{Binding HTTPSProxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                     </Grid>
@@ -106,14 +121,24 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="界面" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="Language">
-                    <ribbon:ComboBox x:Name="LanguageBox" IsEditable="False" KeyTip="L" Width="100"
-                                     SelectedValuePath="Name" SelectedValue="{Binding Language, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:ComboBox x:Name="LanguageBox"
+                                     IsEditable="False" KeyTip="L"
+                                     Width="100"
+                                     SelectedValuePath="Name"
+                                     SelectedValue="{Binding Language, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="主题">
-                    <ribbon:ComboBox x:Name="Themes" IsEditable="False" KeyTip="TH"
+                    <ribbon:ComboBox x:Name="Themes"
+                                     IsEditable="False" KeyTip="TH"
                                      SelectedValue="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="不使用DWM" x:Name="NoDWM" KeyTip="D" IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="使用Aero风格控件" x:Name="UseAeroControl" KeyTip="A" IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:CheckBox Header="不使用DWM"
+                                     x:Name="NoDWM"
+                                     KeyTip="D"
+                                     IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:CheckBox Header="使用Aero风格控件"
+                                     x:Name="UseAeroControl"
+                                     KeyTip="A"
+                                     IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="字体">
                     <ribbon:RibbonToolBar DataContext="ribbonWindow">
@@ -129,10 +154,13 @@
                                 </ribbon:RibbonToolBarRow>
                             </ribbon:RibbonToolBarLayoutDefinition>
                         </ribbon:RibbonToolBar.LayoutDefinitions>
-                        <ribbon:ComboBox x:Name="SelectFontFamily" KeyTip="FF" IsEditable="True" SizeDefinition="Small"/>
+                        <ribbon:ComboBox x:Name="SelectFontFamily"
+                                         KeyTip="FF" IsEditable="True" SizeDefinition="Small"/>
                         <TextBox x:Name="TextFontSize"/>
-                        <ribbon:Button x:Name="FontSmall" SizeDefinition="Small" KeyTip="FS" Icon="Images\ShrinkFont.png"/>
-                        <ribbon:Button x:Name="FontLarge" SizeDefinition="Small" KeyTip="FL" Icon="Images\GrowFont.png"/>
+                        <ribbon:Button x:Name="FontSmall"
+                                       SizeDefinition="Small" KeyTip="FS" Icon="Images\ShrinkFont.png"/>
+                        <ribbon:Button x:Name="FontLarge"
+                                       SizeDefinition="Small" KeyTip="FL" Icon="Images\GrowFont.png"/>
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="通知">
@@ -205,7 +233,9 @@
             <Dock:LayoutRoot>
                 <Dock:LayoutPanel>
                     <Dock:LayoutDocumentPane>
-                        <Dock:LayoutDocument ContentId="GameHost" Title="浏览器" CanClose="False" CanFloat="False">
+                        <Dock:LayoutDocument ContentId="GameHost"
+                                             Title="浏览器"
+                                             CanClose="False" CanFloat="False">
                             <local:KanColleBrowser x:Name="GameHost"/>
                         </Dock:LayoutDocument>
                     </Dock:LayoutDocumentPane>
@@ -219,9 +249,8 @@
                 <TextBlock Text="{Binding BrowserZoomFactor, StringFormat={}{0:P0}, Source={x:Static local:Config.Current}}"/>
             </ribbon:StatusBarItem>
             <ribbon:StatusBarItem HorizontalAlignment="Right">
-                <Slider Width="100" Minimum="0.5" Maximum="2"
-                        IsSnapToTickEnabled="True"
-                        Ticks="0.5,0.75,1,1.25,1.5,1.75,2"
+                <Slider Width="100"
+                        Minimum="0.5" Maximum="2" IsSnapToTickEnabled="True" Ticks="0.5,0.75,1,1.25,1.5,1.75,2"
                         Value="{Binding BrowserZoomFactor, Source={x:Static local:Config.Current}}"
                         ValueChanged="SetBrowserZoomFactor"/>
             </ribbon:StatusBarItem>

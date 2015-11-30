@@ -5,6 +5,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
     class APIModel : NotificationObject
     {
         public static APIModel Current { get; } = new APIModel();
+
         #region APIText
         private string _apitext = "";
         public string APIText
@@ -20,12 +21,13 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             }
         }
         #endregion
+
         private APIModel()
         {
             Officer.Staff.API("").Subscribe(APIViewerHandler);
         }
 
-        void APIViewerHandler(Session oSession)
+        private void APIViewerHandler(Session oSession)
         {
             APIText = Officer.Staff.Encoder.GetString(oSession.ResponseBody).UnicodeDecode();
         }

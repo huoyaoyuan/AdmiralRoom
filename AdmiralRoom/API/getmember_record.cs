@@ -25,14 +25,12 @@
         public int api_large_dock { get; set; }
         public int api_material_max { get; set; }
     }
-    
     public struct api_war
     {
         public int api_win { get; set; }
         public int api_lose { get; set; }
         public decimal api_rate { get; set; }
     }
-    
     public struct api_mission
     {
         public int api_count { get; set; }

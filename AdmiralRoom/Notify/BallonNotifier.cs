@@ -7,7 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     public class BallonNotifier : Notifier, IDisposable
     {
-        NotifyIcon notifyIcon;
+        private NotifyIcon notifyIcon;
 
         public void Dispose() => notifyIcon.Dispose();
 

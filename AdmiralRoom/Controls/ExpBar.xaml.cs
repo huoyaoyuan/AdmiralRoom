@@ -14,7 +14,6 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
             InitializeComponent();
         }
 
-
         public Exp Exp
         {
             get { return (Exp)GetValue(ExpProperty); }
@@ -62,7 +61,5 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         // Using a DependencyProperty as the backing store for Level.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LevelProperty =
             DependencyProperty.Register("Level", typeof(int), typeof(ExpBar), new PropertyMetadata());
-
-
     }
 }
