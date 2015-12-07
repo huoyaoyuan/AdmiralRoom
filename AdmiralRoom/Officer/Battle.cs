@@ -19,7 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public IEnumerable<ShipInBattle> EnemyFleet { get; set; }
         public int[] Formations { get; set; }
         public Battle() { }
-        public Battle(dynamic api, CombinedFleetType fleettype, BattleManager source)
+        public Battle(dynamic api, CombinedFleetType fleettype, BattleManager source, BattleType battletype)
         {
             FleetType = fleettype;
             Fleet1 = source.SortieFleet1.Ships.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
@@ -29,11 +29,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public void NightBattle(dynamic api)
         {
-
-        }
-        public static void NightBattle(dynamic api, CombinedFleetType fleettype, BattleManager source)
-        {
-
+            //TODO
         }
     }
+    public enum BattleType { Day, Night, Air }
 }
