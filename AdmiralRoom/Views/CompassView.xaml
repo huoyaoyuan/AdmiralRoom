@@ -114,6 +114,10 @@
                                                 <Setter Property="Text" Value="船团护卫"/>
                                                 <Setter Property="Foreground" Value="SpringGreen"/>
                                             </DataTrigger>
+                                            <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Transport">
+                                                <Setter Property="Text" Value="输送开始"/>
+                                                <Setter Property="Foreground" Value="SpringGreen"/>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </TextBlock.Style>

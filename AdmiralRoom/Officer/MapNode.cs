@@ -16,7 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// 后续分歧个数
         /// </summary>
         public int Forewards => rawdata.api_next;
-        public MapNodeType Type { get; private set; }
+        public MapNodeType Type { get; private set; } = MapNodeType.Unknown;
         public bool LoSAlert => rawdata.api_production_kind == 1;
         public class MaterialInfo
         {
@@ -64,11 +64,29 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         ItemLostReduced = rawdata.api_happening.api_dentan != 0
                     };
                     break;
+                case 4:
+                    switch (rawdata.api_event_kind)
+                    {
+                        case 1:
+                            Type = MapNodeType.Battle;
+                            break;
+                        case 2:
+                            Type = MapNodeType.NightBattle;
+                            break;
+                        case 3:
+                            Type = MapNodeType.NightToDayBattle;
+                            break;
+                        case 4:
+                            Type = MapNodeType.AirBattle;
+                            break;
+                    }
+                    break;
                 case 5:
                     Type = MapNodeType.BOSS;
                     break;
                 case 6:
-                    Type = MapNodeType.Imagination;
+                    if (rawdata.api_event_kind == 2) Type = MapNodeType.SelectRoute;
+                    else Type = MapNodeType.Imagination;
                     break;
                 case 7:
                     if (rawdata.api_event_kind == 0)
@@ -87,25 +105,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         ItemCount = rawdata.api_itemget_eo_comment.api_getcount
                     };
                     break;
-                default:
-                    switch (rawdata.api_event_kind)
-                    {
-                        case 1:
-                            Type = MapNodeType.Battle;
-                            break;
-                        case 2:
-                            Type = MapNodeType.NightBattle;
-                            break;
-                        case 3:
-                            Type = MapNodeType.NightToDayBattle;
-                            break;
-                        default:
-                            Type = MapNodeType.Unknown;
-                            break;
-                    }
+                case 9:
+                    Type = MapNodeType.Transport;
                     break;
             }
         }
     }
-    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard }
+    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport }
 }
