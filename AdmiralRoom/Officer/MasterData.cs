@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -8,6 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MasterData()
         {
             Staff.API("api_start2").Subscribe<api_start2>(MasterHandler);
+            LoadFinalHPs();
         }
 
         public IDTable<MapArea> MapAreas { get; private set; }
@@ -27,6 +31,33 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.Select(x => new EquipType(x)));
             EquipInfo = new IDTable<EquipInfo>(api.api_mst_slotitem.Select(x => new EquipInfo(x)));
             MissionInfo = new IDTable<MissionInfo>(api.api_mst_mission.Select(x => new MissionInfo(x)));
+        }
+        private void LoadFinalHPs()
+        {
+            try
+            {
+                using (var reader = File.OpenText(@"information\EventMapFinalHP.txt"))
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine().Split(new[] { "//" }, StringSplitOptions.None)[0];
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+                        var a = line.Split(':');
+                        finalhptable.Add(int.Parse(a[0]), a[1].Split(',').Select(x => int.Parse(x)).ToArray());
+                    }
+            }
+            catch { }
+        }
+        private Dictionary<int, int[]> finalhptable = new Dictionary<int, int[]>();
+        public int QueryFinalHP(MapInfo map)
+        {
+            try
+            {
+                int[] r;
+                if (!finalhptable.TryGetValue(map.Id, out r)) return 1;
+                if (r.Length == 1) return r[0];
+                return (r[(int)map.Difficulty]);
+            }
+            catch { return 1; }
         }
     }
 }

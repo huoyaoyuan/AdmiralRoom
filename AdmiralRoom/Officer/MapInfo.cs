@@ -87,7 +87,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             get
             {
-                if (MaxHP != 0) return NowHP <= 1;
+                if (MaxHP != 0) return NowHP <= Staff.Current.MasterData.QueryFinalHP(this);
                 else if (RequiredDefeatCount > 1) return RequiredDefeatCount - DefeatedCount == 1;
                 else if (!IsClear) return true;
                 else return false;
