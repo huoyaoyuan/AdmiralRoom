@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using Codeplex.Data;
 using Fiddler;
@@ -92,43 +91,6 @@ namespace Huoyaoyuan.AdmiralRoom
                 result = null;
                 return false;
             }
-        }
-        public static APIData<getmember_questlist> ParseQuest(this Session oSession)
-        {
-            dynamic res;
-            svdata<getmember_questlist> svdata = new svdata<getmember_questlist>();
-            using (var mms = new MemoryStream(oSession.ResponseBody, 7, oSession.ResponseBody.Length - 7, false))
-            {
-                res = DynamicJson.Parse(mms, new UTF8Encoding());
-            }
-            svdata.api_result = Convert.ToInt32(res.api_result);
-            svdata.api_result_msg = Convert.ToString(res.api_result_msg);
-            getmember_questlist data = new getmember_questlist
-            {
-                api_count = (int)res.api_data.api_count,
-                api_disp_page = (int)res.api_data.api_disp_page,
-                api_page_count = (int)res.api_data.api_page_count,
-                api_exec_count = (int)res.api_data.api_exec_count,
-            };
-            try
-            {
-                var list = new List<api_quest>();
-                var serializer = new DataContractJsonSerializer(typeof(api_quest));
-                foreach (var x in (object[])res.api_data.api_list)
-                {
-                    var mms = new MemoryStream(Encoding.UTF8.GetBytes(x.ToString()));
-                    try
-                    {
-                        list.Add(serializer.ReadObject(mms) as api_quest);
-                    }
-                    catch { }
-                    finally { mms.Dispose(); }
-                }
-                data.api_list = list.ToArray();
-            }
-            catch { }
-            svdata.api_data = data;
-            return new APIData<getmember_questlist>(svdata, oSession.GetRequestBodyAsString());
         }
         public static APIData<dynamic> ParseDynamic(this Session oSession)
         {
