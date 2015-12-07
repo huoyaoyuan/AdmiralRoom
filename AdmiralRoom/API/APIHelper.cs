@@ -14,6 +14,16 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     public static class APIHelper
     {
+        private static void APIError(Exception ex) => Officer.Staff.Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
+        public static int GetInt(this NameValueCollection req, string name)
+        {
+            return int.Parse(req[name]);
+        }
+        public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
+        {
+            var str = req[name];
+            return str.Split(',').Select(x => int.Parse(x));
+        }
         public static APIData Parse(this Session oSession)
         {
             var serializer = svdata.Serializer;
@@ -64,7 +74,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
                     Debug.WriteLine(apistring);
                     Debugger.Break();
-                    Officer.Staff.Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
+                    APIError(ex);
                     throw ex;
                 }
             }
@@ -82,15 +92,6 @@ namespace Huoyaoyuan.AdmiralRoom
                 result = null;
                 return false;
             }
-        }
-        public static int GetInt(this NameValueCollection req, string name)
-        {
-            return int.Parse(req[name]);
-        }
-        public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
-        {
-            var str = req[name];
-            return str.Split(',').Select(x => int.Parse(x));
         }
         public static APIData<getmember_questlist> ParseQuest(this Session oSession)
         {
@@ -147,6 +148,42 @@ namespace Huoyaoyuan.AdmiralRoom
             try
             {
                 result = oSession.ParseDynamic();
+                return result.IsSuccess;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+        public static APIData<T> ParseDummy<T>(this Session oSession)
+        {
+            var serializer = svdata<T>.Serializer;
+            svdata<T> svdata = null;
+            string dummystr = oSession.GetResponseBodyAsString().Substring(7).Replace("[-1,", "[").Replace("[-1]", "null");
+            using (var mms = new MemoryStream((new UTF8Encoding()).GetBytes(dummystr), false))
+            {
+                try
+                {
+                    svdata = serializer.ReadObject(mms) as svdata<T>;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
+                    Debug.WriteLine(apistring);
+                    Debugger.Break();
+                    APIError(ex);
+                    throw ex;
+                }
+            }
+            return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
+        }
+        public static bool TryParseDummy<T>(this Session oSession, out APIData<T> result)
+        {
+            try
+            {
+                result = oSession.ParseDummy<T>();
                 return result.IsSuccess;
             }
             catch
