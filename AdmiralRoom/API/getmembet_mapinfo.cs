@@ -13,6 +13,6 @@
         }
         public eventmap api_eventmap { get; set; }
         public int api_exboss_flag { get; set; }
-        public int api_defeated_count { get; set; }
+        public int api_defeat_count { get; set; }
     }
 }

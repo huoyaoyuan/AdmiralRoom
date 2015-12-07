@@ -281,7 +281,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 var map = Staff.Current.MasterData.MapInfos[info.api_id];
                 map.IsClear = info.api_cleared != 0;
-                map.DefeatedCount = info.api_defeated_count;
+                map.DefeatedCount = info.api_defeat_count;
                 map.Difficulty = (EventMapDifficulty)(info.api_eventmap?.api_selected_rank ?? 0);
                 map.MaxHP = info.api_eventmap?.api_max_maphp ?? 0;
                 map.NowHP = info.api_eventmap?.api_now_maphp ?? 0;

@@ -1,14 +1,4 @@
-﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.MapHPView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
-             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance officer:Staff}"
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.MapHPView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer" xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls" mc:Ignorable="d" d:DataContext="{d:DesignInstance officer:Staff}" d:DesignHeight="300" d:DesignWidth="300">
     <control:ContentNullChooser ContentChooser="{Binding Homeport.MapsInProgress}">
         <control:ContentNullChooser.NullContent>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">No Data</TextBlock>
@@ -53,7 +43,7 @@
                                     <TextBlock Grid.Column="4" Grid.RowSpan="2"/>
                                     <TextBlock Grid.Column="2" Grid.Row="0"
                                                Text="{Binding Name}"
-
+                                               
                                                VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center">
                                         <Run FontSize="20" Text="{Binding HPMeter.Current}"/>
@@ -61,17 +51,21 @@
                                     </TextBlock>
                                     <TextBlock Grid.Column="2" Grid.Row="1"
                                                Text="{Binding OperationName}"
-
+                                               
                                                VerticalAlignment="Top"/>
-                                    <control:AnimateProgress Grid.Column="3" Grid.Row="1"
+                                    <control:AnimateProgress x:Name="progress"
+                                                             Grid.Column="3" Grid.Row="1"
                                                              Maximum="{Binding HPMeter.Max}"
                                                              Value="{Binding HPMeter.Current}"
-
+                                                             
                                                              Margin="4,0"/>
                                 </Grid>
                                 <Rectangle Height="1" Fill="Gray" Margin="2"/>
                             </StackPanel>
                             <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsFinal}" Value="True">
+                                    <Setter TargetName="progress" Property="Foreground" Value="Red"/>
+                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Difficulty}" Value="Hard">
                                     <Setter TargetName="difficulty" Property="Text" Value="甲"/>
                                 </DataTrigger>

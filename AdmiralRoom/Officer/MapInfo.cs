@@ -83,6 +83,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        public bool IsFinal
+        {
+            get
+            {
+                if (MaxHP != 0) return NowHP <= 1;
+                else if (RequiredDefeatCount > 1) return RequiredDefeatCount - DefeatedCount == 1;
+                else if (!IsClear) return true;
+                else return false;
+            }
+        }
         public LimitedValue HPMeter
         {
             get
