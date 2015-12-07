@@ -12,10 +12,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 InSortie = false;
                 CurrentMap = null;
                 CurrentNode = null;
-                if (sortiefleet1 != null) sortiefleet1.InSortie = false;
-                if (sortiefleet2 != null) sortiefleet2.InSortie = false;
-                sortiefleet1 = null;
-                sortiefleet2 = null;
+                if (SortieFleet1 != null) SortieFleet1.InSortie = false;
+                if (SortieFleet2 != null) SortieFleet2.InSortie = false;
+                SortieFleet1 = null;
+                SortieFleet2 = null;
+                CurrentBattle = null;
             });
             Staff.API("api_req_map/start").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
@@ -23,17 +24,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_map/start").Subscribe((System.Collections.Specialized.NameValueCollection x) =>
             {
                 InSortie = true;
-                sortiefleet1 = Staff.Current.Homeport.Fleets[x.GetInt("api_deck_id")];
-                sortiefleet1.InSortie = true;
-                if (sortiefleet1.Id == 1 && Staff.Current.Homeport.CombinedFleet > 0)
+                SortieFleet1 = Staff.Current.Homeport.Fleets[x.GetInt("api_deck_id")];
+                SortieFleet1.InSortie = true;
+                if (SortieFleet1.Id == 1 && Staff.Current.Homeport.CombinedFleet != CombinedFleetType.None)
                 {
-                    sortiefleet2 = Staff.Current.Homeport.Fleets[2];
-                    sortiefleet2.InSortie = true;
+                    SortieFleet2 = Staff.Current.Homeport.Fleets[2];
+                    SortieFleet2.InSortie = true;
                 }
                 ItemsAfterShips = true;
             });
+            Staff.API("api_req_sortie/battle").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
+            Staff.API("api_req_battle_midnight/battle").SubscribeDynamic(x => CurrentBattle = CurrentBattle.NightBattle(x));
+            Staff.API("api_req_battle_midnight/sp_midnight").SubscribeDynamic(x => CurrentBattle = Battle.NightBattle(x, CombinedFleetType.None, this));
+            Staff.API("api_req_sortie/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
+            Staff.API("api_req_combined_battle/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.Carrier, this));
+            Staff.API("api_req_combined_battle/battle").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.Carrier, this));
+            Staff.API("api_req_combined_battle/midnight_battle").SubscribeDynamic(x => CurrentBattle = CurrentBattle.NightBattle(x));
+            Staff.API("api_req_combined_battle/sp_midnight").SubscribeDynamic(x => CurrentBattle = Battle.NightBattle(x, CombinedFleetType.Carrier, this));
+            Staff.API("api_req_combined_battle/battle_water").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.Surface, this));
         }
-        private Fleet sortiefleet1, sortiefleet2;
+        public Fleet SortieFleet1 { get; private set; }
+        public Fleet SortieFleet2 { get; private set; }
 
         #region InSortie
         private bool _insortie;
@@ -83,18 +94,32 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region CurrentBattle
+        private Battle _currentbattle;
+        public Battle CurrentBattle
+        {
+            get { return _currentbattle; }
+            set
+            {
+                _currentbattle = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         public bool ItemsAfterShips = false;
         private void StartNextHandler(map_start_next api)
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];
             CurrentNode = new MapNode(api);
-            sortiefleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
-            sortiefleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
+            SortieFleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
+            SortieFleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
+            CurrentBattle = null;
         }
         private void BattleResultHandler(sortie_battleresult api)
         {
-            sortiefleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
-            sortiefleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
+            SortieFleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
+            SortieFleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
             if (CurrentNode.Type == MapNodeType.BOSS)
             {
                 StaticCounters.BossCounter.Increase();

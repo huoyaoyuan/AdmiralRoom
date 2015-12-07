@@ -89,8 +89,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region CombinedFleet
-        private int _combinedfleet;
-        public int CombinedFleet
+        private CombinedFleetType _combinedfleet;
+        public CombinedFleetType CombinedFleet
         {
             get { return _combinedfleet; }
             set
@@ -156,7 +156,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
             Staff.Current.Shipyard.NDockHandler(api.api_ndock);
             DecksHandler(api.api_deck_port);
-            CombinedFleet = api.api_combined_flag;
+            CombinedFleet = (CombinedFleetType)api.api_combined_flag;
         }
 
         private void DecksHandler(getmember_deck[] api)
@@ -289,4 +289,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MapsInProgress = Staff.Current.MasterData.MapInfos.Where(x => !x.IsClear).ToArray();
         }
     }
+    public enum CombinedFleetType { None, Carrier, Surface, Transport }
 }
