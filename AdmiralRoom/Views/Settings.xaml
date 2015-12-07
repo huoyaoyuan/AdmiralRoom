@@ -1,6 +1,10 @@
 ﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.Settings"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=root:Config}">
     <Grid>

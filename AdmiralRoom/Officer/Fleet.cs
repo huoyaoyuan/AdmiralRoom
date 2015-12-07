@@ -184,7 +184,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public int[] AirFightPower { get; private set; }
         public int LevelSum => Ships.Select(x => x.Level).Sum();
-        public double LevelAverage => Ships.Select(x => (double)x.Level).Average();
+        public double LevelAverage => Ships.Any() ? Ships.Select(x => (double)x.Level).Average() : 0;
         public double LoSInMap => Ships.Select(x => x.LoSInMap).Sum() - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
         public int[] ChargeCost => new[]
         {
@@ -217,7 +217,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
             AirFightPower = Ships.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + b).ToArray());
-            mincondition = Ships.Select(x => x.Condition).Min();
+            if (Ships.Any())
+                mincondition = Ships.Select(x => x.Condition).Min();
+            else
+            {
+                mincondition = 49;
+                Status = FleetStatus.Empty;
+            }
             OnPropertyChanged("AirFightPower");
             OnPropertyChanged("LevelSum");
             OnPropertyChanged("LevelAverage");
@@ -238,5 +244,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (needupdateship) OnPropertyChanged("Ships");
         }
     }
-    public enum FleetStatus { Ready, NotReady, InSortie, InMission, Warning }
+    public enum FleetStatus { Empty, Ready, NotReady, InSortie, InMission, Warning }
 }

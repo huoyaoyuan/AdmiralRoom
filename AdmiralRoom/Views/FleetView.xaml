@@ -1,6 +1,11 @@
 ﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.FleetView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer" xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="400" d:DesignWidth="720">
@@ -10,33 +15,36 @@
                 <StackPanel Orientation="Horizontal">
                     <Ellipse x:Name="status" Height="18" Width="18">
                         <Ellipse.Effect>
-                            <BlurEffect Radius="10"/>
+                            <BlurEffect Radius="10" />
                         </Ellipse.Effect>
                     </Ellipse>
-                    <TextBlock Text="{Binding Name}" FontSize="18"/>
+                    <TextBlock Text="{Binding Name}" FontSize="18" />
                 </StackPanel>
                 <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Empty">
+                        <Setter TargetName="status" Property="Fill" Value="Gray" />
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Ready">
-                        <Setter TargetName="status" Property="Fill" Value="SpringGreen"/>
+                        <Setter TargetName="status" Property="Fill" Value="SpringGreen" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NotReady">
-                        <Setter TargetName="status" Property="Fill" Value="Orange"/>
+                        <Setter TargetName="status" Property="Fill" Value="Orange" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InMission">
-                        <Setter TargetName="status" Property="Fill" Value="Aqua"/>
+                        <Setter TargetName="status" Property="Fill" Value="Aqua" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InSortie">
-                        <Setter TargetName="status" Property="Fill" Value="Red"/>
+                        <Setter TargetName="status" Property="Fill" Value="Red" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Warning">
-                        <Setter TargetName="status" Property="Fill" Value="Red"/>
+                        <Setter TargetName="status" Property="Fill" Value="Red" />
                         <DataTrigger.EnterActions>
                             <BeginStoryboard>
                                 <Storyboard RepeatBehavior="Forever">
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="status" Storyboard.TargetProperty="Opacity">
-                                        <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
-                                        <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                                        <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                                        <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                        <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                                        <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1" />
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -44,7 +52,9 @@
                         <DataTrigger.ExitActions>
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="status" Storyboard.TargetProperty="Opacity" From="1" To="1" Duration="1"/>
+                                    <DoubleAnimation Storyboard.TargetName="status"
+                                                     Storyboard.TargetProperty="Opacity" From="1"
+                                                     To="1" Duration="1" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </DataTrigger.ExitActions>
@@ -56,35 +66,35 @@
             <DataTemplate DataType="{x:Type officer:Fleet}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="2">
-                        <Rectangle x:Name="statuscolor"/>
+                        <Rectangle x:Name="statuscolor" />
                         <Rectangle x:Name="statuswarning" Fill="Red" Visibility="Collapsed">
                             <Rectangle.Triggers>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
                                         <Storyboard RepeatBehavior="Forever">
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
-                                                <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="1" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                                                <LinearDoubleKeyFrame KeyTime="0:0:1" Value="1" />
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
                             </Rectangle.Triggers>
                         </Rectangle>
-                        <TextBlock Grid.Row="0" Margin="2" x:Name="statustext"/>
+                        <TextBlock Grid.Row="0" Margin="2" x:Name="statustext" />
                     </Grid>
                     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding Ships}" Grid.IsSharedSizeScope="True">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
+                                    <StackPanel Orientation="Vertical" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
@@ -92,37 +102,38 @@
                                     <StackPanel Orientation="Vertical">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Exp"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Condition"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Charge"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
-                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Exp" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="HP" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Condition" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="Charge" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem" />
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx" />
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,4,0">
-                                                <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}"/>
-                                                <TextBlock FontSize="14" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom"/>
+                                                <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}" />
+                                                <TextBlock FontSize="14" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom" />
                                             </StackPanel>
                                             <control:ExpBar Grid.Column="1"
                                                             Width="80" Margin="0,0,4,0"
                                                             Level="{Binding Level}"
                                                             Exp="{Binding Exp}"
-
-                                                            VerticalAlignment="Center"/>
+                                                            
+                                                            VerticalAlignment="Center" />
                                             <Border Grid.Column="2"
                                                     Background="Wheat"
                                                     Margin="0,0,4,0"
                                                     Visibility="{Binding IsRepairing, Converter={StaticResource VisibilityConverter}}">
-                                                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                           FontSize="12" Foreground="Gray" Text="入渠中"/>
+                                                <TextBlock HorizontalAlignment="Right"
+                                                           VerticalAlignment="Top"
+                                                           FontSize="12" Foreground="Gray" Text="入渠中" />
                                             </Border>
                                             <StackPanel Orientation="Vertical"
                                                         Grid.Column="2"
                                                         VerticalAlignment="Center"
                                                         Margin="0,0,4,0">
                                                 <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
-                                                    <Run Text="HP: " /><Run FontSize="20" Text="{Binding HP.Current}" /><Run Text="{Binding HP.Max, StringFormat={} / {0}}"/>
+                                                    <Run Text="HP: " /><Run FontSize="20" Text="{Binding HP.Current}" /><Run Text="{Binding HP.Max, StringFormat={} / {0}}" />
                                                 </TextBlock>
                                                 <control:PredicateProgressBar Width="120" Height="16"
                                                                               Minimum="0"
@@ -130,32 +141,32 @@
                                                                               Value="{Binding HP.Current}"
                                                                               PredictValue="{Binding RepairingHP}"
                                                                               Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
-                                                                              PredictForeground="Aqua" Background="Transparent"/>
+                                                                              PredictForeground="Aqua" Background="Transparent" />
                                             </StackPanel>
                                             <Grid Grid.Column="3" Margin="0,0,8,0" VerticalAlignment="Stretch">
                                                 <Ellipse Fill="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=False, Mode=OneWay}">
                                                     <Ellipse.Effect>
-                                                        <BlurEffect Radius="48"/>
+                                                        <BlurEffect Radius="48" />
                                                     </Ellipse.Effect>
                                                 </Ellipse>
                                                 <TextBlock FontSize="12" VerticalAlignment="Center" Foreground="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=True, Mode=OneWay}">
                                                     <Run FontStyle="Italic">cond.</Run>
-                                                    <Run FontSize="18" Text="{Binding Condition, Mode=OneWay}"/>
+                                                    <Run FontSize="18" Text="{Binding Condition, Mode=OneWay}" />
                                                 </TextBlock>
                                             </Grid>
                                             <Grid Grid.Column="4" Margin="0,0,4,0" VerticalAlignment="Center">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
                                                 <Image Margin="0,0,2,1"
                                                        Grid.Row="0"
                                                        Height="16"
-                                                       Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                                                       Source="/AdmiralRoom;component/Images/Material/1.png" />
                                                 <control:AnimateProgress Margin="0,0,0,1"
                                                                          Grid.Row="0" Grid.Column="1"
                                                                          Width="80" Height="12"
@@ -164,11 +175,11 @@
                                                                          Value="{Binding Fuel.Current}"
                                                                          ToolTip="{Binding Fuel}"
                                                                          Background="Transparent"
-                                                                         Foreground="{Binding Fuel, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"/>
+                                                                         Foreground="{Binding Fuel, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}" />
                                                 <Image Margin="0,1,2,0"
                                                        Grid.Row="1"
                                                        Height="16"
-                                                       Source="/AdmiralRoom;component/Images/Material/2.png"/>
+                                                       Source="/AdmiralRoom;component/Images/Material/2.png" />
                                                 <control:AnimateProgress Margin="0,1,0,0"
                                                                          Grid.Row="1" Grid.Column="1"
                                                                          Width="80" Height="12"
@@ -177,16 +188,16 @@
                                                                          Value="{Binding Bull.Current}"
                                                                          ToolTip="{Binding Bull}"
                                                                          Background="Transparent"
-                                                                         Foreground="{Binding Bull, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"/>
+                                                                         Foreground="{Binding Bull, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}" />
                                             </Grid>
                                             <ItemsControl Grid.Column="5"
                                                           Margin="0,0,4,0"
                                                           ItemsSource="{Binding Slots}"
-
+                                                          
                                                           VerticalAlignment="Center">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
-                                                        <StackPanel Orientation="Horizontal"/>
+                                                        <StackPanel Orientation="Horizontal" />
                                                     </ItemsPanelTemplate>
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
@@ -196,35 +207,35 @@
                                                                 ToolTip="{Binding}"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}}">
                                                             <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}"
-
+                                                                   
                                                                    Height="48" Width="48"
-                                                                   Canvas.Left="-6" Canvas.Top="-6"/>
+                                                                   Canvas.Left="-6" Canvas.Top="-6" />
                                                             <Image Height="16" Width="16"
                                                                    Canvas.Top="0" Canvas.Right="0"
-                                                                   Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}"/>
+                                                                   Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}" />
                                                             <TextBlock Height="16"
                                                                        Canvas.Left="0" Canvas.Bottom="0"
                                                                        FontSize="16"
                                                                        Text="{Binding AirCraft.Current}"
                                                                        FontWeight="Bold"
                                                                        Foreground="{Binding AirCraft, Converter={StaticResource LVColorConverter}, ConverterParameter=AirCraft}"
-                                                                       Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}"/>
+                                                                       Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}" />
                                                         </Canvas>
                                                         <DataTemplate.Triggers>
                                                             <DataTrigger Binding="{Binding CanProvideAirFightPower}" Value="True">
                                                                 <Setter TargetName="item" Property="ToolTip">
                                                                     <Setter.Value>
                                                                         <TextBlock>
-                                                                            <Run Text="{Binding Mode=OneWay}"/>
-                                                                            <LineBreak/>
+                                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                                            <LineBreak />
                                                                             制空<Run>
                                                                                 <Run.Text>
                                                                                     <MultiBinding StringFormat="{}{0:F2}~{1:F2} ({2:F2} + {3:F2}~{4:F2})" Mode="OneWay">
-                                                                                        <Binding Path="AirFightPower[0]"/>
-                                                                                        <Binding Path="AirFightPower[1]"/>
-                                                                                        <Binding Path="AirFightPower[4]"/>
-                                                                                        <Binding Path="AirFightPower[6]"/>
-                                                                                        <Binding Path="AirFightPower[7]"/>
+                                                                                        <Binding Path="AirFightPower[0]" />
+                                                                                        <Binding Path="AirFightPower[1]" />
+                                                                                        <Binding Path="AirFightPower[4]" />
+                                                                                        <Binding Path="AirFightPower[6]" />
+                                                                                        <Binding Path="AirFightPower[7]" />
                                                                                     </MultiBinding>
                                                                                 </Run.Text>
                                                                             </Run>
@@ -237,17 +248,17 @@
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
                                             <StackPanel Orientation="Horizontal" Grid.Column="6" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
-                                                <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
+                                                <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4" />
                                                 <Canvas Height="36" Width="36">
                                                     <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
-
+                                                           
                                                            Height="48" Width="48"
                                                            Canvas.Left="-6" Canvas.Top="-6"
-                                                           ToolTip="{Binding SlotEx.Item}"/>
+                                                           ToolTip="{Binding SlotEx.Item}" />
                                                 </Canvas>
                                             </StackPanel>
                                         </Grid>
-                                        <Rectangle Height="1" Fill="Gray" Margin="2"/>
+                                        <Rectangle Height="1" Fill="Gray" Margin="2" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -255,22 +266,22 @@
                     </ScrollViewer>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <TextBlock>补给消耗</TextBlock>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png"/>
-                        <TextBlock Text="{Binding ChargeCost[0]}"/>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/2.png"/>
-                        <TextBlock Text="{Binding ChargeCost[1]}"/>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/4.png"/>
-                        <TextBlock Text="{Binding ChargeCost[2]}"/>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png" />
+                        <TextBlock Text="{Binding ChargeCost[0]}" />
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/2.png" />
+                        <TextBlock Text="{Binding ChargeCost[1]}" />
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/4.png" />
+                        <TextBlock Text="{Binding ChargeCost[2]}" />
                         <TextBlock Margin="10,0,0,0">修理消耗</TextBlock>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png"/>
-                        <TextBlock Text="{Binding RepairCost[0]}"/>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/3.png"/>
-                        <TextBlock Text="{Binding RepairCost[1]}"/>
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png" />
+                        <TextBlock Text="{Binding RepairCost[0]}" />
+                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/3.png" />
+                        <TextBlock Text="{Binding RepairCost[1]}" />
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="疲劳恢复 {0:hh\:mm\:ss} (±{1}s)">
-                                    <Binding Path="ConditionTimeRemain"/>
-                                    <Binding Path="ConditionTimeOffset"/>
+                                    <Binding Path="ConditionTimeRemain" />
+                                    <Binding Path="ConditionTimeOffset" />
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -279,22 +290,22 @@
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="制空：{0}~{1}" Mode="OneWay">
-                                    <Binding Path="AirFightPower[0]"/>
-                                    <Binding Path="AirFightPower[1]"/>
+                                    <Binding Path="AirFightPower[0]" />
+                                    <Binding Path="AirFightPower[1]" />
                                 </MultiBinding>
                             </TextBlock.Text>
                             <TextBlock.ToolTip>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="制空：{0}~{1}  基础：{4}  熟练度加成：{6}~{7}不含攻击机：{2}~{3}  基础：{5}" Mode="OneWay">
-                                            <Binding Path="AirFightPower[0]"/>
-                                            <Binding Path="AirFightPower[1]"/>
-                                            <Binding Path="AirFightPower[2]"/>
-                                            <Binding Path="AirFightPower[3]"/>
-                                            <Binding Path="AirFightPower[4]"/>
-                                            <Binding Path="AirFightPower[5]"/>
-                                            <Binding Path="AirFightPower[6]"/>
-                                            <Binding Path="AirFightPower[7]"/>
+                                        <MultiBinding StringFormat="制空：{0}~{1}   基础：{4}  熟练度加成：{6}~{7} 不含攻击机：{2}~{3}  基础：{5}" Mode="OneWay">
+                                            <Binding Path="AirFightPower[0]" />
+                                            <Binding Path="AirFightPower[1]" />
+                                            <Binding Path="AirFightPower[2]" />
+                                            <Binding Path="AirFightPower[3]" />
+                                            <Binding Path="AirFightPower[4]" />
+                                            <Binding Path="AirFightPower[5]" />
+                                            <Binding Path="AirFightPower[6]" />
+                                            <Binding Path="AirFightPower[7]" />
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
@@ -303,75 +314,79 @@
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="索敌：{0:F2}" Mode="OneWay">
-                                    <Binding Path="LoSInMap"/>
+                                    <Binding Path="LoSInMap" />
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="总等级：{0}  平均等级：{1:F2}" Mode="OneWay">
-                                    <Binding Path="LevelSum"/>
-                                    <Binding Path="LevelAverage"/>
+                                    <Binding Path="LevelSum" />
+                                    <Binding Path="LevelAverage" />
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                     </StackPanel>
                 </Grid>
                 <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Empty">
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Gray" />
+                        <Setter TargetName="statustext" Property="Text" Value="舰队为空" />
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Ready">
-                        <Setter TargetName="statuscolor" Property="Fill" Value="SpringGreen"/>
-                        <Setter TargetName="statustext" Property="Text" Value="出击准备完毕"/>
+                        <Setter TargetName="statuscolor" Property="Fill" Value="SpringGreen" />
+                        <Setter TargetName="statustext" Property="Text" Value="出击准备完毕" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NotReady">
-                        <Setter TargetName="statuscolor" Property="Fill" Value="Orange"/>
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Orange" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding LowCondition}" Value="True">
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="疲劳恢复中 - {0:hh\:mm\:ss} (±{1}s)">
-                                    <Binding Path="ConditionTimeRemain"/>
-                                    <Binding Path="ConditionTimeOffset"/>
+                                    <Binding Path="ConditionTimeRemain" />
+                                    <Binding Path="ConditionTimeOffset" />
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding NeedCharge}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="需要补给"/>
+                        <Setter TargetName="statustext" Property="Text" Value="需要补给" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding HeavilyDamaged}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态"/>
+                        <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Repairing}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="有舰娘正在入渠中"/>
+                        <Setter TargetName="statustext" Property="Text" Value="有舰娘正在入渠中" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InMission">
-                        <Setter TargetName="statuscolor" Property="Fill" Value="Aqua"/>
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Aqua" />
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="远征中 - {0} {1:hh\:mm\:ss}">
-                                    <Binding Path="MissionInfo.Name"/>
-                                    <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
+                                    <Binding Path="MissionInfo.Name" />
+                                    <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain" />
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InSortie">
-                        <Setter TargetName="statuscolor" Property="Fill" Value="Red"/>
+                        <Setter TargetName="statuscolor" Property="Fill" Value="Red" />
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="出击中 {0}-{1} {2} {3}">
-                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.AreaNo"/>
-                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.No"/>
-                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.Name"/>
-                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.OperationName"/>
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.AreaNo" />
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.No" />
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.Name" />
+                                    <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.OperationName" />
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Warning">
-                        <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态"/>
-                        <Setter TargetName="statuscolor" Property="Visibility" Value="Collapsed"/>
-                        <Setter TargetName="statuswarning" Property="Visibility" Value="Visible"/>
+                        <Setter TargetName="statustext" Property="Text" Value="有舰娘处于大破状态" />
+                        <Setter TargetName="statuscolor" Property="Visibility" Value="Collapsed" />
+                        <Setter TargetName="statuswarning" Property="Visibility" Value="Visible" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
