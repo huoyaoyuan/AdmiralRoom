@@ -94,7 +94,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             signal.Wait();
             foreach (string key in apisource.Keys.ToArray())
                 if (oSession.PathAndQuery.EndsWith(key))
+#if DEBUG == false
                     Parallel.ForEach(apisource[key].Handler.GetInvocationList(), x => ExceptionCatcher(x as Action<Session>, oSession));
+#else
+                    apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
+#endif
             signal.Release();
         }
 
@@ -145,7 +149,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public void SubscribeDynamic(Action<dynamic> handler) => Subscribe(x =>
             {
                 API.APIData<dynamic> svdata;
-                if (x.TryParseDynamic(out svdata)) handler(svdata.Request);
+                if (x.TryParseDynamic(out svdata)) handler(svdata.Data);
             });
             public void SubscribeDynamic(Action<NameValueCollection, dynamic> handler) => Subscribe(x =>
             {

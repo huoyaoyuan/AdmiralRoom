@@ -104,10 +104,10 @@ namespace Huoyaoyuan.AdmiralRoom
             svdata.api_result_msg = Convert.ToString(res.api_result_msg);
             getmember_questlist data = new getmember_questlist
             {
-                api_count = Convert.ToInt32(res.api_data.api_count),
-                api_disp_page = Convert.ToInt32(res.api_data.api_disp_page),
-                api_page_count = Convert.ToInt32(res.api_data.api_page_count),
-                api_exec_count = Convert.ToInt32(res.api_data.api_exec_count),
+                api_count = (int)res.api_data.api_count,
+                api_disp_page = (int)res.api_data.api_disp_page,
+                api_page_count = (int)res.api_data.api_page_count,
+                api_exec_count = (int)res.api_data.api_exec_count,
             };
             try
             {
@@ -138,7 +138,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 res = DynamicJson.Parse(mms);
             }
             svdata.api_data = res.api_data;
-            svdata.api_result = res.api_result;
+            svdata.api_result = (int)res.api_result;
             svdata.api_result_msg = res.api_result_msg;
             return new APIData<dynamic>(svdata, oSession.GetRequestBodyAsString());
         }

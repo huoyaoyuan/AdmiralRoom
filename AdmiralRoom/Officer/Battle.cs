@@ -23,9 +23,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             FleetType = fleettype;
             Fleet1 = source.SortieFleet1.Ships.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
-            Fleet2 = source.SortieFleet2?.Ships.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
-            EnemyFleet = (api.api_ship_ke as int[]).Skip(1).Select(x => new ShipInBattle { ShipInfo = Staff.Current.MasterData.ShipInfo[x] });
-            //TODO:more detail
+            Fleet2 = source.SortieFleet2?.Ships?.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+            //EnemyFleet = (api.api_ship_ke as double[]).Skip(1).Select(x => new ShipInBattle { ShipInfo = Staff.Current.MasterData.ShipInfo[(int)x] }).ToArray();
+            //TODO:fix
         }
         public void NightBattle(dynamic api)
         {
