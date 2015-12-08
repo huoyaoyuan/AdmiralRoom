@@ -148,7 +148,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[id]);
             }
-            Staff.Current.Homeport.Ships.UpdateWithoutRemove(api.api_ship, x => x.api_id);
+            Staff.Current.Homeport.Ships[req.GetInt("api_id")].Update(api.api_ship);
             Staff.Current.Homeport.Fleets.UpdateWithoutRemove(api.api_deck, x => x.api_id);
         }
         private void CreateItemHandler(kousyou_createitem api)
