@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Codeplex.Data;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
+using Newtonsoft.Json;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -23,25 +22,20 @@ namespace Huoyaoyuan.AdmiralRoom
             var str = req[name];
             return str.Split(',').Select(x => int.Parse(x));
         }
+        private static readonly JsonSerializer JSerializer = new JsonSerializer
+        {
+            MissingMemberHandling = MissingMemberHandling.Ignore
+        };
+        static APIHelper()
+        {
+            JSerializer.Error += (s, e) => e.ErrorContext.Handled = true;
+        }
         public static APIData Parse(this Session oSession)
         {
-            var serializer = svdata.Serializer;
             svdata _svdata = null;
-            using (var mms = new MemoryStream(oSession.ResponseBody, 7, oSession.ResponseBody.Length - 7, false))
-            {
-                try
-                {
-                    _svdata = serializer.ReadObject(mms) as svdata;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
-                    Debug.WriteLine(apistring);
-                    Debugger.Break();
-                    throw;
-                }
-            }
+            var reader = new StringReader(oSession.GetResponseBodyAsString().Substring(7));
+            using (var jreader = new JsonTextReader(reader))
+                _svdata = JSerializer.Deserialize<svdata>(jreader);
             return new APIData(_svdata, oSession.GetRequestBodyAsString());
         }
         public static bool TryParse(this Session oSession, out APIData result)
@@ -59,24 +53,10 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static APIData<T> Parse<T>(this Session oSession)
         {
-            var serializer = svdata<T>.Serializer;
             svdata<T> svdata = null;
-            using (var mms = new MemoryStream(oSession.ResponseBody, 7, oSession.ResponseBody.Length - 7, false))
-            {
-                try
-                {
-                    svdata = serializer.ReadObject(mms) as svdata<T>;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
-                    Debug.WriteLine(apistring);
-                    Debugger.Break();
-                    APIError(ex);
-                    throw ex;
-                }
-            }
+            var reader = new StringReader(oSession.GetResponseBodyAsString().Substring(7));
+            using (var jreader = new JsonTextReader(reader))
+                svdata = JSerializer.Deserialize<svdata<T>>(jreader);
             return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
         }
         public static bool TryParse<T>(this Session oSession, out APIData<T> result)
@@ -110,42 +90,6 @@ namespace Huoyaoyuan.AdmiralRoom
             try
             {
                 result = oSession.ParseDynamic();
-                return result.IsSuccess;
-            }
-            catch
-            {
-                result = null;
-                return false;
-            }
-        }
-        public static APIData<T> ParseDummy<T>(this Session oSession)
-        {
-            var serializer = svdata<T>.Serializer;
-            svdata<T> svdata = null;
-            string dummystr = oSession.GetResponseBodyAsString().Substring(7).Replace("[-1,", "[").Replace("[-1]", "null");
-            using (var mms = new MemoryStream((new UTF8Encoding()).GetBytes(dummystr), false))
-            {
-                try
-                {
-                    svdata = serializer.ReadObject(mms) as svdata<T>;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    var apistring = (new UTF8Encoding()).GetString(mms.ToArray());
-                    Debug.WriteLine(apistring);
-                    Debugger.Break();
-                    APIError(ex);
-                    throw ex;
-                }
-            }
-            return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
-        }
-        public static bool TryParseDummy<T>(this Session oSession, out APIData<T> result)
-        {
-            try
-            {
-                result = oSession.ParseDummy<T>();
                 return result.IsSuccess;
             }
             catch
