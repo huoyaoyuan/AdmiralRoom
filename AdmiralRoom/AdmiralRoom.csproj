@@ -248,7 +248,11 @@
     <Compile Include="Officer\ShipType.cs" />
     <Compile Include="Officer\Slot.cs" />
     <Compile Include="Officer\Staff.cs" />
-    <Compile Include="Officer\StaticCounters.cs" />
+    <Compile Include="Officer\StaticCounters.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticCounters.tt</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdmiralView.xaml.cs">
       <DependentUpon>AdmiralView.xaml</DependentUpon>
     </Compile>
@@ -523,6 +527,10 @@
     <Resource Include="Images\Quest\1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Officer\StaticCounters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StaticCounters.cs</LastGenOutput>
+    </Content>
     <Resource Include="Icons\app.ico" />
     <Content Include="Officer\Counters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
