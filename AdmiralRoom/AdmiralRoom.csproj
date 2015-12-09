@@ -259,6 +259,9 @@
     <Compile Include="Views\APIView.xaml.cs">
       <DependentUpon>APIView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BattleView.xaml.cs">
+      <DependentUpon>BattleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BuildingView.xaml.cs">
       <DependentUpon>BuildingView.xaml</DependentUpon>
     </Compile>
@@ -343,6 +346,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\APIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BattleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

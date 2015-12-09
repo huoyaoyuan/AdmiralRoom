@@ -156,4 +156,7 @@
   <data name="ViewTitle_MapHPView" xml:space="preserve">
     <value>Map HP</value>
   </data>
+  <data name="ViewTitle_BattleView" xml:space="preserve">
+    <value>Battle</value>
+  </data>
 </root>

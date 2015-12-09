@@ -1,9 +1,20 @@
 ﻿<ribbon:RibbonWindow x:Name="ribbonWindow"
                      x:Class="Huoyaoyuan.AdmiralRoom.MainWindow"
-                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom" xmlns:ribbon="urn:fluent-ribbon" xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models" xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock" xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010" xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013" xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views" xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
+                     xmlns:ribbon="urn:fluent-ribbon"
+                     xmlns:Models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
+                     xmlns:Dock="http://schemas.xceed.com/wpf/xaml/avalondock"
+                     xmlns:Theme2010="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2010"
+                     xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
+                     xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+                     xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
                      mc:Ignorable="d"
-                     FontFamily="DengXian" FontSize="15" Loaded="LoadLayout" Closed="SaveLayout"
+                     FontFamily="DengXian" FontSize="15"
+                     Loaded="LoadLayout" Closed="SaveLayout"
                      Title="提督の部屋">
     <Grid>
         <Grid.RowDefinitions>
@@ -155,12 +166,15 @@
                             </ribbon:RibbonToolBarLayoutDefinition>
                         </ribbon:RibbonToolBar.LayoutDefinitions>
                         <ribbon:ComboBox x:Name="SelectFontFamily"
-                                         KeyTip="FF" IsEditable="True" SizeDefinition="Small"/>
+                                         KeyTip="FF" IsEditable="True"
+                                         SizeDefinition="Small"/>
                         <TextBox x:Name="TextFontSize"/>
                         <ribbon:Button x:Name="FontSmall"
-                                       SizeDefinition="Small" KeyTip="FS" Icon="Images\ShrinkFont.png"/>
+                                       SizeDefinition="Small" KeyTip="FS"
+                                       Icon="Images\ShrinkFont.png"/>
                         <ribbon:Button x:Name="FontLarge"
-                                       SizeDefinition="Small" KeyTip="FL" Icon="Images\GrowFont.png"/>
+                                       SizeDefinition="Small" KeyTip="FL"
+                                       Icon="Images\GrowFont.png"/>
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="通知">
@@ -218,6 +232,11 @@
                             <Views:MapHPView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                        <ribbon:ToggleButton.Tag>
+                            <Views:BattleView/>
+                        </ribbon:ToggleButton.Tag>
+                    </ribbon:ToggleButton>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="独立窗口">
                     <Button Margin="2" Tag="{x:Type ViewStandalone:ShipCatalog}" Loaded="SetUniqueWindowCommand"/>
@@ -250,7 +269,9 @@
             </ribbon:StatusBarItem>
             <ribbon:StatusBarItem HorizontalAlignment="Right">
                 <Slider Width="100"
-                        Minimum="0.5" Maximum="2" IsSnapToTickEnabled="True" Ticks="0.5,0.75,1,1.25,1.5,1.75,2"
+                        Minimum="0.5" Maximum="2"
+                        IsSnapToTickEnabled="True"
+                        Ticks="0.5,0.75,1,1.25,1.5,1.75,2"
                         Value="{Binding BrowserZoomFactor, Source={x:Static local:Config.Current}}"
                         ValueChanged="SetBrowserZoomFactor"/>
             </ribbon:StatusBarItem>

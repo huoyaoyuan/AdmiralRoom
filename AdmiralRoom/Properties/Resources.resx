@@ -153,4 +153,7 @@
   <data name="ViewTitle_MapHPView" xml:space="preserve">
     <value>HP计量条</value>
   </data>
+  <data name="ViewTitle_BattleView" xml:space="preserve">
+    <value>战况</value>
+  </data>
 </root>

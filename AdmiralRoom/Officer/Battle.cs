@@ -13,6 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public int FromHP { get; set; }
             public int ToHP { get; set; }
             public int Damage { get; set; }
+            public LimitedValue HP => new LimitedValue(FromHP, MaxHP);
         }
         public CombinedFleetType FleetType { get; set; }
         public ShipInBattle[] Fleet1 { get; set; }
