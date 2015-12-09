@@ -11,18 +11,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public string Yomi => rawdata.api_yomi;
         public ShipSpeed Speed => (ShipSpeed)rawdata.api_soku;
         public bool IsAbyssal => SortNo == 0;
-        public AbysallClass AbyssalClass
+        public AbyssalClass AbyssalClass
         {
             get
             {
-                if (!IsAbyssal) return AbysallClass.Normal;
-                if (Yomi == "elite") return AbysallClass.Elite;
+                if (!IsAbyssal) return AbyssalClass.Normal;
+                if (Yomi == "elite") return AbyssalClass.Elite;
                 if (Yomi == "flagship")
                 {
-                    if (Name.EndsWith("改")) return AbysallClass.KFlagship;
-                    return AbysallClass.Flagship;
+                    if (Name.EndsWith("改")) return AbyssalClass.KFlagship;
+                    return AbyssalClass.Flagship;
                 }
-                return AbysallClass.Normal;
+                return AbyssalClass.Normal;
             }
         }
         public bool CanUpgrade => rawdata.api_aftershipid != 0;
@@ -57,5 +57,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
     }
     public enum ShipSpeed { None = 0, Low = 5, High = 10 }
-    public enum AbysallClass { Normal, Elite, Flagship, KFlagship }
+    public enum AbyssalClass { Normal, Elite, Flagship, KFlagship }
 }

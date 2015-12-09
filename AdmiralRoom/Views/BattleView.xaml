@@ -29,6 +29,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Margin="4,0,4,0">
                                 <Run FontSize="20" Text="{Binding ShipInfo.Name, Mode=OneWay}"/>
+                                <TextBlock FontSize="20" x:Name="enemyclass"/>
                                 <LineBreak/>
                                 <Run FontSize="14" Text="{Binding ShipInfo.ShipType.DisplayName, Mode=OneWay}"/>
                                 <Run FontSize="14" Text="{Binding Level, StringFormat=Lv. {0}, Mode=OneWay}"/>
@@ -52,6 +53,20 @@
                                                               PredictForeground="Wheat"/>
                             </StackPanel>
                         </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="Elite">
+                                <Setter TargetName="enemyclass" Property="Foreground" Value="Red"/>
+                                <Setter TargetName="enemyclass" Property="Text" Value="elite"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="Flagship">
+                                <Setter TargetName="enemyclass" Property="Foreground" Value="Gold"/>
+                                <Setter TargetName="enemyclass" Property="Text" Value="flagship"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="KFlagship">
+                                <Setter TargetName="enemyclass" Property="Foreground" Value="Cyan"/>
+                                <Setter TargetName="enemyclass" Property="Text" Value="flagship"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
