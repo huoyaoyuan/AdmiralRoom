@@ -15,5 +15,17 @@ namespace Huoyaoyuan.AdmiralRoom
         public static T Last<T>(this T[] array) => array[array.Length - 1];
         public static bool HasItem<T>(this IEnumerable<T> source) => source?.Any() ?? false;
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => !source.HasItem();
+        public static void ArrayZip<T1, T2>(this T1[] source, T2[] param, int from, Action<T1, T2> func)
+        {
+            for (int i = 0; i < source.Length && i + from < param.Length; i++)
+                func(source[i], param[from + i]);
+        }
+        public static void Zip<T1, T2>(this IEnumerable<T1> source, IEnumerable<T2> param, Action<T1, T2> func)
+        {
+            using (var enum1 = source.GetEnumerator())
+            using (var enum2 = param.GetEnumerator())
+                while (enum1.MoveNext() && enum2.MoveNext())
+                    func(enum1.Current, enum2.Current);
+        }
     }
 }

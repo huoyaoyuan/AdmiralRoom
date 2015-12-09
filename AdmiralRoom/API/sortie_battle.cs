@@ -92,8 +92,8 @@
         {
             public int[] api_frai { get; set; }
             public int[] api_erai { get; set; }
-            public int[] api_fdam { get; set; }
-            public int[] api_edam { get; set; }
+            public decimal[] api_fdam { get; set; }
+            public decimal[] api_edam { get; set; }
             public int[] api_fydam { get; set; }
             public int[] api_eydam { get; set; }
             public int[] api_fcl { get; set; }
@@ -107,8 +107,8 @@
             public int[] api_at_type { get; set; }
             public int[][] api_df_list { get; set; }
             public int[][] api_si_list { get; set; }
-            public int[] api_cl_list { get; set; }
-            public decimal[] api_damage { get; set; }
+            public int[][] api_cl_list { get; set; }
+            public decimal[][] api_damage { get; set; }
         }
         public fire api_hougeki1 { get; set; }
         public fire api_hougeki2 { get; set; }
