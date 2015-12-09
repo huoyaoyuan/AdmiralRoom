@@ -13,7 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public int FromHP { get; set; }
             public int ToHP { get; set; }
             public int Damage { get; set; }
-            public LimitedValue HP => new LimitedValue(FromHP, MaxHP);
+            public LimitedValue HP => new LimitedValue(ToHP, MaxHP);
         }
         public CombinedFleetType FleetType { get; set; }
         public ShipInBattle[] Fleet1 { get; set; }
@@ -33,12 +33,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 catch { return null; }
             }
         }
-        public int[] Formations { get; set; }
+        public Formation FriendFormation { get; set; }
+        public Formation EnemyFormation { get; set; }
+        public Direction Direction { get; set; }
         public Battle(sortie_battle api, CombinedFleetType fleettype, BattleManager source)
         {
             FleetType = fleettype;
             Fleet1 = source.SortieFleet1.Ships.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
             Fleet2 = source.SortieFleet2?.Ships?.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+
+            if (api.api_formation != null)
+            {
+                FriendFormation = (Formation)api.api_formation[0];
+                EnemyFormation = (Formation)api.api_formation[1];
+                Direction = (Direction)api.api_formation[2];
+            }
+
             bool iscombined = fleettype != CombinedFleetType.None;
 
             EnemyFleet = api.api_ship_ke.Where(x => x != -1).Select(x => new ShipInBattle { ShipInfo = Staff.Current.MasterData.ShipInfo[x] }).ToArray();
@@ -117,5 +127,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             api.api_df_list.Zip(api.api_damage, (x, y) => x.Zip(y, (a, b) => Delegates.SetDamage(this[a], b)));
         }
     }
-    //public enum BattleType { Day, Night, Air }
+    public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }
+    public enum Direction { 同航戦 = 1, 反航戦 = 2, T字有利 = 3, T字不利 = 4 }
 }

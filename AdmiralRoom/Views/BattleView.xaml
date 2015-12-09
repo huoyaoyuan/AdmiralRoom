@@ -25,20 +25,16 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Level"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,4,0">
-                                <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}"/>
-                                <TextBlock FontSize="14" Text="{Binding ShipInfo.ShipType.DisplayName}" VerticalAlignment="Bottom"/>
-                            </StackPanel>
-                            <TextBlock Margin="0,0,4,0"
-                                       Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       FontSize="18"
-                                       Text="{Binding Level, StringFormat=Lv. {0}}"/>
+                            <TextBlock Margin="4,0,4,0">
+                                <Run FontSize="20" Text="{Binding ShipInfo.Name, Mode=OneWay}"/>
+                                <LineBreak/>
+                                <Run FontSize="14" Text="{Binding ShipInfo.ShipType.DisplayName, Mode=OneWay}"/>
+                                <Run FontSize="14" Text="{Binding Level, StringFormat=Lv. {0}, Mode=OneWay}"/>
+                            </TextBlock>
                             <StackPanel Orientation="Vertical"
-                                        Grid.Column="2"
+                                        Grid.Column="1"
                                         VerticalAlignment="Center"
                                         Margin="0,0,4,0">
                                 <TextBlock HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,0">
@@ -64,11 +60,27 @@
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
         <TabItem Header="看剧透" Background="SpringGreen">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Horizontal">
-                    <ItemsControl ItemsSource="{Binding Battle.CurrentBattle.Fleet1}" Style="{StaticResource FleetKey}"/>
-                    <ItemsControl ItemsSource="{Binding Battle.CurrentBattle.Fleet2}" Style="{StaticResource FleetKey}"/>
-                    <ItemsControl ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}" Style="{StaticResource FleetKey}"/>
-                </StackPanel>
+                <Grid HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="20" Grid.Column="0" HorizontalAlignment="Center" Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
+                        <TextBlock FontSize="20" Grid.Column="2" HorizontalAlignment="Center" Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
+                        <TextBlock FontSize="20" Grid.Column="1" HorizontalAlignment="Center" Text="{Binding Battle.CurrentBattle.Direction}"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Battle.CurrentBattle.Fleet1}" Style="{StaticResource FleetKey}"/>
+                        <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Battle.CurrentBattle.Fleet2}" Style="{StaticResource FleetKey}"/>
+                        <ItemsControl Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}" Style="{StaticResource FleetKey}"/>
+                    </StackPanel>
+                </Grid>
             </ScrollViewer>
         </TabItem>
         <TabItem Header="不看剧透" Background="Red"/>
