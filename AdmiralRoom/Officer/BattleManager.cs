@@ -132,6 +132,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (CurrentMap.Id == 15) StaticCounters.Map1_5Counter.Increase();
                 }
             }
+            foreach (var enemy in CurrentBattle.EnemyFleet)
+                if (enemy.ToHP <= 0)
+                    switch (enemy.ShipInfo.ShipType.Id)
+                    {
+                        case 13://潜水艦
+                            StaticCounters.SSCounter.Increase();
+                            break;
+                        case 15://補給艦
+                            StaticCounters.TransportCounter.Increase();
+                            break;
+                        case 7://軽空母
+                        case 11://正規空母
+                            StaticCounters.CVCounter.Increase();
+                            break;
+                    }
             Staff.Current.Quests.Save();
         }
     }
