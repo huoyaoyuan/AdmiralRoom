@@ -167,7 +167,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             Staff.Current.Dispatcher.Invoke(() => Development.Add(dev));
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
-            Staff.Current.Homeport.Material.DevelopmentKit -= api.api_shizai_flag;
         }
         private void KSpeedChangeHandler(NameValueCollection req)
         {
