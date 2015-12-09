@@ -17,10 +17,10 @@ var counters = new[]
     "PracticeWin,api_req_practice/battle_result,,sortie_battleresult,ConstData.RanksWin.Contains(x.api_win_rank)",
     "ItemDestroy,api_req_kousyou/destroyitem2,",
     "Expedition,api_req_mission/result,,mission_result,x.api_clear_result > 0",
-    "ExpeditionTokyo,api_req_mission/result,,mission_result,x.api_quest_name.Contains(\"東京急行\")"
+    "ExpeditionTokyo,api_req_mission/result,,mission_result,x.api_quest_name.Contains(\"東京急行\")",
+    "PowerUp,api_req_kaisou/powerup,,kaisou_powerup,x.api_powerup_flag == 1"
 };
 #>
-using System.Collections.Specialized;
 using System.Linq;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;

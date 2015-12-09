@@ -35,6 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public static QuestTarget Expedition10 = new QuestTarget(Counters.ExpeditionCounter.Instance, 403, QuestPeriod.Daily, 10);
             public static QuestTarget Expedition30 = new QuestTarget(Counters.ExpeditionCounter.Instance, 404, QuestPeriod.Weekly, 30);
             public static QuestTarget ExpeditionTokyo = new QuestTarget(Counters.ExpeditionTokyoCounter.Instance, 411, QuestPeriod.Weekly, 6);
+            public static QuestTarget PowerUp15 = new QuestTarget(Counters.PowerUpCounter.Instance, 703, QuestPeriod.Weekly, 15);
         }
         public static class KnownQuests
         {
@@ -72,6 +73,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Known.Add(new QuestInfo(Expedition10));
                 Known.Add(new QuestInfo(Expedition30));
                 Known.Add(new QuestInfo(ExpeditionTokyo));
+                Known.Add(new QuestInfo(PowerUp15));
             }
         }
     }

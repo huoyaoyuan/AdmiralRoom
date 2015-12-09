@@ -1,5 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
+﻿using System.Linq;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -116,5 +115,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Counters
                 .Subscribe((x) => Increase());
         }
         public static ExpeditionTokyoCounter Instance { get; } = new ExpeditionTokyoCounter();
+    }
+    public class PowerUpCounter : CounterBase
+    {
+        private PowerUpCounter()
+        {
+            Staff.API("api_req_kaisou/powerup")
+                .Where<kaisou_powerup>(x => x.api_powerup_flag == 1)
+                .Subscribe((x) => Increase());
+        }
+        public static PowerUpCounter Instance { get; } = new PowerUpCounter();
     }
 }
