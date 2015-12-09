@@ -22,10 +22,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             get
             {
-                if (index <= 6) return Fleet1[index - 1];
-                if (index > 12) return EnemyFleet[index - 13];
-                if (Fleet2 != null) return Fleet2[index - 7];
-                else return EnemyFleet[index - 7];
+                try
+                {
+                    if (index <= 6) return Fleet1[index - 1];
+                    if (index > 12) return EnemyFleet[index - 13];
+                    if (Fleet2 != null) return Fleet2[index - 7];
+                    else return EnemyFleet[index - 7];
+                }
+                catch { return null; }
             }
         }
         public int[] Formations { get; set; }
@@ -62,10 +66,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FireAttack(api.api_hougeki2);
             FireAttack(api.api_hougeki3);
             TorpedoAttack(api.api_raigeki);
+            NightBattle(api);
         }
-        public void NightBattle(sortie_battle api)
+        public Battle NightBattle(sortie_battle api)
         {
-            //TODO
+            FireAttack(api.api_hougeki);
+            return this;
         }
         private static class Delegates
         {
@@ -73,6 +79,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public static void SetStartHP(ShipInBattle ship, int hp) => ship.FromHP = ship.ToHP = hp;
             public static void SetDamage(ShipInBattle ship, decimal damage)
             {
+                if (ship == null) return;
                 ship.ToHP -= (int)damage;
                 if (ship.ToHP <= 0) ship.ToHP = 0;
                 ship.Damage += (int)damage;

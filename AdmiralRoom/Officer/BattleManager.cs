@@ -34,8 +34,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 ItemsAfterShips = true;
             });
             Staff.API("api_req_sortie/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
-            //Staff.API("api_req_battle_midnight/battle").SubscribeDynamic(x => CurrentBattle = CurrentBattle.NightBattle(x));
-            //Staff.API("api_req_battle_midnight/sp_midnight").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this, BattleType.Night));
+            Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>(x => CurrentBattle = CurrentBattle.NightBattle(x));
+            Staff.API("api_req_battle_midnight/sp_midnight").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             //Staff.API("api_req_sortie/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this, BattleType.Air));
             //Staff.API("api_req_combined_battle/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this, BattleType.Air));
             //Staff.API("api_req_combined_battle/battle").SubscribeDynamic(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this, BattleType.Day));

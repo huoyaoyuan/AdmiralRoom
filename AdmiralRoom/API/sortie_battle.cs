@@ -106,7 +106,14 @@
         public class fire
         {
             public int[] api_at_list { get; set; }
+            /// <summary>
+            /// 昼战特殊攻击
+            /// </summary>
             public int[] api_at_type { get; set; }
+            /// <summary>
+            /// 夜战特殊攻击
+            /// </summary>
+            public int[] api_sp_list { get; set; }
             public int[][] api_df_list { get; set; }
             public int[][] api_si_list { get; set; }
             public int[][] api_cl_list { get; set; }
@@ -116,5 +123,17 @@
         public fire api_hougeki2 { get; set; }
         public fire api_hougeki3 { get; set; }
         public torpedo api_raigeki { get; set; }
+        /// <summary>
+        /// 夜間触接
+        /// </summary>
+        public int[] api_touch_plane { get; set; }
+        /// <summary>
+        /// 照明弾発射艦 [0]=味方, [1]=敵　敵でも1-6
+        /// </summary>
+        public int[] api_flare_pos { get; set; }
+        /// <summary>
+        /// 夜戦
+        /// </summary>
+        public fire api_hougeki { get; set; }
     }
 }
