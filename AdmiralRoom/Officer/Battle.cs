@@ -91,7 +91,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void SupportAttack(sortie_battle.support api)
         {
-            //TODO
+            if (api == null) return;
+            AirBattle(api.api_support_airatack);
+            if (api.api_support_hourai != null)
+                EnemyFleet.ArrayZip(api.api_support_hourai.api_damage, 1, Delegates.SetDamage);
         }
         private void TorpedoAttack(sortie_battle.torpedo api)
         {

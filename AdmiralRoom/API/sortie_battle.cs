@@ -64,19 +64,21 @@
         public int api_support_flag { get; set; }
         public class support
         {
-            public class support_air
+            public interface supportinfo
+            {
+                int api_deck_id { get; }
+                int[] api_ship_id { get; }
+                int api_undressing_flag { get; }
+            }
+            public class support_air : airbattle, supportinfo
             {
                 public int api_deck_id { get; set; }
                 public int[] api_ship_id { get; set; }
                 public int api_undressing_flag { get; set; }
                 public int[] api_stage_flag { get; set; }
-                public int[] api_plane_from { get; set; }
-                public airbattle.stage1 api_stage1 { get; set; }
-                public airbattle.stage2 api_stage2 { get; set; }
-                public airbattle.stage3 api_stage3 { get; set; }
             }
             public support_air api_support_airatack { get; set; }
-            public class support_hourai
+            public class support_hourai : supportinfo
             {
                 public int api_deck_id { get; set; }
                 public int[] api_ship_id { get; set; }
