@@ -3,7 +3,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Battle
+    public class Battle : NotificationObject
     {
         public class ShipInBattle : NotificationObject
         {
@@ -37,6 +37,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
+        public double FriendDamageRate => (double)Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Sum(x => x.FromHP - x.ToHP)
+            / Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Sum(x => x.FromHP);
+        public double EnemyDamageRate => (double)EnemyFleet.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
         public Battle(sortie_battle api, CombinedFleetType fleettype, BattleManager source)
         {
             FleetType = fleettype;
@@ -86,6 +89,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Fleet1.ForEach(x => x.EndUpdate());
             Fleet2?.ForEach(x => x.EndUpdate());
             EnemyFleet.ForEach(x => x.EndUpdate());
+            OnAllPropertyChanged();
         }
         private static class Delegates
         {
