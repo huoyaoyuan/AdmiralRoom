@@ -5,7 +5,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Battle
     {
-        public class ShipInBattle
+        public class ShipInBattle : NotificationObject
         {
             public int Level { get; set; }
             public ShipInfo ShipInfo { get; set; }
@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public int ToHP { get; set; }
             public int Damage { get; set; }
             public LimitedValue HP => new LimitedValue(ToHP, MaxHP);
+            public void EndUpdate() => OnAllPropertyChanged();
         }
         public CombinedFleetType FleetType { get; set; }
         public ShipInBattle[] Fleet1 { get; set; }
@@ -40,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             FleetType = fleettype;
             Fleet1 = source.SortieFleet1.Ships.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
-            Fleet2 = source.SortieFleet2?.Ships?.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+            Fleet2 = source.SortieFleet2?.Ships?.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current })?.ToArray();
 
             if (api.api_formation != null)
             {
@@ -79,10 +80,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             TorpedoAttack(api.api_raigeki);
             NightBattle(api);
         }
-        public Battle NightBattle(sortie_battle api)
+        public void NightBattle(sortie_battle api)
         {
             FireAttack(api.api_hougeki);
-            return this;
+            Fleet1.ForEach(x => x.EndUpdate());
+            Fleet2?.ForEach(x => x.EndUpdate());
+            EnemyFleet.ForEach(x => x.EndUpdate());
         }
         private static class Delegates
         {
