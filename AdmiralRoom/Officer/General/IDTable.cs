@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class IDTable<T> : ICollection<T>, INotifyCollectionChanged
+    public class IDTable<T> : ICollection<T>, IReadOnlyCollection<T>, INotifyCollectionChanged
         where T : class, IIdentifiable, new()
     {
         private Dictionary<int, T> dict = new Dictionary<int, T>();
