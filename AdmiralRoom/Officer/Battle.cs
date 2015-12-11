@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using static System.Math;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -40,6 +41,42 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public double FriendDamageRate => (double)Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Sum(x => x.FromHP - x.ToHP)
             / Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Sum(x => x.FromHP);
         public double EnemyDamageRate => (double)EnemyFleet.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
+        public int FriendLostCount => Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Where(x => x.ToHP <= 0).Count();
+        public int EnemySinkCount => EnemyFleet.Where(x => x.ToHP <= 0).Count();
+        public WinRank WinRank
+        {
+            get
+            {
+                int fl = FriendLostCount;
+                int es = EnemySinkCount;
+                int fd = (int)Round(FriendDamageRate * 100);
+                int ed = (int)Round(EnemyDamageRate * 100);
+                if (fl == 0)
+                {
+                    if (es == EnemyFleet.Length)
+                    {
+                        if (fd <= 0) return WinRank.Perfect;
+                        else return WinRank.S;
+                    }
+                    if (es >= Round(EnemyFleet.Length * 0.6)) return WinRank.A;
+                    if (EnemyFleet[0].ToHP <= 0) return WinRank.B;
+                    if (ed > fd * 2.5) return WinRank.B;
+                    if (ed == 0) return WinRank.D;
+                    if (ed >= fd) return WinRank.C;
+                    if (ed >= 50) return WinRank.C;
+                    return WinRank.D;
+                }
+                else
+                {
+                    if (es == EnemyFleet.Length) return WinRank.B;
+                    if (EnemyFleet[0].ToHP <= 0 && fl < es) return WinRank.B;
+                    if (ed > fd * 2.5) return WinRank.B;
+                    if (ed >= fd) return WinRank.C;
+                    if (fl >= Round(Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Count() * 0.6)) return WinRank.E;
+                    return WinRank.D;
+                }
+            }
+        }
         public Battle(sortie_battle api, CombinedFleetType fleettype, BattleManager source)
         {
             FleetType = fleettype;
@@ -136,4 +173,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     }
     public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }
     public enum Direction { 同航戦 = 1, 反航戦 = 2, T字有利 = 3, T字不利 = 4 }
+    public enum WinRank { Perfect, S, A, B, C, D, E }
 }
