@@ -161,10 +161,12 @@
                                 <control:AnimateProgress Grid.Column="0"
                                                          Height="10" Margin="2"
                                                          Maximum="1" Foreground="SpringGreen"
+                                                         InitAnimateFrom="Minimum"
                                                          Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
                                 <control:AnimateProgress Grid.Column="1"
                                                          Height="10" Margin="2"
                                                          Maximum="1" Foreground="Red"
+                                                         InitAnimateFrom="Minimum"
                                                          Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
                             </Grid>
                             <StackPanel Orientation="Horizontal" Grid.Row="3">
