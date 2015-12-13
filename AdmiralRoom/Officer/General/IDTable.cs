@@ -25,8 +25,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             return r;
         }
         public bool Remove(int id) => Remove(dict[id]);
-        IEnumerator IEnumerable.GetEnumerator() => dict.Values.GetEnumerator();
-        IEnumerator<T> IEnumerable<T>.GetEnumerator() => dict.Values.GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => dict.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
         public void Clear()
         {
             foreach (var item in dict)

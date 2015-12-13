@@ -38,10 +38,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
-        public double FriendDamageRate => (double)Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Sum(x => x.FromHP - x.ToHP)
-            / Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Sum(x => x.FromHP);
+        public double FriendDamageRate => (double)Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP - x.ToHP)
+            / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
         public double EnemyDamageRate => (double)EnemyFleet.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
-        public int FriendLostCount => Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Where(x => x.ToHP <= 0).Count();
+        public int FriendLostCount => Fleet1.ConcatNotNull(Fleet2).Where(x => x.ToHP <= 0).Count();
         public int EnemySinkCount => EnemyFleet.Where(x => x.ToHP <= 0).Count();
         public WinRank WinRank
         {

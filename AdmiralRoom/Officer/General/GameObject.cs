@@ -24,9 +24,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnAllPropertyChanged();
         }
         public abstract int Id { get; }
-        public int CompareTo(GameObject<T> other)
-        {
-            return Id - other.Id;
-        }
+        public int CompareTo(GameObject<T> other) => Id - other.Id;
     }
 }

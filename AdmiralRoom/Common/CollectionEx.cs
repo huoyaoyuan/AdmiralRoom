@@ -27,5 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 while (enum1.MoveNext() && enum2.MoveNext())
                     func(enum1.Current, enum2.Current);
         }
+        public static IEnumerable<T> ConcatNotNull<T>(this IEnumerable<T> source, IEnumerable<T> param)
+            => param != null ? source.Concat(param) : source;
     }
 }
