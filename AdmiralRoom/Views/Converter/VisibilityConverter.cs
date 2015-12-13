@@ -11,9 +11,12 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
         {
             bool v = (bool)value;
             bool para = true;
-            if (parameter != null) para = bool.Parse(parameter.ToString());
+            var paramarray = parameter?.ToString().Split('|');
+            if (parameter != null) para = bool.Parse(paramarray[0]);
             if (v == para) return Visibility.Visible;
-            else return Visibility.Collapsed;
+            else if ((paramarray?.Length ?? 0) <= 1) return Visibility.Collapsed;
+            else if (paramarray[1].ToLower() == "hidden") return Visibility.Hidden;
+            else throw new ArgumentException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

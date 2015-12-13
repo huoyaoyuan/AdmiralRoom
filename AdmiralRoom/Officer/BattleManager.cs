@@ -34,10 +34,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 ItemsAfterShips = true;
             });
             Staff.API("api_req_sortie/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
-            Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>(x => CurrentBattle.NightBattle(x));
+            Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
             Staff.API("api_req_battle_midnight/sp_midnight").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             Staff.API("api_req_practice/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
-            Staff.API("api_req_practice/midnight_battle").Subscribe<sortie_battle>(x => CurrentBattle.NightBattle(x));
+            Staff.API("api_req_practice/midnight_battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
             //Staff.API("api_req_sortie/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this, BattleType.Air));
             //Staff.API("api_req_combined_battle/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this, BattleType.Air));
             //Staff.API("api_req_combined_battle/battle").SubscribeDynamic(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this, BattleType.Day));
@@ -97,8 +97,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region CurrentBattle
-        private Battle _currentbattle;
-        public Battle CurrentBattle
+        private BattleBase _currentbattle;
+        public BattleBase CurrentBattle
         {
             get { return _currentbattle; }
             set
@@ -116,7 +116,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             CurrentNode = new MapNode(api);
             SortieFleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
             SortieFleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
-            CurrentBattle = null;
+            CurrentBattle = new BattleBase(this);
         }
         private void BattleResultHandler(sortie_battleresult api)
         {

@@ -206,6 +206,7 @@
     <Compile Include="Notify\ToastNotifier.cs" />
     <Compile Include="Notify\ShellHelpers.cs" />
     <Compile Include="Officer\Admiral.cs" />
+    <Compile Include="Officer\BattleBase.cs" />
     <Compile Include="Officer\BattleManager.cs" />
     <Compile Include="Officer\Battle.cs" />
     <Compile Include="Officer\BuildingDock.cs" />

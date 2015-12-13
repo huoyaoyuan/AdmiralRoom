@@ -80,96 +80,101 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock FontSize="20"
+                            <Grid Grid.Row="0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock FontSize="20"
                                            Grid.Column="0"
                                            HorizontalAlignment="Center"
                                            Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
-                                <TextBlock FontSize="20"
+                                    <TextBlock FontSize="20"
                                            Grid.Column="1"
                                            HorizontalAlignment="Center"
                                            Text="{Binding Battle.CurrentBattle.Direction}"/>
-                                <TextBlock FontSize="20"
+                                    <TextBlock FontSize="20"
                                            Grid.Column="2"
                                            HorizontalAlignment="Center"
                                            Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
-                            </Grid>
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
                                            FontSize="15"
                                            HorizontalAlignment="Center"
                                            Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
-                                <TextBlock Grid.Column="1">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="Perfect">
-                                                    <Setter Property="Text" Value="完全勝利S"/>
-                                                    <Setter Property="Foreground" Value="Gold"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="S">
-                                                    <Setter Property="Text" Value="勝利S"/>
-                                                    <Setter Property="Foreground" Value="Gold"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="A">
-                                                    <Setter Property="Text" Value="勝利A"/>
-                                                    <Setter Property="Foreground" Value="Red"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="B">
-                                                    <Setter Property="Text" Value="戦術的勝利B"/>
-                                                    <Setter Property="Foreground" Value="Orange"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="C">
-                                                    <Setter Property="Text" Value="戦術的敗北C"/>
-                                                    <Setter Property="Foreground" Value="Red"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="D">
-                                                    <Setter Property="Text" Value="敗北D"/>
-                                                    <Setter Property="Foreground" Value="Green"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="E">
-                                                    <Setter Property="Text" Value="敗北E"/>
-                                                    <Setter Property="Foreground" Value="Blue"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                                <TextBlock Grid.Column="2"
+                                    <TextBlock Grid.Column="1">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="Perfect">
+                                                        <Setter Property="Text" Value="完全勝利S"/>
+                                                        <Setter Property="Foreground" Value="Gold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="S">
+                                                        <Setter Property="Text" Value="勝利S"/>
+                                                        <Setter Property="Foreground" Value="Gold"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="A">
+                                                        <Setter Property="Text" Value="勝利A"/>
+                                                        <Setter Property="Foreground" Value="Red"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="B">
+                                                        <Setter Property="Text" Value="戦術的勝利B"/>
+                                                        <Setter Property="Foreground" Value="Orange"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="C">
+                                                        <Setter Property="Text" Value="戦術的敗北C"/>
+                                                        <Setter Property="Foreground" Value="Red"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="D">
+                                                        <Setter Property="Text" Value="敗北D"/>
+                                                        <Setter Property="Foreground" Value="Green"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="E">
+                                                        <Setter Property="Text" Value="敗北E"/>
+                                                        <Setter Property="Foreground" Value="Blue"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="2"
                                            FontSize="15"
                                            HorizontalAlignment="Center"
                                            Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
-                            </Grid>
-                            <Grid Grid.Row="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <control:AnimateProgress Grid.Column="0"
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <control:AnimateProgress Grid.Column="0"
                                                          Height="10" Margin="2"
                                                          Maximum="1" Foreground="SpringGreen"
                                                          InitAnimateFrom="Minimum"
                                                          Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
-                                <control:AnimateProgress Grid.Column="1"
+                                    <control:AnimateProgress Grid.Column="1"
                                                          Height="10" Margin="2"
                                                          Maximum="1" Foreground="Red"
                                                          InitAnimateFrom="Minimum"
                                                          Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
+                                </Grid>
                             </Grid>
-                            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <StackPanel Orientation="Horizontal" Grid.Row="1">
                                 <ItemsControl Grid.Row="1" Grid.Column="0"
                                               ItemsSource="{Binding Battle.CurrentBattle.Fleet1}"
                                               Style="{StaticResource FleetKey}"/>
