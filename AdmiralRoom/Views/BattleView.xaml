@@ -47,6 +47,7 @@
                                                               Maximum="{Binding MaxHP}"
                                                               Value="{Binding ToHP}"
                                                               PredictValue="{Binding FromHP}"
+                                                              Style="{StaticResource HPBarInBattle}"
                                                               Background="Transparent"
                                                               Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
                                                               PredictForeground="Wheat"/>
@@ -94,17 +95,17 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock FontSize="20"
-                                           Grid.Column="0"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
+                                               Grid.Column="0"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
                                     <TextBlock FontSize="20"
-                                           Grid.Column="1"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Battle.CurrentBattle.Direction}"/>
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.Direction}"/>
                                     <TextBlock FontSize="20"
-                                           Grid.Column="2"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
+                                               Grid.Column="2"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
@@ -113,9 +114,9 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0"
-                                           FontSize="15"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
+                                               FontSize="15"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
                                     <TextBlock Grid.Column="1">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
@@ -153,9 +154,9 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <TextBlock Grid.Column="2"
-                                           FontSize="15"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
+                                               FontSize="15"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
                                 </Grid>
                                 <Grid Grid.Row="2">
                                     <Grid.ColumnDefinitions>
@@ -163,15 +164,15 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <control:AnimateProgress Grid.Column="0"
-                                                         Height="10" Margin="2"
-                                                         Maximum="1" Foreground="SpringGreen"
-                                                         InitAnimateFrom="Minimum"
-                                                         Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
+                                                             Height="10" Margin="2"
+                                                             Maximum="1" Foreground="SpringGreen"
+                                                             InitAnimateFrom="Minimum"
+                                                             Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
                                     <control:AnimateProgress Grid.Column="1"
-                                                         Height="10" Margin="2"
-                                                         Maximum="1" Foreground="Red"
-                                                         InitAnimateFrom="Minimum"
-                                                         Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
+                                                             Height="10" Margin="2"
+                                                             Maximum="1" Foreground="Red"
+                                                             InitAnimateFrom="Minimum"
+                                                             Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
                                 </Grid>
                             </Grid>
                             <StackPanel Orientation="Horizontal" Grid.Row="1">

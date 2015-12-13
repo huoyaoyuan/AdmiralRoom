@@ -25,6 +25,16 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         public static readonly DependencyProperty InitAnimateFromProperty =
             DependencyProperty.Register("InitAnimateFrom", typeof(InitAnimateFrom), typeof(AnimateProgress), new PropertyMetadata(InitAnimateFrom.None));
 
+        public double CustomAnimateFrom
+        {
+            get { return (double)GetValue(CustomAnimateFromProperty); }
+            set { SetValue(CustomAnimateFromProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CustomAnimateFrom.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CustomAnimateFromProperty =
+            DependencyProperty.Register("CustomAnimateFrom", typeof(double), typeof(AnimateProgress), new PropertyMetadata(0.0));
+
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
@@ -66,8 +76,17 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
                             EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
                         });
                         break;
+                    case InitAnimateFrom.Custom:
+                        PART_Progress.BeginAnimation(ValueProperty, new DoubleAnimation
+                        {
+                            From = CustomAnimateFrom,
+                            To = Value,
+                            Duration = TimeSpan.FromSeconds(1),
+                            EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
+                        });
+                        break;
                 }
         }
     }
-    public enum InitAnimateFrom { None, Minimum, Maximum }
+    public enum InitAnimateFrom { None, Minimum, Maximum, Custom }
 }
