@@ -18,13 +18,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 SortieFleet2 = null;
                 CurrentBattle = null;
             });
-            Staff.API("api_req_map/start").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_sortie/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
-            Staff.API("api_req_map/start").Subscribe((System.Collections.Specialized.NameValueCollection x) =>
+            Staff.API("api_req_map/start").Subscribe<map_start_next>((req, api) =>
             {
                 InSortie = true;
-                SortieFleet1 = Staff.Current.Homeport.Fleets[x.GetInt("api_deck_id")];
+                SortieFleet1 = Staff.Current.Homeport.Fleets[req.GetInt("api_deck_id")];
                 SortieFleet1.InSortie = true;
                 if (SortieFleet1.Id == 1 && Staff.Current.Homeport.CombinedFleet != CombinedFleetType.None)
                 {
@@ -32,6 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     SortieFleet2.InSortie = true;
                 }
                 ItemsAfterShips = true;
+                StartNextHandler(api);
             });
             Staff.API("api_req_sortie/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
