@@ -11,7 +11,12 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string param = parameter.ToString().ToLower();
-            LimitedValue v = (LimitedValue)value;
+            LimitedValue v;
+            try
+            {
+                v = (LimitedValue)value;
+            }
+            catch (InvalidCastException) { return null; }
             if (param == "hp")
             {
                 if (v.IsMax) return new SolidColorBrush(Colors.SpringGreen);

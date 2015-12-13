@@ -7,8 +7,7 @@
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance officer:Staff}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DataContext="{d:DesignInstance officer:Staff}">
     <UserControl.Resources>
         <Style TargetType="{x:Type ItemsControl}" x:Key="FleetKey">
             <Setter Property="ItemsPanel">
