@@ -21,12 +21,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Ticker.Elapsed += Tick;
         }
         public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
-        private void Tick(object sender, ElapsedEventArgs e) => OnPropertyChanged("CompleteTime");
+        private void Tick(object sender, ElapsedEventArgs e)
+        {
+            OnPropertyChanged("CompleteTime");
+            if (Ship != null)
+                Ship.RepairingHP = Ship.HP.Max - (int)Math.Ceiling(CompleteTime.Remain().TotalSeconds / Ship.RepairTimePerHP.TotalSeconds);
+        }
         protected override void UpdateProp()
         {
             CompleteTime = DateTimeOffset.FromUnixTimeMilliseconds(rawdata.api_complete_time);
             if (State == DockState.Repairing)
                 Ship = Staff.Current.Homeport.Ships[rawdata.api_ship_id];
+            else Ship = null;
         }
     }
     public enum DockState { Locked = -1, Empty = 0, Repairing = 1, Building = 2, BuildComplete = 3 }

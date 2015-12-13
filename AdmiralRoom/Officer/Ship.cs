@@ -77,6 +77,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public TimeSpan RepairTime => TimeSpan.FromMilliseconds(rawdata.api_ndock_time);
         public int RepairFuel => rawdata.api_ndock_item[0];
         public int RepairSteel => rawdata.api_ndock_item[1];
+        public TimeSpan RepairTimePerHP { get; private set; }
         public int MordenizeRate => rawdata.api_srate;
         public int Condition { get; private set; } = 49;
         public bool IsLocked => rawdata.api_locked != 0;
@@ -123,7 +124,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Exp = new Exp(rawdata.api_exp);
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
-            RepairingHP = HP.Current;
+            if (!IsRepairing) RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
             int asw = rawdata.api_taisen[0];
             int los = rawdata.api_sakuteki[0];
@@ -168,6 +169,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
                 SlotEx.Item.OnShip = this;
             }
+            if (HP.IsMax) RepairTimePerHP = TimeSpan.Zero;
+            else RepairTimePerHP = TimeSpan.FromSeconds((RepairTime.TotalSeconds - 30) / HP.Shortage);
             UpdateStatus();
         }
 
