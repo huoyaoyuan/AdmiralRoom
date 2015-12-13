@@ -80,8 +80,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Battle(sortie_battle api, CombinedFleetType fleettype, BattleManager source)
         {
             FleetType = fleettype;
-            Fleet1 = source.SortieFleet1.Ships.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
-            Fleet2 = source.SortieFleet2?.Ships?.Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current })?.ToArray();
+            Fleet1 = (source.SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
+                .Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+            Fleet2 = source.SortieFleet2?.Ships
+                .Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
 
             if (api.api_formation != null)
             {
