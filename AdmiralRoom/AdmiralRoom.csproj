@@ -495,8 +495,6 @@
     <Resource Include="Images\Equip\33.png" />
     <Resource Include="Images\Equip\34.png" />
     <Resource Include="Images\Equip\35.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Equip\Misc.png" />
   </ItemGroup>
   <ItemGroup>
@@ -514,17 +512,15 @@
     <Resource Include="Images\Material\6.png" />
     <Resource Include="Images\Material\7.png" />
     <Resource Include="Images\Material\8.png" />
+    <Resource Include="Images\Material\10.png" />
+    <Resource Include="Images\Material\11.png" />
+    <Resource Include="Images\Material\12.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Quest\progress50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Quest\progress80.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Quest\complete.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Images\Quest\1.png" />
     <Resource Include="Images\Quest\2.png" />
     <Resource Include="Images\Quest\3.png" />
     <Resource Include="Images\Quest\4.png" />
@@ -532,7 +528,6 @@
     <Resource Include="Images\Quest\6.png" />
     <Resource Include="Images\Quest\7.png" />
     <Resource Include="Images\Quest\8.png" />
-    <Resource Include="Images\Quest\1.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Officer\StaticCounters.tt">
