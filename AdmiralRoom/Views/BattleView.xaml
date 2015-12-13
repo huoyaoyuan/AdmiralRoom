@@ -26,13 +26,18 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="4,0,4,0">
-                                <Run FontSize="20" Text="{Binding ShipInfo.Name, Mode=OneWay}"/>
-                                <TextBlock FontSize="20" x:Name="enemyclass"/>
-                                <LineBreak/>
-                                <Run FontSize="14" Text="{Binding ShipInfo.ShipType.DisplayName, Mode=OneWay}"/>
-                                <Run FontSize="14" Text="{Binding Level, StringFormat=Lv. {0}, Mode=OneWay}"/>
-                            </TextBlock>
+                            <StackPanel Orientation="Vertical" Margin="4,0,4,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="20" Text="{Binding ShipInfo.ClassName}"/>
+                                    <TextBlock FontSize="20" Foreground="DarkGray" Text="後期型"
+                                               Visibility="{Binding ShipInfo.IsLateModel, Converter={StaticResource VisibilityConverter}}"/>
+                                    <TextBlock FontSize="20" x:Name="enemyclass"/>
+                                </StackPanel>
+                                <TextBlock FontSize="14">
+                                    <Run Text="{Binding ShipInfo.ShipType.DisplayName, Mode=OneWay}"/>
+                                    <Run Text="{Binding Level, StringFormat=Lv. {0}, Mode=OneWay}"/>
+                                </TextBlock>
+                            </StackPanel>
                             <StackPanel Orientation="Vertical"
                                         Grid.Column="1"
                                         VerticalAlignment="Center"
