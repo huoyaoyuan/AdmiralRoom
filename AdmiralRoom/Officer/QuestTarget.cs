@@ -4,10 +4,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class QuestTarget : NotificationObject, IDisposable
     {
-        public ICounter Counter { get; private set; }
-        public int QuestId { get; set; }
-        public string Description { get; set; }
-        public QuestPeriod Period { get; set; }
+        public ICounter Counter { get; }
+        public int QuestId { get; }
+        public string Description { get; }
+        public QuestPeriod Period { get; }
 
         #region Progress
         private LimitedValue _progress;
@@ -22,7 +22,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        private QuestTarget SharedWith;
+        private QuestTarget _sharedwith;
+        private QuestTarget SharedWith
+        {
+            get
+            {
+                if (_sharedwith == null)
+                    _sharedwith = QuestManager.KnownQuests.Known[sharedwithid]?.MainTarget;
+                return _sharedwith;
+            }
+        }
+        private readonly int sharedwithid;
         private bool _istook;
         public bool IsTook
         {
@@ -37,7 +47,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 _istook = value;
             }
         }
-        public QuestTarget(ICounter counter, int questid, QuestPeriod period, int max, QuestTarget sharedwith = null, string description = "")
+        public QuestTarget(ICounter counter, int questid, QuestPeriod period, int max, int sharedwith = 0, string description = "")
         {
             Counter = counter;
             counter.Increased += Increase;
@@ -45,7 +55,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Period = period;
             Progress = new LimitedValue(0, max);
             Description = description;
-            SharedWith = sharedwith;
+            sharedwithid = sharedwith;
         }
 
         private void Increase(int n)

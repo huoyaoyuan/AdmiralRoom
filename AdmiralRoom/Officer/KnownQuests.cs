@@ -7,9 +7,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static class KnownQuestTargets
         {
             public static QuestTarget Daily10 = new QuestTarget(Counters.BattleCounter.Instance, 210, QuestPeriod.Daily, 10);
-            public static QuestTarget Trans3 = new QuestTarget(StaticCounters.TransportCounter, 218, QuestPeriod.Daily, 3, Trans5);
+            public static QuestTarget Trans3 = new QuestTarget(StaticCounters.TransportCounter, 218, QuestPeriod.Daily, 3, 212);
             public static QuestTarget CV3 = new QuestTarget(StaticCounters.CVCounter, 211, QuestPeriod.Daily, 3);
-            public static QuestTarget Trans5 = new QuestTarget(StaticCounters.TransportCounter, 212, QuestPeriod.Daily, 5, Trans3);
+            public static QuestTarget Trans5 = new QuestTarget(StaticCounters.TransportCounter, 212, QuestPeriod.Daily, 5, 218);
             public static QuestTarget Map2 = new QuestTarget(StaticCounters.Map2Counter, 226, QuestPeriod.Daily, 5);
             public static QuestTarget SS6 = new QuestTarget(StaticCounters.SSCounter, 230, QuestPeriod.Daily, 6);
             public static QuestTarget MissionAPart1 = new QuestTarget(Counters.SortieCounter.Instance, 214, QuestPeriod.Weekly, 36);
