@@ -18,6 +18,10 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
             {
                 return time.Remain();
             }
+            else if (para == "during")
+            {
+                return time.During();
+            }
             else throw new ArgumentException();
         }
 

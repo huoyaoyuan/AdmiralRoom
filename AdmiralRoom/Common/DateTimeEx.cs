@@ -10,6 +10,12 @@ namespace Huoyaoyuan.AdmiralRoom
                 return time - DateTimeOffset.Now;
             else return new TimeSpan(0);
         }
+        public static TimeSpan During(this DateTimeOffset time)
+        {
+            if (time.ToLocalTime() < DateTimeOffset.Now)
+                return DateTimeOffset.Now - time;
+            else return new TimeSpan(0);
+        }
         public static DateTimeOffset WeekStart(this DateTimeOffset time)
         {
             try

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Timers;
@@ -37,16 +38,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Fleet(getmember_deck api) : base(api)
         {
             Staff.Current.Ticker.Elapsed += Tick;
+            Staff.Current.Ticker.Elapsed += CheckHomeportRepairing;
         }
         public void Dispose()
         {
             Staff.Current.Ticker.Elapsed -= Tick;
+            Staff.Current.Ticker.Elapsed -= CheckHomeportRepairing;
             Ships.ForEach(x => x.InFleet = null);
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
             OnPropertyChanged("BackTime");
             OnPropertyChanged("ConditionTimeRemain");
+            OnPropertyChanged("HomeportRepairingFrom");
         }
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
@@ -230,6 +234,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("LoSInMap");
             OnPropertyChanged("ChargeCost");
             OnPropertyChanged("RepairCost");
+            OnPropertyChanged("CanHomeportRepairing");
         }
 
         protected override void OnAllPropertyChanged()
@@ -242,6 +247,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("ConditionTimeRemain");
             OnPropertyChanged("ConditionTimeOffset");
             if (needupdateship) OnPropertyChanged("Ships");
+        }
+
+        public bool CanHomeportRepairing => Ships.Count > 0 && Ships[0].ShipInfo.ShipType.Id == 19;
+        private IEnumerable<Ship> HomeportRepairingList => Ships.Take(
+            CanHomeportRepairing ? Ships[0].Slots.Where(x => x.Item?.EquipInfo.EquipType.Id == 31).Count() + 2 : 0);
+
+        public DateTimeOffset HomeportRepairingFrom { get; private set; }
+        public void CheckHomeportRepairingTime(bool reset)
+        {
+            var time = DateTimeOffset.UtcNow;
+            if (reset || (time - HomeportRepairingFrom).TotalMinutes >= 20) HomeportRepairingFrom = time;
+            CheckHomeportRepairing(null, null);
+        }
+
+        private void CheckHomeportRepairing(object sender, ElapsedEventArgs e)
+        {
+            var during = DateTimeOffset.UtcNow - HomeportRepairingFrom;
+            if (during.TotalMinutes < 20) return;
+            foreach (var ship in HomeportRepairingList)
+                if (!ship.IsRepairing)
+                    ship.RepairingHP = ship.HP.Current + Math.Max((int)(during.TotalSeconds / ship.RepairTimePerHP.TotalSeconds), 1);
         }
     }
     public enum FleetStatus { Empty, Ready, NotReady, InSortie, InMission, Warning }

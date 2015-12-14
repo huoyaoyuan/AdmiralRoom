@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -157,6 +158,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Shipyard.NDockHandler(api.api_ndock);
             DecksHandler(api.api_deck_port);
             CombinedFleet = (CombinedFleetType)api.api_combined_flag;
+            Fleets.ForEach(x => x.CheckHomeportRepairingTime(false));
         }
 
         private void DecksHandler(getmember_deck[] api)
@@ -219,6 +221,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                                     destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
                                 else destf.Ships.Remove(ship);
                                 destf.UpdateStatus();
+                                destf.CheckHomeportRepairingTime(true);
                             }
                             catch { }
                         }
@@ -228,6 +231,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     }
                 }
                 fleet.UpdateStatus();
+                fleet.CheckHomeportRepairingTime(true);
             });
         }
 
