@@ -133,9 +133,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void DestroyItemHandler(NameValueCollection req, kousyou_destroyitem2 api)
         {
             foreach (int id in req.GetInts("api_slotitem_ids"))
-            {
                 Staff.Current.Homeport.Equipments.Remove(id);
-            }
             Staff.Current.Homeport.UpdateCounts();
             Staff.Current.Homeport.Material.Fuel += api.api_get_material[0];
             Staff.Current.Homeport.Material.Bull += api.api_get_material[1];
@@ -183,6 +181,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (api.api_use_slot_id != null)
                 foreach (int id in api.api_use_slot_id)
                     Staff.Current.Homeport.Equipments.Remove(id);
+            Staff.Current.Homeport.UpdateCounts();
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_after_material);
         }
     }
