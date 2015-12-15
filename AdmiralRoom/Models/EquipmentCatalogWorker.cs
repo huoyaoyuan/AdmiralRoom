@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public class EquipmentGroup
         {
             public EquipInfo Item { get; set; }
-            public List<EquipmentImprovementGroup> Groups { get; } = new List<EquipmentImprovementGroup>();
+            public EquipmentImprovementGroup[] Groups { get; set; } = CollectionEx.ArrayNew<EquipmentImprovementGroup>(11);
         }
         public class EquipmentImprovementGroup
         {
@@ -51,20 +51,13 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                     group = new EquipmentGroup { Item = item.EquipInfo };
                     d.Add(typeid, group);
                 }
-                EquipmentImprovementGroup group2 = null;
-                int i;
-                for (i = 0; i < group.Groups.Count; i++)
-                    if (group.Groups[i].Level >= item.AirProficiency + item.ImproveLevel)
-                    {
-                        if (group.Groups[i].Level == item.AirProficiency + item.ImproveLevel) group2 = group.Groups[i];
-                        break;
-                    }
-                if (group2 == null)
+                int level = item.AirProficiency + item.ImproveLevel;
+                EquipmentImprovementGroup group2 = group.Groups[level];
+                if (level != group2.Level)
                 {
-                    group2 = new EquipmentImprovementGroup { Level = item.AirProficiency + item.ImproveLevel };
+                    group2.Level = level;
                     if (item.ImproveLevel > 0) group2.ImprovementType = 1;
                     else if (item.AirProficiency > 0) group2.ImprovementType = 2;
-                    group.Groups.Insert(i, group2);
                 }
                 group2.Count++;
                 if (item.OnShip != null)
@@ -74,6 +67,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 }
                 else group2.Left++;
             }
+            d.Values.ForEach(x => x.Groups = x.Groups.Where(y => y.Count > 0).ToArray());
             Groups = d.Values.OrderBy(x => x.Item.EquipType.Id).ThenBy(x => x.Item.Id).ToArray();
         }
     }

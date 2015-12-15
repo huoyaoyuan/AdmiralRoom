@@ -29,5 +29,13 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static IEnumerable<T> ConcatNotNull<T>(this IEnumerable<T> source, IEnumerable<T> param)
             => param != null ? source.Concat(param) : source;
+        public static T[] ArrayNew<T>(int count)
+            where T : class, new()
+        {
+            T[] array = new T[count];
+            for (int i = 0; i < count; i++)
+                array[i] = new T();
+            return array;
+        }
     }
 }
