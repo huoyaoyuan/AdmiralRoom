@@ -92,6 +92,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <Grid.ColumnDefinitions>
@@ -112,7 +114,113 @@
                                                HorizontalAlignment="Center"
                                                Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
                                 </Grid>
-                                <Grid Grid.Row="1">
+                                <Grid Grid.Row="1" DataContext="{Binding Battle.CurrentBattle.AirCombat1, Mode=OneWay}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" FontSize="14">
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="FriendStage1.Max" Mode="OneWay"/>
+                                                    <Binding Path="FriendStage1.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="FriendStage2.Max" Mode="OneWay"/>
+                                                    <Binding Path="FriendStage2.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="20"
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.AirCombat1.AirControl}"/>
+                                    <TextBlock Grid.Column="2" FontSize="14">
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
+                                                    <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
+                                                    <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="2" DataContext="{Binding Battle.CurrentBattle.AirCombat2, Mode=OneWay}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" FontSize="14">
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="FriendStage1.Max" Mode="OneWay"/>
+                                                    <Binding Path="FriendStage1.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="FriendStage2.Max" Mode="OneWay"/>
+                                                    <Binding Path="FriendStage2.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="20"
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Battle.CurrentBattle.AirCombat1.AirControl}"/>
+                                    <TextBlock Grid.Column="2" FontSize="14">
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
+                                                    <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run>
+                                            <Run.Text>
+                                                <MultiBinding StringFormat="{}{0}→{1}">
+                                                    <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
+                                                    <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Grid.Row="3">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
@@ -163,7 +271,7 @@
                                                HorizontalAlignment="Center"
                                                Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
                                 </Grid>
-                                <Grid Grid.Row="2">
+                                <Grid Grid.Row="4">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
