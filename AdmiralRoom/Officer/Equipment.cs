@@ -23,7 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             string s = EquipInfo.Name;
             if (ImproveLevel > 0 && ImproveLevel < 10) s += $" ★+{ImproveLevel}";
-            if (ImproveLevel == 10) s += "★max";
+            if (ImproveLevel == 10) s += " ★max";
             if (AirProficiency > 0) s += $" +{AirProficiency}";
             return s;
         }
