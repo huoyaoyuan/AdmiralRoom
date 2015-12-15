@@ -50,7 +50,12 @@ namespace Huoyaoyuan.AdmiralRoom
             NoDWM.Click += (s, _) => this.DontUseDwm = (s as CheckBox).IsChecked.Value;
             NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;
             Themes.ItemsSource = ThemeService.SupportedThemes;
-            Themes.SelectionChanged += (s, _) => ThemeService.ChangeRibbonTheme((s as ComboBox).SelectedValue.ToString());
+            Themes.SelectionChanged += (s, _) =>
+            {
+                if (DockMan.FloatingWindows.Any())//Can't DestroyWindow
+                    MessageBox.Show("有子窗口处于浮动状态，主题切换必须下次启动程序才能生效。", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else ThemeService.ChangeRibbonTheme((s as ComboBox).SelectedValue.ToString());
+            };
             ThemeService.ChangeRibbonTheme(Themes.SelectedValue.ToString());
             UseAeroControl.Click += (s, _) => ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
             UseAeroControl.IsChecked = Config.Current.Aero;
@@ -154,7 +159,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 TargetView = new LayoutAnchorable();
                 ViewList.Add(ViewName, TargetView);
                 TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
-                TargetView.Float();
+                //TargetView.Float();
                 TargetView.Hide();
             }
             if (TargetView.Content == null)
@@ -166,8 +171,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 TargetView.Title = ViewName;
                 TargetView.FloatingHeight = content.Height;
                 TargetView.FloatingWidth = content.Width;
-                TargetView.FloatingTop = this.ActualHeight / 2;
-                TargetView.FloatingWidth = this.ActualWidth / 2;
+                //TargetView.FloatingTop = this.ActualHeight / 2;
+                //TargetView.FloatingWidth = this.ActualWidth / 2;
                 Binding titlebinding = new Binding("Resources.ViewTitle_" + ViewName);
                 titlebinding.Source = ResourceService.Current;
                 BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
