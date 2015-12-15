@@ -118,10 +118,10 @@
                                 <Grid Grid.Row="1" DataContext="{Binding Battle.CurrentBattle.AirCombat1, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" FontSize="14">
+                                    <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Center">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -144,9 +144,9 @@
                                     </TextBlock>
                                     <TextBlock FontSize="20"
                                                Grid.Column="1"
-                                               HorizontalAlignment="Center"
-                                               Text="{Binding Battle.CurrentBattle.AirCombat1.AirControl}"/>
-                                    <TextBlock Grid.Column="2" FontSize="14">
+                                               VerticalAlignment="Center"
+                                               Text="{Binding AirControl}"/>
+                                    <TextBlock Grid.Column="2" FontSize="14" HorizontalAlignment="Center">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -171,10 +171,10 @@
                                 <Grid Grid.Row="2" DataContext="{Binding Battle.CurrentBattle.AirCombat2, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" FontSize="14">
+                                    <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Center">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -197,9 +197,9 @@
                                     </TextBlock>
                                     <TextBlock FontSize="20"
                                                Grid.Column="1"
-                                               HorizontalAlignment="Center"
-                                               Text="{Binding Battle.CurrentBattle.AirCombat1.AirControl}"/>
-                                    <TextBlock Grid.Column="2" FontSize="14">
+                                               VerticalAlignment="Center"
+                                               Text="{Binding AirControl}"/>
+                                    <TextBlock Grid.Column="2" FontSize="14" HorizontalAlignment="Center">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
