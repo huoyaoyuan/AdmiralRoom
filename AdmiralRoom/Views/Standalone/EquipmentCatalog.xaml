@@ -7,12 +7,12 @@
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:EquipmentCatalogWorker}"
-
+        
         Title="EquipmentCatalog"
         Height="800"
         FontFamily="DengXian" FontSize="16">
     <Grid>
-        <ListView ItemsSource="{Binding Groups}">
+        <ListView ItemsSource="{Binding Groups}" VirtualizingPanel.IsVirtualizing="False">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="装备名" DisplayMemberBinding="{Binding Item.Name}"/>
@@ -21,48 +21,96 @@
                             <DataTemplate>
                                 <Canvas Height="15" Width="15">
                                     <Image Source="{Binding Item.Icon}"
-
+                                           
                                            Height="20" Width="20"
                                            Canvas.Left="-2.5" Canvas.Top="-2.5"/>
                                 </Canvas>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="数量（剩余）">
+                    <GridViewColumn Width="650">
+                        <GridViewColumn.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Width="52" BorderThickness="0,0,1,0" Grid.Column="0">
+                                    <TextBlock Text="强化"/>
+                                </Border>
+                                <Border Width="82" BorderThickness="0,0,1,0" Grid.Column="1">
+                                    <TextBlock Text="数量(剩余)"/>
+                                </Border>
+                                <Border Width="534" Grid.Column="2">
+                                    <TextBlock Text="装备舰船"/>
+                                </Border>
+                            </Grid>
+                        </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Count}"/>
-                                    <TextBlock Text="{Binding Left, StringFormat=({0})}" Opacity="0.6" Margin="2,0,0,0"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="装备舰船" Width="650">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Equipped}">
+                                <ItemsControl ItemsSource="{Binding Groups}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal"/>
+                                            <StackPanel Orientation="Vertical"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
-                                                <TextBlock>
-                                                    <TextBlock.Text>
-                                                        <MultiBinding StringFormat="{}{0}(Lv.{1}) ">
-                                                            <Binding Path="Key.ShipInfo.Name"/>
-                                                            <Binding Path="Key.Level"/>
-                                                        </MultiBinding>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                                <TextBlock x:Name="count" Text="{Binding Value, StringFormat=x{0}}" Opacity="0.6"/>
-                                            </StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock x:Name="level"
+                                                           Grid.Column="0"
+                                                           Width="53"
+                                                           Text="{Binding Level, StringFormat=+{0}}"
+                                                           Foreground="LightGray"
+                                                           VerticalAlignment="Center"/>
+                                                <StackPanel Grid.Column="1"
+                                                            Orientation="Horizontal"
+                                                            Width="83"
+                                                            VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Count}"/>
+                                                    <TextBlock Text="{Binding Left, StringFormat=({0})}" Opacity="0.6" Margin="2,0,0,0"/>
+                                                </StackPanel>
+                                                <ItemsControl Grid.Column="2" ItemsSource="{Binding Equipped}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
+                                                                <TextBlock>
+                                                                    <TextBlock.Text>
+                                                                        <MultiBinding StringFormat="{}{0}(Lv.{1}) ">
+                                                                            <Binding Path="Key.ShipInfo.Name"/>
+                                                                            <Binding Path="Key.Level"/>
+                                                                        </MultiBinding>
+                                                                    </TextBlock.Text>
+                                                                </TextBlock>
+                                                                <TextBlock x:Name="count" Text="{Binding Value, StringFormat=x{0}}" Opacity="0.6"/>
+                                                            </StackPanel>
+                                                            <DataTemplate.Triggers>
+                                                                <DataTrigger Binding="{Binding Value}" Value="1">
+                                                                    <Setter TargetName="count" Property="Visibility" Value="Collapsed"/>
+                                                                </DataTrigger>
+                                                            </DataTemplate.Triggers>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </Grid>
                                             <DataTemplate.Triggers>
-                                                <DataTrigger Binding="{Binding Value}" Value="1">
-                                                    <Setter TargetName="count" Property="Visibility" Value="Collapsed"/>
+                                                <DataTrigger Binding="{Binding ImprovementType}" Value="1">
+                                                    <Setter TargetName="level" Property="Foreground" Value="DarkCyan"/>
+                                                    <Setter TargetName="level" Property="Text" Value="{Binding Level, StringFormat=★+{0}}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ImprovementType}" Value="2">
+                                                    <Setter TargetName="level" Property="Foreground" Value="GoldenRod"/>
                                                 </DataTrigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
