@@ -24,6 +24,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
+        public class AirCombat
+        {
+            public AirControl AirControl { get; set; }
+            public LimitedValue FriendStage1 { get; set; }
+            public LimitedValue EnemyStage1 { get; set; }
+            public LimitedValue FriendStage2 { get; set; }
+            public LimitedValue EnemyStage2 { get; set; }
+        }
+        public AirCombat AirCombat1 { get; set; }
+        public AirCombat AirCombat2 { get; set; }
         public double FriendDamageRate => (double)Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP - x.ToHP)
             / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
         public double EnemyDamageRate => (double)EnemyFleet.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
@@ -99,7 +109,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             else EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
 
-            AirBattle(api.api_kouku);
+            AirCombat1 = AirBattle(api.api_kouku);
+            AirCombat2 = AirBattle(api.api_kouku2);
             SupportAttack(api.api_support_info);
             TorpedoAttack(api.api_opening_atack);
             FireAttack(api.api_hougeki1);
@@ -128,16 +139,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 ship.Damage += (int)damage;
             }
         }
-        private void AirBattle(sortie_battle.airbattle api)
+        private AirCombat AirBattle(sortie_battle.airbattle api)
         {
-            if (api == null) return;
-
+            if (api == null) return null;
+            AirCombat combat = new AirCombat();
+            if (api.api_stage1 != null)//stage1一直都有吧
+            {
+                combat.AirControl = (AirControl)api.api_stage1.api_disp_seiku;
+                combat.FriendStage1 = new LimitedValue(api.api_stage1.api_f_count - api.api_stage1.api_f_lostcount, api.api_stage1.api_f_count);
+                combat.EnemyStage1 = new LimitedValue(api.api_stage1.api_e_count - api.api_stage1.api_e_lostcount, api.api_stage1.api_e_count);
+            }
+            if (api.api_stage2 != null)
+            {
+                combat.FriendStage2 = new LimitedValue(api.api_stage2.api_f_count - api.api_stage2.api_f_lostcount, api.api_stage2.api_f_count);
+                combat.EnemyStage2 = new LimitedValue(api.api_stage2.api_e_count - api.api_stage2.api_e_lostcount, api.api_stage2.api_e_count);
+            }
             if (api.api_stage3 != null)
             {
                 Fleet1.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
                 Fleet2?.ArrayZip(api.api_stage3.api_fdam, 7, Delegates.SetDamage);
                 EnemyFleet.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
             }
+            return combat;
         }
         private void SupportAttack(sortie_battle.support api)
         {
@@ -162,4 +185,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }
     public enum Direction { 同航戦 = 1, 反航戦 = 2, T字有利 = 3, T字不利 = 4 }
     public enum WinRank { Perfect, S, A, B, C, D, E }
+    public enum AirControl { 制空互角 = 0, 制空権確保 = 1, 航空優勢 = 2, 航空劣勢 = 3, 制空権喪失 = 4 }
 }

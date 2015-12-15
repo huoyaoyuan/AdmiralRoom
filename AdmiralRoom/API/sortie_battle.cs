@@ -61,6 +61,7 @@
             public stage3 api_stage3 { get; set; }
         }
         public airbattle api_kouku { get; set; }
+        public airbattle api_kouku2 { get; set; }
         public int api_support_flag { get; set; }
         public class support
         {
