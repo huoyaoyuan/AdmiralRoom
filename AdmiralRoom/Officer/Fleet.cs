@@ -267,7 +267,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (during.TotalMinutes < 20) return;
             foreach (var ship in HomeportRepairingList)
                 if (!ship.IsRepairing)
-                    ship.RepairingHP = ship.HP.Current + Math.Max((int)(during.TotalSeconds / ship.RepairTimePerHP.TotalSeconds), 1);
+                    ship.RepairingHP = ship.HP.Current + Math.Max((int)((during.TotalSeconds - 30) / ship.RepairTimePerHP.TotalSeconds), 1);
         }
     }
     public enum FleetStatus { Empty, Ready, NotReady, InSortie, InMission, Warning }
