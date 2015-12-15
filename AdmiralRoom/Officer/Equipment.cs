@@ -22,7 +22,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public override string ToString()
         {
             string s = EquipInfo.Name;
-            if (ImproveLevel > 0) s += $" ★+{ImproveLevel}";
+            if (ImproveLevel > 0 && ImproveLevel < 10) s += $" ★+{ImproveLevel}";
+            if (ImproveLevel == 10) s += "★max";
             if (AirProficiency > 0) s += $" +{AirProficiency}";
             return s;
         }

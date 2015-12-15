@@ -109,6 +109,9 @@
                                                     <Setter TargetName="level" Property="Foreground" Value="DarkCyan"/>
                                                     <Setter TargetName="level" Property="Text" Value="{Binding Level, StringFormat=★+{0}}"/>
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="10">
+                                                    <Setter TargetName="level" Property="Text" Value="★max"/>
+                                                </DataTrigger>
                                                 <DataTrigger Binding="{Binding ImprovementType}" Value="2">
                                                     <Setter TargetName="level" Property="Foreground" Value="GoldenRod"/>
                                                 </DataTrigger>
