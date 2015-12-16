@@ -102,8 +102,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 #endif
             }
         }
-
-        private static readonly Action<Action<Session>, Session> ExceptionCatcherDelegate = ExceptionCatcher;
+        
         private static void ExceptionCatcher(Action<Session> action, Session parameter)
         {
             try
