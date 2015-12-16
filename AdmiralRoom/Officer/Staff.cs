@@ -87,36 +87,33 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FiddlerApplication.Shutdown();
         }
 
-        private static SemaphoreSlim signal = new SemaphoreSlim(1, 1);
+        private static object lockObj = new object();
         private static void Distribute(object o)
         {
             Session oSession = o as Session;
-            signal.Wait();
-            foreach (string key in apisource.Keys.ToArray())
-                if (oSession.PathAndQuery.EndsWith(key))
+            lock (lockObj)
+            {
+                foreach (string key in apisource.Keys.ToArray())
+                    if (oSession.PathAndQuery.EndsWith(key))
 #if DEBUG == false
-                    Parallel.ForEach(apisource[key].Handler.GetInvocationList(), x => ExceptionCatcher(x as Action<Session>, oSession));
+                        Parallel.ForEach(apisource[key].Handler.GetInvocationList(), x => ExceptionCatcher(x as Action<Session>, oSession));
 #else
-                    apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
+                        apisource[key].Handler.GetInvocationList().ForEach(x => (x as Action<Session>)(oSession));
 #endif
-            signal.Release();
+            }
         }
 
         private static readonly Action<Action<Session>, Session> ExceptionCatcherDelegate = ExceptionCatcher;
         private static void ExceptionCatcher(Action<Session> action, Session parameter)
         {
-#if DEBUG == false
             try
             {
-#endif
-            action(parameter);
-#if DEBUG == false
+                action(parameter);
             }
             catch (Exception ex)
             {
                 Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.StackTrace, ex.Message));
             }
-#endif
         }
         public class APIObservable
         {
