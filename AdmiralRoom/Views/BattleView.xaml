@@ -26,7 +26,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Margin="4,0,4,0">
+                            <StackPanel Orientation="Vertical" Margin="4,0,4,0" ToolTip="{Binding}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="20" Text="{Binding ShipInfo.ClassName}"/>
                                     <TextBlock FontSize="20" Foreground="DarkGray" Text="後期型"

@@ -75,9 +75,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             FleetType = fleettype;
             Fleet1 = (source.SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
-                .Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+                .Select(x => new ShipInBattle(x)).ToArray();
             Fleet2 = source.SortieFleet2?.Ships
-                .Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+                .Select(x => new ShipInBattle(x)).ToArray();
 
             if (api.api_formation != null)
             {
@@ -90,6 +90,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
             EnemyFleet = api.api_ship_ke.Where(x => x != -1).Select(x => new ShipInBattle { ShipInfo = Staff.Current.MasterData.ShipInfo[x] }).ToArray();
             EnemyFleet.ArrayZip(api.api_ship_lv, 1, (x, y) => x.Level = y);
+            EnemyFleet.ArrayZip(api.api_eSlot, 0, (x, y) => x.Equipments = y.Where(z => z != -1).Select(z => Staff.Current.MasterData.EquipInfo[z]).ToArray());
 
             Fleet1.ArrayZip(api.api_maxhps, 1, Delegates.SetMaxHP);
             if (iscombined)

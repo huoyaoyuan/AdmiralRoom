@@ -12,8 +12,25 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public int FromHP { get; set; }
             public int ToHP { get; set; }
             public int Damage { get; set; }
+            public EquipInfo[] Equipments { get; set; }
             public LimitedValue HP => new LimitedValue(ToHP, MaxHP);
             public void EndUpdate() => OnAllPropertyChanged();
+            public override string ToString()
+            {
+                string result = $"{ShipInfo.FullName}(Lv.{Level}):";
+                foreach (var equip in Equipments) result += $" {equip.Name},";
+                return result.TrimEnd(',');
+            }
+            public ShipInBattle() { }
+            public ShipInBattle(Ship ship)
+            {
+                Level = ship.Level;
+                ShipInfo = ship.ShipInfo;
+                MaxHP = ship.HP.Max;
+                FromHP = ship.HP.Current;
+                ToHP = ship.HP.Current;
+                Equipments = ship.Slots.Where(y => y.HasItem).Select(y => y.Item.EquipInfo).ToArray();
+            }
         }
         public CombinedFleetType FleetType { get; set; }
         public ShipInBattle[] Fleet1 { get; set; }
@@ -41,9 +58,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public BattleBase(BattleManager source)
         {
             Fleet1 = source.SortieFleet1.Ships
-                .Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+                .Select(x => new ShipInBattle(x)).ToArray();
             Fleet2 = source.SortieFleet2?.Ships
-                .Select(x => new ShipInBattle { Level = x.Level, ShipInfo = x.ShipInfo, MaxHP = x.HP.Max, FromHP = x.HP.Current, ToHP = x.HP.Current }).ToArray();
+                .Select(x => new ShipInBattle(x)).ToArray();
         }
     }
 }

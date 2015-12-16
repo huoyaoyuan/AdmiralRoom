@@ -27,6 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public bool IsLateModel => Name.Contains("後期型");
         public string ClassName => Name.Replace("後期型", "");
+        public string FullName => AbyssalClass == AbyssalClass.Normal ? Name : Name + Yomi;
         public bool CanUpgrade => rawdata.api_aftershipid != 0;
         public int UpgradeLevel => rawdata.api_afterlv;
         public ShipInfo UpgradeTo => Staff.Current.MasterData.ShipInfo[rawdata.api_aftershipid];
