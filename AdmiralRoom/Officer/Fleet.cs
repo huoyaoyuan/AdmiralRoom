@@ -249,9 +249,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (needupdateship) OnPropertyChanged("Ships");
         }
 
-        public bool CanHomeportRepairing => Ships.Count > 0 && Ships[0].ShipInfo.ShipType.Id == 19;
+        public bool CanHomeportRepairing
+            => Ships.Count > 0
+            && Ships[0].ShipInfo.ShipType.Id == 19
+            && Ships[0].IsRepairing == false
+            && MissionState == FleetMissionState.None;
         private IEnumerable<Ship> HomeportRepairingList => Ships.Take(
-            CanHomeportRepairing ? Ships[0].Slots.Where(x => x.Item?.EquipInfo.EquipType.Id == 31).Count() + 2 : 0);
+            CanHomeportRepairing ? Ships[0].Slots.Where(x => x.Item?.EquipInfo.EquipType.Id == 31).Count() + 2 : 0)
+            .Where(x => x.HP.Current * 2 > x.HP.Max);
 
         public DateTimeOffset HomeportRepairingFrom { get; private set; }
         public void CheckHomeportRepairingTime(bool reset)
