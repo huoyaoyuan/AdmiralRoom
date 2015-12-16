@@ -112,7 +112,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch (Exception ex)
             {
-                Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.StackTrace, ex.Message));
+                Current.Dispatcher.InvokeAsync(() => System.Windows.MessageBox.Show(ex.StackTrace, ex.Message));
             }
         }
         public class APIObservable
