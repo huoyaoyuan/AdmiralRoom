@@ -45,8 +45,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 int fl = FriendLostCount;
                 int es = EnemySinkCount;
-                int fd = (int)Round(FriendDamageRate * 100);
-                int ed = (int)Round(EnemyDamageRate * 100);
+                int fd = (int)(FriendDamageRate * 100);
+                int ed = (int)(EnemyDamageRate * 100);
                 if (fl == 0)
                 {
                     if (es == EnemyFleet.Length)
@@ -57,9 +57,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     if (es >= Round(EnemyFleet.Length * 0.6)) return WinRank.A;
                     if (EnemyFleet[0].ToHP <= 0) return WinRank.B;
                     if (ed > fd * 2.5) return WinRank.B;
-                    if (ed == 0) return WinRank.D;
-                    if (ed >= fd) return WinRank.C;
-                    if (ed >= 50) return WinRank.C;
+                    if (ed > fd * 0.9) return WinRank.C;
                     return WinRank.D;
                 }
                 else
@@ -67,8 +65,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     if (es == EnemyFleet.Length) return WinRank.B;
                     if (EnemyFleet[0].ToHP <= 0 && fl < es) return WinRank.B;
                     if (ed > fd * 2.5) return WinRank.B;
-                    if (ed >= fd) return WinRank.C;
-                    if (fl >= Round(Fleet1.Concat(Fleet2 ?? Enumerable.Empty<ShipInBattle>()).Count() * 0.6)) return WinRank.E;
+                    if (ed > fd * 0.9) return WinRank.C;
+                    if (fl >= Round(Fleet1.ConcatNotNull(Fleet2).Count() * 0.6)) return WinRank.E;
                     return WinRank.D;
                 }
             }
