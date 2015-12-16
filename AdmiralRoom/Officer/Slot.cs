@@ -103,6 +103,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         factor = 1.37;
                         break;
                     case 9://艦上偵察機
+                    case 94://艦上偵察機(II)
                         factor = 1.66;
                         break;
                     case 10://水上偵察機
@@ -115,16 +116,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         factor = 1.00;
                         break;
                     case 13://大型電探
+                    case 93://大型電探(II)
                         factor = 0.99;
                         break;
                     case 29://探照灯
-                        factor = 0.91;
-                        break;
                     case 42://大型探照灯
                         factor = 0.91;
-                        break;
-                    case 93://大型電探(II)
-                        factor = 0.99;
                         break;
                 }
                 return factor * Item.EquipInfo.LoS;
