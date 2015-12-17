@@ -11,6 +11,8 @@ namespace Huoyaoyuan.AdmiralRoom
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            Environment.CurrentDirectory = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+
             Win32Helper.SetIEEmulation(11001);
             Win32Helper.SetGPURendering(true);
             Win32Helper.SetMMCSSTask();
