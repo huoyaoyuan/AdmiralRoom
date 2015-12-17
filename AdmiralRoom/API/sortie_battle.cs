@@ -97,8 +97,8 @@
             public int[] api_erai { get; set; }
             public decimal[] api_fdam { get; set; }
             public decimal[] api_edam { get; set; }
-            public int[] api_fydam { get; set; }
-            public int[] api_eydam { get; set; }
+            public decimal[] api_fydam { get; set; }
+            public decimal[] api_eydam { get; set; }
             public int[] api_fcl { get; set; }
             public int[] api_ecl { get; set; }
         }

@@ -24,6 +24,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
+        public int AnonymousFriendDamage { get; set; }
+        public int AnonymousEnemyDamage { get; set; }
         public class AirCombat
         {
             public AirControl AirControl { get; set; }
@@ -137,6 +139,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (ship.ToHP <= 0) ship.ToHP = 0;
                 ship.Damage += (int)damage;
             }
+            public static void SetGiveDamage(ShipInBattle ship, decimal damage)
+            {
+                if (ship == null) return;
+                ship.DamageGiven += (int)damage;
+            }
         }
         private AirCombat AirBattle(sortie_battle.airbattle api)
         {
@@ -174,11 +181,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             var torpedofleet = Fleet2 ?? Fleet1;
             torpedofleet.ArrayZip(api.api_fdam, 1, Delegates.SetDamage);
             EnemyFleet.ArrayZip(api.api_edam, 1, Delegates.SetDamage);
+            torpedofleet.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
+            EnemyFleet.ArrayZip(api.api_eydam, 1, Delegates.SetGiveDamage);
         }
         private void FireAttack(sortie_battle.fire api)
         {
             if (api == null) return;
             api.api_df_list.Zip(api.api_damage, (x, y) => x.Zip(y, (a, b) => Delegates.SetDamage(this[a], b)));
+            api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(this[y], d)));
         }
     }
     public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }
