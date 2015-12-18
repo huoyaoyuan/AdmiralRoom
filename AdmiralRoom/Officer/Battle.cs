@@ -110,8 +110,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             else EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
 
-            AirCombat1 = AirBattle(api.api_kouku);
-            AirCombat2 = AirBattle(api.api_kouku2);
+            AirCombat1 = AirBattle(api.api_kouku, false);
+            AirCombat2 = AirBattle(api.api_kouku2, false);
             SupportAttack(api.api_support_info);
             TorpedoAttack(api.api_opening_atack);
             FireAttack(api.api_hougeki1);
@@ -145,7 +145,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 ship.DamageGiven += (int)damage;
             }
         }
-        private AirCombat AirBattle(sortie_battle.airbattle api)
+        private AirCombat AirBattle(sortie_battle.airbattle api, bool issupport)
         {
             if (api == null) return null;
             AirCombat combat = new AirCombat();
@@ -165,13 +165,42 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Fleet1.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
                 Fleet2?.ArrayZip(api.api_stage3.api_fdam, 7, Delegates.SetDamage);
                 EnemyFleet.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
+                if (!issupport)
+                {
+                    var friendtorpedo = Fleet1.Where(x => x.CanAerialTorpedo).TakeSingle();
+                    var friendbomb = Fleet1.Where(x => x.CanAerialBomb).TakeSingle();
+                    var enemytorpedo = EnemyFleet.Where(x => x.CanAerialTorpedo).TakeSingle();
+                    var enemybomb = EnemyFleet.Where(x => x.CanAerialBomb).TakeSingle();
+                    for (int i = 1; i < api.api_stage3.api_fdam.Length; i++)
+                        if (api.api_stage3.api_frai_flag[i] != 0)
+                            if (api.api_stage3.api_fbak_flag[i] != 0)
+                                if (enemytorpedo == enemybomb && enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3.api_fdam[i];
+                                else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
+                            else
+                                if (enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3.api_fdam[i];
+                            else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
+                        else if (api.api_stage3.api_fbak_flag[i] != 0)
+                            if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3.api_fdam[i];
+                            else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
+                    for (int i = 1; i < api.api_stage3.api_edam.Length; i++)
+                        if (api.api_stage3.api_erai_flag[i] != 0)
+                            if (api.api_stage3.api_ebak_flag[i] != 0)
+                                if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
+                                else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                            else
+                                if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
+                            else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                        else if (api.api_stage3.api_ebak_flag[i] != 0)
+                            if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3.api_edam[i];
+                            else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                }
             }
             return combat;
         }
         private void SupportAttack(sortie_battle.support api)
         {
             if (api == null) return;
-            AirBattle(api.api_support_airatack);
+            AirBattle(api.api_support_airatack, true);
             if (api.api_support_hourai != null)
                 EnemyFleet.ArrayZip(api.api_support_hourai.api_damage, 1, Delegates.SetDamage);
         }

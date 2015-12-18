@@ -37,5 +37,14 @@ namespace Huoyaoyuan.AdmiralRoom
                 array[i] = new T();
             return array;
         }
+        public static T TakeSingle<T>(this IEnumerable<T> source)
+        {
+            T result = default(T);
+            foreach (T element in source)
+                if (result.Equals(default(T)))//first
+                    result = element;
+                else return default(T);
+            return result;
+        }
     }
 }
