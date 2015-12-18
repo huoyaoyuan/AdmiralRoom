@@ -123,9 +123,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void NightBattle(sortie_battle api)
         {
             FireAttack(api.api_hougeki);
-            Fleet1.ForEach(x => x.EndUpdate());
-            Fleet2?.ForEach(x => x.EndUpdate());
-            EnemyFleet.ForEach(x => x.EndUpdate());
+            EndApplyBattle();
+        }
+        private void EndApplyBattle()
+        {
+            Fleet1.ForEach(Delegates.OnEndUpdate);
+            Fleet2?.ForEach(Delegates.OnEndUpdate);
+            EnemyFleet.ForEach(Delegates.OnEndUpdate);
+            //mvp
+            Fleet1.TakeMax(x => x.DamageGiven).SetMvp();
+            Fleet2?.TakeMax(x => x.DamageGiven).SetMvp();
+            EnemyFleet.TakeMax(x => x.DamageGiven).SetMvp();
+
             OnAllPropertyChanged();
         }
         private static class Delegates
@@ -143,6 +152,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (ship == null) return;
                 ship.DamageGiven += (int)damage;
+            }
+            public static void OnEndUpdate(ShipInBattle ship)
+            {
+                ship.EndUpdate();
+                ship.IsMostDamage = false;
             }
         }
         private AirCombat AirBattle(sortie_battle.airbattle api, bool issupport)

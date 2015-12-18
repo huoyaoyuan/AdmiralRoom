@@ -25,6 +25,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Damage"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical" Margin="4,0,4,0" ToolTip="{Binding}">
                                 <StackPanel Orientation="Horizontal">
@@ -57,6 +58,20 @@
                                                               Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
                                                               PredictForeground="Wheat"/>
                             </StackPanel>
+                            <TextBlock Grid.Column="2"
+                                       FontSize="16"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding DamageGiven}">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMostDamage}" Value="True">
+                                                <Setter Property="FontWeight" Value="Black"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </Grid>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="Elite">
@@ -84,6 +99,7 @@
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <Grid HorizontalAlignment="Left">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -300,7 +316,21 @@
                                               ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
                                               Style="{StaticResource FleetKey}"/>
                             </StackPanel>
-                            <CheckBox Grid.Row="2" Margin="2,0,0,0">
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Text="{Binding Battle.CurrentBattle.AnonymousFriendDamage, StringFormat=不明伤害：{0}}"/>
+                                <TextBlock Grid.Column="1"
+                                           HorizontalAlignment="Right"
+                                           FontSize="16"
+                                           Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, StringFormat=不明伤害：{0}}"/>
+                            </Grid>
+                            <CheckBox Grid.Row="3" Margin="2,0,0,0">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock>掉落：</TextBlock>
                                     <TextBlock Visibility="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}, Converter={StaticResource VisibilityConverter}}" Text="{Binding Battle.CurrentBattle.GetShip}"/>
