@@ -39,12 +39,33 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static T TakeSingle<T>(this IEnumerable<T> source)
         {
-            T result = default(T);
-            foreach (T element in source)
-                if (result.Equals(default(T)))//first
-                    result = element;
-                else return default(T);
-            return result;
+            using (var e = source.GetEnumerator())
+            {
+                if (!e.MoveNext()) return default(T);
+                T result = e.Current;
+                if (e.MoveNext()) return default(T);
+                return result;
+            }
+        }
+        public static T TakeMax<T, TResult>(this IEnumerable<T> source, Func<T, TResult> selector)
+            where TResult : IComparable
+        {
+            using (var e = source.GetEnumerator())
+            {
+                if (!e.MoveNext()) return default(T);
+                T max = e.Current;
+                TResult key = selector(max);
+                while (e.MoveNext())
+                {
+                    TResult key2 = selector(e.Current);
+                    if (key2.CompareTo(key) > 0)
+                    {
+                        key = key2;
+                        max = e.Current;
+                    }
+                }
+                return max;
+            }
         }
     }
 }
