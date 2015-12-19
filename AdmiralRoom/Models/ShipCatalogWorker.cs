@@ -41,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             {
                 get
                 {
-                    return !Value.HasValue;
+                    return Value == null;
                 }
                 set
                 {
@@ -56,7 +56,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             {
                 get
                 {
-                    return Value.HasValue && Value.Value;
+                    return Value == true;
                 }
                 set
                 {
@@ -71,7 +71,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             {
                 get
                 {
-                    return Value.HasValue && !Value.Value;
+                    return Value == false;
                 }
                 set
                 {
