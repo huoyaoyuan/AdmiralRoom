@@ -105,15 +105,33 @@
                                                 </ItemsControl>
                                             </Grid>
                                             <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Level}" Value="7">
+                                                    <Setter TargetName="level" Property="Foreground" Value="DarkGoldenRod"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="6">
+                                                    <Setter TargetName="level" Property="Foreground" Value="#C0B8860B"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="5">
+                                                    <Setter TargetName="level" Property="Foreground" Value="#B0B8860B"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="4">
+                                                    <Setter TargetName="level" Property="Foreground" Value="#A0B8860B"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="3">
+                                                    <Setter TargetName="level" Property="Foreground" Value="#E000BFFF"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="2">
+                                                    <Setter TargetName="level" Property="Foreground" Value="#D000BFFF"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Level}" Value="1">
+                                                    <Setter TargetName="level" Property="Foreground" Value="#C000BFFF"/>
+                                                </DataTrigger>
                                                 <DataTrigger Binding="{Binding ImprovementType}" Value="1">
                                                     <Setter TargetName="level" Property="Foreground" Value="DarkCyan"/>
                                                     <Setter TargetName="level" Property="Text" Value="{Binding Level, StringFormat=★+{0}}"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Level}" Value="10">
                                                     <Setter TargetName="level" Property="Text" Value="★max"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ImprovementType}" Value="2">
-                                                    <Setter TargetName="level" Property="Foreground" Value="GoldenRod"/>
                                                 </DataTrigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
