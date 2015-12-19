@@ -264,18 +264,18 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <WrapPanel Grid.Row="2" Orientation="Horizontal">
                         <TextBlock>补给消耗</TextBlock>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
                         <TextBlock Text="{Binding ChargeCost[0]}"/>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/2.png"/>
+                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/2.png"/>
                         <TextBlock Text="{Binding ChargeCost[1]}"/>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/4.png"/>
+                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/4.png"/>
                         <TextBlock Text="{Binding ChargeCost[2]}"/>
                         <TextBlock Margin="10,0,0,0">修理消耗</TextBlock>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
                         <TextBlock Text="{Binding RepairCost[0]}"/>
-                        <Image Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/3.png"/>
+                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/3.png"/>
                         <TextBlock Text="{Binding RepairCost[1]}"/>
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
@@ -286,7 +286,7 @@
                             </TextBlock.Text>
                         </TextBlock>
                         <TextBlock Margin="10,0,0,0" Visibility="{Binding CanHomeportRepairing, Converter={StaticResource VisibilityConverter}}" Text="{Binding HomeportRepairingFrom, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=During, StringFormat=泊地修理 {0:hh\\:mm\\:ss}}"/>
-                    </StackPanel>
+                    </WrapPanel>
                     <StackPanel Grid.Row="3" Orientation="Horizontal">
                         <TextBlock>
                             <TextBlock.Text>
