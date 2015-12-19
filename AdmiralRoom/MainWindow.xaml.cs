@@ -104,6 +104,16 @@ namespace Huoyaoyuan.AdmiralRoom
             FontSmall.Click += (_, __) => this.FontSize -= 1;
 
             ScreenShotButton.Click += (_, __) => GameHost.TakeScreenShot(Config.Current.GenerateScreenShotFileName());
+            DeleteCacheButton.Click += async (sender, __) =>
+            {
+                var button = sender as Button;
+                button.IsEnabled = false;
+                if (MessageBox.Show("确实要清理Internet缓存文件吗？", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (await WinInetHelper.DeleteInternetCacheAsync())
+                        MessageBox.Show("Internet缓存文件清理成功。");
+                    else MessageBox.Show("Internet缓存文件清理失败。");
+                button.IsEnabled = true;
+            };
 
             this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);

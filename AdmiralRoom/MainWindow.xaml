@@ -68,6 +68,7 @@
                                          IsChecked="{Binding Volume.IsMute, Source={x:Static Models:Status.Current}}"
                                          IsEnabled="{Binding IsGameLoaded, Source={x:Static Models:Status.Current}}"/>
                     <ribbon:Button Header="截图" KeyTip="S" x:Name="ScreenShotButton"/>
+                    <ribbon:Button Header="清理缓存" KeyTip="C" x:Name="DeleteCacheButton"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="代理">
                     <Grid>
