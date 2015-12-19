@@ -10,8 +10,7 @@ function Main
         $bin = '..\AdmiralRoom\bin\'
  
         $targetKeywords = '*.exe','*.dll','*.exe.config'
-        $ignoreKeywords ='Microsoft.*.resources.dll','ExPlugin.*.dll'
-        $childFolders ='zh-Hans','en','ja'
+        $ignoreKeywords ='Xceed.Wpf.AvalonDock.resources.dll'
  
         $exeSource  = 'AdmiralRoom.exe'
  
@@ -29,7 +28,7 @@ function Main
             Get-ChildItem -Directory | Remove-item -Recurse
             Get-ChildItem | where { $_.Extension -eq ".zip" } | Remove-Item
  
-            Copy-StrictedFilterFileWithDirectoryStructure -Path $(Join-Path $bin $target) -Destination '.\' -Targets $targetKeywords -ChildFolders $childFolders -Exclude $ignoreKeywords
+            Copy-StrictedFilterFileWithDirectoryStructure -Path $(Join-Path $bin $target) -Destination '.\' -Targets $targetKeywords -Exclude $ignoreKeywords #-ChildFolders $childFolders
  
             # valid path check
             $versionSource = Join-Path $target $exeSource -Resolve
@@ -52,7 +51,6 @@ function Main
  
  
 # https://gist.github.com/guitarrapc/e78bbd4ddc07389e17d6
-# Not original. Modified by me.
 function Copy-StrictedFilterFileWithDirectoryStructure
 {
     [CmdletBinding()]
@@ -79,17 +77,10 @@ function Copy-StrictedFilterFileWithDirectoryStructure
             ValueFromPipelineByPropertyName = 1)]
         [string[]]
         $Targets,
-
-        [parameter(
-            mandatory = 0,
-            position  = 3,
-            ValueFromPipelineByPropertyName = 1)]
-        [string[]]
-        $ChildFolders,
  
         [parameter(
             mandatory = 0,
-            position  = 4,
+            position  = 3,
             ValueFromPipelineByPropertyName = 1)]
         [string[]]
         $Excludes
@@ -99,20 +90,18 @@ function Copy-StrictedFilterFileWithDirectoryStructure
     {
         $list = New-Object 'System.Collections.Generic.List[String]'
     }
- 
+
     process
     {
         Foreach ($target in $Targets)
         {
+            # Copy "All Directory Structure" and "File" which Extension type is $ex
             Copy-Item -Path $Path -Destination $Destination -Force -Recurse -Filter $target
         }
     }
  
     end
     {
-        # Keep $ChildFolders only
-        Get-ChildItem $Destination -Directory| select -First 1 | Get-ChildItem -Directory | where Name -NotIn $ChildFolders | Remove-Item -Recurse
-
         # Remove -Exclude Item
         Foreach ($exclude in $Excludes)
         {
@@ -134,11 +123,12 @@ function Copy-StrictedFilterFileWithDirectoryStructure
             $result | %{$list.Add($_)}
         }
         $folderToKeep = $list | sort -Unique
- 
+
         # Remove All Empty (none file exist) folders
         Get-ChildItem -Path $Destination -Recurse -Directory | where fullName -notin $folderToKeep | Remove-Item -Recurse
     }
 }
+
  
 # http://tech.guitarrapc.com/entry/2013/10/08/040325
 function New-ZipCompression

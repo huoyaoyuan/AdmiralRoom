@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -112,51 +109,51 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
-    <value>Admiral</value>
+    <value>司令部</value>
   </data>
   <data name="ViewTitle_FleetView" xml:space="preserve">
-    <value>Fleet</value>
+    <value>舰队</value>
   </data>
   <data name="ShipCount" xml:space="preserve">
-    <value>Ships: </value>
+    <value>舰娘数：</value>
   </data>
   <data name="ItemCount" xml:space="preserve">
-    <value>Equips: </value>
+    <value>装备数：</value>
   </data>
   <data name="ViewTitle_MissionView" xml:space="preserve">
-    <value>Expedition</value>
+    <value>远征</value>
   </data>
   <data name="ViewTitle_RepairView" xml:space="preserve">
-    <value>Repairing</value>
+    <value>入渠</value>
   </data>
   <data name="ViewTitle_BuildingView" xml:space="preserve">
-    <value>Building</value>
+    <value>建造</value>
   </data>
   <data name="ViewTitle_DevelopView" xml:space="preserve">
-    <value>Development</value>
+    <value>开发</value>
   </data>
   <data name="ViewTitle_QuestOverview" xml:space="preserve">
-    <value>Quest In Progress</value>
+    <value>已接任务</value>
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
-    <value>All Ships</value>
+    <value>所有舰娘一览</value>
   </data>
   <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
-    <value>All Equipments</value>
+    <value>所有装备一览</value>
   </data>
   <data name="ViewTitle_CompassView" xml:space="preserve">
-    <value>Compass</value>
+    <value>罗盘</value>
   </data>
   <data name="ViewTitle_MapHPView" xml:space="preserve">
-    <value>Map HP</value>
+    <value>HP计量条</value>
   </data>
   <data name="ViewTitle_BattleView" xml:space="preserve">
-    <value>Battle</value>
+    <value>战况</value>
   </data>
 </root>
