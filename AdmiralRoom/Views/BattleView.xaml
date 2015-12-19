@@ -316,7 +316,7 @@
                                               ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
                                               Style="{StaticResource FleetKey}"/>
                             </StackPanel>
-                            <Grid Grid.Row="2">
+                            <Grid Grid.Row="2" Margin="0,4,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
