@@ -7,18 +7,30 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
     public class CondColorConverter : IValueConverter
     {
+        #region ConstantBrushes
+        private static SolidColorBrush Brush20Foreground = new SolidColorBrush(Colors.Red).TryFreeze();
+        private static SolidColorBrush Brush30Foreground = new SolidColorBrush(Colors.Orange).TryFreeze();
+        private static SolidColorBrush Brush40Foreground = new SolidColorBrush(Colors.DarkGray).TryFreeze();
+        private static SolidColorBrush Brush50Foreground = new SolidColorBrush(Colors.DarkCyan).TryFreeze();
+        private static SolidColorBrush Brush85Foreground = new SolidColorBrush(Colors.MediumAquamarine).TryFreeze();
+        private static SolidColorBrush BrushMaxForeground = new SolidColorBrush(Colors.MediumSpringGreen).TryFreeze();
+        private static SolidColorBrush Brush20Background = new SolidColorBrush(Color.FromArgb(96, 255, 0, 0)).TryFreeze();
+        private static SolidColorBrush Brush30Background = new SolidColorBrush(Color.FromArgb(96, 255, 96, 0)).TryFreeze();
+        private static SolidColorBrush Brush40Background = new SolidColorBrush(Color.FromArgb(48, 255, 128, 0)).TryFreeze();
+        private static SolidColorBrush Brush50Background = new SolidColorBrush(Colors.Transparent).TryFreeze();
+        private static SolidColorBrush BrushMaxBackground = new SolidColorBrush(Color.FromArgb(192, 255, 255, 0)).TryFreeze();
+        #endregion
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool isforeground = bool.Parse(parameter.ToString());
             int cond = (int)value;
-            Color c;
-            if (cond < 20) c = isforeground ? Colors.Red : Color.FromArgb(96, 255, 0, 0);
-            else if (cond < 30) c = isforeground ? Colors.Orange : Color.FromArgb(96, 255, 96, 0);
-            else if (cond < 40) c = isforeground ? Colors.DarkGray : Color.FromArgb(48, 255, 128, 0);
-            else if (cond < 50) c = isforeground ? Colors.DarkCyan : Colors.Transparent;
-            else if (cond <= 85) c = isforeground ? Colors.MediumAquamarine : Color.FromArgb((byte)(96 + (cond - 50) / 3 * 4), 255, 255, 0);
-            else c = isforeground ? Colors.MediumSpringGreen : Color.FromArgb(192, 255, 255, 0);
-            return new SolidColorBrush(c);
+            if (cond < 20) return isforeground ? Brush20Foreground : Brush20Background;
+            else if (cond < 30) return isforeground ? Brush30Foreground : Brush30Background;
+            else if (cond < 40) return isforeground ? Brush40Foreground : Brush40Background;
+            else if (cond < 50) return isforeground ? Brush50Foreground : Brush50Background;
+            else if (cond <= 85) return isforeground ? Brush85Foreground : new SolidColorBrush(Color.FromArgb((byte)(96 + (cond - 50) / 3 * 4), 255, 255, 0)).TryFreeze();
+            else return isforeground ? BrushMaxForeground : BrushMaxBackground;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

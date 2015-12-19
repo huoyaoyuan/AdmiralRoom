@@ -180,6 +180,7 @@
     <Compile Include="Common\DateTimeEx.cs" />
     <Compile Include="Common\NamedResourceDictionary.cs" />
     <Compile Include="Common\NotifySourceObject.cs" />
+    <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConstData.cs" />
