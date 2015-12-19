@@ -9,7 +9,7 @@
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
-
+        
         Height="800"
         FontFamily="DengXian" FontSize="16">
     <Grid>
@@ -200,8 +200,8 @@
         <ListView Grid.Row="2" ItemsSource="{Binding ShownShips}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Index}"/>
-                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Item.Id}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Index}" Width="40"/>
+                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Item.Id}" Width="55"/>
                     <GridViewColumn Header="舰种" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
                     <GridViewColumn Header="舰名" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
                     <GridViewColumn Header="等级" DisplayMemberBinding="{Binding Item.Level}"/>
@@ -225,7 +225,7 @@
                                         <DataTemplate>
                                             <Canvas Height="15" Width="15" ToolTip="{Binding}">
                                                 <Image Source="{Binding Item.EquipInfo.Icon}"
-
+                                                       
                                                        Height="20" Width="20"
                                                        Canvas.Left="-2.5" Canvas.Top="-2.5"/>
                                             </Canvas>
