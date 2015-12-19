@@ -1,4 +1,5 @@
-﻿function Main
+﻿#https://github.com/Grabacr07/KanColleViewer/blob/master/packaging/package.ps1
+function Main
 {
     begin
     {
@@ -10,12 +11,13 @@
  
         $targetKeywords = '*.exe','*.dll','*.exe.config'
         $ignoreKeywords ='Microsoft.*.resources.dll','ExPlugin.*.dll'
+        $childFolders ='zh-Hans','en','ja'
  
         $exeSource  = 'AdmiralRoom.exe'
  
         if (-not(Test-Path $bin))
         {
-            throw 'Script detected as locate in invalid path exception!! Make sure exist in <KanColleViewer repository root>\tools-release\'
+            throw 'Script detected as locate in invalid path exception!! Make sure exist in <AdmiralRoom repository root>\packaging\'
         }
     }
  
@@ -27,7 +29,7 @@
             Get-ChildItem -Directory | Remove-item -Recurse
             Get-ChildItem | where { $_.Extension -eq ".zip" } | Remove-Item
  
-            Copy-StrictedFilterFileWithDirectoryStructure -Path $(Join-Path $bin $target) -Destination '.\' -Targets $targetKeywords -Exclude $ignoreKeywords
+            Copy-StrictedFilterFileWithDirectoryStructure -Path $(Join-Path $bin $target) -Destination '.\' -Targets $targetKeywords -ChildFolders $childFolders -Exclude $ignoreKeywords
  
             # valid path check
             $versionSource = Join-Path $target $exeSource -Resolve
@@ -35,10 +37,10 @@
             if ((Test-Path $versionSource) -and (Test-Path $target))
             {
                 $version = (Get-ChildItem $versionSource).VersionInfo
-                $result  = $result + ' ver.{0}.{1}' -f $version.ProductMajorPart, $version.ProductMinorPart
+                $result  = $result + ' ver {0}.{1}' -f $version.ProductMajorPart, $version.ProductMinorPart
  
                 Rename-Item -NewName $result -Path $target
-                New-ZipCompression -source $(Join-Path $(Get-Location) $result) -destination $(Join-Path $(Get-Location).Path ('./' + $result + '.zip'))
+                New-ZipCompression -source $(Join-Path $(Get-Location) $result) -destination $((Join-Path $(Get-Location).Path ('./' + $result + '.zip')).Replace(' ','.'))
             }
         }
         catch
@@ -50,6 +52,7 @@
  
  
 # https://gist.github.com/guitarrapc/e78bbd4ddc07389e17d6
+# Not original. Modified by me.
 function Copy-StrictedFilterFileWithDirectoryStructure
 {
     [CmdletBinding()]
@@ -76,10 +79,17 @@ function Copy-StrictedFilterFileWithDirectoryStructure
             ValueFromPipelineByPropertyName = 1)]
         [string[]]
         $Targets,
- 
+
         [parameter(
             mandatory = 0,
             position  = 3,
+            ValueFromPipelineByPropertyName = 1)]
+        [string[]]
+        $ChildFolders,
+ 
+        [parameter(
+            mandatory = 0,
+            position  = 4,
             ValueFromPipelineByPropertyName = 1)]
         [string[]]
         $Excludes
@@ -94,13 +104,15 @@ function Copy-StrictedFilterFileWithDirectoryStructure
     {
         Foreach ($target in $Targets)
         {
-            # Copy "All Directory Structure" and "File" which Extension type is $ex
             Copy-Item -Path $Path -Destination $Destination -Force -Recurse -Filter $target
         }
     }
  
     end
     {
+        # Keep $ChildFolders only
+        Get-ChildItem $Destination -Directory| select -First 1 | Get-ChildItem -Directory | where Name -NotIn $ChildFolders | Remove-Item -Recurse
+
         # Remove -Exclude Item
         Foreach ($exclude in $Excludes)
         {
