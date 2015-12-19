@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("CompleteTime");
             if (Ship != null)
                 Ship.RepairingHP = Ship.HP.Max - (int)Math.Ceiling(CompleteTime.Remain().TotalSeconds / Ship.RepairTimePerHP.TotalSeconds);
-            if (State == DockState.Repairing && CompleteTime.InASecond(60))
+            if (State == DockState.Repairing && Config.Current.NotifyWhenRepair && CompleteTime.InASecond(Config.Current.NotifyTimeAdjust))
                 Notifier.Current?.Show("修理完毕", $"第{Id}修理渠中的{Ship.ShipInfo.Name}修理完毕。");
         }
         protected override void UpdateProp()

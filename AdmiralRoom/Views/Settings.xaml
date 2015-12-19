@@ -8,7 +8,12 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=root:Config}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <GroupBox Header="截图"
+                  Grid.Row="0"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
@@ -22,6 +27,21 @@
                     <RadioButton IsChecked="{Binding IsScreenShotPng}" Margin="2">PNG</RadioButton>
                     <RadioButton IsChecked="{Binding IsScreenShotJpg}" Margin="2">JPG</RadioButton>
                 </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="通知"
+                  Grid.Row="1"
+                  Margin="5"
+                  VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenExpedition}">远征归来时通知</CheckBox>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenRepair}">修理完毕时通知</CheckBox>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenBuild}">建造完毕时通知</CheckBox>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenCondition}">疲劳恢复时通知</CheckBox>
+                </StackPanel>
+                <TextBlock Margin="2" VerticalAlignment="Top">通知提前时间（秒）：</TextBlock>
+                <TextBox VerticalAlignment="Top" Width="40" Text="{Binding NotifyTimeAdjust}"/>
             </StackPanel>
         </GroupBox>
     </Grid>

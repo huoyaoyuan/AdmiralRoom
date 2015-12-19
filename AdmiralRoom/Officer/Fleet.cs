@@ -51,9 +51,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("BackTime");
             OnPropertyChanged("ConditionTimeRemain");
             OnPropertyChanged("HomeportRepairingFrom");
-            if (MissionState == FleetMissionState.InMission && BackTime.InASecond(60))
+            if (MissionState == FleetMissionState.InMission && Config.Current.NotifyWhenExpedition && BackTime.InASecond(Config.Current.NotifyTimeAdjust))
                 Notifier.Current?.Show("远征归来", $"{Name} 远征归来：远征{MissionID} - {MissionInfo.Name}");
-            if (ConditionTimeRemain.InASecond())
+            if (Config.Current.NotifyWhenCondition && ConditionTimeRemain.InASecond())
                 Notifier.Current?.Show("疲劳恢复完毕", $"{Name} 疲劳恢复完毕。");
         }
 

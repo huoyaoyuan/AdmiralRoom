@@ -270,6 +270,87 @@ namespace Huoyaoyuan.AdmiralRoom
                 OnPropertyChanged("IsScreenShotJpg");
             }
         }
+
+        #region NotifyWhenExpedition
+        private bool _notifywhenexpedition;
+        public bool NotifyWhenExpedition
+        {
+            get { return _notifywhenexpedition; }
+            set
+            {
+                if (_notifywhenexpedition != value)
+                {
+                    _notifywhenexpedition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyWhenRepair
+        private bool _notifywhenrepair;
+        public bool NotifyWhenRepair
+        {
+            get { return _notifywhenrepair; }
+            set
+            {
+                if (_notifywhenrepair != value)
+                {
+                    _notifywhenrepair = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyWhenBuild
+        private bool _notifywhenbuild;
+        public bool NotifyWhenBuild
+        {
+            get { return _notifywhenbuild; }
+            set
+            {
+                if (_notifywhenbuild != value)
+                {
+                    _notifywhenbuild = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyWhenCondition
+        private bool _notifywhencondition;
+        public bool NotifyWhenCondition
+        {
+            get { return _notifywhencondition; }
+            set
+            {
+                if (_notifywhencondition != value)
+                {
+                    _notifywhencondition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyTimeAdjust
+        private int _notifytimeadjust;
+        public int NotifyTimeAdjust
+        {
+            get { return _notifytimeadjust; }
+            set
+            {
+                if (_notifytimeadjust != value)
+                {
+                    _notifytimeadjust = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Config()
         {
             _theme = "Office 2013";
@@ -306,6 +387,7 @@ namespace Huoyaoyuan.AdmiralRoom
             _screenshotfolder = Path.Combine(Environment.CurrentDirectory, "ScreenShots");
             _screenshotnameformat = "KanColle-{0}";
             _screenshotfileformat = "png";
+            _notifytimeadjust = 60;
         }
         public static Config Load()
         {

@@ -31,7 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             OnPropertyChanged("CompleteTime");
             OnPropertyChanged("DuringTime");
-            if (State == DockState.Building && CompleteTime.InASecond())
+            if (State == DockState.Building && Config.Current.NotifyWhenBuild && CompleteTime.InASecond(Config.Current.NotifyTimeAdjust))
                 Notifier.Current?.Show("建造完毕",
                     string.Format("第{0}建造渠中的{1}建造完毕", Id, Config.Current.ShowBuildingShipName ? CreatedShip.Name : "舰船"));
         }
