@@ -26,5 +26,11 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch { return DateTimeOffset.MinValue; }
         }
+        public static bool InASecond(this TimeSpan time, double adjust = 0)
+        {
+            double seconds = time.TotalSeconds;
+            return seconds > adjust && seconds <= adjust + 1;
+        }
+        public static bool InASecond(this DateTimeOffset time, double adjust = 0) => (time - DateTimeOffset.UtcNow).InASecond(adjust);
     }
 }
