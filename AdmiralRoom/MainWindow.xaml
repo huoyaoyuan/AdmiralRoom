@@ -205,7 +205,6 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_Window, Source={x:Static local:ResourceService.Current}}" KeyTip="W">
                 <ribbon:RibbonGroupBox Header="{Binding Resources.Window_Subwindow, Source={x:Static local:ResourceService.Current}}">
-                    <!--<ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>-->
                     <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:AdmiralView/>

@@ -192,7 +192,6 @@
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\APIModel.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />
     <Compile Include="Officer\Exp.cs" />
     <Compile Include="Models\ItemWithIndex.cs" />
@@ -255,9 +254,6 @@
     </Compile>
     <Compile Include="Views\AdmiralView.xaml.cs">
       <DependentUpon>AdmiralView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\APIView.xaml.cs">
-      <DependentUpon>APIView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BattleView.xaml.cs">
       <DependentUpon>BattleView.xaml</DependentUpon>
@@ -339,10 +335,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AdmiralView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\APIView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
