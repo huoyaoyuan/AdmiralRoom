@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.About"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             mc:Ignorable="d">
+    <FlowDocumentScrollViewer>
+        <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
+            <Paragraph>
+                <Run FontSize="24" Text="欢迎使用！"/>
+            </Paragraph>
+            <Paragraph>
+                <Run Text="「提督の部屋(AdmiralRoom)」是「艦これ」游戏的专用工具。"/>
+                <LineBreak/>
+                <Run Text="艦これ运行于嵌入的Internet Explorer 11中。本工具不进行任何更改通信内容或作弊、外挂类的行为。"/>
+            </Paragraph>
+            <Paragraph>
+                <Run Text="运行环境要求："/>
+                <LineBreak/>
+                <Run Text="Windows 7/8/8.1/10 Desktop"/>
+                <LineBreak/>
+                <Run Text=".Net Framework 4.6"/>
+                <LineBreak/>
+                <Run Text="Internet Explorer 11"/>
+            </Paragraph>
+            <Paragraph>
+                <Run Text="Q:为什么仅限于Windows？"/>
+                <LineBreak/>
+                <Run Text="A:因为目前仅有Windows Forms的跨平台实现，而Windows Presentation Framework(WPF)并没有。"/>
+            </Paragraph>
+            <Paragraph>
+                <Run Text="游戏表现异常、在特定位置连续通信错误时，请清理Internet缓存。另请确认在通常的IE与Flash下游戏是否能正常进行。"/>
+            </Paragraph>
+            <Paragraph>
+                <Run Text="本工具不定期更新，烦请手动检查更新。"/>
+                <LineBreak/>
+                <LineBreak/>
+                <Run Text="Source code:"/>
+                <Hyperlink>
+                    <Run Text="https://github.com/huoyaoyuan/AdmiralRoom"/>
+                </Hyperlink>
+                <LineBreak/>
+                <Run Text="Release:"/>
+                <Hyperlink>
+                    <Run Text="https://github.com/huoyaoyuan/AdmiralRoom/releases"/>
+                </Hyperlink>
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</UserControl>

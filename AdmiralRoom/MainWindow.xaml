@@ -38,7 +38,9 @@
                                 <Views:Settings DataContext="{x:Static local:Config.Current}"/>
                             </ScrollViewer>
                         </ribbon:BackstageTabItem>
-                        <ribbon:BackstageTabItem Header="{Binding Resources.About, Source={x:Static local:ResourceService.Current}}" KeyTip="A"/>
+                        <ribbon:BackstageTabItem Header="{Binding Resources.About, Source={x:Static local:ResourceService.Current}}" KeyTip="A">
+                            <Views:About/>
+                        </ribbon:BackstageTabItem>
                     </ribbon:BackstageTabControl>
                 </ribbon:Backstage>
             </ribbon:Ribbon.Menu>
