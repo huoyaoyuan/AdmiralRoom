@@ -33,44 +33,50 @@
             <ribbon:Ribbon.Menu>
                 <ribbon:Backstage Header="提督の部屋" KeyTip="H">
                     <ribbon:BackstageTabControl>
-                        <ribbon:BackstageTabItem Header="选项" KeyTip="O">
+                        <ribbon:BackstageTabItem Header="{Binding Resources.Options, Source={x:Static local:ResourceService.Current}}" KeyTip="O">
                             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                 <Views:Settings DataContext="{x:Static local:Config.Current}"/>
                             </ScrollViewer>
                         </ribbon:BackstageTabItem>
-                        <ribbon:BackstageTabItem Header="关于" KeyTip="A"/>
+                        <ribbon:BackstageTabItem Header="{Binding Resources.About, Source={x:Static local:ResourceService.Current}}" KeyTip="A"/>
                     </ribbon:BackstageTabControl>
                 </ribbon:Backstage>
             </ribbon:Ribbon.Menu>
-            <ribbon:RibbonTabItem Header="浏览" KeyTip="B">
-                <ribbon:RibbonGroupBox Header="浏览器">
-                    <ribbon:Button Header="后退" KeyTip="B"
+            <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_Browse, Source={x:Static local:ResourceService.Current}}" KeyTip="B">
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Browser, Source={x:Static local:ResourceService.Current}}">
+                    <ribbon:Button Header="{Binding Resources.Back, Source={x:Static local:ResourceService.Current}}"
+                                   KeyTip="B"
                                    x:Name="BrowserBack"
                                    IsEnabled="False"
                                    LargeIcon="{StaticResource IconBack}"/>
-                    <ribbon:Button Header="前进" KeyTip="F"
+                    <ribbon:Button Header="{Binding Resources.Forward, Source={x:Static local:ResourceService.Current}}"
+                                   KeyTip="F"
                                    x:Name="BrowserForward"
                                    IsEnabled="False"
                                    LargeIcon="{StaticResource IconForward}"/>
                     <TextBox x:Name="BrowserAddr" Width="400"/>
-                    <ribbon:Button Header="转到" KeyTip="G"
+                    <ribbon:Button Header="{Binding Resources.Goto, Source={x:Static local:ResourceService.Current}}"
+                                   KeyTip="G"
                                    x:Name="BrowserGoto"
                                    LargeIcon="{StaticResource IconGoto}"/>
-                    <ribbon:Button Header="刷新" KeyTip="R"
+                    <ribbon:Button Header="{Binding Resources.Refresh, Source={x:Static local:ResourceService.Current}}"
+                                   KeyTip="R"
                                    x:Name="BrowserRefresh"
                                    LargeIcon="{StaticResource IconRefresh}"/>
-                    <ribbon:Button Header="回到游戏" KeyTip="H"
+                    <ribbon:Button Header="{Binding Resources.BackToGame, Source={x:Static local:ResourceService.Current}}"
+                                   KeyTip="H"
                                    x:Name="BrowserBackToGame"
                                    LargeIcon="{StaticResource IconGame}"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="操作">
-                    <ribbon:ToggleButton Header="静音" KeyTip="M"
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Actions, Source={x:Static local:ResourceService.Current}}">
+                    <ribbon:ToggleButton Header="{Binding Resources.Mute, Source={x:Static local:ResourceService.Current}}"
+                                         KeyTip="M"
                                          IsChecked="{Binding Volume.IsMute, Source={x:Static Models:Status.Current}}"
                                          IsEnabled="{Binding IsGameLoaded, Source={x:Static Models:Status.Current}}"/>
-                    <ribbon:Button Header="截图" KeyTip="S" x:Name="ScreenShotButton"/>
-                    <ribbon:Button Header="清理缓存" KeyTip="C" x:Name="DeleteCacheButton"/>
+                    <ribbon:Button Header="{Binding Resources.Screenshot, Source={x:Static local:ResourceService.Current}}" KeyTip="S" x:Name="ScreenShotButton"/>
+                    <ribbon:Button Header="{Binding Resources.CleanCache, Source={x:Static local:ResourceService.Current}}" KeyTip="C" x:Name="DeleteCacheButton"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="代理">
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Proxy, Source={x:Static local:ResourceService.Current}}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -81,25 +87,30 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="使用代理"
+                        <CheckBox Content="{Binding Resources.Proxy_UseProxy, Source={x:Static local:ResourceService.Current}}"
+                                  
                                   Grid.ColumnSpan="2"
                                   x:Name="EnableProxy"
                                   IsChecked="{Binding EnableProxy, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Resources.Proxy_Address, Source={x:Static local:ResourceService.Current}}"/>
                         <TextBox Grid.Row="1" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyHost"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
                                  Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Resources.Proxy_Port, Source={x:Static local:ResourceService.Current}}"/>
                         <TextBox Grid.Row="2" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyPort"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
                                  Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                     </Grid>
-                    <ribbon:Button Header="更新" x:Name="UpdateProxySetting"/>
-                    <ribbon:Button Header="撤销" x:Name="CancelProxySetting"/>
+                    <ribbon:Button Header="{Binding Resources.Update, Source={x:Static local:ResourceService.Current}}" x:Name="UpdateProxySetting"/>
+                    <ribbon:Button Header="{Binding Resources.Cancel, Source={x:Static local:ResourceService.Current}}" x:Name="CancelProxySetting"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="HTTPS">
                     <Grid>
@@ -112,17 +123,22 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="使用单独的HTTPS代理"
+                        <CheckBox Content="{Binding Resources.Proxy_UseHTTPS, Source={x:Static local:ResourceService.Current}}"
+                                  
                                   Grid.ColumnSpan="2"
                                   x:Name="EnableProxyHTTPS"
                                   IsChecked="{Binding EnableProxyHTTPS, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">地址</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Resources.Proxy_Address, Source={x:Static local:ResourceService.Current}}"/>
                         <TextBox Grid.Row="1" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyHostHTTPS"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxyHTTPS}"
                                  Text="{Binding HTTPSProxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">端口</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Resources.Proxy_Port, Source={x:Static local:ResourceService.Current}}"/>
                         <TextBox Grid.Row="2" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyPortHTTPS"
@@ -131,7 +147,7 @@
                     </Grid>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem Header="界面" KeyTip="V">
+            <ribbon:RibbonTabItem Header="{Binding Resources.View, Source={x:Static local:ResourceService.Current}}" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="Language">
                     <ribbon:ComboBox x:Name="LanguageBox"
                                      IsEditable="False" KeyTip="L"
@@ -139,20 +155,22 @@
                                      SelectedValuePath="Name"
                                      SelectedValue="{Binding Language, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="主题">
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Theme, Source={x:Static local:ResourceService.Current}}">
                     <ribbon:ComboBox x:Name="Themes"
                                      IsEditable="False" KeyTip="TH"
                                      SelectedValue="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="不使用DWM"
+                    <ribbon:CheckBox Header="{Binding Resources.Theme_NoDWM, Source={x:Static local:ResourceService.Current}}"
+                                     
                                      x:Name="NoDWM"
                                      KeyTip="D"
                                      IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="使用Aero风格控件"
+                    <ribbon:CheckBox Header="{Binding Resources.Theme_Aero, Source={x:Static local:ResourceService.Current}}"
+                                     
                                      x:Name="UseAeroControl"
                                      KeyTip="A"
                                      IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="字体">
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Font, Source={x:Static local:ResourceService.Current}}">
                     <ribbon:RibbonToolBar DataContext="ribbonWindow">
                         <ribbon:RibbonToolBar.LayoutDefinitions>
                             <ribbon:RibbonToolBarLayoutDefinition>
@@ -178,15 +196,15 @@
                                        Icon="Images\GrowFont.png"/>
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="通知">
-                    <CheckBox Content="使用Toast通知"
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Notification, Source={x:Static local:ResourceService.Current}}">
+                    <CheckBox Content="{Binding Resources.Notification_Toast, Source={x:Static local:ResourceService.Current}}"
                               IsEnabled="{x:Static local:ToastNotifier.IsSupported}"
                               IsChecked="{Binding PreferToastNotify, Source={x:Static local:Config.Current}}"
-                              ToolTip="Windows 10强制使用Toast通知，只能通过更改注册表来启用Ballon"/>
+                              ToolTip="{Binding Resources.Notification_ToolTip_Win10, Source={x:Static local:ResourceService.Current}}"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem Header="窗口" KeyTip="W">
-                <ribbon:RibbonGroupBox Header="子窗口">
+            <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_Window, Source={x:Static local:ResourceService.Current}}" KeyTip="W">
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Window_Subwindow, Source={x:Static local:ResourceService.Current}}">
                     <!--<ribbon:ToggleButton Header="APIView" Tag="APIView" Loaded="SetToggleBinding"/>-->
                     <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
                         <ribbon:ToggleButton.Tag>
@@ -239,7 +257,7 @@
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="独立窗口">
+                <ribbon:RibbonGroupBox Header="{Binding Resources.Window_Standalone, Source={x:Static local:ResourceService.Current}}">
                     <Button Margin="2" Tag="{x:Type ViewStandalone:ShipCatalog}" Loaded="SetUniqueWindowCommand"/>
                     <Button Margin="2" Tag="{x:Type ViewStandalone:EquipmentCatalog}" Loaded="SetUniqueWindowCommand"/>
                 </ribbon:RibbonGroupBox>
@@ -253,9 +271,9 @@
             <Dock:LayoutRoot>
                 <Dock:LayoutPanel>
                     <Dock:LayoutDocumentPane>
-                        <Dock:LayoutDocument ContentId="GameHost"
-                                             Title="浏览器"
-                                             CanClose="False" CanFloat="False">
+                        <Dock:LayoutDocument x:Name="BrowserDocument"
+                                             CanClose="False" CanFloat="False"
+                                             ContentId="GameHost">
                             <local:KanColleBrowser x:Name="GameHost"/>
                         </Dock:LayoutDocument>
                     </Dock:LayoutDocumentPane>

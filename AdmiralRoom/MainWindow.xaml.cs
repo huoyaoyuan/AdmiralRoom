@@ -150,6 +150,11 @@ namespace Huoyaoyuan.AdmiralRoom
                 DockMan.Layout.Hidden.Remove(view);
             }
             MakeViewList(DockMan.Layout);
+
+            BindingOperations.SetBinding(BrowserDocument, LayoutDocument.TitleProperty, new Binding("Browser")
+            {
+                Source = ResourceService.Current,
+            });
         }
         private void SaveLayout(object sender, EventArgs e)
         {

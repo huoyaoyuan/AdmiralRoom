@@ -117,46 +117,130 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ViewTitle_AdmiralView" xml:space="preserve">
-    <value>司令部</value>
+  <data name="About" xml:space="preserve">
+    <value>バージョン情報</value>
   </data>
-  <data name="ViewTitle_FleetView" xml:space="preserve">
-    <value>艦隊</value>
+  <data name="Browser" xml:space="preserve">
+    <value>ブラウザ</value>
   </data>
-  <data name="ShipCount" xml:space="preserve">
-    <value>艦娘数：</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="CleanCache" xml:space="preserve">
+    <value>キャッシュの削除</value>
   </data>
   <data name="ItemCount" xml:space="preserve">
     <value>装備数：</value>
   </data>
-  <data name="ViewTitle_MissionView" xml:space="preserve">
-    <value>遠征</value>
+  <data name="Mute" xml:space="preserve">
+    <value>ミュート</value>
   </data>
-  <data name="ViewTitle_RepairView" xml:space="preserve">
-    <value>入渠</value>
+  <data name="Options" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Proxy" xml:space="preserve">
+    <value>プロキシ</value>
+  </data>
+  <data name="Proxy_Address" xml:space="preserve">
+    <value>アドレス</value>
+  </data>
+  <data name="Proxy_Port" xml:space="preserve">
+    <value>ポート</value>
+  </data>
+  <data name="Proxy_UseProxy" xml:space="preserve">
+    <value>プロキシを使用する</value>
+  </data>
+  <data name="RibbonTab_View" xml:space="preserve">
+    <value>介面</value>
+  </data>
+  <data name="RibbonTab_Window" xml:space="preserve">
+    <value>ウィンドウ</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>スクリーンショート</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>艦娘数：</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>アップデート</value>
+  </data>
+  <data name="ViewTitle_AdmiralView" xml:space="preserve">
+    <value>司令部</value>
+  </data>
+  <data name="ViewTitle_BattleView" xml:space="preserve">
+    <value>戦況</value>
   </data>
   <data name="ViewTitle_BuildingView" xml:space="preserve">
     <value>建造</value>
   </data>
+  <data name="ViewTitle_CompassView" xml:space="preserve">
+    <value>羅針盤</value>
+  </data>
   <data name="ViewTitle_DevelopView" xml:space="preserve">
     <value>開発</value>
-  </data>
-  <data name="ViewTitle_QuestOverview" xml:space="preserve">
-    <value>遂行中任務</value>
-  </data>
-  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
-    <value>所有艦娘一覧</value>
   </data>
   <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
     <value>所有装備一覧</value>
   </data>
-  <data name="ViewTitle_CompassView" xml:space="preserve">
-    <value>羅針盤</value>
+  <data name="ViewTitle_FleetView" xml:space="preserve">
+    <value>艦隊</value>
   </data>
   <data name="ViewTitle_MapHPView" xml:space="preserve">
     <value>HPゲージ</value>
   </data>
-  <data name="ViewTitle_BattleView" xml:space="preserve">
-    <value>戦況</value>
+  <data name="ViewTitle_MissionView" xml:space="preserve">
+    <value>遠征</value>
+  </data>
+  <data name="ViewTitle_QuestOverview" xml:space="preserve">
+    <value>遂行中任務</value>
+  </data>
+  <data name="ViewTitle_RepairView" xml:space="preserve">
+    <value>入渠</value>
+  </data>
+  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
+    <value>所有艦娘一覧</value>
+  </data>
+  <data name="BackToGame" xml:space="preserve">
+    <value>ゲームに戻る</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="Notification_Toast" xml:space="preserve">
+    <value>トースト通知を使用する</value>
+  </data>
+  <data name="Proxy_UseHTTPS" xml:space="preserve">
+    <value>HTTPS接続時て他のプロキシを使用する</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>進む</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>介面</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="Theme_NoDWM" xml:space="preserve">
+    <value>DWMを使用しない</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>フォント</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="RibbonTab_Browse" xml:space="preserve">
+    <value>閱覧</value>
+  </data>
+  <data name="Goto" xml:space="preserve">
+    <value>行きます</value>
   </data>
 </root>

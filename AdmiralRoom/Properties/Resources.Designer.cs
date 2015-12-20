@@ -61,7 +61,97 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 装备数： 的本地化字符串。
+        ///   查找类似 About 的本地化字符串。
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Actions 的本地化字符串。
+        /// </summary>
+        public static string Actions {
+            get {
+                return ResourceManager.GetString("Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Back 的本地化字符串。
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Back to game 的本地化字符串。
+        /// </summary>
+        public static string BackToGame {
+            get {
+                return ResourceManager.GetString("BackToGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Browser 的本地化字符串。
+        /// </summary>
+        public static string Browser {
+            get {
+                return ResourceManager.GetString("Browser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cancel 的本地化字符串。
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Clean cache 的本地化字符串。
+        /// </summary>
+        public static string CleanCache {
+            get {
+                return ResourceManager.GetString("CleanCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Font 的本地化字符串。
+        /// </summary>
+        public static string Font {
+            get {
+                return ResourceManager.GetString("Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Forward 的本地化字符串。
+        /// </summary>
+        public static string Forward {
+            get {
+                return ResourceManager.GetString("Forward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Goto 的本地化字符串。
+        /// </summary>
+        public static string Goto {
+            get {
+                return ResourceManager.GetString("Goto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Equips:  的本地化字符串。
         /// </summary>
         public static string ItemCount {
             get {
@@ -70,7 +160,142 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 舰娘数： 的本地化字符串。
+        ///   查找类似 Mute 的本地化字符串。
+        /// </summary>
+        public static string Mute {
+            get {
+                return ResourceManager.GetString("Mute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Notification 的本地化字符串。
+        /// </summary>
+        public static string Notification {
+            get {
+                return ResourceManager.GetString("Notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Prefer toast notify 的本地化字符串。
+        /// </summary>
+        public static string Notification_Toast {
+            get {
+                return ResourceManager.GetString("Notification_Toast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry. 的本地化字符串。
+        /// </summary>
+        public static string Notification_ToolTip_Win10 {
+            get {
+                return ResourceManager.GetString("Notification_ToolTip_Win10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Options 的本地化字符串。
+        /// </summary>
+        public static string Options {
+            get {
+                return ResourceManager.GetString("Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Proxy 的本地化字符串。
+        /// </summary>
+        public static string Proxy {
+            get {
+                return ResourceManager.GetString("Proxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Address 的本地化字符串。
+        /// </summary>
+        public static string Proxy_Address {
+            get {
+                return ResourceManager.GetString("Proxy_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Port 的本地化字符串。
+        /// </summary>
+        public static string Proxy_Port {
+            get {
+                return ResourceManager.GetString("Proxy_Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Use another proxy for HTTPS 的本地化字符串。
+        /// </summary>
+        public static string Proxy_UseHTTPS {
+            get {
+                return ResourceManager.GetString("Proxy_UseHTTPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Use proxy 的本地化字符串。
+        /// </summary>
+        public static string Proxy_UseProxy {
+            get {
+                return ResourceManager.GetString("Proxy_UseProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Refresh 的本地化字符串。
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Browse 的本地化字符串。
+        /// </summary>
+        public static string RibbonTab_Browse {
+            get {
+                return ResourceManager.GetString("RibbonTab_Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 View 的本地化字符串。
+        /// </summary>
+        public static string RibbonTab_View {
+            get {
+                return ResourceManager.GetString("RibbonTab_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Window 的本地化字符串。
+        /// </summary>
+        public static string RibbonTab_Window {
+            get {
+                return ResourceManager.GetString("RibbonTab_Window", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Screenshot 的本地化字符串。
+        /// </summary>
+        public static string Screenshot {
+            get {
+                return ResourceManager.GetString("Screenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ships:  的本地化字符串。
         /// </summary>
         public static string ShipCount {
             get {
@@ -79,7 +304,52 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 司令部 的本地化字符串。
+        ///   查找类似 Theme 的本地化字符串。
+        /// </summary>
+        public static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Use aero style controls 的本地化字符串。
+        /// </summary>
+        public static string Theme_Aero {
+            get {
+                return ResourceManager.GetString("Theme_Aero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Don&apos;t use DWM 的本地化字符串。
+        /// </summary>
+        public static string Theme_NoDWM {
+            get {
+                return ResourceManager.GetString("Theme_NoDWM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Update 的本地化字符串。
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 View 的本地化字符串。
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Admiral 的本地化字符串。
         /// </summary>
         public static string ViewTitle_AdmiralView {
             get {
@@ -88,7 +358,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 战况 的本地化字符串。
+        ///   查找类似 Battle 的本地化字符串。
         /// </summary>
         public static string ViewTitle_BattleView {
             get {
@@ -97,7 +367,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 建造 的本地化字符串。
+        ///   查找类似 Building 的本地化字符串。
         /// </summary>
         public static string ViewTitle_BuildingView {
             get {
@@ -106,7 +376,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 罗盘 的本地化字符串。
+        ///   查找类似 Compass 的本地化字符串。
         /// </summary>
         public static string ViewTitle_CompassView {
             get {
@@ -115,7 +385,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 开发 的本地化字符串。
+        ///   查找类似 Development 的本地化字符串。
         /// </summary>
         public static string ViewTitle_DevelopView {
             get {
@@ -124,7 +394,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 所有装备一览 的本地化字符串。
+        ///   查找类似 All Equipments 的本地化字符串。
         /// </summary>
         public static string ViewTitle_EquipmentCatalog {
             get {
@@ -133,7 +403,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 舰队 的本地化字符串。
+        ///   查找类似 Fleet 的本地化字符串。
         /// </summary>
         public static string ViewTitle_FleetView {
             get {
@@ -142,7 +412,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 HP计量条 的本地化字符串。
+        ///   查找类似 Map HP 的本地化字符串。
         /// </summary>
         public static string ViewTitle_MapHPView {
             get {
@@ -151,7 +421,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 远征 的本地化字符串。
+        ///   查找类似 Expedition 的本地化字符串。
         /// </summary>
         public static string ViewTitle_MissionView {
             get {
@@ -160,7 +430,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 已接任务 的本地化字符串。
+        ///   查找类似 Quest In Progress 的本地化字符串。
         /// </summary>
         public static string ViewTitle_QuestOverview {
             get {
@@ -169,7 +439,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 入渠 的本地化字符串。
+        ///   查找类似 Repairing 的本地化字符串。
         /// </summary>
         public static string ViewTitle_RepairView {
             get {
@@ -178,11 +448,29 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 所有舰娘一览 的本地化字符串。
+        ///   查找类似 All Ships 的本地化字符串。
         /// </summary>
         public static string ViewTitle_ShipCatalog {
             get {
                 return ResourceManager.GetString("ViewTitle_ShipCatalog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Standalone window 的本地化字符串。
+        /// </summary>
+        public static string Window_Standalone {
+            get {
+                return ResourceManager.GetString("Window_Standalone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Subwindow 的本地化字符串。
+        /// </summary>
+        public static string Window_Subwindow {
+            get {
+                return ResourceManager.GetString("Window_Subwindow", resourceCulture);
             }
         }
     }

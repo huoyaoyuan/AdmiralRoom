@@ -117,46 +117,142 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ViewTitle_AdmiralView" xml:space="preserve">
-    <value>Admiral</value>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
   </data>
-  <data name="ViewTitle_FleetView" xml:space="preserve">
-    <value>Fleet</value>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="ShipCount" xml:space="preserve">
-    <value>Ships: </value>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BackToGame" xml:space="preserve">
+    <value>Back to game</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CleanCache" xml:space="preserve">
+    <value>Clean cache</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="Goto" xml:space="preserve">
+    <value>Goto</value>
   </data>
   <data name="ItemCount" xml:space="preserve">
     <value>Equips: </value>
   </data>
-  <data name="ViewTitle_MissionView" xml:space="preserve">
-    <value>Expedition</value>
+  <data name="Mute" xml:space="preserve">
+    <value>Mute</value>
   </data>
-  <data name="ViewTitle_RepairView" xml:space="preserve">
-    <value>Repairing</value>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="Notification_Toast" xml:space="preserve">
+    <value>Prefer toast notify</value>
+  </data>
+  <data name="Notification_ToolTip_Win10" xml:space="preserve">
+    <value>Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Proxy" xml:space="preserve">
+    <value>Proxy</value>
+  </data>
+  <data name="Proxy_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Proxy_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Proxy_UseHTTPS" xml:space="preserve">
+    <value>Use another proxy for HTTPS</value>
+  </data>
+  <data name="Proxy_UseProxy" xml:space="preserve">
+    <value>Use proxy</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RibbonTab_Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="RibbonTab_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="RibbonTab_Window" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>Ships: </value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Theme_Aero" xml:space="preserve">
+    <value>Use aero style controls</value>
+  </data>
+  <data name="Theme_NoDWM" xml:space="preserve">
+    <value>Don't use DWM</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="ViewTitle_AdmiralView" xml:space="preserve">
+    <value>Admiral</value>
+  </data>
+  <data name="ViewTitle_BattleView" xml:space="preserve">
+    <value>Battle</value>
   </data>
   <data name="ViewTitle_BuildingView" xml:space="preserve">
     <value>Building</value>
   </data>
+  <data name="ViewTitle_CompassView" xml:space="preserve">
+    <value>Compass</value>
+  </data>
   <data name="ViewTitle_DevelopView" xml:space="preserve">
     <value>Development</value>
-  </data>
-  <data name="ViewTitle_QuestOverview" xml:space="preserve">
-    <value>Quest In Progress</value>
-  </data>
-  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
-    <value>All Ships</value>
   </data>
   <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
     <value>All Equipments</value>
   </data>
-  <data name="ViewTitle_CompassView" xml:space="preserve">
-    <value>Compass</value>
+  <data name="ViewTitle_FleetView" xml:space="preserve">
+    <value>Fleet</value>
   </data>
   <data name="ViewTitle_MapHPView" xml:space="preserve">
     <value>Map HP</value>
   </data>
-  <data name="ViewTitle_BattleView" xml:space="preserve">
-    <value>Battle</value>
+  <data name="ViewTitle_MissionView" xml:space="preserve">
+    <value>Expedition</value>
+  </data>
+  <data name="ViewTitle_QuestOverview" xml:space="preserve">
+    <value>Quest In Progress</value>
+  </data>
+  <data name="ViewTitle_RepairView" xml:space="preserve">
+    <value>Repairing</value>
+  </data>
+  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
+    <value>All Ships</value>
+  </data>
+  <data name="Window_Standalone" xml:space="preserve">
+    <value>Standalone window</value>
+  </data>
+  <data name="Window_Subwindow" xml:space="preserve">
+    <value>Subwindow</value>
   </data>
 </root>

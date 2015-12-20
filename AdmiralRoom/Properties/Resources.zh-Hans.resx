@@ -114,46 +114,142 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ViewTitle_AdmiralView" xml:space="preserve">
-    <value>司令部</value>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
   </data>
-  <data name="ViewTitle_FleetView" xml:space="preserve">
-    <value>舰队</value>
+  <data name="Actions" xml:space="preserve">
+    <value>操作</value>
   </data>
-  <data name="ShipCount" xml:space="preserve">
-    <value>舰娘数：</value>
+  <data name="Back" xml:space="preserve">
+    <value>后退</value>
+  </data>
+  <data name="BackToGame" xml:space="preserve">
+    <value>回到游戏</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>浏览器</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="CleanCache" xml:space="preserve">
+    <value>清理缓存</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>前进</value>
+  </data>
+  <data name="Goto" xml:space="preserve">
+    <value>转到</value>
   </data>
   <data name="ItemCount" xml:space="preserve">
     <value>装备数：</value>
   </data>
-  <data name="ViewTitle_MissionView" xml:space="preserve">
-    <value>远征</value>
+  <data name="Mute" xml:space="preserve">
+    <value>静音</value>
   </data>
-  <data name="ViewTitle_RepairView" xml:space="preserve">
-    <value>入渠</value>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="Notification_Toast" xml:space="preserve">
+    <value>使用Toast通知</value>
+  </data>
+  <data name="Notification_ToolTip_Win10" xml:space="preserve">
+    <value>Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Proxy" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="Proxy_Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="Proxy_Port" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="Proxy_UseHTTPS" xml:space="preserve">
+    <value>使用额外的HTTPS代理</value>
+  </data>
+  <data name="Proxy_UseProxy" xml:space="preserve">
+    <value>使用代理</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RibbonTab_Browse" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="RibbonTab_View" xml:space="preserve">
+    <value>界面</value>
+  </data>
+  <data name="RibbonTab_Window" xml:space="preserve">
+    <value>窗口</value>
+  </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>截图</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>舰娘数：</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Theme_Aero" xml:space="preserve">
+    <value>使用Aero风格控件</value>
+  </data>
+  <data name="Theme_NoDWM" xml:space="preserve">
+    <value>不使用DWM</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>界面</value>
+  </data>
+  <data name="ViewTitle_AdmiralView" xml:space="preserve">
+    <value>司令部</value>
+  </data>
+  <data name="ViewTitle_BattleView" xml:space="preserve">
+    <value>战况</value>
   </data>
   <data name="ViewTitle_BuildingView" xml:space="preserve">
     <value>建造</value>
   </data>
+  <data name="ViewTitle_CompassView" xml:space="preserve">
+    <value>罗盘</value>
+  </data>
   <data name="ViewTitle_DevelopView" xml:space="preserve">
     <value>开发</value>
-  </data>
-  <data name="ViewTitle_QuestOverview" xml:space="preserve">
-    <value>已接任务</value>
-  </data>
-  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
-    <value>所有舰娘一览</value>
   </data>
   <data name="ViewTitle_EquipmentCatalog" xml:space="preserve">
     <value>所有装备一览</value>
   </data>
-  <data name="ViewTitle_CompassView" xml:space="preserve">
-    <value>罗盘</value>
+  <data name="ViewTitle_FleetView" xml:space="preserve">
+    <value>舰队</value>
   </data>
   <data name="ViewTitle_MapHPView" xml:space="preserve">
     <value>HP计量条</value>
   </data>
-  <data name="ViewTitle_BattleView" xml:space="preserve">
-    <value>战况</value>
+  <data name="ViewTitle_MissionView" xml:space="preserve">
+    <value>远征</value>
+  </data>
+  <data name="ViewTitle_QuestOverview" xml:space="preserve">
+    <value>已接任务</value>
+  </data>
+  <data name="ViewTitle_RepairView" xml:space="preserve">
+    <value>入渠</value>
+  </data>
+  <data name="ViewTitle_ShipCatalog" xml:space="preserve">
+    <value>所有舰娘一览</value>
+  </data>
+  <data name="Window_Standalone" xml:space="preserve">
+    <value>独立窗口</value>
+  </data>
+  <data name="Window_Subwindow" xml:space="preserve">
+    <value>子窗口</value>
   </data>
 </root>
