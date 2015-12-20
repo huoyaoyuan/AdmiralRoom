@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Huoyaoyuan.AdmiralRoom.Models;
+using Huoyaoyuan.AdmiralRoom.Officer;
 
 namespace Huoyaoyuan.AdmiralRoom.Controls
 {

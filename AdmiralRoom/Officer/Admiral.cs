@@ -1,5 +1,4 @@
 ﻿using Huoyaoyuan.AdmiralRoom.API;
-using Huoyaoyuan.AdmiralRoom.Models;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {

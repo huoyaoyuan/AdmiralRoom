@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
-using Huoyaoyuan.AdmiralRoom.Models;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
