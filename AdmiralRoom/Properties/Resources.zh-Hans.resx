@@ -135,6 +135,66 @@
   <data name="CleanCache" xml:space="preserve">
     <value>清理缓存</value>
   </data>
+  <data name="Fleet_AFP" xml:space="preserve">
+    <value>制空</value>
+  </data>
+  <data name="Fleet_AFP_Basic" xml:space="preserve">
+    <value>基础</value>
+  </data>
+  <data name="Fleet_AFP_Bonus" xml:space="preserve">
+    <value>熟练度加成</value>
+  </data>
+  <data name="Fleet_AFP_Fighter" xml:space="preserve">
+    <value>仅战斗机</value>
+  </data>
+  <data name="Fleet_ChargeCost" xml:space="preserve">
+    <value>补给消耗</value>
+  </data>
+  <data name="Fleet_Condition" xml:space="preserve">
+    <value>疲劳恢复</value>
+  </data>
+  <data name="Fleet_HomeportRepair" xml:space="preserve">
+    <value>泊地修理</value>
+  </data>
+  <data name="Fleet_Level_Average" xml:space="preserve">
+    <value>平均等级</value>
+  </data>
+  <data name="Fleet_Level_Sum" xml:space="preserve">
+    <value>总等级</value>
+  </data>
+  <data name="Fleet_LoS" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="Fleet_RepairCost" xml:space="preserve">
+    <value>修理消耗</value>
+  </data>
+  <data name="Fleet_Repairing" xml:space="preserve">
+    <value>入渠中</value>
+  </data>
+  <data name="Fleet_Status_Empty" xml:space="preserve">
+    <value>舰队为空</value>
+  </data>
+  <data name="Fleet_Status_HeavilyDamaged" xml:space="preserve">
+    <value>有舰娘处于大破状态</value>
+  </data>
+  <data name="Fleet_Status_InMission" xml:space="preserve">
+    <value>远征中</value>
+  </data>
+  <data name="Fleet_Status_InSortie" xml:space="preserve">
+    <value>出击中</value>
+  </data>
+  <data name="Fleet_Status_LowCondition" xml:space="preserve">
+    <value>疲劳恢复中</value>
+  </data>
+  <data name="Fleet_Status_NeedCharge" xml:space="preserve">
+    <value>需要补给</value>
+  </data>
+  <data name="Fleet_Status_Ready" xml:space="preserve">
+    <value>出击准备完毕</value>
+  </data>
+  <data name="Fleet_Status_Repairing" xml:space="preserve">
+    <value>有舰娘正在入渠中</value>
+  </data>
   <data name="Font" xml:space="preserve">
     <value>字体</value>
   </data>

@@ -120,6 +120,15 @@
   <data name="About" xml:space="preserve">
     <value>バージョン情報</value>
   </data>
+  <data name="Actions" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="BackToGame" xml:space="preserve">
+    <value>ゲームに戻る</value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>ブラウザ</value>
   </data>
@@ -129,11 +138,86 @@
   <data name="CleanCache" xml:space="preserve">
     <value>キャッシュの削除</value>
   </data>
+  <data name="Fleet_AFP" xml:space="preserve">
+    <value>制空</value>
+  </data>
+  <data name="Fleet_AFP_Basic" xml:space="preserve">
+    <value>基本</value>
+  </data>
+  <data name="Fleet_AFP_Bonus" xml:space="preserve">
+    <value>熟練度ボーナス</value>
+  </data>
+  <data name="Fleet_AFP_Fighter" xml:space="preserve">
+    <value>艦戦のみ</value>
+  </data>
+  <data name="Fleet_ChargeCost" xml:space="preserve">
+    <value>補給消费</value>
+  </data>
+  <data name="Fleet_Condition" xml:space="preserve">
+    <value>疲労回復まて</value>
+  </data>
+  <data name="Fleet_HomeportRepair" xml:space="preserve">
+    <value>泊地修理</value>
+  </data>
+  <data name="Fleet_Level_Average" xml:space="preserve">
+    <value>平均レベル</value>
+  </data>
+  <data name="Fleet_Level_Sum" xml:space="preserve">
+    <value>総レベル</value>
+  </data>
+  <data name="Fleet_LoS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Fleet_RepairCost" xml:space="preserve">
+    <value>修理消费</value>
+  </data>
+  <data name="Fleet_Repairing" xml:space="preserve">
+    <value>入渠</value>
+  </data>
+  <data name="Fleet_Status_Empty" xml:space="preserve">
+    <value>艦隊は空き</value>
+  </data>
+  <data name="Fleet_Status_HeavilyDamaged" xml:space="preserve">
+    <value>大破の艦娘</value>
+  </data>
+  <data name="Fleet_Status_InMission" xml:space="preserve">
+    <value>遠征中</value>
+  </data>
+  <data name="Fleet_Status_InSortie" xml:space="preserve">
+    <value>出撃中</value>
+  </data>
+  <data name="Fleet_Status_LowCondition" xml:space="preserve">
+    <value>疲労回復中</value>
+  </data>
+  <data name="Fleet_Status_NeedCharge" xml:space="preserve">
+    <value>未補給の艦娘</value>
+  </data>
+  <data name="Fleet_Status_Ready" xml:space="preserve">
+    <value>出撃準備完了</value>
+  </data>
+  <data name="Fleet_Status_Repairing" xml:space="preserve">
+    <value>入渠中の艦娘</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>フォント</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>進む</value>
+  </data>
+  <data name="Goto" xml:space="preserve">
+    <value>行きます</value>
+  </data>
   <data name="ItemCount" xml:space="preserve">
     <value>装備数：</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>ミュート</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="Notification_Toast" xml:space="preserve">
+    <value>トースト通知を使用する</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>設定</value>
@@ -147,8 +231,17 @@
   <data name="Proxy_Port" xml:space="preserve">
     <value>ポート</value>
   </data>
+  <data name="Proxy_UseHTTPS" xml:space="preserve">
+    <value>HTTPS接続時て他のプロキシを使用する</value>
+  </data>
   <data name="Proxy_UseProxy" xml:space="preserve">
     <value>プロキシを使用する</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="RibbonTab_Browse" xml:space="preserve">
+    <value>閱覧</value>
   </data>
   <data name="RibbonTab_View" xml:space="preserve">
     <value>介面</value>
@@ -162,8 +255,17 @@
   <data name="ShipCount" xml:space="preserve">
     <value>艦娘数：</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="Theme_NoDWM" xml:space="preserve">
+    <value>DWMを使用しない</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>アップデート</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>介面</value>
   </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>
@@ -200,47 +302,5 @@
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
-  </data>
-  <data name="BackToGame" xml:space="preserve">
-    <value>ゲームに戻る</value>
-  </data>
-  <data name="Notification" xml:space="preserve">
-    <value>通知</value>
-  </data>
-  <data name="Notification_Toast" xml:space="preserve">
-    <value>トースト通知を使用する</value>
-  </data>
-  <data name="Proxy_UseHTTPS" xml:space="preserve">
-    <value>HTTPS接続時て他のプロキシを使用する</value>
-  </data>
-  <data name="Forward" xml:space="preserve">
-    <value>進む</value>
-  </data>
-  <data name="Back" xml:space="preserve">
-    <value>戻る</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>介面</value>
-  </data>
-  <data name="Theme" xml:space="preserve">
-    <value>テーマ</value>
-  </data>
-  <data name="Theme_NoDWM" xml:space="preserve">
-    <value>DWMを使用しない</value>
-  </data>
-  <data name="Actions" xml:space="preserve">
-    <value>アクション</value>
-  </data>
-  <data name="Font" xml:space="preserve">
-    <value>フォント</value>
-  </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>更新</value>
-  </data>
-  <data name="RibbonTab_Browse" xml:space="preserve">
-    <value>閱覧</value>
-  </data>
-  <data name="Goto" xml:space="preserve">
-    <value>行きます</value>
   </data>
 </root>

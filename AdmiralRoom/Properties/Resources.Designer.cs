@@ -124,6 +124,186 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Air Fight Power 的本地化字符串。
+        /// </summary>
+        public static string Fleet_AFP {
+            get {
+                return ResourceManager.GetString("Fleet_AFP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Basic 的本地化字符串。
+        /// </summary>
+        public static string Fleet_AFP_Basic {
+            get {
+                return ResourceManager.GetString("Fleet_AFP_Basic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Proficiency Bonus 的本地化字符串。
+        /// </summary>
+        public static string Fleet_AFP_Bonus {
+            get {
+                return ResourceManager.GetString("Fleet_AFP_Bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fighters Only 的本地化字符串。
+        /// </summary>
+        public static string Fleet_AFP_Fighter {
+            get {
+                return ResourceManager.GetString("Fleet_AFP_Fighter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Charge Cost 的本地化字符串。
+        /// </summary>
+        public static string Fleet_ChargeCost {
+            get {
+                return ResourceManager.GetString("Fleet_ChargeCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Condition Recovery 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Condition {
+            get {
+                return ResourceManager.GetString("Fleet_Condition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Homeport Repair 的本地化字符串。
+        /// </summary>
+        public static string Fleet_HomeportRepair {
+            get {
+                return ResourceManager.GetString("Fleet_HomeportRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Average Level 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Level_Average {
+            get {
+                return ResourceManager.GetString("Fleet_Level_Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Level Sum 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Level_Sum {
+            get {
+                return ResourceManager.GetString("Fleet_Level_Sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Light of Sight 的本地化字符串。
+        /// </summary>
+        public static string Fleet_LoS {
+            get {
+                return ResourceManager.GetString("Fleet_LoS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Repair Cost 的本地化字符串。
+        /// </summary>
+        public static string Fleet_RepairCost {
+            get {
+                return ResourceManager.GetString("Fleet_RepairCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Repairing 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Repairing {
+            get {
+                return ResourceManager.GetString("Fleet_Repairing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fleet is empty. 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_Empty {
+            get {
+                return ResourceManager.GetString("Fleet_Status_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ship is heavily damaged. 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_HeavilyDamaged {
+            get {
+                return ResourceManager.GetString("Fleet_Status_HeavilyDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In expedition 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_InMission {
+            get {
+                return ResourceManager.GetString("Fleet_Status_InMission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In sortie 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_InSortie {
+            get {
+                return ResourceManager.GetString("Fleet_Status_InSortie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Condition recoverying 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_LowCondition {
+            get {
+                return ResourceManager.GetString("Fleet_Status_LowCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Charge needed. 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_NeedCharge {
+            get {
+                return ResourceManager.GetString("Fleet_Status_NeedCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ready for sortie. 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_Ready {
+            get {
+                return ResourceManager.GetString("Fleet_Status_Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ship is repairing 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_Repairing {
+            get {
+                return ResourceManager.GetString("Fleet_Status_Repairing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Font 的本地化字符串。
         /// </summary>
         public static string Font {

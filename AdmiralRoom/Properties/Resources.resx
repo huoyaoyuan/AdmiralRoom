@@ -138,6 +138,66 @@
   <data name="CleanCache" xml:space="preserve">
     <value>Clean cache</value>
   </data>
+  <data name="Fleet_AFP" xml:space="preserve">
+    <value>Air Fight Power</value>
+  </data>
+  <data name="Fleet_AFP_Basic" xml:space="preserve">
+    <value>Basic</value>
+  </data>
+  <data name="Fleet_AFP_Bonus" xml:space="preserve">
+    <value>Proficiency Bonus</value>
+  </data>
+  <data name="Fleet_AFP_Fighter" xml:space="preserve">
+    <value>Fighters Only</value>
+  </data>
+  <data name="Fleet_ChargeCost" xml:space="preserve">
+    <value>Charge Cost</value>
+  </data>
+  <data name="Fleet_Condition" xml:space="preserve">
+    <value>Condition Recovery</value>
+  </data>
+  <data name="Fleet_HomeportRepair" xml:space="preserve">
+    <value>Homeport Repair</value>
+  </data>
+  <data name="Fleet_Level_Average" xml:space="preserve">
+    <value>Average Level</value>
+  </data>
+  <data name="Fleet_Level_Sum" xml:space="preserve">
+    <value>Level Sum</value>
+  </data>
+  <data name="Fleet_LoS" xml:space="preserve">
+    <value>Light of Sight</value>
+  </data>
+  <data name="Fleet_RepairCost" xml:space="preserve">
+    <value>Repair Cost</value>
+  </data>
+  <data name="Fleet_Repairing" xml:space="preserve">
+    <value>Repairing</value>
+  </data>
+  <data name="Fleet_Status_Empty" xml:space="preserve">
+    <value>Fleet is empty.</value>
+  </data>
+  <data name="Fleet_Status_HeavilyDamaged" xml:space="preserve">
+    <value>Ship is heavily damaged.</value>
+  </data>
+  <data name="Fleet_Status_InMission" xml:space="preserve">
+    <value>In expedition</value>
+  </data>
+  <data name="Fleet_Status_InSortie" xml:space="preserve">
+    <value>In sortie</value>
+  </data>
+  <data name="Fleet_Status_LowCondition" xml:space="preserve">
+    <value>Condition recoverying</value>
+  </data>
+  <data name="Fleet_Status_NeedCharge" xml:space="preserve">
+    <value>Charge needed.</value>
+  </data>
+  <data name="Fleet_Status_Ready" xml:space="preserve">
+    <value>Ready for sortie.</value>
+  </data>
+  <data name="Fleet_Status_Repairing" xml:space="preserve">
+    <value>Ship is repairing</value>
+  </data>
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>
