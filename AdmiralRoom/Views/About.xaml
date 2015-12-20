@@ -7,8 +7,12 @@
              mc:Ignorable="d">
     <FlowDocumentScrollViewer>
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
+            <Paragraph FontSize="24">
+                <Run Text="AdmiralRoom ver"/>
+                <Run Text="{x:Static local:About.Version}"/>
+            </Paragraph>
             <Paragraph>
-                <Run FontSize="24" Text="欢迎使用！"/>
+                <Run FontSize="28" Text="欢迎使用！"/>
             </Paragraph>
             <Paragraph>
                 <Run Text="「提督の部屋(AdmiralRoom)」是「艦これ」游戏的专用工具。"/>
