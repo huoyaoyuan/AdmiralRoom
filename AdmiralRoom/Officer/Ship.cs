@@ -122,7 +122,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private bool _hpchanged = false;
         protected override void UpdateProp()
         {
-            Exp = new Exp(rawdata.api_exp);
+            Exp = new Exp(rawdata.api_exp, Level, true);
             _hpchanged = HP.Current != rawdata.api_nowhp;
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
             if (!IsRepairing) RepairingHP = HP.Current;

@@ -225,7 +225,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MemberID = data.api_member_id;
             Nickname = data.api_nickname;
             Comment = data.api_cmt;
-            Exp = new Exp(data.api_experience);
+            Exp = new Exp(data.api_experience, Level, false);
             Rank = ConstData.AdmiralRanks[data.api_rank];
             Fleet = data.api_deck;
             ShipCount = data.api_ship[0];
@@ -241,9 +241,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MemberID = data.api_member_id;
             Nickname = data.api_nickname;
             Comment = data.api_comment;
-            Exp = new Exp();
-            Exp.Current = data.api_experience;
-            Exp.NextLevel = ConstData.GetAdmiralExp(Level + 1);
+            Exp = new Exp()
+            {
+                Current = data.api_experience,
+                NextLevel = ConstData.GetAdmiralExp(Level + 1),
+                PrevLevel = ConstData.GetAdmiralExp(Level),
+            };
             Exp.Next = Exp.NextLevel - Exp.Current;
             Rank = ConstData.AdmiralRanks[data.api_rank];
             Fleet = data.api_count_deck;

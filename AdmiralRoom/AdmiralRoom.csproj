@@ -186,10 +186,8 @@
     <Compile Include="ConstData.cs" />
     <Compile Include="Controls\AnimateProgress.cs" />
     <Compile Include="Controls\ContentNullChooser.cs" />
+    <Compile Include="Controls\ExpBar.cs" />
     <Compile Include="Controls\PredicateProgressBar.cs" />
-    <Compile Include="Controls\ExpBar.xaml.cs">
-      <DependentUpon>ExpBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DynamicJson.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
@@ -305,10 +303,6 @@
     <Compile Include="Win32\IViewObject.cs" />
     <Compile Include="Win32\Win32Helper.cs" />
     <Compile Include="Win32\WinInetHelper.cs" />
-    <Page Include="Controls\ExpBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Icons\VectorIcons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
