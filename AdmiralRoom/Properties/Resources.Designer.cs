@@ -511,6 +511,132 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Daily 的本地化字符串。
+        /// </summary>
+        public static string Quest_Peroid_Daily {
+            get {
+                return ResourceManager.GetString("Quest_Peroid_Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Date ends with 0,3,7 的本地化字符串。
+        /// </summary>
+        public static string Quest_Peroid_Day037 {
+            get {
+                return ResourceManager.GetString("Quest_Peroid_Day037", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Date ends with 2,8 的本地化字符串。
+        /// </summary>
+        public static string Quest_Peroid_Day28 {
+            get {
+                return ResourceManager.GetString("Quest_Peroid_Day28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Monthly 的本地化字符串。
+        /// </summary>
+        public static string Quest_Peroid_Monthly {
+            get {
+                return ResourceManager.GetString("Quest_Peroid_Monthly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Once 的本地化字符串。
+        /// </summary>
+        public static string Quest_Peroid_Once {
+            get {
+                return ResourceManager.GetString("Quest_Peroid_Once", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Weekly 的本地化字符串。
+        /// </summary>
+        public static string Quest_Peroid_Weekly {
+            get {
+                return ResourceManager.GetString("Quest_Peroid_Weekly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Repair&amp;Charge 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Charge {
+            get {
+                return ResourceManager.GetString("Quest_Type_Charge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Exercise 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Exercise {
+            get {
+                return ResourceManager.GetString("Quest_Type_Exercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Expedition 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Expedition {
+            get {
+                return ResourceManager.GetString("Quest_Type_Expedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Organization 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Organization {
+            get {
+                return ResourceManager.GetString("Quest_Type_Organization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Other 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Other {
+            get {
+                return ResourceManager.GetString("Quest_Type_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Powerup 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Powerup {
+            get {
+                return ResourceManager.GetString("Quest_Type_Powerup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Shipyard 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Shipyard {
+            get {
+                return ResourceManager.GetString("Quest_Type_Shipyard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Sortie 的本地化字符串。
+        /// </summary>
+        public static string Quest_Type_Sortie {
+            get {
+                return ResourceManager.GetString("Quest_Type_Sortie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Refresh 的本地化字符串。
         /// </summary>
         public static string Refresh {

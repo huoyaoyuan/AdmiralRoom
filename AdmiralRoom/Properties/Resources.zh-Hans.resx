@@ -264,6 +264,48 @@
   <data name="Proxy_UseProxy" xml:space="preserve">
     <value>使用代理</value>
   </data>
+  <data name="Quest_Peroid_Daily" xml:space="preserve">
+    <value>日常</value>
+  </data>
+  <data name="Quest_Peroid_Day037" xml:space="preserve">
+    <value>日期尾数0，3，7时可用</value>
+  </data>
+  <data name="Quest_Peroid_Day28" xml:space="preserve">
+    <value>日期尾数2，8时可用</value>
+  </data>
+  <data name="Quest_Peroid_Monthly" xml:space="preserve">
+    <value>月常</value>
+  </data>
+  <data name="Quest_Peroid_Once" xml:space="preserve">
+    <value>一次性</value>
+  </data>
+  <data name="Quest_Peroid_Weekly" xml:space="preserve">
+    <value>周常</value>
+  </data>
+  <data name="Quest_Type_Charge" xml:space="preserve">
+    <value>入渠/补给任务</value>
+  </data>
+  <data name="Quest_Type_Exercise" xml:space="preserve">
+    <value>演习任务</value>
+  </data>
+  <data name="Quest_Type_Expedition" xml:space="preserve">
+    <value>远征任务</value>
+  </data>
+  <data name="Quest_Type_Organization" xml:space="preserve">
+    <value>编成任务</value>
+  </data>
+  <data name="Quest_Type_Other" xml:space="preserve">
+    <value>其它任务</value>
+  </data>
+  <data name="Quest_Type_Powerup" xml:space="preserve">
+    <value>改修任务</value>
+  </data>
+  <data name="Quest_Type_Shipyard" xml:space="preserve">
+    <value>工厂任务</value>
+  </data>
+  <data name="Quest_Type_Sortie" xml:space="preserve">
+    <value>出击任务</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
   </data>

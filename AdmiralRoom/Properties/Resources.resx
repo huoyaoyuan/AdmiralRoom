@@ -267,6 +267,48 @@
   <data name="Proxy_UseProxy" xml:space="preserve">
     <value>Use proxy</value>
   </data>
+  <data name="Quest_Peroid_Daily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="Quest_Peroid_Day037" xml:space="preserve">
+    <value>Date ends with 0,3,7</value>
+  </data>
+  <data name="Quest_Peroid_Day28" xml:space="preserve">
+    <value>Date ends with 2,8</value>
+  </data>
+  <data name="Quest_Peroid_Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="Quest_Peroid_Once" xml:space="preserve">
+    <value>Once</value>
+  </data>
+  <data name="Quest_Peroid_Weekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="Quest_Type_Charge" xml:space="preserve">
+    <value>Repair&amp;Charge</value>
+  </data>
+  <data name="Quest_Type_Exercise" xml:space="preserve">
+    <value>Exercise</value>
+  </data>
+  <data name="Quest_Type_Expedition" xml:space="preserve">
+    <value>Expedition</value>
+  </data>
+  <data name="Quest_Type_Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Quest_Type_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Quest_Type_Powerup" xml:space="preserve">
+    <value>Powerup</value>
+  </data>
+  <data name="Quest_Type_Shipyard" xml:space="preserve">
+    <value>Shipyard</value>
+  </data>
+  <data name="Quest_Type_Sortie" xml:space="preserve">
+    <value>Sortie</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>

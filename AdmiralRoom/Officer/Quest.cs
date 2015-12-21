@@ -53,7 +53,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Counter?.SetIsTook(State == QuestState.InProgress);
         }
     }
-    public enum QuestType { Unknown = 0, Fleet = 1, Battle = 2, Exercise = 3, Expedition = 4, Charge = 5, Shipyard = 6, Powerup = 7, Other = 8 }
+    public enum QuestType { Unknown = 0, Organization = 1, Sortie = 2, Exercise = 3, Expedition = 4, Charge = 5, Shipyard = 6, Powerup = 7, Other = 8 }
     public enum QuestPeriod { Once = 1, Daily = 2, Weekly = 3, Day037 = 4, Day28 = 5, Monthly = 6 }
     public enum QuestState { None = 1, InProgress = 2, Complete = 3 }
     public enum QuestBonus { None = 0, Normal = 1, Ship = 2 }
