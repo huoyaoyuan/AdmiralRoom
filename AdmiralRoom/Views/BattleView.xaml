@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
@@ -93,7 +94,7 @@
         </Style>
     </UserControl.Resources>
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
-        <TabItem Header="看剧透" Background="SpringGreen">
+        <TabItem Header="{Binding Resources.Predict_Enable, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Background="SpringGreen">
             <control:ContentNullChooser ContentChooser="{Binding Battle.CurrentBattle}">
                 <control:ContentNullChooser.NotNullContent>
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -252,31 +253,31 @@
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="Perfect">
-                                                        <Setter Property="Text" Value="完全勝利S"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_Perfect, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Gold"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="S">
-                                                        <Setter Property="Text" Value="勝利S"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_S, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Gold"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="A">
-                                                        <Setter Property="Text" Value="勝利A"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_A, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Red"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="B">
-                                                        <Setter Property="Text" Value="戦術的勝利B"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_B, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Orange"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="C">
-                                                        <Setter Property="Text" Value="戦術的敗北C"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_C, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Red"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="D">
-                                                        <Setter Property="Text" Value="敗北D"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_D, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Green"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="E">
-                                                        <Setter Property="Text" Value="敗北E"/>
+                                                        <Setter Property="Text" Value="{Binding Resources.Battle_WinRank_E, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                                         <Setter Property="Foreground" Value="Blue"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -321,18 +322,18 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"
-                                           HorizontalAlignment="Right"
-                                           FontSize="16"
-                                           Text="{Binding Battle.CurrentBattle.AnonymousFriendDamage, StringFormat=不明伤害：{0}}"/>
-                                <TextBlock Grid.Column="1"
-                                           HorizontalAlignment="Right"
-                                           FontSize="16"
-                                           Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, StringFormat=不明伤害：{0}}"/>
+                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" FontSize="16">
+                                    <Run Text="{Binding Resources.Battle_AnonymousDamage, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Run Text="{Binding Battle.CurrentBattle.AnonymousFriendDamage, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" FontSize="16">
+                                    <Run Text="{Binding Resources.Battle_AnonymousDamage, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Run Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, Mode=OneWay}"/>
+                                </TextBlock>
                             </Grid>
                             <CheckBox Grid.Row="3" Margin="2,0,0,0">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock>掉落：</TextBlock>
+                                    <TextBlock Text="{Binding Resources.Battle_Drop, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                     <TextBlock Visibility="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}, Converter={StaticResource VisibilityConverter}}" Text="{Binding Battle.CurrentBattle.GetShip}"/>
                                 </StackPanel>
                             </CheckBox>
@@ -341,6 +342,6 @@
                 </control:ContentNullChooser.NotNullContent>
             </control:ContentNullChooser>
         </TabItem>
-        <TabItem Header="不看剧透" Background="Red"/>
+        <TabItem Header="{Binding Resources.Predict_Disable, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Background="Red"/>
     </TabControl>
 </UserControl>

@@ -3,20 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance officer:Staff}"
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
-        <TabItem Header="看剧透" Background="SpringGreen">
+        <TabItem Header="{Binding Resources.Predict_Enable, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Background="SpringGreen">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical"
                             DataContext="{Binding Battle}"
                             d:DataContext="{d:DesignInstance officer:BattleManager}"
                             Visibility="{Binding InSortie, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                     <TextBlock>
-                        出击海域：<Run>
+                        <Run Text="{Binding Resources.Compass_SortieArea, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Run>
                             <Run.Text>
                                 <MultiBinding StringFormat="{}{0}-{1}">
                                     <Binding Path="CurrentMap.AreaNo" Mode="OneWay"/>
@@ -28,53 +30,54 @@
                         <Run Text="{Binding CurrentMap.Name, Mode=OneWay}"/>
                         <Run Text="{Binding CurrentMap.OperationName, Mode=OneWay}"/>
                         <LineBreak/>
-                        地点：<Run Text="{Binding CurrentNode.Id, Mode=OneWay}"/>
+                        <Run Text="{Binding Resources.Compass_Position, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Run Text="{Binding CurrentNode.Id, Mode=OneWay}"/>
                         <TextBlock>
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Battle">
-                                            <Setter Property="Text" Value="战斗"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_Battle, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="Red"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="BOSS">
-                                            <Setter Property="Text" Value="BOSS"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_BOSS, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="Red"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="ItemGet">
-                                            <Setter Property="Text" Value="资源获得"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_ItemGet, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="ItemLost">
-                                            <Setter Property="Text" Value="漩涡"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_ItemLost, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="MediumPurple"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="NightBattle">
-                                            <Setter Property="Text" Value="夜战"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_NightBattle, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="Red"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="AirBattle">
-                                            <Setter Property="Text" Value="航空战"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_AirBattle, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="OrangeRed"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="SelectRoute">
-                                            <Setter Property="Text" Value="能动分歧"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_SelectRoute, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="Aquamarine"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Imagination">
-                                            <Setter Property="Text" Value="错觉"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_Imagination, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="Aqua"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="AirSearch">
-                                            <Setter Property="Text" Value="航空侦察"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_AirSearch, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Guard">
-                                            <Setter Property="Text" Value="船团护卫"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_Guard, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Transport">
-                                            <Setter Property="Text" Value="输送开始"/>
+                                            <Setter Property="Text" Value="{Binding Resources.Compass_Transport, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -89,6 +92,6 @@
                 </StackPanel>
             </ScrollViewer>
         </TabItem>
-        <TabItem Header="不看剧透" Background="Red"/>
+        <TabItem Header="{Binding Resources.Predict_Disable, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Background="Red"/>
     </TabControl>
 </UserControl>

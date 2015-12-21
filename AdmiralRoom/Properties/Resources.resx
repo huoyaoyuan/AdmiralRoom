@@ -129,6 +129,33 @@
   <data name="BackToGame" xml:space="preserve">
     <value>Back to game</value>
   </data>
+  <data name="Battle_AnonymousDamage" xml:space="preserve">
+    <value>Anonymous Damage:</value>
+  </data>
+  <data name="Battle_Drop" xml:space="preserve">
+    <value>Drop: </value>
+  </data>
+  <data name="Battle_WinRank_A" xml:space="preserve">
+    <value>Victory A</value>
+  </data>
+  <data name="Battle_WinRank_B" xml:space="preserve">
+    <value>Tactical Victory B</value>
+  </data>
+  <data name="Battle_WinRank_C" xml:space="preserve">
+    <value>Tactical Defeat C</value>
+  </data>
+  <data name="Battle_WinRank_D" xml:space="preserve">
+    <value>Defeat D</value>
+  </data>
+  <data name="Battle_WinRank_E" xml:space="preserve">
+    <value>Total Defeat E</value>
+  </data>
+  <data name="Battle_WinRank_Perfect" xml:space="preserve">
+    <value>Perfect S</value>
+  </data>
+  <data name="Battle_WinRank_S" xml:space="preserve">
+    <value>Victory S</value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
   </data>
@@ -140,6 +167,45 @@
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
+  </data>
+  <data name="Compass_AirBattle" xml:space="preserve">
+    <value>Aerial Battle</value>
+  </data>
+  <data name="Compass_AirSearch" xml:space="preserve">
+    <value>Aerial Search</value>
+  </data>
+  <data name="Compass_Battle" xml:space="preserve">
+    <value>Battle</value>
+  </data>
+  <data name="Compass_BOSS" xml:space="preserve">
+    <value>BOSS</value>
+  </data>
+  <data name="Compass_Guard" xml:space="preserve">
+    <value>Transport Finish</value>
+  </data>
+  <data name="Compass_Imagination" xml:space="preserve">
+    <value>Imagination</value>
+  </data>
+  <data name="Compass_ItemGet" xml:space="preserve">
+    <value>Item Get</value>
+  </data>
+  <data name="Compass_ItemLost" xml:space="preserve">
+    <value>Item Lost</value>
+  </data>
+  <data name="Compass_NightBattle" xml:space="preserve">
+    <value>Night Battle</value>
+  </data>
+  <data name="Compass_Position" xml:space="preserve">
+    <value>Position: </value>
+  </data>
+  <data name="Compass_SelectRoute" xml:space="preserve">
+    <value>Select Route</value>
+  </data>
+  <data name="Compass_SortieArea" xml:space="preserve">
+    <value>Sortie Area: </value>
+  </data>
+  <data name="Compass_Transport" xml:space="preserve">
+    <value>Landing Point</value>
   </data>
   <data name="Dock_Complete" xml:space="preserve">
     <value>Complete</value>
@@ -252,6 +318,12 @@
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="Predict_Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Predict_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
   <data name="Proxy" xml:space="preserve">
     <value>Proxy</value>
   </data>
@@ -341,9 +413,6 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>View</value>
   </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>Admiral</value>

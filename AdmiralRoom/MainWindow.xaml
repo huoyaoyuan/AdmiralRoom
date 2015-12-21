@@ -149,7 +149,7 @@
                     </Grid>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem Header="{Binding Resources.View, Source={x:Static local:ResourceService.Current}}" KeyTip="V">
+            <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_View, Source={x:Static local:ResourceService.Current}}" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="Language">
                     <ribbon:ComboBox x:Name="LanguageBox"
                                      IsEditable="False" KeyTip="L"

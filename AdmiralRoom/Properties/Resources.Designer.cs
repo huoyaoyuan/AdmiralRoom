@@ -97,6 +97,87 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Anonymous Damage: 的本地化字符串。
+        /// </summary>
+        public static string Battle_AnonymousDamage {
+            get {
+                return ResourceManager.GetString("Battle_AnonymousDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Drop:  的本地化字符串。
+        /// </summary>
+        public static string Battle_Drop {
+            get {
+                return ResourceManager.GetString("Battle_Drop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Victory A 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_A {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Tactical Victory B 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_B {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_B", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Tactical Defeat C 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_C {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Defeat D 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_D {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Total Defeat E 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_E {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_E", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Perfect S 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_Perfect {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_Perfect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Victory S 的本地化字符串。
+        /// </summary>
+        public static string Battle_WinRank_S {
+            get {
+                return ResourceManager.GetString("Battle_WinRank_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Browser 的本地化字符串。
         /// </summary>
         public static string Browser {
@@ -129,6 +210,123 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Clear {
             get {
                 return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Aerial Battle 的本地化字符串。
+        /// </summary>
+        public static string Compass_AirBattle {
+            get {
+                return ResourceManager.GetString("Compass_AirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Aerial Search 的本地化字符串。
+        /// </summary>
+        public static string Compass_AirSearch {
+            get {
+                return ResourceManager.GetString("Compass_AirSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Battle 的本地化字符串。
+        /// </summary>
+        public static string Compass_Battle {
+            get {
+                return ResourceManager.GetString("Compass_Battle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 BOSS 的本地化字符串。
+        /// </summary>
+        public static string Compass_BOSS {
+            get {
+                return ResourceManager.GetString("Compass_BOSS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Transport Finish 的本地化字符串。
+        /// </summary>
+        public static string Compass_Guard {
+            get {
+                return ResourceManager.GetString("Compass_Guard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Imagination 的本地化字符串。
+        /// </summary>
+        public static string Compass_Imagination {
+            get {
+                return ResourceManager.GetString("Compass_Imagination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Item Get 的本地化字符串。
+        /// </summary>
+        public static string Compass_ItemGet {
+            get {
+                return ResourceManager.GetString("Compass_ItemGet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Item Lost 的本地化字符串。
+        /// </summary>
+        public static string Compass_ItemLost {
+            get {
+                return ResourceManager.GetString("Compass_ItemLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Night Battle 的本地化字符串。
+        /// </summary>
+        public static string Compass_NightBattle {
+            get {
+                return ResourceManager.GetString("Compass_NightBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Position:  的本地化字符串。
+        /// </summary>
+        public static string Compass_Position {
+            get {
+                return ResourceManager.GetString("Compass_Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select Route 的本地化字符串。
+        /// </summary>
+        public static string Compass_SelectRoute {
+            get {
+                return ResourceManager.GetString("Compass_SelectRoute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Sortie Area:  的本地化字符串。
+        /// </summary>
+        public static string Compass_SortieArea {
+            get {
+                return ResourceManager.GetString("Compass_SortieArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Landing Point 的本地化字符串。
+        /// </summary>
+        public static string Compass_Transport {
+            get {
+                return ResourceManager.GetString("Compass_Transport", resourceCulture);
             }
         }
         
@@ -466,6 +664,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Disable 的本地化字符串。
+        /// </summary>
+        public static string Predict_Disable {
+            get {
+                return ResourceManager.GetString("Predict_Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Enable 的本地化字符串。
+        /// </summary>
+        public static string Predict_Enable {
+            get {
+                return ResourceManager.GetString("Predict_Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Proxy 的本地化字符串。
         /// </summary>
         public static string Proxy {
@@ -732,15 +948,6 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 View 的本地化字符串。
-        /// </summary>
-        public static string View {
-            get {
-                return ResourceManager.GetString("View", resourceCulture);
             }
         }
         

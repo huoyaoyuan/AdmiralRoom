@@ -126,6 +126,33 @@
   <data name="BackToGame" xml:space="preserve">
     <value>回到游戏</value>
   </data>
+  <data name="Battle_AnonymousDamage" xml:space="preserve">
+    <value>不明伤害:</value>
+  </data>
+  <data name="Battle_Drop" xml:space="preserve">
+    <value>掉落: </value>
+  </data>
+  <data name="Battle_WinRank_A" xml:space="preserve">
+    <value>胜利A</value>
+  </data>
+  <data name="Battle_WinRank_B" xml:space="preserve">
+    <value>战术的胜利B</value>
+  </data>
+  <data name="Battle_WinRank_C" xml:space="preserve">
+    <value>战术的败北C</value>
+  </data>
+  <data name="Battle_WinRank_D" xml:space="preserve">
+    <value>败北D</value>
+  </data>
+  <data name="Battle_WinRank_E" xml:space="preserve">
+    <value>败北E</value>
+  </data>
+  <data name="Battle_WinRank_Perfect" xml:space="preserve">
+    <value>完全胜利S</value>
+  </data>
+  <data name="Battle_WinRank_S" xml:space="preserve">
+    <value>胜利S</value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>浏览器</value>
   </data>
@@ -137,6 +164,45 @@
   </data>
   <data name="Clear" xml:space="preserve">
     <value>清空</value>
+  </data>
+  <data name="Compass_AirBattle" xml:space="preserve">
+    <value>航空战</value>
+  </data>
+  <data name="Compass_AirSearch" xml:space="preserve">
+    <value>航空侦察</value>
+  </data>
+  <data name="Compass_Battle" xml:space="preserve">
+    <value>战斗</value>
+  </data>
+  <data name="Compass_BOSS" xml:space="preserve">
+    <value>BOSS</value>
+  </data>
+  <data name="Compass_Guard" xml:space="preserve">
+    <value>输送船团终点</value>
+  </data>
+  <data name="Compass_Imagination" xml:space="preserve">
+    <value>错觉</value>
+  </data>
+  <data name="Compass_ItemGet" xml:space="preserve">
+    <value>资源获得</value>
+  </data>
+  <data name="Compass_ItemLost" xml:space="preserve">
+    <value>漩涡</value>
+  </data>
+  <data name="Compass_NightBattle" xml:space="preserve">
+    <value>夜战</value>
+  </data>
+  <data name="Compass_Position" xml:space="preserve">
+    <value>地点: </value>
+  </data>
+  <data name="Compass_SelectRoute" xml:space="preserve">
+    <value>能动分歧</value>
+  </data>
+  <data name="Compass_SortieArea" xml:space="preserve">
+    <value>出击海域: </value>
+  </data>
+  <data name="Compass_Transport" xml:space="preserve">
+    <value>登陆地点</value>
   </data>
   <data name="Dock_Complete" xml:space="preserve">
     <value>完成</value>
@@ -249,6 +315,12 @@
   <data name="Options" xml:space="preserve">
     <value>选项</value>
   </data>
+  <data name="Predict_Disable" xml:space="preserve">
+    <value>不看剧透</value>
+  </data>
+  <data name="Predict_Enable" xml:space="preserve">
+    <value>看剧透</value>
+  </data>
   <data name="Proxy" xml:space="preserve">
     <value>代理</value>
   </data>
@@ -338,9 +410,6 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>更新</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>界面</value>
   </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>

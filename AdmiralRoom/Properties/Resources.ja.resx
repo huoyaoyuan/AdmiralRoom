@@ -129,6 +129,33 @@
   <data name="BackToGame" xml:space="preserve">
     <value>ゲームに戻る</value>
   </data>
+  <data name="Battle_AnonymousDamage" xml:space="preserve">
+    <value>不明ダメージ:</value>
+  </data>
+  <data name="Battle_Drop" xml:space="preserve">
+    <value>ドロップ: </value>
+  </data>
+  <data name="Battle_WinRank_A" xml:space="preserve">
+    <value>勝利A</value>
+  </data>
+  <data name="Battle_WinRank_B" xml:space="preserve">
+    <value>戦術的勝利B</value>
+  </data>
+  <data name="Battle_WinRank_C" xml:space="preserve">
+    <value>戦術的敗北C</value>
+  </data>
+  <data name="Battle_WinRank_D" xml:space="preserve">
+    <value>敗北D</value>
+  </data>
+  <data name="Battle_WinRank_E" xml:space="preserve">
+    <value>敗北E</value>
+  </data>
+  <data name="Battle_WinRank_Perfect" xml:space="preserve">
+    <value>完全勝利S</value>
+  </data>
+  <data name="Battle_WinRank_S" xml:space="preserve">
+    <value>勝利S</value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>ブラウザ</value>
   </data>
@@ -140,6 +167,45 @@
   </data>
   <data name="Clear" xml:space="preserve">
     <value>クリア</value>
+  </data>
+  <data name="Compass_AirBattle" xml:space="preserve">
+    <value>航空戦</value>
+  </data>
+  <data name="Compass_AirSearch" xml:space="preserve">
+    <value>航空偵察</value>
+  </data>
+  <data name="Compass_Battle" xml:space="preserve">
+    <value>戦闘</value>
+  </data>
+  <data name="Compass_BOSS" xml:space="preserve">
+    <value>ボス</value>
+  </data>
+  <data name="Compass_Guard" xml:space="preserve">
+    <value>輸送船団ゴール地点</value>
+  </data>
+  <data name="Compass_Imagination" xml:space="preserve">
+    <value>気のせい</value>
+  </data>
+  <data name="Compass_ItemGet" xml:space="preserve">
+    <value>資材獲得</value>
+  </data>
+  <data name="Compass_ItemLost" xml:space="preserve">
+    <value>うずしお</value>
+  </data>
+  <data name="Compass_NightBattle" xml:space="preserve">
+    <value>夜戦</value>
+  </data>
+  <data name="Compass_Position" xml:space="preserve">
+    <value>セル: </value>
+  </data>
+  <data name="Compass_SelectRoute" xml:space="preserve">
+    <value>能動分岐</value>
+  </data>
+  <data name="Compass_SortieArea" xml:space="preserve">
+    <value>出撃マップ: </value>
+  </data>
+  <data name="Compass_Transport" xml:space="preserve">
+    <value>揚陸地点</value>
   </data>
   <data name="Dock_Complete" xml:space="preserve">
     <value>完了</value>
@@ -249,6 +315,12 @@
   <data name="Options" xml:space="preserve">
     <value>設定</value>
   </data>
+  <data name="Predict_Disable" xml:space="preserve">
+    <value>非表示</value>
+  </data>
+  <data name="Predict_Enable" xml:space="preserve">
+    <value>表示</value>
+  </data>
   <data name="Proxy" xml:space="preserve">
     <value>プロキシ</value>
   </data>
@@ -290,6 +362,9 @@
   </data>
   <data name="Quest_Type_Expedition" xml:space="preserve">
     <value>遠征任務</value>
+  </data>
+  <data name="Quest_Type_Organization" xml:space="preserve">
+    <value>編成任務</value>
   </data>
   <data name="Quest_Type_Other" xml:space="preserve">
     <value>他の任務</value>
@@ -333,9 +408,6 @@
   <data name="Update" xml:space="preserve">
     <value>アップデート</value>
   </data>
-  <data name="View" xml:space="preserve">
-    <value>介面</value>
-  </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>
   </data>
@@ -371,8 +443,5 @@
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
-  </data>
-  <data name="Quest_Type_Organization" xml:space="preserve">
-    <value>編成任務</value>
   </data>
 </root>
