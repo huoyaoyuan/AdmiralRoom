@@ -317,7 +317,7 @@
                                               ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
                                               Style="{StaticResource FleetKey}"/>
                             </StackPanel>
-                            <Grid Grid.Row="2" Margin="0,4,0,0">
+                            <Grid Grid.Row="2" Margin="0,4,0,0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -326,7 +326,7 @@
                                     <Run Text="{Binding Resources.Battle_AnonymousDamage, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                     <Run Text="{Binding Battle.CurrentBattle.AnonymousFriendDamage, Mode=OneWay}"/>
                                 </TextBlock>
-                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" FontSize="16">
+                                <TextBlock Grid.Column="1" HorizontalAlignment="Right" FontSize="16">
                                     <Run Text="{Binding Resources.Battle_AnonymousDamage, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                     <Run Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, Mode=OneWay}"/>
                                 </TextBlock>
