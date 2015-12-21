@@ -53,7 +53,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     if (es == EnemyFleet.Length)
                     {
-                        if (fd <= 0) return WinRank.Perfect;
+                        if (FriendDamageRate <= 0) return WinRank.Perfect;
                         else return WinRank.S;
                     }
                     if (es >= Round(EnemyFleet.Length * 0.6)) return WinRank.A;
