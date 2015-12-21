@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using Fluent;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -26,26 +27,23 @@ namespace Huoyaoyuan.AdmiralRoom
             },
             ["Office 2013"] = new[]
             {
-                "Fluent;Component/Themes/Generic.xaml",
                 "Fluent;Component/Themes/Office2013/Generic.xaml"
             }
         };
         public static IReadOnlyCollection<string> SupportedThemes => themes.Keys;
-        public static void ChangeRibbonTheme(string theme)
+        public static void ChangeRibbonTheme(string theme, RibbonWindow window)
         {
-            Window window = Application.Current.MainWindow;
             try
             {
                 var themeres = themes[theme];
-                //window.Resources.MergedDictionaries.Clear();
-                //foreach (var resname in themeres)
-                //{
-                //    var res = new ResourceDictionary { Source = new Uri(resname) };
-                //    window.Resources.MergedDictionaries.Add(res);
-                //}
                 window.SetTheme("Ribbon", themeres);
+                window.Style = null;
+                window.Style = window.FindResource("RibbonWindowStyle") as Style;
+                window.Style = null;
+                --window.Width;
+                ++window.Width;
             }
-            catch { ChangeRibbonTheme(SupportedThemes.First()); }
+            catch { ChangeRibbonTheme(SupportedThemes.First(), window); }
         }
         public static void SetDontUseDwm(bool dontuse)
         {

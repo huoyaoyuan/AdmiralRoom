@@ -17,6 +17,8 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public MainWindow()
         {
+            ThemeService.ChangeRibbonTheme(Config.Current.Theme, this);
+
             InitializeComponent();
 
             //Browser button handler
@@ -54,9 +56,8 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 if (DockMan.FloatingWindows.Any())//Can't DestroyWindow
                     MessageBox.Show("有子窗口处于浮动状态，主题切换必须下次启动程序才能生效。", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                else ThemeService.ChangeRibbonTheme((s as ComboBox).SelectedValue.ToString());
+                else ThemeService.ChangeRibbonTheme((s as ComboBox).SelectedValue.ToString(), this);
             };
-            ThemeService.ChangeRibbonTheme(Themes.SelectedValue.ToString());
             UseAeroControl.Click += (s, _) => ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
             UseAeroControl.IsChecked = Config.Current.Aero;
             ThemeService.EnableAeroControls(Config.Current.Aero);
