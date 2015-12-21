@@ -188,7 +188,6 @@
     <Compile Include="Controls\ContentNullChooser.cs" />
     <Compile Include="Controls\ExpBar.cs" />
     <Compile Include="Controls\PredicateProgressBar.cs" />
-    <Compile Include="DynamicJson.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>

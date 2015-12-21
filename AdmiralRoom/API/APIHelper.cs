@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
-using Codeplex.Data;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
 using Newtonsoft.Json;
