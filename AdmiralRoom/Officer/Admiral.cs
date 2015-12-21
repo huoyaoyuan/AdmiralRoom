@@ -241,11 +241,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MemberID = data.api_member_id;
             Nickname = data.api_nickname;
             Comment = data.api_comment;
-            Exp = new Exp()
+            Exp = new Exp
             {
                 Current = data.api_experience,
                 NextLevel = ConstData.GetAdmiralExp(Level + 1),
-                PrevLevel = ConstData.GetAdmiralExp(Level),
+                PrevLevel = ConstData.GetAdmiralExp(Level)
             };
             Exp.Next = Exp.NextLevel - Exp.Current;
             Rank = ConstData.AdmiralRanks[data.api_rank];

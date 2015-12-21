@@ -10,19 +10,17 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
         {
             DateTimeOffset time = (DateTimeOffset)value;
             string para = parameter.ToString().ToLower();
-            if (para == "local")
+            switch (para)
             {
-                return time.ToLocalTime();
+                case "local":
+                    return time.ToLocalTime();
+                case "remain":
+                    return time.Remain();
+                case "during":
+                    return time.During();
+                default:
+                    throw new ArgumentException();
             }
-            else if (para == "remain")
-            {
-                return time.Remain();
-            }
-            else if (para == "during")
-            {
-                return time.During();
-            }
-            else throw new ArgumentException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

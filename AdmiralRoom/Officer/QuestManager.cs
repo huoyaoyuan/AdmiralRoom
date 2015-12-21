@@ -79,7 +79,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress || x.State == QuestState.Complete).ToList();
             int mistindexstart = 1001;
             while (list.Count < InProgressCount)
-                list.Add(new Quest(new api_quest() { api_no = mistindexstart++ }));
+                list.Add(new Quest(new api_quest { api_no = mistindexstart++ }));
             list.Sort();
             QuestInProgress = new IDTable<Quest>(list);
         }

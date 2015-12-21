@@ -9,8 +9,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class IDTable<T> : ICollection<T>, IReadOnlyCollection<T>, INotifyCollectionChanged
         where T : class, IIdentifiable, new()
     {
-        private Dictionary<int, T> dict = new Dictionary<int, T>();
-        public IDTable() : base() { }
+        private readonly Dictionary<int, T> dict = new Dictionary<int, T>();
+        public IDTable() { }
         public IDTable(IEnumerable<T> collection) { dict = new Dictionary<int, T>(collection.ToDictionary(x => x.Id)); }
         public void Add(T item)
         {

@@ -143,7 +143,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             //    API.APIData<dynamic> svdata;
             //    if (x.TryParseDynamic(out svdata)) handler(svdata.Request, svdata.Data);
             //});
-            public SubObservable<T> Where<T>(Func<T, bool> selector) => new SubObservable<T>() { Parent = this, Selector = selector };
+            public SubObservable<T> Where<T>(Func<T, bool> selector) => new SubObservable<T> { Parent = this, Selector = selector };
         }
         public class SubObservable<T>
         {

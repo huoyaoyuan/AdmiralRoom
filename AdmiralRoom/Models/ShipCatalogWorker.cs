@@ -10,7 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
     {
         public class ShipTypeSelector : NotifySourceObject<ShipCatalogWorker>
         {
-            public ShipType ShipType { get; private set; }
+            public ShipType ShipType { get; }
             public ShipTypeSelector(ShipType type, ShipCatalogWorker source) { ShipType = type; Source = source; }
 
             #region IsSelected

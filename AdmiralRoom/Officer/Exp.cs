@@ -7,7 +7,7 @@
         public int NextLevel { get; set; }
         public int PrevLevel { get; set; }
         public Exp() { }
-        public Exp(int[] arr,int level,bool isShipExp)
+        public Exp(int[] arr, int level, bool isShipExp)
         {
             Current = arr[0];
             if (isShipExp)//舰娘exp
@@ -24,9 +24,6 @@
                 PrevLevel = ConstData.GetAdmiralExp(level);
             }
         }
-        public override string ToString()
-        {
-            return $"{Current}/{NextLevel}";
-        }
+        public override string ToString() => $"{Current}/{NextLevel}";
     }
 }

@@ -210,8 +210,8 @@ namespace Huoyaoyuan.AdmiralRoom
         private static void SaveScreenshot(int width, int height, IViewObject viewObject, string path)
         {
             var image = new Bitmap(width, height, PixelFormat.Format24bppRgb);
-            var rect = new RECT { left = 0, top = 0, width = width, height = height, };
-            var tdevice = new DVTARGETDEVICE { tdSize = 0, };
+            var rect = new RECT { left = 0, top = 0, width = width, height = height };
+            var tdevice = new DVTARGETDEVICE { tdSize = 0 };
 
             using (var graphics = Graphics.FromImage(image))
             {

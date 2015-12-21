@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -215,15 +214,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
                         if (destf != null)
                         {
-                            try
-                            {
-                                if (idx < fleet.Ships.Count)
-                                    destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
-                                else destf.Ships.Remove(ship);
-                                destf.UpdateStatus();
-                                destf.CheckHomeportRepairingTime(true);
-                            }
-                            catch { }
+                            if (idx < fleet.Ships.Count)
+                                destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                            else destf.Ships.Remove(ship);
+                            destf.UpdateStatus();
+                            destf.CheckHomeportRepairingTime(true);
                         }
                         if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
                         else fleet.Ships[idx] = ship;

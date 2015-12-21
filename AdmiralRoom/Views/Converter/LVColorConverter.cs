@@ -4,6 +4,8 @@ using System.Windows.Data;
 using System.Windows.Media;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
+#pragma warning disable RECS0147
+
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
     public class LVColorConverter : IValueConverter
@@ -32,30 +34,29 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
                 v = (LimitedValue)value;
             }
             catch (InvalidCastException) { return null; }
-            if (param == "hp")
+
+            switch (param)
             {
-                if (v.IsMax) return HP100Brush;
-                else if (v.Current * 4 > v.Max * 3) return HP75Brush;
-                else if (v.Current * 2 > v.Max) return HP50Brush;
-                else if (v.Current * 4 > v.Max) return HP25Brush;
-                else return HP0Brush;
+                case "hp":
+                    if (v.IsMax) return HP100Brush;
+                    else if (v.Current * 4 > v.Max * 3) return HP75Brush;
+                    else if (v.Current * 2 > v.Max) return HP50Brush;
+                    else if (v.Current * 4 > v.Max) return HP25Brush;
+                    else return HP0Brush;
+                case "aircraft":
+                    if (v.Max == 0) return new SolidColorBrush(Color.FromRgb(0, 128, 0)).TryFreeze();
+                    return new SolidColorBrush(Color.FromRgb(
+                        (byte)(255 * v.Shortage / v.Max),
+                        (byte)(128 * v.Current / v.Max),
+                        1)).TryFreeze();
+                case "quest":
+                    if (v.IsMax) return Quest100Brush;
+                    else if (v.Current * 5 >= v.Max * 4) return Quest80Brush;
+                    else if (v.Current * 2 >= v.Max) return Quest50Brush;
+                    else return Quest0Brush;
+                default:
+                    throw new ArgumentException();
             }
-            else if (param == "aircraft")
-            {
-                if (v.Max == 0) return new SolidColorBrush(Color.FromRgb(0, 128, 0)).TryFreeze();
-                return new SolidColorBrush(Color.FromRgb(
-                    (byte)(255 * v.Shortage / v.Max),
-                    (byte)(128 * v.Current / v.Max),
-                    1)).TryFreeze();
-            }
-            else if (param == "quest")
-            {
-                if (v.IsMax) return Quest100Brush;
-                else if (v.Current * 5 >= v.Max * 4) return Quest80Brush;
-                else if (v.Current * 2 >= v.Max) return Quest50Brush;
-                else return Quest0Brush;
-            }
-            else throw new ArgumentException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

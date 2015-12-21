@@ -5,11 +5,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public abstract class GameObject<T> : NotificationObject, IUpdatable<T>, IIdentifiable, IComparable<GameObject<T>>
     {
         protected T rawdata;
-        public GameObject() { }
-        public GameObject(T data)
+        protected GameObject() { }
+        protected GameObject(T data)
         {
-            rawdata = data;
-            UpdateProp();
+            Update(data);
         }
         public void Update(T data)
         {

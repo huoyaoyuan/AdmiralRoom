@@ -153,7 +153,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             BindingOperations.SetBinding(BrowserDocument, LayoutDocument.TitleProperty, new Binding("Browser")
             {
-                Source = ResourceService.Current,
+                Source = ResourceService.Current
             });
         }
         private void SaveLayout(object sender, EventArgs e)

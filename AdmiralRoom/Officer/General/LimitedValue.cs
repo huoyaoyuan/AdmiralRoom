@@ -22,9 +22,6 @@
             if (Current > Max) Current = Max;
             if (Current < 0) Current = 0;
         }
-        public override string ToString()
-        {
-            return $"{Current}/{Max}";
-        }
+        public override string ToString() => $"{Current}/{Max}";
     }
 }

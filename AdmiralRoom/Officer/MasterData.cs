@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
 
         public IDTable<MapArea> MapAreas { get; private set; }
-        public IDTable<MapInfo> MapInfos { get; private set; } = new IDTable<MapInfo>();
+        public IDTable<MapInfo> MapInfos { get; } = new IDTable<MapInfo>();
         public IDTable<ShipInfo> ShipInfo { get; private set; }
         public IDTable<ShipType> ShipTypes { get; private set; }
         public IDTable<EquipType> EquipTypes { get; private set; }
@@ -47,7 +47,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch { }
         }
-        private Dictionary<int, int[]> finalhptable = new Dictionary<int, int[]>();
+        private readonly Dictionary<int, int[]> finalhptable = new Dictionary<int, int[]>();
         public int QueryFinalHP(MapInfo map)
         {
             try

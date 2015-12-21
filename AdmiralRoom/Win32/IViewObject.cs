@@ -21,7 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Win32
         public ushort tdPortNameOffset;
         public byte tdData;
     }
-    [ComImport(), Guid("0000010d-0000-0000-C000-000000000046"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport, Guid("0000010d-0000-0000-C000-000000000046"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface IViewObject
     {
         [PreserveSig]

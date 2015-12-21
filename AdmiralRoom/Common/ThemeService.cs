@@ -7,7 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     internal static class ThemeService
     {
-        private static Dictionary<string, string[]> themes = new Dictionary<string, string[]>()
+        private static Dictionary<string, string[]> themes = new Dictionary<string, string[]>
         {
             ["Office 2010 Silver"] = new[]
             {
@@ -83,7 +83,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
                 Application.Current.MainWindow.SetTheme("Aero", new[]
                 {
-                    "PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml",
+                    "PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml"
                 });
             }
             Application.Current.MainWindow.SetThemePrior("Aero");

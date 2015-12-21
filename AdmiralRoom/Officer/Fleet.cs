@@ -207,10 +207,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             bool f1 = false, f2 = false, f3 = false, f4 = false;
             foreach (var ship in Ships)
             {
-                if (ship.Condition < 40) f1 = true;
-                if (ship.HP.Current * 4 <= ship.HP.Max) f2 = true;
-                if (!(ship.Fuel.IsMax && ship.Bull.IsMax)) f3 = true;
-                if (ship.IsRepairing) f4 = true;
+                f1 |= ship.Condition < 40;
+                f2 |= ship.HP.Current * 4 <= ship.HP.Max;
+                f3 |= !(ship.Fuel.IsMax && ship.Bull.IsMax);
+                f4 |= ship.IsRepairing;
             }
             LowCondition = f1;
             HeavilyDamaged = f2;
@@ -259,7 +259,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             && Ships[0].IsRepairing == false
             && MissionState == FleetMissionState.None;
         private IEnumerable<Ship> HomeportRepairingList => Ships.Take(
-            CanHomeportRepairing ? Ships[0].Slots.Where(x => x.Item?.EquipInfo.EquipType.Id == 31).Count() + 2 : 0)
+            CanHomeportRepairing ? Ships[0].Slots.Count(x => x.Item?.EquipInfo.EquipType.Id == 31) + 2 : 0)
             .Where(x => x.HP.Current * 2 > x.HP.Max);
 
         public DateTimeOffset HomeportRepairingFrom { get; private set; }

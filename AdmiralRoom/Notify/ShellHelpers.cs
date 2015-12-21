@@ -42,7 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom.ShellHelpers
     internal interface IShellLinkW
     {
         UInt32 GetPath(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile,
             int cchMaxPath,
             //ref _WIN32_FIND_DATAW pfd,
             IntPtr pfd,
@@ -50,18 +50,18 @@ namespace Huoyaoyuan.AdmiralRoom.ShellHelpers
         UInt32 GetIDList(out IntPtr ppidl);
         UInt32 SetIDList(IntPtr pidl);
         UInt32 GetDescription(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile,
             int cchMaxName);
         UInt32 SetDescription(
             [MarshalAs(UnmanagedType.LPWStr)] string pszName);
         UInt32 GetWorkingDirectory(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDir,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDir,
             int cchMaxPath
             );
         UInt32 SetWorkingDirectory(
             [MarshalAs(UnmanagedType.LPWStr)] string pszDir);
         UInt32 GetArguments(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs,
             int cchMaxPath);
         UInt32 SetArguments(
             [MarshalAs(UnmanagedType.LPWStr)] string pszArgs);
@@ -70,7 +70,7 @@ namespace Huoyaoyuan.AdmiralRoom.ShellHelpers
         UInt32 GetShowCmd(out uint iShowCmd);
         UInt32 SetShowCmd(uint iShowCmd);
         UInt32 GetIconLocation(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] out StringBuilder pszIconPath,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out StringBuilder pszIconPath,
             int cchIconPath,
             out int iIcon);
         UInt32 SetIconLocation(
@@ -90,7 +90,7 @@ namespace Huoyaoyuan.AdmiralRoom.ShellHelpers
     internal interface IPersistFile
     {
         UInt32 GetCurFile(
-            [Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile
+            [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile
         );
         UInt32 IsDirty();
         UInt32 Load(

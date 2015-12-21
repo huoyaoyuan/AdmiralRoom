@@ -19,9 +19,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
             else throw new ArgumentException();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (Visibility)value == Visibility.Visible;
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => (Visibility)value == Visibility.Visible;
     }
 }

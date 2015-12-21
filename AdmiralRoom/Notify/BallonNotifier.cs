@@ -29,7 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     Text = "提督の部屋",
                     Icon = new Icon(stream),
-                    Visible = true,
+                    Visible = true
                 };
             }
         }

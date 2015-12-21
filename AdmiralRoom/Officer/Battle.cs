@@ -39,8 +39,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public double FriendDamageRate => (double)Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP - x.ToHP)
             / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
         public double EnemyDamageRate => (double)EnemyFleet.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
-        public int FriendLostCount => Fleet1.ConcatNotNull(Fleet2).Where(x => x.ToHP <= 0).Count();
-        public int EnemySinkCount => EnemyFleet.Where(x => x.ToHP <= 0).Count();
+        public int FriendLostCount => Fleet1.ConcatNotNull(Fleet2).Count(x => x.ToHP <= 0);
+        public int EnemySinkCount => EnemyFleet.Count(x => x.ToHP <= 0);
         public WinRank WinRank
         {
             get
