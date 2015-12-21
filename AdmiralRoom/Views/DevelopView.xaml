@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              mc:Ignorable="d"
@@ -24,25 +25,25 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type officer:DevelopmentInfo}">
                         <StackPanel Orientation="Horizontal">
-                            <Border Margin="2" x:Name="issuccess">
+                            <Border Margin="2" CornerRadius="4" Padding="2" x:Name="issuccess">
                                 <TextBlock x:Name="successtext"/>
                             </Border>
-                            <TextBlock Text="{Binding Equip.Name}"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Equip.Name}"/>
                         </StackPanel>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSuccess}" Value="True">
-                                <Setter TargetName="issuccess" Property="Background" Value="Cyan"/>
-                                <Setter TargetName="successtext" Property="Text" Value="成功"/>
+                                <Setter TargetName="issuccess" Property="Background" Value="DeepSkyBlue"/>
+                                <Setter TargetName="successtext" Property="Text" Value="{Binding Resources.Success, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsSuccess}" Value="False">
                                 <Setter TargetName="issuccess" Property="Background" Value="Gray"/>
-                                <Setter TargetName="successtext" Property="Text" Value="失败"/>
+                                <Setter TargetName="successtext" Property="Text" Value="{Binding Resources.Fail, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Button Grid.Row="1" Margin="2" Click="ClearButton_Click">清空</Button>
+        <Button Grid.Row="1" Margin="2" Click="ClearButton_Click" Content="{Binding Resources.Clear, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
     </Grid>
 </UserControl>

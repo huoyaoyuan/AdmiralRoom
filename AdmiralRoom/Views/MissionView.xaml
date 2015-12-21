@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              Background="White"
@@ -28,13 +29,23 @@
                             <TextBlock MaxWidth="150" TextWrapping="Wrap">
                                 <Run Text="{Binding Name, Mode=OneWay}" FontWeight="Black"/>
                                 <LineBreak/>
-                                <Run Text="远征"/>
+                                <Run Text="{Binding Resources.Expedition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                 <Run Text="{Binding MissionID, Mode=OneWay}"/>
                                 <Run Text="{Binding MissionInfo.Name, Mode=OneWay, StringFormat={} - {0}}"/>
                                 <LineBreak/>
-                                <Run Text="{Binding BackTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Local, Mode=OneWay, StringFormat=返回时间：{0:MM/dd HH:mm}}"/>
+                                <Run>
+                                    <MultiBinding StringFormat="{}{0}: {1:MM/dd HH:mm}" Mode="OneWay">
+                                        <Binding Path="Resources.Expedition_BackTime" Source="{x:Static root:ResourceService.Current}"/>
+                                        <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Local"/>
+                                    </MultiBinding>
+                                </Run>
                                 <LineBreak/>
-                                <Run Text="{Binding BackTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, Mode=OneWay, StringFormat=剩余时间：{0:hh\\:mm\\:ss}}"/>
+                                <Run>
+                                    <MultiBinding StringFormat="{}{0}: {1:hh\:mm\:ss}" Mode="OneWay">
+                                        <Binding Path="Resources.Expedition_Remain" Source="{x:Static root:ResourceService.Current}"/>
+                                        <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
+                                    </MultiBinding>
+                                </Run>
                                 <LineBreak/>
                                 <LineBreak/>
                                 <Run Text="{Binding MissionInfo.Details, Mode=OneWay}"/>

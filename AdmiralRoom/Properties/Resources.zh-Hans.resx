@@ -135,6 +135,33 @@
   <data name="CleanCache" xml:space="preserve">
     <value>清理缓存</value>
   </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="Dock_Complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="Dock_Empty" xml:space="preserve">
+    <value>未使用</value>
+  </data>
+  <data name="Dock_Locked" xml:space="preserve">
+    <value>未开放</value>
+  </data>
+  <data name="Dock_ShowBuild" xml:space="preserve">
+    <value>显示建造中的舰船</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>远征</value>
+  </data>
+  <data name="Expedition_BackTime" xml:space="preserve">
+    <value>归来时间</value>
+  </data>
+  <data name="Expedition_Remain" xml:space="preserve">
+    <value>剩余时间</value>
+  </data>
+  <data name="Fail" xml:space="preserve">
+    <value>失败</value>
+  </data>
   <data name="Fleet_AFP" xml:space="preserve">
     <value>制空</value>
   </data>
@@ -254,6 +281,9 @@
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>舰娘数：</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>主题</value>

@@ -138,6 +138,33 @@
   <data name="CleanCache" xml:space="preserve">
     <value>Clean cache</value>
   </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Dock_Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="Dock_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="Dock_Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Dock_ShowBuild" xml:space="preserve">
+    <value>Show ship name in building</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>Expedition</value>
+  </data>
+  <data name="Expedition_BackTime" xml:space="preserve">
+    <value>Back Time</value>
+  </data>
+  <data name="Expedition_Remain" xml:space="preserve">
+    <value>Remain</value>
+  </data>
+  <data name="Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
   <data name="Fleet_AFP" xml:space="preserve">
     <value>Air Fight Power</value>
   </data>
@@ -257,6 +284,9 @@
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>Ships: </value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>

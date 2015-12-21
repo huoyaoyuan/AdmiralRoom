@@ -124,6 +124,87 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Clear 的本地化字符串。
+        /// </summary>
+        public static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Complete 的本地化字符串。
+        /// </summary>
+        public static string Dock_Complete {
+            get {
+                return ResourceManager.GetString("Dock_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Empty 的本地化字符串。
+        /// </summary>
+        public static string Dock_Empty {
+            get {
+                return ResourceManager.GetString("Dock_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Locked 的本地化字符串。
+        /// </summary>
+        public static string Dock_Locked {
+            get {
+                return ResourceManager.GetString("Dock_Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Show ship name in building 的本地化字符串。
+        /// </summary>
+        public static string Dock_ShowBuild {
+            get {
+                return ResourceManager.GetString("Dock_ShowBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Expedition 的本地化字符串。
+        /// </summary>
+        public static string Expedition {
+            get {
+                return ResourceManager.GetString("Expedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Back Time 的本地化字符串。
+        /// </summary>
+        public static string Expedition_BackTime {
+            get {
+                return ResourceManager.GetString("Expedition_BackTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Remain 的本地化字符串。
+        /// </summary>
+        public static string Expedition_Remain {
+            get {
+                return ResourceManager.GetString("Expedition_Remain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fail 的本地化字符串。
+        /// </summary>
+        public static string Fail {
+            get {
+                return ResourceManager.GetString("Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Air Fight Power 的本地化字符串。
         /// </summary>
         public static string Fleet_AFP {
@@ -480,6 +561,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string ShipCount {
             get {
                 return ResourceManager.GetString("ShipCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Success 的本地化字符串。
+        /// </summary>
+        public static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
             }
         }
         

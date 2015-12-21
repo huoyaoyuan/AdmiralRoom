@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
@@ -42,10 +43,10 @@
                 </Grid>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding State}" Value="Locked">
-                        <Setter TargetName="text" Property="Text" Value="未开放"/>
+                        <Setter TargetName="text" Property="Text" Value="{Binding Resources.Dock_Locked, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding State}" Value="Empty">
-                        <Setter TargetName="text" Property="Text" Value="未使用"/>
+                        <Setter TargetName="text" Property="Text" Value="{Binding Resources.Dock_Empty, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding State}" Value="Repairing">
                         <Setter TargetName="progress" Property="Visibility" Value="Visible"/>

@@ -138,6 +138,33 @@
   <data name="CleanCache" xml:space="preserve">
     <value>キャッシュの削除</value>
   </data>
+  <data name="Clear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="Dock_Complete" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="Dock_Empty" xml:space="preserve">
+    <value>未使用</value>
+  </data>
+  <data name="Dock_Locked" xml:space="preserve">
+    <value>ロック</value>
+  </data>
+  <data name="Dock_ShowBuild" xml:space="preserve">
+    <value>建造中の艦名をネタバレする</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>遠征</value>
+  </data>
+  <data name="Expedition_BackTime" xml:space="preserve">
+    <value>帰投時刻</value>
+  </data>
+  <data name="Expedition_Remain" xml:space="preserve">
+    <value>帰投まて</value>
+  </data>
+  <data name="Fail" xml:space="preserve">
+    <value>失敗</value>
+  </data>
   <data name="Fleet_AFP" xml:space="preserve">
     <value>制空</value>
   </data>
@@ -254,6 +281,9 @@
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>艦娘数：</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>テーマ</value>
