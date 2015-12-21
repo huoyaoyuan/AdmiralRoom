@@ -58,7 +58,7 @@
             f99exp[97] = 851500;
             f99exp[98] = 1000000;
 
-            ship100exp = new int[51];
+            ship100exp = new int[56];
             ship100exp[0] = 1000000;
             ship100exp[1] = exp = 1010000;
             step = 0;
@@ -102,6 +102,12 @@
             while (level <= 50)
             {
                 step += 8000;
+                exp += step;
+                ship100exp[level++] = exp;
+            }
+            while (level <= 55)
+            {
+                step += 9000;
                 exp += step;
                 ship100exp[level++] = exp;
             }
