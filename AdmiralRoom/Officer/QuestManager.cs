@@ -25,6 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void CheckQuestPage(getmember_questlist api)
         {
             int checkfrom, checkto;
+            CycleCount();
             if (api.api_list == null)
             {
                 if (api.api_disp_page == 1) AvilableQuests.Clear();
@@ -39,9 +40,30 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             else if (lastcheckedpage == api.api_disp_page + 1) checkto = lastcheckedfrom - 1;
             foreach (var item in AvilableQuests.Where(x => x.Id >= checkfrom && x.Id <= checkto).ToList())
                 AvilableQuests.Remove(item);
+            AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
+            AvilableCount = api.api_count;
+            InProgressCount = api.api_exec_count;
+            lastcheckedpage = api.api_disp_page;
+            lastcheckedfrom = checkfrom;
+            lastcheckedto = checkto;
+            lastcheckedtime = DateTimeOffset.UtcNow.ToOffset(QuestUpdateTime);
+            UpdateInProgress();
+            OnAllPropertyChanged();
+        }
+        private void UpdateInProgress()
+        {
+            List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress || x.State == QuestState.Complete).ToList();
+            int mistindexstart = 1001;
+            while (list.Count < InProgressCount)
+                list.Add(new Quest(new api_quest { api_no = mistindexstart++ }));
+            list.Sort();
+            QuestInProgress = new IDTable<Quest>(list);
+        }
+        private void CycleCount()
+        {
+            DateTimeOffset checktime = DateTimeOffset.UtcNow.ToOffset(QuestUpdateTime);
             var targets = new List<QuestTarget>();
             foreach (var quest in KnownQuests.Known) targets.AddRange(quest.Targets);
-            DateTimeOffset checktime = DateTimeOffset.UtcNow.ToOffset(QuestUpdateTime);
             if (checktime.Date != lastcheckedtime.Date)
             {
                 foreach (var item in AvilableQuests.Where(x => x.IsDaily).ToList())
@@ -63,25 +85,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 foreach (var target in targets.Where(x => x.Period == QuestPeriod.Monthly))
                     target.SetProgress(0, true);
             }
-            AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
-            AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
-            AvilableCount = api.api_count;
-            InProgressCount = api.api_exec_count;
-            lastcheckedpage = api.api_disp_page;
-            lastcheckedfrom = checkfrom;
-            lastcheckedto = checkto;
-            lastcheckedtime = checktime;
-            UpdateInProgress();
-            OnAllPropertyChanged();
-        }
-        private void UpdateInProgress()
-        {
-            List<Quest> list = AvilableQuests.Where(x => x.State == QuestState.InProgress || x.State == QuestState.Complete).ToList();
-            int mistindexstart = 1001;
-            while (list.Count < InProgressCount)
-                list.Add(new Quest(new api_quest { api_no = mistindexstart++ }));
-            list.Sort();
-            QuestInProgress = new IDTable<Quest>(list);
         }
         public static readonly TimeSpan QuestUpdateTime = TimeSpan.FromHours(4);
         public void Load()
@@ -108,6 +111,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             }
             catch { }
+            CycleCount();
         }
         public void Save()
         {
