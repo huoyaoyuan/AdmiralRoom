@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace Huoyaoyuan.AdmiralRoom
@@ -12,21 +13,14 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public static void SetTheme(this FrameworkElement element, string themeKey, IEnumerable<string> themeSource)
         {
-            NamedResourceDictionary node = null;
-            foreach (var d in element.Resources.MergedDictionaries)
-                if ((d as NamedResourceDictionary)?.Name == themeKey)
-                {
-                    node = d as NamedResourceDictionary;
-                    break;
-                }
-            if (node == null)
-            {
-                node = new NamedResourceDictionary { Name = themeKey };
-                element.Resources.MergedDictionaries.Add(node);
-            }
-            node.MergedDictionaries.Clear();
+            element.Resources.BeginInit();
+            var oldnode = element.Resources.MergedDictionaries.FirstOrDefault(d => (d as NamedResourceDictionary)?.Name == themeKey);
+            var newnode = new NamedResourceDictionary { Name = themeKey };
             foreach (var source in themeSource)
-                node.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(source, UriKind.Relative) });
+                newnode.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(source, UriKind.Relative) });
+            element.Resources.MergedDictionaries.Add(newnode);
+            element.Resources.MergedDictionaries.Remove(oldnode);
+            element.Resources.EndInit();
         }
         public static void SetThemePrior(this FrameworkElement element, string themeKey)
         {

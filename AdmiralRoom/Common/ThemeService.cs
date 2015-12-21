@@ -42,6 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 window.Style = null;
                 --window.Width;
                 ++window.Width;
+                Application.Current.MainWindow.SetThemePrior("Aero");
             }
             catch { ChangeRibbonTheme(SupportedThemes.First(), window); }
         }
