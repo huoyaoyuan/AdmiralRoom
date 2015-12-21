@@ -55,4 +55,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="{x:Type local:Hyperlink2}" BasedOn="{StaticResource {x:Type Hyperlink}}"/>
 </ResourceDictionary>

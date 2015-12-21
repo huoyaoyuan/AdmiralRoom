@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              mc:Ignorable="d">
     <FlowDocumentScrollViewer>
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
@@ -41,14 +42,14 @@
                 <LineBreak/>
                 <LineBreak/>
                 <Run Text="Source code:"/>
-                <Hyperlink>
+                <controls:Hyperlink2 CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom">
                     <Run Text="https://github.com/huoyaoyuan/AdmiralRoom"/>
-                </Hyperlink>
+                </controls:Hyperlink2>
                 <LineBreak/>
                 <Run Text="Release:"/>
-                <Hyperlink>
+                <controls:Hyperlink2 CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom/releases">
                     <Run Text="https://github.com/huoyaoyuan/AdmiralRoom/releases"/>
-                </Hyperlink>
+                </controls:Hyperlink2>
             </Paragraph>
         </FlowDocument>
     </FlowDocumentScrollViewer>
