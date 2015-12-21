@@ -353,7 +353,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
         public Config()
         {
-            _theme = "Office 2013";
+            _theme = "Windows 8";
             var thisculture = CultureInfo.CurrentUICulture;
             foreach (var culture in ResourceService.SupportedCultures)
             {

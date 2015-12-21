@@ -28,6 +28,11 @@ namespace Huoyaoyuan.AdmiralRoom
             ["Office 2013"] = new[]
             {
                 "Fluent;Component/Themes/Office2013/Generic.xaml"
+            },
+            ["Windows 8"] = new[]
+            {
+                "Fluent;component/Themes/Windows8/Generic.xaml",
+                "Fluent;component/Themes/Windows8/Silver.xaml"
             }
         };
         public static IReadOnlyCollection<string> SupportedThemes => themes.Keys;
