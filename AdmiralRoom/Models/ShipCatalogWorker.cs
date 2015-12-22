@@ -215,7 +215,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             new ShipFilter { Title = "锁定", TrueText = "已锁", FalseText = "未锁", Value = true, Filter = x => x.IsLocked },
             new ShipFilter { Title = "速度", TrueText = "高速", FalseText = "低速", Value = null, Filter = x => x.ShipInfo.Speed == ShipSpeed.High },
             new ShipFilter { Title = "改造", TrueText = "改造完毕", FalseText = "改造未完", Value = null, Filter = x => !x.ShipInfo.CanUpgrade },
-            new ShipFilter { Title = "近代化改修", TrueText = "改修完毕", FalseText = "改修未完", Value = null, Filter = x => x.IsMaxModernized }
+            new ShipFilter { Title = "近代化改修", TrueText = "改修完毕", FalseText = "改修未完", Value = null, Filter = x => x.IsMaxModernized },
+            new ShipFilter { Title = "远征", TrueText = "远征中", FalseText = "不在远征中", Value = null, Filter = x => x.InFleet?.MissionState != Fleet.FleetMissionState.None }
         };
         public ShipSortColumn[] Sortings { get; } =
         {
