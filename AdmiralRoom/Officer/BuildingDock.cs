@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Timers;
+using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class BuildingDock : GameObject<getmember_kdock>, IDisposable
+    public class BuildingDock : GameObject<getmember_kdock>
     {
         public override int Id => rawdata.api_id;
         public DockState State { get; set; }
@@ -20,13 +21,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Ship Secratary { get; set; }
         public BuildingDock()
         {
-            Staff.Current.Ticker.Elapsed += Tick;
+            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
         }
         public BuildingDock(getmember_kdock api) : base(api)
         {
-            Staff.Current.Ticker.Elapsed += Tick;
+            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
         }
-        public void Dispose() => Staff.Current.Ticker.Elapsed -= Tick;
         private void Tick(object sender, ElapsedEventArgs e)
         {
             OnPropertyChanged("CompleteTime");

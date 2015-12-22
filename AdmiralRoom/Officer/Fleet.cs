@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Timers;
+using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Fleet : GameObject<getmember_deck>, IDisposable
+    public class Fleet : GameObject<getmember_deck>
     {
         public override int Id => rawdata.api_id;
         public string Name => rawdata.api_name;
@@ -34,17 +35,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        public Fleet() { }
+        public Fleet()
+        {
+            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
+            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", CheckHomeportRepairing);
+        }
         public Fleet(getmember_deck api) : base(api)
         {
-            Staff.Current.Ticker.Elapsed += Tick;
-            Staff.Current.Ticker.Elapsed += CheckHomeportRepairing;
-        }
-        public void Dispose()
-        {
-            Staff.Current.Ticker.Elapsed -= Tick;
-            Staff.Current.Ticker.Elapsed -= CheckHomeportRepairing;
-            Ships.ForEach(x => x.InFleet = null);
+            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
+            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", CheckHomeportRepairing);
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
