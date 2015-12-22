@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -24,6 +25,8 @@ namespace Huoyaoyuan.AdmiralRoom
             CultureInfo culture = SupportedCultures.SingleOrDefault(x => x.Name == CultureName);
             if (culture != null) Properties.Resources.Culture = culture;
             OnPropertyChanged("Resources");
+            CultureChanged?.Invoke(this, new EventArgs());
         }
+        public event EventHandler CultureChanged;
     }
 }
