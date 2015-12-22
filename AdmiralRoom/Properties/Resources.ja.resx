@@ -165,6 +165,15 @@
   <data name="CleanCache" xml:space="preserve">
     <value>キャッシュの削除</value>
   </data>
+  <data name="CleanCache_Alert" xml:space="preserve">
+    <value>キャッシュを削除しますか？</value>
+  </data>
+  <data name="CleanCache_Fail" xml:space="preserve">
+    <value>キャッシュの削除に失敗しました</value>
+  </data>
+  <data name="CleanCache_Success" xml:space="preserve">
+    <value>キャッシュを削除しました。</value>
+  </data>
   <data name="Clear" xml:space="preserve">
     <value>クリア</value>
   </data>
@@ -218,6 +227,9 @@
   </data>
   <data name="Dock_ShowBuild" xml:space="preserve">
     <value>建造中の艦名をネタバレする</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>なし</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>遠征</value>
@@ -392,6 +404,36 @@
   </data>
   <data name="Screenshot" xml:space="preserve">
     <value>スクリーンショート</value>
+  </data>
+  <data name="Screenshot_Fail" xml:space="preserve">
+    <value>スクリーンショットの保存に失敗しました: </value>
+  </data>
+  <data name="Screenshot_Success" xml:space="preserve">
+    <value>スクリーンショットを保存しました: </value>
+  </data>
+  <data name="Settings_FolderOpen" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="Settings_FolderSelect" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="Settings_NotifyShortingTime" xml:space="preserve">
+    <value>通知短缩時間（秒）：</value>
+  </data>
+  <data name="Settings_NotifyWhenBuild" xml:space="preserve">
+    <value>建造完了時に通知を表示する</value>
+  </data>
+  <data name="Settings_NotifyWhenCondition" xml:space="preserve">
+    <value>疲労回復時に通知を表示する</value>
+  </data>
+  <data name="Settings_NotifyWhenExpedition" xml:space="preserve">
+    <value>遠征帰投時に通知を表示する</value>
+  </data>
+  <data name="Settings_NotifyWhenRepair" xml:space="preserve">
+    <value>入渠完了時に通知を表示する</value>
+  </data>
+  <data name="Settings_ScreenShotFolder" xml:space="preserve">
+    <value>スクリーンショット保存前：</value>
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>艦娘数：</value>

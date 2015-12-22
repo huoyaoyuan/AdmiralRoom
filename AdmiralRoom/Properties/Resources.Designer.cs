@@ -205,6 +205,33 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Are you sure to delete internet cache files? 的本地化字符串。
+        /// </summary>
+        public static string CleanCache_Alert {
+            get {
+                return ResourceManager.GetString("CleanCache_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Internet cache files delete failed. 的本地化字符串。
+        /// </summary>
+        public static string CleanCache_Fail {
+            get {
+                return ResourceManager.GetString("CleanCache_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Internet cache files have been deleted. 的本地化字符串。
+        /// </summary>
+        public static string CleanCache_Success {
+            get {
+                return ResourceManager.GetString("CleanCache_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Clear 的本地化字符串。
         /// </summary>
         public static string Clear {
@@ -363,6 +390,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Dock_ShowBuild {
             get {
                 return ResourceManager.GetString("Dock_ShowBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Empty 的本地化字符串。
+        /// </summary>
+        public static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
             }
         }
         
@@ -894,6 +930,96 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Screenshot {
             get {
                 return ResourceManager.GetString("Screenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Screenshot save failed:  的本地化字符串。
+        /// </summary>
+        public static string Screenshot_Fail {
+            get {
+                return ResourceManager.GetString("Screenshot_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Screenshot saved:  的本地化字符串。
+        /// </summary>
+        public static string Screenshot_Success {
+            get {
+                return ResourceManager.GetString("Screenshot_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Open 的本地化字符串。
+        /// </summary>
+        public static string Settings_FolderOpen {
+            get {
+                return ResourceManager.GetString("Settings_FolderOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select 的本地化字符串。
+        /// </summary>
+        public static string Settings_FolderSelect {
+            get {
+                return ResourceManager.GetString("Settings_FolderSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Notify shorting time(s):  的本地化字符串。
+        /// </summary>
+        public static string Settings_NotifyShortingTime {
+            get {
+                return ResourceManager.GetString("Settings_NotifyShortingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Notify when building complete 的本地化字符串。
+        /// </summary>
+        public static string Settings_NotifyWhenBuild {
+            get {
+                return ResourceManager.GetString("Settings_NotifyWhenBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Notify when condition recovery 的本地化字符串。
+        /// </summary>
+        public static string Settings_NotifyWhenCondition {
+            get {
+                return ResourceManager.GetString("Settings_NotifyWhenCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Notify when expedition complete 的本地化字符串。
+        /// </summary>
+        public static string Settings_NotifyWhenExpedition {
+            get {
+                return ResourceManager.GetString("Settings_NotifyWhenExpedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Notify when repairing complete 的本地化字符串。
+        /// </summary>
+        public static string Settings_NotifyWhenRepair {
+            get {
+                return ResourceManager.GetString("Settings_NotifyWhenRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Screenshot Folder:  的本地化字符串。
+        /// </summary>
+        public static string Settings_ScreenShotFolder {
+            get {
+                return ResourceManager.GetString("Settings_ScreenShotFolder", resourceCulture);
             }
         }
         

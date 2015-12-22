@@ -134,7 +134,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (CurrentMap.Id == 15) StaticCounters.Map1_5Counter.Increase();
                 }
             }
-            CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? "无";
+            CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? Properties.Resources.Empty;
             foreach (var enemy in CurrentBattle.EnemyFleet)
                 if (enemy.ToHP <= 0)
                     switch (enemy.ShipInfo.ShipType.Id)

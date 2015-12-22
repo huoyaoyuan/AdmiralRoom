@@ -109,10 +109,10 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 var button = sender as Button;
                 button.IsEnabled = false;
-                if (MessageBox.Show("确实要清理Internet缓存文件吗？", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Properties.Resources.CleanCache_Alert, "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                     if (await WinInetHelper.DeleteInternetCacheAsync())
-                        MessageBox.Show("Internet缓存文件清理成功。");
-                    else MessageBox.Show("Internet缓存文件清理失败。");
+                        MessageBox.Show(Properties.Resources.CleanCache_Success);
+                    else MessageBox.Show(Properties.Resources.CleanCache_Fail);
                 button.IsEnabled = true;
             };
 

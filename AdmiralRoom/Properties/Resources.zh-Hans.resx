@@ -162,6 +162,15 @@
   <data name="CleanCache" xml:space="preserve">
     <value>清理缓存</value>
   </data>
+  <data name="CleanCache_Alert" xml:space="preserve">
+    <value>确实要清理Internet缓存文件吗？</value>
+  </data>
+  <data name="CleanCache_Fail" xml:space="preserve">
+    <value>Internet缓存文件清理失败。</value>
+  </data>
+  <data name="CleanCache_Success" xml:space="preserve">
+    <value>Internet缓存文件清理成功。</value>
+  </data>
   <data name="Clear" xml:space="preserve">
     <value>清空</value>
   </data>
@@ -215,6 +224,9 @@
   </data>
   <data name="Dock_ShowBuild" xml:space="preserve">
     <value>显示建造中的舰船</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>无</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>远征</value>
@@ -392,6 +404,36 @@
   </data>
   <data name="Screenshot" xml:space="preserve">
     <value>截图</value>
+  </data>
+  <data name="Screenshot_Fail" xml:space="preserve">
+    <value>截图保存失败：</value>
+  </data>
+  <data name="Screenshot_Success" xml:space="preserve">
+    <value>截图保存成功：</value>
+  </data>
+  <data name="Settings_FolderOpen" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="Settings_FolderSelect" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Settings_NotifyShortingTime" xml:space="preserve">
+    <value>通知提前时间（秒）：</value>
+  </data>
+  <data name="Settings_NotifyWhenBuild" xml:space="preserve">
+    <value>建造完毕时通知</value>
+  </data>
+  <data name="Settings_NotifyWhenCondition" xml:space="preserve">
+    <value>疲劳恢复时通知</value>
+  </data>
+  <data name="Settings_NotifyWhenExpedition" xml:space="preserve">
+    <value>远征归来时通知</value>
+  </data>
+  <data name="Settings_NotifyWhenRepair" xml:space="preserve">
+    <value>修理完毕时通知</value>
+  </data>
+  <data name="Settings_ScreenShotFolder" xml:space="preserve">
+    <value>截图文件夹：</value>
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>舰娘数：</value>

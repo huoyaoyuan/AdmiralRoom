@@ -12,16 +12,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="截图"
+        <GroupBox Header="{Binding Resources.Screenshot, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
+                  
                   Grid.Row="0"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="2">截图文件夹：</TextBlock>
+                    <TextBlock Margin="2" Text="{Binding Resources.Settings_ScreenShotFolder, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                     <TextBox Margin="2" Width="200" Text="{Binding ScreenShotFolder}"/>
-                    <Button Margin="2" Click="SelectScreenFolder">选择</Button>
-                    <Button Margin="2" Click="OpenScreenShotFolder">打开</Button>
+                    <Button Margin="2" Click="SelectScreenFolder" Content="{Binding Resources.Settings_FolderSelect, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <Button Margin="2" Click="OpenScreenShotFolder" Content="{Binding Resources.Settings_FolderOpen, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <RadioButton IsChecked="{Binding IsScreenShotPng}" Margin="2">PNG</RadioButton>
@@ -35,12 +36,12 @@
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenExpedition}">远征归来时通知</CheckBox>
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenRepair}">修理完毕时通知</CheckBox>
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenBuild}">建造完毕时通知</CheckBox>
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenCondition}">疲劳恢复时通知</CheckBox>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenExpedition}" Content="{Binding Resources.Settings_NotifyWhenExpedition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenRepair}" Content="{Binding Resources.Settings_NotifyWhenRepair, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenBuild}" Content="{Binding Resources.Settings_NotifyWhenBuild, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenCondition}" Content="{Binding Resources.Settings_NotifyWhenCondition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                 </StackPanel>
-                <TextBlock Margin="2" VerticalAlignment="Top">通知提前时间（秒）：</TextBlock>
+                <TextBlock Margin="2" VerticalAlignment="Top" Text="{Binding Resources.Settings_NotifyShortingTime, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                 <TextBox VerticalAlignment="Top" Width="40" Text="{Binding NotifyTimeAdjust}"/>
             </StackPanel>
         </GroupBox>

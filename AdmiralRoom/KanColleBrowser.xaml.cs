@@ -201,10 +201,10 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch (Exception ex)
             {
-                Models.Status.Current.StatusText = $"截图保存失败：{ex}";
+                Models.Status.Current.StatusText = Properties.Resources.Screenshot_Fail + ex.ToString();
                 return false;
             }
-            Models.Status.Current.StatusText = $"截图保存成功：{path}";
+            Models.Status.Current.StatusText = Properties.Resources.Screenshot_Success + path;
             return true;
         }
         private static void SaveScreenshot(int width, int height, IViewObject viewObject, string path)

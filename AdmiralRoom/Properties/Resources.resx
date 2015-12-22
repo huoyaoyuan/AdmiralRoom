@@ -165,6 +165,15 @@
   <data name="CleanCache" xml:space="preserve">
     <value>Clean cache</value>
   </data>
+  <data name="CleanCache_Alert" xml:space="preserve">
+    <value>Are you sure to delete internet cache files?</value>
+  </data>
+  <data name="CleanCache_Fail" xml:space="preserve">
+    <value>Internet cache files delete failed.</value>
+  </data>
+  <data name="CleanCache_Success" xml:space="preserve">
+    <value>Internet cache files have been deleted.</value>
+  </data>
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
   </data>
@@ -218,6 +227,9 @@
   </data>
   <data name="Dock_ShowBuild" xml:space="preserve">
     <value>Show ship name in building</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>Expedition</value>
@@ -395,6 +407,36 @@
   </data>
   <data name="Screenshot" xml:space="preserve">
     <value>Screenshot</value>
+  </data>
+  <data name="Screenshot_Fail" xml:space="preserve">
+    <value>Screenshot save failed: </value>
+  </data>
+  <data name="Screenshot_Success" xml:space="preserve">
+    <value>Screenshot saved: </value>
+  </data>
+  <data name="Settings_FolderOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Settings_FolderSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Settings_NotifyShortingTime" xml:space="preserve">
+    <value>Notify shorting time(s): </value>
+  </data>
+  <data name="Settings_NotifyWhenBuild" xml:space="preserve">
+    <value>Notify when building complete</value>
+  </data>
+  <data name="Settings_NotifyWhenCondition" xml:space="preserve">
+    <value>Notify when condition recovery</value>
+  </data>
+  <data name="Settings_NotifyWhenExpedition" xml:space="preserve">
+    <value>Notify when expedition complete</value>
+  </data>
+  <data name="Settings_NotifyWhenRepair" xml:space="preserve">
+    <value>Notify when repairing complete</value>
+  </data>
+  <data name="Settings_ScreenShotFolder" xml:space="preserve">
+    <value>Screenshot Folder: </value>
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>Ships: </value>
