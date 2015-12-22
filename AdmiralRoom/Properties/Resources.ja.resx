@@ -123,6 +123,9 @@
   <data name="Actions" xml:space="preserve">
     <value>アクション</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>戻る</value>
   </data>
@@ -230,6 +233,18 @@
   </data>
   <data name="Empty" xml:space="preserve">
     <value>なし</value>
+  </data>
+  <data name="Equip_CountLeft" xml:space="preserve">
+    <value>所持数(余り)</value>
+  </data>
+  <data name="Equip_Improvement" xml:space="preserve">
+    <value>強化</value>
+  </data>
+  <data name="Equip_Name" xml:space="preserve">
+    <value>装備名</value>
+  </data>
+  <data name="Equip_OnShip" xml:space="preserve">
+    <value>装備している艦娘</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>遠征</value>
@@ -411,6 +426,9 @@
   <data name="Screenshot_Success" xml:space="preserve">
     <value>スクリーンショットを保存しました: </value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>すべて選択</value>
+  </data>
   <data name="Settings_FolderOpen" xml:space="preserve">
     <value>開く</value>
   </data>
@@ -434,6 +452,78 @@
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>スクリーンショット保存前：</value>
+  </data>
+  <data name="Ship_AA" xml:space="preserve">
+    <value>対空</value>
+  </data>
+  <data name="Ship_Armor" xml:space="preserve">
+    <value>装甲</value>
+  </data>
+  <data name="Ship_Class" xml:space="preserve">
+    <value>艦種</value>
+  </data>
+  <data name="Ship_Equip" xml:space="preserve">
+    <value>装備</value>
+  </data>
+  <data name="Ship_Filter" xml:space="preserve">
+    <value>フィルター設定</value>
+  </data>
+  <data name="Ship_Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="Ship_Level" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="Ship_LoS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Ship_Luck" xml:space="preserve">
+    <value>運</value>
+  </data>
+  <data name="Ship_Name" xml:space="preserve">
+    <value>艦名</value>
+  </data>
+  <data name="Ship_Preset01" xml:space="preserve">
+    <value>駆逐艦</value>
+  </data>
+  <data name="Ship_Preset02" xml:space="preserve">
+    <value>軽巡・雷巡</value>
+  </data>
+  <data name="Ship_Preset03" xml:space="preserve">
+    <value>重巡・航巡</value>
+  </data>
+  <data name="Ship_Preset04" xml:space="preserve">
+    <value>巡洋艦</value>
+  </data>
+  <data name="Ship_Preset05" xml:space="preserve">
+    <value>戦艦</value>
+  </data>
+  <data name="Ship_Preset06" xml:space="preserve">
+    <value>航空母艦</value>
+  </data>
+  <data name="Ship_Preset07" xml:space="preserve">
+    <value>正規・装甲空母</value>
+  </data>
+  <data name="Ship_Preset08" xml:space="preserve">
+    <value>潜水艦</value>
+  </data>
+  <data name="Ship_Preset09" xml:space="preserve">
+    <value>航戦・航巡</value>
+  </data>
+  <data name="Ship_Preset10" xml:space="preserve">
+    <value>特別の艦</value>
+  </data>
+  <data name="Ship_Sort" xml:space="preserve">
+    <value>並べ替え方法</value>
+  </data>
+  <data name="Ship_Sort_Ascend" xml:space="preserve">
+    <value>昇順</value>
+  </data>
+  <data name="Ship_Sort_Descend" xml:space="preserve">
+    <value>降順</value>
+  </data>
+  <data name="Ship_Torpedo" xml:space="preserve">
+    <value>雷装</value>
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>艦娘数：</value>

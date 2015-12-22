@@ -79,6 +79,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 All 的本地化字符串。
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Back 的本地化字符串。
         /// </summary>
         public static string Back {
@@ -399,6 +408,42 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Empty {
             get {
                 return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Count(Left) 的本地化字符串。
+        /// </summary>
+        public static string Equip_CountLeft {
+            get {
+                return ResourceManager.GetString("Equip_CountLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Improvement 的本地化字符串。
+        /// </summary>
+        public static string Equip_Improvement {
+            get {
+                return ResourceManager.GetString("Equip_Improvement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Name 的本地化字符串。
+        /// </summary>
+        public static string Equip_Name {
+            get {
+                return ResourceManager.GetString("Equip_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Equipped on 的本地化字符串。
+        /// </summary>
+        public static string Equip_OnShip {
+            get {
+                return ResourceManager.GetString("Equip_OnShip", resourceCulture);
             }
         }
         
@@ -952,6 +997,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Select All 的本地化字符串。
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Open 的本地化字符串。
         /// </summary>
         public static string Settings_FolderOpen {
@@ -1020,6 +1074,222 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Settings_ScreenShotFolder {
             get {
                 return ResourceManager.GetString("Settings_ScreenShotFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 AntiAir 的本地化字符串。
+        /// </summary>
+        public static string Ship_AA {
+            get {
+                return ResourceManager.GetString("Ship_AA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Armor 的本地化字符串。
+        /// </summary>
+        public static string Ship_Armor {
+            get {
+                return ResourceManager.GetString("Ship_Armor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Class 的本地化字符串。
+        /// </summary>
+        public static string Ship_Class {
+            get {
+                return ResourceManager.GetString("Ship_Class", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Equipments 的本地化字符串。
+        /// </summary>
+        public static string Ship_Equip {
+            get {
+                return ResourceManager.GetString("Ship_Equip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Filter 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter {
+            get {
+                return ResourceManager.GetString("Ship_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Firepower 的本地化字符串。
+        /// </summary>
+        public static string Ship_Firepower {
+            get {
+                return ResourceManager.GetString("Ship_Firepower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Level 的本地化字符串。
+        /// </summary>
+        public static string Ship_Level {
+            get {
+                return ResourceManager.GetString("Ship_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 LoS 的本地化字符串。
+        /// </summary>
+        public static string Ship_LoS {
+            get {
+                return ResourceManager.GetString("Ship_LoS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Luck 的本地化字符串。
+        /// </summary>
+        public static string Ship_Luck {
+            get {
+                return ResourceManager.GetString("Ship_Luck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Name 的本地化字符串。
+        /// </summary>
+        public static string Ship_Name {
+            get {
+                return ResourceManager.GetString("Ship_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DD 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset01 {
+            get {
+                return ResourceManager.GetString("Ship_Preset01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CL(T) 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset02 {
+            get {
+                return ResourceManager.GetString("Ship_Preset02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CA(V) 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset03 {
+            get {
+                return ResourceManager.GetString("Ship_Preset03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Cruisers 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset04 {
+            get {
+                return ResourceManager.GetString("Ship_Preset04", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 BB(V) 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset05 {
+            get {
+                return ResourceManager.GetString("Ship_Preset05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Carriers 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset06 {
+            get {
+                return ResourceManager.GetString("Ship_Preset06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CV(A) 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset07 {
+            get {
+                return ResourceManager.GetString("Ship_Preset07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SS(V) 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset08 {
+            get {
+                return ResourceManager.GetString("Ship_Preset08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Seaplaners 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset09 {
+            get {
+                return ResourceManager.GetString("Ship_Preset09", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Specials 的本地化字符串。
+        /// </summary>
+        public static string Ship_Preset10 {
+            get {
+                return ResourceManager.GetString("Ship_Preset10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Sort 的本地化字符串。
+        /// </summary>
+        public static string Ship_Sort {
+            get {
+                return ResourceManager.GetString("Ship_Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ascending 的本地化字符串。
+        /// </summary>
+        public static string Ship_Sort_Ascend {
+            get {
+                return ResourceManager.GetString("Ship_Sort_Ascend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Descending 的本地化字符串。
+        /// </summary>
+        public static string Ship_Sort_Descend {
+            get {
+                return ResourceManager.GetString("Ship_Sort_Descend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Torpedo 的本地化字符串。
+        /// </summary>
+        public static string Ship_Torpedo {
+            get {
+                return ResourceManager.GetString("Ship_Torpedo", resourceCulture);
             }
         }
         

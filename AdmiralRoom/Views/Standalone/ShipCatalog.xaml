@@ -18,12 +18,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Expander IsExpanded="True" Header="筛选">
+        <Expander IsExpanded="True" Header="{Binding Resources.Ship_Filter, Source={x:Static root:ResourceService.Current}, Mode=OneWay}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox Margin="2" Content="全选" IsChecked="{Binding SelectAll}"/>
+                    <CheckBox Margin="2" Content="{Binding Resources.SelectAll, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" IsChecked="{Binding SelectAll}"/>
                     <ItemsControl ItemsSource="{Binding ShipTypes}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -37,14 +37,14 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <WrapPanel Orientation="Horizontal">
-                        <Button Margin="2" Content="驱逐舰" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset01, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>2</sys:Int32>
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="轻巡/雷巡" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset02, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>3</sys:Int32>
@@ -52,7 +52,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="重巡/航巡" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset03, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>5</sys:Int32>
@@ -60,7 +60,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="巡洋舰" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset04, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>3</sys:Int32>
@@ -71,7 +71,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="战舰" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset05, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>8</sys:Int32>
@@ -80,7 +80,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="航空母舰" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset06, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>7</sys:Int32>
@@ -89,7 +89,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="正规/装甲空母" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset07, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>11</sys:Int32>
@@ -97,7 +97,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="潜水舰" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset08, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>13</sys:Int32>
@@ -105,7 +105,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="航战/航巡" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset09, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>6</sys:Int32>
@@ -113,7 +113,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="特种舰" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{Binding Resources.Ship_Preset10, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>16</sys:Int32>
@@ -150,7 +150,7 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Grid.RowSpan="3" Text="{Binding Title}" VerticalAlignment="Center"/>
                                             <RadioButton Grid.Column="1" Grid.Row="0"
-                                                         Content="全部"
+                                                         Content="{Binding Resources.All, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
                                                          IsChecked="{Binding NoneSelected}"/>
                                             <RadioButton Grid.Column="1" Grid.Row="1"
                                                          Content="{Binding TrueText}"
@@ -167,7 +167,7 @@
                 </StackPanel>
             </Border>
         </Expander>
-        <Expander Grid.Row="1" Header="排序">
+        <Expander Grid.Row="1" Header="{Binding Resources.Ship_Sort, Source={x:Static root:ResourceService.Current}, Mode=OneWay}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
@@ -186,8 +186,8 @@
                                     <StackPanel Orientation="Vertical" Width="100">
                                         <ComboBox Margin="2" ItemsSource="{Binding Source.Sortings}" SelectedIndex="{Binding SelectedIndex}"/>
                                         <ComboBox Margin="2" SelectedIndex="{Binding DescendBoxIndex}">
-                                            <ComboBoxItem Content="升序"/>
-                                            <ComboBoxItem Content="降序"/>
+                                            <ComboBoxItem Content="{Binding Resources.Ship_Sort_Ascend, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <ComboBoxItem Content="{Binding Resources.Ship_Sort_Descend, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                         </ComboBox>
                                     </StackPanel>
                                 </Border>
@@ -202,17 +202,17 @@
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Index}" Width="40"/>
                     <GridViewColumn Header="id" DisplayMemberBinding="{Binding Item.Id}" Width="55"/>
-                    <GridViewColumn Header="舰种" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
-                    <GridViewColumn Header="舰名" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
-                    <GridViewColumn Header="等级" DisplayMemberBinding="{Binding Item.Level}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Class, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Name, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Level, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Level}"/>
                     <GridViewColumn Header="Cond." DisplayMemberBinding="{Binding Item.Condition}"/>
-                    <GridViewColumn Header="火力" DisplayMemberBinding="{Binding Item.Firepower}"/>
-                    <GridViewColumn Header="雷装" DisplayMemberBinding="{Binding Item.Torpedo}"/>
-                    <GridViewColumn Header="对空" DisplayMemberBinding="{Binding Item.AA}"/>
-                    <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Item.Armor}"/>
-                    <GridViewColumn Header="运" DisplayMemberBinding="{Binding Item.Luck}"/>
-                    <GridViewColumn Header="索敌" DisplayMemberBinding="{Binding Item.LoS.Current}"/>
-                    <GridViewColumn Header="装备">
+                    <GridViewColumn Header="{Binding Resources.Ship_Firepower, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Firepower}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Torpedo, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Torpedo}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_AA, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.AA}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Armor, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Armor}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Luck, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Luck}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_LoS, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.LoS.Current}"/>
+                    <GridViewColumn Header="{Binding Resources.Ship_Equip, Source={x:Static root:ResourceService.Current}, Mode=OneWay}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding Item.Slots}">

@@ -123,6 +123,9 @@
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -230,6 +233,18 @@
   </data>
   <data name="Empty" xml:space="preserve">
     <value>Empty</value>
+  </data>
+  <data name="Equip_CountLeft" xml:space="preserve">
+    <value>Count(Left)</value>
+  </data>
+  <data name="Equip_Improvement" xml:space="preserve">
+    <value>Improvement</value>
+  </data>
+  <data name="Equip_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Equip_OnShip" xml:space="preserve">
+    <value>Equipped on</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>Expedition</value>
@@ -414,6 +429,9 @@
   <data name="Screenshot_Success" xml:space="preserve">
     <value>Screenshot saved: </value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
   <data name="Settings_FolderOpen" xml:space="preserve">
     <value>Open</value>
   </data>
@@ -437,6 +455,78 @@
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>Screenshot Folder: </value>
+  </data>
+  <data name="Ship_AA" xml:space="preserve">
+    <value>AntiAir</value>
+  </data>
+  <data name="Ship_Armor" xml:space="preserve">
+    <value>Armor</value>
+  </data>
+  <data name="Ship_Class" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="Ship_Equip" xml:space="preserve">
+    <value>Equipments</value>
+  </data>
+  <data name="Ship_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Ship_Firepower" xml:space="preserve">
+    <value>Firepower</value>
+  </data>
+  <data name="Ship_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Ship_LoS" xml:space="preserve">
+    <value>LoS</value>
+  </data>
+  <data name="Ship_Luck" xml:space="preserve">
+    <value>Luck</value>
+  </data>
+  <data name="Ship_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Ship_Preset01" xml:space="preserve">
+    <value>DD</value>
+  </data>
+  <data name="Ship_Preset02" xml:space="preserve">
+    <value>CL(T)</value>
+  </data>
+  <data name="Ship_Preset03" xml:space="preserve">
+    <value>CA(V)</value>
+  </data>
+  <data name="Ship_Preset04" xml:space="preserve">
+    <value>Cruisers</value>
+  </data>
+  <data name="Ship_Preset05" xml:space="preserve">
+    <value>BB(V)</value>
+  </data>
+  <data name="Ship_Preset06" xml:space="preserve">
+    <value>Carriers</value>
+  </data>
+  <data name="Ship_Preset07" xml:space="preserve">
+    <value>CV(A)</value>
+  </data>
+  <data name="Ship_Preset08" xml:space="preserve">
+    <value>SS(V)</value>
+  </data>
+  <data name="Ship_Preset09" xml:space="preserve">
+    <value>Seaplaners</value>
+  </data>
+  <data name="Ship_Preset10" xml:space="preserve">
+    <value>Specials</value>
+  </data>
+  <data name="Ship_Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="Ship_Sort_Ascend" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="Ship_Sort_Descend" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="Ship_Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>Ships: </value>

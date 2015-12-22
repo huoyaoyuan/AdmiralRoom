@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         mc:Ignorable="d"
@@ -15,7 +16,7 @@
         <ListView ItemsSource="{Binding Groups}" VirtualizingPanel.IsVirtualizing="False">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="装备名" DisplayMemberBinding="{Binding Item.Name}"/>
+                    <GridViewColumn Header="{Binding Resources.Equip_Name, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Name}"/>
                     <GridViewColumn Header="">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -37,13 +38,13 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Width="52" BorderThickness="0,0,1,0" Grid.Column="0">
-                                    <TextBlock Text="强化"/>
+                                    <TextBlock Text="{Binding Resources.Equip_Improvement, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                 </Border>
                                 <Border Width="82" BorderThickness="0,0,1,0" Grid.Column="1">
-                                    <TextBlock Text="数量(剩余)"/>
+                                    <TextBlock Text="{Binding Resources.Equip_CountLeft, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                 </Border>
                                 <Border Width="534" Grid.Column="2">
-                                    <TextBlock Text="装备舰船"/>
+                                    <TextBlock Text="{Binding Resources.Equip_OnShip, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                 </Border>
                             </Grid>
                         </GridViewColumn.Header>

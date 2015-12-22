@@ -120,6 +120,9 @@
   <data name="Actions" xml:space="preserve">
     <value>操作</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>后退</value>
   </data>
@@ -227,6 +230,18 @@
   </data>
   <data name="Empty" xml:space="preserve">
     <value>无</value>
+  </data>
+  <data name="Equip_CountLeft" xml:space="preserve">
+    <value>数量(剩余)</value>
+  </data>
+  <data name="Equip_Improvement" xml:space="preserve">
+    <value>强化</value>
+  </data>
+  <data name="Equip_Name" xml:space="preserve">
+    <value>装备名</value>
+  </data>
+  <data name="Equip_OnShip" xml:space="preserve">
+    <value>装备所在舰船</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>远征</value>
@@ -411,6 +426,9 @@
   <data name="Screenshot_Success" xml:space="preserve">
     <value>截图保存成功：</value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
   <data name="Settings_FolderOpen" xml:space="preserve">
     <value>打开</value>
   </data>
@@ -434,6 +452,78 @@
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>截图文件夹：</value>
+  </data>
+  <data name="Ship_AA" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="Ship_Armor" xml:space="preserve">
+    <value>装甲</value>
+  </data>
+  <data name="Ship_Class" xml:space="preserve">
+    <value>舰种</value>
+  </data>
+  <data name="Ship_Equip" xml:space="preserve">
+    <value>装备</value>
+  </data>
+  <data name="Ship_Filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="Ship_Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="Ship_Level" xml:space="preserve">
+    <value>等级</value>
+  </data>
+  <data name="Ship_LoS" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="Ship_Luck" xml:space="preserve">
+    <value>运</value>
+  </data>
+  <data name="Ship_Name" xml:space="preserve">
+    <value>舰名</value>
+  </data>
+  <data name="Ship_Preset01" xml:space="preserve">
+    <value>驱逐舰</value>
+  </data>
+  <data name="Ship_Preset02" xml:space="preserve">
+    <value>轻巡/雷巡</value>
+  </data>
+  <data name="Ship_Preset03" xml:space="preserve">
+    <value>重巡/航巡</value>
+  </data>
+  <data name="Ship_Preset04" xml:space="preserve">
+    <value>巡洋舰</value>
+  </data>
+  <data name="Ship_Preset05" xml:space="preserve">
+    <value>战舰</value>
+  </data>
+  <data name="Ship_Preset06" xml:space="preserve">
+    <value>航空母舰</value>
+  </data>
+  <data name="Ship_Preset07" xml:space="preserve">
+    <value>正规/装甲空母</value>
+  </data>
+  <data name="Ship_Preset08" xml:space="preserve">
+    <value>潜水舰</value>
+  </data>
+  <data name="Ship_Preset09" xml:space="preserve">
+    <value>航战/航巡</value>
+  </data>
+  <data name="Ship_Preset10" xml:space="preserve">
+    <value>特种舰</value>
+  </data>
+  <data name="Ship_Sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="Ship_Sort_Ascend" xml:space="preserve">
+    <value>升序</value>
+  </data>
+  <data name="Ship_Sort_Descend" xml:space="preserve">
+    <value>降序</value>
+  </data>
+  <data name="Ship_Torpedo" xml:space="preserve">
+    <value>雷装</value>
   </data>
   <data name="ShipCount" xml:space="preserve">
     <value>舰娘数：</value>
