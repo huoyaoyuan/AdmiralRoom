@@ -2,6 +2,7 @@
 {
     class Status : NotificationObject
     {
+        private Status() { }
         public static Status Current { get; } = new Status();
 
         private Volume _volume;

@@ -12,6 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Staff
     {
+        private Staff() { }
         private static Staff _current;
         public static Staff Current
         {
@@ -102,7 +103,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 #endif
             }
         }
-        
+
         private static void ExceptionCatcher(Action<Session> action, Session parameter)
         {
             try

@@ -6,6 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     internal class ResourceService : NotificationObject
     {
+        private ResourceService() { }
         public static ResourceService Current { get; } = new ResourceService();
         public static IReadOnlyCollection<CultureInfo> SupportedCultures { get; } =
             new[] { "zh-Hans", "ja", "en" }
