@@ -52,7 +52,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("HomeportRepairingFrom");
             if (MissionState == FleetMissionState.InMission && Config.Current.NotifyWhenExpedition && BackTime.InASecond(Config.Current.NotifyTimeAdjust))
                 Notifier.Current?.Show("远征归来", $"{Name} 远征归来：远征{MissionID} - {MissionInfo.Name}");
-            if (!InSortie && Config.Current.NotifyWhenCondition && ConditionTimeRemain.InASecond())
+            if (!InSortie && Config.Current.NotifyWhenCondition && ConditionHelper.Instance.RemainCeiling(mincondition).InASecond())
                 Notifier.Current?.Show("疲劳恢复完毕", $"{Name} 疲劳恢复完毕。");
         }
 

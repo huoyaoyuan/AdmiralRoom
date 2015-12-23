@@ -85,5 +85,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         public TimeSpan Remain(int cond) => (BaseTime.AddMinutes((int)Math.Ceiling((40 - cond) / 3.0) * 3)).Remain();
+        public TimeSpan RemainCeiling(int cond) => ((BaseTime + Offset).AddMinutes((int)Math.Ceiling((40 - cond) / 3.0) * 3)).Remain();
     }
 }
