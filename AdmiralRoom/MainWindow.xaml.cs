@@ -82,8 +82,8 @@ namespace Huoyaoyuan.AdmiralRoom
             };
 
             //Font handler
-            FontLarge.Click += (_, __) => this.FontSize++;
-            FontSmall.Click += (_, __) => this.FontSize--;
+            FontLarge.Click += (_, __) => Config.Current.FontSize++;
+            FontSmall.Click += (_, __) => Config.Current.FontSize--;
 
             ScreenShotButton.Click += (_, __) => GameHost.TakeScreenShot(Config.Current.GenerateScreenShotFileName());
             DeleteCacheButton.Click += async (sender, __) =>

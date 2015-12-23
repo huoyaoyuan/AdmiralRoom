@@ -8,10 +8,11 @@
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:EquipmentCatalogWorker}"
-        
+
         Title="EquipmentCatalog"
         Height="800"
-        FontFamily="DengXian" FontSize="16">
+        FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
+        FontSize="16">
     <Grid>
         <ListView ItemsSource="{Binding Groups}" VirtualizingPanel.IsVirtualizing="False">
             <ListView.View>
@@ -22,7 +23,7 @@
                             <DataTemplate>
                                 <Canvas Height="15" Width="15">
                                     <Image Source="{Binding Item.Icon}"
-                                           
+
                                            Height="20" Width="20"
                                            Canvas.Left="-2.5" Canvas.Top="-2.5"/>
                                 </Canvas>

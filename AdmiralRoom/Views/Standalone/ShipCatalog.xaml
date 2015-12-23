@@ -12,7 +12,8 @@
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
         
         Height="800"
-        FontFamily="DengXian" FontSize="16">
+        FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
+        FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
