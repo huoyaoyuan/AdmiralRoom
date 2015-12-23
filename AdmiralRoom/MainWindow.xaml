@@ -188,9 +188,10 @@
                             </ribbon:RibbonToolBarLayoutDefinition>
                         </ribbon:RibbonToolBar.LayoutDefinitions>
                         <ribbon:ComboBox x:Name="SelectFontFamily"
-                                         KeyTip="FF" IsEditable="True"
-                                         ItemsSource="{x:Static Fonts.SystemFontFamilies}"
-                                         SelectedValue="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         KeyTip="FF" IsEditable="False"
+                                         ItemsSource="{x:Static local:ThemeService.FontSource}"
+                                         DisplayMemberPath="Name" SelectedValuePath="Font"
+                                         SelectedValue="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=TwoWay}"
                                          SizeDefinition="Small"/>
                         <TextBox x:Name="TextFontSize" Text="{Binding FontSize, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
                         <ribbon:Button x:Name="FontSmall"

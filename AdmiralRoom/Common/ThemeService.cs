@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using Fluent;
 
 namespace Huoyaoyuan.AdmiralRoom
@@ -92,5 +93,6 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             Application.Current.MainWindow.SetThemePrior("Aero");
         }
+        public static System.Collections.IEnumerable FontSource { get; } = Fonts.SystemFontFamilies.OrderBy(x => x.FamilyNames.Values.First()).Select(x => new { Font = x, Name = x.FamilyNames.Values.Last() }).ToList();
     }
 }
