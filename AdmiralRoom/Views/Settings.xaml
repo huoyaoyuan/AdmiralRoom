@@ -30,7 +30,7 @@
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="通知"
+        <GroupBox Header="{Binding Resources.Notification, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
                   Grid.Row="1"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">

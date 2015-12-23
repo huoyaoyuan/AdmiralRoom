@@ -718,6 +718,79 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Construction of {1} in Dock {0} has been completed. 的本地化字符串。
+        /// </summary>
+        public static string Notification_Build_Text {
+            get {
+                return ResourceManager.GetString("Notification_Build_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Construction Completed 的本地化字符串。
+        /// </summary>
+        public static string Notification_Build_Title {
+            get {
+                return ResourceManager.GetString("Notification_Build_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 All ships in 「{0}」 have fully recovered from fatigue. 的本地化字符串。
+        /// </summary>
+        public static string Notification_Condition_Text {
+            get {
+                return ResourceManager.GetString("Notification_Condition_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fatigue Recovery Completed 的本地化字符串。
+        /// </summary>
+        public static string Notification_Condition_Title {
+            get {
+                return ResourceManager.GetString("Notification_Condition_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 「{0}」 has returned from an expedition.
+        ///Expedition {1} - {2} 的本地化字符串。
+        /// </summary>
+        public static string Notification_Expedition_Text {
+            get {
+                return ResourceManager.GetString("Notification_Expedition_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Expedition Completed 的本地化字符串。
+        /// </summary>
+        public static string Notification_Expedition_Title {
+            get {
+                return ResourceManager.GetString("Notification_Expedition_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Repairs on {1} in Dock {0} have been completed. 的本地化字符串。
+        /// </summary>
+        public static string Notification_Repair_Text {
+            get {
+                return ResourceManager.GetString("Notification_Repair_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Repairs Completed 的本地化字符串。
+        /// </summary>
+        public static string Notification_Repair_Title {
+            get {
+                return ResourceManager.GetString("Notification_Repair_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Prefer toast notify 的本地化字符串。
         /// </summary>
         public static string Notification_Toast {
@@ -1344,6 +1417,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Ship_LoS {
             get {
                 return ResourceManager.GetString("Ship_LoS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ship 的本地化字符串。
+        /// </summary>
+        public static string Ship_LowerCase {
+            get {
+                return ResourceManager.GetString("Ship_LowerCase", resourceCulture);
             }
         }
         

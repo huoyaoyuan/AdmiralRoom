@@ -5,6 +5,7 @@ using System.Linq;
 using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
+using Huoyaoyuan.AdmiralRoom.Properties;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -51,9 +52,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("ConditionTimeRemain");
             OnPropertyChanged("HomeportRepairingFrom");
             if (MissionState == FleetMissionState.InMission && Config.Current.NotifyWhenExpedition && BackTime.InASecond(Config.Current.NotifyTimeAdjust))
-                Notifier.Current?.Show("远征归来", $"{Name} 远征归来：远征{MissionID} - {MissionInfo.Name}");
+                Notifier.Current?.Show(Resources.Notification_Expedition_Title, string.Format(Resources.Notification_Expedition_Text, Name, MissionID, MissionInfo.Name));
             if (!InSortie && Config.Current.NotifyWhenCondition && ConditionHelper.Instance.RemainCeiling(mincondition).InASecond())
-                Notifier.Current?.Show("疲劳恢复完毕", $"{Name} 疲劳恢复完毕。");
+                Notifier.Current?.Show(Resources.Notification_Condition_Title, string.Format(Resources.Notification_Condition_Text, Name));
         }
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }

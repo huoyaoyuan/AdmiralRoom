@@ -336,6 +336,31 @@
   <data name="Notification" xml:space="preserve">
     <value>通知</value>
   </data>
+  <data name="Notification_Build_Text" xml:space="preserve">
+    <value>工廠第 {0} ドックでの{1}の建造が完了しました。</value>
+  </data>
+  <data name="Notification_Build_Title" xml:space="preserve">
+    <value>建造完了</value>
+  </data>
+  <data name="Notification_Condition_Text" xml:space="preserve">
+    <value>「{0}」の全艦娘の疲労が回復しました。</value>
+  </data>
+  <data name="Notification_Condition_Title" xml:space="preserve">
+    <value>疲労回復完了</value>
+  </data>
+  <data name="Notification_Expedition_Text" xml:space="preserve">
+    <value>「{0}」が遠征から帰投しました。
+遠征{1} - {2}</value>
+  </data>
+  <data name="Notification_Expedition_Title" xml:space="preserve">
+    <value>遠征完了</value>
+  </data>
+  <data name="Notification_Repair_Text" xml:space="preserve">
+    <value>入渠第 {0} ドックでの「{1}」の整備が完了しました。</value>
+  </data>
+  <data name="Notification_Repair_Title" xml:space="preserve">
+    <value>整備完了</value>
+  </data>
   <data name="Notification_Toast" xml:space="preserve">
     <value>トースト通知を使用する</value>
   </data>
@@ -542,6 +567,9 @@
   </data>
   <data name="Ship_LoS" xml:space="preserve">
     <value>索敵</value>
+  </data>
+  <data name="Ship_LowerCase" xml:space="preserve">
+    <value>艦娘</value>
   </data>
   <data name="Ship_Luck" xml:space="preserve">
     <value>運</value>

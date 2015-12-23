@@ -336,6 +336,31 @@
   <data name="Notification" xml:space="preserve">
     <value>Notification</value>
   </data>
+  <data name="Notification_Build_Text" xml:space="preserve">
+    <value>Construction of {1} in Dock {0} has been completed.</value>
+  </data>
+  <data name="Notification_Build_Title" xml:space="preserve">
+    <value>Construction Completed</value>
+  </data>
+  <data name="Notification_Condition_Text" xml:space="preserve">
+    <value>All ships in 「{0}」 have fully recovered from fatigue.</value>
+  </data>
+  <data name="Notification_Condition_Title" xml:space="preserve">
+    <value>Fatigue Recovery Completed</value>
+  </data>
+  <data name="Notification_Expedition_Text" xml:space="preserve">
+    <value>「{0}」 has returned from an expedition.
+Expedition {1} - {2}</value>
+  </data>
+  <data name="Notification_Expedition_Title" xml:space="preserve">
+    <value>Expedition Completed</value>
+  </data>
+  <data name="Notification_Repair_Text" xml:space="preserve">
+    <value>Repairs on {1} in Dock {0} have been completed.</value>
+  </data>
+  <data name="Notification_Repair_Title" xml:space="preserve">
+    <value>Repairs Completed</value>
+  </data>
   <data name="Notification_Toast" xml:space="preserve">
     <value>Prefer toast notify</value>
   </data>
@@ -545,6 +570,9 @@
   </data>
   <data name="Ship_LoS" xml:space="preserve">
     <value>LoS</value>
+  </data>
+  <data name="Ship_LowerCase" xml:space="preserve">
+    <value>ship</value>
   </data>
   <data name="Ship_Luck" xml:space="preserve">
     <value>Luck</value>

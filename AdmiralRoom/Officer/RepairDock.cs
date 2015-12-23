@@ -2,6 +2,7 @@
 using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
+using Huoyaoyuan.AdmiralRoom.Properties;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -27,7 +28,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (Ship != null)
                 Ship.RepairingHP = Ship.HP.Max - (int)Math.Ceiling(CompleteTime.Remain().TotalSeconds / Ship.RepairTimePerHP.TotalSeconds);
             if (State == DockState.Repairing && Config.Current.NotifyWhenRepair && CompleteTime.InASecond(Config.Current.NotifyTimeAdjust))
-                Notifier.Current?.Show("修理完毕", $"第{Id}修理渠中的{Ship.ShipInfo.Name}修理完毕。");
+                Notifier.Current?.Show(Resources.Notification_Repair_Title, string.Format(Resources.Notification_Repair_Text, Id, Ship.ShipInfo.Name));
         }
         protected override void UpdateProp()
         {

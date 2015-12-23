@@ -2,6 +2,7 @@
 using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
+using Huoyaoyuan.AdmiralRoom.Properties;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -32,8 +33,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged("CompleteTime");
             OnPropertyChanged("DuringTime");
             if (State == DockState.Building && Config.Current.NotifyWhenBuild && CompleteTime.InASecond())
-                Notifier.Current?.Show("建造完毕",
-                    string.Format("第{0}建造渠中的{1}建造完毕", Id, Config.Current.ShowBuildingShipName ? CreatedShip.Name : "舰船"));
+                Notifier.Current?.Show(Resources.Notification_Build_Title,
+                    string.Format(Resources.Notification_Build_Text, Id, Config.Current.ShowBuildingShipName ? $"「{CreatedShip.Name}」" : Resources.Ship_LowerCase));
         }
         protected override void UpdateProp()
         {
