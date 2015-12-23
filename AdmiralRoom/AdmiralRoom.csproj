@@ -275,6 +275,7 @@
     <Compile Include="Views\DevelopView.xaml.cs">
       <DependentUpon>DevelopView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Extensions\LocalizableExtension.cs" />
     <Compile Include="Views\Extensions\RuntimePathBindingExtension.cs" />
     <Compile Include="Views\FleetView.xaml.cs">
       <DependentUpon>FleetView.xaml</DependentUpon>
