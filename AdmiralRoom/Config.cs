@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Huoyaoyuan.AdmiralRoom
@@ -351,6 +353,44 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region FontFamily
+        private FontFamily _fontfamily;
+        [XmlIgnore]
+        public FontFamily FontFamily
+        {
+            get { return _fontfamily; }
+            set
+            {
+                if (_fontfamily != value)
+                {
+                    _fontfamily = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string FontFamilyName
+        {
+            get { return FontFamily.FamilyNames.Values.First(); }
+            set { FontFamily = new FontFamily(value); }
+        }
+        #endregion
+
+        #region FontSize
+        private double _fontsize;
+        public double FontSize
+        {
+            get { return _fontsize; }
+            set
+            {
+                if (_fontsize != value)
+                {
+                    _fontsize = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Config()
         {
             _theme = "Windows 8";
@@ -388,6 +428,8 @@ namespace Huoyaoyuan.AdmiralRoom
             _screenshotnameformat = "KanColle-{0}";
             _screenshotfileformat = "png";
             _notifytimeadjust = 60;
+            FontFamilyName = "DengXian";
+            _fontsize = 15;
         }
         public static Config Load()
         {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
@@ -83,26 +82,8 @@ namespace Huoyaoyuan.AdmiralRoom
             };
 
             //Font handler
-            var FontFamilies = (new System.Drawing.Text.InstalledFontCollection()).Families;
-            List<string> FontNames = new List<string>();
-            foreach (var font in FontFamilies)
-            {
-                FontNames.Add(font.Name);
-            }
-            SelectFontFamily.ItemsSource = FontNames;
-            SelectFontFamily.SelectionChanged += (s, _) =>
-            {
-                try
-                {
-                    this.FontFamily = new FontFamily((s as ComboBox).SelectedValue.ToString());
-                }
-                catch { }
-            };
-            SelectFontFamily.SelectedValue = "等线";
-            TextFontSize.DataContext = this;
-            TextFontSize.SetBinding(TextBox.TextProperty, new Binding { Source = this.ribbonWindow, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay });
-            FontLarge.Click += (_, __) => this.FontSize += 1;
-            FontSmall.Click += (_, __) => this.FontSize -= 1;
+            FontLarge.Click += (_, __) => this.FontSize++;
+            FontSmall.Click += (_, __) => this.FontSize--;
 
             ScreenShotButton.Click += (_, __) => GameHost.TakeScreenShot(Config.Current.GenerateScreenShotFileName());
             DeleteCacheButton.Click += async (sender, __) =>
