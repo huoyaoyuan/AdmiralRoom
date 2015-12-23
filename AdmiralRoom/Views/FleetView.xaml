@@ -284,7 +284,7 @@
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1:hh\:mm\:ss} (±{2}s)">
-                                    <Binding Path="Resources.Fleet_Condition" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_Condition"/>
                                     <Binding Path="ConditionTimeRemain"/>
                                     <Binding Path="ConditionTimeOffset"/>
                                 </MultiBinding>
@@ -293,7 +293,7 @@
                         <TextBlock Margin="10,0,0,0" Visibility="{Binding CanHomeportRepairing, Converter={StaticResource VisibilityConverter}}">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1:hh\:mm\:ss}">
-                                    <Binding Path="Resources.Fleet_HomeportRepair" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_HomeportRepair"/>
                                     <Binding Path="HomeportRepairingFrom" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="During"/>
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -303,7 +303,7 @@
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}: {1}~{2}" Mode="OneWay">
-                                    <Binding Path="Resources.Fleet_AFP" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_AFP"/>
                                     <Binding Path="AirFightPower[0]"/>
                                     <Binding Path="AirFightPower[1]"/>
                                 </MultiBinding>
@@ -320,10 +320,10 @@
                                             <Binding Path="AirFightPower[5]"/>
                                             <Binding Path="AirFightPower[6]"/>
                                             <Binding Path="AirFightPower[7]"/>
-                                            <Binding Path="Resources.Fleet_AFP" Source="{x:Static root:ResourceService.Current}"/>
-                                            <Binding Path="Resources.Fleet_AFP_Basic" Source="{x:Static root:ResourceService.Current}"/>
-                                            <Binding Path="Resources.Fleet_AFP_Bonus" Source="{x:Static root:ResourceService.Current}"/>
-                                            <Binding Path="Resources.Fleet_AFP_Fighter" Source="{x:Static root:ResourceService.Current}"/>
+                                            <ex:Localizable ResourceKey="Fleet_AFP"/>
+                                            <ex:Localizable ResourceKey="Fleet_AFP_Basic"/>
+                                            <ex:Localizable ResourceKey="Fleet_AFP_Bonus"/>
+                                            <ex:Localizable ResourceKey="Fleet_AFP_Fighter"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
@@ -332,7 +332,7 @@
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}: {1:F2}" Mode="OneWay">
-                                    <Binding Path="Resources.Fleet_LoS" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_LoS"/>
                                     <Binding Path="LoSInMap"/>
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -342,8 +342,8 @@
                                 <MultiBinding StringFormat="{}{2}: {0}  {3}: {1:F2}" Mode="OneWay">
                                     <Binding Path="LevelSum"/>
                                     <Binding Path="LevelAverage"/>
-                                    <Binding Path="Resources.Fleet_Level_Sum" Source="{x:Static root:ResourceService.Current}"/>
-                                    <Binding Path="Resources.Fleet_Level_Average" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_Level_Sum"/>
+                                    <ex:Localizable ResourceKey="Fleet_Level_Average"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -365,7 +365,7 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} - {1:hh\:mm\:ss} (±{2}s)">
-                                    <Binding Path="Resources.Fleet_Status_LowCondition" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_Status_LowCondition"/>
                                     <Binding Path="ConditionTimeRemain"/>
                                     <Binding Path="ConditionTimeOffset"/>
                                 </MultiBinding>
@@ -386,7 +386,7 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} - {1} {2:hh\:mm\:ss}">
-                                    <Binding Path="Resources.Fleet_Status_InMission" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_Status_InMission"/>
                                     <Binding Path="MissionInfo.Name"/>
                                     <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
                                 </MultiBinding>
@@ -398,7 +398,7 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} {1}-{2} {3} {4}">
-                                    <Binding Path="Resources.Fleet_Status_InSortie" Source="{x:Static root:ResourceService.Current}"/>
+                                    <ex:Localizable ResourceKey="Fleet_Status_InSortie"/>
                                     <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.AreaNo"/>
                                     <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.No"/>
                                     <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.Name"/>

@@ -36,14 +36,14 @@
                                 <LineBreak/>
                                 <Run>
                                     <MultiBinding StringFormat="{}{0}: {1:MM/dd HH:mm}" Mode="OneWay">
-                                        <Binding Path="Resources.Expedition_BackTime" Source="{x:Static root:ResourceService.Current}"/>
+                                        <ex:Localizable ResourceKey="Expedition_BackTime"/>
                                         <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Local"/>
                                     </MultiBinding>
                                 </Run>
                                 <LineBreak/>
                                 <Run>
                                     <MultiBinding StringFormat="{}{0}: {1:hh\:mm\:ss}" Mode="OneWay">
-                                        <Binding Path="Resources.Expedition_Remain" Source="{x:Static root:ResourceService.Current}"/>
+                                        <ex:Localizable ResourceKey="Expedition_Remain"/>
                                         <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
                                     </MultiBinding>
                                 </Run>

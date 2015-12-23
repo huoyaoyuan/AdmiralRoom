@@ -17,6 +17,11 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
                 Path = new PropertyPath("Resources." + value);
             }
         }
+        public LocalizableExtension()
+        {
+            Source = ResourceService.Current;
+            Mode = BindingMode.OneWay;
+        }
         public LocalizableExtension(string resourcekey)
         {
             ResourceKey = resourcekey;
