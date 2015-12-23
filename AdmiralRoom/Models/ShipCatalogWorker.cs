@@ -33,9 +33,10 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         }
         public class ShipFilter : NotifySourceObject<ShipCatalogWorker>
         {
-            public string Title { get; set; }
-            public string TrueText { get; set; }
-            public string FalseText { get; set; }
+            public string TextKey { get; set; }
+            public string TitleKey => "Resources.Ship_Filter_" + TextKey + "_Title";
+            public string TrueKey => "Resources.Ship_Filter_" + TextKey + "_True";
+            public string FalseKey => "Resources.Ship_Filter_" + TextKey + "_False";
             public bool? Value { get; set; }
             public bool NoneSelected
             {
@@ -91,10 +92,10 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         }
         public class ShipSortColumn
         {
-            public string Name { get; set; } = "（无）";
+            public string NameKey { get; set; } = "Sort_None";
+            public string ResourceNameKey => "Resources.Ship_" + NameKey;
             public Func<Ship, int> KeySelector { get; set; } = x => 0;
             public bool IsDefaultDescend { get; set; }
-            public override string ToString() => Name;
         }
         public class ShipSortSelector : NotifySourceObject<ShipCatalogWorker>
         {
@@ -211,30 +212,30 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         }
         public ShipFilter[] Filters { get; } =
         {
-            new ShipFilter { Title = "等级", TrueText = "Lv.2 以上", FalseText = "Lv.1", Value = true, Filter = x => x.Level >= 2 },
-            new ShipFilter { Title = "锁定", TrueText = "已锁", FalseText = "未锁", Value = true, Filter = x => x.IsLocked },
-            new ShipFilter { Title = "速度", TrueText = "高速", FalseText = "低速", Value = null, Filter = x => x.ShipInfo.Speed == ShipSpeed.High },
-            new ShipFilter { Title = "改造", TrueText = "改造完毕", FalseText = "改造未完", Value = null, Filter = x => !x.ShipInfo.CanUpgrade },
-            new ShipFilter { Title = "近代化改修", TrueText = "改修完毕", FalseText = "改修未完", Value = null, Filter = x => x.IsMaxModernized },
-            new ShipFilter { Title = "远征", TrueText = "远征中", FalseText = "不在远征中", Value = null, Filter = x => x.InFleet != null && x.InFleet.MissionState != Fleet.FleetMissionState.None }
+            new ShipFilter { TextKey = "Level", Value = true, Filter = x => x.Level >= 2 },
+            new ShipFilter { TextKey = "Lock", Value = true, Filter = x => x.IsLocked },
+            new ShipFilter { TextKey = "Speed", Value = null, Filter = x => x.ShipInfo.Speed == ShipSpeed.High },
+            new ShipFilter { TextKey = "Remodel", Value = null, Filter = x => !x.ShipInfo.CanUpgrade },
+            new ShipFilter { TextKey = "Powerup", Value = null, Filter = x => x.IsMaxModernized },
+            new ShipFilter { TextKey = "Mission", Value = null, Filter = x => x.InFleet != null && x.InFleet.MissionState != Fleet.FleetMissionState.None }
         };
         public ShipSortColumn[] Sortings { get; } =
         {
             new ShipSortColumn(),
-            new ShipSortColumn { Name = "Id", KeySelector = x => x.Id, IsDefaultDescend = false },
-            new ShipSortColumn { Name = "等级与经验", KeySelector = x => x.Exp.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "舰种", KeySelector = x => x.ShipInfo.ShipType.SortNo, IsDefaultDescend = false },
-            new ShipSortColumn { Name = "舰名", KeySelector = x => x.ShipInfo.SortNo, IsDefaultDescend = false },
-            new ShipSortColumn { Name = "疲劳", KeySelector = x => x.Condition, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "火力", KeySelector = x => x.Firepower.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "雷装", KeySelector = x => x.Torpedo.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "对空", KeySelector = x => x.AA.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "装甲", KeySelector = x => x.Armor.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "运", KeySelector = x => x.Luck.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "回避", KeySelector = x => x.Evasion.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "对潜", KeySelector = x => x.ASW.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "索敌", KeySelector = x => x.LoS.Current, IsDefaultDescend = true },
-            new ShipSortColumn { Name = "修理时间", KeySelector = x => (int)x.RepairTime.TotalSeconds, IsDefaultDescend = true }
+            new ShipSortColumn { NameKey = "Id", KeySelector = x => x.Id, IsDefaultDescend = false },
+            new ShipSortColumn { NameKey = "Level", KeySelector = x => x.Exp.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "Class", KeySelector = x => x.ShipInfo.ShipType.SortNo, IsDefaultDescend = false },
+            new ShipSortColumn { NameKey = "Name", KeySelector = x => x.ShipInfo.SortNo, IsDefaultDescend = false },
+            new ShipSortColumn { NameKey = "Cond", KeySelector = x => x.Condition, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "Firepower", KeySelector = x => x.Firepower.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "Torpedo", KeySelector = x => x.Torpedo.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "AA", KeySelector = x => x.AA.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "Armor", KeySelector = x => x.Armor.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "Luck", KeySelector = x => x.Luck.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "Evasion", KeySelector = x => x.Evasion.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "ASW", KeySelector = x => x.ASW.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "LoS", KeySelector = x => x.LoS.Current, IsDefaultDescend = true },
+            new ShipSortColumn { NameKey = "RepairTime", KeySelector = x => (int)x.RepairTime.TotalSeconds, IsDefaultDescend = true }
         };
         public ObservableCollection<ShipSortSelector> Selectors { get; }
         public void Initialize()

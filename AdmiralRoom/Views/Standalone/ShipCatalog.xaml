@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
+        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
         
@@ -148,16 +149,20 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.RowSpan="3" Text="{Binding Title}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.RowSpan="3" VerticalAlignment="Center">
+                                                <TextBlock.Text>
+                                                    <ex:RuntimePathBinding PathSource="TitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
+                                                </TextBlock.Text>
+                                            </TextBlock>
                                             <RadioButton Grid.Column="1" Grid.Row="0"
                                                          Content="{Binding Resources.All, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
                                                          IsChecked="{Binding NoneSelected}"/>
-                                            <RadioButton Grid.Column="1" Grid.Row="1"
-                                                         Content="{Binding TrueText}"
-                                                         IsChecked="{Binding TrueSelected}"/>
-                                            <RadioButton Grid.Column="1" Grid.Row="2"
-                                                         Content="{Binding FalseText}"
-                                                         IsChecked="{Binding FalseSelected}"/>
+                                            <RadioButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding TrueSelected}">
+                                                <ex:RuntimePathBinding PathSource="TrueKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
+                                            </RadioButton>
+                                            <RadioButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding FalseSelected}">
+                                                <ex:RuntimePathBinding PathSource="FalseKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
+                                            </RadioButton>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -184,7 +189,17 @@
                                         BorderThickness="1" CornerRadius="5" Padding="2"
                                         BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
                                     <StackPanel Orientation="Vertical" Width="100">
-                                        <ComboBox Margin="2" ItemsSource="{Binding Source.Sortings}" SelectedIndex="{Binding SelectedIndex}"/>
+                                        <ComboBox Margin="2" ItemsSource="{Binding Source.Sortings}" SelectedIndex="{Binding SelectedIndex}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            <ex:RuntimePathBinding PathSource="ResourceNameKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
                                         <ComboBox Margin="2" SelectedIndex="{Binding DescendBoxIndex}">
                                             <ComboBoxItem Content="{Binding Resources.Ship_Sort_Ascend, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
                                             <ComboBoxItem Content="{Binding Resources.Ship_Sort_Descend, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>

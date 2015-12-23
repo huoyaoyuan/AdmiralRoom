@@ -462,17 +462,83 @@
   <data name="Ship_Armor" xml:space="preserve">
     <value>Armor</value>
   </data>
+  <data name="Ship_ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
   <data name="Ship_Class" xml:space="preserve">
     <value>Class</value>
+  </data>
+  <data name="Ship_Cond" xml:space="preserve">
+    <value>Condition</value>
   </data>
   <data name="Ship_Equip" xml:space="preserve">
     <value>Equipments</value>
   </data>
+  <data name="Ship_Evasion" xml:space="preserve">
+    <value>Evasion</value>
+  </data>
   <data name="Ship_Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
+  <data name="Ship_Filter_Level_False" xml:space="preserve">
+    <value>Lv. 1</value>
+  </data>
+  <data name="Ship_Filter_Level_Title" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Ship_Filter_Level_True" xml:space="preserve">
+    <value>Lv. 2+</value>
+  </data>
+  <data name="Ship_Filter_Lock_False" xml:space="preserve">
+    <value>Not Locked</value>
+  </data>
+  <data name="Ship_Filter_Lock_Title" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Ship_Filter_Lock_True" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Ship_Filter_Mission_False" xml:space="preserve">
+    <value>Not In Expedition</value>
+  </data>
+  <data name="Ship_Filter_Mission_Title" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="Ship_Filter_Mission_True" xml:space="preserve">
+    <value>In Expedition</value>
+  </data>
+  <data name="Ship_Filter_Powerup_False" xml:space="preserve">
+    <value>Powerup InComplete</value>
+  </data>
+  <data name="Ship_Filter_Powerup_Title" xml:space="preserve">
+    <value>Powerup</value>
+  </data>
+  <data name="Ship_Filter_Powerup_True" xml:space="preserve">
+    <value>Powerup Complete</value>
+  </data>
+  <data name="Ship_Filter_Remodel_False" xml:space="preserve">
+    <value>Remodel InComplete</value>
+  </data>
+  <data name="Ship_Filter_Remodel_Title" xml:space="preserve">
+    <value>Remodel</value>
+  </data>
+  <data name="Ship_Filter_Remodel_True" xml:space="preserve">
+    <value>Remodel Complete</value>
+  </data>
+  <data name="Ship_Filter_Speed_False" xml:space="preserve">
+    <value>Low Speed</value>
+  </data>
+  <data name="Ship_Filter_Speed_Title" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="Ship_Filter_Speed_True" xml:space="preserve">
+    <value>High Speed</value>
+  </data>
   <data name="Ship_Firepower" xml:space="preserve">
     <value>Firepower</value>
+  </data>
+  <data name="Ship_Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="Ship_Level" xml:space="preserve">
     <value>Level</value>
@@ -516,6 +582,9 @@
   <data name="Ship_Preset10" xml:space="preserve">
     <value>Specials</value>
   </data>
+  <data name="Ship_RepairTime" xml:space="preserve">
+    <value>Repair Time</value>
+  </data>
   <data name="Ship_Sort" xml:space="preserve">
     <value>Sort</value>
   </data>
@@ -524,6 +593,9 @@
   </data>
   <data name="Ship_Sort_Descend" xml:space="preserve">
     <value>Descending</value>
+  </data>
+  <data name="Ship_Sort_None" xml:space="preserve">
+    <value>(None)</value>
   </data>
   <data name="Ship_Torpedo" xml:space="preserve">
     <value>Torpedo</value>

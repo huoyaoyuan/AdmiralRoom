@@ -1096,11 +1096,29 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 ASW 的本地化字符串。
+        /// </summary>
+        public static string Ship_ASW {
+            get {
+                return ResourceManager.GetString("Ship_ASW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Class 的本地化字符串。
         /// </summary>
         public static string Ship_Class {
             get {
                 return ResourceManager.GetString("Ship_Class", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Condition 的本地化字符串。
+        /// </summary>
+        public static string Ship_Cond {
+            get {
+                return ResourceManager.GetString("Ship_Cond", resourceCulture);
             }
         }
         
@@ -1114,6 +1132,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Evasion 的本地化字符串。
+        /// </summary>
+        public static string Ship_Evasion {
+            get {
+                return ResourceManager.GetString("Ship_Evasion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Filter 的本地化字符串。
         /// </summary>
         public static string Ship_Filter {
@@ -1123,11 +1150,182 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Lv. 1 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Level_False {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Level_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Level 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Level_Title {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Level_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Lv. 2+ 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Level_True {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Level_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Not Locked 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Lock_False {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Lock_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Lock 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Lock_Title {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Lock_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Locked 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Lock_True {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Lock_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Not In Expedition 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Mission_False {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Mission_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Mission 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Mission_Title {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Mission_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In Expedition 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Mission_True {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Mission_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Powerup InComplete 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Powerup_False {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Powerup_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Powerup 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Powerup_Title {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Powerup_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Powerup Complete 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Powerup_True {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Powerup_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Remodel InComplete 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Remodel_False {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Remodel_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Remodel 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Remodel_Title {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Remodel_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Remodel Complete 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Remodel_True {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Remodel_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Low Speed 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Speed_False {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Speed_False", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Speed 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Speed_Title {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Speed_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 High Speed 的本地化字符串。
+        /// </summary>
+        public static string Ship_Filter_Speed_True {
+            get {
+                return ResourceManager.GetString("Ship_Filter_Speed_True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Firepower 的本地化字符串。
         /// </summary>
         public static string Ship_Firepower {
             get {
                 return ResourceManager.GetString("Ship_Firepower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Id 的本地化字符串。
+        /// </summary>
+        public static string Ship_Id {
+            get {
+                return ResourceManager.GetString("Ship_Id", resourceCulture);
             }
         }
         
@@ -1258,6 +1456,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Repair Time 的本地化字符串。
+        /// </summary>
+        public static string Ship_RepairTime {
+            get {
+                return ResourceManager.GetString("Ship_RepairTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Sort 的本地化字符串。
         /// </summary>
         public static string Ship_Sort {
@@ -1281,6 +1488,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Ship_Sort_Descend {
             get {
                 return ResourceManager.GetString("Ship_Sort_Descend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 (None) 的本地化字符串。
+        /// </summary>
+        public static string Ship_Sort_None {
+            get {
+                return ResourceManager.GetString("Ship_Sort_None", resourceCulture);
             }
         }
         

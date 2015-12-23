@@ -459,17 +459,83 @@
   <data name="Ship_Armor" xml:space="preserve">
     <value>装甲</value>
   </data>
+  <data name="Ship_ASW" xml:space="preserve">
+    <value>対潜</value>
+  </data>
   <data name="Ship_Class" xml:space="preserve">
     <value>艦種</value>
+  </data>
+  <data name="Ship_Cond" xml:space="preserve">
+    <value>疲労</value>
   </data>
   <data name="Ship_Equip" xml:space="preserve">
     <value>装備</value>
   </data>
+  <data name="Ship_Evasion" xml:space="preserve">
+    <value>回避</value>
+  </data>
   <data name="Ship_Filter" xml:space="preserve">
     <value>フィルター設定</value>
   </data>
+  <data name="Ship_Filter_Level_False" xml:space="preserve">
+    <value>Lv.1</value>
+  </data>
+  <data name="Ship_Filter_Level_Title" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="Ship_Filter_Level_True" xml:space="preserve">
+    <value>Lv.2 以上</value>
+  </data>
+  <data name="Ship_Filter_Lock_False" xml:space="preserve">
+    <value>ロックしていない</value>
+  </data>
+  <data name="Ship_Filter_Lock_Title" xml:space="preserve">
+    <value>ロック</value>
+  </data>
+  <data name="Ship_Filter_Lock_True" xml:space="preserve">
+    <value>ロックしている</value>
+  </data>
+  <data name="Ship_Filter_Mission_False" xml:space="preserve">
+    <value>遠征中の艦を除外する</value>
+  </data>
+  <data name="Ship_Filter_Mission_Title" xml:space="preserve">
+    <value>遠征</value>
+  </data>
+  <data name="Ship_Filter_Mission_True" xml:space="preserve">
+    <value>遠征中の艦のみ</value>
+  </data>
+  <data name="Ship_Filter_Powerup_False" xml:space="preserve">
+    <value>改修未完</value>
+  </data>
+  <data name="Ship_Filter_Powerup_Title" xml:space="preserve">
+    <value>近代化改修</value>
+  </data>
+  <data name="Ship_Filter_Powerup_True" xml:space="preserve">
+    <value>改修完了</value>
+  </data>
+  <data name="Ship_Filter_Remodel_False" xml:space="preserve">
+    <value>改造未完</value>
+  </data>
+  <data name="Ship_Filter_Remodel_Title" xml:space="preserve">
+    <value>改造</value>
+  </data>
+  <data name="Ship_Filter_Remodel_True" xml:space="preserve">
+    <value>改造完了</value>
+  </data>
+  <data name="Ship_Filter_Speed_False" xml:space="preserve">
+    <value>低速</value>
+  </data>
+  <data name="Ship_Filter_Speed_Title" xml:space="preserve">
+    <value>速力</value>
+  </data>
+  <data name="Ship_Filter_Speed_True" xml:space="preserve">
+    <value>高速</value>
+  </data>
   <data name="Ship_Firepower" xml:space="preserve">
     <value>火力</value>
+  </data>
+  <data name="Ship_Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="Ship_Level" xml:space="preserve">
     <value>レベル</value>
@@ -513,6 +579,9 @@
   <data name="Ship_Preset10" xml:space="preserve">
     <value>特別の艦</value>
   </data>
+  <data name="Ship_RepairTime" xml:space="preserve">
+    <value>修理時間</value>
+  </data>
   <data name="Ship_Sort" xml:space="preserve">
     <value>並べ替え方法</value>
   </data>
@@ -521,6 +590,9 @@
   </data>
   <data name="Ship_Sort_Descend" xml:space="preserve">
     <value>降順</value>
+  </data>
+  <data name="Ship_Sort_None" xml:space="preserve">
+    <value>(なし)</value>
   </data>
   <data name="Ship_Torpedo" xml:space="preserve">
     <value>雷装</value>
