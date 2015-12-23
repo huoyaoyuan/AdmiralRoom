@@ -603,6 +603,12 @@
   <data name="ShipCount" xml:space="preserve">
     <value>Ships: </value>
   </data>
+  <data name="Status_GetResponse" xml:space="preserve">
+    <value>Get response: {0}</value>
+  </data>
+  <data name="Status_Ready" xml:space="preserve">
+    <value>Ready.</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Success</value>
   </data>

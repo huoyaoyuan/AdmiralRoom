@@ -1519,6 +1519,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Get response: {0} 的本地化字符串。
+        /// </summary>
+        public static string Status_GetResponse {
+            get {
+                return ResourceManager.GetString("Status_GetResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ready. 的本地化字符串。
+        /// </summary>
+        public static string Status_Ready {
+            get {
+                return ResourceManager.GetString("Status_Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Success 的本地化字符串。
         /// </summary>
         public static string Success {

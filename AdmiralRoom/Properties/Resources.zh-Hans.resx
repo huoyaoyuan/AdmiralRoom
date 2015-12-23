@@ -600,6 +600,12 @@
   <data name="ShipCount" xml:space="preserve">
     <value>舰娘数：</value>
   </data>
+  <data name="Status_GetResponse" xml:space="preserve">
+    <value>获得数据：{0}</value>
+  </data>
+  <data name="Status_Ready" xml:space="preserve">
+    <value>就绪</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>

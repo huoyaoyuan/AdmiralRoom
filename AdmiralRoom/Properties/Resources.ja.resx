@@ -600,6 +600,12 @@
   <data name="ShipCount" xml:space="preserve">
     <value>艦娘数：</value>
   </data>
+  <data name="Status_GetResponse" xml:space="preserve">
+    <value>データを読みました: {0}</value>
+  </data>
+  <data name="Status_Ready" xml:space="preserve">
+    <value>準備完了</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>
