@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
              Background="White"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
@@ -43,10 +44,10 @@
                 </Grid>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding State}" Value="Locked">
-                        <Setter TargetName="text" Property="Text" Value="{Binding Resources.Dock_Locked, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="text" Property="Text" Value="{ex:Localizable Dock_Locked}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding State}" Value="Empty">
-                        <Setter TargetName="text" Property="Text" Value="{Binding Resources.Dock_Empty, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="text" Property="Text" Value="{ex:Localizable Dock_Empty}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding State}" Value="Repairing">
                         <Setter TargetName="progress" Property="Visibility" Value="Visible"/>

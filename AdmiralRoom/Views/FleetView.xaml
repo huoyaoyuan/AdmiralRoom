@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
              d:DesignHeight="400" d:DesignWidth="720">
@@ -119,7 +120,7 @@
                                                             Width="80" Margin="0,0,4,0"
                                                             Level="{Binding Level}"
                                                             Exp="{Binding Exp}"
-                                                            
+
                                                             VerticalAlignment="Center"/>
                                             <Border Grid.Column="2"
                                                     Background="Wheat"
@@ -127,7 +128,8 @@
                                                     Visibility="{Binding IsRepairing, Converter={StaticResource VisibilityConverter}}">
                                                 <TextBlock HorizontalAlignment="Right"
                                                            VerticalAlignment="Top"
-                                                           FontSize="12" Foreground="Gray" Text="{Binding Resources.Fleet_Repairing, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                                           FontSize="12" Foreground="Gray"
+                                                           Text="{ex:Localizable Fleet_Repairing}"/>
                                             </Border>
                                             <StackPanel Orientation="Vertical"
                                                         Grid.Column="2"
@@ -196,7 +198,7 @@
                                             <ItemsControl Grid.Column="5"
                                                           Margin="0,0,4,0"
                                                           ItemsSource="{Binding Slots}"
-                                                          
+
                                                           VerticalAlignment="Center">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
@@ -210,7 +212,7 @@
                                                                 ToolTip="{Binding}"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}}">
                                                             <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}"
-                                                                   
+
                                                                    Height="48" Width="48"
                                                                    Canvas.Left="-6" Canvas.Top="-6"/>
                                                             <Image Height="16" Width="16"
@@ -231,7 +233,7 @@
                                                                         <TextBlock>
                                                                             <Run Text="{Binding Mode=OneWay}"/>
                                                                             <LineBreak/>
-                                                                            <Run Text="{Binding Resources.Fleet_AFP, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                                                            <Run Text="{ex:Localizable Fleet_AFP}"/>
                                                                             <Run>
                                                                                 <MultiBinding StringFormat="{}{0:F2}~{1:F2} ({2:F2} + {3:F2}~{4:F2})" Mode="OneWay">
                                                                                     <Binding Path="AirFightPower[0]"/>
@@ -253,7 +255,7 @@
                                                 <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
                                                 <Canvas Height="36" Width="36">
                                                     <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
-                                                           
+
                                                            Height="48" Width="48"
                                                            Canvas.Left="-6" Canvas.Top="-6"
                                                            ToolTip="{Binding SlotEx.Item}"/>
@@ -267,14 +269,14 @@
                         </ItemsControl>
                     </ScrollViewer>
                     <WrapPanel Grid.Row="2" Orientation="Horizontal">
-                        <TextBlock Text="{Binding Resources.Fleet_ChargeCost, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <TextBlock Text="{ex:Localizable Fleet_ChargeCost}"/>
                         <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
                         <TextBlock Text="{Binding ChargeCost[0]}"/>
                         <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/2.png"/>
                         <TextBlock Text="{Binding ChargeCost[1]}"/>
                         <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/4.png"/>
                         <TextBlock Text="{Binding ChargeCost[2]}"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding Resources.Fleet_RepairCost, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <TextBlock Margin="10,0,0,0" Text="{ex:Localizable Fleet_RepairCost}"/>
                         <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
                         <TextBlock Text="{Binding RepairCost[0]}"/>
                         <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/3.png"/>
@@ -350,11 +352,11 @@
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding Status}" Value="Empty">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Gray"/>
-                        <Setter TargetName="statustext" Property="Text" Value="{Binding Resources.Fleet_Status_Empty, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_Empty}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Ready">
                         <Setter TargetName="statuscolor" Property="Fill" Value="SpringGreen"/>
-                        <Setter TargetName="statustext" Property="Text" Value="{Binding Resources.Fleet_Status_Ready, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_Ready}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="NotReady">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Orange"/>
@@ -371,13 +373,13 @@
                         </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding NeedCharge}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="{Binding Resources.Fleet_Status_NeedCharge, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_NeedCharge}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding HeavilyDamaged}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="{Binding Resources.Fleet_Status_HeavilyDamaged, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_HeavilyDamaged}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Repairing}" Value="True">
-                        <Setter TargetName="statustext" Property="Text" Value="{Binding Resources.Fleet_Status_Repairing, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_Repairing}"/>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="InMission">
                         <Setter TargetName="statuscolor" Property="Fill" Value="Aqua"/>
@@ -406,7 +408,7 @@
                         </Setter>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding Status}" Value="Warning">
-                        <Setter TargetName="statustext" Property="Text" Value="{Binding Resources.Fleet_Status_HeavilyDamaged, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_HeavilyDamaged}"/>
                         <Setter TargetName="statuscolor" Property="Visibility" Value="Collapsed"/>
                         <Setter TargetName="statuswarning" Property="Visibility" Value="Visible"/>
                     </DataTrigger>

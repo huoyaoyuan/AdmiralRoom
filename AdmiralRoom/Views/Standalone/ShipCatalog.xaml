@@ -10,7 +10,7 @@
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
-        
+
         Height="800"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
         FontSize="16">
@@ -20,12 +20,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Expander IsExpanded="True" Header="{Binding Resources.Ship_Filter, Source={x:Static root:ResourceService.Current}, Mode=OneWay}">
+        <Expander IsExpanded="True" Header="{ex:Localizable Ship_Filter}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox Margin="2" Content="{Binding Resources.SelectAll, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" IsChecked="{Binding SelectAll}"/>
+                    <CheckBox Margin="2" Content="{ex:Localizable SelectAll}" IsChecked="{Binding SelectAll}"/>
                     <ItemsControl ItemsSource="{Binding ShipTypes}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -39,14 +39,14 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <WrapPanel Orientation="Horizontal">
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset01, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset01}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>2</sys:Int32>
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset02, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset02}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>3</sys:Int32>
@@ -54,7 +54,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset03, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset03}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>5</sys:Int32>
@@ -62,7 +62,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset04, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset04}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>3</sys:Int32>
@@ -73,7 +73,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset05, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset05}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>8</sys:Int32>
@@ -82,7 +82,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset06, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset06}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>7</sys:Int32>
@@ -91,7 +91,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset07, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset07}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>11</sys:Int32>
@@ -99,7 +99,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset08, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset08}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>13</sys:Int32>
@@ -107,7 +107,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset09, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset09}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>6</sys:Int32>
@@ -115,7 +115,7 @@
                                 </x:Array>
                             </Button.Tag>
                         </Button>
-                        <Button Margin="2" Content="{Binding Resources.Ship_Preset10, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Click="SelectTypesCommand">
+                        <Button Margin="2" Content="{ex:Localizable Ship_Preset10}" Click="SelectTypesCommand">
                             <Button.Tag>
                                 <x:Array Type="sys:Int32">
                                     <sys:Int32>16</sys:Int32>
@@ -156,7 +156,7 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                             <RadioButton Grid.Column="1" Grid.Row="0"
-                                                         Content="{Binding Resources.All, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
+                                                         Content="{ex:Localizable All}"
                                                          IsChecked="{Binding NoneSelected}"/>
                                             <RadioButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding TrueSelected}">
                                                 <ex:RuntimePathBinding PathSource="TrueKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
@@ -173,7 +173,7 @@
                 </StackPanel>
             </Border>
         </Expander>
-        <Expander Grid.Row="1" Header="{Binding Resources.Ship_Sort, Source={x:Static root:ResourceService.Current}, Mode=OneWay}">
+        <Expander Grid.Row="1" Header="{ex:Localizable Ship_Sort}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
@@ -202,8 +202,8 @@
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
                                         <ComboBox Margin="2" SelectedIndex="{Binding DescendBoxIndex}">
-                                            <ComboBoxItem Content="{Binding Resources.Ship_Sort_Ascend, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
-                                            <ComboBoxItem Content="{Binding Resources.Ship_Sort_Descend, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <ComboBoxItem Content="{ex:Localizable Ship_Sort_Ascend}"/>
+                                            <ComboBoxItem Content="{ex:Localizable Ship_Sort_Descend}"/>
                                         </ComboBox>
                                     </StackPanel>
                                 </Border>
@@ -218,17 +218,17 @@
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Index}" Width="40"/>
                     <GridViewColumn Header="id" DisplayMemberBinding="{Binding Item.Id}" Width="55"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Class, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Name, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Level, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Level}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Class}" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Name}" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Level}" DisplayMemberBinding="{Binding Item.Level}"/>
                     <GridViewColumn Header="Cond." DisplayMemberBinding="{Binding Item.Condition}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Firepower, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Firepower}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Torpedo, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Torpedo}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_AA, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.AA}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Armor, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Armor}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Luck, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Luck}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_LoS, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.LoS.Current}"/>
-                    <GridViewColumn Header="{Binding Resources.Ship_Equip, Source={x:Static root:ResourceService.Current}, Mode=OneWay}">
+                    <GridViewColumn Header="{ex:Localizable Ship_Firepower}" DisplayMemberBinding="{Binding Item.Firepower}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Torpedo}" DisplayMemberBinding="{Binding Item.Torpedo}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_AA}" DisplayMemberBinding="{Binding Item.AA}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Armor}" DisplayMemberBinding="{Binding Item.Armor}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Luck}" DisplayMemberBinding="{Binding Item.Luck}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_LoS}" DisplayMemberBinding="{Binding Item.LoS.Current}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_Equip}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ItemsControl ItemsSource="{Binding Item.Slots}">
@@ -241,7 +241,7 @@
                                         <DataTemplate>
                                             <Canvas Height="15" Width="15" ToolTip="{Binding}">
                                                 <Image Source="{Binding Item.EquipInfo.Icon}"
-                                                       
+
                                                        Height="20" Width="20"
                                                        Canvas.Left="-2.5" Canvas.Top="-2.5"/>
                                             </Canvas>

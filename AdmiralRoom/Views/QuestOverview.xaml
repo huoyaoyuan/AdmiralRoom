@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              Background="White"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
@@ -77,46 +78,46 @@
                                     <Setter TargetName="percent" Property="Text" Value="(100%)"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Organization">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Organization, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Organization}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Sortie">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Sortie, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Sortie}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Exercise">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Exercise, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Exercise}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Expedition">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Expedition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Expedition}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Charge">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Charge, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Charge}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Shipyard">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Shipyard, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Shipyard}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Powerup">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Powerup, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Powerup}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Other">
-                                    <Setter TargetName="type" Property="Text" Value="{Binding Resources.Quest_Type_Other, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Other}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Period}" Value="Once">
-                                    <Setter TargetName="period" Property="Text" Value="{Binding Resources.Quest_Peroid_Once, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Once}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Period}" Value="Daily">
-                                    <Setter TargetName="period" Property="Text" Value="{Binding Resources.Quest_Peroid_Daily, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Daily}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Period}" Value="Weekly">
-                                    <Setter TargetName="period" Property="Text" Value="{Binding Resources.Quest_Peroid_Weekly, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Weekly}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Period}" Value="Monthly">
-                                    <Setter TargetName="period" Property="Text" Value="{Binding Resources.Quest_Peroid_Monthly, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Monthly}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Period}" Value="Day037">
-                                    <Setter TargetName="period" Property="Text" Value="{Binding Resources.Quest_Peroid_Day037, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Day037}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Period}" Value="Day28">
-                                    <Setter TargetName="period" Property="Text" Value="{Binding Resources.Quest_Peroid_Day28, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Day28}"/>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>

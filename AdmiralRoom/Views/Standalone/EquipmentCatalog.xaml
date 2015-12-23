@@ -6,6 +6,7 @@
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
+        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance models:EquipmentCatalogWorker}"
 
@@ -17,7 +18,7 @@
         <ListView ItemsSource="{Binding Groups}" VirtualizingPanel.IsVirtualizing="False">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="{Binding Resources.Equip_Name, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" DisplayMemberBinding="{Binding Item.Name}"/>
+                    <GridViewColumn Header="{ex:Localizable Equip_Name}" DisplayMemberBinding="{Binding Item.Name}"/>
                     <GridViewColumn Header="">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -39,13 +40,13 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Width="52" BorderThickness="0,0,1,0" Grid.Column="0">
-                                    <TextBlock Text="{Binding Resources.Equip_Improvement, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <TextBlock Text="{ex:Localizable Equip_Improvement}"/>
                                 </Border>
                                 <Border Width="82" BorderThickness="0,0,1,0" Grid.Column="1">
-                                    <TextBlock Text="{Binding Resources.Equip_CountLeft, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <TextBlock Text="{ex:Localizable Equip_CountLeft}"/>
                                 </Border>
                                 <Border Width="534" Grid.Column="2">
-                                    <TextBlock Text="{Binding Resources.Equip_OnShip, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                    <TextBlock Text="{ex:Localizable Equip_OnShip}"/>
                                 </Border>
                             </Grid>
                         </GridViewColumn.Header>

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             xmlns:res="clr-namespace:Huoyaoyuan.AdmiralRoom"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
              Background="White"
              d:DataContext="{d:DesignInstance officer:Staff}"
@@ -39,7 +40,7 @@
                 </Grid.Resources>
                 <TextBlock Grid.Column="0" Grid.Row="0"
                            FontSize="12"
-                           Text="{Binding Resources.ShipCount, Source={x:Static res:ResourceService.Current}, Mode=OneWay}"/>
+                           Text="{ex:Localizable ShipCount}"/>
                 <TextBlock Grid.Column="1" Grid.Row="0"
                            FontSize="16"
                            Text="{Binding Admiral.ShipCount}"/>
@@ -48,7 +49,7 @@
                            Text="{Binding Admiral.MaxShip, StringFormat={} / {0}}"/>
                 <TextBlock Grid.Column="0" Grid.Row="1"
                            FontSize="12"
-                           Text="{Binding Resources.ItemCount, Source={x:Static res:ResourceService.Current}, Mode=OneWay}"/>
+                           Text="{ex:Localizable ItemCount}"/>
                 <TextBlock Grid.Column="1" Grid.Row="1"
                            FontSize="16"
                            Text="{Binding Admiral.EquipCount}"/>

@@ -6,18 +6,19 @@
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance officer:Staff}"
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
-        <TabItem Header="{Binding Resources.Predict_Enable, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Background="SpringGreen">
+        <TabItem Header="{ex:Localizable Predict_Enable}" Background="SpringGreen">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical"
                             DataContext="{Binding Battle}"
                             d:DataContext="{d:DesignInstance officer:BattleManager}"
                             Visibility="{Binding InSortie, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                     <TextBlock>
-                        <Run Text="{Binding Resources.Compass_SortieArea, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Run Text="{ex:Localizable Compass_SortieArea}"/>
                         <Run>
                             <Run.Text>
                                 <MultiBinding StringFormat="{}{0}-{1}">
@@ -30,54 +31,54 @@
                         <Run Text="{Binding CurrentMap.Name, Mode=OneWay}"/>
                         <Run Text="{Binding CurrentMap.OperationName, Mode=OneWay}"/>
                         <LineBreak/>
-                        <Run Text="{Binding Resources.Compass_Position, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                        <Run Text="{ex:Localizable Compass_Position}"/>
                         <Run Text="{Binding CurrentNode.Id, Mode=OneWay}"/>
                         <TextBlock>
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Battle">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_Battle, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_Battle}"/>
                                             <Setter Property="Foreground" Value="Red"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="BOSS">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_BOSS, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_BOSS}"/>
                                             <Setter Property="Foreground" Value="Red"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="ItemGet">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_ItemGet, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_ItemGet}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="ItemLost">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_ItemLost, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_ItemLost}"/>
                                             <Setter Property="Foreground" Value="MediumPurple"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="NightBattle">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_NightBattle, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_NightBattle}"/>
                                             <Setter Property="Foreground" Value="Red"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="AirBattle">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_AirBattle, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_AirBattle}"/>
                                             <Setter Property="Foreground" Value="OrangeRed"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="SelectRoute">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_SelectRoute, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_SelectRoute}"/>
                                             <Setter Property="Foreground" Value="Aquamarine"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Imagination">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_Imagination, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_Imagination}"/>
                                             <Setter Property="Foreground" Value="Aqua"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="AirSearch">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_AirSearch, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_AirSearch}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Guard">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_Guard, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_Guard}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Transport">
-                                            <Setter Property="Text" Value="{Binding Resources.Compass_Transport, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_Transport}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -92,6 +93,6 @@
                 </StackPanel>
             </ScrollViewer>
         </TabItem>
-        <TabItem Header="{Binding Resources.Predict_Disable, Source={x:Static root:ResourceService.Current}, Mode=OneWay}" Background="Red"/>
+        <TabItem Header="{ex:Localizable Predict_Disable}" Background="Red"/>
     </TabControl>
 </UserControl>

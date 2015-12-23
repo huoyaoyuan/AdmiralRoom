@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              Background="White"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
@@ -51,10 +52,10 @@
                             <Setter TargetName="shipname" Property="Text" Value="？？？"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="Locked">
-                            <Setter TargetName="text" Property="Text" Value="{Binding Resources.Dock_Locked, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                            <Setter TargetName="text" Property="Text" Value="{ex:Localizable Dock_Locked}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="Empty">
-                            <Setter TargetName="text" Property="Text" Value="{Binding Resources.Dock_Empty, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                            <Setter TargetName="text" Property="Text" Value="{ex:Localizable Dock_Empty}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding State}" Value="Building">
                             <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
@@ -71,6 +72,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <CheckBox Margin="4" IsChecked="{Binding ShowBuildingShipName, Source={x:Static root:Config.Current}}" Content="{Binding Resources.Dock_ShowBuild, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+        <CheckBox Margin="4" IsChecked="{Binding ShowBuildingShipName, Source={x:Static root:Config.Current}}" Content="{ex:Localizable Dock_ShowBuild}"/>
     </StackPanel>
 </UserControl>

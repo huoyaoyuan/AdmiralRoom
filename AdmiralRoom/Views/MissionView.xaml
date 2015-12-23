@@ -6,6 +6,7 @@
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              Background="White"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
@@ -29,7 +30,7 @@
                             <TextBlock MaxWidth="150" TextWrapping="Wrap">
                                 <Run Text="{Binding Name, Mode=OneWay}" FontWeight="Black"/>
                                 <LineBreak/>
-                                <Run Text="{Binding Resources.Expedition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                                <Run Text="{ex:Localizable Expedition}"/>
                                 <Run Text="{Binding MissionID, Mode=OneWay}"/>
                                 <Run Text="{Binding MissionInfo.Name, Mode=OneWay, StringFormat={} - {0}}"/>
                                 <LineBreak/>

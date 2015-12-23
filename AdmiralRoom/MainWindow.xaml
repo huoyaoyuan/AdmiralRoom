@@ -12,6 +12,7 @@
                      xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
                      xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
                      xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+                     xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
                      mc:Ignorable="d"
                      FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
                      FontSize="{Binding FontSize, Source={x:Static local:Config.Current}, Mode=OneWay}"
@@ -34,52 +35,52 @@
             <ribbon:Ribbon.Menu>
                 <ribbon:Backstage Header="提督の部屋" KeyTip="H">
                     <ribbon:BackstageTabControl>
-                        <ribbon:BackstageTabItem Header="{Binding Resources.Options, Source={x:Static local:ResourceService.Current}}" KeyTip="O">
+                        <ribbon:BackstageTabItem Header="{ex:Localizable Options}" KeyTip="O">
                             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                 <Views:Settings DataContext="{x:Static local:Config.Current}"/>
                             </ScrollViewer>
                         </ribbon:BackstageTabItem>
-                        <ribbon:BackstageTabItem Header="{Binding Resources.About, Source={x:Static local:ResourceService.Current}}" KeyTip="A">
+                        <ribbon:BackstageTabItem Header="{ex:Localizable About}" KeyTip="A">
                             <Views:About/>
                         </ribbon:BackstageTabItem>
                     </ribbon:BackstageTabControl>
                 </ribbon:Backstage>
             </ribbon:Ribbon.Menu>
-            <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_Browse, Source={x:Static local:ResourceService.Current}}" KeyTip="B">
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Browser, Source={x:Static local:ResourceService.Current}}">
-                    <ribbon:Button Header="{Binding Resources.Back, Source={x:Static local:ResourceService.Current}}"
+            <ribbon:RibbonTabItem Header="{ex:Localizable RibbonTab_Browse}" KeyTip="B">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Browser}">
+                    <ribbon:Button Header="{ex:Localizable Back}"
                                    KeyTip="B"
                                    x:Name="BrowserBack"
                                    IsEnabled="False"
                                    LargeIcon="{StaticResource IconBack}"/>
-                    <ribbon:Button Header="{Binding Resources.Forward, Source={x:Static local:ResourceService.Current}}"
+                    <ribbon:Button Header="{ex:Localizable Forward}"
                                    KeyTip="F"
                                    x:Name="BrowserForward"
                                    IsEnabled="False"
                                    LargeIcon="{StaticResource IconForward}"/>
                     <TextBox x:Name="BrowserAddr" Width="400"/>
-                    <ribbon:Button Header="{Binding Resources.Goto, Source={x:Static local:ResourceService.Current}}"
+                    <ribbon:Button Header="{ex:Localizable Goto}"
                                    KeyTip="G"
                                    x:Name="BrowserGoto"
                                    LargeIcon="{StaticResource IconGoto}"/>
-                    <ribbon:Button Header="{Binding Resources.Refresh, Source={x:Static local:ResourceService.Current}}"
+                    <ribbon:Button Header="{ex:Localizable Refresh}"
                                    KeyTip="R"
                                    x:Name="BrowserRefresh"
                                    LargeIcon="{StaticResource IconRefresh}"/>
-                    <ribbon:Button Header="{Binding Resources.BackToGame, Source={x:Static local:ResourceService.Current}}"
+                    <ribbon:Button Header="{ex:Localizable BackToGame}"
                                    KeyTip="H"
                                    x:Name="BrowserBackToGame"
                                    LargeIcon="{StaticResource IconGame}"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Actions, Source={x:Static local:ResourceService.Current}}">
-                    <ribbon:ToggleButton Header="{Binding Resources.Mute, Source={x:Static local:ResourceService.Current}}"
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Actions}">
+                    <ribbon:ToggleButton Header="{ex:Localizable Mute}"
                                          KeyTip="M"
                                          IsChecked="{Binding Volume.IsMute, Source={x:Static Models:Status.Current}}"
                                          IsEnabled="{Binding IsGameLoaded, Source={x:Static Models:Status.Current}}"/>
-                    <ribbon:Button Header="{Binding Resources.Screenshot, Source={x:Static local:ResourceService.Current}}" KeyTip="S" x:Name="ScreenShotButton"/>
-                    <ribbon:Button Header="{Binding Resources.CleanCache, Source={x:Static local:ResourceService.Current}}" KeyTip="C" x:Name="DeleteCacheButton"/>
+                    <ribbon:Button Header="{ex:Localizable Screenshot}" KeyTip="S" x:Name="ScreenShotButton"/>
+                    <ribbon:Button Header="{ex:Localizable CleanCache}" KeyTip="C" x:Name="DeleteCacheButton"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Proxy, Source={x:Static local:ResourceService.Current}}">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Proxy}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -90,14 +91,14 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="{Binding Resources.Proxy_UseProxy, Source={x:Static local:ResourceService.Current}}"
+                        <CheckBox Content="{ex:Localizable Proxy_UseProxy}"
                                   
                                   Grid.ColumnSpan="2"
                                   x:Name="EnableProxy"
                                   IsChecked="{Binding EnableProxy, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Resources.Proxy_Address, Source={x:Static local:ResourceService.Current}}"/>
+                                   Text="{ex:Localizable Proxy_Address}"/>
                         <TextBox Grid.Row="1" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyHost"
@@ -105,15 +106,15 @@
                                  Text="{Binding Proxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="2" Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Resources.Proxy_Port, Source={x:Static local:ResourceService.Current}}"/>
+                                   Text="{ex:Localizable Proxy_Port}"/>
                         <TextBox Grid.Row="2" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyPort"
                                  IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
                                  Text="{Binding Proxy.Port, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                     </Grid>
-                    <ribbon:Button Header="{Binding Resources.Update, Source={x:Static local:ResourceService.Current}}" x:Name="UpdateProxySetting"/>
-                    <ribbon:Button Header="{Binding Resources.Cancel, Source={x:Static local:ResourceService.Current}}" x:Name="CancelProxySetting"/>
+                    <ribbon:Button Header="{ex:Localizable Update}" x:Name="UpdateProxySetting"/>
+                    <ribbon:Button Header="{ex:Localizable Cancel}" x:Name="CancelProxySetting"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="HTTPS">
                     <Grid>
@@ -126,14 +127,14 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="{Binding Resources.Proxy_UseHTTPS, Source={x:Static local:ResourceService.Current}}"
+                        <CheckBox Content="{ex:Localizable Proxy_UseHTTPS}"
                                   
                                   Grid.ColumnSpan="2"
                                   x:Name="EnableProxyHTTPS"
                                   IsChecked="{Binding EnableProxyHTTPS, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Resources.Proxy_Address, Source={x:Static local:ResourceService.Current}}"/>
+                                   Text="{ex:Localizable Proxy_Address}"/>
                         <TextBox Grid.Row="1" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyHostHTTPS"
@@ -141,7 +142,7 @@
                                  Text="{Binding HTTPSProxy.Host, Mode=OneWay, Source={x:Static local:Config.Current}}"/>
                         <TextBlock Grid.Row="2" Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Resources.Proxy_Port, Source={x:Static local:ResourceService.Current}}"/>
+                                   Text="{ex:Localizable Proxy_Port}"/>
                         <TextBox Grid.Row="2" Grid.Column="1"
                                  Margin="2" Width="100"
                                  x:Name="ProxyPortHTTPS"
@@ -150,7 +151,7 @@
                     </Grid>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_View, Source={x:Static local:ResourceService.Current}}" KeyTip="V">
+            <ribbon:RibbonTabItem Header="{ex:Localizable RibbonTab_View}" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="Language">
                     <ribbon:ComboBox x:Name="LanguageBox"
                                      IsEditable="False" KeyTip="L"
@@ -158,22 +159,22 @@
                                      SelectedValuePath="Name"
                                      SelectedValue="{Binding Language, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Theme, Source={x:Static local:ResourceService.Current}}">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Theme}">
                     <ribbon:ComboBox x:Name="Themes"
                                      IsEditable="False" KeyTip="TH"
                                      SelectedValue="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="{Binding Resources.Theme_NoDWM, Source={x:Static local:ResourceService.Current}}"
+                    <ribbon:CheckBox Header="{ex:Localizable Theme_NoDWM}"
                                      
                                      x:Name="NoDWM"
                                      KeyTip="D"
                                      IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="{Binding Resources.Theme_Aero, Source={x:Static local:ResourceService.Current}}"
+                    <ribbon:CheckBox Header="{ex:Localizable Theme_Aero}"
                                      
                                      x:Name="UseAeroControl"
                                      KeyTip="A"
                                      IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Font, Source={x:Static local:ResourceService.Current}}">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Font}">
                     <ribbon:RibbonToolBar DataContext="ribbonWindow">
                         <ribbon:RibbonToolBar.LayoutDefinitions>
                             <ribbon:RibbonToolBarLayoutDefinition>
@@ -202,15 +203,15 @@
                                        Icon="Images\GrowFont.png"/>
                     </ribbon:RibbonToolBar>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Notification, Source={x:Static local:ResourceService.Current}}">
-                    <CheckBox Content="{Binding Resources.Notification_Toast, Source={x:Static local:ResourceService.Current}}"
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Notification}">
+                    <CheckBox Content="{ex:Localizable Notification_Toast}"
                               IsEnabled="{x:Static local:ToastNotifier.IsSupported}"
                               IsChecked="{Binding PreferToastNotify, Source={x:Static local:Config.Current}}"
-                              ToolTip="{Binding Resources.Notification_ToolTip_Win10, Source={x:Static local:ResourceService.Current}}"/>
+                              ToolTip="{ex:Localizable Notification_ToolTip_Win10}"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem Header="{Binding Resources.RibbonTab_Window, Source={x:Static local:ResourceService.Current}}" KeyTip="W">
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Window_Subwindow, Source={x:Static local:ResourceService.Current}}">
+            <ribbon:RibbonTabItem Header="{ex:Localizable RibbonTab_Window}" KeyTip="W">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Window_Subwindow}">
                     <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:AdmiralView/>
@@ -262,7 +263,7 @@
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
                 </ribbon:RibbonGroupBox>
-                <ribbon:RibbonGroupBox Header="{Binding Resources.Window_Standalone, Source={x:Static local:ResourceService.Current}}">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Window_Standalone}">
                     <Button Margin="2" Tag="{x:Type ViewStandalone:ShipCatalog}" Loaded="SetUniqueWindowCommand"/>
                     <Button Margin="2" Tag="{x:Type ViewStandalone:EquipmentCatalog}" Loaded="SetUniqueWindowCommand"/>
                 </ribbon:RibbonGroupBox>

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=root:Config}">
     <Grid>
@@ -12,17 +13,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="{Binding Resources.Screenshot, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
-                  
+        <GroupBox Header="{ex:Localizable Screenshot}"
+
                   Grid.Row="0"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="2" Text="{Binding Resources.Settings_ScreenShotFolder, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <TextBlock Margin="2" Text="{ex:Localizable Settings_ScreenShotFolder}"/>
                     <TextBox Margin="2" Width="200" Text="{Binding ScreenShotFolder}"/>
-                    <Button Margin="2" Click="SelectScreenFolder" Content="{Binding Resources.Settings_FolderSelect, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
-                    <Button Margin="2" Click="OpenScreenShotFolder" Content="{Binding Resources.Settings_FolderOpen, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <Button Margin="2" Click="SelectScreenFolder" Content="{ex:Localizable Settings_FolderSelect}"/>
+                    <Button Margin="2" Click="OpenScreenShotFolder" Content="{ex:Localizable Settings_FolderOpen}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <RadioButton IsChecked="{Binding IsScreenShotPng}" Margin="2">PNG</RadioButton>
@@ -30,18 +31,19 @@
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="{Binding Resources.Notification, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"
+        <GroupBox Header="{ex:Localizable Notification}"
+
                   Grid.Row="1"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenExpedition}" Content="{Binding Resources.Settings_NotifyWhenExpedition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenRepair}" Content="{Binding Resources.Settings_NotifyWhenRepair, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenBuild}" Content="{Binding Resources.Settings_NotifyWhenBuild, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
-                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenCondition}" Content="{Binding Resources.Settings_NotifyWhenCondition, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenExpedition}" Content="{ex:Localizable Settings_NotifyWhenExpedition}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenRepair}" Content="{ex:Localizable Settings_NotifyWhenRepair}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenBuild}" Content="{ex:Localizable Settings_NotifyWhenBuild}"/>
+                    <CheckBox Margin="2" IsChecked="{Binding NotifyWhenCondition}" Content="{ex:Localizable Settings_NotifyWhenCondition}"/>
                 </StackPanel>
-                <TextBlock Margin="2" VerticalAlignment="Top" Text="{Binding Resources.Settings_NotifyShortingTime, Source={x:Static root:ResourceService.Current}, Mode=OneWay}"/>
+                <TextBlock Margin="2" VerticalAlignment="Top" Text="{ex:Localizable Settings_NotifyShortingTime}"/>
                 <TextBox VerticalAlignment="Top" Width="40" Text="{Binding NotifyTimeAdjust}"/>
             </StackPanel>
         </GroupBox>
