@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
@@ -105,7 +106,30 @@ namespace Huoyaoyuan.AdmiralRoom
             DockCommands = new Config.CommandSet
             {
                 Save = new DelegateCommand(() => TrySaveLayout()),
-                Load = new DelegateCommand(() => TryLoadLayout())
+                Load = new DelegateCommand(() => TryLoadLayout()),
+                SaveAs = new DelegateCommand(() =>
+                {
+                    using (var filedialog = new CommonSaveFileDialog())
+                    {
+                        filedialog.InitialDirectory = Environment.CurrentDirectory;
+                        filedialog.DefaultFileName = "config.xml";
+                        filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
+                        filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
+                        if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
+                            TrySaveLayout(filedialog.FileName);
+                    }
+                }),
+                LoadFrom = new DelegateCommand(() =>
+                {
+                    using (var filedialog = new CommonOpenFileDialog())
+                    {
+                        filedialog.InitialDirectory = Environment.CurrentDirectory;
+                        filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
+                        filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
+                        if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
+                            TryLoadLayout(filedialog.FileName);
+                    }
+                })
             };
         }
 

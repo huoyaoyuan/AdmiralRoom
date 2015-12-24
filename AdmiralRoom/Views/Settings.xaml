@@ -38,8 +38,8 @@
                                    DataContext="{Binding RelativeSource={RelativeSource AncestorType=root:MainWindow}}">
                 <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding DockCommands.Save}"/>
                 <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding DockCommands.Load}"/>
-                <MenuItem Header="{ex:Localizable Settings_LoadFrom}"/>
-                <MenuItem Header="{ex:Localizable Settings_SaveAs}"/>
+                <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding DockCommands.LoadFrom}"/>
+                <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding DockCommands.SaveAs}"/>
             </ribbon:DropDownButton>
         </Grid>
         <GroupBox Header="{ex:Localizable Screenshot}"
