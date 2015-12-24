@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -431,24 +432,24 @@ namespace Huoyaoyuan.AdmiralRoom
             FontFamilyName = "DengXian";
             _fontsize = 15;
         }
-        public static Config Load()
+        public static Config Load(string path = "config.xml")
         {
             XmlSerializer s = new XmlSerializer(typeof(Config));
             try
             {
-                using (var r = File.OpenText("config.xml"))
+                using (var r = File.OpenText(path))
                 {
                     return (Config)s.Deserialize(r);
                 }
             }
             catch { return new Config(); }
         }
-        public void Save()
+        public void Save(string path = "config.xml")
         {
             XmlSerializer s = new XmlSerializer(typeof(Config));
             try
             {
-                using (var w = File.CreateText("config.xml"))
+                using (var w = File.CreateText(path))
                 {
                     s.Serialize(w, this);
                 }
@@ -457,5 +458,17 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public string GenerateScreenShotFileName() =>
             Path.Combine(ScreenShotFolder, string.Format(ScreenShotNameFormat, DateTime.Now.ToString("yyMMdd-HHmmssff")) + "." + ScreenShotFileFormat.ToLower());
+        public class CommandSet
+        {
+            public ICommand Save { get; set; }
+            public ICommand Load { get; set; }
+            public ICommand SaveAs { get; set; }
+            public ICommand LoadFrom { get; set; }
+        }
+        public static CommandSet Commands { get; } = new CommandSet
+        {
+            Save = new DelegateCommand(() => Current.Save()),
+            Load = new DelegateCommand(() => Current = Load())
+        };
     }
 }

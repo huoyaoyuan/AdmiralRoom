@@ -25,8 +25,8 @@
                                    
                                    Margin="40,20,20,10"
                                    ClosePopupOnMouseDown="True">
-                <MenuItem Header="{ex:Localizable Settings_Save}"/>
-                <MenuItem Header="{ex:Localizable Settings_Load}"/>
+                <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding Commands.Save}"/>
+                <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding Commands.Load}"/>
                 <MenuItem Header="{ex:Localizable Settings_LoadFrom}"/>
                 <MenuItem Header="{ex:Localizable Settings_SaveAs}"/>
             </ribbon:DropDownButton>
