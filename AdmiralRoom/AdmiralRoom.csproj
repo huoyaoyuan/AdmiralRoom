@@ -176,6 +176,7 @@
     <Compile Include="API\sortie_battle.cs" />
     <Compile Include="API\sortie_battleresult.cs" />
     <Compile Include="API\svdata.cs" />
+    <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\CollectionEx.cs" />
     <Compile Include="Common\DateTimeEx.cs" />
     <Compile Include="Common\NamedResourceDictionary.cs" />
