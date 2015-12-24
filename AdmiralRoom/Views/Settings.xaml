@@ -27,8 +27,8 @@
                                    ClosePopupOnMouseDown="True">
                 <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding Commands.Save}"/>
                 <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding Commands.Load}"/>
-                <MenuItem Header="{ex:Localizable Settings_LoadFrom}"/>
-                <MenuItem Header="{ex:Localizable Settings_SaveAs}"/>
+                <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding Commands.LoadFrom}"/>
+                <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding Commands.SaveAs}"/>
             </ribbon:DropDownButton>
             <ribbon:DropDownButton Grid.Column="1"
                                    Header="{ex:Localizable Settings_Layout}"

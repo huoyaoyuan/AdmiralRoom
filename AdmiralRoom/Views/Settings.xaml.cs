@@ -27,8 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views
             using (var folderdialog = new CommonOpenFileDialog())
             {
                 folderdialog.IsFolderPicker = true;
-                folderdialog.RestoreDirectory = false;
-                folderdialog.Title = "选择截图文件夹";
+                folderdialog.InitialDirectory = Config.Current.ScreenShotFolder;
                 if (folderdialog.ShowDialog() == CommonFileDialogResult.Ok)
                     Config.Current.ScreenShotFolder = folderdialog.FileName;
             }

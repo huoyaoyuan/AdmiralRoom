@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -468,7 +469,30 @@ namespace Huoyaoyuan.AdmiralRoom
         public static CommandSet Commands { get; } = new CommandSet
         {
             Save = new DelegateCommand(() => Current.Save()),
-            Load = new DelegateCommand(() => Current = Load())
+            Load = new DelegateCommand(() => Current = Load()),
+            SaveAs = new DelegateCommand(() =>
+            {
+                using (var filedialog = new CommonSaveFileDialog())
+                {
+                    filedialog.InitialDirectory = Environment.CurrentDirectory;
+                    filedialog.DefaultFileName = "config.xml";
+                    filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
+                    filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
+                    if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
+                        Current.Save(filedialog.FileName);
+                }
+            }),
+            LoadFrom = new DelegateCommand(() =>
+            {
+                using (var filedialog = new CommonOpenFileDialog())
+                {
+                    filedialog.InitialDirectory = Environment.CurrentDirectory;
+                    filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
+                    filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
+                    if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
+                        Current = Load(filedialog.FileName);
+                }
+            })
         };
     }
 }
