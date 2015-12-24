@@ -100,6 +100,13 @@ namespace Huoyaoyuan.AdmiralRoom
             this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
             this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
+
+            layoutserializer = new XmlLayoutSerializer(DockMan);
+            DockCommands = new Config.CommandSet
+            {
+                Save = new DelegateCommand(() => TrySaveLayout()),
+                Load = new DelegateCommand(() => TryLoadLayout())
+            };
         }
 
         private void MakeViewList(ILayoutElement elem)
@@ -118,15 +125,12 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
 
+        #region Layout
+        private XmlLayoutSerializer layoutserializer;
         private void LoadLayout(object sender, RoutedEventArgs e)
         {
-            var s = new XmlLayoutSerializer(DockMan);
-            s.LayoutSerializationCallback += (_, args) => args.Content = args.Content;
-            try
-            {
-                s.Deserialize("layout.xml");
-            }
-            catch { }
+            layoutserializer.LayoutSerializationCallback += (_, args) => args.Content = args.Content;
+            TryLoadLayout();
             foreach (var view in DockMan.Layout.Hidden.Where(x => x.PreviousContainerIndex == -1).ToArray())
             {
                 DockMan.Layout.Hidden.Remove(view);
@@ -138,11 +142,24 @@ namespace Huoyaoyuan.AdmiralRoom
                 Source = ResourceService.Current
             });
         }
-        private void SaveLayout(object sender, EventArgs e)
+        private void SaveLayout(object sender, EventArgs e) => TrySaveLayout();
+        private void TryLoadLayout(string path = "layout.xml")
         {
-            var s = new XmlLayoutSerializer(DockMan);
-            s.Serialize("layout.xml");
+            try
+            {
+                layoutserializer.Deserialize(path);
+            }
+            catch { }
         }
+        private void TrySaveLayout(string path = "layout.xml")
+        {
+            try
+            {
+                layoutserializer.Serialize(path);
+            }
+            catch { }
+        }
+        #endregion
 
         private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
@@ -216,5 +233,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private void SetBrowserZoomFactor(object sender, RoutedPropertyChangedEventArgs<double> e)
             => this.GameHost.ApplyZoomFactor(e.NewValue);
+
+        public Config.CommandSet DockCommands { get; }
     }
 }

@@ -34,9 +34,10 @@
                                    Header="{ex:Localizable Settings_Layout}"
                                    
                                    Margin="20,20,20,10"
-                                   ClosePopupOnMouseDown="True">
-                <MenuItem Header="{ex:Localizable Settings_Save}"/>
-                <MenuItem Header="{ex:Localizable Settings_Load}"/>
+                                   ClosePopupOnMouseDown="True"
+                                   DataContext="{Binding RelativeSource={RelativeSource AncestorType=root:MainWindow}}">
+                <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding DockCommands.Save}"/>
+                <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding DockCommands.Load}"/>
                 <MenuItem Header="{ex:Localizable Settings_LoadFrom}"/>
                 <MenuItem Header="{ex:Localizable Settings_SaveAs}"/>
             </ribbon:DropDownButton>
