@@ -1079,6 +1079,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Config File 的本地化字符串。
+        /// </summary>
+        public static string Settings_ConfigFile {
+            get {
+                return ResourceManager.GetString("Settings_ConfigFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Open 的本地化字符串。
         /// </summary>
         public static string Settings_FolderOpen {
@@ -1093,6 +1102,33 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Settings_FolderSelect {
             get {
                 return ResourceManager.GetString("Settings_FolderSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Layout 的本地化字符串。
+        /// </summary>
+        public static string Settings_Layout {
+            get {
+                return ResourceManager.GetString("Settings_Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Load 的本地化字符串。
+        /// </summary>
+        public static string Settings_Load {
+            get {
+                return ResourceManager.GetString("Settings_Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Load from... 的本地化字符串。
+        /// </summary>
+        public static string Settings_LoadFrom {
+            get {
+                return ResourceManager.GetString("Settings_LoadFrom", resourceCulture);
             }
         }
         
@@ -1138,6 +1174,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string Settings_NotifyWhenRepair {
             get {
                 return ResourceManager.GetString("Settings_NotifyWhenRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Save 的本地化字符串。
+        /// </summary>
+        public static string Settings_Save {
+            get {
+                return ResourceManager.GetString("Settings_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Save as... 的本地化字符串。
+        /// </summary>
+        public static string Settings_SaveAs {
+            get {
+                return ResourceManager.GetString("Settings_SaveAs", resourceCulture);
             }
         }
         

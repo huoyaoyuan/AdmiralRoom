@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ribbon="urn:fluent-ribbon"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
@@ -12,10 +13,37 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ribbon:DropDownButton Grid.Column="0"
+                                   Header="{ex:Localizable Settings_ConfigFile}"
+                                   
+                                   Margin="40,20,20,10"
+                                   ClosePopupOnMouseDown="True">
+                <MenuItem Header="{ex:Localizable Settings_Save}"/>
+                <MenuItem Header="{ex:Localizable Settings_Load}"/>
+                <MenuItem Header="{ex:Localizable Settings_LoadFrom}"/>
+                <MenuItem Header="{ex:Localizable Settings_SaveAs}"/>
+            </ribbon:DropDownButton>
+            <ribbon:DropDownButton Grid.Column="1"
+                                   Header="{ex:Localizable Settings_Layout}"
+                                   
+                                   Margin="20,20,20,10"
+                                   ClosePopupOnMouseDown="True">
+                <MenuItem Header="{ex:Localizable Settings_Save}"/>
+                <MenuItem Header="{ex:Localizable Settings_Load}"/>
+                <MenuItem Header="{ex:Localizable Settings_LoadFrom}"/>
+                <MenuItem Header="{ex:Localizable Settings_SaveAs}"/>
+            </ribbon:DropDownButton>
+        </Grid>
         <GroupBox Header="{ex:Localizable Screenshot}"
-
-                  Grid.Row="0"
+                  
+                  Grid.Row="1"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
@@ -32,8 +60,8 @@
             </StackPanel>
         </GroupBox>
         <GroupBox Header="{ex:Localizable Notification}"
-
-                  Grid.Row="1"
+                  
+                  Grid.Row="2"
                   Margin="5"
                   VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">

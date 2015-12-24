@@ -454,11 +454,17 @@
   <data name="SelectAll" xml:space="preserve">
     <value>すべて選択</value>
   </data>
+  <data name="Settings_ConfigFile" xml:space="preserve">
+    <value>設定ファイル</value>
+  </data>
   <data name="Settings_FolderOpen" xml:space="preserve">
     <value>開く</value>
   </data>
   <data name="Settings_FolderSelect" xml:space="preserve">
     <value>選択</value>
+  </data>
+  <data name="Settings_Layout" xml:space="preserve">
+    <value>レイアウト</value>
   </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>通知短缩時間（秒）：</value>

@@ -457,11 +457,23 @@ Expedition {1} - {2}</value>
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
   </data>
+  <data name="Settings_ConfigFile" xml:space="preserve">
+    <value>Config File</value>
+  </data>
   <data name="Settings_FolderOpen" xml:space="preserve">
     <value>Open</value>
   </data>
   <data name="Settings_FolderSelect" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="Settings_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="Settings_Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="Settings_LoadFrom" xml:space="preserve">
+    <value>Load from...</value>
   </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>Notify shorting time(s): </value>
@@ -477,6 +489,12 @@ Expedition {1} - {2}</value>
   </data>
   <data name="Settings_NotifyWhenRepair" xml:space="preserve">
     <value>Notify when repairing complete</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Settings_SaveAs" xml:space="preserve">
+    <value>Save as...</value>
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>Screenshot Folder: </value>

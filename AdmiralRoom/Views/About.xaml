@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              mc:Ignorable="d">
-    <FlowDocumentScrollViewer>
+    <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
             <Paragraph FontSize="24">
                 <Run Text="AdmiralRoom ver"/>

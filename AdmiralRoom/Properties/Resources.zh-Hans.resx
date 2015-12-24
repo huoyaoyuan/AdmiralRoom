@@ -454,11 +454,23 @@
   <data name="SelectAll" xml:space="preserve">
     <value>全选</value>
   </data>
+  <data name="Settings_ConfigFile" xml:space="preserve">
+    <value>配置文件</value>
+  </data>
   <data name="Settings_FolderOpen" xml:space="preserve">
     <value>打开</value>
   </data>
   <data name="Settings_FolderSelect" xml:space="preserve">
     <value>选择</value>
+  </data>
+  <data name="Settings_Layout" xml:space="preserve">
+    <value>界面布局</value>
+  </data>
+  <data name="Settings_Load" xml:space="preserve">
+    <value>读取</value>
+  </data>
+  <data name="Settings_LoadFrom" xml:space="preserve">
+    <value>加载…</value>
   </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>通知提前时间（秒）：</value>
@@ -474,6 +486,12 @@
   </data>
   <data name="Settings_NotifyWhenRepair" xml:space="preserve">
     <value>修理完毕时通知</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Settings_SaveAs" xml:space="preserve">
+    <value>另存为…</value>
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>截图文件夹：</value>
