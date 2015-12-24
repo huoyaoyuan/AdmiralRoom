@@ -44,3 +44,10 @@ Each part is in seperated window and can be docked freely.
 + [AvalonDock](http://wpftoolkit.codeplex.com/)
 + [JSON.Net](http://www.newtonsoft.com/json)
 + [WindowsAPICodePack](http://archive.msdn.microsoft.com/WindowsAPICodePack)
+
+##Special Thanks
+---
+
++ [KanColleViewer](https://github.com/Grabacr07/KanColleViewer)
++ [ElectronicObserver](https://github.com/andanteyk/ElectronicObserver)
++ [logbook-ex](https://github.com/nekopanda/logbook)
