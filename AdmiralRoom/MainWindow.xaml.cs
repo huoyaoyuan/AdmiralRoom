@@ -43,9 +43,9 @@ namespace Huoyaoyuan.AdmiralRoom
             BrowserRefresh.Click += (_, __) => GameHost.WebBrowser.Navigate(GameHost.WebBrowser.Source);
             BrowserBackToGame.Click += (_, __) => GameHost.WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
             
-            //Theme button handler
-            NoDWM.Click += (s, _) => this.DontUseDwm = (s as CheckBox).IsChecked.Value;
-            NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;
+            //Theme handler
+            Config.Current.NoDwmChanged += v => this.DontUseDwm = v;
+            this.DontUseDwm = Config.Current.NoDWM;
             Themes.SelectionChanged += (s, _) =>
             {
                 if (DockMan.FloatingWindows.Any())//Can't DestroyWindow
@@ -56,8 +56,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     ThemeService.ChangeRibbonTheme(Config.Current.Theme, this);
                 }
             };
-            UseAeroControl.Click += (s, _) => ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
-            UseAeroControl.IsChecked = Config.Current.Aero;
+            Config.Current.AeroChanged += ThemeService.EnableAeroControls;
             ThemeService.EnableAeroControls(Config.Current.Aero);
 
             //Proxy button handler

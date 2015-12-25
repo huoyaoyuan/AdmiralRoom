@@ -164,16 +164,8 @@
                                      IsEditable="False" KeyTip="TH"
                                      ItemsSource="{x:Static local:ThemeService.SupportedThemes}"
                                      SelectedValue="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="{ex:Localizable Theme_NoDWM}"
-                                     
-                                     x:Name="NoDWM"
-                                     KeyTip="D"
-                                     IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
-                    <ribbon:CheckBox Header="{ex:Localizable Theme_Aero}"
-                                     
-                                     x:Name="UseAeroControl"
-                                     KeyTip="A"
-                                     IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:CheckBox Header="{ex:Localizable Theme_NoDWM}" KeyTip="D" IsChecked="{Binding NoDWM, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
+                    <ribbon:CheckBox Header="{ex:Localizable Theme_Aero}" KeyTip="A" IsChecked="{Binding Aero, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Font}">
                     <ribbon:RibbonToolBar DataContext="ribbonWindow">

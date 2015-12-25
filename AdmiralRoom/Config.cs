@@ -48,6 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
         #region NoDWM
         private bool _nodwm;
+        public event Action<bool> NoDwmChanged;
         public bool NoDWM
         {
             get { return _nodwm; }
@@ -57,6 +58,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     _nodwm = value;
                     OnPropertyChanged();
+                    NoDwmChanged?.Invoke(value);
                 }
             }
         }
@@ -64,6 +66,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
         #region Aero
         private bool _aero;
+        public event Action<bool> AeroChanged;
         public bool Aero
         {
             get { return _aero; }
@@ -73,6 +76,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     _aero = value;
                     OnPropertyChanged();
+                    AeroChanged?.Invoke(value);
                 }
             }
         }
