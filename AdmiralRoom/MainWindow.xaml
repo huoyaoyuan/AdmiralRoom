@@ -270,9 +270,7 @@
             <Dock:LayoutRoot>
                 <Dock:LayoutPanel>
                     <Dock:LayoutDocumentPane>
-                        <Dock:LayoutDocument x:Name="BrowserDocument"
-                                             CanClose="False" CanFloat="False"
-                                             ContentId="GameHost">
+                        <Dock:LayoutDocument CanClose="False" CanFloat="False" ContentId="GameHost">
                             <local:KanColleBrowser x:Name="GameHost"/>
                         </Dock:LayoutDocument>
                     </Dock:LayoutDocumentPane>

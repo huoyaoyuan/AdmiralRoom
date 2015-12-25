@@ -42,7 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom
             };
             BrowserRefresh.Click += (_, __) => GameHost.WebBrowser.Navigate(GameHost.WebBrowser.Source);
             BrowserBackToGame.Click += (_, __) => GameHost.WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
-            
+
             //Theme handler
             Config.Current.NoDwmChanged += v => this.DontUseDwm = v;
             this.DontUseDwm = Config.Current.NoDWM;
@@ -99,7 +99,6 @@ namespace Huoyaoyuan.AdmiralRoom
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
             this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
 
-            layoutserializer = new XmlLayoutSerializer(DockMan);
             DockCommands = new Config.CommandSet
             {
                 Save = new DelegateCommand(() => TrySaveLayout()),
@@ -132,9 +131,9 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private void MakeViewList(ILayoutElement elem)
         {
-            if (elem is LayoutAnchorable)
+            if (elem is LayoutContent)
             {
-                ViewList.Add((elem as LayoutAnchorable).ContentId, elem as LayoutAnchorable);
+                ViewList.Add((elem as LayoutContent).ContentId, elem as LayoutContent);
                 return;
             }
             if (elem is ILayoutContainer)
@@ -147,10 +146,8 @@ namespace Huoyaoyuan.AdmiralRoom
         }
 
         #region Layout
-        private XmlLayoutSerializer layoutserializer;
         private void LoadLayout(object sender, RoutedEventArgs e)
         {
-            layoutserializer.LayoutSerializationCallback += (_, args) => args.Content = args.Content;
             TryLoadLayout();
             foreach (var view in DockMan.Layout.Hidden.Where(x => x.PreviousContainerIndex == -1).ToArray())
             {
@@ -158,14 +155,13 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             MakeViewList(DockMan.Layout);
 
-            BindingOperations.SetBinding(BrowserDocument, LayoutDocument.TitleProperty, new Binding("Browser")
-            {
-                Source = ResourceService.Current
-            });
+            BindingOperations.SetBinding(ViewList["GameHost"], LayoutContent.TitleProperty, new Views.Extensions.LocalizableExtension("Browser"));
         }
         private void SaveLayout(object sender, EventArgs e) => TrySaveLayout();
         private void TryLoadLayout(string path = "layout.xml")
         {
+            XmlLayoutSerializer layoutserializer = new XmlLayoutSerializer(DockMan);
+            layoutserializer.LayoutSerializationCallback += (_, args) => args.Model.Content = args.Content;
             try
             {
                 layoutserializer.Deserialize(path);
@@ -174,6 +170,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         private void TrySaveLayout(string path = "layout.xml")
         {
+            XmlLayoutSerializer layoutserializer = new XmlLayoutSerializer(DockMan);
             try
             {
                 layoutserializer.Serialize(path);
@@ -182,14 +179,17 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        private Dictionary<string, LayoutAnchorable> ViewList = new Dictionary<string, LayoutAnchorable>();
+        private Dictionary<string, LayoutContent> ViewList = new Dictionary<string, LayoutContent>();
         private void SetToggleBinding(object sender, RoutedEventArgs e)
         {
             Binding ToggleBinding = new Binding();
             Control content = (sender as Control).Tag as Control;
             string ViewName = content.GetType().Name;
+            LayoutContent TargetContent;
             LayoutAnchorable TargetView;
-            if (!ViewList.TryGetValue(ViewName, out TargetView))
+            ViewList.TryGetValue(ViewName, out TargetContent);
+            TargetView = TargetContent as LayoutAnchorable;
+            if (TargetView == null)
             {
                 TargetView = new LayoutAnchorable();
                 ViewList.Add(ViewName, TargetView);
