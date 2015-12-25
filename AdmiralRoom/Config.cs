@@ -234,6 +234,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     _screenshotfileformat = value;
                     OnPropertyChanged();
+                    OnPropertyChanged("IsScreenShotJpg");
+                    OnPropertyChanged("IsScreenShotPng");
                 }
             }
         }
