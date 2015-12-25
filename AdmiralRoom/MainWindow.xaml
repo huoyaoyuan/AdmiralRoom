@@ -205,52 +205,52 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="{ex:Localizable RibbonTab_Window}" KeyTip="W">
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Window_Subwindow}">
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:AdmiralView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:FleetView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:MissionView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:RepairView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:BuildingView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:DevelopView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:QuestOverview/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:CompassView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:MapHPView/>
                         </ribbon:ToggleButton.Tag>
                     </ribbon:ToggleButton>
-                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="SetToggleBinding">
+                    <ribbon:ToggleButton Margin="0,0,4,0" Loaded="RegisterToggleBinding">
                         <ribbon:ToggleButton.Tag>
                             <Views:BattleView/>
                         </ribbon:ToggleButton.Tag>

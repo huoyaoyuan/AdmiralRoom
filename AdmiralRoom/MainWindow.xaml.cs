@@ -127,13 +127,15 @@ namespace Huoyaoyuan.AdmiralRoom
                     }
                 })
             };
+            SetToggleBindings += () =>
+                BindingOperations.SetBinding(ViewList["GameHost"], LayoutContent.TitleProperty, new Views.Extensions.LocalizableExtension("Browser"));
         }
 
         private void MakeViewList(ILayoutElement elem)
         {
             if (elem is LayoutContent)
             {
-                ViewList.Add((elem as LayoutContent).ContentId, elem as LayoutContent);
+                ViewList[(elem as LayoutContent).ContentId] = elem as LayoutContent;
                 return;
             }
             if (elem is ILayoutContainer)
@@ -153,9 +155,6 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 DockMan.Layout.Hidden.Remove(view);
             }
-            MakeViewList(DockMan.Layout);
-
-            BindingOperations.SetBinding(ViewList["GameHost"], LayoutContent.TitleProperty, new Views.Extensions.LocalizableExtension("Browser"));
         }
         private void SaveLayout(object sender, EventArgs e) => TrySaveLayout();
         private void TryLoadLayout(string path = "layout.xml")
@@ -167,6 +166,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 layoutserializer.Deserialize(path);
             }
             catch { }
+            MakeViewList(DockMan.Layout);
+            SetToggleBindings();
         }
         private void TrySaveLayout(string path = "layout.xml")
         {
@@ -180,10 +181,16 @@ namespace Huoyaoyuan.AdmiralRoom
         #endregion
 
         private Dictionary<string, LayoutContent> ViewList = new Dictionary<string, LayoutContent>();
-        private void SetToggleBinding(object sender, RoutedEventArgs e)
+        private Action SetToggleBindings;
+        private void RegisterToggleBinding(object sender, RoutedEventArgs e)
+        {
+            SetToggleBindings += () => SetToggleBinding(sender as Fluent.ToggleButton);
+            SetToggleBinding(sender as Fluent.ToggleButton);
+        }
+        private void SetToggleBinding(Fluent.ToggleButton sender)
         {
             Binding ToggleBinding = new Binding();
-            Control content = (sender as Control).Tag as Control;
+            Control content = sender.Tag as Control;
             string ViewName = content.GetType().Name;
             LayoutContent TargetContent;
             LayoutAnchorable TargetView;
@@ -209,15 +216,14 @@ namespace Huoyaoyuan.AdmiralRoom
                 TargetView.FloatingWidth = content.Width;
                 //TargetView.FloatingTop = this.ActualHeight / 2;
                 //TargetView.FloatingWidth = this.ActualWidth / 2;
-                Binding titlebinding = new Binding("Resources.ViewTitle_" + ViewName);
-                titlebinding.Source = ResourceService.Current;
+                Binding titlebinding = new Views.Extensions.LocalizableExtension("ViewTitle_" + ViewName);
                 BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
-                (sender as Fluent.ToggleButton).SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
+                sender.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
             }
             ToggleBinding.Source = TargetView;
             ToggleBinding.Path = new PropertyPath("IsVisible");
             ToggleBinding.Mode = BindingMode.TwoWay;
-            (sender as Fluent.ToggleButton).SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
+            sender.SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
         }
 
         private void SetUniqueWindowCommand(object sender, RoutedEventArgs e)
