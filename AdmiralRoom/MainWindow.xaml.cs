@@ -42,12 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom
             };
             BrowserRefresh.Click += (_, __) => GameHost.WebBrowser.Navigate(GameHost.WebBrowser.Source);
             BrowserBackToGame.Click += (_, __) => GameHost.WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
-
-            //Language handler
-            LanguageBox.ItemsSource = ResourceService.SupportedCultures;
-            LanguageBox.SelectionChanged += (s, _) => ResourceService.Current.ChangeCulture((s as ComboBox).SelectedValue.ToString());
-            ResourceService.Current.ChangeCulture(LanguageBox.SelectedValue.ToString());
-
+            
             //Theme button handler
             NoDWM.Click += (s, _) => this.DontUseDwm = (s as CheckBox).IsChecked.Value;
             NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;

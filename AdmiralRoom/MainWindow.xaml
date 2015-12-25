@@ -153,9 +153,9 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="{ex:Localizable RibbonTab_View}" KeyTip="V">
                 <ribbon:RibbonGroupBox Header="Language">
-                    <ribbon:ComboBox x:Name="LanguageBox"
-                                     IsEditable="False" KeyTip="L"
+                    <ribbon:ComboBox IsEditable="False" KeyTip="L"
                                      Width="100"
+                                     ItemsSource="{x:Static local:ResourceService.SupportedCultures}"
                                      SelectedValuePath="Name"
                                      SelectedValue="{Binding Language, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                 </ribbon:RibbonGroupBox>
