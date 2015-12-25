@@ -51,12 +51,15 @@ namespace Huoyaoyuan.AdmiralRoom
             //Theme button handler
             NoDWM.Click += (s, _) => this.DontUseDwm = (s as CheckBox).IsChecked.Value;
             NoDWM.IsChecked = this.DontUseDwm = Config.Current.NoDWM;
-            Themes.ItemsSource = ThemeService.SupportedThemes;
             Themes.SelectionChanged += (s, _) =>
             {
                 if (DockMan.FloatingWindows.Any())//Can't DestroyWindow
                     MessageBox.Show("有子窗口处于浮动状态，主题切换必须下次启动程序才能生效。", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                else ThemeService.ChangeRibbonTheme((s as ComboBox).SelectedValue.ToString(), this);
+                else
+                {
+                    backstage.IsOpen = false;
+                    ThemeService.ChangeRibbonTheme(Config.Current.Theme, this);
+                }
             };
             UseAeroControl.Click += (s, _) => ThemeService.EnableAeroControls((s as CheckBox).IsChecked.Value);
             UseAeroControl.IsChecked = Config.Current.Aero;

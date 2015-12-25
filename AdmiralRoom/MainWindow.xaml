@@ -33,7 +33,7 @@
                 </ResourceDictionary>
             </ribbon:Ribbon.Resources>
             <ribbon:Ribbon.Menu>
-                <ribbon:Backstage Header="提督の部屋" KeyTip="H">
+                <ribbon:Backstage Header="提督の部屋" KeyTip="H" x:Name="backstage">
                     <ribbon:BackstageTabControl>
                         <ribbon:BackstageTabItem Header="{ex:Localizable Options}" KeyTip="O">
                             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -162,6 +162,7 @@
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Theme}">
                     <ribbon:ComboBox x:Name="Themes"
                                      IsEditable="False" KeyTip="TH"
+                                     ItemsSource="{x:Static local:ThemeService.SupportedThemes}"
                                      SelectedValue="{Binding Theme, Mode=TwoWay, Source={x:Static local:Config.Current}}"/>
                     <ribbon:CheckBox Header="{ex:Localizable Theme_NoDWM}"
                                      
