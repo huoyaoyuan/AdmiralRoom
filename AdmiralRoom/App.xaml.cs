@@ -16,7 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Win32Helper.SetIEEmulation(11001);
             Win32Helper.SetGPURendering(true);
             Win32Helper.SetMMCSSTask();
-            Config.Current = Config.Load();
+            Config.Current.MemberwiseCopy(Config.Load());
 
             Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
             Officer.Staff.Proxy = Config.Current.Proxy;

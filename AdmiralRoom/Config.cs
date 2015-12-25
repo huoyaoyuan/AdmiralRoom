@@ -11,7 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     public class Config : NotificationObject
     {
-        public static Config Current { get; set; } = new Config();
+        public static Config Current { get; } = new Config();
 
         #region Language
         private string _language;
@@ -242,6 +242,7 @@ namespace Huoyaoyuan.AdmiralRoom
         #endregion
 
         [XmlIgnore]
+        [MemberwiseCopyIgnore]
         public bool IsScreenShotJpg
         {
             get
@@ -260,6 +261,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
 
         [XmlIgnore]
+        [MemberwiseCopyIgnore]
         public bool IsScreenShotPng
         {
             get
@@ -372,6 +374,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             }
         }
+        [MemberwiseCopyIgnore]
         public string FontFamilyName
         {
             get { return FontFamily.FamilyNames.Values.First(); }
@@ -395,7 +398,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        public Config()
+        private Config()
         {
             _theme = "Windows 8";
             var thisculture = CultureInfo.CurrentUICulture;
@@ -471,7 +474,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static CommandSet Commands { get; } = new CommandSet
         {
             Save = new DelegateCommand(() => Current.Save()),
-            Load = new DelegateCommand(() => Current = Load()),
+            Load = new DelegateCommand(() => Current.MemberwiseCopy(Load())),
             SaveAs = new DelegateCommand(() =>
             {
                 using (var filedialog = new CommonSaveFileDialog())
@@ -492,7 +495,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
                     filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
                     if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
-                        Current = Load(filedialog.FileName);
+                        Current.MemberwiseCopy(Load(filedialog.FileName));
                 }
             })
         };
