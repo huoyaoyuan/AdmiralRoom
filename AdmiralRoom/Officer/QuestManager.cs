@@ -118,7 +118,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Directory.CreateDirectory("logs");
             using (var file = new StreamWriter(@"logs\questcount.txt"))
             {
-                file.WriteLine(lastcheckedtime.LocalDateTime.ToShortDateString());
+                file.WriteLine(lastcheckedtime.ToOffset(QuestUpdateTime).Date.ToShortDateString());
                 foreach (var quest in KnownQuests.Known)
                 {
                     StringBuilder sb = new StringBuilder();
