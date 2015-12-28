@@ -22,22 +22,23 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
         {
             IProvideValueTarget service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
             if (service == null) return null;
-            target = service.TargetObject as FrameworkElement;
-            property = service.TargetProperty as DependencyProperty;
-            if (target == null || property == null) return this;
-            target.DataContextChanged += (_, e) => CreateBinding(e);
-            CreateBinding(target.DataContext);
+            targetelement = service.TargetObject as FrameworkElement;
+            dp = service.TargetProperty as DependencyProperty;
+            if (targetelement == null || dp == null) return this;
+            targetelement.DataContextChanged += (s, e) => CreateBinding(s as DependencyObject, e.NewValue);
+            CreateBinding(targetelement, targetelement.DataContext);
             return null;
         }
-        private FrameworkElement target;
-        private DependencyProperty property;
-        private void CreateBinding(object datacontext)
+        private FrameworkElement targetelement;
+        private DependencyProperty dp;
+        private void CreateBinding(DependencyObject target, object datacontext)
         {
-            if (datacontext == null) return;
+            if (datacontext == null || target == null) return;
             Type type = datacontext.GetType();
             PropertyInfo property = type.GetProperty(this.PathSource);
+            if (property == null) return;
             Binding binding = new Binding { Path = new PropertyPath(property.GetValue(datacontext).ToString()), Source = this.Source ?? datacontext, Mode = this.Mode };
-            BindingOperations.SetBinding(this.target, this.property, binding);
+            BindingOperations.SetBinding(target, dp, binding);
         }
     }
 }
