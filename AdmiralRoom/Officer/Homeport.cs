@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -145,6 +146,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void PortHandler(port_port api)
         {
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
+            GC.Collect();
             Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             ConditionHelper.Instance.BeginUpdate();
