@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -11,7 +13,8 @@ namespace Huoyaoyuan.AdmiralRoom
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Environment.CurrentDirectory = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            Environment.CurrentDirectory = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
 
             Win32Helper.SetIEEmulation(11001);
             Win32Helper.SetGPURendering(true);
@@ -29,6 +32,18 @@ namespace Huoyaoyuan.AdmiralRoom
             this.MainWindow.Show();
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
         }
+
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            using (var file = File.Open("crash.log", FileMode.Append, FileAccess.Write))
+            {
+                StreamWriter sw = new StreamWriter(file);
+                sw.WriteLine("==================================================");
+                sw.WriteLine(e.Exception.ToString());
+                sw.Flush();
+            }
+        }
+
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
