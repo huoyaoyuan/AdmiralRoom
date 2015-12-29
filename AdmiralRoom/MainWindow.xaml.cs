@@ -201,7 +201,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 TargetView = new LayoutAnchorable();
                 ViewList.Add(ViewName, TargetView);
                 TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
-                //TargetView.Float();
+                TargetView.DockAsDocument();
+                TargetView.CanClose = false;
                 TargetView.Hide();
             }
             if (TargetView.Content == null)
