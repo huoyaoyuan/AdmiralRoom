@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+#pragma warning disable CC0074
+
 namespace Huoyaoyuan.AdmiralRoom.Win32
 {
     [StructLayout(LayoutKind.Sequential)]

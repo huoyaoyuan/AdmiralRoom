@@ -64,7 +64,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 _progress.Current += n;
                 _progress.CheckCurrent();
-                OnPropertyChanged("Progress");
+                OnPropertyChanged(nameof(Progress));
                 SharedWith?.SharedIncrease(n);
             }
         }
@@ -73,7 +73,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             _progress.Current += n;
             _progress.CheckCurrent();
-            OnPropertyChanged("Progress");
+            OnPropertyChanged(nameof(Progress));
         }
 
         public void Dispose() => Counter.Increased -= Increase;

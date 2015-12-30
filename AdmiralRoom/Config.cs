@@ -239,8 +239,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     _screenshotfileformat = value;
                     OnPropertyChanged();
-                    OnPropertyChanged("IsScreenShotJpg");
-                    OnPropertyChanged("IsScreenShotPng");
+                    OnPropertyChanged(nameof(IsScreenShotJpg));
+                    OnPropertyChanged(nameof(IsScreenShotPng));
                 }
             }
         }
@@ -261,7 +261,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     ScreenShotFileFormat = "jpg";
                 }
                 OnPropertyChanged();
-                OnPropertyChanged("IsScreenShotPng");
+                OnPropertyChanged(nameof(IsScreenShotPng));
             }
         }
 
@@ -280,7 +280,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     ScreenShotFileFormat = "png";
                 }
                 OnPropertyChanged();
-                OnPropertyChanged("IsScreenShotJpg");
+                OnPropertyChanged(nameof(IsScreenShotJpg));
             }
         }
 

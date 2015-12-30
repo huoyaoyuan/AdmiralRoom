@@ -19,7 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom
     /// <summary>
     /// KanColleBrowser.xaml 的交互逻辑
     /// </summary>
-    [ContentProperty("WebBrowser")]
+    [ContentProperty(nameof(WebBrowser))]
     public partial class KanColleBrowser : UserControl
     {
         #region StyleSheet
@@ -123,8 +123,7 @@ namespace Huoyaoyuan.AdmiralRoom
         private static double GetSystemDpiRate()
         {
             var dpi = GetSystemDpi();
-            if (dpi.Height == dpi.Width) return dpi.Height / OriginDpi;
-            else return 1;
+            return dpi.Height == dpi.Width ? dpi.Height / OriginDpi : 1;
         }
 
         /// <remarks>
@@ -209,21 +208,23 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         private static void SaveScreenshot(int width, int height, IViewObject viewObject, string path)
         {
-            var image = new Bitmap(width, height, PixelFormat.Format24bppRgb);
-            var rect = new RECT { left = 0, top = 0, width = width, height = height };
-            var tdevice = new DVTARGETDEVICE { tdSize = 0 };
-
-            using (var graphics = Graphics.FromImage(image))
+            using (var image = new Bitmap(width, height, PixelFormat.Format24bppRgb))
             {
-                var hdc = graphics.GetHdc();
-                viewObject.Draw(1, 0, IntPtr.Zero, tdevice, IntPtr.Zero, hdc, rect, null, IntPtr.Zero, IntPtr.Zero);
-                graphics.ReleaseHdc(hdc);
-            }
-            var format = Path.GetExtension(path)?.ToLower() == ".jpg"
-                ? ImageFormat.Jpeg
-                : ImageFormat.Png;
+                var rect = new RECT { left = 0, top = 0, width = width, height = height };
+                var tdevice = new DVTARGETDEVICE { tdSize = 0 };
 
-            image.Save(path, format);
+                using (var graphics = Graphics.FromImage(image))
+                {
+                    var hdc = graphics.GetHdc();
+                    viewObject.Draw(1, 0, IntPtr.Zero, tdevice, IntPtr.Zero, hdc, rect, null, IntPtr.Zero, IntPtr.Zero);
+                    graphics.ReleaseHdc(hdc);
+                }
+                var format = Path.GetExtension(path)?.ToLower() == ".jpg"
+                    ? ImageFormat.Jpeg
+                    : ImageFormat.Png;
+
+                image.Save(path, format);
+            }
         }
         public void ApplyZoomFactor(double zoomFactor)
         {

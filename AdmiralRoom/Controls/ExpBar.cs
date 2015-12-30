@@ -19,7 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for Exp.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ExpProperty =
-            DependencyProperty.Register("Exp", typeof(Exp), typeof(ExpBar), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(Exp), typeof(Exp), typeof(ExpBar), new PropertyMetadata(null));
 
         public int Level
         {
@@ -29,6 +29,6 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for Level.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LevelProperty =
-            DependencyProperty.Register("Level", typeof(int), typeof(ExpBar), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(Level), typeof(int), typeof(ExpBar), new PropertyMetadata(0));
     }
 }

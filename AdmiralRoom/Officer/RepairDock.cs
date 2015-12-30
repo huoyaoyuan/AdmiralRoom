@@ -24,7 +24,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
-            OnPropertyChanged("CompleteTime");
+            OnPropertyChanged(nameof(CompleteTime));
             if (Ship != null)
             {
                 if (Ship.RepairingHP == Ship.HP.Max) return;
@@ -36,9 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         protected override void UpdateProp()
         {
             CompleteTime = DateTimeOffset.FromUnixTimeMilliseconds(rawdata.api_complete_time);
-            if (State == DockState.Repairing)
-                Ship = Staff.Current.Homeport.Ships[rawdata.api_ship_id];
-            else Ship = null;
+            Ship = State == DockState.Repairing ? Staff.Current.Homeport.Ships[rawdata.api_ship_id] : null;
         }
     }
     public enum DockState { Locked = -1, Empty = 0, Repairing = 1, Building = 2, BuildComplete = 3 }

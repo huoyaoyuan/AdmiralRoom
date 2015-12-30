@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using FILETIME = System.Runtime.InteropServices.ComTypes.FILETIME;
 
+#pragma warning disable CC0021
+#pragma warning disable CC0074
+
 namespace Huoyaoyuan.AdmiralRoom
 {
     static class WinInetHelper

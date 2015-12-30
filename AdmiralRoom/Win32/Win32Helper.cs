@@ -5,6 +5,10 @@ using System.Windows;
 using System.Windows.Interop;
 using Microsoft.Win32;
 
+#pragma warning disable CC0108
+#pragma warning disable CC0074
+#pragma warning disable CC0052
+
 namespace Huoyaoyuan.AdmiralRoom
 {
     internal static class Win32Helper

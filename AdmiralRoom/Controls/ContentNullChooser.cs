@@ -13,7 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for NullContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NullContentProperty =
-            DependencyProperty.Register("NullContent", typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
+            DependencyProperty.Register(nameof(NullContent), typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
 
         public object NotNullContent
         {
@@ -23,7 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for NotNullContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NotNullContentProperty =
-            DependencyProperty.Register("NotNullContent", typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
+            DependencyProperty.Register(nameof(NotNullContent), typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
 
         public object ContentChooser
         {
@@ -33,13 +33,12 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for ContentSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ContentChooserProperty =
-            DependencyProperty.Register("ContentChooser", typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
+            DependencyProperty.Register(nameof(ContentChooser), typeof(object), typeof(ContentNullChooser), new PropertyMetadata(null, OnPropertyChanged));
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => (d as ContentNullChooser).UpdateContent();
         private void UpdateContent()
         {
-            if (ContentChooser == null) Content = NullContent;
-            else Content = NotNullContent;
+            Content = ContentChooser == null ? NullContent : NotNullContent;
         }
     }
 }

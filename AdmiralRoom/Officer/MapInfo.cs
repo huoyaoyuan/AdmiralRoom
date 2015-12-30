@@ -1,5 +1,7 @@
 ﻿using Huoyaoyuan.AdmiralRoom.API;
 
+#pragma warning disable CC0013
+
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class MapInfo : GameObject<api_mst_mapinfo>
@@ -89,8 +91,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (MaxHP != 0) return NowHP <= Staff.Current.MasterData.QueryFinalHP(this);
                 else if (RequiredDefeatCount > 1) return RequiredDefeatCount - DefeatedCount == 1;
-                else if (!IsClear) return true;
-                else return false;
+                else return !IsClear;
             }
         }
         public LimitedValue HPMeter

@@ -4,7 +4,7 @@ using System.Linq;
 namespace Huoyaoyuan.AdmiralRoom
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class MemberwiseCopyIgnoreAttribute : Attribute { }
+    public sealed class MemberwiseCopyIgnoreAttribute : Attribute { }
     static class MemberwiseCopyHelper
     {
         public static void MemberwiseCopy<T>(this T dest, T source)

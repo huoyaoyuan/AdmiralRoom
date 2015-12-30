@@ -8,6 +8,9 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
+#pragma warning disable CC0021
+#pragma warning disable CC0108
+
 namespace Huoyaoyuan.AdmiralRoom
 {
     /// <summary>
@@ -180,7 +183,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        private Dictionary<string, LayoutContent> ViewList = new Dictionary<string, LayoutContent>();
+        private readonly Dictionary<string, LayoutContent> ViewList = new Dictionary<string, LayoutContent>();
         private Action SetToggleBindings;
         private void RegisterToggleBinding(object sender, RoutedEventArgs e)
         {
@@ -234,14 +237,16 @@ namespace Huoyaoyuan.AdmiralRoom
             if (windowtype == null) return;
 
             control.Content = windowtype.Name;
-            Binding titlebinding = new Binding("Resources.ViewTitle_" + windowtype.Name);
-            titlebinding.Source = ResourceService.Current;
+            Binding titlebinding = new Binding("Resources.ViewTitle_" + windowtype.Name)
+            {
+                Source = ResourceService.Current
+            };
             control.SetBinding(ContentProperty, titlebinding);
 
             control.Click += UniqueCommandClick;
         }
 
-        private void UniqueCommandClick(object sender, RoutedEventArgs e)
+        private static void UniqueCommandClick(object sender, RoutedEventArgs e)
         {
             Button control = sender as Button;
             Window w;
@@ -249,8 +254,10 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 w = Activator.CreateInstance(control.Tag as Type) as Window;
                 w.Closed += (_, __) => control.Tag = w.GetType();
-                Binding titlebinding = new Binding("Resources.ViewTitle_" + w.GetType().Name);
-                titlebinding.Source = ResourceService.Current;
+                Binding titlebinding = new Binding("Resources.ViewTitle_" + w.GetType().Name)
+                {
+                    Source = ResourceService.Current
+                };
                 w.SetBinding(TitleProperty, titlebinding);
                 control.Tag = w;
             }

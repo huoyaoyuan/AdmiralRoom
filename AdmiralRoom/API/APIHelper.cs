@@ -7,6 +7,8 @@ using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
 using Newtonsoft.Json;
 
+#pragma warning disable CC0022
+
 namespace Huoyaoyuan.AdmiralRoom
 {
     public static class APIHelper

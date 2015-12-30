@@ -2,15 +2,15 @@
 {
     static class ConstData
     {
-        private static int[] f99exp;
-        private static int[] ad100exp =
+        private static readonly int[] f99exp;
+        private static readonly int[] ad100exp =
         {
             1300000,1600000,1900000,2200000,2600000,3000000,
             3500000,4000000,4600000,5200000,5900000,
             6600000,7400000,8200000,9100000,10000000,
             11000000,12000000,13000000,14000000,15000000
         };
-        private static int[] ship100exp;
+        private static readonly int[] ship100exp;
         static ConstData()
         {
             //generate exp table
@@ -122,8 +122,7 @@
         {
             try
             {
-                if (level < 99) return f99exp[level - 1];
-                else return ship100exp[level - 100];
+                return level < 99 ? f99exp[level - 1] : ship100exp[level - 100];
             }
             catch { return 0; }
         }
@@ -136,12 +135,11 @@
         {
             try
             {
-                if (level <= 99) return f99exp[level - 1];
-                else return ad100exp[level - 100];
+                return level <= 99 ? f99exp[level - 1] : ad100exp[level - 100];
             }
             catch { return 0; }
         }
         public static string[] AdmiralRanks { get; } = { "", "元帥", "大将", "中将", "少将", "大佐", "中佐", "新米中佐", "少佐", "中堅少佐", "新米少佐" };
-        public static string[] RanksWin = { "S", "A", "B" };
+        public static readonly string[] RanksWin = { "S", "A", "B" };
     }
 }

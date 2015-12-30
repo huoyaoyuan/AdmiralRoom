@@ -5,24 +5,25 @@ using System.Windows.Media;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
 #pragma warning disable RECS0147
+#pragma warning disable CC0013
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
     public class LVColorConverter : IValueConverter
     {
         #region Constant HP Brushes
-        private static SolidColorBrush HP100Brush = new SolidColorBrush(Colors.SpringGreen).TryFreeze();
-        private static SolidColorBrush HP75Brush = new SolidColorBrush(Colors.Aquamarine).TryFreeze();
-        private static SolidColorBrush HP50Brush = new SolidColorBrush(Colors.GreenYellow).TryFreeze();
-        private static SolidColorBrush HP25Brush = new SolidColorBrush(Colors.Orange).TryFreeze();
-        private static SolidColorBrush HP0Brush = new SolidColorBrush(Colors.Red).TryFreeze();
+        private static readonly SolidColorBrush HP100Brush = new SolidColorBrush(Colors.SpringGreen).TryFreeze();
+        private static readonly SolidColorBrush HP75Brush = new SolidColorBrush(Colors.Aquamarine).TryFreeze();
+        private static readonly SolidColorBrush HP50Brush = new SolidColorBrush(Colors.GreenYellow).TryFreeze();
+        private static readonly SolidColorBrush HP25Brush = new SolidColorBrush(Colors.Orange).TryFreeze();
+        private static readonly SolidColorBrush HP0Brush = new SolidColorBrush(Colors.Red).TryFreeze();
         #endregion
 
         #region Constant Quest Brushes
-        private static SolidColorBrush Quest0Brush = new SolidColorBrush(Colors.Orange).TryFreeze();
-        private static SolidColorBrush Quest50Brush = new SolidColorBrush(Colors.LawnGreen).TryFreeze();
-        private static SolidColorBrush Quest80Brush = new SolidColorBrush(Colors.LimeGreen).TryFreeze();
-        private static SolidColorBrush Quest100Brush = new SolidColorBrush(Colors.MediumTurquoise).TryFreeze();
+        private static readonly SolidColorBrush Quest0Brush = new SolidColorBrush(Colors.Orange).TryFreeze();
+        private static readonly SolidColorBrush Quest50Brush = new SolidColorBrush(Colors.LawnGreen).TryFreeze();
+        private static readonly SolidColorBrush Quest80Brush = new SolidColorBrush(Colors.LimeGreen).TryFreeze();
+        private static readonly SolidColorBrush Quest100Brush = new SolidColorBrush(Colors.MediumTurquoise).TryFreeze();
         #endregion
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

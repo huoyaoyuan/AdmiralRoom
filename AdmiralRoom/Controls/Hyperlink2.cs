@@ -18,7 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for CommandLineString.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CommandLineStringProperty =
-            DependencyProperty.Register("CommandLineString", typeof(string), typeof(Hyperlink2), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(CommandLineString), typeof(string), typeof(Hyperlink2), new PropertyMetadata(null));
 
         protected override void OnClick()
         {

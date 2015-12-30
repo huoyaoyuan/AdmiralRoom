@@ -3,6 +3,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
 
+#pragma warning disable CC0014
+
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class MapNode : GameObject<map_start_next>

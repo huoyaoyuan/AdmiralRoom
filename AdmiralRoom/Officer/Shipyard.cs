@@ -4,6 +4,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
+#pragma warning disable CC0091
+
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Shipyard : NotificationObject
@@ -151,8 +153,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void CreateItemHandler(kousyou_createitem api)
         {
-            var dev = new DevelopmentInfo();
-            dev.IsSuccess = api.api_create_flag != 0;
+            var dev = new DevelopmentInfo { IsSuccess = api.api_create_flag != 0 };
             if (dev.IsSuccess)
             {
                 Staff.Current.Homeport.Equipments.Add(new Equipment(api.api_slot_item));

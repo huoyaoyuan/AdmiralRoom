@@ -13,6 +13,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             worker.Update();
             this.DataContext = worker;
         }
-        private Models.EquipmentCatalogWorker worker = Models.EquipmentCatalogWorker.Instance;
+        private readonly Models.EquipmentCatalogWorker worker = Models.EquipmentCatalogWorker.Instance;
     }
 }

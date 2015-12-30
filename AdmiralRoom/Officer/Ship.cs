@@ -170,8 +170,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
                 SlotEx.Item.OnShip = this;
             }
-            if (HP.IsMax) RepairTimePerHP = TimeSpan.Zero;
-            else RepairTimePerHP = TimeSpan.FromSeconds((RepairTime.TotalSeconds - 30) / HP.Shortage);
+            RepairTimePerHP = HP.IsMax ? TimeSpan.Zero : TimeSpan.FromSeconds((RepairTime.TotalSeconds - 30) / HP.Shortage);
             UpdateStatus();
         }
 
@@ -189,8 +188,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public double LoSInMap => Slots.Select(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;
         public void UpdateStatus()
         {
-            OnPropertyChanged("AirFightPower");
-            OnPropertyChanged("LoSInMap");
+            OnPropertyChanged(nameof(AirFightPower));
+            OnPropertyChanged(nameof(LoSInMap));
             if (InFleet != null && InFleet.Ships.IndexOf(this) == -1) InFleet = null;
             if (_hpchanged) InFleet?.CheckHomeportRepairingTime(true);
             InFleet?.UpdateStatus();

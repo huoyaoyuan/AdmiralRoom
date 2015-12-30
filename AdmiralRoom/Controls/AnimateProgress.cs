@@ -5,7 +5,7 @@ using System.Windows.Media.Animation;
 
 namespace Huoyaoyuan.AdmiralRoom.Controls
 {
-    [TemplatePart(Name = "PART_Progress", Type = typeof(RangeBase))]
+    [TemplatePart(Name = nameof(PART_Progress), Type = typeof(RangeBase))]
     public class AnimateProgress : RangeBase
     {
         static AnimateProgress()
@@ -23,7 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for InitAnimateFrom.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty InitAnimateFromProperty =
-            DependencyProperty.Register("InitAnimateFrom", typeof(InitAnimateFrom), typeof(AnimateProgress), new PropertyMetadata(InitAnimateFrom.None));
+            DependencyProperty.Register(nameof(InitAnimateFrom), typeof(InitAnimateFrom), typeof(AnimateProgress), new PropertyMetadata(InitAnimateFrom.None));
 
         public double CustomAnimateFrom
         {
@@ -33,7 +33,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for CustomAnimateFrom.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CustomAnimateFromProperty =
-            DependencyProperty.Register("CustomAnimateFrom", typeof(double), typeof(AnimateProgress), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(CustomAnimateFrom), typeof(double), typeof(AnimateProgress), new PropertyMetadata(0.0));
 
         protected override void OnValueChanged(double oldValue, double newValue)
         {
@@ -51,7 +51,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            PART_Progress = GetTemplateChild("PART_Progress") as RangeBase;
+            PART_Progress = GetTemplateChild(nameof(PART_Progress)) as RangeBase;
             if (PART_Progress != null)
                 switch (InitAnimateFrom)
                 {

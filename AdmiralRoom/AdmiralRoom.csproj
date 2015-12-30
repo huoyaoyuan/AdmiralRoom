@@ -43,6 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>AdmiralRoom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +55,7 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>AdmiralRoom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -191,7 +193,6 @@
     <Compile Include="Controls\ExpBar.cs" />
     <Compile Include="Controls\Hyperlink2.cs" />
     <Compile Include="Controls\PredicateProgressBar.cs" />
-    <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
@@ -423,6 +424,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AdmiralRoom.ruleset" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>

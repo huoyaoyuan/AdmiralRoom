@@ -24,7 +24,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                     {
                         _isselected = value;
                         OnPropertyChanged();
-                        Source.OnPropertyChanged("SelectAll");
+                        Source.OnPropertyChanged(nameof(SelectAll));
                         Source.Update();
                     }
                 }
@@ -84,11 +84,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 }
             }
             public Func<Ship, bool> Filter { get; set; }
-            public IEnumerable<Ship> Apply(IEnumerable<Ship> source)
-            {
-                if (!Value.HasValue) return source;
-                else return Value.Value ? source.Where(Filter) : source.Where(x => !Filter(x));
-            }
+            public IEnumerable<Ship> Apply(IEnumerable<Ship> source) => !Value.HasValue ? source : Value.Value ? source.Where(Filter) : source.Where(x => !Filter(x));
         }
         public class ShipSortColumn
         {
@@ -103,7 +99,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             public bool IsDescend => DescendBoxIndex == 1;
 
             #region SelectedIndex
-            private int _selectedindex = 0;
+            private int _selectedindex;
             public int SelectedIndex
             {
                 get { return _selectedindex; }
@@ -196,10 +192,12 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         {
             get
             {
+#pragma warning disable CC0013
                 if (ShipTypes.IsNullOrEmpty()) return null;
                 else if (ShipTypes.All(x => x.IsSelected)) return true;
                 else if (ShipTypes.All(x => !x.IsSelected)) return false;
                 else return null;
+#pragma warning restore CC0013
             }
             set
             {
@@ -242,7 +240,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         {
             ShipTypes = Staff.Current.MasterData.ShipTypes?.Select(x => new ShipTypeSelector(x, this)).ToArray() ?? new ShipTypeSelector[0];
         }
-        private bool ready = false;
+        private bool ready;
         public void Update()
         {
             if (!ready) return;

@@ -1,5 +1,7 @@
 ﻿using System;
 
+#pragma warning disable CC0022
+
 namespace Huoyaoyuan.AdmiralRoom
 {
     public abstract class Notifier
@@ -10,8 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static void SetNotifier(bool toast)
         {
             (Current as IDisposable)?.Dispose();
-            if (toast && ToastNotifier.IsSupported) Current = new ToastNotifier();
-            else Current = new BallonNotifier();
+            Current = toast && ToastNotifier.IsSupported ? (Notifier)new ToastNotifier() : new BallonNotifier();
             Current.Initialize();
         }
     }

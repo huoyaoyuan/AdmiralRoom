@@ -33,14 +33,16 @@ namespace Huoyaoyuan.AdmiralRoom
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
         }
 
-        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        private static void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+#pragma warning disable CC0022
             using (var file = File.Open("crash.log", FileMode.Append, FileAccess.Write))
             {
                 StreamWriter sw = new StreamWriter(file);
                 sw.WriteLine("==================================================");
                 sw.WriteLine(e.Exception.ToString());
                 sw.Flush();
+#pragma warning restore CC0022
             }
         }
 

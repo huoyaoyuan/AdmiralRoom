@@ -48,9 +48,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
-            OnPropertyChanged("BackTime");
-            OnPropertyChanged("ConditionTimeRemain");
-            OnPropertyChanged("HomeportRepairingFrom");
+            OnPropertyChanged(nameof(BackTime));
+            OnPropertyChanged(nameof(ConditionTimeRemain));
+            OnPropertyChanged(nameof(HomeportRepairingFrom));
             if (MissionState == FleetMissionState.InMission && Config.Current.NotifyWhenExpedition && BackTime.InASecond(Config.Current.NotifyTimeAdjust))
                 Notifier.Current?.Show(Resources.Notification_Expedition_Title, string.Format(Resources.Notification_Expedition_Text, Name, MissionID, MissionInfo.Name));
             if (!InSortie && Config.Current.NotifyWhenCondition && ConditionHelper.Instance.RemainCeiling(mincondition).InASecond())
@@ -216,14 +216,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             HeavilyDamaged = f2;
             NeedCharge = f3;
             Repairing = f4;
+#pragma warning disable CC0014
             if (InSortie)
-                if (HeavilyDamaged) Status = FleetStatus.Warning;
-                else Status = FleetStatus.InSortie;
+                Status = HeavilyDamaged ? FleetStatus.Warning : FleetStatus.InSortie;
             else if (MissionState != FleetMissionState.None)
                 Status = FleetStatus.InMission;
             else if (NeedCharge || HeavilyDamaged || LowCondition || Repairing)
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
+#pragma warning restore CC0014
             AirFightPower = Ships.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + b).ToArray());
             if (Ships.Any())
                 mincondition = Ships.Select(x => x.Condition).Min();
@@ -232,32 +233,34 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 mincondition = 49;
                 Status = FleetStatus.Empty;
             }
-            OnPropertyChanged("AirFightPower");
-            OnPropertyChanged("LevelSum");
-            OnPropertyChanged("LevelAverage");
-            OnPropertyChanged("LoSInMap");
-            OnPropertyChanged("ChargeCost");
-            OnPropertyChanged("RepairCost");
-            OnPropertyChanged("CanHomeportRepairing");
+            OnPropertyChanged(nameof(AirFightPower));
+            OnPropertyChanged(nameof(LevelSum));
+            OnPropertyChanged(nameof(LevelAverage));
+            OnPropertyChanged(nameof(LoSInMap));
+            OnPropertyChanged(nameof(ChargeCost));
+            OnPropertyChanged(nameof(RepairCost));
+            OnPropertyChanged(nameof(CanHomeportRepairing));
         }
 
         protected override void OnAllPropertyChanged()
         {
-            OnPropertyChanged("Name");
-            OnPropertyChanged("MissionState");
-            OnPropertyChanged("MissionID");
-            OnPropertyChanged("MissionInfo");
-            OnPropertyChanged("BackTime");
-            OnPropertyChanged("ConditionTimeRemain");
-            OnPropertyChanged("ConditionTimeOffset");
-            if (needupdateship) OnPropertyChanged("Ships");
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(MissionState));
+            OnPropertyChanged(nameof(MissionID));
+            OnPropertyChanged(nameof(MissionInfo));
+            OnPropertyChanged(nameof(BackTime));
+            OnPropertyChanged(nameof(ConditionTimeRemain));
+            OnPropertyChanged(nameof(ConditionTimeOffset));
+            if (needupdateship) OnPropertyChanged(nameof(Ships));
         }
 
+#pragma warning disable CC0049
         public bool CanHomeportRepairing
             => Ships.Count > 0
             && Ships[0].ShipInfo.ShipType.Id == 19
             && Ships[0].IsRepairing == false
             && MissionState == FleetMissionState.None;
+#pragma warning restore CC0049
         private IEnumerable<Ship> HomeportRepairingList => Ships.Take(
             CanHomeportRepairing ? Ships[0].Slots.Count(x => x.Item?.EquipInfo.EquipType.Id == 31) + 2 : 0)
             .Where(x => x.HP.Current * 2 > x.HP.Max);

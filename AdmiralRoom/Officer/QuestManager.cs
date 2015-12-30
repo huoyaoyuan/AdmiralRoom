@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/questlist").Subscribe<getmember_questlist>(x => CheckQuestPage(x));
             Staff.API("api_req_quest/clearitemget").Subscribe(x => AvilableQuests.Remove(x.GetInt("api_quest_id")));
         }
-        public IDTable<Quest> AvilableQuests = new IDTable<Quest>();
+        public readonly IDTable<Quest> AvilableQuests = new IDTable<Quest>();
         public IDTable<Quest> QuestInProgress { get; private set; }
         public int InProgressCount { get; private set; }
         public int AvilableCount { get; private set; }

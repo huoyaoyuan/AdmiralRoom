@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using Application = System.Windows.Application;
 
+#pragma warning disable CC0029
+
 namespace Huoyaoyuan.AdmiralRoom
 {
     public class BallonNotifier : Notifier, IDisposable

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using Fiddler;
 
+#pragma warning disable CC0022
+
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class Staff
@@ -24,9 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public Dispatcher Dispatcher { get; set; }
         public static Proxy Proxy { get; set; }
-        public static UTF8Encoding Encoder = new UTF8Encoding();
-        //private static Dictionary<string, Action<Session>> Handlers = new Dictionary<string, Action<Session>>();
-        private static Dictionary<string, APIObservable> apisource = new Dictionary<string, APIObservable>();
+        private static readonly Dictionary<string, APIObservable> apisource = new Dictionary<string, APIObservable>();
         public static APIObservable API(string apiname)
         {
             APIObservable v;
@@ -88,7 +88,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FiddlerApplication.Shutdown();
         }
 
-        private static object lockObj = new object();
+        private static readonly object lockObj = new object();
         private static void Distribute(object o)
         {
             Session oSession = o as Session;

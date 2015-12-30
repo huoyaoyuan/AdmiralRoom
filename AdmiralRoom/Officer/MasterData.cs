@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
+#pragma warning disable CC0021
+
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class MasterData

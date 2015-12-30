@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     internal static class ThemeService
     {
-        private static Dictionary<string, string[]> themes = new Dictionary<string, string[]>
+        private static readonly Dictionary<string, string[]> themes = new Dictionary<string, string[]>
         {
             ["Office 2010 Silver"] = new[]
             {
@@ -42,7 +42,9 @@ namespace Huoyaoyuan.AdmiralRoom
             try
             {
                 var themeres = themes[theme];
+#pragma warning disable CC0108
                 window.SetTheme("Ribbon", themeres);
+#pragma warning restore CC0108
                 window.Style = null;
                 window.Style = window.FindResource("RibbonWindowStyle") as Style;
                 window.Style = null;

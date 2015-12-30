@@ -65,13 +65,13 @@
         public int api_support_flag { get; set; }
         public class support
         {
-            public interface supportinfo
+            public interface Isupportinfo
             {
                 int api_deck_id { get; }
                 int[] api_ship_id { get; }
                 int api_undressing_flag { get; }
             }
-            public class support_air : airbattle, supportinfo
+            public class support_air : airbattle, Isupportinfo
             {
                 public int api_deck_id { get; set; }
                 public int[] api_ship_id { get; set; }
@@ -79,7 +79,7 @@
                 public int[] api_stage_flag { get; set; }
             }
             public support_air api_support_airatack { get; set; }
-            public class support_hourai : supportinfo
+            public class support_hourai : Isupportinfo
             {
                 public int api_deck_id { get; set; }
                 public int[] api_ship_id { get; set; }

@@ -4,18 +4,8 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     static class DateTimeEx
     {
-        public static TimeSpan Remain(this DateTimeOffset time)
-        {
-            if (time.ToLocalTime() > DateTimeOffset.Now)
-                return time - DateTimeOffset.Now;
-            else return new TimeSpan(0);
-        }
-        public static TimeSpan During(this DateTimeOffset time)
-        {
-            if (time.ToLocalTime() < DateTimeOffset.Now)
-                return DateTimeOffset.Now - time;
-            else return new TimeSpan(0);
-        }
+        public static TimeSpan Remain(this DateTimeOffset time) => time.ToLocalTime() > DateTimeOffset.Now ? time - DateTimeOffset.Now : new TimeSpan(0);
+        public static TimeSpan During(this DateTimeOffset time) => time.ToLocalTime() < DateTimeOffset.Now ? DateTimeOffset.Now - time : new TimeSpan(0);
         public static DateTimeOffset WeekStart(this DateTimeOffset time)
         {
             try

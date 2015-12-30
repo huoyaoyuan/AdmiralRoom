@@ -20,7 +20,7 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for PredictValue.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PredictValueProperty =
-            DependencyProperty.Register("PredictValue", typeof(double), typeof(PredicateProgressBar), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(PredictValue), typeof(double), typeof(PredicateProgressBar), new PropertyMetadata(0.0));
 
         public Brush PredictForeground
         {
@@ -30,6 +30,6 @@ namespace Huoyaoyuan.AdmiralRoom.Controls
 
         // Using a DependencyProperty as the backing store for PredictForeground.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PredictForegroundProperty =
-            DependencyProperty.Register("PredictForeground", typeof(Brush), typeof(PredicateProgressBar), new PropertyMetadata(new SolidColorBrush(Colors.Aqua)));
+            DependencyProperty.Register(nameof(PredictForeground), typeof(Brush), typeof(PredicateProgressBar), new PropertyMetadata(new SolidColorBrush(Colors.Aqua)));
     }
 }

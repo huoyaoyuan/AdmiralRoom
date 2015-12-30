@@ -30,8 +30,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
-            OnPropertyChanged("CompleteTime");
-            OnPropertyChanged("DuringTime");
+            OnPropertyChanged(nameof(CompleteTime));
+            OnPropertyChanged(nameof(DuringTime));
             if (State == DockState.Building && Config.Current.NotifyWhenBuild && CompleteTime.InASecond())
                 Notifier.Current?.Show(Resources.Notification_Build_Title,
                     string.Format(Resources.Notification_Build_Text, Id, Config.Current.ShowBuildingShipName ? $"「{CreatedShip.Name}」" : Resources.Ship_LowerCase));

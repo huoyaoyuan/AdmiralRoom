@@ -16,7 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     if (index <= 6) return Fleet1[index - 1];
                     if (index > 12) return EnemyFleet[index - 13];
                     if (Fleet2 != null) return Fleet2[index - 7];
-                    else return EnemyFleet[index - 7];
+                    return EnemyFleet[index - 7];
                 }
                 catch { return null; }
             }
@@ -53,8 +53,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     if (es == EnemyFleet.Length)
                     {
-                        if (FriendDamageRate <= 0) return WinRank.Perfect;
-                        else return WinRank.S;
+                        return FriendDamageRate <= 0 ? WinRank.Perfect : WinRank.S;
                     }
                     if (es >= Round(EnemyFleet.Length * 0.6)) return WinRank.A;
                     if (EnemyFleet[0].ToHP <= 0) return WinRank.B;
