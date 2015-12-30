@@ -80,6 +80,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 .Select(x => new ShipInBattle(x)).ToArray();
             Fleet2 = source.SortieFleet2?.Ships
                 .Select(x => new ShipInBattle(x)).ToArray();
+            if(source.SortieFleet1== null)//演习
+                Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships.ForEach(x => x.IgnoreNextCondition());
 
             if (api.api_formation != null)
             {
