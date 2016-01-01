@@ -11,10 +11,10 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             Type type = typeof(T);
             type.GetProperties().Where(x => x.CanRead && x.CanWrite)
-                .Where(x => x.GetCustomAttributes(typeof(MemberwiseCopyIgnoreAttribute), true).Length == 0)
+                .Where(x => !Attribute.IsDefined(x, typeof(MemberwiseCopyIgnoreAttribute), true))
                 .ForEach(x => x.SetValue(dest, x.GetValue(source)));
             type.GetFields()
-                .Where(x => x.GetCustomAttributes(typeof(MemberwiseCopyIgnoreAttribute), true).Length == 0)
+                .Where(x => !Attribute.IsDefined(x, typeof(MemberwiseCopyIgnoreAttribute), true))
                 .ForEach(x => x.SetValue(dest, x.GetValue(source)));
         }
     }
