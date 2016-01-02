@@ -34,7 +34,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged(nameof(DuringTime));
             if (State == DockState.Building && Config.Current.NotifyWhenBuild && CompleteTime.InASecond())
                 Notifier.Current?.Show(Resources.Notification_Build_Title,
-                    string.Format(Resources.Notification_Build_Text, Id, Config.Current.ShowBuildingShipName ? $"「{CreatedShip.Name}」" : Resources.Ship_LowerCase));
+                    string.Format(Resources.Notification_Build_Text, Id, Config.Current.ShowBuildingShipName ? $"「{CreatedShip.Name}」" : Resources.Ship_LowerCase),
+                    @"sound\build.mp3");
         }
         protected override void UpdateProp()
         {
