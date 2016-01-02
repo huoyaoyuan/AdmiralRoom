@@ -200,6 +200,8 @@
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logger\CsvLogger.cs" />
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />
     <Compile Include="Officer\Exp.cs" />
     <Compile Include="Models\ItemWithIndex.cs" />
