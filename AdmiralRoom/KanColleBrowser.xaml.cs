@@ -140,6 +140,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             try
             {
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
                 if (document.url.Contains(".swf?"))
                 {
                     var viewObject = document.getElementsByTagName("embed").item(0, 0) as IViewObject;

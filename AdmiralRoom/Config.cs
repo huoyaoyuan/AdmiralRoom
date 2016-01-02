@@ -436,7 +436,7 @@ namespace Huoyaoyuan.AdmiralRoom
             _httpsproxy = new Officer.Proxy();
             _prefertoast = ToastNotifier.IsSupported;
             _browserzoomfactor = 1;
-            _screenshotfolder = Path.Combine(Environment.CurrentDirectory, "ScreenShots");
+            _screenshotfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             _screenshotnameformat = "KanColle-{0}";
             _screenshotfileformat = "png";
             _notifytimeadjust = 60;
