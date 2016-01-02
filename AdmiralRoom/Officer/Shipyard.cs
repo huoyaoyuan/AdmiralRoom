@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_get_member/ndock").Subscribe<getmember_ndock[]>(NDockHandler);
             Staff.API("api_req_nyukyo/start").Subscribe(NStartHandler);
             Staff.API("api_get_member/kdock").Subscribe<getmember_kdock[]>(x =>
-                Staff.Current.Dispatcher.Invoke(() =>
+                DispatcherHelper.UIDispatcher.Invoke(() =>
                 BuildingDocks.UpdateAll(x, api => api.api_id)));
             Staff.API("api_req_kousyou/createship").Subscribe(CreateShipHandler);
             Staff.API("api_req_kousyou/getship").Subscribe<req_getship>(GetShipHandler);
@@ -82,7 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int[] inndock = { };
         public void NDockHandler(getmember_ndock[] api)
         {
-            Staff.Current.Dispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
+            DispatcherHelper.UIDispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
             var newindock = api.Select(x => x.api_ship_id).ToArray();
             foreach (var ship in Staff.Current.Homeport.Ships)
             {
@@ -164,7 +164,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.api_fdata.Split(',')[1])];
             }
-            Staff.Current.Dispatcher.Invoke(() => Development.Add(dev));
+            DispatcherHelper.UIDispatcher.Invoke(() => Development.Add(dev));
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
         }
         private void KSpeedChangeHandler(NameValueCollection req)

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using Fiddler;
 
 #pragma warning disable CC0022
@@ -24,7 +22,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 return _current;
             }
         }
-        public Dispatcher Dispatcher { get; set; }
         public static Proxy Proxy { get; set; }
         private static readonly Dictionary<string, APIObservable> apisource = new Dictionary<string, APIObservable>();
         public static APIObservable API(string apiname)
@@ -112,7 +109,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch (Exception ex)
             {
-                Current.Dispatcher.InvokeAsync(() => System.Windows.MessageBox.Show(App.Current.MainWindow, ex.StackTrace, ex.Message));
+                DispatcherHelper.UIDispatcher.InvokeAsync(() => System.Windows.MessageBox.Show(App.Current.MainWindow, ex.StackTrace, ex.Message));
             }
         }
         public class APIObservable
