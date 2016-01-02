@@ -13,7 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     public static class APIHelper
     {
-        private static void APIError(Exception ex) => Officer.Staff.Current.Dispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
+        private static void APIError(Exception ex) => DispatcherHelper.UIDispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
         public static int GetInt(this NameValueCollection req, string name) => int.Parse(req[name]);
         public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
         {

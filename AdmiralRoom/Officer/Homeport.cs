@@ -132,7 +132,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public void RemoveShip(Ship ship)
         {
             if (ship.InFleet != null)
-                Staff.Current.Dispatcher.Invoke(() => ship.InFleet.Ships.Remove(ship));
+                DispatcherHelper.UIDispatcher.Invoke(() => ship.InFleet.Ships.Remove(ship));
             ship.InFleet?.UpdateStatus();
             foreach (var slot in ship.Slots)
                 if (slot.HasItem)
@@ -171,7 +171,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             else
             {
-                Staff.Current.Dispatcher.Invoke(() => Fleets.UpdateAll(api, x => x.api_id));
+                DispatcherHelper.UIDispatcher.Invoke(() => Fleets.UpdateAll(api, x => x.api_id));
             }
         }
 
@@ -192,7 +192,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int fleetid = api.GetInt("api_id");
             int shipid = api.GetInt("api_ship_id");
             var fleet = Fleets[fleetid];
-            Staff.Current.Dispatcher.Invoke(() =>
+            DispatcherHelper.UIDispatcher.Invoke(() =>
             {
                 if (idx == -1)//旗艦以外全解除
                 {
