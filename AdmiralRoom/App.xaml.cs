@@ -28,7 +28,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
             this.MainWindow = new MainWindow();
-            Officer.Staff.Current.Dispatcher = MainWindow.Dispatcher;
+            DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
         }

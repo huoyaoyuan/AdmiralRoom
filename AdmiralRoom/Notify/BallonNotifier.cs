@@ -44,7 +44,7 @@ namespace Huoyaoyuan.AdmiralRoom
             notifyIcon?.ShowBalloonTip(1000, title, detail, ToolTipIcon.None);
             if (!string.IsNullOrEmpty(sound))
             {
-                Officer.Staff.Current.Dispatcher.Invoke(() =>
+                DispatcherHelper.UIDispatcher.Invoke(() =>
                 {
                     try
                     {
