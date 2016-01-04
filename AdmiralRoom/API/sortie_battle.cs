@@ -69,13 +69,13 @@
             {
                 int api_deck_id { get; }
                 int[] api_ship_id { get; }
-                int api_undressing_flag { get; }
+                int[] api_undressing_flag { get; }
             }
             public class support_air : airbattle, Isupportinfo
             {
                 public int api_deck_id { get; set; }
                 public int[] api_ship_id { get; set; }
-                public int api_undressing_flag { get; set; }
+                public int[] api_undressing_flag { get; set; }
                 public int[] api_stage_flag { get; set; }
             }
             public support_air api_support_airatack { get; set; }
@@ -83,7 +83,7 @@
             {
                 public int api_deck_id { get; set; }
                 public int[] api_ship_id { get; set; }
-                public int api_undressing_flag { get; set; }
+                public int[] api_undressing_flag { get; set; }
                 public int[] api_cl_list { get; set; }
                 public decimal[] api_damage { get; set; }
             }
