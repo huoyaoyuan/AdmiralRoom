@@ -19,12 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public bool CanAerialBomb => Equipments.Any(x => x.EquipType.Id == 7 || x.EquipType.Id == 11);
             public LimitedValue HP => new LimitedValue(ToHP, MaxHP);
             public void EndUpdate() => OnAllPropertyChanged();
-            public override string ToString()
-            {
-                string result = $"{ShipInfo.FullName}(Lv.{Level}):";
-                foreach (var equip in Equipments) result += $" {equip.Name},";
-                return result.TrimEnd(',');
-            }
+            public override string ToString() => $"{ShipInfo.FullName}(Lv.{Level}): " + string.Join(", ", Equipments.Select(x => x.Name));
             public ShipInBattle() { }
             public ShipInBattle(Ship ship)
             {
