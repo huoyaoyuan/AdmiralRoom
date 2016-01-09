@@ -215,7 +215,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     content.DataContext = Officer.Staff.Current;
                 TargetView.ContentId = ViewName;
                 TargetView.Title = ViewName;
-                //TargetView.CanAutoHide = false;
+                TargetView.CanAutoHide = true;
                 TargetView.FloatingHeight = content.Height;
                 TargetView.FloatingWidth = content.Width;
                 //TargetView.FloatingTop = this.ActualHeight / 2;
