@@ -24,6 +24,8 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
             Officer.Staff.Proxy = Config.Current.Proxy;
 
+            Logger.LoggerHost.Instance.Initialize();
+
             Officer.Staff.Current.Quests.Load();
             Notifier.SetNotifier(Config.Current.PreferToastNotify);
 

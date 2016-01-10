@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="Logger\CsvLogger.cs" />
     <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\LoggerHost.cs" />
     <Compile Include="Logger\PropertyProvider.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />
     <Compile Include="Officer\Exp.cs" />
