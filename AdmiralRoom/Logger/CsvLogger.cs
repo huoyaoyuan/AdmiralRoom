@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,20 +10,26 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     public class CsvLogger<T> : Logger<T>
     {
         private readonly FileInfo file;
+        private readonly Action CheckFile;
         public CsvLogger(string filename, bool usetextkey = false)
         {
             file = new FileInfo(filename);
             IEnumerable<string> titles = provider.Titles;
             if (usetextkey) titles = titles.Select(x => GetText(x));
-            if (!file.Exists)
-                using (var writer = file.CreateText())
-                {
-                    writer.WriteLine(string.Join(",", titles));
-                    writer.Flush();
-                }
+            CheckFile = () =>
+            {
+                if (!file.Exists)
+                    using (var writer = file.CreateText())
+                    {
+                        writer.WriteLine(string.Join(",", titles));
+                        writer.Flush();
+                    }
+            };
+            CheckFile();
         }
-        public override void Add(T item)
+        public override void Log(T item)
         {
+            CheckFile();
             using (var fs = file.Open(FileMode.Append, FileAccess.Write))
             {
                 var writer = new StreamWriter(fs);
@@ -30,7 +37,17 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 writer.Flush();
             }
         }
-        public override void Import(IEnumerable<T> items) => items.ForEach(Add);
+        public override void Import(IEnumerable<T> items)
+        {
+            CheckFile();
+            using (var fs = file.Open(FileMode.Append, FileAccess.Write))
+            {
+                var writer = new StreamWriter(fs);
+                foreach (var item in items)
+                    writer.WriteLine(string.Join(",", provider.GetValues(item)));
+                writer.Flush();
+            }
+        }
         public override IEnumerable<T> Read()
         {
             using (var reader = file.OpenText())

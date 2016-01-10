@@ -6,7 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         protected readonly PropertyProvider<T> provider = new PropertyProvider<T>();
         protected Logger() { }
-        public abstract void Add(T item);
+        public abstract void Log(T item);
         public abstract void Import(IEnumerable<T> items);
         public abstract IEnumerable<T> Read();
         protected string GetText(string textkey) => Properties.Resources.ResourceManager.GetString("LogTitle_" + textkey) ?? textkey;

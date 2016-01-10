@@ -166,7 +166,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             DispatcherHelper.UIDispatcher.Invoke(() => Development.Add(dev));
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
-            Logger.Loggers.CreateItemLogger.Add(new Logger.CreateItemLog
+            Logger.Loggers.CreateItemLogger.Log(new Logger.CreateItemLog
             {
                 DateTime = DateTime.Now,
                 SecretryId = Staff.Current.Homeport.Secretary.ShipId,
