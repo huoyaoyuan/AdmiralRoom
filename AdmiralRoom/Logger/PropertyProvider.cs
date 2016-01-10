@@ -8,6 +8,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     internal sealed class PropertyProvider<T>
     {
         private readonly Func<T, string[]> getter;
+        public string[] TextKeys { get; }
         public string[] Titles { get; }
         public PropertyProvider()
         {
@@ -18,6 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 .ToArray();
             int count = prop.Length;
             Titles = prop.Select(x => ((LogAttribute)Attribute.GetCustomAttribute(x, typeof(LogAttribute))).Title ?? x.Name).ToArray();
+            TextKeys = prop.Select(x => ((LogAttribute)Attribute.GetCustomAttribute(x, typeof(LogAttribute))).TextKey ?? x.Name).ToArray();
             var input = Expression.Parameter(type);
             MethodInfo tostring = typeof(object).GetMethod(nameof(ToString));
             var getters = prop.Select(x => Expression.Property(input, x))
@@ -32,6 +34,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     internal sealed class LogAttribute : Attribute
     {
         public string Title { get; set; }
+        public string TextKey { get; set; }
         public LogAttribute() { }
         public LogAttribute(string title) { Title = title; }
     }
