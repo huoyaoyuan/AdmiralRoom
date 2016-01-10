@@ -20,7 +20,7 @@ namespace Huoyaoyuan.AdmiralRoom
             for (int i = 0; i < source.Length && i + from < param.Length; i++)
                 func(source[i], param[from + i]);
         }
-        public static void Zip<T1, T2>(this IEnumerable<T1> source, IEnumerable<T2> param, Action<T1, T2> func)
+        public static void ZipEach<T1, T2>(this IEnumerable<T1> source, IEnumerable<T2> param, Action<T1, T2> func)
         {
             using (var enum1 = source.GetEnumerator())
             using (var enum2 = param.GetEnumerator())

@@ -231,7 +231,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void FireAttack(sortie_battle.fire api)
         {
             if (api == null) return;
-            api.api_df_list.Zip(api.api_damage, (x, y) => x.Zip(y, (a, b) => Delegates.SetDamage(this[a], b)));
+            api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(this[a], b)));
             api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(this[y], d)));
         }
     }
