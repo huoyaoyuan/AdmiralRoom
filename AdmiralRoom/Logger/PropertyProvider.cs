@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    internal sealed class PropertyProvider<T>
+    public sealed class PropertyProvider<T>
     {
         private readonly Func<T, string[]> getter;
         private readonly Func<string[], T> setter;

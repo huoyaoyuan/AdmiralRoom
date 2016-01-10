@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 #pragma warning disable CC0022
 
@@ -7,15 +8,16 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     public class CsvLogger<T> : Logger<T>
     {
-        private readonly PropertyProvider<T> provider = new PropertyProvider<T>();
         private readonly FileInfo file;
         public CsvLogger(string filename, bool usetextkey = false)
         {
             file = new FileInfo(filename);
+            IEnumerable<string> titles = provider.Titles;
+            if (usetextkey) titles = titles.Select(x => GetText(x));
             if (!file.Exists)
                 using (var writer = file.CreateText())
                 {
-                    writer.WriteLine(string.Join(",", provider.Titles));
+                    writer.WriteLine(string.Join(",", titles));
                     writer.Flush();
                 }
         }
