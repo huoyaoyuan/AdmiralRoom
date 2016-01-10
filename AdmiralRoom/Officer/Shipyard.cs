@@ -151,7 +151,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Ships[req.GetInt("api_id")].Update(api.api_ship);
             Staff.Current.Homeport.Fleets.UpdateWithoutRemove(api.api_deck, x => x.api_id);
         }
-        private void CreateItemHandler(kousyou_createitem api)
+        private void CreateItemHandler(NameValueCollection req, kousyou_createitem api)
         {
             var dev = new DevelopmentInfo { IsSuccess = api.api_create_flag != 0 };
             if (dev.IsSuccess)
@@ -166,6 +166,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             DispatcherHelper.UIDispatcher.Invoke(() => Development.Add(dev));
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
+            Logger.Loggers.CreateItemLogger.Add(new Logger.CreateItemLog
+            {
+                DateTime = DateTime.Now,
+                SecretryId = Staff.Current.Homeport.Secretary.ShipId,
+                SecretryLevel = Staff.Current.Homeport.Secretary.Level,
+                IsSuccess = dev.IsSuccess,
+                AdmiralLevel = Staff.Current.Admiral.Level,
+                EquipId = dev.Equip.Id,
+                Item1 = req.GetInt("api_item1"),
+                Item2 = req.GetInt("api_item2"),
+                Item3 = req.GetInt("api_item3"),
+                Item4 = req.GetInt("api_item4")
+            });
         }
         private void KSpeedChangeHandler(NameValueCollection req)
         {
