@@ -116,7 +116,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             int dockid = req.GetInt("api_kdock_id");
             BuildingDocks[dockid].IsLSC = req.GetInt("api_large_flag") != 0;
-            BuildingDocks[dockid].Secratary = Staff.Current.Homeport.Secratary;
+            BuildingDocks[dockid].Secretary = Staff.Current.Homeport.Secretary;
         }
         private void GetShipHandler(req_getship api)
         {

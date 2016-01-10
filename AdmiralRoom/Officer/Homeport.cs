@@ -121,7 +121,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        public Ship Secratary => Fleets[1].Ships[0];
+        public Ship Secretary => Fleets[1].Ships[0];
 
         public void UpdateCounts()
         {
