@@ -189,6 +189,7 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             SetToggleBindings += () => SetToggleBinding(sender as Fluent.ToggleButton);
             SetToggleBinding(sender as Fluent.ToggleButton);
+            (sender as Control).Loaded -= RegisterToggleBinding;
         }
         private void SetToggleBinding(Fluent.ToggleButton sender)
         {
