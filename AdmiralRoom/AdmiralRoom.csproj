@@ -323,6 +323,9 @@
     <Compile Include="Views\Standalone\EquipmentCatalog.xaml.cs">
       <DependentUpon>EquipmentCatalog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Standalone\LogView.xaml.cs">
+      <DependentUpon>LogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Standalone\ShipCatalog.xaml.cs">
       <DependentUpon>ShipCatalog.xaml</DependentUpon>
     </Compile>
@@ -414,6 +417,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Standalone\EquipmentCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Standalone\LogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
