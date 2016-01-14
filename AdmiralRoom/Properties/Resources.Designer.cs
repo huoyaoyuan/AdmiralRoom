@@ -700,6 +700,87 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Admiral Level 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_AdmiralLevel {
+            get {
+                return ResourceManager.GetString("LogTitle_AdmiralLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DateTime 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_DateTime {
+            get {
+                return ResourceManager.GetString("LogTitle_DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Equipment Created 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_EquipmentCreated {
+            get {
+                return ResourceManager.GetString("LogTitle_EquipmentCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fuel 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Item1 {
+            get {
+                return ResourceManager.GetString("LogTitle_Item1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Bull 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Item2 {
+            get {
+                return ResourceManager.GetString("LogTitle_Item2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Steel 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Item3 {
+            get {
+                return ResourceManager.GetString("LogTitle_Item3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Bauxite 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Item4 {
+            get {
+                return ResourceManager.GetString("LogTitle_Item4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Secretary 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Secretary {
+            get {
+                return ResourceManager.GetString("LogTitle_Secretary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Success 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Success {
+            get {
+                return ResourceManager.GetString("LogTitle_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Mute 的本地化字符串。
         /// </summary>
         public static string Mute {

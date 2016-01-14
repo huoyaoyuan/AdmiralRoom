@@ -330,6 +330,33 @@
   <data name="ItemCount" xml:space="preserve">
     <value>Equips: </value>
   </data>
+  <data name="LogTitle_AdmiralLevel" xml:space="preserve">
+    <value>Admiral Level</value>
+  </data>
+  <data name="LogTitle_DateTime" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+  <data name="LogTitle_EquipmentCreated" xml:space="preserve">
+    <value>Equipment Created</value>
+  </data>
+  <data name="LogTitle_Item1" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="LogTitle_Item2" xml:space="preserve">
+    <value>Bull</value>
+  </data>
+  <data name="LogTitle_Item3" xml:space="preserve">
+    <value>Steel</value>
+  </data>
+  <data name="LogTitle_Item4" xml:space="preserve">
+    <value>Bauxite</value>
+  </data>
+  <data name="LogTitle_Secretary" xml:space="preserve">
+    <value>Secretary</value>
+  </data>
+  <data name="LogTitle_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="Mute" xml:space="preserve">
     <value>Mute</value>
   </data>

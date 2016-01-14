@@ -18,6 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public string Title { get; set; }
             public string TitleKey => "LogTitle_" + Title;
             public string FullTitleKey => "Resources" + TitleKey;
+            public bool IsFilter { get; set; }
             public string[] Values { get; }
 
             #region SelectedValue
@@ -74,19 +75,40 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public Column[] Columns { get; }
         public GridViewColumn[] ViewColumns { get; }
         private readonly T[] readed;
-        public IReadOnlyList<T> Displayed { get; private set; }
+
+        #region Displayed
+        private IReadOnlyCollection<T> _displayed;
+        public IReadOnlyCollection<T> Displayed
+        {
+            get { return _displayed; }
+            set
+            {
+                if (_displayed != value)
+                {
+                    _displayed = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public ViewProvider(Logger<T> logger)
         {
             Type type = typeof(T);
             Columns = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
-                .Select(x => new Column
+                .Select(x =>
                 {
-                    Title = (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute).Title ?? x.Name,
-                    MemberName = x.Name,
-                    MemberGetter = x.GetMethod,
-                    MemberType = x.PropertyType,
-                    Source = this
+                    var attr = Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute;
+                    return new Column
+                    {
+                        Title = attr.Title ?? x.Name,
+                        IsFilter = attr.IsFilter,
+                        MemberName = x.Name,
+                        MemberGetter = x.GetMethod,
+                        MemberType = x.PropertyType,
+                        Source = this
+                    };
                 })
                 .ToArray();
             ViewColumns = Columns.Select(x =>
@@ -112,7 +134,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     internal sealed class ShowAttribute : Attribute
     {
-        public string Title { get; set; }
-        public ShowAttribute(string title) { Title = title; }
+        public string Title { get; }
+        public bool IsFilter { get; set; }
+        public ShowAttribute(string title = null) { Title = title; }
     }
 }

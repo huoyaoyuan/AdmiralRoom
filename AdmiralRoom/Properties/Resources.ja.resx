@@ -330,6 +330,33 @@
   <data name="ItemCount" xml:space="preserve">
     <value>装備数：</value>
   </data>
+  <data name="LogTitle_AdmiralLevel" xml:space="preserve">
+    <value>提督レベル</value>
+  </data>
+  <data name="LogTitle_DateTime" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="LogTitle_EquipmentCreated" xml:space="preserve">
+    <value>装備</value>
+  </data>
+  <data name="LogTitle_Item1" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="LogTitle_Item2" xml:space="preserve">
+    <value>弾薬</value>
+  </data>
+  <data name="LogTitle_Item3" xml:space="preserve">
+    <value>鋼鉄</value>
+  </data>
+  <data name="LogTitle_Item4" xml:space="preserve">
+    <value>ボーキサイト</value>
+  </data>
+  <data name="LogTitle_Secretary" xml:space="preserve">
+    <value>秘書艦</value>
+  </data>
+  <data name="LogTitle_Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
   <data name="Mute" xml:space="preserve">
     <value>ミュート</value>
   </data>

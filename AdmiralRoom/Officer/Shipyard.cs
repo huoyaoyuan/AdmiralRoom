@@ -169,8 +169,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Logger.Loggers.CreateItemLogger.Log(new Logger.CreateItemLog
             {
                 DateTime = DateTime.Now,
-                SecretryId = Staff.Current.Homeport.Secretary.ShipId,
-                SecretryLevel = Staff.Current.Homeport.Secretary.Level,
+                SecretaryId = Staff.Current.Homeport.Secretary.ShipId,
+                SecretaryLevel = Staff.Current.Homeport.Secretary.Level,
                 IsSuccess = dev.IsSuccess,
                 AdmiralLevel = Staff.Current.Admiral.Level,
                 EquipId = dev.Equip.Id,

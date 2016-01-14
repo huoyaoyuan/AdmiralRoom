@@ -31,8 +31,10 @@
                 
             </Border>
         </Expander>
-        <ListView Grid.Row="2">
-            
+        <ListView Grid.Row="2" ItemsSource="{Binding Displayed}">
+            <ListView.View>
+                <GridView GridView.ColumnCollection="{Binding ViewColumns}"/>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>
