@@ -9,16 +9,25 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         private readonly Func<T, string[]> getter;
         private readonly Func<string[], T> setter;
-        public string[] TextKeys { get; }
         public string[] Titles { get; }
-        public PropertyProvider()
+        public PropertyProvider(bool useshown = false)
         {
             Type type = typeof(T);
-            PropertyInfo[] prop = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(x => Attribute.IsDefined(x, typeof(LogAttribute)))
-                .ToArray();
-            Titles = prop.Select(x => ((LogAttribute)Attribute.GetCustomAttribute(x, typeof(LogAttribute))).Title ?? x.Name).ToArray();
-            TextKeys = prop.Select(x => ((LogAttribute)Attribute.GetCustomAttribute(x, typeof(LogAttribute))).TextKey ?? x.Name).ToArray();
+            PropertyInfo[] prop;
+            if (useshown)
+            {
+                prop = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
+                    .ToArray();
+                Titles = prop.Select(x => (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute).Title).ToArray();
+            }
+            else
+            {
+                prop = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Where(x => Attribute.IsDefined(x, typeof(LogAttribute)))
+                    .ToArray();
+                Titles = prop.Select(x => x.Name).ToArray();
+            }
             var getinput = Expression.Parameter(type);
             MethodInfo tostring = typeof(object).GetMethod(nameof(ToString));
             var getters = prop.Select(x => Expression.Property(getinput, x))
@@ -43,11 +52,5 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public T GetItem(string[] values) => setter(values);
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    internal sealed class LogAttribute : Attribute
-    {
-        public string Title { get; set; }
-        public string TextKey { get; set; }
-        public LogAttribute() { }
-        public LogAttribute(string title) { Title = title; }
-    }
+    internal sealed class LogAttribute : Attribute { }
 }

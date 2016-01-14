@@ -11,11 +11,10 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         private readonly FileInfo file;
         private readonly Action CheckFile;
-        public CsvLogger(string filename, bool usetextkey = false)
+        public CsvLogger(string filename, bool useshown = false) : base(useshown)
         {
             file = new FileInfo(filename);
-            IEnumerable<string> titles = provider.Titles;
-            if (usetextkey) titles = titles.Select(x => GetText(x));
+            string[] titles = useshown ? provider.Titles.Select(GetText).ToArray() : provider.Titles;
             CheckFile = () =>
             {
                 if (!file.Exists)
