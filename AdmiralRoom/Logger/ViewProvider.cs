@@ -67,7 +67,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 Selector = expression.Compile();
             }
         }
-        public IEnumerable<T> Displayed { get; private set; }
+        public IReadOnlyList<T> Displayed { get; private set; }
 
         public void Update()
         {

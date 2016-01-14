@@ -157,8 +157,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public static ShipCatalogWorker Instance { get; } = new ShipCatalogWorker();
 
         #region ShownShips
-        private IEnumerable<ItemWithIndex<Ship>> _shownships;
-        public IEnumerable<ItemWithIndex<Ship>> ShownShips
+        private IReadOnlyList<ItemWithIndex<Ship>> _shownships;
+        public IReadOnlyList<ItemWithIndex<Ship>> ShownShips
         {
             get { return _shownships; }
             set
@@ -173,8 +173,8 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         #endregion
 
         #region ShipTypes
-        private IEnumerable<ShipTypeSelector> _shiptypes;
-        public IEnumerable<ShipTypeSelector> ShipTypes
+        private IReadOnlyList<ShipTypeSelector> _shiptypes;
+        public IReadOnlyList<ShipTypeSelector> ShipTypes
         {
             get { return _shiptypes; }
             set

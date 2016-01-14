@@ -17,14 +17,14 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             public int ImprovementType { get; set; }
             public int Count { get; set; }
             public int Left { get; set; }
-            public Dictionary<Ship, int> Equipped { get; } = new Dictionary<Ship, int>();
+            public IDictionary<Ship, int> Equipped { get; } = new Dictionary<Ship, int>();
         }
         private EquipmentCatalogWorker() { }
         public static EquipmentCatalogWorker Instance { get; } = new EquipmentCatalogWorker();
 
         #region Groups
-        private IEnumerable<EquipmentGroup> _groups;
-        public IEnumerable<EquipmentGroup> Groups
+        private IReadOnlyList<EquipmentGroup> _groups;
+        public IReadOnlyList<EquipmentGroup> Groups
         {
             get { return _groups; }
             set
