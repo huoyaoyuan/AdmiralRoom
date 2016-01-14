@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
@@ -13,9 +13,11 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public class Column : NotifySourceObject<ViewProvider<T>>
         {
             public Type MemberType { get; set; }
+            public string MemberName { get; set; }
             public MethodInfo MemberGetter { get; set; }
             public string Title { get; set; }
-            public string TitleKey => "Resources.LogTitle_" + Title;
+            public string TitleKey => "LogTitle_" + Title;
+            public string FullTitleKey => "Resources" + TitleKey;
             public string[] Values { get; }
 
             #region SelectedValue
@@ -70,27 +72,41 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             }
         }
         public Column[] Columns { get; }
+        public GridViewColumn[] ViewColumns { get; }
+        private readonly T[] readed;
         public IReadOnlyList<T> Displayed { get; private set; }
-        private readonly Logger<T> _logger;
         public ViewProvider(Logger<T> logger)
         {
-            _logger = logger;
             Type type = typeof(T);
             Columns = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
                 .Select(x => new Column
                 {
                     Title = (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute).Title ?? x.Name,
+                    MemberName = x.Name,
                     MemberGetter = x.GetMethod,
                     MemberType = x.PropertyType,
                     Source = this
                 })
                 .ToArray();
+            ViewColumns = Columns.Select(x =>
+            {
+                var column = new GridViewColumn
+                {
+                    DisplayMemberBinding = new Binding(x.MemberName)
+                };
+                BindingOperations.SetBinding(column, GridViewColumn.HeaderProperty, new Views.Extensions.LocalizableExtension(x.TitleKey));
+                return column;
+            }).ToArray();
             Update();
+            readed = logger.Read().ToArray();
         }
         public void Update()
         {
-
+            IEnumerable<T> logs = readed;
+            foreach (var column in Columns)
+                logs = logs.Where(column.Selector);
+            Displayed = logs.ToArray();
         }
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
