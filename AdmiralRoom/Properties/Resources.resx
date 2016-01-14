@@ -739,4 +739,13 @@ Expedition {1} - {2}</value>
   <data name="Window_Subwindow" xml:space="preserve">
     <value>Subwindow</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Logger_CreateItem" xml:space="preserve">
+    <value>Create Item</value>
+  </data>
 </root>

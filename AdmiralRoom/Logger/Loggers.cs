@@ -2,6 +2,6 @@
 {
     static class Loggers
     {
-        public static CsvLogger<CreateItemLog> CreateItemLogger { get; } = new CsvLogger<CreateItemLog>(@"logs\createitem.csv");
+        public static CsvLogger<CreateItemLog> CreateItemLogger { get; } = new CsvLogger<CreateItemLog>(@"logs\createitem.csv") { TitleKey = "Logger_CreateItem" };
     }
 }

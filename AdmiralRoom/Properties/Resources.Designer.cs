@@ -700,6 +700,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Create Item 的本地化字符串。
+        /// </summary>
+        public static string Logger_CreateItem {
+            get {
+                return ResourceManager.GetString("Logger_CreateItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Logs 的本地化字符串。
+        /// </summary>
+        public static string Logs {
+            get {
+                return ResourceManager.GetString("Logs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Admiral Level 的本地化字符串。
         /// </summary>
         public static string LogTitle_AdmiralLevel {
@@ -1732,6 +1750,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string ShipCount {
             get {
                 return ResourceManager.GetString("ShipCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Statistics 的本地化字符串。
+        /// </summary>
+        public static string Statistics {
+            get {
+                return ResourceManager.GetString("Statistics", resourceCulture);
             }
         }
         

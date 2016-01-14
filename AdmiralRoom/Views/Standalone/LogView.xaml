@@ -7,7 +7,6 @@
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         mc:Ignorable="d"
-        Title="LogView"
         Height="800"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
         FontSize="16">
@@ -33,7 +32,7 @@
         </Expander>
         <ListView Grid.Row="2" ItemsSource="{Binding Displayed}">
             <ListView.View>
-                <GridView GridView.ColumnCollection="{Binding ViewColumns}"/>
+                <GridView x:Name="gridview"/>
             </ListView.View>
         </ListView>
     </Grid>

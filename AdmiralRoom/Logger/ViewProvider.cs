@@ -74,6 +74,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         }
         public Column[] Columns { get; }
         public GridViewColumn[] ViewColumns { get; }
+        public readonly Logger<T> Logger;
         private readonly T[] readed;
 
         #region Displayed
@@ -95,6 +96,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public ViewProvider(Logger<T> logger)
         {
             Type type = typeof(T);
+            Logger = logger;
             Columns = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
                 .Select(x =>
@@ -120,12 +122,13 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 BindingOperations.SetBinding(column, GridViewColumn.HeaderProperty, new Views.Extensions.LocalizableExtension(x.TitleKey));
                 return column;
             }).ToArray();
-            Update();
             readed = logger.Read().ToArray();
+            Update();
         }
         public void Update()
         {
             IEnumerable<T> logs = readed;
+            if (logs == null) return;
             foreach (var column in Columns)
                 logs = logs.Where(column.Selector);
             Displayed = logs.ToArray();

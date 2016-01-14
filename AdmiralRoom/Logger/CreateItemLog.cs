@@ -11,7 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public int SecretaryLevel { get; set; }
         [Show]
-        public string Secretary => $"{Officer.Staff.Current.MasterData.ShipInfo[SecretaryId].Name}(Lv.{SecretaryLevel})";
+        public string Secretary => $"{Officer.Staff.Current.MasterData.ShipInfo?[SecretaryId].Name ?? SecretaryId.ToString()}(Lv.{SecretaryLevel})";
         [Log, Show]
         public int Item1 { get; set; }
         [Log, Show]
@@ -27,7 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public int EquipId { get; set; }
         [Show("EquipmentCreated", IsFilter = true)]
-        public string Equipment => Officer.Staff.Current.MasterData.EquipInfo[EquipId].Name;
+        public string Equipment => Officer.Staff.Current.MasterData.EquipInfo?[EquipId].Name ?? EquipId.ToString();
         [Log, Show]
         public int AdmiralLevel { get; set; }
     }

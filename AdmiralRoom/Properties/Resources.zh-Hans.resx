@@ -736,4 +736,13 @@
   <data name="Window_Subwindow" xml:space="preserve">
     <value>子窗口</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>记录</value>
+  </data>
+  <data name="Logger_CreateItem" xml:space="preserve">
+    <value>装备开发</value>
+  </data>
 </root>

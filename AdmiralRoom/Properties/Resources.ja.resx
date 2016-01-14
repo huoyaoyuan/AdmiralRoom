@@ -346,7 +346,7 @@
     <value>弾薬</value>
   </data>
   <data name="LogTitle_Item3" xml:space="preserve">
-    <value>鋼鉄</value>
+    <value>鋼材</value>
   </data>
   <data name="LogTitle_Item4" xml:space="preserve">
     <value>ボーキサイト</value>
@@ -714,5 +714,14 @@
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>ログ</value>
+  </data>
+  <data name="Logger_CreateItem" xml:space="preserve">
+    <value>装備開発</value>
   </data>
 </root>

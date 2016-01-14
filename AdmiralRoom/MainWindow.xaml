@@ -12,6 +12,7 @@
                      xmlns:Theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
                      xmlns:Views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
                      xmlns:ViewStandalone="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+                     xmlns:Logger="clr-namespace:Huoyaoyuan.AdmiralRoom.Logger"
                      xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
                      mc:Ignorable="d"
                      FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
@@ -259,6 +260,11 @@
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Window_Standalone}">
                     <Button Margin="2" Tag="{x:Type ViewStandalone:ShipCatalog}" Loaded="SetUniqueWindowCommand"/>
                     <Button Margin="2" Tag="{x:Type ViewStandalone:EquipmentCatalog}" Loaded="SetUniqueWindowCommand"/>
+                </ribbon:RibbonGroupBox>
+            </ribbon:RibbonTabItem>
+            <ribbon:RibbonTabItem Header="{ex:Localizable Statistics}" KeyTip="S">
+                <ribbon:RibbonGroupBox Header="{ex:Localizable Logs}">
+                    <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.CreateItemLogger}"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>

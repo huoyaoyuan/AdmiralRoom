@@ -247,7 +247,7 @@ namespace Huoyaoyuan.AdmiralRoom
             control.Click += UniqueCommandClick;
         }
 
-        private static void UniqueCommandClick(object sender, RoutedEventArgs e)
+        private void UniqueCommandClick(object sender, RoutedEventArgs e)
         {
             Button control = sender as Button;
             Window w;
@@ -261,6 +261,44 @@ namespace Huoyaoyuan.AdmiralRoom
                 };
                 w.SetBinding(TitleProperty, titlebinding);
                 control.Tag = w;
+            }
+            else w = control.Tag as Window;
+            w.Show();
+            w.Activate();
+        }
+
+        private void SetShowLogger(object sender,RoutedEventArgs e)
+        {
+            Button control = sender as Fluent.Button;
+            dynamic datacontext = control.Tag;
+            Binding titlebinding = new Binding("Resources." + datacontext.TitleKey)
+            {
+                Source = ResourceService.Current
+            };
+            control.SetBinding(Fluent.Button.HeaderProperty, titlebinding);
+        }
+
+        private void ShowLogger(object sender, RoutedEventArgs e)
+        {
+            Button control = sender as Button;
+            Window w;
+            if (control.Tag.GetType().IsGenericType)
+            {
+                var valuetype = control.Tag.GetType().GetGenericArguments()[0];
+                dynamic datacontext = typeof(Logger.ViewProvider<>).MakeGenericType(valuetype)
+                    .GetConstructor(new[] { control.Tag.GetType() })
+                    .Invoke(new[] { control.Tag });
+                w = new Views.Standalone.LogView
+                {
+                    DataContext = datacontext
+                };
+                (w as Views.Standalone.LogView).SetGridColumns(datacontext.ViewColumns);
+                w.Closed += (_, __) => control.Tag = control.Tag;
+                w.SetBinding(TitleProperty, new Binding("Header")
+                {
+                    Source = sender,
+                    Mode = BindingMode.OneWay
+                });
             }
             else w = control.Tag as Window;
             w.Show();

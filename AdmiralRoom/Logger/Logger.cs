@@ -10,5 +10,6 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public abstract void Import(IEnumerable<T> items);
         public abstract IEnumerable<T> Read();
         protected string GetText(string textkey) => Properties.Resources.ResourceManager.GetString("LogTitle_" + textkey) ?? textkey;
+        public string TitleKey { get; set; }
     }
 }
