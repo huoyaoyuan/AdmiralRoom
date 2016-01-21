@@ -330,6 +330,12 @@
   <data name="ItemCount" xml:space="preserve">
     <value>Equips: </value>
   </data>
+  <data name="Logger_CreateItem" xml:space="preserve">
+    <value>Create Item</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>Admiral Level</value>
   </data>
@@ -352,6 +358,9 @@
     <value>Bauxite</value>
   </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
+    <value>Secretary</value>
+  </data>
+  <data name="LogTitle_SecretaryName" xml:space="preserve">
     <value>Secretary</value>
   </data>
   <data name="LogTitle_Success" xml:space="preserve">
@@ -676,6 +685,9 @@ Expedition {1} - {2}</value>
   <data name="ShipCount" xml:space="preserve">
     <value>Ships: </value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
   <data name="Status_GetResponse" xml:space="preserve">
     <value>Get response: {0}</value>
   </data>
@@ -738,14 +750,5 @@ Expedition {1} - {2}</value>
   </data>
   <data name="Window_Subwindow" xml:space="preserve">
     <value>Subwindow</value>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
-  </data>
-  <data name="Logs" xml:space="preserve">
-    <value>Logs</value>
-  </data>
-  <data name="Logger_CreateItem" xml:space="preserve">
-    <value>Create Item</value>
   </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmiralRoom", "AdmiralRoom\AdmiralRoom.csproj", "{501AD96A-9AAE-4232-98E6-1ED41067C1FB}"
 EndProject
@@ -24,5 +24,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_ResXSortingComparison = InvariantCulture
+		RESX_SortFileContentOnSave = True
 	EndGlobalSection
 EndGlobal

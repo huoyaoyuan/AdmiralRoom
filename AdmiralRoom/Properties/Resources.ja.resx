@@ -330,6 +330,12 @@
   <data name="ItemCount" xml:space="preserve">
     <value>装備数：</value>
   </data>
+  <data name="Logger_CreateItem" xml:space="preserve">
+    <value>装備開発</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>ログ</value>
+  </data>
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>提督レベル</value>
   </data>
@@ -352,6 +358,9 @@
     <value>ボーキサイト</value>
   </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
+    <value>秘書艦</value>
+  </data>
+  <data name="LogTitle_SecretaryName" xml:space="preserve">
     <value>秘書艦</value>
   </data>
   <data name="LogTitle_Success" xml:space="preserve">
@@ -661,6 +670,9 @@
   <data name="ShipCount" xml:space="preserve">
     <value>艦娘数：</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計</value>
+  </data>
   <data name="Status_GetResponse" xml:space="preserve">
     <value>データを読みました: {0}</value>
   </data>
@@ -714,14 +726,5 @@
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>統計</value>
-  </data>
-  <data name="Logs" xml:space="preserve">
-    <value>ログ</value>
-  </data>
-  <data name="Logger_CreateItem" xml:space="preserve">
-    <value>装備開発</value>
   </data>
 </root>

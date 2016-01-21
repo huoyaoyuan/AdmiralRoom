@@ -790,6 +790,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Secretary 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_SecretaryName {
+            get {
+                return ResourceManager.GetString("LogTitle_SecretaryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Success 的本地化字符串。
         /// </summary>
         public static string LogTitle_Success {

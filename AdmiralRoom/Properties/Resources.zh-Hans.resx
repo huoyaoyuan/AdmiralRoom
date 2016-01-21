@@ -327,6 +327,12 @@
   <data name="ItemCount" xml:space="preserve">
     <value>装备数：</value>
   </data>
+  <data name="Logger_CreateItem" xml:space="preserve">
+    <value>装备开发</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>记录</value>
+  </data>
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>提督等级</value>
   </data>
@@ -349,6 +355,9 @@
     <value>铝土</value>
   </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
+    <value>秘书舰</value>
+  </data>
+  <data name="LogTitle_SecretaryName" xml:space="preserve">
     <value>秘书舰</value>
   </data>
   <data name="LogTitle_Success" xml:space="preserve">
@@ -673,6 +682,9 @@
   <data name="ShipCount" xml:space="preserve">
     <value>舰娘数：</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
   <data name="Status_GetResponse" xml:space="preserve">
     <value>获得数据：{0}</value>
   </data>
@@ -735,14 +747,5 @@
   </data>
   <data name="Window_Subwindow" xml:space="preserve">
     <value>子窗口</value>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>统计</value>
-  </data>
-  <data name="Logs" xml:space="preserve">
-    <value>记录</value>
-  </data>
-  <data name="Logger_CreateItem" xml:space="preserve">
-    <value>装备开发</value>
   </data>
 </root>

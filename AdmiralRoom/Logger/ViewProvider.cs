@@ -85,6 +85,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public GridViewColumn[] ViewColumns { get; }
         public readonly Logger<T> Logger;
         private readonly T[] readed;
+        public int TotalCount { get; }
 
         #region Displayed
         private IReadOnlyCollection<T> _displayed;
@@ -129,6 +130,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     return column;
                 }).ToArray();
             readed = logger.Read().ToArray();
+            TotalCount = readed.Length;
             Update();
         }
         public void Update()

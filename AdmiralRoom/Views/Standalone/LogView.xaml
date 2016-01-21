@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Expander Grid.Row="0" Header="{ex:Localizable Ship_Filter}">
@@ -50,7 +51,11 @@
                 
             </Border>
         </Expander>
-        <ListView Grid.Row="2" ItemsSource="{Binding Displayed}">
+        <TextBlock Grid.Row="2" Margin="4">
+            <Run FontSize="20" Text="{Binding Displayed.Count, Mode=OneWay}"/>
+            <Run FontSize="16" Text="{Binding TotalCount, Mode=OneWay, StringFormat=/ {0}}"/>
+        </TextBlock>
+        <ListView Grid.Row="3" ItemsSource="{Binding Displayed}">
             <ListView.View>
                 <GridView x:Name="gridview"/>
             </ListView.View>
