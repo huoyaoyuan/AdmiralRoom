@@ -1,16 +1,18 @@
 ﻿using System;
 
+#pragma warning disable CC0021
+
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     public class CreateItemLog
     {
         [Log]
         public DateTime DateTime { get; set; }
-        [Show]
+        [Show("DateTime")]
         public string LocalDateTime => DateTime.ToLocalTime().ToString();
         [Log]
         public int SecretaryLevel { get; set; }
-        [Log]
+        [Log, Filter]
         public string SecretaryName { get; set; }
         [Show]
         public string Secretary => $"{SecretaryName}(Lv.{SecretaryLevel})";
@@ -24,9 +26,9 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public int Item4 { get; set; }
         [Log]
         public bool IsSuccess { get; set; }
-        [Show(IsFilter = true)]
+        [Show, Filter]
         public string Success => IsSuccess ? Properties.Resources.Success : Properties.Resources.Fail;
-        [Log, Show("EquipmentCreated", IsFilter = true)]
+        [Log, Show("EquipmentCreated"), Filter]
         public string Equipment { get; set; }
         [Log, Show]
         public int AdmiralLevel { get; set; }

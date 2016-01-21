@@ -16,9 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public string MemberName { get; set; }
             public MethodInfo MemberGetter { get; set; }
             public string Title { get; set; }
-            public string TitleKey => "LogTitle_" + Title;
-            public string FullTitleKey => "Resources" + TitleKey;
-            public bool IsFilter { get; set; }
+            public string FullTitleKey => "Resources.LogTitle_" + Title;
             public string[] Values { get; }
 
             #region SelectedValue
@@ -97,31 +95,28 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         {
             Type type = typeof(T);
             Logger = logger;
-            Columns = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
-                .Select(x =>
+            var prop = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            Columns = prop.Where(x => Attribute.IsDefined(x, typeof(FilterAttribute)))
+                .Select(x => new Column
                 {
-                    var attr = Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute;
-                    return new Column
-                    {
-                        Title = attr.Title ?? x.Name,
-                        IsFilter = attr.IsFilter,
-                        MemberName = x.Name,
-                        MemberGetter = x.GetMethod,
-                        MemberType = x.PropertyType,
-                        Source = this
-                    };
+                    Title = (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute)?.Title ?? x.Name,
+                    MemberName = x.Name,
+                    MemberGetter = x.GetMethod,
+                    MemberType = x.PropertyType,
+                    Source = this
                 })
                 .ToArray();
-            ViewColumns = Columns.Select(x =>
-            {
-                var column = new GridViewColumn
+            ViewColumns = prop.Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
+                .Select(x =>
                 {
-                    DisplayMemberBinding = new Binding(x.MemberName)
-                };
-                BindingOperations.SetBinding(column, GridViewColumn.HeaderProperty, new Views.Extensions.LocalizableExtension(x.TitleKey));
-                return column;
-            }).ToArray();
+                    var column = new GridViewColumn
+                    {
+                        DisplayMemberBinding = new Binding(x.Name)
+                    };
+                    BindingOperations.SetBinding(column, GridViewColumn.HeaderProperty, new Views.Extensions.LocalizableExtension(
+                        "LogTitle_" + ((Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute).Title ?? x.Name)));
+                    return column;
+                }).ToArray();
             readed = logger.Read().ToArray();
             Update();
         }
@@ -138,7 +133,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     internal sealed class ShowAttribute : Attribute
     {
         public string Title { get; }
-        public bool IsFilter { get; set; }
         public ShowAttribute(string title = null) { Title = title; }
     }
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    internal sealed class FilterAttribute : Attribute { }
 }
