@@ -11,20 +11,31 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         private readonly FileInfo file;
         private readonly Action CheckFile;
+        private readonly string fileheader;
         public CsvLogger(string filename, bool useshown = false) : base(useshown)
         {
             file = new FileInfo(filename);
             string[] titles = useshown ? provider.Titles.Select(GetText).ToArray() : provider.Titles;
+            fileheader = string.Join(",", titles);
             CheckFile = () =>
             {
                 if (!file.Exists)
                     using (var writer = file.CreateText())
                     {
-                        writer.WriteLine(string.Join(",", titles));
+                        writer.WriteLine(fileheader);
                         writer.Flush();
                     }
             };
             CheckFile();
+            using (var reader = file.OpenText())
+                if (reader.ReadLine().Trim() != fileheader)
+                {
+                    try
+                    {
+                        file.MoveTo(filename + ".backup");
+                    }
+                    catch (IOException) { }
+                }
         }
         public override void Log(T item)
         {
