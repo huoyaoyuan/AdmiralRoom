@@ -168,12 +168,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
             Logger.Loggers.CreateItemLogger.Log(new Logger.CreateItemLog
             {
-                DateTime = DateTime.Now,
-                SecretaryId = Staff.Current.Homeport.Secretary.ShipId,
+                DateTime = DateTime.UtcNow,
+                SecretaryName = Staff.Current.Homeport.Secretary.ShipInfo.Name,
                 SecretaryLevel = Staff.Current.Homeport.Secretary.Level,
                 IsSuccess = dev.IsSuccess,
                 AdmiralLevel = Staff.Current.Admiral.Level,
-                EquipId = dev.Equip.Id,
+                Equipment = dev.Equip.Name,
                 Item1 = req.GetInt("api_item1"),
                 Item2 = req.GetInt("api_item2"),
                 Item3 = req.GetInt("api_item3"),

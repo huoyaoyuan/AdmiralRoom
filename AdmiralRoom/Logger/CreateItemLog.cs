@@ -4,14 +4,16 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     public class CreateItemLog
     {
-        [Log, Show]
-        public DateTime DateTime { get; set; }
         [Log]
-        public int SecretaryId { get; set; }
+        public DateTime DateTime { get; set; }
+        [Show]
+        public string LocalDateTime => DateTime.ToLocalTime().ToString();
         [Log]
         public int SecretaryLevel { get; set; }
+        [Log]
+        public string SecretaryName { get; set; }
         [Show]
-        public string Secretary => $"{Officer.Staff.Current.MasterData.ShipInfo?[SecretaryId].Name ?? SecretaryId.ToString()}(Lv.{SecretaryLevel})";
+        public string Secretary => $"{SecretaryName}(Lv.{SecretaryLevel})";
         [Log, Show]
         public int Item1 { get; set; }
         [Log, Show]
@@ -24,10 +26,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public bool IsSuccess { get; set; }
         [Show(IsFilter = true)]
         public string Success => IsSuccess ? Properties.Resources.Success : Properties.Resources.Fail;
-        [Log]
-        public int EquipId { get; set; }
-        [Show("EquipmentCreated", IsFilter = true)]
-        public string Equipment => Officer.Staff.Current.MasterData.EquipInfo?[EquipId].Name ?? EquipId.ToString();
+        [Log, Show("EquipmentCreated", IsFilter = true)]
+        public string Equipment { get; set; }
         [Log, Show]
         public int AdmiralLevel { get; set; }
     }
