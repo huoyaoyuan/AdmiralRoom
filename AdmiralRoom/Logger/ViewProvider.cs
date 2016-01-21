@@ -17,7 +17,18 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public MethodInfo MemberGetter { get; set; }
             public string Title { get; set; }
             public string FullTitleKey => "Resources.LogTitle_" + Title;
-            public string[] Values { get; }
+            public string[] Values
+            {
+                get
+                {
+                    var input = Expression.Parameter(typeof(T));
+                    var getmember = Expression.Property(input, MemberGetter);
+                    MethodInfo tostring = typeof(object).GetMethod(nameof(ToString));
+                    var str = Expression.Call(getmember, tostring);
+                    var selector = Expression.Lambda<Func<T, string>>(str, input).Compile();
+                    return Source.readed.Select(selector).Distinct().ToArray();
+                }
+            }
 
             #region SelectedValue
             private string _selectedvalue;
@@ -61,7 +72,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     Selector = _ => true;
                     return;
                 }
-                var input = Expression.Parameter(MemberType);
+                var input = Expression.Parameter(typeof(T));
                 var getmember = Expression.Property(input, MemberGetter);
                 var value = Convert.ChangeType(SelectedValue, MemberType);
                 var valueexp = Expression.Constant(value, MemberType);

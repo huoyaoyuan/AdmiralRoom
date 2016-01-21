@@ -32,7 +32,11 @@
                                 <CheckBox IsChecked="{Binding Enable}" VerticalAlignment="Center">
                                     <ex:RuntimePathBinding PathSource="FullTitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
                                 </CheckBox>
-                                <ComboBox VerticalAlignment="Center" ItemsSource="{Binding Values}" SelectedValue="{Binding SelectedValue}"/>
+                                <ComboBox IsEnabled="{Binding Enable}"
+                                          
+                                          VerticalAlignment="Center"
+                                          ItemsSource="{Binding Values}"
+                                          SelectedValue="{Binding SelectedValue}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
