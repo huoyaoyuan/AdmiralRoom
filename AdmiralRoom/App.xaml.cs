@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             base.OnStartup(e);
             Environment.CurrentDirectory = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Win32Helper.SetIEEmulation(11001);
             Win32Helper.SetGPURendering(true);
@@ -35,14 +35,14 @@ namespace Huoyaoyuan.AdmiralRoom
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
         }
 
-        private static void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
 #pragma warning disable CC0022
             using (var file = File.Open("crash.log", FileMode.Append, FileAccess.Write))
             {
                 StreamWriter sw = new StreamWriter(file);
                 sw.WriteLine("==================================================");
-                sw.WriteLine(e.Exception.ToString());
+                sw.WriteLine(e.ExceptionObject.ToString());
                 sw.Flush();
 #pragma warning restore CC0022
             }
