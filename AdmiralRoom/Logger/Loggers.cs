@@ -2,6 +2,10 @@
 {
     static class Loggers
     {
-        public static CsvLogger<CreateItemLog> CreateItemLogger { get; } = new CsvLogger<CreateItemLog>(@"logs\createitem.csv") { TitleKey = "Logger_CreateItem" };
+        public static void Initialize()
+        {
+            CreateItemLogger = new CsvLogger<CreateItemLog>(@"logs\createitem.csv") { TitleKey = "Logger_CreateItem" };
+        }
+        public static CsvLogger<CreateItemLog> CreateItemLogger { get; private set; }
     }
 }

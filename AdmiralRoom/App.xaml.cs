@@ -27,6 +27,8 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Current.Quests.Load();
             Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
+            Logger.Loggers.Initialize();
+
             this.MainWindow = new MainWindow();
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
