@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Application = System.Windows.Application;
 
 #pragma warning disable CC0029
@@ -12,6 +13,8 @@ namespace Huoyaoyuan.AdmiralRoom
         private NotifyIcon notifyIcon;
 
         public void Dispose() => notifyIcon.Dispose();
+
+        private readonly MediaPlayer player = new MediaPlayer();
 
         public override void Initialize()
         {
@@ -36,9 +39,21 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
 
-        public override void Show(string title, string detail)
+        public override void Show(string title, string detail, string sound)
         {
             notifyIcon?.ShowBalloonTip(1000, title, detail, ToolTipIcon.None);
+            if (!string.IsNullOrEmpty(sound))
+            {
+                DispatcherHelper.UIDispatcher.Invoke(() =>
+                {
+                    try
+                    {
+                        player.Open(new Uri(sound, UriKind.Relative));
+                        player.Play();
+                    }
+                    catch { }
+                });
+            }
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             ErrorHelper.VerifySucceeded(newShortcutSave.Save(shortcutPath, true));
         }
-        public override void Show(string title, string detail)
+        public override void Show(string title, string detail,string sound)
         {
             // Get a toast XML template
             XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
