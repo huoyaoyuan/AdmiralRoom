@@ -44,13 +44,13 @@
                 </ItemsControl>
             </Border>
         </Expander>
-        <Expander Grid.Row="1" Header="{ex:Localizable Ship_Sort}">
+        <!--<Expander Grid.Row="1" Header="{ex:Localizable Ship_Sort}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
                 
             </Border>
-        </Expander>
+        </Expander>-->
         <TextBlock Grid.Row="2" Margin="4">
             <Run FontSize="20" Text="{Binding Displayed.Count, Mode=OneWay}"/>
             <Run FontSize="16" Text="{Binding TotalCount, Mode=OneWay, StringFormat=/ {0}}"/>
