@@ -331,7 +331,10 @@
     <value>装備数：</value>
   </data>
   <data name="Logger_CreateItem" xml:space="preserve">
-    <value>装備開発</value>
+    <value>開発</value>
+  </data>
+  <data name="Logger_CreateShip" xml:space="preserve">
+    <value>建造</value>
   </data>
   <data name="Logs" xml:space="preserve">
     <value>ログ</value>
@@ -339,8 +342,14 @@
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>提督レベル</value>
   </data>
+  <data name="LogTitle_BuildingType" xml:space="preserve">
+    <value>種類</value>
+  </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>日付</value>
+  </data>
+  <data name="LogTitle_EmptyDocks" xml:space="preserve">
+    <value>空きドック</value>
   </data>
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>装備</value>
@@ -360,14 +369,29 @@
   <data name="LogTitle_Item4" xml:space="preserve">
     <value>ボーキサイト</value>
   </data>
+  <data name="LogTitle_Item5" xml:space="preserve">
+    <value>開発資材</value>
+  </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
     <value>秘書艦</value>
   </data>
   <data name="LogTitle_SecretaryName" xml:space="preserve">
     <value>秘書艦</value>
   </data>
+  <data name="LogTitle_ShipCreated" xml:space="preserve">
+    <value>建造艦</value>
+  </data>
+  <data name="LogTitle_ShipType" xml:space="preserve">
+    <value>艦種</value>
+  </data>
   <data name="LogTitle_Success" xml:space="preserve">
     <value>成功</value>
+  </data>
+  <data name="LSC_No" xml:space="preserve">
+    <value>通常艦建造</value>
+  </data>
+  <data name="LSC_Yes" xml:space="preserve">
+    <value>大型艦建造</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>ミュート</value>

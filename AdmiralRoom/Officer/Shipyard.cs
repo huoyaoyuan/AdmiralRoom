@@ -14,9 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.API("api_get_member/ndock").Subscribe<getmember_ndock[]>(NDockHandler);
             Staff.API("api_req_nyukyo/start").Subscribe(NStartHandler);
-            Staff.API("api_get_member/kdock").Subscribe<getmember_kdock[]>(x =>
-                DispatcherHelper.UIDispatcher.Invoke(() =>
-                BuildingDocks.UpdateAll(x, api => api.api_id)));
+            Staff.API("api_get_member/kdock").Subscribe<getmember_kdock[]>(KDockHandler);
             Staff.API("api_req_kousyou/createship").Subscribe(CreateShipHandler);
             Staff.API("api_req_kousyou/getship").Subscribe<req_getship>(GetShipHandler);
             Staff.API("api_req_kousyou/destroyship").Subscribe<kousyou_destroyship>(DestroyShipHandler);
@@ -80,6 +78,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         private int[] inndock = { };
+        private int lastcreatedock = -1;
         public void NDockHandler(getmember_ndock[] api)
         {
             DispatcherHelper.UIDispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
@@ -114,9 +113,32 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void CreateShipHandler(NameValueCollection req)
         {
-            int dockid = req.GetInt("api_kdock_id");
+            int dockid = lastcreatedock = req.GetInt("api_kdock_id");
             BuildingDocks[dockid].IsLSC = req.GetInt("api_large_flag") != 0;
             BuildingDocks[dockid].Secretary = Staff.Current.Homeport.Secretary;
+        }
+        private void KDockHandler(getmember_kdock[] api)
+        {
+            DispatcherHelper.UIDispatcher.Invoke(() =>
+                BuildingDocks.UpdateAll(api, x => x.api_id));
+            var dock = BuildingDocks[lastcreatedock];
+            if (dock?.CreatedShip != null)
+                Logger.Loggers.CreateShipLogger.Log(new Logger.CreateShipLog
+                {
+                    DateTime = DateTime.UtcNow,
+                    AdmiralLevel = Staff.Current.Admiral.Level,
+                    EmptyDocks = BuildingDocks.Count(x => x.State == DockState.Empty),
+                    Item1 = dock.UseFuel,
+                    Item2 = dock.UseBull,
+                    Item3 = dock.UseSteel,
+                    Item4 = dock.UseBauxite,
+                    Item5 = dock.UseDevelopment,
+                    IsLSC = dock.IsLSC,
+                    SecretaryId = Staff.Current.Homeport.Secretary.ShipInfo.Id,
+                    SecretaryLevel = Staff.Current.Homeport.Secretary.Level,
+                    ShipId = dock.CreatedShip.Id
+                });
+            lastcreatedock = -1;
         }
         private void GetShipHandler(req_getship api)
         {

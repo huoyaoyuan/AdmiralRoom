@@ -709,6 +709,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Construction 的本地化字符串。
+        /// </summary>
+        public static string Logger_CreateShip {
+            get {
+                return ResourceManager.GetString("Logger_CreateShip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Logs 的本地化字符串。
         /// </summary>
         public static string Logs {
@@ -727,11 +736,29 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Construction Type 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_BuildingType {
+            get {
+                return ResourceManager.GetString("LogTitle_BuildingType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 DateTime 的本地化字符串。
         /// </summary>
         public static string LogTitle_DateTime {
             get {
                 return ResourceManager.GetString("LogTitle_DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Empty Docks 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_EmptyDocks {
+            get {
+                return ResourceManager.GetString("LogTitle_EmptyDocks", resourceCulture);
             }
         }
         
@@ -790,6 +817,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Development Material 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Item5 {
+            get {
+                return ResourceManager.GetString("LogTitle_Item5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Secretary 的本地化字符串。
         /// </summary>
         public static string LogTitle_Secretary {
@@ -808,11 +844,47 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Ship Created 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_ShipCreated {
+            get {
+                return ResourceManager.GetString("LogTitle_ShipCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ShipType 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_ShipType {
+            get {
+                return ResourceManager.GetString("LogTitle_ShipType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Success 的本地化字符串。
         /// </summary>
         public static string LogTitle_Success {
             get {
                 return ResourceManager.GetString("LogTitle_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 NSC 的本地化字符串。
+        /// </summary>
+        public static string LSC_No {
+            get {
+                return ResourceManager.GetString("LSC_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 LSC 的本地化字符串。
+        /// </summary>
+        public static string LSC_Yes {
+            get {
+                return ResourceManager.GetString("LSC_Yes", resourceCulture);
             }
         }
         

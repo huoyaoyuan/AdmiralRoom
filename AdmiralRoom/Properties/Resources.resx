@@ -333,14 +333,23 @@
   <data name="Logger_CreateItem" xml:space="preserve">
     <value>Create Item</value>
   </data>
+  <data name="Logger_CreateShip" xml:space="preserve">
+    <value>Construction</value>
+  </data>
   <data name="Logs" xml:space="preserve">
     <value>Logs</value>
   </data>
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>Admiral Level</value>
   </data>
+  <data name="LogTitle_BuildingType" xml:space="preserve">
+    <value>Construction Type</value>
+  </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>DateTime</value>
+  </data>
+  <data name="LogTitle_EmptyDocks" xml:space="preserve">
+    <value>Empty Docks</value>
   </data>
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>Equipment Created</value>
@@ -360,14 +369,29 @@
   <data name="LogTitle_Item4" xml:space="preserve">
     <value>Bauxite</value>
   </data>
+  <data name="LogTitle_Item5" xml:space="preserve">
+    <value>Development Material</value>
+  </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
     <value>Secretary</value>
   </data>
   <data name="LogTitle_SecretaryName" xml:space="preserve">
     <value>Secretary</value>
   </data>
+  <data name="LogTitle_ShipCreated" xml:space="preserve">
+    <value>Ship Created</value>
+  </data>
+  <data name="LogTitle_ShipType" xml:space="preserve">
+    <value>ShipType</value>
+  </data>
   <data name="LogTitle_Success" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="LSC_No" xml:space="preserve">
+    <value>NSC</value>
+  </data>
+  <data name="LSC_Yes" xml:space="preserve">
+    <value>LSC</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>Mute</value>

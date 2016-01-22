@@ -328,7 +328,10 @@
     <value>装备数：</value>
   </data>
   <data name="Logger_CreateItem" xml:space="preserve">
-    <value>装备开发</value>
+    <value>开发</value>
+  </data>
+  <data name="Logger_CreateShip" xml:space="preserve">
+    <value>建造</value>
   </data>
   <data name="Logs" xml:space="preserve">
     <value>记录</value>
@@ -336,8 +339,14 @@
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>提督等级</value>
   </data>
+  <data name="LogTitle_BuildingType" xml:space="preserve">
+    <value>种类</value>
+  </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>时间</value>
+  </data>
+  <data name="LogTitle_EmptyDocks" xml:space="preserve">
+    <value>空闲渠数</value>
   </data>
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>装备</value>
@@ -357,14 +366,29 @@
   <data name="LogTitle_Item4" xml:space="preserve">
     <value>铝土</value>
   </data>
+  <data name="LogTitle_Item5" xml:space="preserve">
+    <value>开发资材</value>
+  </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
     <value>秘书舰</value>
   </data>
   <data name="LogTitle_SecretaryName" xml:space="preserve">
     <value>秘书舰</value>
   </data>
+  <data name="LogTitle_ShipCreated" xml:space="preserve">
+    <value>建造舰船</value>
+  </data>
+  <data name="LogTitle_ShipType" xml:space="preserve">
+    <value>舰种</value>
+  </data>
   <data name="LogTitle_Success" xml:space="preserve">
     <value>成功</value>
+  </data>
+  <data name="LSC_No" xml:space="preserve">
+    <value>通常舰建造</value>
+  </data>
+  <data name="LSC_Yes" xml:space="preserve">
+    <value>大型舰建造</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>静音</value>

@@ -265,6 +265,7 @@
             <ribbon:RibbonTabItem Header="{ex:Localizable Statistics}" KeyTip="S">
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Logs}">
                     <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.CreateItemLogger}"/>
+                    <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.CreateShipLogger}"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>
