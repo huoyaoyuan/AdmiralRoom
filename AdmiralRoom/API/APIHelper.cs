@@ -51,11 +51,13 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static APIData<T> Parse<T>(this Session oSession)
         {
-            svdata<T> svdata = null;
             var reader = new StringReader(oSession.GetResponseBodyAsString().Substring(7));
+            return new APIData<T>(Parse<T>(reader), oSession.GetRequestBodyAsString());
+        }
+        public static svdata<T> Parse<T>(TextReader reader)
+        {
             using (var jreader = new JsonTextReader(reader))
-                svdata = JSerializer.Deserialize<svdata<T>>(jreader);
-            return new APIData<T>(svdata, oSession.GetRequestBodyAsString());
+                return JSerializer.Deserialize<svdata<T>>(jreader);
         }
         public static bool TryParse<T>(this Session oSession, out APIData<T> result)
         {
@@ -70,31 +72,5 @@ namespace Huoyaoyuan.AdmiralRoom
                 return false;
             }
         }
-        //public static APIData<dynamic> ParseDynamic(this Session oSession)
-        //{
-        //    dynamic res;
-        //    svdata<dynamic> svdata = new svdata<dynamic>();
-        //    using (var mms = new MemoryStream(oSession.ResponseBody, 7, oSession.ResponseBody.Length - 7, false))
-        //    {
-        //        res = DynamicJson.Parse(mms);
-        //    }
-        //    svdata.api_data = res.api_data;
-        //    svdata.api_result = (int)res.api_result;
-        //    svdata.api_result_msg = res.api_result_msg;
-        //    return new APIData<dynamic>(svdata, oSession.GetRequestBodyAsString());
-        //}
-        //public static bool TryParseDynamic(this Session oSession, out APIData<dynamic> result)
-        //{
-        //    try
-        //    {
-        //        result = oSession.ParseDynamic();
-        //        return result.IsSuccess;
-        //    }
-        //    catch
-        //    {
-        //        result = null;
-        //        return false;
-        //    }
-        //}
     }
 }

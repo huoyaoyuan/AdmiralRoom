@@ -25,6 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Proxy = Config.Current.Proxy;
 
             Officer.Staff.Current.Quests.Load();
+            Officer.Staff.Current.MasterData.Load();
             Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
             Logger.Loggers.Initialize();

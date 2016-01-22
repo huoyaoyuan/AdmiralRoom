@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
 
 #pragma warning disable CC0021
@@ -13,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MasterData()
         {
             Staff.API("api_start2").Subscribe<api_start2>(MasterHandler);
+            Staff.API("api_start2").Subscribe(Save);
             LoadFinalHPs();
         }
 
@@ -60,6 +62,29 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 return (r[(int)map.Difficulty]);
             }
             catch { return 1; }
+        }
+        public void Load()
+        {
+            try
+            {
+                using (var reader = File.OpenText(@"logs\masterdata.json"))
+                {
+                    MasterHandler(APIHelper.Parse<api_start2>(reader).api_data);
+                }
+            }
+            catch { }
+        }
+        public void Save(Session oSession)
+        {
+            try
+            {
+                using (var writer = File.CreateText(@"logs\masterdata.json"))
+                {
+                    writer.Write(oSession.GetResponseBodyAsString().Substring(7));
+                    writer.Flush();
+                }
+            }
+            catch { }
         }
     }
 }
