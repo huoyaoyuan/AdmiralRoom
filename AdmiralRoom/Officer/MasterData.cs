@@ -15,6 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.API("api_start2").Subscribe<api_start2>(MasterHandler);
             Staff.API("api_start2").Subscribe(Save);
+            Staff.API("api_start2").Subscribe((Session x) => Models.Status.Current.IsGameLoaded = true);
             LoadFinalHPs();
         }
 
@@ -27,7 +28,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public IDTable<MissionInfo> MissionInfo { get; private set; }
         private void MasterHandler(api_start2 api)
         {
-            Models.Status.Current.IsGameLoaded = true;
             MapAreas = new IDTable<MapArea>(api.api_mst_maparea.Select(x => new MapArea(x)));
             MapInfos.UpdateAll(api.api_mst_mapinfo, x => x.api_id);
             ShipTypes = new IDTable<ShipType>(api.api_mst_stype.Select(x => new ShipType(x)));
