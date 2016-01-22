@@ -28,14 +28,14 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             };
             CheckFile();
             using (var reader = file.OpenText())
-                if (reader.ReadLine().Trim() != fileheader)
-                {
-                    try
-                    {
-                        file.MoveTo(filename + ".backup");
-                    }
-                    catch (IOException) { }
-                }
+                if (reader.ReadLine().Trim() == fileheader) return;
+            try
+            {
+                file.MoveTo(filename + ".backup");
+                file = new FileInfo(filename);
+                CheckFile();
+            }
+            catch (IOException) { }
         }
         public override void Log(T item)
         {
