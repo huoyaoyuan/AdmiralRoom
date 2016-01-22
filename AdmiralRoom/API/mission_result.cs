@@ -13,9 +13,15 @@
         public string api_detail { get; set; }
         public string api_quest_name { get; set; }
         public int api_quest_level { get; set; }
-        //public int[] api_get_material { get; set; }//滚你的-1
+        public int[] api_get_material { get; set; }//滚你的-1
         public int[] api_useitem_flag { get; set; }
-        //public object api_get_item1 { get; set; }
-        //public object api_get_item2 { get; set; }
+        public class getitem
+        {
+            public int api_useitem_id { get; set; }
+            public string api_useitem_name { get; set; }
+            public int api_useitem_count { get; set; }
+        }
+        public getitem api_get_item1 { get; set; }
+        public getitem api_get_item2 { get; set; }
     }
 }

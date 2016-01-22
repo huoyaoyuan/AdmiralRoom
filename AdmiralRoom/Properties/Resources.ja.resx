@@ -252,8 +252,17 @@
   <data name="Expedition_BackTime" xml:space="preserve">
     <value>帰投時刻</value>
   </data>
+  <data name="Expedition_Fail" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Expedition_Great" xml:space="preserve">
+    <value>大成功</value>
+  </data>
   <data name="Expedition_Remain" xml:space="preserve">
     <value>帰投まて</value>
+  </data>
+  <data name="Expedition_Success" xml:space="preserve">
+    <value>成功</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>失敗</value>
@@ -372,6 +381,12 @@
   <data name="LogTitle_Item5" xml:space="preserve">
     <value>開発資材</value>
   </data>
+  <data name="LogTitle_MissionName" xml:space="preserve">
+    <value>遠征名</value>
+  </data>
+  <data name="LogTitle_Result" xml:space="preserve">
+    <value>結果</value>
+  </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
     <value>秘書艦</value>
   </data>
@@ -386,6 +401,15 @@
   </data>
   <data name="LogTitle_Success" xml:space="preserve">
     <value>成功</value>
+  </data>
+  <data name="LogTitle_UseItem1" xml:space="preserve">
+    <value>アイテム1</value>
+  </data>
+  <data name="LogTitle_UseItem2" xml:space="preserve">
+    <value>アイテム2</value>
+  </data>
+  <data name="LogTitle_UseItemCount" xml:space="preserve">
+    <value>個数</value>
   </data>
   <data name="LSC_No" xml:space="preserve">
     <value>通常艦建造</value>

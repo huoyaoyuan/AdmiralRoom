@@ -466,11 +466,38 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Fail 的本地化字符串。
+        /// </summary>
+        public static string Expedition_Fail {
+            get {
+                return ResourceManager.GetString("Expedition_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Great Success 的本地化字符串。
+        /// </summary>
+        public static string Expedition_Great {
+            get {
+                return ResourceManager.GetString("Expedition_Great", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Remain 的本地化字符串。
         /// </summary>
         public static string Expedition_Remain {
             get {
                 return ResourceManager.GetString("Expedition_Remain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Success 的本地化字符串。
+        /// </summary>
+        public static string Expedition_Success {
+            get {
+                return ResourceManager.GetString("Expedition_Success", resourceCulture);
             }
         }
         
@@ -826,6 +853,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Mission Name 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_MissionName {
+            get {
+                return ResourceManager.GetString("LogTitle_MissionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Result 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Result {
+            get {
+                return ResourceManager.GetString("LogTitle_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Secretary 的本地化字符串。
         /// </summary>
         public static string LogTitle_Secretary {
@@ -867,6 +912,33 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string LogTitle_Success {
             get {
                 return ResourceManager.GetString("LogTitle_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Item 1 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_UseItem1 {
+            get {
+                return ResourceManager.GetString("LogTitle_UseItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Item 2 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_UseItem2 {
+            get {
+                return ResourceManager.GetString("LogTitle_UseItem2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Count 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_UseItemCount {
+            get {
+                return ResourceManager.GetString("LogTitle_UseItemCount", resourceCulture);
             }
         }
         

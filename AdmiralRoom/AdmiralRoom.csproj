@@ -218,6 +218,7 @@
     <Compile Include="Logger\CsvLogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\Loggers.cs" />
+    <Compile Include="Logger\MissionLog.cs" />
     <Compile Include="Logger\PropertyProvider.cs" />
     <Compile Include="Logger\ViewProvider.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />

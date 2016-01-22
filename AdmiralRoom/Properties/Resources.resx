@@ -252,8 +252,17 @@
   <data name="Expedition_BackTime" xml:space="preserve">
     <value>Back Time</value>
   </data>
+  <data name="Expedition_Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="Expedition_Great" xml:space="preserve">
+    <value>Great Success</value>
+  </data>
   <data name="Expedition_Remain" xml:space="preserve">
     <value>Remain</value>
+  </data>
+  <data name="Expedition_Success" xml:space="preserve">
+    <value>Success</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Fail</value>
@@ -372,6 +381,12 @@
   <data name="LogTitle_Item5" xml:space="preserve">
     <value>Development Material</value>
   </data>
+  <data name="LogTitle_MissionName" xml:space="preserve">
+    <value>Mission Name</value>
+  </data>
+  <data name="LogTitle_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
   <data name="LogTitle_Secretary" xml:space="preserve">
     <value>Secretary</value>
   </data>
@@ -386,6 +401,15 @@
   </data>
   <data name="LogTitle_Success" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="LogTitle_UseItem1" xml:space="preserve">
+    <value>Item 1</value>
+  </data>
+  <data name="LogTitle_UseItem2" xml:space="preserve">
+    <value>Item 2</value>
+  </data>
+  <data name="LogTitle_UseItemCount" xml:space="preserve">
+    <value>Count</value>
   </data>
   <data name="LSC_No" xml:space="preserve">
     <value>NSC</value>

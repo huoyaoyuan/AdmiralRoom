@@ -21,6 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
             Staff.API("api_req_kaisou/slot_exchange_index").Subscribe(ExchangeHandler);
             Staff.API("api_get_member/mapinfo").Subscribe<getmembet_mapinfo[]>(RefreshMapInfo);
+            Staff.API("api_req_mission/result").Subscribe<mission_result>(MissionHandler);
         }
 
         public Material Material { get; } = new Material();
@@ -288,6 +289,25 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 map.NowHP = info.api_eventmap?.api_now_maphp ?? 0;
             }
             MapsInProgress = Staff.Current.MasterData.MapInfos.Where(x => !x.IsClear).ToArray();
+        }
+
+        private void MissionHandler(mission_result api)
+        {
+            var log = new Logger.MissionLog
+            {
+                DateTime = DateTime.UtcNow,
+                MissionName = api.api_quest_name,
+                ResultRank = api.api_clear_result,
+                UseItem1 = api.api_get_item1?.api_useitem_name ?? "",
+                UseItem1Count = api.api_get_item1?.api_useitem_count ?? 0,
+                UseItem2 = api.api_get_item2?.api_useitem_name ?? "",
+                UseItem2Count = api.api_get_item2?.api_useitem_count ?? 0
+            };
+            if (api.api_get_material?.Length >= 1) log.Item1 = api.api_get_material[0];
+            if (api.api_get_material?.Length >= 2) log.Item2 = api.api_get_material[1];
+            if (api.api_get_material?.Length >= 3) log.Item3 = api.api_get_material[2];
+            if (api.api_get_material?.Length >= 4) log.Item4 = api.api_get_material[3];
+            Logger.Loggers.MissionLogger.Log(log);
         }
     }
     public enum CombinedFleetType { None, Carrier, Surface, Transport }
