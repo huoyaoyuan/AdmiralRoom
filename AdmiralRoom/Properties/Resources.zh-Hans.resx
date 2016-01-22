@@ -342,6 +342,9 @@
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>装备</value>
   </data>
+  <data name="LogTitle_EquipmentType" xml:space="preserve">
+    <value>装备种类</value>
+  </data>
   <data name="LogTitle_Item1" xml:space="preserve">
     <value>燃料</value>
   </data>

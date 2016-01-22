@@ -745,6 +745,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Equipment Type 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_EquipmentType {
+            get {
+                return ResourceManager.GetString("LogTitle_EquipmentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Fuel 的本地化字符串。
         /// </summary>
         public static string LogTitle_Item1 {

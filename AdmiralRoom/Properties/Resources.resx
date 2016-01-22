@@ -345,6 +345,9 @@
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>Equipment Created</value>
   </data>
+  <data name="LogTitle_EquipmentType" xml:space="preserve">
+    <value>Equipment Type</value>
+  </data>
   <data name="LogTitle_Item1" xml:space="preserve">
     <value>Fuel</value>
   </data>

@@ -169,11 +169,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Logger.Loggers.CreateItemLogger.Log(new Logger.CreateItemLog
             {
                 DateTime = DateTime.UtcNow,
-                SecretaryName = Staff.Current.Homeport.Secretary.ShipInfo.Name,
+                SecretaryId = Staff.Current.Homeport.Secretary.ShipInfo.Id,
                 SecretaryLevel = Staff.Current.Homeport.Secretary.Level,
                 IsSuccess = dev.IsSuccess,
                 AdmiralLevel = Staff.Current.Admiral.Level,
-                Equipment = dev.Equip.Name,
+                EquipId = dev.Equip.Id,
                 Item1 = req.GetInt("api_item1"),
                 Item2 = req.GetInt("api_item2"),
                 Item3 = req.GetInt("api_item3"),
