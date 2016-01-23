@@ -21,6 +21,10 @@ Each part is in seperated window and can be docked freely.
     * Repairing with Akashi
 * Building and development
 * Notification
+    * BallonTip
+    * Toast
+    * Sound
+* Logging
 * Quest
     * Automatic counter
 * Battling information
