@@ -403,6 +403,72 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region NotifyExpeditionSound
+        private string _notifyexpeditionsound = "expedition.mp3";
+        public string NotifyExpeditionSound
+        {
+            get { return _notifyexpeditionsound; }
+            set
+            {
+                if (_notifyexpeditionsound != value)
+                {
+                    _notifyexpeditionsound = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyConditionSound
+        private string _notifyconditionsound = "condition.mp3";
+        public string NotifyConditionSound
+        {
+            get { return _notifyconditionsound; }
+            set
+            {
+                if (_notifyconditionsound != value)
+                {
+                    _notifyconditionsound = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyBuildSound
+        private string _notifybuildsound = "build.mp3";
+        public string NotifyBuildSound
+        {
+            get { return _notifybuildsound; }
+            set
+            {
+                if (_notifybuildsound != value)
+                {
+                    _notifybuildsound = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region NotifyRepairSound
+        private string _notifyrepairsound = "repair.mp3";
+        public string NotifyRepairSound
+        {
+            get { return _notifyrepairsound; }
+            set
+            {
+                if (_notifyrepairsound != value)
+                {
+                    _notifyrepairsound = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        public string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
+
         private Config()
         {
             _theme = "Windows 8";

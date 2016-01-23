@@ -31,7 +31,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Ship.RepairingHP = Ship.HP.Max - (int)Math.Ceiling(CompleteTime.Remain().TotalSeconds / Ship.RepairTimePerHP.TotalSeconds);
             }
             if (State == DockState.Repairing && Config.Current.NotifyWhenRepair && CompleteTime.InASecond(Config.Current.NotifyTimeAdjust))
-                Notifier.Current?.Show(Resources.Notification_Repair_Title, string.Format(Resources.Notification_Repair_Text, Id, Ship.ShipInfo.Name), @"sound\repair.mp3");
+                Notifier.Current?.Show(Resources.Notification_Repair_Title, string.Format(Resources.Notification_Repair_Text, Id, Ship.ShipInfo.Name),
+                    Config.Current.MakeSoundWithPath(Config.Current.NotifyRepairSound));
         }
         protected override void UpdateProp()
         {

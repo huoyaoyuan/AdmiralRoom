@@ -52,9 +52,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged(nameof(ConditionTimeRemain));
             OnPropertyChanged(nameof(HomeportRepairingFrom));
             if (MissionState == FleetMissionState.InMission && Config.Current.NotifyWhenExpedition && BackTime.InASecond(Config.Current.NotifyTimeAdjust))
-                Notifier.Current?.Show(Resources.Notification_Expedition_Title, string.Format(Resources.Notification_Expedition_Text, Name, MissionID, MissionInfo.Name), @"sound\expedition.mp3");
+                Notifier.Current?.Show(Resources.Notification_Expedition_Title, string.Format(Resources.Notification_Expedition_Text, Name, MissionID, MissionInfo.Name), Config.Current.MakeSoundWithPath(Config.Current.NotifyExpeditionSound));
             if (!InSortie && Config.Current.NotifyWhenCondition && ConditionHelper.Instance.RemainCeiling(mincondition).InASecond())
-                Notifier.Current?.Show(Resources.Notification_Condition_Title, string.Format(Resources.Notification_Condition_Text, Name), @"sound\condition.mp3");
+                Notifier.Current?.Show(Resources.Notification_Condition_Title, string.Format(Resources.Notification_Condition_Text, Name), Config.Current.MakeSoundWithPath(Config.Current.NotifyConditionSound));
         }
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }
