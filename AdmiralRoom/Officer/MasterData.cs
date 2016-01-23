@@ -26,6 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public IDTable<EquipType> EquipTypes { get; private set; }
         public IDTable<EquipInfo> EquipInfo { get; private set; }
         public IDTable<MissionInfo> MissionInfo { get; private set; }
+        public IDTable<UseItem> UseItems { get; private set; }
         private void MasterHandler(api_start2 api)
         {
             MapAreas = new IDTable<MapArea>(api.api_mst_maparea.Select(x => new MapArea(x)));
@@ -35,6 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             EquipTypes = new IDTable<EquipType>(api.api_mst_slotitem_equiptype.Select(x => new EquipType(x)));
             EquipInfo = new IDTable<EquipInfo>(api.api_mst_slotitem.Select(x => new EquipInfo(x)));
             MissionInfo = new IDTable<MissionInfo>(api.api_mst_mission.Select(x => new MissionInfo(x)));
+            UseItems = new IDTable<UseItem>(api.api_mst_useitem.Select(x => new UseItem(x)));
         }
         private void LoadFinalHPs()
         {

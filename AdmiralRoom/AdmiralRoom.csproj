@@ -281,6 +281,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StaticCounters.tt</DependentUpon>
     </Compile>
+    <Compile Include="Officer\UseItem.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

@@ -298,9 +298,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 DateTime = DateTime.UtcNow,
                 MissionName = api.api_quest_name,
                 ResultRank = api.api_clear_result,
-                UseItem1 = api.api_get_item1?.api_useitem_name ?? "",
+                UseItem1 = api.api_get_item1?.api_useitem_id ?? 0,
                 UseItem1Count = api.api_get_item1?.api_useitem_count ?? 0,
-                UseItem2 = api.api_get_item2?.api_useitem_name ?? "",
+                UseItem2 = api.api_get_item2?.api_useitem_id ?? 0,
                 UseItem2Count = api.api_get_item2?.api_useitem_count ?? 0
             };
             if (api.api_get_material?.Length >= 1) log.Item1 = api.api_get_material[0];

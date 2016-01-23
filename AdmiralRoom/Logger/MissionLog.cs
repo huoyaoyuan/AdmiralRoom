@@ -25,14 +25,18 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public int Item3 { get; set; }
         [Log, Show]
         public int Item4 { get; set; }
-        [Log, Show, Filter]
-        public string UseItem1 { get; set; } = "";
+        [Log]
+        public int UseItem1 { get; set; }
+        [Show("UseItem1"), Filter]
+        public string UseItem1Name => Officer.Staff.Current.MasterData.UseItems?[UseItem1]?.Name ?? "";
         [Log]
         public int UseItem1Count { get; set; }
         [Show("UseItemCount")]
         public string UseItem1CountString => UseItem1Count > 0 ? UseItem1Count.ToString() : "";
-        [Log, Show, Filter]
-        public string UseItem2 { get; set; } = "";
+        [Log]
+        public int UseItem2 { get; set; }
+        [Show("UseItem2"), Filter]
+        public string UseItem2Name => Officer.Staff.Current.MasterData.UseItems?[UseItem2]?.Name ?? "";
         [Log]
         public int UseItem2Count { get; set; }
         [Show("UseItemCount")]
