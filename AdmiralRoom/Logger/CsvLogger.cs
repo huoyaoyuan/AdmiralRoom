@@ -9,33 +9,33 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     public class CsvLogger<T> : Logger<T>
     {
-        private readonly FileInfo file;
-        private readonly Action CheckFile;
+        private readonly string filename;
+        private FileInfo file;
         private readonly string fileheader;
         public CsvLogger(string filename, bool useshown = false) : base(useshown)
         {
-            file = new FileInfo(filename);
+            this.filename = filename;
             string[] titles = useshown ? provider.Titles.Select(GetText).ToArray() : provider.Titles;
             fileheader = string.Join(",", titles);
-            CheckFile = () =>
-            {
-                if (!file.Exists)
-                    using (var writer = file.CreateText())
-                    {
-                        writer.WriteLine(fileheader);
-                        writer.Flush();
-                    }
-            };
             CheckFile();
             using (var reader = file.OpenText())
                 if (reader.ReadLine().Trim() == fileheader) return;
             try
             {
                 file.MoveTo(filename + ".backup");
-                file = new FileInfo(filename);
                 CheckFile();
             }
             catch (IOException) { }
+        }
+        private void CheckFile()
+        {
+            file = new FileInfo(filename);
+            if (!file.Exists)
+                using (var writer = file.CreateText())
+                {
+                    writer.WriteLine(fileheader);
+                    writer.Flush();
+                }
         }
         public override void Log(T item)
         {
@@ -60,6 +60,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         }
         public override IEnumerable<T> Read()
         {
+            CheckFile();
             using (var reader = file.OpenText())
             {
                 reader.ReadLine();//标题
