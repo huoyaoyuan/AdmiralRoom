@@ -221,6 +221,7 @@
     <Compile Include="Logger\MissionLog.cs" />
     <Compile Include="Logger\PropertyProvider.cs" />
     <Compile Include="Logger\ViewProvider.cs" />
+    <Compile Include="Models\BattleCatalogWorker.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />
     <Compile Include="Officer\Exp.cs" />
     <Compile Include="Models\ItemWithIndex.cs" />
@@ -324,6 +325,9 @@
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Standalone\BattleCatalog.xaml.cs">
+      <DependentUpon>BattleCatalog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Standalone\EquipmentCatalog.xaml.cs">
       <DependentUpon>EquipmentCatalog.xaml</DependentUpon>
     </Compile>
@@ -417,6 +421,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Standalone\BattleCatalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

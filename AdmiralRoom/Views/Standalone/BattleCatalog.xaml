@@ -1,0 +1,99 @@
+﻿<Window x:Class="Huoyaoyuan.AdmiralRoom.Views.Standalone.BattleCatalog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+        xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+        mc:Ignorable="d"
+        Title="BattleCatalog"
+        FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}}"
+        FontSize="14"
+        Height="300" Width="300">
+    <TreeView Grid.IsSharedSizeScope="True" ItemsSource="{Binding Items}">
+        <TreeView.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+        </TreeView.Resources>
+        <TreeView.ItemTemplate>
+            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="Title"/>
+                        <ColumnDefinition SharedSizeGroup="Blank"/>
+                        <ColumnDefinition SharedSizeGroup="Blank"/>
+                        <ColumnDefinition SharedSizeGroup="Total"/>
+                        <ColumnDefinition SharedSizeGroup="Win"/>
+                        <ColumnDefinition SharedSizeGroup="S"/>
+                        <ColumnDefinition SharedSizeGroup="A"/>
+                        <ColumnDefinition SharedSizeGroup="B"/>
+                        <ColumnDefinition SharedSizeGroup="C"/>
+                        <ColumnDefinition SharedSizeGroup="D"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Title}"/>
+                    <TreeViewItem Grid.Column="1" Padding="0" Visibility="Hidden"/>
+                    <TextBlock Grid.Column="3" Text="{Binding Total}"/>
+                    <TextBlock Grid.Column="4" Text="{Binding Win}"/>
+                    <TextBlock Grid.Column="5" Text="{Binding S}"/>
+                    <TextBlock Grid.Column="6" Text="{Binding A}"/>
+                    <TextBlock Grid.Column="7" Text="{Binding B}"/>
+                    <TextBlock Grid.Column="8" Text="{Binding C}"/>
+                    <TextBlock Grid.Column="9" Text="{Binding D}"/>
+                </Grid>
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="Title"/>
+                                <ColumnDefinition SharedSizeGroup="Blank"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition SharedSizeGroup="Total"/>
+                                <ColumnDefinition SharedSizeGroup="Win"/>
+                                <ColumnDefinition SharedSizeGroup="S"/>
+                                <ColumnDefinition SharedSizeGroup="A"/>
+                                <ColumnDefinition SharedSizeGroup="B"/>
+                                <ColumnDefinition SharedSizeGroup="C"/>
+                                <ColumnDefinition SharedSizeGroup="D"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Title}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Total}"/>
+                            <TextBlock Grid.Column="4" Text="{Binding Win}"/>
+                            <TextBlock Grid.Column="5" Text="{Binding S}"/>
+                            <TextBlock Grid.Column="6" Text="{Binding A}"/>
+                            <TextBlock Grid.Column="7" Text="{Binding B}"/>
+                            <TextBlock Grid.Column="8" Text="{Binding C}"/>
+                            <TextBlock Grid.Column="9" Text="{Binding D}"/>
+                        </Grid>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="Title"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition SharedSizeGroup="Total"/>
+                                        <ColumnDefinition SharedSizeGroup="Win"/>
+                                        <ColumnDefinition SharedSizeGroup="S"/>
+                                        <ColumnDefinition SharedSizeGroup="A"/>
+                                        <ColumnDefinition SharedSizeGroup="B"/>
+                                        <ColumnDefinition SharedSizeGroup="C"/>
+                                        <ColumnDefinition SharedSizeGroup="D"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Title}"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding Total}"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding Win}"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding S}"/>
+                                    <TextBlock Grid.Column="6" Text="{Binding A}"/>
+                                    <TextBlock Grid.Column="7" Text="{Binding B}"/>
+                                    <TextBlock Grid.Column="8" Text="{Binding C}"/>
+                                    <TextBlock Grid.Column="9" Text="{Binding D}"/>
+                                </Grid>
+                            </HierarchicalDataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+            </HierarchicalDataTemplate>
+        </TreeView.ItemTemplate>
+    </TreeView>
+</Window>
