@@ -17,6 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 SortieFleet1 = null;
                 SortieFleet2 = null;
                 CurrentBattle = null;
+                GetShipEquip = null;
             });
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_sortie/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
