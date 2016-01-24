@@ -198,6 +198,7 @@
     <Compile Include="Common\CollectionEx.cs" />
     <Compile Include="Common\DateTimeEx.cs" />
     <Compile Include="Common\DispatcherHelper.cs" />
+    <Compile Include="Common\EnumParseHelper.cs" />
     <Compile Include="Common\MemberwiseCopyHelper.cs" />
     <Compile Include="Common\NamedResourceDictionary.cs" />
     <Compile Include="Common\NotifySourceObject.cs" />

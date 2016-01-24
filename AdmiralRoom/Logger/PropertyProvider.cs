@@ -56,8 +56,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Expression convert;
             if (type.IsEnum)
             {
-                parse = typeof(Enum).GetMethod(nameof(Enum.Parse), new[] { typeof(string) });
-                convert = Expression.Call(parse, input);
+                var parser = EnumParseHelper.Parser(type);
+                convert = Expression.Invoke(parser, input);
             }
             else
             {
