@@ -366,6 +366,9 @@
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>日付</value>
   </data>
+  <data name="LogTitle_DropItem" xml:space="preserve">
+    <value>ドロップアイテム</value>
+  </data>
   <data name="LogTitle_DropShipName" xml:space="preserve">
     <value>ドロップ艦娘</value>
   </data>
@@ -398,6 +401,9 @@
   </data>
   <data name="LogTitle_MapArea" xml:space="preserve">
     <value>マップ</value>
+  </data>
+  <data name="LogTitle_MapAreaName" xml:space="preserve">
+    <value>海域</value>
   </data>
   <data name="LogTitle_MapCell" xml:space="preserve">
     <value>セル</value>

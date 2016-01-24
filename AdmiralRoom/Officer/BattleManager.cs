@@ -155,7 +155,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 EnemyFleetName = api.api_enemy_info?.api_deck_name ?? "",
                 WinRank = ((Battle)CurrentBattle).WinRank,
                 DropShipId = api.api_get_ship?.api_ship_id ??
-                    (Staff.Current.Admiral.CanDropShip ? 0 : -1)
+                    (Staff.Current.Admiral.CanDropShip ? 0 : -1),
+                DropItem = api.api_get_useitem?.api_useitem_id ?? 0
             });
             foreach (var enemy in CurrentBattle.EnemyFleet)
                 if (enemy.ToHP <= 0)

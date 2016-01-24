@@ -60,5 +60,9 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public string DropShipName => Officer.Staff.Current.MasterData.ShipInfo?[DropShipId].Name ?? "";
         [Show("DropShipName")]
         public string DropShipNameShown => DropShipId == -1 ? Properties.Resources.Log_ShipFull : DropShipName;
+        [Log]
+        public int DropItem { get; set; }
+        [Show("DropItem"), Filter]
+        public string DropItemName => Officer.Staff.Current.MasterData.UseItems?[DropItem]?.Name ?? "";
     }
 }

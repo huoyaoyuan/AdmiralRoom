@@ -808,6 +808,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Drop Item 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_DropItem {
+            get {
+                return ResourceManager.GetString("LogTitle_DropItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Drop Ship 的本地化字符串。
         /// </summary>
         public static string LogTitle_DropShipName {
@@ -903,6 +912,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string LogTitle_MapArea {
             get {
                 return ResourceManager.GetString("LogTitle_MapArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Map Name 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_MapAreaName {
+            get {
+                return ResourceManager.GetString("LogTitle_MapAreaName", resourceCulture);
             }
         }
         
