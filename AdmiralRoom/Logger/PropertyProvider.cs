@@ -39,10 +39,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             var setinput = Expression.Parameter(typeof(string[]));
             MethodInfo changetype = typeof(Convert).GetMethod(nameof(Convert.ChangeType), new[] { typeof(object), typeof(Type) });
             var converters = prop.Select((x, i) =>
-                Expression.Convert(Expression.Call(changetype,
-                                                    Expression.ArrayIndex(setinput, Expression.Constant(i)),
-                                                    Expression.Constant(x.PropertyType)),
-                    x.PropertyType));
+                ChangeTypeHelper(Expression.ArrayIndex(setinput, Expression.Constant(i)), x.PropertyType));
             var members = converters.Zip(prop, (x, y) => Expression.Bind(y, x));
             var init = Expression.MemberInit(Expression.New(typeof(T)), members);
             var setterexpression = Expression.Lambda<Func<string[], T>>(init, setinput);
@@ -50,6 +47,25 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         }
         public string[] GetValues(T item) => getter(item);
         public T GetItem(string[] values) => setter(values);
+        private Expression ChangeTypeHelper(Expression input, Type type)
+        {
+            if (type == typeof(string)) return input;
+            MethodInfo parse;
+            if ((parse = type.GetMethod("Parse", new[] { typeof(string) }))?.ReturnType == type)
+                return Expression.Call(parse, input);
+            Expression convert;
+            if (type.IsEnum)
+            {
+                parse = typeof(Enum).GetMethod(nameof(Enum.Parse), new[] { typeof(string) });
+                convert = Expression.Call(parse, input);
+            }
+            else
+            {
+                parse = typeof(Convert).GetMethod(nameof(Convert.ChangeType), new[] { typeof(object), typeof(Type) });
+                convert = Expression.Call(parse, input, Expression.Constant(type));
+            }
+            return Expression.Convert(convert, type);
+        }
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     internal sealed class LogAttribute : Attribute { }
