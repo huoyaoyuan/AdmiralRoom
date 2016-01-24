@@ -110,6 +110,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         public bool ItemsAfterShips = false;
+        private int? GetShipEquip = null;
         private void StartNextHandler(map_start_next api)
         {
             CurrentMap = Staff.Current.MasterData.MapAreas[api.api_maparea_id][api.api_mapinfo_no];
@@ -117,6 +118,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             SortieFleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
             SortieFleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
             CurrentBattle = new BattleBase(this);
+            if (GetShipEquip != null)
+            {
+                Staff.Current.Admiral.ShipCount++;
+                Staff.Current.Admiral.EquipCount += GetShipEquip.Value;
+            }
+            GetShipEquip = null;
         }
         private void BattleResultHandler(sortie_battleresult api)
         {
@@ -135,6 +142,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             }
             CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? Properties.Resources.Empty;
+            GetShipEquip = api.api_get_ship == null ? null : (int?)0;//TODO:记录船附带的装备
             foreach (var enemy in CurrentBattle.EnemyFleet)
                 if (enemy.ToHP <= 0)
                     switch (enemy.ShipInfo.ShipType.Id)
