@@ -12,14 +12,18 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public string LocalDateTime => DateTime.ToLocalTime().ToString();
         [Log]
         public int MapArea { get; set; }
-        [Show, Filter]
+        [Show("MapArea"), Filter]
         public string MapAreaId => $"{MapArea / 10}-{MapArea % 10}";
         [Log, Show]
         public string MapAreaName { get; set; }
         [Log, Show, Filter]
         public int MapCell { get; set; }
-        [Log, Show]
-        public int CellType { get; set; }
+        [Log]
+        public bool IsBOSS { get; set; }
+        [Show("BOSS")]
+        public string BOSSShown => IsBOSS ? Properties.Resources.Compass_BOSS : "";
+        [Filter]
+        public string BOSS => IsBOSS ? Properties.Resources.Compass_BOSS : "-";
         [Log]
         public Officer.WinRank WinRank { get; set; }
         [Show("WinRank"), Filter]
@@ -55,6 +59,6 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Filter]
         public string DropShipName => Officer.Staff.Current.MasterData.ShipInfo?[DropShipId].Name ?? "";
         [Show("DropShipName")]
-        public string DropShipNameShown => DropShipId == -1 ? "Full" : DropShipName;
+        public string DropShipNameShown => DropShipId == -1 ? Properties.Resources.Log_ShipFull : DropShipName;
     }
 }

@@ -336,6 +336,9 @@
   <data name="ItemCount" xml:space="preserve">
     <value>装备数：</value>
   </data>
+  <data name="Log_ShipFull" xml:space="preserve">
+    <value>※满船</value>
+  </data>
   <data name="Logger_CreateItem" xml:space="preserve">
     <value>开发</value>
   </data>
@@ -348,14 +351,23 @@
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>提督等级</value>
   </data>
+  <data name="LogTitle_BOSS" xml:space="preserve">
+    <value>BOSS</value>
+  </data>
   <data name="LogTitle_BuildingType" xml:space="preserve">
     <value>种类</value>
   </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>时间</value>
   </data>
+  <data name="LogTitle_DropShipName" xml:space="preserve">
+    <value>掉落舰娘</value>
+  </data>
   <data name="LogTitle_EmptyDocks" xml:space="preserve">
     <value>空闲渠数</value>
+  </data>
+  <data name="LogTitle_EnemyFleetName" xml:space="preserve">
+    <value>敌舰队名</value>
   </data>
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>装备</value>
@@ -377,6 +389,12 @@
   </data>
   <data name="LogTitle_Item5" xml:space="preserve">
     <value>开发资材</value>
+  </data>
+  <data name="LogTitle_MapArea" xml:space="preserve">
+    <value>海域</value>
+  </data>
+  <data name="LogTitle_MapCell" xml:space="preserve">
+    <value>地点</value>
   </data>
   <data name="LogTitle_MissionName" xml:space="preserve">
     <value>远征名</value>
@@ -407,6 +425,9 @@
   </data>
   <data name="LogTitle_UseItemCount" xml:space="preserve">
     <value>数量</value>
+  </data>
+  <data name="LogTitle_WinRank" xml:space="preserve">
+    <value>评价</value>
   </data>
   <data name="LSC_No" xml:space="preserve">
     <value>通常舰建造</value>

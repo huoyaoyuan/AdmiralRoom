@@ -727,6 +727,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 ※Full of ships 的本地化字符串。
+        /// </summary>
+        public static string Log_ShipFull {
+            get {
+                return ResourceManager.GetString("Log_ShipFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Create Item 的本地化字符串。
         /// </summary>
         public static string Logger_CreateItem {
@@ -763,6 +772,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 BOSS 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_BOSS {
+            get {
+                return ResourceManager.GetString("LogTitle_BOSS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Construction Type 的本地化字符串。
         /// </summary>
         public static string LogTitle_BuildingType {
@@ -781,11 +799,29 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Drop Ship 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_DropShipName {
+            get {
+                return ResourceManager.GetString("LogTitle_DropShipName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Empty Docks 的本地化字符串。
         /// </summary>
         public static string LogTitle_EmptyDocks {
             get {
                 return ResourceManager.GetString("LogTitle_EmptyDocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Enemy Fleet Name 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_EnemyFleetName {
+            get {
+                return ResourceManager.GetString("LogTitle_EnemyFleetName", resourceCulture);
             }
         }
         
@@ -849,6 +885,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string LogTitle_Item5 {
             get {
                 return ResourceManager.GetString("LogTitle_Item5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Map Area 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_MapArea {
+            get {
+                return ResourceManager.GetString("LogTitle_MapArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Map Cell 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_MapCell {
+            get {
+                return ResourceManager.GetString("LogTitle_MapCell", resourceCulture);
             }
         }
         
@@ -939,6 +993,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string LogTitle_UseItemCount {
             get {
                 return ResourceManager.GetString("LogTitle_UseItemCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Win Rank 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_WinRank {
+            get {
+                return ResourceManager.GetString("LogTitle_WinRank", resourceCulture);
             }
         }
         

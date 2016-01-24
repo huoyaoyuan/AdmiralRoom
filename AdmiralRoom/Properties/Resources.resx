@@ -339,6 +339,9 @@
   <data name="ItemCount" xml:space="preserve">
     <value>Equips: </value>
   </data>
+  <data name="Log_ShipFull" xml:space="preserve">
+    <value>※Full of ships</value>
+  </data>
   <data name="Logger_CreateItem" xml:space="preserve">
     <value>Create Item</value>
   </data>
@@ -351,14 +354,23 @@
   <data name="LogTitle_AdmiralLevel" xml:space="preserve">
     <value>Admiral Level</value>
   </data>
+  <data name="LogTitle_BOSS" xml:space="preserve">
+    <value>BOSS</value>
+  </data>
   <data name="LogTitle_BuildingType" xml:space="preserve">
     <value>Construction Type</value>
   </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>DateTime</value>
   </data>
+  <data name="LogTitle_DropShipName" xml:space="preserve">
+    <value>Drop Ship</value>
+  </data>
   <data name="LogTitle_EmptyDocks" xml:space="preserve">
     <value>Empty Docks</value>
+  </data>
+  <data name="LogTitle_EnemyFleetName" xml:space="preserve">
+    <value>Enemy Fleet Name</value>
   </data>
   <data name="LogTitle_EquipmentCreated" xml:space="preserve">
     <value>Equipment Created</value>
@@ -380,6 +392,12 @@
   </data>
   <data name="LogTitle_Item5" xml:space="preserve">
     <value>Development Material</value>
+  </data>
+  <data name="LogTitle_MapArea" xml:space="preserve">
+    <value>Map Area</value>
+  </data>
+  <data name="LogTitle_MapCell" xml:space="preserve">
+    <value>Map Cell</value>
   </data>
   <data name="LogTitle_MissionName" xml:space="preserve">
     <value>Mission Name</value>
@@ -410,6 +428,9 @@
   </data>
   <data name="LogTitle_UseItemCount" xml:space="preserve">
     <value>Count</value>
+  </data>
+  <data name="LogTitle_WinRank" xml:space="preserve">
+    <value>Win Rank</value>
   </data>
   <data name="LSC_No" xml:space="preserve">
     <value>NSC</value>
