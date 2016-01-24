@@ -348,6 +348,9 @@
   <data name="Logger_CreateShip" xml:space="preserve">
     <value>建造</value>
   </data>
+  <data name="Logger_Drop" xml:space="preserve">
+    <value>ドロップ</value>
+  </data>
   <data name="Logs" xml:space="preserve">
     <value>ログ</value>
   </data>

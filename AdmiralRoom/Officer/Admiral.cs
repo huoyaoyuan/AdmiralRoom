@@ -254,5 +254,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MaxEquip = data.api_max_slotitem;
             FurnitureCoin = data.api_fcoin;
         }
+        public bool CanDropShip => ShipCount < MaxShip && EquipCount < MaxEquip;
     }
 }

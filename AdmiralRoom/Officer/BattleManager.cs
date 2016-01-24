@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -144,6 +145,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? Properties.Resources.Empty;
             GetShipEquip = api.api_get_ship == null ? null : (int?)0;//TODO:记录船附带的装备
+            Logger.Loggers.BattleDropLogger.Log(new Logger.BattleDropLog
+            {
+                DateTime = DateTime.UtcNow,
+                MapArea = CurrentMap.Id,
+                MapCell = CurrentNode.Id,
+                IsBOSS = CurrentNode.Type == MapNodeType.BOSS,
+                MapAreaName = CurrentMap.Name,
+                EnemyFleetName = api.api_enemy_info?.api_deck_name ?? "",
+                WinRank = ((Battle)CurrentBattle).WinRank,
+                DropShipId = api.api_get_ship?.api_ship_id ??
+                    (Staff.Current.Admiral.CanDropShip ? 0 : -1)
+            });
             foreach (var enemy in CurrentBattle.EnemyFleet)
                 if (enemy.ToHP <= 0)
                     switch (enemy.ShipInfo.ShipType.Id)

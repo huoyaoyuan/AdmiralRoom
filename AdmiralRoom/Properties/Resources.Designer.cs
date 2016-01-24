@@ -754,6 +754,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Drop 的本地化字符串。
+        /// </summary>
+        public static string Logger_Drop {
+            get {
+                return ResourceManager.GetString("Logger_Drop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Logs 的本地化字符串。
         /// </summary>
         public static string Logs {
