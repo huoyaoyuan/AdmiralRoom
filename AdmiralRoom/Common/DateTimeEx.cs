@@ -16,6 +16,13 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch { return DateTimeOffset.MinValue; }
         }
+        public static DateTime WeekStart(this DateTime time)
+        {
+            int dayofweek = (int)time.DayOfWeek - 1;
+            if (dayofweek < 0) dayofweek += 7;
+            return time.Date.AddDays(-dayofweek);
+        }
+        public static DateTime MonthStart(this DateTime time) => time.Date.AddDays(time.Day - 1);
         public static bool InASecond(this TimeSpan time, double adjust = 0)
         {
             double seconds = time.TotalSeconds;
