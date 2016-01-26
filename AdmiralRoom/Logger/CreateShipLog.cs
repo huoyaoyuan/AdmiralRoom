@@ -14,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public int SecretaryLevel { get; set; }
         [Log]
         public int SecretaryId { get; set; }
-        [Filter]
+        [Filter(nameof(SecretaryId))]
         public string SecretaryName => Officer.Staff.Current.MasterData.ShipInfo?[SecretaryId].Name;
         [Show]
         public string Secretary => $"{SecretaryName}(Lv.{SecretaryLevel})";
@@ -34,9 +34,10 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public string Type => IsLSC ? Properties.Resources.LSC_Yes : Properties.Resources.LSC_No;
         [Log]
         public int ShipId { get; set; }
-        [Show("ShipCreated"), Filter]
+        [Show("ShipCreated"), Filter(nameof(ShipId))]
         public string Ship => Officer.Staff.Current.MasterData.ShipInfo?[ShipId]?.Name;
-        [Show, Filter]
+        public int ShipTypeId => Officer.Staff.Current.MasterData.ShipInfo?[ShipId]?.ShipType.Id ?? 0;
+        [Show, Filter(nameof(ShipTypeId))]
         public string ShipType => Officer.Staff.Current.MasterData.ShipInfo?[ShipId]?.ShipType.Name;
         [Log, Show]
         public int EmptyDocks { get; set; }

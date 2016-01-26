@@ -15,24 +15,31 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public Type MemberType { get; set; }
             public string MemberName { get; set; }
             public MethodInfo MemberGetter { get; set; }
+            public MethodInfo FilterGetter { get; set; }
             public string Title { get; set; }
             public string FullTitleKey => "Resources.LogTitle_" + Title;
-            public string[] Values
+            public object[] Values
             {
                 get
                 {
                     var input = Expression.Parameter(typeof(T));
                     var getmember = Expression.Property(input, MemberGetter);
-                    MethodInfo tostring = typeof(object).GetMethod(nameof(ToString));
-                    var str = Expression.Call(getmember, tostring);
-                    var selector = Expression.Lambda<Func<T, string>>(str, input).Compile();
-                    return Source.readed.Select(selector).Distinct().ToArray();
+                    var obj = Expression.Convert(getmember, typeof(object));
+                    var selector = Expression.Lambda<Func<T, object>>(obj, input).Compile();
+                    var filterselector = selector;
+                    if (FilterGetter != null)
+                    {
+                        var getfilter = Expression.Property(input, FilterGetter);
+                        var obj2 = Expression.Convert(getfilter, typeof(object));
+                        filterselector = Expression.Lambda<Func<T, object>>(obj2, input).Compile();
+                    }
+                    return Source.readed.GroupBy(filterselector).OrderBy(x => x.Key).Select(x => selector(x.First())).Distinct().ToArray();
                 }
             }
 
             #region SelectedValue
-            private string _selectedvalue;
-            public string SelectedValue
+            private object _selectedvalue;
+            public object SelectedValue
             {
                 get { return _selectedvalue; }
                 set
@@ -115,6 +122,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     MemberName = x.Name,
                     MemberGetter = x.GetMethod,
                     MemberType = x.PropertyType,
+                    FilterGetter = FindFilter((Attribute.GetCustomAttribute(x, typeof(FilterAttribute)) as FilterAttribute).Filter),
                     Source = this
                 })
                 .ToArray();
@@ -141,6 +149,11 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 logs = logs.Where(column.Selector);
             Displayed = logs.ToArray();
         }
+        private MethodInfo FindFilter(string filter)
+        {
+            if (filter == null) return null;
+            return typeof(T).GetProperty(filter).GetMethod;
+        }
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     internal sealed class ShowAttribute : Attribute
@@ -149,5 +162,9 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public ShowAttribute(string title = null) { Title = title; }
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    internal sealed class FilterAttribute : Attribute { }
+    internal sealed class FilterAttribute : Attribute
+    {
+        public string Filter { get; }
+        public FilterAttribute(string filter = null) { Filter = filter; }
+    }
 }

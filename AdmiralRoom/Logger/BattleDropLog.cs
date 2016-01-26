@@ -12,7 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public string LocalDateTime => DateTime.ToLocalTime().ToString();
         [Log]
         public int MapArea { get; set; }
-        [Show("MapArea"), Filter]
+        [Show("MapArea"), Filter(nameof(MapArea))]
         public string MapAreaId => $"{MapArea / 10}-{MapArea % 10}";
         [Log, Show]
         public string MapAreaName { get; set; }
@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public string BOSS => IsBOSS ? Properties.Resources.Compass_BOSS : "-";
         [Log]
         public Officer.WinRank WinRank { get; set; }
-        [Show("WinRank"), Filter]
+        [Show("WinRank"), Filter(nameof(WinRank))]
         public string WinRankString
         {
             get
@@ -56,13 +56,13 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public string EnemyFleetName { get; set; }
         [Log]
         public int DropShipId { get; set; }
-        [Filter]
-        public string DropShipName => Officer.Staff.Current.MasterData.ShipInfo?[DropShipId].Name ?? "";
+        [Filter(nameof(DropShipId))]
+        public string DropShipName => Officer.Staff.Current.MasterData.ShipInfo?[DropShipId]?.Name ?? "";
         [Show("DropShipName")]
         public string DropShipNameShown => DropShipId == -1 ? Properties.Resources.Log_ShipFull : DropShipName;
         [Log]
         public int DropItem { get; set; }
-        [Show("DropItem"), Filter]
+        [Show("DropItem"), Filter(nameof(DropItem))]
         public string DropItemName => Officer.Staff.Current.MasterData.UseItems?[DropItem]?.Name ?? "";
     }
 }
