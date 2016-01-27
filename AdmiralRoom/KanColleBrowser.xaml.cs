@@ -35,6 +35,12 @@ namespace Huoyaoyuan.AdmiralRoom
     top:-16px;
     margin-left:-450px;
     z-index:1
+}
+
+.area-pickupgame,
+.area-menu
+{
+    display:none!important;
 }";
         #endregion
 
