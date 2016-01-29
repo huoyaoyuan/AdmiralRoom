@@ -9,6 +9,7 @@ using System.Windows.Data;
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     class ViewProvider<T> : NotificationObject, IUpdatable
+        where T : ILog
     {
         public class Column : NotifySourceObject<ViewProvider<T>>
         {
@@ -110,6 +111,77 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         }
         #endregion
 
+        #region TimeFrom
+        private DateTime _timefrom = DateTime.Today.AddDays(-6);
+        public DateTime TimeFrom
+        {
+            get { return _timefrom; }
+            set
+            {
+                if (_timefrom != value)
+                {
+                    _timefrom = value;
+                    OnPropertyChanged();
+                    Update();
+                }
+            }
+        }
+        #endregion
+
+        #region TimeTo
+        private DateTime _timeto = DateTime.Today;
+        public DateTime TimeTo
+        {
+            get { return _timeto; }
+            set
+            {
+                if (_timeto != value)
+                {
+                    _timeto = value;
+                    OnPropertyChanged();
+                    Update();
+                }
+            }
+        }
+        #endregion
+
+        public bool IsCustomTimeRange => SelectedTimeRange == null;
+
+        #region SelectedTimeRange
+        private TimeSpan? _selectedtimerange = TimeSpan.FromDays(1);
+        public TimeSpan? SelectedTimeRange
+        {
+            get { return _selectedtimerange; }
+            set
+            {
+                if (_selectedtimerange != value)
+                {
+                    _selectedtimerange = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(IsCustomTimeRange));
+                    Update();
+                }
+            }
+        }
+        #endregion
+
+        public class TimeRange
+        {
+            public string Title { get; set; }
+            public string TitleKey => "Resources.TimeRange_" + Title;
+            public TimeSpan? Time { get; set; }
+        }
+        public TimeRange[] TimeRanges { get; } =
+        {
+            new TimeRange { Title = "Hours1", Time = TimeSpan.FromHours(1) },
+            new TimeRange { Title = "Hours6", Time = TimeSpan.FromHours(6) },
+            new TimeRange { Title = "Hours12", Time = TimeSpan.FromHours(12) },
+            new TimeRange { Title = "Hours24", Time = TimeSpan.FromDays(1) },
+            new TimeRange { Title = "Days3", Time = TimeSpan.FromDays(3) },
+            new TimeRange { Title = "Days7", Time = TimeSpan.FromDays(7) },
+            new TimeRange { Title = "All", Time = TimeSpan.MaxValue },
+            new TimeRange { Title = "Custom", Time = null }
+        };
         public ViewProvider(Logger<T> logger)
         {
             Type type = typeof(T);
@@ -145,6 +217,13 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         {
             IEnumerable<T> logs = readed;
             if (logs == null) return;
+            var now = DateTime.UtcNow;
+            var nextday = TimeTo.AddDays(1);
+#pragma warning disable CC0014 // Use ternary operator
+            if (SelectedTimeRange != null)
+#pragma warning restore CC0014 // Use ternary operator
+                logs = logs.Where(x => now - x.DateTime <= SelectedTimeRange);
+            else logs = logs.Where(x => x.DateTime.ToLocalTime() >= TimeFrom && x.DateTime.ToLocalTime() <= nextday);
             foreach (var column in Columns)
                 logs = logs.Where(column.Selector);
             Displayed = logs.ToArray();

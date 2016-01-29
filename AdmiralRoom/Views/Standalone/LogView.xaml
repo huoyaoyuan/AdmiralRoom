@@ -44,13 +44,37 @@
                 </ItemsControl>
             </Border>
         </Expander>
-        <!--<Expander Grid.Row="1" Header="{ex:Localizable Ship_Sort}">
+        <Expander Grid.Row="1" Header="{ex:Localizable TimeRange}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
-                
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox VerticalAlignment="Center"
+                              Margin="2" Width="120"
+                              ItemsSource="{Binding TimeRanges}"
+                              SelectedValuePath="Time"
+                              SelectedValue="{Binding SelectedTimeRange}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <ex:RuntimePathBinding PathSource="TitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Calendar Margin="2"
+                              FirstDayOfWeek="Monday"
+                              Visibility="{Binding IsCustomTimeRange, Converter={StaticResource VisibilityConverter}}"
+                              SelectedDate="{Binding TimeFrom, Mode=TwoWay}"/>
+                    <Calendar Margin="2"
+                              FirstDayOfWeek="Monday"
+                              Visibility="{Binding IsCustomTimeRange, Converter={StaticResource VisibilityConverter}}"
+                              SelectedDate="{Binding TimeTo, Mode=TwoWay}"/>
+                </StackPanel>
             </Border>
-        </Expander>-->
+        </Expander>
         <TextBlock Grid.Row="2" Margin="4">
             <Run FontSize="20" Text="{Binding Displayed.Count, Mode=OneWay}"/>
             <Run FontSize="16" Text="{Binding TotalCount, Mode=OneWay, StringFormat=/ {0}}"/>

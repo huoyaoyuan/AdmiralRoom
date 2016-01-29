@@ -2069,6 +2069,87 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Time Range 的本地化字符串。
+        /// </summary>
+        public static string TimeRange {
+            get {
+                return ResourceManager.GetString("TimeRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 All 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_All {
+            get {
+                return ResourceManager.GetString("TimeRange_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Specified 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Custom {
+            get {
+                return ResourceManager.GetString("TimeRange_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In 3 days 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Days3 {
+            get {
+                return ResourceManager.GetString("TimeRange_Days3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In 7 days 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Days7 {
+            get {
+                return ResourceManager.GetString("TimeRange_Days7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In a hour 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Hours1 {
+            get {
+                return ResourceManager.GetString("TimeRange_Hours1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In 12 hours 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Hours12 {
+            get {
+                return ResourceManager.GetString("TimeRange_Hours12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In 24 hours 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Hours24 {
+            get {
+                return ResourceManager.GetString("TimeRange_Hours24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In 6 hours 的本地化字符串。
+        /// </summary>
+        public static string TimeRange_Hours6 {
+            get {
+                return ResourceManager.GetString("TimeRange_Hours6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Update 的本地化字符串。
         /// </summary>
         public static string Update {

@@ -218,6 +218,7 @@
     <Compile Include="Logger\CreateItemLog.cs" />
     <Compile Include="Logger\CreateShipLog.cs" />
     <Compile Include="Logger\CsvLogger.cs" />
+    <Compile Include="Logger\ILog.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\Loggers.cs" />
     <Compile Include="Logger\MissionLog.cs" />

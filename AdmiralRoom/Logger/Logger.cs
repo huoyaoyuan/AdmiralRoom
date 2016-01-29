@@ -3,6 +3,7 @@
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     public abstract class Logger<T>
+        where T : ILog
     {
         protected readonly PropertyProvider<T> provider;
         protected Logger(bool useshownprovider = false) { provider = new PropertyProvider<T>(useshownprovider); }

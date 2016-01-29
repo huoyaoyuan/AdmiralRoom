@@ -769,6 +769,33 @@
   <data name="Theme_NoDWM" xml:space="preserve">
     <value>DWMを使用しない</value>
   </data>
+  <data name="TimeRange" xml:space="preserve">
+    <value>期間</value>
+  </data>
+  <data name="TimeRange_All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="TimeRange_Custom" xml:space="preserve">
+    <value>日付指定</value>
+  </data>
+  <data name="TimeRange_Days3" xml:space="preserve">
+    <value>直近3日間</value>
+  </data>
+  <data name="TimeRange_Days7" xml:space="preserve">
+    <value>直近7日間</value>
+  </data>
+  <data name="TimeRange_Hours1" xml:space="preserve">
+    <value>直近1時間</value>
+  </data>
+  <data name="TimeRange_Hours12" xml:space="preserve">
+    <value>直近12時間</value>
+  </data>
+  <data name="TimeRange_Hours24" xml:space="preserve">
+    <value>直近24時間</value>
+  </data>
+  <data name="TimeRange_Hours6" xml:space="preserve">
+    <value>直近6時間</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>アップデート</value>
   </data>

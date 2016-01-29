@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -8,6 +7,7 @@ using System.Linq;
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
     public class CsvLogger<T> : Logger<T>
+        where T : ILog
     {
         private readonly string filename;
         private FileInfo file;
