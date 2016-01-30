@@ -87,11 +87,19 @@ namespace Huoyaoyuan.AdmiralRoom
             else
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
-                Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
-                Application.Current.MainWindow.SetTheme("Aero", new[]
+                if (ToastNotifier.IsSupported)//Win8OrGreater
                 {
-                    "PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml"
-                });
+                    Application.Current.MainWindow.SetTheme("Aero", new string[] { });
+                    ChangeRibbonTheme(Config.Current.Theme, Application.Current.MainWindow as RibbonWindow);
+                }
+                else
+                {
+                    Application.Current.Resources.MergedDictionaries.Add(App.LoadComponent(new Uri("PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml", UriKind.Relative)) as ResourceDictionary);
+                    Application.Current.MainWindow.SetTheme("Aero", new[]
+                    {
+                        "PresentationFramework.AeroLite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;component/themes/aerolite.normalcolor.xaml"
+                    });
+                }
             }
             Application.Current.MainWindow.SetThemePrior("Aero");
         }
