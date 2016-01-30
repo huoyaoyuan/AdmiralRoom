@@ -49,8 +49,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             increaseto += TimeSpan.FromMinutes(maxup);
             while (increaseto + maxerror < lastcheck)
             {
-                increasefrom += TimeSpan.FromMinutes(3);
-                increaseto += TimeSpan.FromMinutes(3);
+                increasefrom += period;
+                increaseto += period;
             }
             if (increasefrom < lastcheck) increasefrom = lastcheck;
             if (increaseto > checktime) increaseto = checktime;
@@ -59,6 +59,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 var temp = increasefrom;
                 increasefrom = increaseto;
                 increaseto = temp;
+            }
+            while (increaseto + period + maxerror < checktime)//adjust
+            {
+                increasefrom += period;
+                increaseto += period;
             }
             lastcheck = checktime;
             changed = true;
