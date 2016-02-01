@@ -170,6 +170,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         break;
                 }
             }
+            Logger.Loggers.MaterialLogger.TryLog(this);
         }
 
         public void UpdateMaterial(int[] material)
