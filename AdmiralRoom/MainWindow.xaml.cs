@@ -313,6 +313,7 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 w = new Views.Standalone.MaterialCatalog
                     { DataContext = new Logger.MaterialProvider(Logger.Loggers.MaterialLogger) };
+                w.Closed += (_, __) => control.Tag = null;
                 control.Tag = w;
             }
             else w = control.Tag as Window;
