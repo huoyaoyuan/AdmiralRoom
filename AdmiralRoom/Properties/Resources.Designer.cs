@@ -799,6 +799,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Date 的本地化字符串。
+        /// </summary>
+        public static string LogTitle_Date {
+            get {
+                return ResourceManager.GetString("LogTitle_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 DateTime 的本地化字符串。
         /// </summary>
         public static string LogTitle_DateTime {
@@ -1047,6 +1056,87 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         public static string LSC_Yes {
             get {
                 return ResourceManager.GetString("LSC_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Material 的本地化字符串。
+        /// </summary>
+        public static string Material {
+            get {
+                return ResourceManager.GetString("Material", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fuel 的本地化字符串。
+        /// </summary>
+        public static string Material_1 {
+            get {
+                return ResourceManager.GetString("Material_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Bull 的本地化字符串。
+        /// </summary>
+        public static string Material_2 {
+            get {
+                return ResourceManager.GetString("Material_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Steel 的本地化字符串。
+        /// </summary>
+        public static string Material_3 {
+            get {
+                return ResourceManager.GetString("Material_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Bauxite 的本地化字符串。
+        /// </summary>
+        public static string Material_4 {
+            get {
+                return ResourceManager.GetString("Material_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Instant Build 的本地化字符串。
+        /// </summary>
+        public static string Material_5 {
+            get {
+                return ResourceManager.GetString("Material_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Instant Repair 的本地化字符串。
+        /// </summary>
+        public static string Material_6 {
+            get {
+                return ResourceManager.GetString("Material_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Development 的本地化字符串。
+        /// </summary>
+        public static string Material_7 {
+            get {
+                return ResourceManager.GetString("Material_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Improvement 的本地化字符串。
+        /// </summary>
+        public static string Material_8 {
+            get {
+                return ResourceManager.GetString("Material_8", resourceCulture);
             }
         }
         

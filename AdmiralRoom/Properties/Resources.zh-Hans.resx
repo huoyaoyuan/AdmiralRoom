@@ -360,6 +360,9 @@
   <data name="LogTitle_BuildingType" xml:space="preserve">
     <value>种类</value>
   </data>
+  <data name="LogTitle_Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>时间</value>
   </data>
@@ -443,6 +446,33 @@
   </data>
   <data name="LSC_Yes" xml:space="preserve">
     <value>大型舰建造</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>资源</value>
+  </data>
+  <data name="Material_1" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="Material_2" xml:space="preserve">
+    <value>弹药</value>
+  </data>
+  <data name="Material_3" xml:space="preserve">
+    <value>钢材</value>
+  </data>
+  <data name="Material_4" xml:space="preserve">
+    <value>铝土</value>
+  </data>
+  <data name="Material_5" xml:space="preserve">
+    <value>高速修复</value>
+  </data>
+  <data name="Material_6" xml:space="preserve">
+    <value>高速建造</value>
+  </data>
+  <data name="Material_7" xml:space="preserve">
+    <value>开发资材</value>
+  </data>
+  <data name="Material_8" xml:space="preserve">
+    <value>改修资材</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>静音</value>

@@ -268,6 +268,7 @@
                     <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.CreateShipLogger}"/>
                     <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.MissionLogger}"/>
                     <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.BattleDropLogger}"/>
+                    <ribbon:Button Margin="2" Header="{ex:Localizable Material}" Click="ShowMaterialLogger"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
         </ribbon:Ribbon>

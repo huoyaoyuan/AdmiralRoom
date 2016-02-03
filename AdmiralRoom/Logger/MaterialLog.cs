@@ -7,21 +7,21 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public DateTime DateTime { get; set; }
         [Log]
-        public int Fuel { get; set; }
+        public DiffNumber Fuel { get; set; }
         [Log]
-        public int Bull { get; set; }
+        public DiffNumber Bull { get; set; }
         [Log]
-        public int Steel { get; set; }
+        public DiffNumber Steel { get; set; }
         [Log]
-        public int Bauxite { get; set; }
+        public DiffNumber Bauxite { get; set; }
         [Log]
-        public int InstantBuild { get; set; }
+        public DiffNumber InstantBuild { get; set; }
         [Log]
-        public int InstantRepair { get; set; }
+        public DiffNumber InstantRepair { get; set; }
         [Log]
-        public int Development { get; set; }
+        public DiffNumber Development { get; set; }
         [Log]
-        public int Improvement { get; set; }
+        public DiffNumber Improvement { get; set; }
         public static MaterialLog Now(Officer.Material material)
             => new MaterialLog
             {

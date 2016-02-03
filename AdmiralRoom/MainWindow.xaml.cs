@@ -305,6 +305,21 @@ namespace Huoyaoyuan.AdmiralRoom
             w.Activate();
         }
 
+        private void ShowMaterialLogger(object sender,RoutedEventArgs e)
+        {
+            Button control = sender as Button;
+            Window w;
+            if (control.Tag == null)
+            {
+                w = new Views.Standalone.MaterialCatalog
+                    { DataContext = new Logger.MaterialProvider(Logger.Loggers.MaterialLogger) };
+                control.Tag = w;
+            }
+            else w = control.Tag as Window;
+            w.Show();
+            w.Activate();
+        }
+
         private void SetBrowserZoomFactor(object sender, RoutedPropertyChangedEventArgs<double> e)
             => this.GameHost.ApplyZoomFactor(e.NewValue);
 

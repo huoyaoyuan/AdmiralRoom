@@ -363,6 +363,9 @@
   <data name="LogTitle_BuildingType" xml:space="preserve">
     <value>Construction Type</value>
   </data>
+  <data name="LogTitle_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>DateTime</value>
   </data>
@@ -446,6 +449,33 @@
   </data>
   <data name="LSC_Yes" xml:space="preserve">
     <value>LSC</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="Material_1" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="Material_2" xml:space="preserve">
+    <value>Bull</value>
+  </data>
+  <data name="Material_3" xml:space="preserve">
+    <value>Steel</value>
+  </data>
+  <data name="Material_4" xml:space="preserve">
+    <value>Bauxite</value>
+  </data>
+  <data name="Material_5" xml:space="preserve">
+    <value>Instant Build</value>
+  </data>
+  <data name="Material_6" xml:space="preserve">
+    <value>Instant Repair</value>
+  </data>
+  <data name="Material_7" xml:space="preserve">
+    <value>Development</value>
+  </data>
+  <data name="Material_8" xml:space="preserve">
+    <value>Improvement</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>Mute</value>

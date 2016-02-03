@@ -363,6 +363,9 @@
   <data name="LogTitle_BuildingType" xml:space="preserve">
     <value>種類</value>
   </data>
+  <data name="LogTitle_Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
   <data name="LogTitle_DateTime" xml:space="preserve">
     <value>日付</value>
   </data>
@@ -446,6 +449,33 @@
   </data>
   <data name="LSC_Yes" xml:space="preserve">
     <value>大型艦建造</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>資材</value>
+  </data>
+  <data name="Material_1" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="Material_2" xml:space="preserve">
+    <value>弾薬</value>
+  </data>
+  <data name="Material_3" xml:space="preserve">
+    <value>鋼材</value>
+  </data>
+  <data name="Material_4" xml:space="preserve">
+    <value>ボーキサイト</value>
+  </data>
+  <data name="Material_5" xml:space="preserve">
+    <value>高速修復</value>
+  </data>
+  <data name="Material_6" xml:space="preserve">
+    <value>高速建造</value>
+  </data>
+  <data name="Material_7" xml:space="preserve">
+    <value>開発資材</value>
+  </data>
+  <data name="Material_8" xml:space="preserve">
+    <value>改修資材</value>
   </data>
   <data name="Mute" xml:space="preserve">
     <value>ミュート</value>
