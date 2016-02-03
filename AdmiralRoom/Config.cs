@@ -467,7 +467,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        public string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
+        public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()
         {

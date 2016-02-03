@@ -228,7 +228,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 logs = logs.Where(column.Selector);
             Displayed = logs.ToArray();
         }
-        private MethodInfo FindFilter(string filter)
+        private static MethodInfo FindFilter(string filter)
         {
             if (filter == null) return null;
             return typeof(T).GetProperty(filter).GetMethod;

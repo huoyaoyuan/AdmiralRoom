@@ -12,6 +12,7 @@
     <Rule Id="CC0039" Action="None" />
     <Rule Id="CC0045" Action="None" />
     <Rule Id="CC0052" Action="None" />
+    <Rule Id="CC0057" Action="None" />
     <Rule Id="CC0063" Action="None" />
     <Rule Id="CC0068" Action="None" />
     <Rule Id="CC0090" Action="None" />

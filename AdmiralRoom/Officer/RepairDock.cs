@@ -32,7 +32,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             if (State == DockState.Repairing && Config.Current.NotifyWhenRepair && CompleteTime.InASecond(Config.Current.NotifyTimeAdjust))
                 Notifier.Current?.Show(Resources.Notification_Repair_Title, string.Format(Resources.Notification_Repair_Text, Id, Ship.ShipInfo.Name),
-                    Config.Current.MakeSoundWithPath(Config.Current.NotifyRepairSound));
+Config.MakeSoundWithPath(Config.Current.NotifyRepairSound));
         }
         protected override void UpdateProp()
         {

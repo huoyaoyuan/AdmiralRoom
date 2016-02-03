@@ -47,7 +47,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         }
         public string[] GetValues(T item) => getter(item);
         public T GetItem(string[] values) => setter(values);
-        private Expression ChangeTypeHelper(Expression input, Type type)
+        private static Expression ChangeTypeHelper(Expression input, Type type)
         {
             if (type == typeof(string)) return input;
             MethodInfo parse;
