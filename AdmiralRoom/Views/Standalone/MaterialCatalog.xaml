@@ -8,14 +8,14 @@
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         mc:Ignorable="d"
         Title="{ex:Localizable Material}"
-        Height="600" Width="800"
+        Height="630" Width="840"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
         FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             
@@ -26,7 +26,7 @@
         <ListView Grid.Row="2" ItemsSource="{Binding AsDays}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="{ex:Localizable LogTitle_Date}" DisplayMemberBinding="{Binding DateTime, StringFormat={}{0:yyyy-MM-dd}}"/>
+                    <GridViewColumn Header="{ex:Localizable LogTitle_Date}" DisplayMemberBinding="{Binding LocalDateTime, StringFormat={}{0:yyyy-MM-dd}}"/>
                     <GridViewColumn Header="{ex:Localizable Material_1}" DisplayMemberBinding="{Binding Fuel, StringFormat={}{0:D}}"/>
                     <GridViewColumn Header="{ex:Localizable Material_2}" DisplayMemberBinding="{Binding Bull, StringFormat={}{0:D}}"/>
                     <GridViewColumn Header="{ex:Localizable Material_3}" DisplayMemberBinding="{Binding Steel, StringFormat={}{0:D}}"/>

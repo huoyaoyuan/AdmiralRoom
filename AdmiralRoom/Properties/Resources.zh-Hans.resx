@@ -463,10 +463,10 @@
     <value>铝土</value>
   </data>
   <data name="Material_5" xml:space="preserve">
-    <value>高速修复</value>
+    <value>高速建造</value>
   </data>
   <data name="Material_6" xml:space="preserve">
-    <value>高速建造</value>
+    <value>高速修复</value>
   </data>
   <data name="Material_7" xml:space="preserve">
     <value>开发资材</value>

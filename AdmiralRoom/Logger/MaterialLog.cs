@@ -6,6 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         [Log]
         public DateTime DateTime { get; set; }
+        public DateTime LocalDateTime => DateTime.ToLocalTime();
         [Log]
         public DiffNumber Fuel { get; set; }
         [Log]
