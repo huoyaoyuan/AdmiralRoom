@@ -20,9 +20,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             
         </StackPanel>
-        <Canvas Grid.Row="1">
-            
-        </Canvas>
+        <local:MaterialChart Grid.Row="1" Source="{Binding All}"/>
         <ListView Grid.Row="2" ItemsSource="{Binding AsDays}">
             <ListView.View>
                 <GridView>

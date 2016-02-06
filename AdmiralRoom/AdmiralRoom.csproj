@@ -343,6 +343,7 @@
       <DependentUpon>MaterialCatalog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logger\MaterialProvider.cs" />
+    <Compile Include="Views\Standalone\MaterialChart.cs" />
     <Compile Include="Views\Standalone\ShipCatalog.xaml.cs">
       <DependentUpon>ShipCatalog.xaml</DependentUpon>
     </Compile>
