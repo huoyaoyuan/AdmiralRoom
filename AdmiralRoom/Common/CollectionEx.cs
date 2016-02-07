@@ -67,5 +67,19 @@ namespace Huoyaoyuan.AdmiralRoom
                 return max;
             }
         }
+        public static int Max(int a,params int[] array)
+        {
+            int max = a;
+            foreach (int x in array)
+                if (x > max) max = x;
+            return max;
+        }
+        public static int Min(int a, params int[] array)
+        {
+            int min = a;
+            foreach (int x in array)
+                if (x < min) min = x;
+            return min;
+        }
     }
 }
