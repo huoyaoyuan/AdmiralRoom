@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
 {
@@ -10,6 +13,18 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         public MaterialCatalog()
         {
             InitializeComponent();
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e) => Update();
+
+        private void CheckBox_Mouse(object sender, MouseEventArgs e) => Update();
+
+        private void Update()
+        {
+            var check = checks.Children.OfType<CheckBox>();
+            chart.UpdateShown(
+                check.Select(x => x.IsChecked.Value).ToArray(),
+                int.Parse(check.FirstOrDefault(x => x.IsMouseOver)?.Tag as string ?? "-1"));
         }
     }
 }

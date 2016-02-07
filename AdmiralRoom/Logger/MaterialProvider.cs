@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    public sealed class MaterialProvider
+    sealed class MaterialProvider
     {
         public IReadOnlyList<MaterialLog> All { get; }
         public IReadOnlyList<MaterialLog> AsDays { get; }

@@ -8,6 +8,7 @@
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         mc:Ignorable="d"
         Title="{ex:Localizable Material}"
+        
         Height="630" Width="840"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
         FontSize="16">
@@ -17,10 +18,58 @@
             <RowDefinition Height="6*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            
-        </StackPanel>
-        <local:MaterialChart Grid.Row="1" Source="{Binding All}"/>
+        <WrapPanel x:Name="checks" Grid.Row="0" Orientation="Horizontal">
+            <ComboBox Margin="2"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_1}"
+                      Tag="1" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_2}"
+                      Tag="2" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_3}"
+                      Tag="3" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_4}"
+                      Tag="4" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_5}"
+                      Tag="5" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_6}"
+                      Tag="6" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_7}"
+                      Tag="7" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+            <CheckBox VerticalAlignment="Center"
+                      Margin="2"
+                      Content="{ex:Localizable Material_8}"
+                      Tag="8" IsChecked="True" Click="CheckBox_Click"
+                      MouseEnter="CheckBox_Mouse"
+                      MouseLeave="CheckBox_Mouse"/>
+        </WrapPanel>
+        <local:MaterialChart x:Name="chart" Grid.Row="1" Source="{Binding All}"/>
         <ListView Grid.Row="2" ItemsSource="{Binding AsDays}">
             <ListView.View>
                 <GridView>

@@ -35,6 +35,8 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         private static void ReRender(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((FrameworkElement)d).InvalidateVisual();
 
         private readonly DateTime now = DateTime.UtcNow;
+        private bool[] shown;
+        private int highlight = -1;
         protected override void OnRender(DrawingContext drawingContext)
         {
             var black = new SolidColorBrush(Colors.Black).TryFreeze();
@@ -108,6 +110,13 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth * .75, chartheight + top * 2));
             text = new FormattedText((now).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth, chartheight + top * 2));
+        }
+
+        public void UpdateShown(bool[] shown, int highlight)
+        {
+            this.shown = shown;
+            this.highlight = highlight;
+            ReRender(this, new DependencyPropertyChangedEventArgs());
         }
     }
 }
