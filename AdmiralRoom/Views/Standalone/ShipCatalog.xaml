@@ -228,6 +228,7 @@
                     <GridViewColumn Header="{ex:Localizable Ship_Armor}" DisplayMemberBinding="{Binding Item.Armor}"/>
                     <GridViewColumn Header="{ex:Localizable Ship_Luck}" DisplayMemberBinding="{Binding Item.Luck}"/>
                     <GridViewColumn Header="{ex:Localizable Ship_LoS}" DisplayMemberBinding="{Binding Item.LoS.Current}"/>
+                    <GridViewColumn Header="{ex:Localizable Ship_RepairTime}" DisplayMemberBinding="{Binding Item.RepairTime, StringFormat=hh\\:mm\\:ss}"/>
                     <GridViewColumn Header="{ex:Localizable Ship_Equip}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
