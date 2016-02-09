@@ -148,7 +148,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             System.Runtime.GCSettings.LargeObjectHeapCompactionMode = System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce;
             GC.Collect();
-            Material.MaterialHandler(api.api_material);
             Staff.Current.Admiral.BasicHandler(api.api_basic);
             ConditionHelper.Instance.BeginUpdate();
             Staff.Current.Shipyard.RepairDocks.ForEach(x => x.Ship?.IgnoreNextCondition());
@@ -159,6 +158,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
             Staff.Current.Shipyard.NDockHandler(api.api_ndock);
             DecksHandler(api.api_deck_port);
+#pragma warning disable RECS0093 // Convert 'if' to '&&' expression
+            if (Fleets.Any(x => x.MissionState == Fleet.FleetMissionState.Complete))
+#pragma warning restore RECS0093 // Convert 'if' to '&&' expression
+                Logger.Loggers.MaterialLogger.ForceLog = false;
+            Material.MaterialHandler(api.api_material);
             CombinedFleet = (CombinedFleetType)api.api_combined_flag;
             Fleets.ForEach(x => x.CheckHomeportRepairingTime(false));
         }
