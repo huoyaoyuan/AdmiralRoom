@@ -36,6 +36,30 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 Development = material.DevelopmentKit,
                 Improvement = material.ImprovementKit
             };
+        public int TakeValue(int id)
+        {
+            switch (id)
+            {
+                case 1:
+                    return Fuel;
+                case 2:
+                    return Bull;
+                case 3:
+                    return Steel;
+                case 4:
+                    return Bauxite;
+                case 5:
+                    return InstantBuild;
+                case 6:
+                    return InstantRepair;
+                case 7:
+                    return Development;
+                case 8:
+                    return Improvement;
+                default:
+                    throw new ArgumentException(nameof(id));
+            }
+        }
     }
     public class MaterialLogger : CsvLogger<MaterialLog>
     {
