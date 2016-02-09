@@ -205,6 +205,87 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 All 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_All {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 1 Day 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Days1 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Days1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 1 Month 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Months1 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Months1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 2 Months 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Months2 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Months2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 3 Months 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Months3 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Months3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Half Year 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Months6 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Months6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 1 Week 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Weeks1 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Weeks1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 2 Weeks 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Weeks2 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Weeks2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 1 Year 的本地化字符串。
+        /// </summary>
+        public static string ChartTimeRange_Years1 {
+            get {
+                return ResourceManager.GetString("ChartTimeRange_Years1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Clean cache 的本地化字符串。
         /// </summary>
         public static string CleanCache {

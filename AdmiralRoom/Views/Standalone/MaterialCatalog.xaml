@@ -19,7 +19,20 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <WrapPanel x:Name="checks" Grid.Row="0" Orientation="Horizontal">
-            <ComboBox Margin="2"/>
+            <ComboBox Margin="2"
+                      ItemsSource="{Binding Durations}"
+                      SelectedValuePath="From"
+                      SelectedValue="{Binding From}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <ex:RuntimePathBinding PathSource="TitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <CheckBox VerticalAlignment="Center"
                       Margin="2"
                       Content="{ex:Localizable Material_1}"
@@ -85,7 +98,11 @@
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
         </WrapPanel>
-        <local:MaterialChart x:Name="chart" Grid.Row="1" Source="{Binding All}"/>
+        <local:MaterialChart x:Name="chart"
+                             Grid.Row="1"
+                             Source="{Binding All}"
+                             From="{Binding From}"
+                             To="{Binding Now}"/>
         <ListView Grid.Row="2" ItemsSource="{Binding AsDays}">
             <ListView.View>
                 <GridView>

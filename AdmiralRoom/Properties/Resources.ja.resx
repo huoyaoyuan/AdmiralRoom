@@ -165,6 +165,33 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="ChartTimeRange_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="ChartTimeRange_Days1" xml:space="preserve">
+    <value>1日間</value>
+  </data>
+  <data name="ChartTimeRange_Months1" xml:space="preserve">
+    <value>1ヶ月</value>
+  </data>
+  <data name="ChartTimeRange_Months2" xml:space="preserve">
+    <value>2ヶ月</value>
+  </data>
+  <data name="ChartTimeRange_Months3" xml:space="preserve">
+    <value>3ヶ月</value>
+  </data>
+  <data name="ChartTimeRange_Months6" xml:space="preserve">
+    <value>半年</value>
+  </data>
+  <data name="ChartTimeRange_Weeks1" xml:space="preserve">
+    <value>1週間</value>
+  </data>
+  <data name="ChartTimeRange_Weeks2" xml:space="preserve">
+    <value>2週間</value>
+  </data>
+  <data name="ChartTimeRange_Years1" xml:space="preserve">
+    <value>1年</value>
+  </data>
   <data name="CleanCache" xml:space="preserve">
     <value>キャッシュの削除</value>
   </data>

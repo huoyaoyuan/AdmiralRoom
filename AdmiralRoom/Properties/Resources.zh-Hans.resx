@@ -162,6 +162,33 @@
   <data name="Cancel" xml:space="preserve">
     <value>撤销</value>
   </data>
+  <data name="ChartTimeRange_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="ChartTimeRange_Days1" xml:space="preserve">
+    <value>1天</value>
+  </data>
+  <data name="ChartTimeRange_Months1" xml:space="preserve">
+    <value>1个月</value>
+  </data>
+  <data name="ChartTimeRange_Months2" xml:space="preserve">
+    <value>2个月</value>
+  </data>
+  <data name="ChartTimeRange_Months3" xml:space="preserve">
+    <value>3个月</value>
+  </data>
+  <data name="ChartTimeRange_Months6" xml:space="preserve">
+    <value>半年</value>
+  </data>
+  <data name="ChartTimeRange_Weeks1" xml:space="preserve">
+    <value>1周</value>
+  </data>
+  <data name="ChartTimeRange_Weeks2" xml:space="preserve">
+    <value>2周</value>
+  </data>
+  <data name="ChartTimeRange_Years1" xml:space="preserve">
+    <value>1年</value>
+  </data>
   <data name="CleanCache" xml:space="preserve">
     <value>清理缓存</value>
   </data>

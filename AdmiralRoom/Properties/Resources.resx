@@ -165,6 +165,33 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ChartTimeRange_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ChartTimeRange_Days1" xml:space="preserve">
+    <value>1 Day</value>
+  </data>
+  <data name="ChartTimeRange_Months1" xml:space="preserve">
+    <value>1 Month</value>
+  </data>
+  <data name="ChartTimeRange_Months2" xml:space="preserve">
+    <value>2 Months</value>
+  </data>
+  <data name="ChartTimeRange_Months3" xml:space="preserve">
+    <value>3 Months</value>
+  </data>
+  <data name="ChartTimeRange_Months6" xml:space="preserve">
+    <value>Half Year</value>
+  </data>
+  <data name="ChartTimeRange_Weeks1" xml:space="preserve">
+    <value>1 Week</value>
+  </data>
+  <data name="ChartTimeRange_Weeks2" xml:space="preserve">
+    <value>2 Weeks</value>
+  </data>
+  <data name="ChartTimeRange_Years1" xml:space="preserve">
+    <value>1 Year</value>
+  </data>
   <data name="CleanCache" xml:space="preserve">
     <value>Clean cache</value>
   </data>

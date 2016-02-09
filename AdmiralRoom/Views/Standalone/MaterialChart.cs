@@ -22,15 +22,25 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register(nameof(Source), typeof(IEnumerable<MaterialLog>), typeof(MaterialChart), new PropertyMetadata(null, ReRender));
 
-        public TimeSpan During
+        public DateTime From
         {
-            get { return (TimeSpan)GetValue(DuringProperty); }
-            set { SetValue(DuringProperty, value); }
+            get { return (DateTime)GetValue(FromProperty); }
+            set { SetValue(FromProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for During.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DuringProperty =
-            DependencyProperty.Register(nameof(During), typeof(TimeSpan), typeof(MaterialChart), new PropertyMetadata(TimeSpan.FromDays(1), ReRender));
+        // Using a DependencyProperty as the backing store for From.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FromProperty =
+            DependencyProperty.Register(nameof(From), typeof(DateTime), typeof(MaterialChart), new PropertyMetadata(DateTime.UtcNow, ReRender));
+
+        public DateTime To
+        {
+            get { return (DateTime)GetValue(ToProperty); }
+            set { SetValue(ToProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for To.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ToProperty =
+            DependencyProperty.Register(nameof(To), typeof(DateTime), typeof(MaterialChart), new PropertyMetadata(DateTime.UtcNow, ReRender));
 
         private static void ReRender(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -39,7 +49,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             chart.InvalidateVisual();
         }
 
-        private readonly DateTime now = DateTime.UtcNow;
         private bool[] shown = { true, true, true, true, true, true, true, true };
         private int? highlight;
 
@@ -73,7 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             int outofdatecount = 0;
             foreach (var log in Source)
             {
-                if (now - log.DateTime > During) outofdatecount++;
+                if (log.DateTime < From) outofdatecount++;
                 else break;
             }
             var recent = Source.Skip(outofdatecount - 1);
@@ -110,15 +119,15 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             text = new FormattedText(min2.ToString(), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left + 6 + chartwidth, chartheight));
 
-            text = new FormattedText((now - During).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
+            text = new FormattedText(From.ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2, chartheight + top * 2));
-            text = new FormattedText((now.AddSeconds(During.TotalSeconds * -.75)).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
+            text = new FormattedText((To.AddSeconds((To - From).TotalSeconds * -.75)).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth * .25, chartheight + top * 2));
-            text = new FormattedText((now.AddSeconds(During.TotalSeconds * -.5)).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
+            text = new FormattedText((To.AddSeconds((To - From).TotalSeconds * -.5)).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth * .5, chartheight + top * 2));
-            text = new FormattedText((now.AddSeconds(During.TotalSeconds * -.25)).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
+            text = new FormattedText((To.AddSeconds((To - From).TotalSeconds * -.25)).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth * .75, chartheight + top * 2));
-            text = new FormattedText((now).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
+            text = new FormattedText(To.ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth, chartheight + top * 2));
 
             if (!colorsonly)
@@ -137,7 +146,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                         InstantRepair = last.InstantRepair,
                         Development = last.Development,
                         Improvement = last.Improvement,
-                        DateTime = now
+                        DateTime = To
                     }, 1);
                 }
                 for (int i = 0; i < 8; i++)
@@ -145,10 +154,10 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                     var first = recent.First();
                     var next = following.First();
                     Point firstpoint;
-                    firstpoint = first.DateTime < now - During ?
-                        MakeChartPoint(now - During,
-                            (first.TakeValue(i + 1) * (next.DateTime + During - now).TotalSeconds
-                            + next.TakeValue(i + 1) * (now - During - first.DateTime).TotalSeconds)
+                    firstpoint = first.DateTime < From ?
+                        MakeChartPoint(From,
+                            (first.TakeValue(i + 1) * (next.DateTime - From).TotalSeconds
+                            + next.TakeValue(i + 1) * (From - first.DateTime).TotalSeconds)
                             / (next.DateTime - first.DateTime).TotalSeconds,
                             i + 1) :
                         MakeChartPoint(first.DateTime, first.TakeValue(i + 1), i + 1);
@@ -190,7 +199,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                 max = max2;
                 min = min2;
             }
-            return new Point(chartwidth * (datetime + During - now).TotalSeconds / During.TotalSeconds + left,
+            return new Point(chartwidth * (datetime - From).TotalSeconds / (To - From).TotalSeconds + left,
                 chartheight * (max - value) / (max - min) + top);
         }
 
