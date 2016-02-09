@@ -105,6 +105,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Staff.Current.Homeport.Ships[shipid].SetRepaired();
                 Staff.Current.Homeport.Material.InstantRepair--;
             }
+            Logger.Loggers.MaterialLogger.ForceLog = true;
         }
         private void NSpeedChangeHandler(NameValueCollection req)
         {
@@ -116,6 +117,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int dockid = lastcreatedock = req.GetInt("api_kdock_id");
             BuildingDocks[dockid].IsLSC = req.GetInt("api_large_flag") != 0;
             BuildingDocks[dockid].Secretary = Staff.Current.Homeport.Secretary;
+            Logger.Loggers.MaterialLogger.ForceLog = true;
         }
         private void KDockHandler(getmember_kdock[] api)
         {
@@ -201,6 +203,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Item3 = req.GetInt("api_item3"),
                 Item4 = req.GetInt("api_item4")
             });
+            Logger.Loggers.MaterialLogger.ForceLog = true;
         }
         private void KSpeedChangeHandler(NameValueCollection req)
         {

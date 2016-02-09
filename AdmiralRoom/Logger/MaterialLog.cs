@@ -66,12 +66,16 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public MaterialLogger(string filename) : base(filename) { }
         private DateTimeOffset lastlog;
         private readonly TimeSpan loginterval = TimeSpan.FromMinutes(10);
+        public bool ForceLog { private get; set; }
         public void TryLog(Officer.Material material)
         {
             var now = DateTimeOffset.Now;
-            if (now - lastlog < loginterval) return;
-            Log(MaterialLog.Now(material));
-            lastlog = now;
+            if (ForceLog || now - lastlog >= loginterval)
+            {
+                Log(MaterialLog.Now(material));
+                lastlog = now;
+                ForceLog = false;
+            }
         }
     }
 }

@@ -310,6 +310,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (api.api_get_material?.Length >= 3) log.Item3 = api.api_get_material[2];
             if (api.api_get_material?.Length >= 4) log.Item4 = api.api_get_material[3];
             Logger.Loggers.MissionLogger.Log(log);
+            Logger.Loggers.MaterialLogger.ForceLog = true;
         }
     }
     public enum CombinedFleetType { None, Carrier, Surface, Transport }

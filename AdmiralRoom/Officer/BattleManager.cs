@@ -33,6 +33,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     SortieFleet2.InSortie = true;
                 }
                 ItemsAfterShips = true;
+                Logger.Loggers.MaterialLogger.ForceLog = true;
                 StartNextHandler(api);
             });
             Staff.API("api_req_sortie/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));

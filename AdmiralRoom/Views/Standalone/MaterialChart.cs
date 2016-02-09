@@ -85,7 +85,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                 if (log.DateTime < From) outofdatecount++;
                 else break;
             }
-            var recent = Source.Skip(outofdatecount - 1);
+            var recent = Reduce(Source.Skip(outofdatecount - 1)).ToArray();
             if (recent.IsNullOrEmpty()) return;
 
             max1 = recent.Max(x => Max(x.Fuel, x.Bull, x.Steel, x.Bauxite));
@@ -210,6 +210,22 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             if (highlight != null && !shown[highlight.Value]) this.highlight = null;
 
             this.InvalidateVisual();
+        }
+
+        private IEnumerable<MaterialLog> Reduce(IEnumerable<MaterialLog> source)
+        {
+            double span = (To - From).TotalSeconds / chartwidth;
+            MaterialLog prev = null;
+            foreach (var log in source)
+                if (prev == null) prev = log;
+                else
+                {
+                    if ((int)((prev.DateTime - From).TotalSeconds / span) !=
+                        (int)((log.DateTime - From).TotalSeconds / span))
+                        yield return prev;
+                    prev = log;
+                }
+            if (prev != null) yield return prev;
         }
     }
 }
