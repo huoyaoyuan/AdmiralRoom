@@ -32,14 +32,21 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         public static readonly DependencyProperty DuringProperty =
             DependencyProperty.Register(nameof(During), typeof(TimeSpan), typeof(MaterialChart), new PropertyMetadata(TimeSpan.FromDays(1), ReRender));
 
-        private static void ReRender(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((FrameworkElement)d).InvalidateVisual();
+        private static void ReRender(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var chart = d as MaterialChart;
+            chart.colorsonly = false;
+            chart.InvalidateVisual();
+        }
 
         private readonly DateTime now = DateTime.UtcNow;
-        private bool[] shown;
-        private int highlight = -1;
+        private bool[] shown = { true, true, true, true, true, true, true, true };
+        private int? highlight;
 
         private int min1, min2, max1, max2;
-        double left, top, chartheight, chartwidth;
+        private double left, top, chartheight, chartwidth;
+        private PathGeometry[] lines = new PathGeometry[8];
+        private bool colorsonly = false;
         protected override void OnRender(DrawingContext drawingContext)
         {
             var black = new SolidColorBrush(Colors.Black).TryFreeze();
@@ -114,42 +121,60 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             text = new FormattedText((now).ToLocalTime().ToString("MM-dd HH:mm"), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, typeface, fontsize, black);
             drawingContext.DrawText(text, new Point(left - text.Width / 2 + chartwidth, chartheight + top * 2));
 
-            var following = recent.Skip(1);
-            if (following.IsNullOrEmpty())
+            if (!colorsonly)
             {
-                var last = recent.First();
-                following = Enumerable.Repeat(new MaterialLog
+                var following = recent.Skip(1);
+                if (following.IsNullOrEmpty())
                 {
-                    Fuel = last.Fuel,
-                    Bull = last.Bull,
-                    Steel = last.Steel,
-                    Bauxite = last.Bauxite,
-                    InstantBuild = last.InstantBuild,
-                    InstantRepair = last.InstantRepair,
-                    Development = last.Development,
-                    Improvement = last.Improvement,
-                    DateTime = now
-                }, 1);
+                    var last = recent.First();
+                    following = Enumerable.Repeat(new MaterialLog
+                    {
+                        Fuel = last.Fuel,
+                        Bull = last.Bull,
+                        Steel = last.Steel,
+                        Bauxite = last.Bauxite,
+                        InstantBuild = last.InstantBuild,
+                        InstantRepair = last.InstantRepair,
+                        Development = last.Development,
+                        Improvement = last.Improvement,
+                        DateTime = now
+                    }, 1);
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    var first = recent.First();
+                    var next = following.First();
+                    Point firstpoint;
+                    firstpoint = first.DateTime < now - During ?
+                        MakeChartPoint(now - During,
+                            (first.TakeValue(i + 1) * (next.DateTime + During - now).TotalSeconds
+                            + next.TakeValue(i + 1) * (now - During - first.DateTime).TotalSeconds)
+                            / (next.DateTime - first.DateTime).TotalSeconds,
+                            i + 1) :
+                        MakeChartPoint(first.DateTime, first.TakeValue(i + 1), i + 1);
+                    var figure = new PathFigure(firstpoint,
+                        following.Select(x => new LineSegment(MakeChartPoint(x.DateTime, x.TakeValue(i + 1), i + 1), true)),
+                        false);
+                    lines[i] = new PathGeometry(new[] { figure });
+                }
+                colorsonly = true;
             }
-            PathGeometry[] paths = new PathGeometry[8];
             for (int i = 0; i < 8; i++)
             {
-                var first = recent.First();
-                var next = following.First();
-                Point firstpoint;
-                firstpoint = first.DateTime < now - During ?
-                    MakeChartPoint(now - During,
-                        (first.TakeValue(i + 1) * (next.DateTime + During - now).TotalSeconds
-                        + next.TakeValue(i + 1) * (now - During - first.DateTime).TotalSeconds)
-                        / (next.DateTime - first.DateTime).TotalSeconds,
-                        i + 1) :
-                    MakeChartPoint(first.DateTime, first.TakeValue(i + 1), i + 1);
-                var figure = new PathFigure(firstpoint,
-                    following.Select(x => new LineSegment(MakeChartPoint(x.DateTime, x.TakeValue(i + 1), i + 1), true)),
-                    false);
-                paths[i] = new PathGeometry(new[] { figure });
-                drawingContext.DrawGeometry(null, new Pen(black, 2), paths[i]);
+                if (!shown[i]) continue;
+                if (highlight == i) continue;
+                var brush = FindResource("MaterialColor" + (i + 1)) as SolidColorBrush;
+                Color c = brush.Color;
+                Pen pen;
+                pen = highlight != null ?
+                    new Pen(new SolidColorBrush(Color.Multiply(c, 0.5f)), 1) :
+                    new Pen(brush, 2);
+                drawingContext.DrawGeometry(null, pen, lines[i]);
             }
+            if (highlight != null)
+                drawingContext.DrawGeometry(null,
+                    new Pen(FindResource("MaterialColor" + (highlight + 1)) as SolidColorBrush, 2),
+                    lines[highlight.Value]);
         }
 
         private Point MakeChartPoint(DateTime datetime, double value, int id)
@@ -169,11 +194,13 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                 chartheight * (max - value) / (max - min) + top);
         }
 
-        public void UpdateShown(bool[] shown, int highlight)
+        public void UpdateShown(bool[] shown, int? highlight)
         {
             this.shown = shown;
             this.highlight = highlight;
-            ReRender(this, new DependencyPropertyChangedEventArgs());
+            if (highlight != null && !shown[highlight.Value]) this.highlight = null;
+
+            this.InvalidateVisual();
         }
     }
 }

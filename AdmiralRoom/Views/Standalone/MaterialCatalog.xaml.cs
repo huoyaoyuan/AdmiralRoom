@@ -24,7 +24,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             var check = checks.Children.OfType<CheckBox>();
             chart.UpdateShown(
                 check.Select(x => x.IsChecked.Value).ToArray(),
-                int.Parse(check.FirstOrDefault(x => x.IsMouseOver)?.Tag as string ?? "-1"));
+                check.FirstOrDefault(x => x.IsMouseOver)?.Tag as int?);
         }
     }
 }

@@ -82,4 +82,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <SolidColorBrush x:Key="MaterialColor1" Color="#008000"/>
+    <SolidColorBrush x:Key="MaterialColor2" Color="#663300"/>
+    <SolidColorBrush x:Key="MaterialColor3" Color="#808080"/>
+    <SolidColorBrush x:Key="MaterialColor4" Color="#CC3300"/>
+    <SolidColorBrush x:Key="MaterialColor5" Color="#A52A2A"/>
+    <SolidColorBrush x:Key="MaterialColor6" Color="#F08080"/>
+    <SolidColorBrush x:Key="MaterialColor7" Color="#4876FF"/>
+    <SolidColorBrush x:Key="MaterialColor8" Color="#00ABB2"/>
 </ResourceDictionary>
