@@ -22,6 +22,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             });
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_sortie/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
+            Staff.API("api_req_combined_battle/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
             Staff.API("api_req_map/start").Subscribe<map_start_next>((req, api) =>
             {
                 InSortie = true;
