@@ -94,7 +94,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 foreach (string key in apisource.Keys.ToArray())
                     if (oSession.PathAndQuery.EndsWith(key))
 #if DEBUG == false
-                        Parallel.ForEach(apisource[key].Handler.GetInvocationList(), x => ExceptionCatcher(x as Action<Session>, oSession));
+                        apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
 #else
                         apisource[key].Handler.GetInvocationList().ForEach(x => (x as Action<Session>)(oSession));
 #endif
