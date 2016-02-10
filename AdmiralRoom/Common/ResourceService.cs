@@ -11,11 +11,13 @@ namespace Huoyaoyuan.AdmiralRoom
         public static ResourceService Current { get; } = new ResourceService();
         public static IReadOnlyCollection<CultureInfo> SupportedCultures { get; } =
             new[] { "zh-Hans", "ja", "en" }
+#pragma warning disable CC0020 // You should remove the lambda expression when it only invokes a method with the same signature
             .Select(x =>
             {
                 try { return CultureInfo.GetCultureInfo(x); }
                 catch { return null; }
             })
+#pragma warning restore CC0020 // You should remove the lambda expression when it only invokes a method with the same signature
             .Where(x => x != null)
             .ToList();
 

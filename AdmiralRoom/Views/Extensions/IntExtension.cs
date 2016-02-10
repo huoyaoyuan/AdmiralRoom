@@ -17,6 +17,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
         public string String { get; set; }
         public IntsExtension(string @string) { String = @string; }
         public override object ProvideValue(IServiceProvider serviceProvider)
-            => String.Split(',').Select(x => int.Parse(x)).ToArray();
+            => String.Split(',').Select(int.Parse).ToArray();
     }
 }

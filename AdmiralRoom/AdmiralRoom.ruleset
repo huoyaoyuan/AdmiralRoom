@@ -5,6 +5,7 @@
     <Rule Id="CC0003" Action="None" />
     <Rule Id="CC0004" Action="None" />
     <Rule Id="CC0016" Action="None" />
+    <Rule Id="CC0020" Action="Warning" />
     <Rule Id="CC0029" Action="None" />
     <Rule Id="CC0031" Action="None" />
     <Rule Id="CC0034" Action="None" />

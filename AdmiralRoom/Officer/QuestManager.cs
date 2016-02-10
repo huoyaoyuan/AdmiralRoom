@@ -11,7 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public QuestManager()
         {
-            Staff.API("api_get_member/questlist").Subscribe<getmember_questlist>(x => CheckQuestPage(x));
+            Staff.API("api_get_member/questlist").Subscribe<getmember_questlist>(CheckQuestPage);
             Staff.API("api_req_quest/clearitemget").Subscribe(x =>
             {
                 AvilableQuests.Remove(x.GetInt("api_quest_id"));

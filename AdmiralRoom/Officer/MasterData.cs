@@ -48,7 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         string line = reader.ReadLine().Split(new[] { "//" }, StringSplitOptions.None)[0];
                         if (string.IsNullOrWhiteSpace(line)) continue;
                         var a = line.Split(':');
-                        finalhptable.Add(int.Parse(a[0]), a[1].Split(',').Select(x => int.Parse(x)).ToArray());
+                        finalhptable.Add(int.Parse(a[0]), a[1].Split(',').Select(int.Parse).ToArray());
                     }
             }
             catch { }

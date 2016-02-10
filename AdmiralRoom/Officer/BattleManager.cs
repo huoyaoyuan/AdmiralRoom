@@ -37,10 +37,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 StartNextHandler(api);
             });
             Staff.API("api_req_sortie/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
-            Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
+            Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>((CurrentBattle as Battle).NightBattle);
             Staff.API("api_req_battle_midnight/sp_midnight").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             Staff.API("api_req_practice/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
-            Staff.API("api_req_practice/midnight_battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
+            Staff.API("api_req_practice/midnight_battle").Subscribe<sortie_battle>((CurrentBattle as Battle).NightBattle);
             Staff.API("api_req_sortie/airbattle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             //Staff.API("api_req_combined_battle/airbattle").SubscribeDynamic(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this, BattleType.Air));
             //Staff.API("api_req_combined_battle/battle").SubscribeDynamic(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this, BattleType.Day));

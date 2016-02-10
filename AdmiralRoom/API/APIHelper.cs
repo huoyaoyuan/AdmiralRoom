@@ -18,7 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static IEnumerable<int> GetInts(this NameValueCollection req, string name)
         {
             var str = req[name];
-            return str.Split(',').Select(x => int.Parse(x));
+            return str.Split(',').Select(int.Parse);
         }
         private static readonly JsonSerializer JSerializer = new JsonSerializer
         {
