@@ -50,18 +50,22 @@
                 public anti_air_cutin api_air_fire { get; set; }
             }
             public stage2 api_stage2 { get; set; }
-            public class stage3
+            public class stage3 : stage3_combined
             {
-                public int[] api_frai_flag { get; set; }
                 public int[] api_erai_flag { get; set; }
-                public int[] api_fbak_flag { get; set; }
                 public int[] api_ebak_flag { get; set; }
-                public int[] api_fcl_flag { get; set; }
                 public int[] api_ecl_flag { get; set; }
-                public decimal[] api_fdam { get; set; }
                 public decimal[] api_edam { get; set; }
             }
             public stage3 api_stage3 { get; set; }
+            public class stage3_combined
+            {
+                public int[] api_frai_flag { get; set; }
+                public int[] api_fbak_flag { get; set; }
+                public int[] api_fcl_flag { get; set; }
+                public decimal[] api_fdam { get; set; }
+            }
+            public stage3_combined api_stage3_combined { get; set; }
         }
         public airbattle api_kouku { get; set; }
         public airbattle api_kouku2 { get; set; }
