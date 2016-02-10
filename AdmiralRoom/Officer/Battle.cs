@@ -7,19 +7,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class Battle : BattleBase
     {
         public override bool IsBattling => true;
-        private ShipInBattle this[int index]
+        private ShipInBattle[] NightOrTorpedo => Fleet2 ?? Fleet1;
+        private ShipInBattle FindShip(int index, ShipInBattle[] friend)
         {
-            get
+            try
             {
-                try
-                {
-                    if (index <= 6) return Fleet1[index - 1];
-                    if (index > 12) return EnemyFleet[index - 13];
-                    if (Fleet2 != null) return Fleet2[index - 7];
-                    return EnemyFleet[index - 7];
-                }
-                catch { return null; }
+                if (index <= 6) return friend[index - 1];
+                return EnemyFleet[index - 7];
             }
+            catch { return null; }
         }
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
@@ -107,15 +103,30 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AirCombat2 = AirBattle(api.api_kouku2, false);
             SupportAttack(api.api_support_info);
             TorpedoAttack(api.api_opening_atack);
-            FireAttack(api.api_hougeki1);
-            FireAttack(api.api_hougeki2);
-            FireAttack(api.api_hougeki3);
+            switch (fleettype)
+            {
+                case CombinedFleetType.None:
+                    FireAttack(api.api_hougeki1, Fleet1);
+                    FireAttack(api.api_hougeki2, Fleet1);
+                    break;
+                case CombinedFleetType.Carrier:
+                case CombinedFleetType.Transport:
+                    FireAttack(api.api_hougeki1, Fleet2);
+                    FireAttack(api.api_hougeki2, Fleet1);
+                    FireAttack(api.api_hougeki3, Fleet1);
+                    break;
+                case CombinedFleetType.Surface:
+                    FireAttack(api.api_hougeki1, Fleet1);
+                    FireAttack(api.api_hougeki2, Fleet1);
+                    FireAttack(api.api_hougeki3, Fleet2);
+                    break;
+            }
             TorpedoAttack(api.api_raigeki);
             NightBattle(api);
         }
         public void NightBattle(sortie_battle api)
         {
-            FireAttack(api.api_hougeki);
+            FireAttack(api.api_hougeki, NightOrTorpedo);
             EndApplyBattle();
         }
         private void EndApplyBattle()
@@ -214,17 +225,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void TorpedoAttack(sortie_battle.torpedo api)
         {
             if (api == null) return;
-            var torpedofleet = Fleet2 ?? Fleet1;
-            torpedofleet.ArrayZip(api.api_fdam, 1, Delegates.SetDamage);
+            NightOrTorpedo.ArrayZip(api.api_fdam, 1, Delegates.SetDamage);
             EnemyFleet.ArrayZip(api.api_edam, 1, Delegates.SetDamage);
-            torpedofleet.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
+            NightOrTorpedo.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
             EnemyFleet.ArrayZip(api.api_eydam, 1, Delegates.SetGiveDamage);
         }
-        private void FireAttack(sortie_battle.fire api)
+        private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet)
         {
             if (api == null) return;
-            api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(this[a], b)));
-            api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(this[y], d)));
+            api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(FindShip(a, fleet), b)));
+            api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(FindShip(y, fleet), d)));
         }
     }
     public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }
