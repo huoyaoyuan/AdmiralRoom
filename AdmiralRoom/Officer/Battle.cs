@@ -96,20 +96,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             EnemyFleet.ArrayZip(api.api_eSlot, 0, (x, y) => x.Equipments = y.Where(z => z != -1).Select(z => Staff.Current.MasterData.EquipInfo[z]).ToArray());
 
             Fleet1.ArrayZip(api.api_maxhps, 1, Delegates.SetMaxHP);
-            if (iscombined)
-            {
-                Fleet2.ArrayZip(api.api_maxhps, 7, Delegates.SetMaxHP);
-                EnemyFleet.ArrayZip(api.api_maxhps, 13, Delegates.SetMaxHP);
-            }
-            else EnemyFleet.ArrayZip(api.api_maxhps, 7, Delegates.SetMaxHP);
+            Fleet2?.ArrayZip(api.api_maxhps_combined, 1, Delegates.SetMaxHP);
+            EnemyFleet.ArrayZip(api.api_maxhps, 7, Delegates.SetMaxHP);
 
             Fleet1.ArrayZip(api.api_nowhps, 1, Delegates.SetStartHP);
-            if (iscombined)
-            {
-                Fleet2.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
-                EnemyFleet.ArrayZip(api.api_nowhps, 13, Delegates.SetStartHP);
-            }
-            else EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
+            Fleet2?.ArrayZip(api.api_nowhps_combined, 1, Delegates.SetStartHP);
+            EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
 
             AirCombat1 = AirBattle(api.api_kouku, false);
             AirCombat2 = AirBattle(api.api_kouku2, false);
