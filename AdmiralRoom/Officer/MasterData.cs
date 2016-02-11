@@ -82,7 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 using (var writer = File.CreateText(@"logs\masterdata.json"))
                 {
-                    writer.Write(oSession.GetResponseBodyAsString().Substring(7));
+                    writer.Write(oSession.GetResponseBodyAsString().Substring(7).UnicodeDecode());
                     writer.Flush();
                 }
             }
