@@ -44,11 +44,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_practice/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             Staff.API("api_req_practice/midnight_battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
             Staff.API("api_req_sortie/airbattle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
+            Staff.API("api_req_sortie/ld_airbattle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.None, this));
             Staff.API("api_req_combined_battle/airbattle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this));
             Staff.API("api_req_combined_battle/battle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this));
             Staff.API("api_req_combined_battle/midnight_battle").Subscribe<sortie_battle>(x => (CurrentBattle as Battle).NightBattle(x));
             Staff.API("api_req_combined_battle/sp_midnight").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this));
             Staff.API("api_req_combined_battle/battle_water").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, CombinedFleetType.Surface, this));
+            Staff.API("api_req_combined_battle/ld_airbattle").Subscribe<sortie_battle>(x => CurrentBattle = new Battle(x, Staff.Current.Homeport.CombinedFleet, this));
 #pragma warning restore CC0020
         }
         public Fleet SortieFleet1 { get; private set; }

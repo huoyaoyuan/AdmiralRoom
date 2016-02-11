@@ -59,7 +59,7 @@
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="AirBattle">
                                             <Setter Property="Text" Value="{ex:Localizable Compass_AirBattle}"/>
-                                            <Setter Property="Foreground" Value="OrangeRed"/>
+                                            <Setter Property="Foreground" Value="Orange"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="SelectRoute">
                                             <Setter Property="Text" Value="{ex:Localizable Compass_SelectRoute}"/>
@@ -80,6 +80,10 @@
                                         <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Transport">
                                             <Setter Property="Text" Value="{ex:Localizable Compass_Transport}"/>
                                             <Setter Property="Foreground" Value="SpringGreen"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentNode.Type}" Value="AirDefence">
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_AirDefence}"/>
+                                            <Setter Property="Foreground" Value="Orange"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>

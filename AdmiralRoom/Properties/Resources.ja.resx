@@ -210,6 +210,9 @@
   <data name="Compass_AirBattle" xml:space="preserve">
     <value>航空戦</value>
   </data>
+  <data name="Compass_AirDefence" xml:space="preserve">
+    <value>長距離空襲</value>
+  </data>
   <data name="Compass_AirSearch" xml:space="preserve">
     <value>航空偵察</value>
   </data>

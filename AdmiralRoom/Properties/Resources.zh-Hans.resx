@@ -207,6 +207,9 @@
   <data name="Compass_AirBattle" xml:space="preserve">
     <value>航空战</value>
   </data>
+  <data name="Compass_AirDefence" xml:space="preserve">
+    <value>长距离空袭</value>
+  </data>
   <data name="Compass_AirSearch" xml:space="preserve">
     <value>航空侦察</value>
   </data>

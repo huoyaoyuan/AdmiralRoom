@@ -340,6 +340,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Long Distance Air Defence 的本地化字符串。
+        /// </summary>
+        public static string Compass_AirDefence {
+            get {
+                return ResourceManager.GetString("Compass_AirDefence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Aerial Search 的本地化字符串。
         /// </summary>
         public static string Compass_AirSearch {

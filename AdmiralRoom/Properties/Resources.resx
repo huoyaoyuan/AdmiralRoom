@@ -210,6 +210,9 @@
   <data name="Compass_AirBattle" xml:space="preserve">
     <value>Aerial Battle</value>
   </data>
+  <data name="Compass_AirDefence" xml:space="preserve">
+    <value>Long Distance Air Defence</value>
+  </data>
   <data name="Compass_AirSearch" xml:space="preserve">
     <value>Aerial Search</value>
   </data>
