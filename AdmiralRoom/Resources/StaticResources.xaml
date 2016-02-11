@@ -2,12 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
                     xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-                    xmlns:converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter">
+                    xmlns:converter="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="PresentationOptions">
     <converter:LVColorConverter x:Key="LVColorConverter"/>
     <converter:VisibilityConverter x:Key="VisibilityConverter"/>
     <converter:CondColorConverter x:Key="CondColorConverter"/>
     <converter:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter"/>
-    <LinearGradientBrush x:Key="BuildingProgressForegroundKey" StartPoint="0,0" EndPoint="1,0">
+    <LinearGradientBrush x:Key="BuildingProgressForegroundKey" StartPoint="0,0" EndPoint="1,0" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="Red"/>
         <GradientStop Offset="0.17" Color="Orange"/>
         <GradientStop Offset="0.33" Color="Yellow"/>
@@ -82,12 +85,12 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="MaterialColor1" Color="#008000"/>
-    <SolidColorBrush x:Key="MaterialColor2" Color="#663300"/>
-    <SolidColorBrush x:Key="MaterialColor3" Color="#808080"/>
-    <SolidColorBrush x:Key="MaterialColor4" Color="#CC3300"/>
-    <SolidColorBrush x:Key="MaterialColor5" Color="#A52A2A"/>
-    <SolidColorBrush x:Key="MaterialColor6" Color="#F08080"/>
-    <SolidColorBrush x:Key="MaterialColor7" Color="#4876FF"/>
-    <SolidColorBrush x:Key="MaterialColor8" Color="#00ABB2"/>
+    <SolidColorBrush x:Key="MaterialColor1" Color="#008000" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor2" Color="#663300" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor3" Color="#808080" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor4" Color="#CC3300" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor5" Color="#A52A2A" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor6" Color="#F08080" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor7" Color="#4876FF" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="MaterialColor8" Color="#00ABB2" PresentationOptions:Freeze="True"/>
 </ResourceDictionary>
