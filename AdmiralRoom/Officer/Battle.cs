@@ -167,24 +167,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (api == null) return null;
             AirCombat combat = new AirCombat();
-            if (api.api_stage1 != null)//stage1一直都有吧
+            ShipInBattle friendtorpedo = null, friendbomb = null, enemytorpedo = null, enemybomb = null;
+            if (!issupport)
             {
-                combat.AirControl = (AirControl)api.api_stage1.api_disp_seiku;
-                combat.FriendStage1 = new LimitedValue(api.api_stage1.api_f_count - api.api_stage1.api_f_lostcount, api.api_stage1.api_f_count);
-                combat.EnemyStage1 = new LimitedValue(api.api_stage1.api_e_count - api.api_stage1.api_e_lostcount, api.api_stage1.api_e_count);
+                if (api.api_stage1 != null)//stage1一直都有吧
+                {
+                    combat.AirControl = (AirControl)api.api_stage1.api_disp_seiku;
+                    combat.FriendStage1 = new LimitedValue(api.api_stage1.api_f_count - api.api_stage1.api_f_lostcount, api.api_stage1.api_f_count);
+                    combat.EnemyStage1 = new LimitedValue(api.api_stage1.api_e_count - api.api_stage1.api_e_lostcount, api.api_stage1.api_e_count);
+                }
+                if (api.api_stage2 != null)
+                {
+                    combat.FriendStage2 = new LimitedValue(api.api_stage2.api_f_count - api.api_stage2.api_f_lostcount, api.api_stage2.api_f_count);
+                    combat.EnemyStage2 = new LimitedValue(api.api_stage2.api_e_count - api.api_stage2.api_e_lostcount, api.api_stage2.api_e_count);
+                }
+                friendtorpedo = Fleet1.Where(x => x.CanAerialTorpedo).TakeSingle();
+                friendbomb = Fleet1.Where(x => x.CanAerialBomb).TakeSingle();
+                enemytorpedo = EnemyFleet.Where(x => x.CanAerialTorpedo).TakeSingle();
+                enemybomb = EnemyFleet.Where(x => x.CanAerialBomb).TakeSingle();
             }
-            if (api.api_stage2 != null)
-            {
-                combat.FriendStage2 = new LimitedValue(api.api_stage2.api_f_count - api.api_stage2.api_f_lostcount, api.api_stage2.api_f_count);
-                combat.EnemyStage2 = new LimitedValue(api.api_stage2.api_e_count - api.api_stage2.api_e_lostcount, api.api_stage2.api_e_count);
-            }
-            var friendtorpedo = Fleet1.Where(x => x.CanAerialTorpedo).TakeSingle();
-            var friendbomb = Fleet1.Where(x => x.CanAerialBomb).TakeSingle();
-            var enemytorpedo = EnemyFleet.Where(x => x.CanAerialTorpedo).TakeSingle();
-            var enemybomb = EnemyFleet.Where(x => x.CanAerialBomb).TakeSingle();
             if (api.api_stage3 != null)
             {
-                Fleet1.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
+                if (!issupport) Fleet1.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
                 EnemyFleet.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
                 if (!issupport)
                 {
