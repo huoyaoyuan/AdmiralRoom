@@ -171,6 +171,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (CurrentMap.Id == 15) StaticCounters.Map1_5Counter.Increase();
                 }
             }
+            WinRank winrank;
+            if (!Enum.TryParse(api.api_win_rank, out winrank))
+                winrank = (CurrentBattle as Battle).WinRank;
+            if (winrank == WinRank.S && (CurrentBattle as Battle)?.FriendDamageRate == 0)
+                winrank = WinRank.Perfect;
             CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? Properties.Resources.Empty;
             GetShipEquip = api.api_get_ship == null ? null : (int?)0;//TODO:记录船附带的装备
             Logger.Loggers.BattleDropLogger.Log(new Logger.BattleDropLog
@@ -181,7 +186,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 IsBOSS = CurrentNode.Type == MapNodeType.BOSS,
                 MapAreaName = CurrentMap.Name,
                 EnemyFleetName = api.api_enemy_info?.api_deck_name ?? "",
-                WinRank = ((Battle)CurrentBattle).WinRank,
+                WinRank = winrank,
                 DropShipId = api.api_get_ship?.api_ship_id ??
                     (Staff.Current.Admiral.CanDropShip ? 0 : -1),
                 DropItem = api.api_get_useitem?.api_useitem_id ?? 0
