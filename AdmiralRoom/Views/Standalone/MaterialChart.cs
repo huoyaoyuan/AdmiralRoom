@@ -45,7 +45,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         private static void ReRender(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var chart = d as MaterialChart;
-            chart.colorsonly = false;
             chart.InvalidateVisual();
         }
 
@@ -166,7 +165,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                         false);
                     lines[i] = new PathGeometry(new[] { figure });
                 }
-                colorsonly = true;
             }
             for (int i = 0; i < 8; i++)
             {
@@ -184,6 +182,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                 drawingContext.DrawGeometry(null,
                     new Pen(FindResource("MaterialColor" + (highlight + 1)) as SolidColorBrush, 2),
                     lines[highlight.Value]);
+            colorsonly = false;
         }
 
         private Point MakeChartPoint(DateTime datetime, double value, int id)
@@ -209,6 +208,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             this.highlight = highlight;
             if (highlight != null && !shown[highlight.Value]) this.highlight = null;
 
+            colorsonly = true;
             this.InvalidateVisual();
         }
 
