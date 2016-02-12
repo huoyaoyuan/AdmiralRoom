@@ -4,6 +4,7 @@
     {
         public static void Initialize()
         {
+            System.IO.Directory.CreateDirectory("logs");
             CreateItemLogger = new CsvLogger<CreateItemLog>(@"logs\createitem.csv") { TitleKey = "Logger_CreateItem" };
             CreateShipLogger = new CsvLogger<CreateShipLog>(@"logs\createship.csv") { TitleKey = "Logger_CreateShip" };
             MissionLogger = new CsvLogger<MissionLog>(@"logs\mission.csv") { TitleKey = "Expedition" };

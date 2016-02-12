@@ -80,6 +80,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             try
             {
+                Directory.CreateDirectory("logs");
                 using (var writer = File.CreateText(@"logs\masterdata.json"))
                 {
                     writer.Write(oSession.GetResponseBodyAsString().Substring(7).UnicodeDecode());
