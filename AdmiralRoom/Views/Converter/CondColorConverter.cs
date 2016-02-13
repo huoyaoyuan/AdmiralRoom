@@ -10,16 +10,16 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
     public class CondColorConverter : IValueConverter
     {
         #region ConstantBrushes
-        private static readonly SolidColorBrush Brush20Foreground = new SolidColorBrush(Colors.Red).TryFreeze();
-        private static readonly SolidColorBrush Brush30Foreground = new SolidColorBrush(Colors.Orange).TryFreeze();
-        private static readonly SolidColorBrush Brush40Foreground = new SolidColorBrush(Colors.DarkGray).TryFreeze();
-        private static readonly SolidColorBrush Brush50Foreground = new SolidColorBrush(Colors.DarkCyan).TryFreeze();
-        private static readonly SolidColorBrush Brush85Foreground = new SolidColorBrush(Colors.MediumAquamarine).TryFreeze();
-        private static readonly SolidColorBrush BrushMaxForeground = new SolidColorBrush(Colors.MediumSpringGreen).TryFreeze();
+        private static readonly SolidColorBrush Brush20Foreground = Brushes.Red;
+        private static readonly SolidColorBrush Brush30Foreground = Brushes.Orange;
+        private static readonly SolidColorBrush Brush40Foreground = Brushes.DarkGray;
+        private static readonly SolidColorBrush Brush50Foreground = Brushes.DarkCyan;
+        private static readonly SolidColorBrush Brush85Foreground = Brushes.MediumAquamarine;
+        private static readonly SolidColorBrush BrushMaxForeground = Brushes.MediumSpringGreen;
         private static readonly SolidColorBrush Brush20Background = new SolidColorBrush(Color.FromArgb(96, 255, 0, 0)).TryFreeze();
         private static readonly SolidColorBrush Brush30Background = new SolidColorBrush(Color.FromArgb(96, 255, 96, 0)).TryFreeze();
         private static readonly SolidColorBrush Brush40Background = new SolidColorBrush(Color.FromArgb(48, 255, 128, 0)).TryFreeze();
-        private static readonly SolidColorBrush Brush50Background = new SolidColorBrush(Colors.Transparent).TryFreeze();
+        private static readonly SolidColorBrush Brush50Background = Brushes.Transparent;
         private static readonly SolidColorBrush BrushMaxBackground = new SolidColorBrush(Color.FromArgb(192, 255, 255, 0)).TryFreeze();
         #endregion
 

@@ -271,7 +271,7 @@
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="C">
                                                         <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_C}"/>
-                                                        <Setter Property="Foreground" Value="Red"/>
+                                                        <Setter Property="Foreground" Value="Magenta"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="D">
                                                         <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_D}"/>
