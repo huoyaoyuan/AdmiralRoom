@@ -185,7 +185,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public int ApplyMarriage(int raw) => Level >= 100 ? (int)(raw * 0.85) : raw;
         public int[] AirFightPower => Slots.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + (int)b).ToArray());
-        public double LoSInMap => Slots.Select(x => x.LoSInMap).Sum() + Math.Sqrt(LoS.Current) * 1.69;
+        public double LoSInMap => Slots.Sum(x => x.LoSInMap) + Math.Sqrt(LoS.Current) * 1.69;
         public void UpdateStatus()
         {
             OnPropertyChanged(nameof(AirFightPower));
