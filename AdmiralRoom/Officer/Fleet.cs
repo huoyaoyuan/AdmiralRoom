@@ -155,6 +155,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region HomeportRepaired
+        private bool _homeportrepaired;
+        public bool HomeportRepaired
+        {
+            get { return _homeportrepaired; }
+            set
+            {
+                if (_homeportrepaired != value)
+                {
+                    _homeportrepaired = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         private bool needupdateship = false;
         protected override void UpdateProp()
         {
@@ -259,11 +275,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             => Ships.Count > 0
             && Ships[0].ShipInfo.ShipType.Id == 19
             && Ships[0].IsRepairing == false
+            && Ships[0].HP.Percentage > 0.5
             && MissionState == FleetMissionState.None;
 #pragma warning restore CC0049
         private IEnumerable<Ship> HomeportRepairingList => Ships.Take(
             CanHomeportRepairing ? Ships[0].Slots.Count(x => x.Item?.EquipInfo.EquipType.Id == 31) + 2 : 0)
-            .Where(x => x.HP.Current * 2 > x.HP.Max);
+            .Where(x => !x.HP.IsMax && x.HP.Current * 2 > x.HP.Max);
 
         public DateTimeOffset HomeportRepairingFrom { get; private set; }
         public void CheckHomeportRepairingTime(bool reset)
@@ -276,10 +293,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void CheckHomeportRepairing(object sender, ElapsedEventArgs e)
         {
             var during = DateTimeOffset.UtcNow - HomeportRepairingFrom;
-            if (during.TotalMinutes < 20) return;
+            if (during.TotalMinutes < 20)
+            {
+                HomeportRepaired = false;
+                return;
+            }
+            HomeportRepaired = true;
             foreach (var ship in HomeportRepairingList)
                 if (!ship.IsRepairing)
-                    ship.RepairingHP = ship.HP.Current + Math.Max((int)((during.TotalSeconds - 30) / ship.RepairTimePerHP.TotalSeconds), 1);
+                    ship.RepairingHP = ship.HP.Current + Math.Max((int)((during.TotalSeconds - 60) / ship.RepairTimePerHP.TotalSeconds), 1);
         }
     }
     public enum FleetStatus { Empty, Ready, NotReady, InSortie, InMission, Warning }

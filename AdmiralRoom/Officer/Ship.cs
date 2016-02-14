@@ -174,7 +174,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             UpdateStatus();
         }
 
-        public bool FindEquipment(int itemid) => rawdata.api_slot.Contains(itemid) || (SlotEx.HasItem && SlotEx.Item.Id == itemid);
+        public bool FindEquipment(int itemid) => rawdata.api_slot.Contains(itemid) || (SlotEx.Item?.Id == itemid);
         public void SetRepaired()
         {
             RepairingHP = HP.Max;

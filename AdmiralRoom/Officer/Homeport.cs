@@ -225,15 +225,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                                 destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
                             else destf.Ships.Remove(ship);
                             destf.UpdateStatus();
-                            destf.CheckHomeportRepairingTime(true);
+                            if (destf.Ships?[0]?.ShipInfo.ShipType.Id == 19)
+                                destf.CheckHomeportRepairingTime(true);
                         }
                         if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
                         else fleet.Ships[idx] = ship;
                         ship.InFleet = fleet;
                     }
+                    if (fleet.Ships?[0]?.ShipInfo.ShipType.Id == 19)
+                        fleet.CheckHomeportRepairingTime(true);
                 }
                 fleet.UpdateStatus();
-                fleet.CheckHomeportRepairingTime(true);
             });
         }
 
