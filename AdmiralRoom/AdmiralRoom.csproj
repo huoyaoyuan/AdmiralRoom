@@ -78,7 +78,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ControlzEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
-      <HintPath>..\packages\ControlzEx.2.0.0-dev024\lib\net45\ControlzEx.dll</HintPath>
+      <HintPath>..\packages\ControlzEx.2.0.0-dev035\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CoreAudioApi, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -90,7 +90,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fluent, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fluent.Ribbon.4.0.0-dev0296\lib\net45\Fluent.dll</HintPath>
+      <HintPath>..\packages\Fluent.Ribbon.4.0.0-dev0345\lib\net45\Fluent.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -112,7 +112,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fluent.Ribbon.4.0.0-dev0296\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Fluent.Ribbon.4.0.0-dev0345\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
