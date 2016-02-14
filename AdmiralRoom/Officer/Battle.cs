@@ -99,6 +99,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Fleet2?.ArrayZip(api.api_nowhps_combined, 1, Delegates.SetStartHP);
             EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
 
+            api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
+            api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
+
             AirCombat1 = AirBattle(api.api_kouku, false);
             AirCombat2 = AirBattle(api.api_kouku2, false);
             SupportAttack(api.api_support_info);

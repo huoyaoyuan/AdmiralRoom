@@ -19,6 +19,8 @@
         public int[][] api_fParam { get; set; }
         public int[][] api_eParam { get; set; }
         public int[][] api_fParam_combined { get; set; }
+        public int[] api_escape_idx { get; set; }
+        public int[] api_escape_idx_combined { get; set; }
         public int[] api_search { get; set; }
         public int[] api_formation { get; set; }
         public int[] api_stage_flag { get; set; }

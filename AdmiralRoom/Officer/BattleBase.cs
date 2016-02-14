@@ -15,6 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public int DamageGiven { get; set; }
             public EquipInfo[] Equipments { get; set; }
             public bool IsMostDamage { get; set; }
+            public bool IsEscaped { get; set; }
             public bool CanAerialTorpedo => Equipments.Any(x => x.EquipType.Id == 8);
             public bool CanAerialBomb => Equipments.Any(x => x.EquipType.Id == 7 || x.EquipType.Id == 11);
             public LimitedValue HP => new LimitedValue(ToHP, MaxHP);

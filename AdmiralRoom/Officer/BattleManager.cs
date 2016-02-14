@@ -39,7 +39,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Logger.Loggers.MaterialLogger.ForceLog = true;
                 StartNextHandler(api);
             });
-#pragma warning disable CC0020
             Staff.API("api_req_sortie/battle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_battle_midnight/battle").Subscribe<sortie_battle>(NightBattle);
             Staff.API("api_req_battle_midnight/sp_midnight").Subscribe<sortie_battle>(StartBattle);
@@ -53,7 +52,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_combined_battle/sp_midnight").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/battle_water").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/ld_airbattle").Subscribe<sortie_battle>(StartBattle);
-#pragma warning restore CC0020
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }

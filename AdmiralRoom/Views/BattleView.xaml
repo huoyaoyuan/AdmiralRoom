@@ -23,7 +23,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid>
+                        <Grid x:Name="shipinfleet">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
@@ -87,6 +87,9 @@
                             <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="KFlagship">
                                 <Setter TargetName="enemyclass" Property="Foreground" Value="Cyan"/>
                                 <Setter TargetName="enemyclass" Property="Text" Value="flagship"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsEscaped}" Value="True">
+                                <Setter TargetName="shipinfleet" Property="Opacity" Value="0.4"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
