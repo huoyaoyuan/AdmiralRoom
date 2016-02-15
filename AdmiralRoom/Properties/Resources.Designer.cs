@@ -1313,6 +1313,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Ship heavily damaged: 的本地化字符串。
+        /// </summary>
+        public static string Notification_HeavyDamage_Text {
+            get {
+                return ResourceManager.GetString("Notification_HeavyDamage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Heavy Damage Warning 的本地化字符串。
+        /// </summary>
+        public static string Notification_HeavyDamage_Title {
+            get {
+                return ResourceManager.GetString("Notification_HeavyDamage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Repairs on {1} in Dock {0} have been completed. 的本地化字符串。
         /// </summary>
         public static string Notification_Repair_Text {

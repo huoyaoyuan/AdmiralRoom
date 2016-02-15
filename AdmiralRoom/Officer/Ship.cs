@@ -135,6 +135,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         private bool _ignorenextcondition = true;
         public void IgnoreNextCondition() => _ignorenextcondition = true;
+        public override string ToString() => $"{ShipInfo.Name}(Lv.{Level})";
         //private bool _hpchanged = false;
         protected override void UpdateProp()
         {

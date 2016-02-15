@@ -535,6 +535,12 @@ Expedition {1} - {2}</value>
   <data name="Notification_Expedition_Title" xml:space="preserve">
     <value>Expedition Completed</value>
   </data>
+  <data name="Notification_HeavyDamage_Text" xml:space="preserve">
+    <value>Ship heavily damaged:</value>
+  </data>
+  <data name="Notification_HeavyDamage_Title" xml:space="preserve">
+    <value>Heavy Damage Warning</value>
+  </data>
   <data name="Notification_Repair_Text" xml:space="preserve">
     <value>Repairs on {1} in Dock {0} have been completed.</value>
   </data>

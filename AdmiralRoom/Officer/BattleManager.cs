@@ -162,6 +162,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Staff.Current.Admiral.EquipCount += GetShipEquip.Value;
             }
             GetShipEquip = null;
+
+            var heavydamage = SortieFleet1.Ships.Skip(1).ConcatNotNull(SortieFleet2?.Ships.Skip(1))
+                .Where(x => !x.IsEscaped && x.HP.Current * 4 <= x.HP.Max);
+            if (heavydamage.Any())
+            {
+                Notifier.Current.Show(Properties.Resources.Notification_HeavyDamage_Title,
+                    heavydamage.Aggregate(Properties.Resources.Notification_HeavyDamage_Text, (text, ship) => text += "\n" + ship.ToString()));
+            }
         }
         private void BattleResultHandler(sortie_battleresult api)
         {

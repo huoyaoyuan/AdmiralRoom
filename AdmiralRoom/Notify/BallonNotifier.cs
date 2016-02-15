@@ -39,7 +39,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
         }
 
-        public override void Show(string title, string detail, string sound)
+        public override void Show(string title, string detail, string sound = null)
         {
             notifyIcon?.ShowBalloonTip(1000, title, detail, ToolTipIcon.None);
             if (!string.IsNullOrEmpty(sound))

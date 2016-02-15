@@ -535,6 +535,12 @@
   <data name="Notification_Expedition_Title" xml:space="preserve">
     <value>遠征完了</value>
   </data>
+  <data name="Notification_HeavyDamage_Text" xml:space="preserve">
+    <value>大破の艦娘がいる：</value>
+  </data>
+  <data name="Notification_HeavyDamage_Title" xml:space="preserve">
+    <value>大破警告</value>
+  </data>
   <data name="Notification_Repair_Text" xml:space="preserve">
     <value>入渠第 {0} ドックでの「{1}」の整備が完了しました。</value>
   </data>

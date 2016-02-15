@@ -8,7 +8,7 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public static Notifier Current { get; private set; }
         public abstract void Initialize();
-        public abstract void Show(string title, string detail, string sound);
+        public abstract void Show(string title, string detail, string sound = null);
         public static void SetNotifier(bool toast)
         {
             (Current as IDisposable)?.Dispose();
