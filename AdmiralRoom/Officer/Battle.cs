@@ -7,6 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     public class Battle : BattleBase
     {
         public override bool IsBattling => true;
+        public MapNodeType BattleType { get; set; }
         private ShipInBattle[] NightOrTorpedo => Fleet2 ?? Fleet1;
         private ShipInBattle FindShip(int index, ShipInBattle[] friend)
         {
@@ -45,6 +46,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 int es = EnemySinkCount;
                 int fd = (int)(FriendDamageRate * 100);
                 int ed = (int)(EnemyDamageRate * 100);
+                if (BattleType == MapNodeType.AirDefence)//空袭战
+                {
+                    if (fd == 0) return WinRank.Perfect;
+                    if (fd <= 10) return WinRank.A;
+                    if (fd <= 20) return WinRank.B;
+                    if (fd <= 50) return WinRank.C;
+                    return WinRank.D;
+                }
                 if (fl == 0)
                 {
                     if (es == EnemyFleet.Length)
@@ -68,9 +77,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             }
         }
-        public Battle(sortie_battle api, CombinedFleetType fleettype, BattleManager source)
+        public Battle(sortie_battle api, CombinedFleetType fleettype, MapNodeType battletype, BattleManager source)
         {
             FleetType = fleettype;
+            BattleType = battletype;
             Fleet1 = (source.SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
                 .Select(x => new ShipInBattle(x)).ToArray();
             Fleet2 = source.SortieFleet2?.Ships
