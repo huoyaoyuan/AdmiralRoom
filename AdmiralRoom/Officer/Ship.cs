@@ -115,6 +115,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region IsEscaped
+        private bool _isescaped;
+        public bool IsEscaped
+        {
+            get { return _isescaped; }
+            set
+            {
+                if (_isescaped != value)
+                {
+                    _isescaped = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public Fleet InFleet { get; set; }
 
         private bool _ignorenextcondition = true;

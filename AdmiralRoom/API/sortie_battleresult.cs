@@ -52,6 +52,13 @@
         }
         public get_eventitem api_get_eventitem { get; set; }
         public int api_get_eventflag { get; set; }
+        public class escape
+        {
+            public int api_escape_idx { get; set; }
+            public int api_tow_idx { get; set; }
+        }
+        public escape api_escape { get; set; }
+        public int api_escape_flag { get; set; }
         //public string api_get_exmap_rate { get; set; }
         //public string api_get_exmap_useitem_id { get; set; }
     }

@@ -315,6 +315,9 @@
   <data name="Fleet_Condition" xml:space="preserve">
     <value>疲労回復まて</value>
   </data>
+  <data name="Fleet_Escaped" xml:space="preserve">
+    <value>退避</value>
+  </data>
   <data name="Fleet_HomeportRepair" xml:space="preserve">
     <value>泊地修理</value>
   </data>

@@ -30,6 +30,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 FromHP = ship.HP.Current;
                 ToHP = ship.HP.Current;
                 Equipments = ship.Slots.Where(y => y.HasItem).Select(y => y.Item.EquipInfo).ToArray();
+                IsEscaped = ship.IsEscaped;
             }
             public void SetMvp() => IsMostDamage = true;
         }

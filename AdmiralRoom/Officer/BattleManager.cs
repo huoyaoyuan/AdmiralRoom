@@ -20,6 +20,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 CurrentBattle = null;
                 GetShipEquip = null;
                 CurrentFleetType = null;
+                lastescapeinfo = null;
             });
             Staff.API("api_req_map/next").Subscribe<map_start_next>(StartNextHandler);
             Staff.API("api_req_sortie/battleresult").Subscribe<sortie_battleresult>(BattleResultHandler);
@@ -52,6 +53,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_combined_battle/sp_midnight").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/battle_water").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/ld_airbattle").Subscribe<sortie_battle>(StartBattle);
+            Staff.API("api_req_combined_battle/goback_port").Subscribe((Fiddler.Session x) =>
+            {
+                if (lastescapeinfo != null)
+                {
+                    Staff.Current.Homeport.Ships[lastescapeinfo.api_escape_idx].IsEscaped = true;
+                    Staff.Current.Homeport.Ships[lastescapeinfo.api_tow_idx].IsEscaped = true;
+                }
+            });
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }
@@ -135,6 +144,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public bool ItemsAfterShips = false;
         private int? GetShipEquip = null;
+        private sortie_battleresult.escape lastescapeinfo;
         private void StartBattle(sortie_battle api) =>
             CurrentBattle = new Battle(api, CurrentFleetType ?? CombinedFleetType.None, this);
         private void NightBattle(sortie_battle api) =>
@@ -169,6 +179,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (CurrentMap.Id == 15) StaticCounters.Map1_5Counter.Increase();
                 }
             }
+            lastescapeinfo = api.api_escape;
             WinRank winrank;
             if (!Enum.TryParse(api.api_win_rank, out winrank))
                 winrank = (CurrentBattle as Battle).WinRank;

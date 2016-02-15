@@ -315,6 +315,9 @@
   <data name="Fleet_Condition" xml:space="preserve">
     <value>Condition Recovery</value>
   </data>
+  <data name="Fleet_Escaped" xml:space="preserve">
+    <value>Escaped</value>
+  </data>
   <data name="Fleet_HomeportRepair" xml:space="preserve">
     <value>Homeport Repair</value>
   </data>

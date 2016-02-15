@@ -655,6 +655,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Escaped 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Escaped {
+            get {
+                return ResourceManager.GetString("Fleet_Escaped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Homeport Repair 的本地化字符串。
         /// </summary>
         public static string Fleet_HomeportRepair {
