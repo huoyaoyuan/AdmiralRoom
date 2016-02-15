@@ -48,7 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 int ed = (int)(EnemyDamageRate * 100);
                 if (BattleType == MapNodeType.AirDefence)//空袭战
                 {
-                    if (fd == 0) return WinRank.Perfect;
+                    if (FriendDamageRate <= 0) return WinRank.Perfect;
                     if (fd <= 10) return WinRank.A;
                     if (fd <= 20) return WinRank.B;
                     if (fd <= 50) return WinRank.C;
