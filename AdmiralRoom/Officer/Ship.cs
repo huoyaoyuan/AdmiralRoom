@@ -135,11 +135,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         private bool _ignorenextcondition = true;
         public void IgnoreNextCondition() => _ignorenextcondition = true;
-        private bool _hpchanged = false;
+        //private bool _hpchanged = false;
         protected override void UpdateProp()
         {
             Exp = new Exp(rawdata.api_exp, Level, true);
-            _hpchanged = HP.Current != rawdata.api_nowhp;
+            //_hpchanged = HP.Current != rawdata.api_nowhp;
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
             if (!IsRepairing) RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
@@ -207,7 +207,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged(nameof(AirFightPower));
             OnPropertyChanged(nameof(LoSInMap));
             if (InFleet != null && InFleet.Ships.IndexOf(this) == -1) InFleet = null;
-            if (_hpchanged) InFleet?.CheckHomeportRepairingTime(true);
+            //if (_hpchanged) InFleet?.CheckHomeportRepairingTime(true);
             InFleet?.UpdateStatus();
         }
     }
