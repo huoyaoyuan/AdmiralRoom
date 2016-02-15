@@ -220,18 +220,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int mincondition = 49;
         public void UpdateStatus()
         {
-            bool f1 = false, f2 = false, f3 = false, f4 = false;
+            LowCondition = false;
+            HeavilyDamaged = false;
+            NeedCharge = false;
+            Repairing = false;
             foreach (var ship in Ships)
             {
-                f1 |= ship.Condition < 40;
-                f2 |= ship.HP.Current * 4 <= ship.HP.Max;
-                f3 |= !(ship.Fuel.IsMax && ship.Bull.IsMax);
-                f4 |= ship.IsRepairing;
+                LowCondition |= ship.Condition < 40;
+                HeavilyDamaged |= !ship.IsEscaped && ship != Ships.FirstOrDefault() && ship.HP.Current * 4 <= ship.HP.Max;
+                NeedCharge |= !(ship.Fuel.IsMax && ship.Bull.IsMax);
+                Repairing |= ship.IsRepairing;
             }
-            LowCondition = f1;
-            HeavilyDamaged = f2;
-            NeedCharge = f3;
-            Repairing = f4;
 #pragma warning disable CC0014
             if (InSortie)
                 Status = HeavilyDamaged ? FleetStatus.Warning : FleetStatus.InSortie;
