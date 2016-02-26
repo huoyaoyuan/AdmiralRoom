@@ -236,7 +236,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Status = HeavilyDamaged ? FleetStatus.Warning : FleetStatus.InSortie;
             else if (MissionState != FleetMissionState.None)
                 Status = FleetStatus.InMission;
-            else if (NeedCharge || HeavilyDamaged || LowCondition || Repairing)
+            else if (NeedCharge || HeavilyDamaged || LowCondition || Repairing || CanHomeportRepairing)
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
 #pragma warning restore CC0014

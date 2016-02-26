@@ -384,6 +384,16 @@
                             </Setter.Value>
                         </Setter>
                     </DataTrigger>
+                    <DataTrigger Binding="{Binding CanHomeportRepairing}" Value="True">
+                        <Setter TargetName="statustext" Property="Text">
+                            <Setter.Value>
+                                <MultiBinding StringFormat="{}{0} - {1:hh\:mm\:ss}">
+                                    <ex:Localizable ResourceKey="Fleet_Status_Akashi"/>
+                                    <Binding Path="HomeportRepairingFrom" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="During"/>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
                     <DataTrigger Binding="{Binding NeedCharge}" Value="True">
                         <Setter TargetName="statustext" Property="Text" Value="{ex:Localizable Fleet_Status_NeedCharge}"/>
                     </DataTrigger>

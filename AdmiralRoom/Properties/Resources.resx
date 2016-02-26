@@ -336,6 +336,9 @@
   <data name="Fleet_Repairing" xml:space="preserve">
     <value>Repairing</value>
   </data>
+  <data name="Fleet_Status_Akashi" xml:space="preserve">
+    <value>Homeport Repairing</value>
+  </data>
   <data name="Fleet_Status_Empty" xml:space="preserve">
     <value>Fleet is empty.</value>
   </data>

@@ -718,6 +718,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Homeport Repairing 的本地化字符串。
+        /// </summary>
+        public static string Fleet_Status_Akashi {
+            get {
+                return ResourceManager.GetString("Fleet_Status_Akashi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Fleet is empty. 的本地化字符串。
         /// </summary>
         public static string Fleet_Status_Empty {

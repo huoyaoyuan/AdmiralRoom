@@ -333,6 +333,9 @@
   <data name="Fleet_Repairing" xml:space="preserve">
     <value>入渠中</value>
   </data>
+  <data name="Fleet_Status_Akashi" xml:space="preserve">
+    <value>泊地修理中</value>
+  </data>
   <data name="Fleet_Status_Empty" xml:space="preserve">
     <value>舰队为空</value>
   </data>
