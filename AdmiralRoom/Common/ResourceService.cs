@@ -27,8 +27,8 @@ namespace Huoyaoyuan.AdmiralRoom
             CultureInfo culture = SupportedCultures.SingleOrDefault(x => x.Name == CultureName);
             if (culture != null) Properties.Resources.Culture = culture;
             OnPropertyChanged(nameof(Resources));
-            CultureChanged?.Invoke(this, new EventArgs());
+            CultureChanged?.Invoke(culture);
         }
-        public event EventHandler CultureChanged;
+        public event Action<CultureInfo> CultureChanged;
     }
 }

@@ -21,6 +21,13 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
             {
                 container.ComposeParts(this);
             }
+#pragma warning disable CC0020
+            ResourceService.Current.CultureChanged += culture =>
+            {
+                foreach (var module in Modules)
+                    module.Value.OnCultureChanged(culture);
+            };
+#pragma warning restore CC0020
         }
     }
 }
