@@ -138,6 +138,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     sb.Remove(sb.Length - 1, 1);
                     file.WriteLine(sb.ToString());
                 }
+                file.Flush();
             }
         }
     }
