@@ -304,7 +304,7 @@
                         </TextBlock>
                         <TextBlock Margin="10,0,0,0" x:Name="akashi">
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1:hh\:mm\:ss}">
+                                <MultiBinding StringFormat="{}{0} {1}">
                                     <ex:Localizable ResourceKey="Fleet_HomeportRepair"/>
                                     <Binding Path="HomeportRepairingFrom" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="During"/>
                                 </MultiBinding>
@@ -387,7 +387,7 @@
                     <DataTrigger Binding="{Binding CanHomeportRepairing}" Value="True">
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
-                                <MultiBinding StringFormat="{}{0} - {1:hh\:mm\:ss}">
+                                <MultiBinding StringFormat="{}{0} - {1}">
                                     <ex:Localizable ResourceKey="Fleet_Status_Akashi"/>
                                     <Binding Path="HomeportRepairingFrom" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="During"/>
                                 </MultiBinding>
@@ -407,7 +407,7 @@
                         <Setter TargetName="statuscolor" Property="Fill" Value="Aqua"/>
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
-                                <MultiBinding StringFormat="{}{0} - {1} {2:hh\:mm\:ss}">
+                                <MultiBinding StringFormat="{}{0} - {1} {2}">
                                     <ex:Localizable ResourceKey="Fleet_Status_InMission"/>
                                     <Binding Path="MissionInfo.Name"/>
                                     <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>

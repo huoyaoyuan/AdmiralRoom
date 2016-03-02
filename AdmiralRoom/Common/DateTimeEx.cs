@@ -6,6 +6,8 @@ namespace Huoyaoyuan.AdmiralRoom
     {
         public static TimeSpan Remain(this DateTimeOffset time) => time.ToLocalTime() > DateTimeOffset.Now ? time - DateTimeOffset.Now : new TimeSpan(0);
         public static TimeSpan During(this DateTimeOffset time) => time.ToLocalTime() < DateTimeOffset.Now ? DateTimeOffset.Now - time : new TimeSpan(0);
+        public static string ToDisplayString(this TimeSpan time)
+            => $"{time.Days * 24 + time.Hours:00}:{time.Minutes:00}:{time.Seconds:00}";
         public static DateTimeOffset WeekStart(this DateTimeOffset time)
         {
             try

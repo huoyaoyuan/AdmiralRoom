@@ -15,9 +15,9 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Converter
                 case "local":
                     return time.ToLocalTime();
                 case "remain":
-                    return time.Remain();
+                    return time.Remain().ToDisplayString();
                 case "during":
-                    return time.During();
+                    return time.During().ToDisplayString();
                 default:
                     throw new ArgumentException();
             }

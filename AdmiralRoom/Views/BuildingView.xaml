@@ -42,7 +42,7 @@
                             <TextBlock FontSize="16" x:Name="shipname" Text="{Binding CreatedShip.Name}"/>
                             <TextBlock Grid.Column="1"
                                        x:Name="time"
-                                       Text="{Binding CompleteTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0:hh\\:mm\\:ss}}"
+                                       Text="{Binding CompleteTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0}}"
                                        FontSize="14"
                                        VerticalAlignment="Center"/>
                         </Grid>

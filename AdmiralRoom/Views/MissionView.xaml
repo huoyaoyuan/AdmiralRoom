@@ -22,7 +22,7 @@
                 <StackPanel x:Name="content" Orientation="Horizontal">
                     <TextBlock Text="{Binding Id, StringFormat=/{0}}" FontSize="18"/>
                     <TextBlock x:Name="time"
-                               Text="{Binding BackTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0:hh\\:mm\\:ss}}"
+                               Text="{Binding BackTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0}}"
                                FontSize="14"
                                VerticalAlignment="Center"/>
                     <StackPanel.ToolTip>
@@ -42,7 +42,7 @@
                                 </Run>
                                 <LineBreak/>
                                 <Run>
-                                    <MultiBinding StringFormat="{}{0}: {1:hh\:mm\:ss}" Mode="OneWay">
+                                    <MultiBinding StringFormat="{}{0}: {1}" Mode="OneWay">
                                         <ex:Localizable ResourceKey="Expedition_Remain"/>
                                         <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
                                     </MultiBinding>
