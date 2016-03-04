@@ -265,13 +265,16 @@
     <value>数量(剩余)</value>
   </data>
   <data name="Equip_Improvement" xml:space="preserve">
-    <value>强化</value>
+    <value>改修</value>
   </data>
   <data name="Equip_Name" xml:space="preserve">
     <value>装备名</value>
   </data>
   <data name="Equip_OnShip" xml:space="preserve">
     <value>装备所在舰船</value>
+  </data>
+  <data name="Equip_Proficiency" xml:space="preserve">
+    <value>熟练度</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>远征</value>

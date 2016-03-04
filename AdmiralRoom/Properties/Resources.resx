@@ -276,6 +276,9 @@
   <data name="Equip_OnShip" xml:space="preserve">
     <value>Equipped on</value>
   </data>
+  <data name="Equip_Proficiency" xml:space="preserve">
+    <value>Proficiency</value>
+  </data>
   <data name="Expedition" xml:space="preserve">
     <value>Expedition</value>
   </data>

@@ -9,12 +9,18 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public class EquipmentGroup
         {
             public EquipInfo Item { get; set; }
-            public EquipmentImprovementGroup[] Groups { get; set; } = CollectionEx.ArrayNew<EquipmentImprovementGroup>(11);
+            public List<EquipmentImprovementGroup> Groups { get; } = new List<EquipmentImprovementGroup>();
+            public int Count => Groups.Sum(x => x.Count);
         }
         public class EquipmentImprovementGroup
         {
             public int Level { get; set; }
-            public int ImprovementType { get; set; }
+            public int Count => Groups.Sum(x => x.Count);
+            public List<EquipmentProficiencyGroup> Groups { get; } = new List<EquipmentProficiencyGroup>();
+        }
+        public class EquipmentProficiencyGroup
+        {
+            public int Level { get; set; }
             public int Count { get; set; }
             public int Left { get; set; }
             public IDictionary<Ship, int> Equipped { get; } = new Dictionary<Ship, int>();
@@ -51,23 +57,38 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                     group = new EquipmentGroup { Item = item.EquipInfo };
                     d.Add(typeid, group);
                 }
-                int level = item.AirProficiency + item.ImproveLevel;
-                EquipmentImprovementGroup group2 = group.Groups[level];
-                if (level != group2.Level)
+                int i;
+                EquipmentImprovementGroup group2 = null;
+                for (i = 0; i < group.Groups.Count; i++)
                 {
-                    group2.Level = level;
-                    if (item.ImproveLevel > 0) group2.ImprovementType = 1;
-                    else if (item.AirProficiency > 0) group2.ImprovementType = 2;
+                    if (group.Groups[i].Level == item.ImproveLevel) group2 = group.Groups[i];
+                    if (group.Groups[i].Level >= item.ImproveLevel) break;
                 }
-                group2.Count++;
+                if (group2 == null)
+                {
+                    group2 = new EquipmentImprovementGroup { Level = item.ImproveLevel };
+                    group.Groups.Insert(i, group2);
+                }
+                EquipmentProficiencyGroup group3 = null;
+                for (i = 0; i < group2.Groups.Count; i++)
+                {
+                    if (group2.Groups[i].Level == item.AirProficiency) group3 = group2.Groups[i];
+                    if (group2.Groups[i].Level >= item.AirProficiency) break;
+                }
+                if (group3 == null)
+                {
+                    group3 = new EquipmentProficiencyGroup { Level = item.AirProficiency };
+                    group2.Groups.Insert(i, group3);
+                }
+
+                group3.Count++;
                 if (item.OnShip != null)
                 {
-                    if (group2.Equipped.ContainsKey(item.OnShip)) group2.Equipped[item.OnShip]++;
-                    else group2.Equipped.Add(item.OnShip, 1);
+                    if (group3.Equipped.ContainsKey(item.OnShip)) group3.Equipped[item.OnShip]++;
+                    else group3.Equipped.Add(item.OnShip, 1);
                 }
-                else group2.Left++;
+                else group3.Left++;
             }
-            d.Values.ForEach(x => x.Groups = x.Groups.Where(y => y.Count > 0).ToArray());
             Groups = d.Values.OrderBy(x => x.Item.EquipType.Id).ThenBy(x => x.Item.Id).ToArray();
         }
     }

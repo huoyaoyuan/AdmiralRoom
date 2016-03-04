@@ -538,6 +538,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Proficiency 的本地化字符串。
+        /// </summary>
+        public static string Equip_Proficiency {
+            get {
+                return ResourceManager.GetString("Equip_Proficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Expedition 的本地化字符串。
         /// </summary>
         public static string Expedition {

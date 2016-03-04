@@ -29,14 +29,6 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static IEnumerable<T> ConcatNotNull<T>(this IEnumerable<T> source, IEnumerable<T> param)
             => param != null ? source.Concat(param) : source;
-        public static T[] ArrayNew<T>(int count)
-            where T : class, new()
-        {
-            T[] array = new T[count];
-            for (int i = 0; i < count; i++)
-                array[i] = new T();
-            return array;
-        }
         public static T TakeSingle<T>(this IEnumerable<T> source)
         {
             using (var e = source.GetEnumerator())
@@ -67,7 +59,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 return max;
             }
         }
-        public static int Max(int a,params int[] array)
+        public static int Max(int a, params int[] array)
         {
             int max = a;
             foreach (int x in array)

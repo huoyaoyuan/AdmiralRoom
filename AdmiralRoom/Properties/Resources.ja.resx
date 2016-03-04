@@ -268,13 +268,16 @@
     <value>所持数(余り)</value>
   </data>
   <data name="Equip_Improvement" xml:space="preserve">
-    <value>強化</value>
+    <value>改修</value>
   </data>
   <data name="Equip_Name" xml:space="preserve">
     <value>装備名</value>
   </data>
   <data name="Equip_OnShip" xml:space="preserve">
     <value>装備している艦娘</value>
+  </data>
+  <data name="Equip_Proficiency" xml:space="preserve">
+    <value>熟練度</value>
   </data>
   <data name="Expedition" xml:space="preserve">
     <value>遠征</value>
