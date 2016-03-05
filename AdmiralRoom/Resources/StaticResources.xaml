@@ -93,4 +93,27 @@
     <SolidColorBrush x:Key="MaterialColor6" Color="#F08080" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="MaterialColor7" Color="#4876FF" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="MaterialColor8" Color="#00ABB2" PresentationOptions:Freeze="True"/>
+    <Style x:Key="GridViewItemContainerStyleKey" TargetType="{x:Type ListViewItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <GridViewRowPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex"
+                     Value="1">
+                <Setter Property="Background"
+                        Value="#10808080" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

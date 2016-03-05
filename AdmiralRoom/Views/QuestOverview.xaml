@@ -26,7 +26,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type officer:Quest}">
-                            <Grid>
+                            <Grid Margin="2,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="Icon"/>
                                     <ColumnDefinition Width="*"/>

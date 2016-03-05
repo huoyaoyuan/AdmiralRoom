@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Expander Grid.Row="0" Header="{ex:Localizable Ship_Filter}">
+        <Expander Grid.Row="0" IsExpanded="True" Header="{ex:Localizable Ship_Filter}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
@@ -44,7 +44,7 @@
                 </ItemsControl>
             </Border>
         </Expander>
-        <Expander Grid.Row="1" Header="{ex:Localizable TimeRange}">
+        <Expander Grid.Row="1" IsExpanded="True" Header="{ex:Localizable TimeRange}">
             <Border Margin="2"
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
