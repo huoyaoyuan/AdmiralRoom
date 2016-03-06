@@ -36,8 +36,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     SortieFleet2 = Staff.Current.Homeport.Fleets[2];
                     SortieFleet2.InSortie = true;
                 }
-                SortieFleet1?.Ships.ForEach(x => x.InvalidEquip());
-                SortieFleet2?.Ships.ForEach(x => x.InvalidEquip());
                 Logger.Loggers.MaterialLogger.ForceLog = true;
                 StartNextHandler(api);
             });
