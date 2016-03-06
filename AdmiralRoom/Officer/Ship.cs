@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 
@@ -18,8 +17,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public ShootRange Range => (ShootRange)rawdata.api_leng;
 
         #region Slots
-        private ObservableCollection<Slot> _slots;
-        public ObservableCollection<Slot> Slots
+        private IReadOnlyList<Slot> _slots;
+        public IReadOnlyList<Slot> Slots
         {
             get { return _slots; }
             set
@@ -184,7 +183,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 slots[i].AirCraft = new LimitedValue(rawdata.api_onslot[i], ShipInfo.AirCraft[i]);
             }
-            Slots = new ObservableCollection<Slot>(slots);
+            Slots = slots;
             SlotEx?.Item?.SetNotOnShip();
             SlotEx = new Slot();
             if (rawdata.api_slot_ex == 0) SlotEx.IsLocked = true;
