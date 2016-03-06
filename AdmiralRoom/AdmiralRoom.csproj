@@ -101,6 +101,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -204,6 +205,8 @@
     <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
+    <Compile Include="Composition\IModule.cs" />
+    <Compile Include="Composition\ModuleHost.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConstData.cs" />
     <Compile Include="Controls\AnimateProgress.cs" />
