@@ -4,7 +4,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class UseItem : GameObject<api_mst_useitem>
     {
-        public UseItem() { }
         public UseItem(api_mst_useitem api) : base(api) { }
         public override int Id => rawdata.api_id;
         public int UseType => rawdata.api_usetype;

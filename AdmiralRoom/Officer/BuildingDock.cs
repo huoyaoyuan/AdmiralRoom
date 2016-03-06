@@ -20,10 +20,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public ShipInfo CreatedShip { get; private set; }
         public bool IsLSC { get; set; }
         public Ship Secretary { get; set; }
-        public BuildingDock()
-        {
-            WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
-        }
         public BuildingDock(getmember_kdock api) : base(api)
         {
             WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);

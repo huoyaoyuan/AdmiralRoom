@@ -16,7 +16,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int[] WinItem1 => rawdata.api_win_item1;
         public int[] WinItem2 => rawdata.api_win_item2;
         public bool CanCancel => rawdata.api_return_flag != 0;
-        public MissionInfo() { }
         public MissionInfo(api_mst_mission api) : base(api) { }
     }
 }

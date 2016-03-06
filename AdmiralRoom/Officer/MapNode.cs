@@ -43,7 +43,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MaterialInfo Material { get; private set; }
         public int AirSearchType { get; private set; }
         public int AirSearchResult { get; private set; }
-        public MapNode() { }
         public MapNode(map_start_next api) : base(api) { }
         protected override void UpdateProp()
         {

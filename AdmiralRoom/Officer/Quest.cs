@@ -21,7 +21,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// 机种转换不能完成？
         /// </summary>
         public bool Invalid => rawdata.api_invalid_flag != 0;
-        public Quest() { }
         public Quest(api_quest api) : base(api) { }
         private ImageSource _icon;
         public ImageSource Icon

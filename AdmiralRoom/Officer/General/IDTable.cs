@@ -7,7 +7,7 @@ using System.Linq;
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     public class IDTable<T> : ICollection<T>, IReadOnlyCollection<T>, INotifyCollectionChanged
-        where T : class, IIdentifiable, new()
+        where T : class, IIdentifiable
     {
         private readonly Dictionary<int, T> dict = new Dictionary<int, T>();
         public IDTable() { }
@@ -73,11 +73,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     deletelist.Remove(item);
                 }
                 else
-                {
-                    item = new T();
-                    ((IUpdatable<T2>)item).Update(e);
-                    Add(item);
-                }
+                    Add((T)Activator.CreateInstance(typeof(T), e));
             }
             foreach (T item in deletelist)
                 Remove(item);
@@ -93,11 +89,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     ((IUpdatable<T2>)item).Update(e);
                 }
                 else
-                {
-                    item = new T();
-                    ((IUpdatable<T2>)item).Update(e);
-                    Add(item);
-                }
+                    Add((T)Activator.CreateInstance(typeof(T), e));
             }
         }
     }
