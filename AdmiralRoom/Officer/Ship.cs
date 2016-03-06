@@ -144,8 +144,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             HP = new LimitedValue(rawdata.api_nowhp, rawdata.api_maxhp);
             if (!IsRepairing) RepairingHP = HP.Current;
             Evasion = new LimitedValue(rawdata.api_kaihi);
-            int asw = rawdata.api_taisen[0];
-            int los = rawdata.api_sakuteki[0];
             //ASW = new LimitedValue(rawdata.api_taisen);
             //LoS = new LimitedValue(rawdata.api_sakuteki);
             if (_ignorenextcondition) _ignorenextcondition = false;
@@ -159,8 +157,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Luck = new Modernizable(ShipInfo.Luck, rawdata.api_kyouka[4], rawdata.api_lucky[0]);
             Fuel = new LimitedValue(rawdata.api_fuel, ShipInfo.MaxFuel);
             Bull = new LimitedValue(rawdata.api_bull, ShipInfo.MaxBull);
+            UpdateEquipCore();
+            RepairTimePerHP = HP.IsMax ? TimeSpan.Zero : TimeSpan.FromSeconds((RepairTime.TotalSeconds - 30) / HP.Shortage);
+            UpdateStatus();
+        }
+
+        private void UpdateEquipCore()
+        {
             Slots?.ForEach(x => x.Item?.SetNotOnShip());
-            var slots = new List<Slot>();
+            int asw = rawdata.api_taisen[0];
+            int los = rawdata.api_sakuteki[0];
+            var slots = new List<Slot>(4);
             for (int i = 0; i < SlotNum; i++)
             {
                 var slot = new Slot();
@@ -187,8 +194,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 SlotEx.Item = Staff.Current.Homeport.Equipments[rawdata.api_slot_ex];
                 SlotEx.Item.OnShip = this;
             }
-            RepairTimePerHP = HP.IsMax ? TimeSpan.Zero : TimeSpan.FromSeconds((RepairTime.TotalSeconds - 30) / HP.Shortage);
-            UpdateStatus();
         }
 
         public bool FindEquipment(int itemid) => rawdata.api_slot.Contains(itemid) || (SlotEx.Item?.Id == itemid);
@@ -210,6 +215,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (InFleet != null && InFleet.Ships.IndexOf(this) == -1) InFleet = null;
             //if (_hpchanged) InFleet?.CheckHomeportRepairingTime(true);
             InFleet?.UpdateStatus();
+        }
+        private bool equipcorrect = false;
+        public void InvalidEquip() => equipcorrect = false;
+        public void TryUpdateEquip()
+        {
+            if (!equipcorrect)
+                UpdateEquipCore();
+            equipcorrect = true;
         }
     }
     public enum ShootRange { None = 0, Short = 1, Long = 2, VLong = 3 }

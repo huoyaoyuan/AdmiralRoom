@@ -36,7 +36,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     SortieFleet2 = Staff.Current.Homeport.Fleets[2];
                     SortieFleet2.InSortie = true;
                 }
-                ItemsAfterShips = true;
+                SortieFleet1?.Ships.ForEach(x => x.InvalidEquip());
+                SortieFleet2?.Ships.ForEach(x => x.InvalidEquip());
                 Logger.Loggers.MaterialLogger.ForceLog = true;
                 StartNextHandler(api);
             });
@@ -142,7 +143,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        public bool ItemsAfterShips = false;
         private int? GetShipEquip = null;
         private sortie_battleresult.escape lastescapeinfo;
         private void StartBattle(sortie_battle api) =>

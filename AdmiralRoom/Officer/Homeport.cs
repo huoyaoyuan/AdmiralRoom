@@ -186,9 +186,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Equipments = new IDTable<Equipment>(api.Select(x => new Equipment(x)));
             else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
-            if (Staff.Current.Battle.ItemsAfterShips)
-                Ships.ForEach(x => x.Update());
-            Staff.Current.Battle.ItemsAfterShips = false;
+            Ships?.ForEach(x => x.TryUpdateEquip());
         }
 
         private void ChangeHandler(NameValueCollection api)
