@@ -588,9 +588,10 @@
     <Resource Include="Images\Quest\5.png" />
     <Resource Include="Images\Quest\6.png" />
     <Resource Include="Images\Quest\7.png" />
-    <Resource Include="Images\Quest\8.png" />
+    <Resource Include="Images\Quest\9.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Quest\8.png" />
     <Content Include="Officer\StaticCounters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StaticCounters.cs</LastGenOutput>

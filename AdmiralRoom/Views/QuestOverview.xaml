@@ -98,6 +98,9 @@
                                 <DataTrigger Binding="{Binding Type}" Value="Powerup">
                                     <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Powerup}"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="Sortie2">
+                                    <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Sortie}"/>
+                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="Other">
                                     <Setter TargetName="type" Property="Text" Value="{ex:Localizable Quest_Type_Other}"/>
                                 </DataTrigger>
