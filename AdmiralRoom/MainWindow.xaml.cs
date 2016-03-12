@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Huoyaoyuan.AdmiralRoom.Composition;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
@@ -132,6 +133,72 @@ namespace Huoyaoyuan.AdmiralRoom
             };
             SetToggleBindings += () =>
                 BindingOperations.SetBinding(ViewList["GameHost"], LayoutContent.TitleProperty, new Views.Extensions.LocalizableExtension("Browser"));
+
+            if (ModuleHost.Instance.Modules.Any())
+            {
+                foreach (var module in ModuleHost.Instance.Modules)
+                {
+                    var group = new Fluent.RibbonGroupBox();
+                    group.SetBinding(Fluent.RibbonGroupBox.HeaderProperty, new Binding(nameof(IModule.Name)) { Source = module.Value });
+                    foreach (var view in module.Value.ChildViews)
+                    {
+                        var button = new Fluent.ToggleButton();
+                        var titlebinding = new Binding(nameof(IChildView.Title)) { Source = view };
+                        button.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
+                        button.Tag = view.View;
+                        Action setbinding = () =>
+                        {
+                            Binding ToggleBinding = new Binding();
+                            Control content = button.Tag as Control;
+                            string ViewName = view.Title;
+                            LayoutContent TargetContent;
+                            LayoutAnchorable TargetView;
+                            ViewList.TryGetValue(ViewName, out TargetContent);
+                            TargetView = TargetContent as LayoutAnchorable;
+                            if (TargetView == null)
+                            {
+                                TargetView = new LayoutAnchorable();
+                                ViewList.Add(ViewName, TargetView);
+                                TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
+                                TargetView.DockAsDocument();
+                                TargetView.CanClose = false;
+                                TargetView.Hide();
+                            }
+                            if (TargetView.Content == null)
+                            {
+                                TargetView.Content = content;
+                                if (content.DataContext == null)
+                                    content.DataContext = Officer.Staff.Current;
+                                TargetView.ContentId = ViewName;
+                                TargetView.Title = ViewName;
+                                TargetView.CanAutoHide = true;
+                                TargetView.FloatingHeight = content.Height;
+                                TargetView.FloatingWidth = content.Width;
+                                //TargetView.FloatingTop = this.ActualHeight / 2;
+                                //TargetView.FloatingWidth = this.ActualWidth / 2;
+                                BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
+                            }
+                            ToggleBinding.Source = TargetView;
+                            ToggleBinding.Path = new PropertyPath("IsVisible");
+                            ToggleBinding.Mode = BindingMode.TwoWay;
+                            button.SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
+                        };
+                        SetToggleBindings += setbinding;
+                        setbinding();
+                        group.Items.Add(button);
+                    }
+                    foreach (var window in module.Value.ChildWindows)
+                    {
+                        var button = new Fluent.Button();
+                        button.SetBinding(Fluent.ToggleButton.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
+                        button.Tag = window.WindowType;
+                        button.Click += UniqueCommandClick;
+                        group.Items.Add(button);
+                    }
+                    modules.Groups.Add(group);
+                }
+                modulegroup.Visibility = Visibility.Visible;
+            }
         }
 
         private void MakeViewList(ILayoutElement elem)
@@ -267,7 +334,7 @@ namespace Huoyaoyuan.AdmiralRoom
             w.Activate();
         }
 
-        private void SetShowLogger(object sender,RoutedEventArgs e)
+        private void SetShowLogger(object sender, RoutedEventArgs e)
         {
             Button control = sender as Fluent.Button;
             dynamic datacontext = control.Tag;
@@ -305,14 +372,14 @@ namespace Huoyaoyuan.AdmiralRoom
             w.Activate();
         }
 
-        private void ShowMaterialLogger(object sender,RoutedEventArgs e)
+        private void ShowMaterialLogger(object sender, RoutedEventArgs e)
         {
             Button control = sender as Button;
             Window w;
             if (control.Tag == null)
             {
                 w = new Views.Standalone.MaterialCatalog
-                    { DataContext = new Logger.MaterialProvider(Logger.Loggers.MaterialLogger) };
+                { DataContext = new Logger.MaterialProvider(Logger.Loggers.MaterialLogger) };
                 w.Closed += (_, __) => control.Tag = null;
                 control.Tag = w;
             }

@@ -9,9 +9,9 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     internal class ModuleHost
     {
         private ModuleHost() { }
-        public static ModuleHost Instance { get; }
+        public static ModuleHost Instance { get; } = new ModuleHost();
         [ImportMany(typeof(IModule))]
-        public IList<Lazy<IModule, IDictionary<string, object>>> Modules { get; set; }
+        public IList<Lazy<IModule, IDictionary<string, object>>> Modules { get; } = new List<Lazy<IModule, IDictionary<string, object>>>();
         public void Initialize()
         {
             using (var catalog = new AggregateCatalog(

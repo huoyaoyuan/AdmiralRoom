@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Threading;
+using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -29,6 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
             Logger.Loggers.Initialize();
+            ModuleHost.Instance.Initialize();
 
             this.MainWindow = new MainWindow();
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;

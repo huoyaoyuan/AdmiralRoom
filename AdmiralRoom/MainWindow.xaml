@@ -264,13 +264,25 @@
             </ribbon:RibbonTabItem>
             <ribbon:RibbonTabItem Header="{ex:Localizable Statistics}" KeyTip="S">
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Logs}">
-                    <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.CreateItemLogger}"/>
-                    <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.CreateShipLogger}"/>
-                    <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.MissionLogger}"/>
-                    <ribbon:Button Margin="2" Loaded="SetShowLogger" Click="ShowLogger" Tag="{x:Static Logger:Loggers.BattleDropLogger}"/>
+                    <ribbon:Button Margin="2"
+                                   Loaded="SetShowLogger" Click="ShowLogger"
+                                   Tag="{x:Static Logger:Loggers.CreateItemLogger}"/>
+                    <ribbon:Button Margin="2"
+                                   Loaded="SetShowLogger" Click="ShowLogger"
+                                   Tag="{x:Static Logger:Loggers.CreateShipLogger}"/>
+                    <ribbon:Button Margin="2"
+                                   Loaded="SetShowLogger" Click="ShowLogger"
+                                   Tag="{x:Static Logger:Loggers.MissionLogger}"/>
+                    <ribbon:Button Margin="2"
+                                   Loaded="SetShowLogger" Click="ShowLogger"
+                                   Tag="{x:Static Logger:Loggers.BattleDropLogger}"/>
                     <ribbon:Button Margin="2" Header="{ex:Localizable Material}" Click="ShowMaterialLogger"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
+            <ribbon:RibbonTabItem x:Name="modules" Header="Module" Group="{Binding ElementName=modulegroup}"/>
+            <ribbon:Ribbon.ContextualGroups>
+                <ribbon:RibbonContextualTabGroup Background="Blue" Header="Module" x:Name="modulegroup"/>
+            </ribbon:Ribbon.ContextualGroups>
         </ribbon:Ribbon>
         <Dock:DockingManager Grid.Row="1" x:Name="DockMan">
             <Dock:DockingManager.Theme>
