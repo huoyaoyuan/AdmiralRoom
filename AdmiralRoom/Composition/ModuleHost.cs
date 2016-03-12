@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 
 namespace Huoyaoyuan.AdmiralRoom.Composition
@@ -14,9 +15,18 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         public IList<Lazy<IModule, IDictionary<string, object>>> Modules { get; } = new List<Lazy<IModule, IDictionary<string, object>>>();
         public void Initialize()
         {
-            using (var catalog = new AggregateCatalog(
-                new AssemblyCatalog(Assembly.GetExecutingAssembly()),
-                new DirectoryCatalog("modules")))
+#pragma warning disable CC0022
+            var a = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+            ComposablePartCatalog catalog;
+            try
+            {
+                catalog = new AggregateCatalog(a, new DirectoryCatalog("modules"));
+            }
+            catch
+            {
+                catalog = a;
+            }
+#pragma warning restore CC0022
             using (var container = new CompositionContainer(catalog))
             {
                 container.ComposeParts(this);
