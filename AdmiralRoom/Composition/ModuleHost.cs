@@ -12,7 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         private ModuleHost() { }
         public static ModuleHost Instance { get; } = new ModuleHost();
         [ImportMany(typeof(IModule))]
-        public IList<Lazy<IModule, IDictionary<string, object>>> Modules { get; } = new List<Lazy<IModule, IDictionary<string, object>>>();
+        public IList<IModule> Modules { get; } = new List<IModule>();
         public void Initialize()
         {
 #pragma warning disable CC0022
@@ -35,7 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
             ResourceService.Current.CultureChanged += culture =>
             {
                 foreach (var module in Modules)
-                    module.Value.OnCultureChanged(culture);
+                    module.OnCultureChanged(culture);
             };
 #pragma warning restore CC0020
         }

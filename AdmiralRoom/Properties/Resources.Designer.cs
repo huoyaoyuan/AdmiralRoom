@@ -1601,6 +1601,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Modules 的本地化字符串。
+        /// </summary>
+        public static string RibbonTab_Module {
+            get {
+                return ResourceManager.GetString("RibbonTab_Module", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Plugin 的本地化字符串。
+        /// </summary>
+        public static string RibbonTab_Plugin {
+            get {
+                return ResourceManager.GetString("RibbonTab_Plugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 View 的本地化字符串。
         /// </summary>
         public static string RibbonTab_View {

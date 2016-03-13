@@ -99,7 +99,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 button.IsEnabled = true;
             };
 
-            this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
+            //this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
             this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
 
@@ -136,13 +136,14 @@ namespace Huoyaoyuan.AdmiralRoom
 
             if (ModuleHost.Instance.Modules.Any())
             {
+                var margin = new Thickness(0, 0, 4, 0);
                 foreach (var module in ModuleHost.Instance.Modules)
                 {
                     var group = new Fluent.RibbonGroupBox();
-                    group.SetBinding(Fluent.RibbonGroupBox.HeaderProperty, new Binding(nameof(IModule.Name)) { Source = module.Value });
-                    foreach (var view in module.Value.ChildViews)
+                    group.SetBinding(Fluent.RibbonGroupBox.HeaderProperty, new Binding(nameof(IModule.Name)) { Source = module });
+                    foreach (var view in module.ChildViews)
                     {
-                        var button = new Fluent.ToggleButton();
+                        var button = new Fluent.ToggleButton { Margin = margin };
                         var titlebinding = new Binding(nameof(IChildView.Title)) { Source = view };
                         button.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
                         button.Tag = view.View;
@@ -184,13 +185,13 @@ namespace Huoyaoyuan.AdmiralRoom
                             button.SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
                         };
                         SetToggleBindings += setbinding;
-                        setbinding();
+                        this.Loaded += (_, __) => setbinding();
                         group.Items.Add(button);
                     }
-                    foreach (var window in module.Value.ChildWindows)
+                    foreach (var window in module.ChildWindows)
                     {
-                        var button = new Fluent.Button();
-                        button.SetBinding(Fluent.ToggleButton.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
+                        var button = new Fluent.Button { Margin = margin };
+                        button.SetBinding(Fluent.Button.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
                         button.Tag = window.WindowType;
                         button.Click += UniqueCommandClick;
                         group.Items.Add(button);

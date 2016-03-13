@@ -628,6 +628,12 @@
   <data name="RibbonTab_Browse" xml:space="preserve">
     <value>浏览</value>
   </data>
+  <data name="RibbonTab_Module" xml:space="preserve">
+    <value>模块</value>
+  </data>
+  <data name="RibbonTab_Plugin" xml:space="preserve">
+    <value>插件</value>
+  </data>
   <data name="RibbonTab_View" xml:space="preserve">
     <value>界面</value>
   </data>

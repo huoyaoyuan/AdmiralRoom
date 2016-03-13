@@ -631,6 +631,12 @@ Expedition {1} - {2}</value>
   <data name="RibbonTab_Browse" xml:space="preserve">
     <value>Browse</value>
   </data>
+  <data name="RibbonTab_Module" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="RibbonTab_Plugin" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
   <data name="RibbonTab_View" xml:space="preserve">
     <value>View</value>
   </data>

@@ -279,9 +279,9 @@
                     <ribbon:Button Margin="2" Header="{ex:Localizable Material}" Click="ShowMaterialLogger"/>
                 </ribbon:RibbonGroupBox>
             </ribbon:RibbonTabItem>
-            <ribbon:RibbonTabItem x:Name="modules" Header="Module" Group="{Binding ElementName=modulegroup}"/>
+            <ribbon:RibbonTabItem x:Name="modules" Header="{ex:Localizable RibbonTab_Plugin}" Group="{Binding ElementName=modulegroup}"/>
             <ribbon:Ribbon.ContextualGroups>
-                <ribbon:RibbonContextualTabGroup Background="Blue" Header="Module" x:Name="modulegroup"/>
+                <ribbon:RibbonContextualTabGroup Background="Blue" Header="{ex:Localizable RibbonTab_Module}" x:Name="modulegroup"/>
             </ribbon:Ribbon.ContextualGroups>
         </ribbon:Ribbon>
         <Dock:DockingManager Grid.Row="1" x:Name="DockMan">
