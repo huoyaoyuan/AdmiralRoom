@@ -99,7 +99,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 button.IsEnabled = true;
             };
 
-            //this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
+            this.Loaded += (_, __) => GameHost.Browser.Navigate(Properties.Settings.Default.GameUrl);
             this.Loaded += (_, __) => Win32Helper.GetRestoreWindowPosition(this);
             this.Closing += (_, __) => Win32Helper.SetRestoreWindowPosition(this);
 

@@ -202,7 +202,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     for (int i = fleet.Ships.Count - 1; i > 0; i--)
                     {
                         fleet.Ships[i].InFleet = null;
-                        fleet.Ships.Remove(fleet.Ships[i]);
+                        fleet.Ships.RemoveAt(i);
                     }
                 }
                 else
@@ -210,7 +210,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     if (shipid == -1)//はずす
                     {
                         fleet.Ships[idx].InFleet = null;
-                        fleet.Ships.Remove(fleet.Ships[idx]);
+                        fleet.Ships.RemoveAt(idx);
                     }
                     else
                     {
@@ -223,7 +223,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                                 destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
                             else destf.Ships.Remove(ship);
                             destf.UpdateStatus();
-                            if (destf.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
+                            if (destf != fleet && destf.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
                                 destf.CheckHomeportRepairingTime(true);
                         }
                         if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
