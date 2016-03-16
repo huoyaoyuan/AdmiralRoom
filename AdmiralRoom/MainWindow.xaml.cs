@@ -136,21 +136,20 @@ namespace Huoyaoyuan.AdmiralRoom
 
             if (ModuleHost.Instance.Modules.Any())
             {
-                var margin = new Thickness(0, 0, 4, 0);
                 foreach (var module in ModuleHost.Instance.Modules)
                 {
                     var group = new Fluent.RibbonGroupBox();
-                    group.SetBinding(Fluent.RibbonGroupBox.HeaderProperty, new Binding(nameof(IModule.Name)) { Source = module });
+                    var namebinding = new Binding(nameof(IModule.Name)) { Source = module };
+                    group.SetBinding(Fluent.RibbonGroupBox.HeaderProperty, namebinding);
                     foreach (var view in module.ChildViews)
                     {
-                        var button = new Fluent.ToggleButton { Margin = margin };
+                        var button = new Fluent.ToggleButton { Margin = new Thickness(0, 0, 4, 0) };
                         var titlebinding = new Binding(nameof(IChildView.Title)) { Source = view };
                         button.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
                         button.Tag = view.View;
                         Action setbinding = () =>
                         {
-                            Binding ToggleBinding = new Binding();
-                            Control content = button.Tag as Control;
+                            var content = button.Tag as FrameworkElement;
                             string ViewName = view.Title;
                             LayoutContent TargetContent;
                             LayoutAnchorable TargetView;
@@ -179,10 +178,8 @@ namespace Huoyaoyuan.AdmiralRoom
                                 //TargetView.FloatingWidth = this.ActualWidth / 2;
                                 BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
                             }
-                            ToggleBinding.Source = TargetView;
-                            ToggleBinding.Path = new PropertyPath("IsVisible");
-                            ToggleBinding.Mode = BindingMode.TwoWay;
-                            button.SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
+                            button.SetBinding(Fluent.ToggleButton.IsCheckedProperty,
+                                new Binding("IsVisible") { Source = TargetView, Mode = BindingMode.TwoWay });
                         };
                         SetToggleBindings += setbinding;
                         this.Loaded += (_, __) => setbinding();
@@ -190,13 +187,20 @@ namespace Huoyaoyuan.AdmiralRoom
                     }
                     foreach (var window in module.ChildWindows)
                     {
-                        var button = new Fluent.Button { Margin = margin };
+                        var button = new Fluent.Button { Margin = new Thickness(0, 0, 4, 0) };
                         button.SetBinding(Fluent.Button.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
                         button.Tag = window.WindowType;
                         button.Click += UniqueCommandClick;
                         group.Items.Add(button);
                     }
                     modules.Groups.Add(group);
+                    var setting = module.SettingView;
+                    if (setting != null)
+                    {
+                        var groupbox = new GroupBox { Margin = new Thickness(5), Content = setting };
+                        groupbox.SetBinding(GroupBox.HeaderProperty, namebinding);
+                        modulesetting.Children.Add(groupbox);
+                    }
                 }
                 modulegroup.Visibility = Visibility.Visible;
             }
@@ -261,8 +265,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         private void SetToggleBinding(Fluent.ToggleButton sender)
         {
-            Binding ToggleBinding = new Binding();
-            Control content = sender.Tag as Control;
+            var content = sender.Tag as FrameworkElement;
             string ViewName = content.GetType().Name;
             LayoutContent TargetContent;
             LayoutAnchorable TargetView;
@@ -293,10 +296,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
                 sender.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
             }
-            ToggleBinding.Source = TargetView;
-            ToggleBinding.Path = new PropertyPath("IsVisible");
-            ToggleBinding.Mode = BindingMode.TwoWay;
-            sender.SetBinding(Fluent.ToggleButton.IsCheckedProperty, ToggleBinding);
+            sender.SetBinding(Fluent.ToggleButton.IsCheckedProperty,
+                new Binding("IsVisible") { Source = TargetView, Mode = BindingMode.TwoWay });
         }
 
         private void SetUniqueWindowCommand(object sender, RoutedEventArgs e)

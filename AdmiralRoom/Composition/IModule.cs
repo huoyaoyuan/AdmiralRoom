@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Windows;
 
 namespace Huoyaoyuan.AdmiralRoom.Composition
 {
@@ -10,11 +11,11 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         void OnCultureChanged(CultureInfo culture);
         IEnumerable<IChildView> ChildViews { get; }
         IEnumerable<IChildWindow> ChildWindows { get; }
-        object SettingView { get; }
+        FrameworkElement SettingView { get; }
     }
     public interface IChildView
     {
-        object View { get; }
+        FrameworkElement View { get; }
         string ContentId { get; }
         string Title { get; }
     }
