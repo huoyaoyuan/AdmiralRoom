@@ -1,51 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
 {
+    [Export(typeof(IModule))]
     public class Akashi : IModule
     {
-        public IEnumerable<IChildView> ChildViews
+        private class ChildWindow : IChildWindow
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+            public string Title => "明石の改修工廠";
 
-        public IEnumerable<IChildWindow> ChildWindows
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            public Type WindowType => typeof(AkashiWindow);
         }
+        public IEnumerable<IChildView> ChildViews => null;
 
-        public string Name
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public IEnumerable<IChildWindow> ChildWindows => new[] { new ChildWindow() };
 
-        public FrameworkElement SettingView
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string Name => "改修工廠";
+
+        public FrameworkElement SettingView => null;
 
         public void OnCultureChanged(CultureInfo culture)
         {
-            throw new NotImplementedException();
+            //nothing happens
         }
     }
 }
