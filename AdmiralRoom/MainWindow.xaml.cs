@@ -141,58 +141,62 @@ namespace Huoyaoyuan.AdmiralRoom
                     var group = new Fluent.RibbonGroupBox();
                     var namebinding = new Binding(nameof(IModule.Name)) { Source = module };
                     group.SetBinding(Fluent.RibbonGroupBox.HeaderProperty, namebinding);
-                    foreach (var view in module.ChildViews)
-                    {
-                        var button = new Fluent.ToggleButton { Margin = new Thickness(0, 0, 4, 0) };
-                        var titlebinding = new Binding(nameof(IChildView.Title)) { Source = view };
-                        button.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
-                        button.Tag = view.View;
-                        Action setbinding = () =>
+                    var views = module.ChildViews;
+                    if (views != null)
+                        foreach (var view in views)
                         {
-                            var content = button.Tag as FrameworkElement;
-                            string ViewName = view.Title;
-                            LayoutContent TargetContent;
-                            LayoutAnchorable TargetView;
-                            ViewList.TryGetValue(ViewName, out TargetContent);
-                            TargetView = TargetContent as LayoutAnchorable;
-                            if (TargetView == null)
+                            var button = new Fluent.ToggleButton { Margin = new Thickness(0, 0, 4, 0) };
+                            var titlebinding = new Binding(nameof(IChildView.Title)) { Source = view };
+                            button.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
+                            button.Tag = view.View;
+                            Action setbinding = () =>
                             {
-                                TargetView = new LayoutAnchorable();
-                                ViewList.Add(ViewName, TargetView);
-                                TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
-                                TargetView.DockAsDocument();
-                                TargetView.CanClose = false;
-                                TargetView.Hide();
-                            }
-                            if (TargetView.Content == null)
-                            {
-                                TargetView.Content = content;
-                                if (content.DataContext == null)
-                                    content.DataContext = Officer.Staff.Current;
-                                TargetView.ContentId = ViewName;
-                                TargetView.Title = ViewName;
-                                TargetView.CanAutoHide = true;
-                                TargetView.FloatingHeight = content.Height;
-                                TargetView.FloatingWidth = content.Width;
-                                //TargetView.FloatingTop = this.ActualHeight / 2;
-                                //TargetView.FloatingWidth = this.ActualWidth / 2;
-                                BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
-                            }
-                            button.SetBinding(Fluent.ToggleButton.IsCheckedProperty,
-                                new Binding("IsVisible") { Source = TargetView, Mode = BindingMode.TwoWay });
-                        };
-                        SetToggleBindings += setbinding;
-                        this.Loaded += (_, __) => setbinding();
-                        group.Items.Add(button);
-                    }
-                    foreach (var window in module.ChildWindows)
-                    {
-                        var button = new Fluent.Button { Margin = new Thickness(0, 0, 4, 0) };
-                        button.SetBinding(Fluent.Button.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
-                        button.Tag = window.WindowType;
-                        button.Click += UniqueCommandClick;
-                        group.Items.Add(button);
-                    }
+                                var content = button.Tag as FrameworkElement;
+                                string ViewName = view.Title;
+                                LayoutContent TargetContent;
+                                LayoutAnchorable TargetView;
+                                ViewList.TryGetValue(ViewName, out TargetContent);
+                                TargetView = TargetContent as LayoutAnchorable;
+                                if (TargetView == null)
+                                {
+                                    TargetView = new LayoutAnchorable();
+                                    ViewList.Add(ViewName, TargetView);
+                                    TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
+                                    TargetView.DockAsDocument();
+                                    TargetView.CanClose = false;
+                                    TargetView.Hide();
+                                }
+                                if (TargetView.Content == null)
+                                {
+                                    TargetView.Content = content;
+                                    if (content.DataContext == null)
+                                        content.DataContext = Officer.Staff.Current;
+                                    TargetView.ContentId = ViewName;
+                                    TargetView.Title = ViewName;
+                                    TargetView.CanAutoHide = true;
+                                    TargetView.FloatingHeight = content.Height;
+                                    TargetView.FloatingWidth = content.Width;
+                                    //TargetView.FloatingTop = this.ActualHeight / 2;
+                                    //TargetView.FloatingWidth = this.ActualWidth / 2;
+                                    BindingOperations.SetBinding(TargetView, LayoutAnchorable.TitleProperty, titlebinding);
+                                }
+                                button.SetBinding(Fluent.ToggleButton.IsCheckedProperty,
+                                    new Binding("IsVisible") { Source = TargetView, Mode = BindingMode.TwoWay });
+                            };
+                            SetToggleBindings += setbinding;
+                            this.Loaded += (_, __) => setbinding();
+                            group.Items.Add(button);
+                        }
+                    var windows = module.ChildWindows;
+                    if (windows != null)
+                        foreach (var window in windows)
+                        {
+                            var button = new Fluent.Button { Margin = new Thickness(0, 0, 4, 0) };
+                            button.SetBinding(Fluent.Button.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
+                            button.Tag = window.WindowType;
+                            button.Click += UniqueCommandClick;
+                            group.Items.Add(button);
+                        }
                     modules.Groups.Add(group);
                     var setting = module.SettingView;
                     if (setting != null)
