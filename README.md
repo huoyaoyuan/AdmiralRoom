@@ -31,6 +31,7 @@ Each part is in seperated window and can be docked freely.
     * HPBar viewing
     * Battle/compass predicating
 * Theme switching
+* Plug-in support
 
 ##System requirements
 ---
