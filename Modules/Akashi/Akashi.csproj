@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Akashi.cs" />
+    <Compile Include="AkashiViewModel.cs" />
     <Compile Include="AkashiWindow.xaml.cs">
       <DependentUpon>AkashiWindow.xaml</DependentUpon>
     </Compile>
