@@ -1,0 +1,5 @@
+<x:Array xmlns="clr-namespace:Huoyaoyuan.AdmiralRoom.Modules.Akashi"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Type="{x:Type EnhancementInfo}">
+    
+</x:Array>
