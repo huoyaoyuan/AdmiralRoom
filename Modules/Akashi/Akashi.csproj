@@ -71,8 +71,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>mkdir $(SolutionDir)AdmiralRoom\bin\$(ConfigurationName)\Modules
-xcopy /Y $(TargetDir)*.* $(SolutionDir)AdmiralRoom\bin\$(ConfigurationName)
-move $(SolutionDir)AdmiralRoom\bin\$(ConfigurationName)\$(TargetName).* $(SolutionDir)AdmiralRoom\bin\$(ConfigurationName)\Modules</PostBuildEvent>
+xcopy /Y $(TargetDir)$(TargetName).* $(SolutionDir)AdmiralRoom\bin\$(ConfigurationName)\Modules</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
