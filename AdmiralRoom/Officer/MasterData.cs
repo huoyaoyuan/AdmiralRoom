@@ -69,7 +69,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             try
             {
-                using (var reader = File.OpenText(@"logs\masterdata.json"))
+                using (var reader = File.OpenText(@"information\masterdata.json"))
                 {
                     MasterHandler(APIHelper.Parse<api_start2>(reader).api_data);
                 }
@@ -81,7 +81,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             try
             {
                 Directory.CreateDirectory("logs");
-                using (var writer = File.CreateText(@"logs\masterdata.json"))
+                using (var writer = File.CreateText(@"information\masterdata.json"))
                 {
                     writer.Write(oSession.GetResponseBodyAsString().Substring(7).UnicodeDecode());
                     writer.Flush();
