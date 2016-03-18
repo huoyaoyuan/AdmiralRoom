@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Huoyaoyuan.AdmiralRoom.Composition
 {
@@ -18,10 +19,12 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         FrameworkElement View { get; }
         string ContentId { get; }
         string Title { get; }
+        ImageSource Icon { get; }
     }
     public interface IChildWindow
     {
         Type WindowType { get; }
         string Title { get; }
+        ImageSource Icon { get; }
     }
 }

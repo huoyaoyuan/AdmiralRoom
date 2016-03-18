@@ -145,7 +145,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     if (views != null)
                         foreach (var view in views)
                         {
-                            var button = new Fluent.ToggleButton { Margin = new Thickness(0, 0, 4, 0) };
+                            var button = new Fluent.ToggleButton { Margin = new Thickness(0, 0, 4, 0), Icon = view.Icon, LargeIcon = view.Icon };
                             var titlebinding = new Binding(nameof(IChildView.Title)) { Source = view };
                             button.SetBinding(Fluent.ToggleButton.HeaderProperty, titlebinding);
                             button.Tag = view.View;
@@ -191,7 +191,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     if (windows != null)
                         foreach (var window in windows)
                         {
-                            var button = new Fluent.Button { Margin = new Thickness(0, 0, 4, 0) };
+                            var button = new Fluent.Button { Margin = new Thickness(0, 0, 4, 0), Icon = window.Icon, LargeIcon = window.Icon };
                             button.SetBinding(Fluent.Button.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
                             button.Tag = window.WindowType;
                             button.Click += (sender, e) =>

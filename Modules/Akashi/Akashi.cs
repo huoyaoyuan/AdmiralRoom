@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Media;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
@@ -12,6 +13,8 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
     {
         private class ChildWindow : IChildWindow
         {
+            public ImageSource Icon => null;
+
             public string Title => "改修工廠";
 
             public Type WindowType => typeof(AkashiWindow);
