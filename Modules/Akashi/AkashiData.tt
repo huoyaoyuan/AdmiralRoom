@@ -1,0 +1,76 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".xaml" #>
+<x:Array xmlns="clr-namespace:Huoyaoyuan.AdmiralRoom.Modules.Akashi"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Type="{x:Type EnhancementInfo}">
+<#
+var data = new []
+{
+    "2|10,30,60,0|0123456/123456|1,2,1,2/1,2,1,2,2,1/2,3,3,6,2,2,63",
+};
+
+foreach (string item in data)
+{
+    var info = item.Split('|');
+    var costitem = info[1].Split(',');
+#>
+    <EnhancementInfo EquipId="<#= info[0] #>" CostItem1="<#= costitem[0] #>" CostItem2="<#= costitem[1] #>" CostItem3="<#= costitem[2] #>" CostItem4="<#= costitem[3] #>">
+        <EnhancementInfo.Secretaries>
+<#
+    var sec = info[2].Split('/');
+    foreach (var s in sec)
+    {
+        var col = s.Split(',');
+        int weekday = 0;
+        foreach (char w in col[0])
+            weekday += 1 << (w - '0');
+#>
+            <SecretaryInfo WeekDays="<#= weekday #>"<#
+        if (col.Length >= 2)
+        {
+            #> Secratary="<#= col[1] #>"<#
+        }
+        if (col.Length >= 3)
+        {
+            #> RedText="<#= col[2] #>"<#
+        }
+        #>/>
+<#
+    }
+#>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+<#
+    var ranges = info[3].Split('/');
+    foreach (var range in ranges)
+    {
+        var col = range.Split(',');
+#>
+            <RangeInfo CostDevelopment="<#= col[0] #>" CostDevelopmentConfirmed="<#= col[1] #>" CostImprovement="<#= col[2] #>" CostImprovementConfirmed="<#= col[3] #>"<#
+        if (col.Length >= 5)
+        {#>
+
+                       CostItemId="<#= col[4] #>" CostItemCount="<#= col[5] #>"<#
+        }
+        if (col.Length >= 7)
+        {
+            #> UpgradeToId="<#= col[6] #>"<#
+        }
+        if (col.Length >= 8)
+        {
+            #> UpgradeStar="<#= col[7] #>"<#
+        }
+        #>/>
+<#
+    }
+#>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+<#
+}
+#>
+</x:Array>

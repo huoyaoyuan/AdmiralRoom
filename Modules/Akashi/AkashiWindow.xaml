@@ -139,7 +139,7 @@
                                 <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/4.png"/>
                                 <TextBlock Text="{Binding CostItem4, Mode=OneTime}" Margin="0,0,5,0"/>
                             </StackPanel>
-                            <ItemsControl ItemsSource="{Binding Ranges, Mode=OneTime}">
+                            <ItemsControl ItemsSource="{Binding Ranges, Mode=OneTime}" AlternationCount="3">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Vertical"/>
@@ -181,13 +181,13 @@
                                             <TextBlock x:Name="upgradestar" Text="{Binding UpgradeStar, Mode=OneTime, StringFormat=★+{0}}" Foreground="DarkCyan"/>
                                         </StackPanel>
                                         <DataTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding Range}" Value="0">
+                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex}" Value="0">
                                                 <Setter TargetName="range" Property="Text" Value="★0~"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Range}" Value="6">
+                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex}" Value="1">
                                                 <Setter TargetName="range" Property="Text" Value="★6~"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Range}" Value="10">
+                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex}" Value="2">
                                                 <Setter TargetName="range" Property="Text" Value="★max"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CostItem}" Value="{x:Null}">
