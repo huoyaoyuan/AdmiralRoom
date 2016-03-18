@@ -33,8 +33,8 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
     {
         public int EquipId { get; set; }
         public EquipInfo Equipment => Staff.Current.MasterData.EquipInfo?[EquipId];
-        public SecretaryInfo[] Secretaries { get; set; }
-        public GradeInfo[] Ranges { get; set; }
+        public List<SecretaryInfo> Secretaries { get; set; } = new List<SecretaryInfo>();
+        public List<RangeInfo> Ranges { get; set; } = new List<RangeInfo>();
         public int CostItem1 { get; set; }
         public int CostItem2 { get; set; }
         public int CostItem3 { get; set; }
@@ -42,7 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
         public EnhancementInfo CopyOfWeekDay(int weekday) => new EnhancementInfo
         {
             EquipId = EquipId,
-            Secretaries = Secretaries.Where(x => (x.WeekDays & (1 << weekday)) != 0).ToArray(),
+            Secretaries = Secretaries.Where(x => (x.WeekDays & (1 << weekday)) != 0).ToList(),
             Ranges = Ranges,
             CostItem1 = CostItem1,
             CostItem2 = CostItem2,
@@ -56,9 +56,9 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
         public string RedText { get; set; }
         public int WeekDays { get; set; }
     }
-    struct GradeInfo
+    struct RangeInfo
     {
-        public int Grade { get; set; }
+        public int Range { get; set; }
         public int CostDevelopment { get; set; }
         public int CostImprovement { get; set; }
         public int CostDevelopmentConfirmed { get; set; }
@@ -66,7 +66,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
         public int CostItemId { get; set; }
         public EquipInfo CostItem => Staff.Current.MasterData.EquipInfo?[CostItemId];
         public int CostItemCount { get; set; }
-        public int UpdateToId { get; set; }
-        public EquipInfo UpdateTo => Staff.Current.MasterData.EquipInfo?[UpdateToId];
+        public int UpgradeToId { get; set; }
+        public EquipInfo UpgradeTo => Staff.Current.MasterData.EquipInfo?[UpgradeToId];
     }
 }

@@ -63,19 +63,150 @@
             <TabItem Header="Fri"/>
             <TabItem Header="Sat"/>
         </TabControl>
-        <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding TodayInfo}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type local:EnhancementInfo}">
-                        
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding TodayInfo}"
+                 Grid.IsSharedSizeScope="True" FontSize="16"
+                 HorizontalContentAlignment="Stretch"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:EnhancementInfo}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Icon"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="Type"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Canvas Grid.Column="0"
+                                Height="15" Width="15"
+                                VerticalAlignment="Center">
+                            <Image Source="{Binding Equipment.Icon, Mode=OneTime}"
+                                   
+                                   Height="20" Width="20"
+                                   Canvas.Left="-2.5" Canvas.Top="-2.5"/>
+                        </Canvas>
+                        <TextBlock Grid.Column="1"
+                                   Margin="2"
+                                   Text="{Binding Equipment.Name, Mode=OneTime}"
+                                   
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2"
+                                   Margin="2"
+                                   Text="{Binding Equipment.EquipType.Name, Mode=OneTime}"
+                                   
+                                   VerticalAlignment="Center"/>
+                        <ItemsControl Grid.Column="3" HorizontalAlignment="Right" ItemsSource="{Binding Secretaries, Mode=OneTime}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:SecretaryInfo}">
+                                    <Grid Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Secratary, Mode=OneTime}"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding RedText, Mode=OneTime}" Foreground="Red"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <StackPanel x:Name="extrainfo"
+                                    Orientation="Vertical"
+                                    Grid.Row="1" Grid.ColumnSpan="4"
+                                    Margin="50,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                                <TextBlock Text="{Binding CostItem1, Mode=OneTime}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/2.png"/>
+                                <TextBlock Text="{Binding CostItem2, Mode=OneTime}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/3.png"/>
+                                <TextBlock Text="{Binding CostItem3, Mode=OneTime}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/4.png"/>
+                                <TextBlock Text="{Binding CostItem4, Mode=OneTime}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding Ranges, Mode=OneTime}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type local:RangeInfo}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="range" Foreground="DarkCyan" Width="40"/>
+                                            <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/7.png"/>
+                                            <TextBlock Text="{Binding CostDevelopment}"
+                                                       Foreground="Red"
+                                                       Width="16"
+                                                       TextAlignment="Right"/>
+                                            <TextBlock Text="/"/>
+                                            <TextBlock Text="{Binding CostDevelopmentConfirmed}" Foreground="LimeGreen" Width="20"/>
+                                            <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/8.png"/>
+                                            <TextBlock Text="{Binding CostImprovement}"
+                                                       Foreground="Red"
+                                                       Width="16"
+                                                       TextAlignment="Right"/>
+                                            <TextBlock Text="/"/>
+                                            <TextBlock Text="{Binding CostImprovementConfirmed}" Foreground="LimeGreen" Width="20"/>
+                                            <Canvas Grid.Column="0"
+                                                    Height="15" Width="15"
+                                                    VerticalAlignment="Center">
+                                                <Image Source="{Binding CostItem.Icon, Mode=OneTime}"
+                                                       
+                                                       Height="20" Width="20"
+                                                       Canvas.Left="-2.5" Canvas.Top="-2.5"/>
+                                            </Canvas>
+                                            <TextBlock x:Name="costitemname" Text="{Binding CostItem.Name, Mode=OneTime}"/>
+                                            <TextBlock x:Name="costitemcount"
+                                                       Text="{Binding CostItemCount, Mode=OneTime, StringFormat={}x{0}}"
+                                                       
+                                                       Margin="2,0,20,0"
+                                                       Opacity="0.7"/>
+                                            <TextBlock x:Name="upgradeto" Text="{Binding UpgradeTo.Name, Mode=OneTime, StringFormat={}→{0}}"/>
+                                        </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Range}" Value="0">
+                                                <Setter TargetName="range" Property="Text" Value="★0~"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Range}" Value="6">
+                                                <Setter TargetName="range" Property="Text" Value="★6~"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Range}" Value="10">
+                                                <Setter TargetName="range" Property="Text" Value="★max"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding CostItem}" Value="{x:Null}">
+                                                <Setter TargetName="costitemname" Property="Visibility" Value="Collapsed"/>
+                                                <Setter TargetName="costitemcount" Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding UpgradeTo}" Value="{x:Null}">
+                                                <Setter TargetName="upgradeto" Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                            <Setter TargetName="extrainfo" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
