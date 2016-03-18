@@ -181,13 +181,13 @@
                                             <TextBlock x:Name="upgradestar" Text="{Binding UpgradeStar, Mode=OneTime, StringFormat=★+{0}}" Foreground="DarkCyan"/>
                                         </StackPanel>
                                         <DataTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex}" Value="0">
+                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="0">
                                                 <Setter TargetName="range" Property="Text" Value="★0~"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex}" Value="1">
+                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="1">
                                                 <Setter TargetName="range" Property="Text" Value="★6~"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex}" Value="2">
+                                            <DataTrigger Binding="{Binding ItemsControl.AlternationIndex, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="2">
                                                 <Setter TargetName="range" Property="Text" Value="★max"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CostItem}" Value="{x:Null}">
