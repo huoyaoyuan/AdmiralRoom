@@ -7,6 +7,7 @@
         xmlns:main="clr-namespace:Huoyaoyuan.AdmiralRoom;assembly=AdmiralRoom"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:AkashiViewModel}"
+        Icon="{x:Null}"
         
         Width="800"
         FontFamily="{Binding FontFamily, Source={x:Static main:Config.Current}}"
@@ -63,17 +64,17 @@
             <TabItem Header="Fri"/>
             <TabItem Header="Sat"/>
         </TabControl>
-        <ListBox Grid.Row="1"
-                 ItemsSource="{Binding TodayInfo}"
-                 Grid.IsSharedSizeScope="True" FontSize="16"
-                 HorizontalContentAlignment="Stretch"
-                 ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <ListBox.ItemsPanel>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding TodayInfo}"
+                  Grid.IsSharedSizeScope="True" FontSize="16"
+                  HorizontalContentAlignment="Stretch"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
                 </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:EnhancementInfo}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -126,6 +127,7 @@
                         <StackPanel x:Name="extrainfo"
                                     Orientation="Vertical"
                                     Grid.Row="1" Grid.ColumnSpan="4"
+                                    Visibility="Collapsed"
                                     Margin="50,0,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
@@ -146,7 +148,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="{x:Type local:RangeInfo}">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock x:Name="range" Foreground="DarkCyan" Width="40"/>
+                                            <TextBlock x:Name="range" Foreground="DarkCyan" Width="50"/>
                                             <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/7.png"/>
                                             <TextBlock Text="{Binding CostDevelopment}"
                                                        Foreground="Red"
@@ -176,6 +178,7 @@
                                                        Margin="2,0,20,0"
                                                        Opacity="0.7"/>
                                             <TextBlock x:Name="upgradeto" Text="{Binding UpgradeTo.Name, Mode=OneTime, StringFormat={}→{0}}"/>
+                                            <TextBlock x:Name="upgradestar" Text="{Binding UpgradeStar, Mode=OneTime, StringFormat=★+{0}}" Foreground="DarkCyan"/>
                                         </StackPanel>
                                         <DataTemplate.Triggers>
                                             <DataTrigger Binding="{Binding Range}" Value="0">
@@ -194,6 +197,9 @@
                                             <DataTrigger Binding="{Binding UpgradeTo}" Value="{x:Null}">
                                                 <Setter TargetName="upgradeto" Property="Visibility" Value="Collapsed"/>
                                             </DataTrigger>
+                                            <DataTrigger Binding="{Binding UpgradeStar}" Value="0">
+                                                <Setter TargetName="upgradestar" Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -206,7 +212,7 @@
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>

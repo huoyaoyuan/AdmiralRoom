@@ -1,5 +1,237 @@
 <x:Array xmlns="clr-namespace:Huoyaoyuan.AdmiralRoom.Modules.Akashi"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          Type="{x:Type EnhancementInfo}">
-    
+    <EnhancementInfo EquipId="2" Cost="10,30,60,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="127"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="1,2,1,2"/>
+            <RangeInfo Range="6" Cost="1,2,1,2" CostEquip="2,1"/>
+            <RangeInfo Range="10" Cost="2,3,3,6" CostEquip="2,2" UpgradeToId="63"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="63" Cost="10,40,70,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="夕立" RedText="改二" WeekDays="14"/>
+            <SecretaryInfo Secratary="綾波" RedText="改二" WeekDays="14"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="2,2,2,3"/>
+            <RangeInfo Range="6" Cost="2,2,2,4" CostEquip="63,1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="122" Cost="10,60,150,50">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="秋月" WeekDays="30"/>
+            <SecretaryInfo Secratary="照月" WeekDays="113"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="6,7,3,4"/>
+            <RangeInfo Range="6" Cost="5,8,4,7" CostEquip="3,2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="4" Cost="10,50,80,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="127"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="1,2,1,2"/>
+            <RangeInfo Range="6" Cost="1,2,1,2" CostEquip="4,1"/>
+            <RangeInfo Range="10" Cost="3,4,3,6" CostEquip="4,2" UpgradeToId="119"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="119" Cost="10,30,60,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="夕張" WeekDays="18"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="2,2,1,2"/>
+            <RangeInfo Range="6" Cost="2,4,2,3" CostEquip="119,1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="65" Cost="10,70,100,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="阿賀野" WeekDays="112"/>
+            <SecretaryInfo Secratary="能代" WeekDays="99"/>
+            <SecretaryInfo Secratary="矢矧" WeekDays="30"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="2,2,2,3"/>
+            <RangeInfo Range="6" Cost="2,3,2,4" CostEquip="65,1"/>
+            <RangeInfo Range="10" Cost="5,8,4,10" CostEquip="65,1" UpgradeToId="139"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="139" Cost="10,70,100,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="矢矧" WeekDays="120"/>
+            <SecretaryInfo Secratary="酒匂" WeekDays="71"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="3,4,2,3"/>
+            <RangeInfo Range="6" Cost="4,6,3,6" CostEquip="65,1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="5" Cost="10,90,120,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="最上" WeekDays="96"/>
+            <SecretaryInfo Secratary="大淀" WeekDays="3"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="2,2,2,3"/>
+            <RangeInfo Range="6" Cost="2,3,2,4" CostEquip="5,1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="6" Cost="10,90,120,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="青葉" WeekDays="113"/>
+            <SecretaryInfo Secratary="衣笠" WeekDays="127"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="1,2,2,3"/>
+            <RangeInfo Range="6" Cost="2,3,2,3" CostEquip="6,1"/>
+            <RangeInfo Range="10" Cost="2,5,4,10" CostEquip="6,2" UpgradeToId="90"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="90" Cost="10,100,130,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="妙高" WeekDays="7"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="2,3,2,3"/>
+            <RangeInfo Range="6" Cost="2,4,2,4" CostEquip="90,1"/>
+            <RangeInfo Range="10" Cost="4,8,4,11" CostEquip="6,2" UpgradeToId="50"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="50" Cost="10,110,140,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="三隈" WeekDays="12"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="3,4,2,3"/>
+            <RangeInfo Range="6" Cost="3,5,3,5" CostEquip="50,1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="7" Cost="20,240,300,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="扶桑" WeekDays="97"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="2,3,1,2"/>
+            <RangeInfo Range="6" Cost="3,4,2,4" CostEquip="7,1"/>
+            <RangeInfo Range="10" Cost="6,12,5,12" CostEquip="7,3" UpgradeToId="103"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="103" Cost="30,330,390,30">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="金剛" RedText="改二" WeekDays="12"/>
+            <SecretaryInfo Secratary="榛名" RedText="改二" WeekDays="6"/>
+            <SecretaryInfo Secratary="扶桑" RedText="改二" WeekDays="120"/>
+            <SecretaryInfo Secratary="山城" RedText="改二" WeekDays="113"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="4,6,3,4" CostEquip="7,2"/>
+            <RangeInfo Range="6" Cost="6,9,4,7" CostEquip="7,3"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="104" Cost="30,250,300,30">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="榛名" RedText="改二" WeekDays="121"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="3,4,2,3" CostEquip="7,1"/>
+            <RangeInfo Range="6" Cost="4,5,3,5" CostEquip="7,2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="76" Cost="20,380,450,20">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="Bismarck" WeekDays="112"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="4,5,2,3" CostEquip="7,1"/>
+            <RangeInfo Range="6" Cost="5,8,3,5" CostEquip="7,2"/>
+            <RangeInfo Range="10" Cost="10,20,6,13" CostEquip="8,2" UpgradeToId="114" UpgradeStar="3"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="114" Cost="30,390,470,30">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="Bismarck" WeekDays="7"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="5,7,3,4" CostEquip="8,1"/>
+            <RangeInfo Range="6" Cost="6,9,4,6" CostEquip="8,2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="133" Cost="30,400,480,20">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="Littorio" WeekDays="60"/>
+            <SecretaryInfo Secratary="Roma" WeekDays="67"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="4,5,2,3" CostEquip="7,1"/>
+            <RangeInfo Range="6" Cost="5,8,3,5" CostEquip="7,2"/>
+            <RangeInfo Range="10" Cost="12,22,7,14" CostEquip="39,2" UpgradeToId="137" UpgradeStar="3"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="137" Cost="40,440,500,40">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="Littorio" WeekDays="67"/>
+            <SecretaryInfo Secratary="Roma" WeekDays="60"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="5,7,3,4" CostEquip="8,1"/>
+            <RangeInfo Range="6" Cost="7,10,4,6" CostEquip="8,2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="8" Cost="30,350,480,0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="長門" WeekDays="100"/>
+            <SecretaryInfo Secratary="陸奥" WeekDays="19"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="3,4,2,3" CostEquip="8,1"/>
+            <RangeInfo Range="6" Cost="4,7,3,6" CostEquip="8,2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="105" Cost="40,440,620,40">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="長門" RedText="改" WeekDays="27"/>
+            <SecretaryInfo Secratary="陸奥" RedText="改" WeekDays="108"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="5,7,4,6" CostEquip="8,2"/>
+            <RangeInfo Range="6" Cost="8,10,5,8" CostEquip="8,3"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="117" Cost="40,420,650,40">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="大和" WeekDays="3"/>
+            <SecretaryInfo Secratary="武蔵" WeekDays="12"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="5,6,3,5" CostEquip="8,2"/>
+            <RangeInfo Range="6" Cost="6,8,4,7" CostEquip="8,3"/>
+            <RangeInfo Range="10" Cost="12,18,8,14" CostEquip="8,4" UpgradeToId="9" UpgradeStar="5"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="9" Cost="50,480,800,50">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="大和" WeekDays="96"/>
+            <SecretaryInfo Secratary="武蔵" WeekDays="3"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="6,8,4,6" CostEquip="9,1"/>
+            <RangeInfo Range="6" Cost="8,10,5,8" CostEquip="9,2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="128" Cost="50,550,950,80">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo Secratary="大和" RedText="改" WeekDays="6"/>
+            <SecretaryInfo Secratary="武蔵" RedText="改" WeekDays="10"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo Range="0" Cost="7,9,5,7" CostEquip="9,2"/>
+            <RangeInfo Range="6" Cost="10,15,7,10" CostEquip="9,3"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
 </x:Array>
