@@ -68,6 +68,8 @@
                   ItemsSource="{Binding TodayInfo}"
                   Grid.IsSharedSizeScope="True" FontSize="16"
                   HorizontalContentAlignment="Stretch"
+                  VirtualizingPanel.IsVirtualizing="False"
+                  ScrollViewer.CanContentScroll="False"
                   ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
