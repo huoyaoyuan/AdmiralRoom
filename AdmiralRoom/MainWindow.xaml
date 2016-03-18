@@ -44,7 +44,7 @@
                         <ribbon:BackstageTabItem Header="{ex:Localizable About}" KeyTip="A">
                             <Views:About/>
                         </ribbon:BackstageTabItem>
-                        <Separator/>
+                        <ribbon:SeparatorTabItem/>
                         <ribbon:BackstageTabItem Header="{ex:Localizable RibbonTab_Plugin}" KeyTip="P" Visibility="{Binding Visibility, ElementName=modulegroup}">
                             <StackPanel x:Name="modulesetting" Orientation="Vertical"/>
                         </ribbon:BackstageTabItem>
