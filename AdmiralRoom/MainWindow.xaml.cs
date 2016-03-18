@@ -194,7 +194,20 @@ namespace Huoyaoyuan.AdmiralRoom
                             var button = new Fluent.Button { Margin = new Thickness(0, 0, 4, 0) };
                             button.SetBinding(Fluent.Button.HeaderProperty, new Binding(nameof(IChildWindow.Title)) { Source = window });
                             button.Tag = window.WindowType;
-                            button.Click += UniqueCommandClick;
+                            button.Click += (sender, e) =>
+                            {
+                                Button control = sender as Button;
+                                Window w;
+                                if (control.Tag is Type)
+                                {
+                                    w = Activator.CreateInstance(control.Tag as Type) as Window;
+                                    w.Closed += (_, __) => control.Tag = w.GetType();
+                                    control.Tag = w;
+                                }
+                                else w = control.Tag as Window;
+                                w.Show();
+                                w.Activate();
+                            };
                             group.Items.Add(button);
                         }
                     modules.Groups.Add(group);
