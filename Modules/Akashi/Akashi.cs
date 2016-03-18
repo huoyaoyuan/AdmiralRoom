@@ -12,7 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
     {
         private class ChildWindow : IChildWindow
         {
-            public string Title => "明石の改修工廠";
+            public string Title => "改修工廠";
 
             public Type WindowType => typeof(AkashiWindow);
         }
