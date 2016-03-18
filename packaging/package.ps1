@@ -9,7 +9,7 @@ function Main
         $result = 'AdmiralRoom'
         $bin = '..\AdmiralRoom\bin\'
  
-        $targetKeywords = '*.exe','*.dll','*.exe.config'
+        $targetKeywords = '*.exe','*.dll','*.exe.config','*.json'
         $ignoreKeywords ='Xceed.Wpf.AvalonDock.resources.dll'
  
         $exeSource  = 'AdmiralRoom.exe'
