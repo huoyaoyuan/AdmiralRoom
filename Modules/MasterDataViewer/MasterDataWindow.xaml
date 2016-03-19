@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer"
+        xmlns:ex="urn:controlzex"
+        xmlns:main="clr-namespace:Huoyaoyuan.AdmiralRoom;assembly=AdmiralRoom"
+        xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer;assembly=AdmiralRoom"
         mc:Ignorable="d"
-        Title="MasterDataWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        DataContext="{Binding MasterData, Source={x:Static officer:Staff.Current}}"
+        FontFamily="{Binding FontFamily, Source={x:Static main:Config.Current}}"
+        FontSize="16"
+        Title="MasterData" Height="600" Width="800">
+    <ex:TabControlEx>
+        <TabItem Header="Ship">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ListView ItemsSource="{Binding ShipInfo}" x:Name="ships">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FullName}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <WrapPanel Grid.Column="1" Orientation="Vertical" DataContext="{Binding SelectedItem, ElementName=ships}" Grid.IsSharedSizeScope="True">
+                    
+                </WrapPanel>
+            </Grid>
+        </TabItem>
+    </ex:TabControlEx>
 </Window>
