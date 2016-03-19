@@ -7,7 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public override int Id => rawdata.api_id;
         public string Name => rawdata.api_name ?? "？？？";
-        public int SortNo => rawdata.api_sort_no;
+        public int SortNo => rawdata.api_sortno;
         public string Yomi => rawdata.api_yomi;
         public ShipSpeed Speed => (ShipSpeed)rawdata.api_soku;
         public bool IsAbyssal => SortNo == 0;
