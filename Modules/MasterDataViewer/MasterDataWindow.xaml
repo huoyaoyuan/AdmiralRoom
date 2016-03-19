@@ -11,25 +11,70 @@
         DataContext="{Binding MasterData, Source={x:Static officer:Staff.Current}}"
         FontFamily="{Binding FontFamily, Source={x:Static main:Config.Current}}"
         FontSize="16"
-        Title="MasterData" Height="600" Width="800">
+        Title="MasterData" Height="900" Width="1200">
     <ex:TabControlEx>
         <TabItem Header="Ship">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <ListView ItemsSource="{Binding ShipInfo}" x:Name="ships">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding FullName}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <WrapPanel Grid.Column="1" Orientation="Vertical" DataContext="{Binding SelectedItem, ElementName=ships}" Grid.IsSharedSizeScope="True">
-                    
-                </WrapPanel>
-            </Grid>
+            <ListView ItemsSource="{Binding ShipInfo}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="SortNo" DisplayMemberBinding="{Binding SortNo}"/>
+                        <GridViewColumn Header="艦名" DisplayMemberBinding="{Binding FullName}"/>
+                        <GridViewColumn Header="艦種" DisplayMemberBinding="{Binding ShipType.DisplayName}"/>
+                        <GridViewColumn Header="速力" DisplayMemberBinding="{Binding Speed}"/>
+                        <GridViewColumn Header="改造" DisplayMemberBinding="{Binding CanUpgrade}"/>
+                        <GridViewColumn Header="改造艦" DisplayMemberBinding="{Binding UpgradeTo.Name}"/>
+                        <GridViewColumn Header="改造Lv" DisplayMemberBinding="{Binding UpgradeLevel}"/>
+                        <GridViewColumn Header="火力" DisplayMemberBinding="{Binding FirePower}"/>
+                        <GridViewColumn Header="雷装" DisplayMemberBinding="{Binding Torpedo}"/>
+                        <GridViewColumn Header="対空" DisplayMemberBinding="{Binding AA}"/>
+                        <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Armor}"/>
+                        <GridViewColumn Header="運" DisplayMemberBinding="{Binding Luck}"/>
+                        <GridViewColumn Header="耐久" DisplayMemberBinding="{Binding MaxHP}"/>
+                        <GridViewColumn Header="射程" DisplayMemberBinding="{Binding Range}"/>
+                        <GridViewColumn Header="Slot" DisplayMemberBinding="{Binding SlotNum}"/>
+                        <GridViewColumn Header="搭载">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Run Text="{Binding AirCraft[0]}"/>
+                                        <Run Text="{Binding AirCraft[1]}"/>
+                                        <Run Text="{Binding AirCraft[2]}"/>
+                                        <Run Text="{Binding AirCraft[3]}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="建造時間" DisplayMemberBinding="{Binding BuildTime, StringFormat={}{0:hh\\:mm\\:ss}}"/>
+                        <GridViewColumn Header="燃料" DisplayMemberBinding="{Binding MaxFuel}"/>
+                        <GridViewColumn Header="弾薬" DisplayMemberBinding="{Binding MaxBull}"/>
+                        <GridViewColumn Header="解体">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Run Text="{Binding DestroyMaterial[0]}"/>
+                                        <Run Text="{Binding DestroyMaterial[1]}"/>
+                                        <Run Text="{Binding DestroyMaterial[2]}"/>
+                                        <Run Text="{Binding DestroyMaterial[3]}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="改修素材">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Run Text="{Binding MordenizeValue[0]}"/>
+                                        <Run Text="{Binding MordenizeValue[1]}"/>
+                                        <Run Text="{Binding MordenizeValue[2]}"/>
+                                        <Run Text="{Binding MordenizeValue[3]}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </TabItem>
     </ex:TabControlEx>
 </Window>
