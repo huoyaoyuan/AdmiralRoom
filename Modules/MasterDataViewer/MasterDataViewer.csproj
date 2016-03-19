@@ -7,7 +7,7 @@
     <ProjectGuid>{BCCF344F-69B8-443C-9173-0DC640735871}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MasterDataViewer</RootNamespace>
+    <RootNamespace>Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer</RootNamespace>
     <AssemblyName>MasterDataViewer</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -55,6 +55,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasterDataViewer.cs" />
+    <Compile Include="MasterDataWindow.xaml.cs">
+      <DependentUpon>MasterDataWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -65,6 +69,12 @@
       <Project>{501ad96a-9aae-4232-98e6-1ed41067c1fb}</Project>
       <Name>AdmiralRoom</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MasterDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
