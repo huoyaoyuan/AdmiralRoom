@@ -34,7 +34,9 @@
                 </ResourceDictionary>
             </ribbon:Ribbon.Resources>
             <ribbon:Ribbon.Menu>
-                <ribbon:Backstage Header="提督の部屋" KeyTip="H" x:Name="backstage">
+                <ribbon:Backstage Header="提督の部屋" KeyTip="H"
+                                  x:Name="backstage"
+                                  IsOpenAnimationEnabled="False">
                     <ribbon:BackstageTabControl>
                         <ribbon:BackstageTabItem Header="{ex:Localizable Options}" KeyTip="O">
                             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
