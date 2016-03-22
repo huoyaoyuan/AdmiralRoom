@@ -37,10 +37,10 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
-                                        <Run Text="{Binding AirCraft[0]}"/>
-                                        <Run Text="{Binding AirCraft[1]}"/>
-                                        <Run Text="{Binding AirCraft[2]}"/>
-                                        <Run Text="{Binding AirCraft[3]}"/>
+                                        <Run Text="{Binding AirCraft[0], Mode=OneWay}"/>
+                                        <Run Text="{Binding AirCraft[1], Mode=OneWay}"/>
+                                        <Run Text="{Binding AirCraft[2], Mode=OneWay}"/>
+                                        <Run Text="{Binding AirCraft[3], Mode=OneWay}"/>
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -52,10 +52,10 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
-                                        <Run Text="{Binding DestroyMaterial[0]}"/>
-                                        <Run Text="{Binding DestroyMaterial[1]}"/>
-                                        <Run Text="{Binding DestroyMaterial[2]}"/>
-                                        <Run Text="{Binding DestroyMaterial[3]}"/>
+                                        <Run Text="{Binding DestroyMaterial[0], Mode=OneWay}"/>
+                                        <Run Text="{Binding DestroyMaterial[1], Mode=OneWay}"/>
+                                        <Run Text="{Binding DestroyMaterial[2], Mode=OneWay}"/>
+                                        <Run Text="{Binding DestroyMaterial[3], Mode=OneWay}"/>
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -64,14 +64,36 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock>
-                                        <Run Text="{Binding MordenizeValue[0]}"/>
-                                        <Run Text="{Binding MordenizeValue[1]}"/>
-                                        <Run Text="{Binding MordenizeValue[2]}"/>
-                                        <Run Text="{Binding MordenizeValue[3]}"/>
+                                        <Run Text="{Binding MordenizeValue[0], Mode=OneWay}"/>
+                                        <Run Text="{Binding MordenizeValue[1], Mode=OneWay}"/>
+                                        <Run Text="{Binding MordenizeValue[2], Mode=OneWay}"/>
+                                        <Run Text="{Binding MordenizeValue[3], Mode=OneWay}"/>
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </TabItem>
+        <TabItem Header="SlotItem">
+            <ListView ItemsSource="{Binding EquipInfo}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="SortNo" DisplayMemberBinding="{Binding SortNo}"/>
+                        <GridViewColumn Header="装備名" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding EquipType.Name}"/>
+                        <GridViewColumn Header="火力" DisplayMemberBinding="{Binding FirePower}"/>
+                        <GridViewColumn Header="雷装" DisplayMemberBinding="{Binding Torpedo}"/>
+                        <GridViewColumn Header="対空" DisplayMemberBinding="{Binding AA}"/>
+                        <GridViewColumn Header="装甲" DisplayMemberBinding="{Binding Armor}"/>
+                        <GridViewColumn Header="爆装" DisplayMemberBinding="{Binding Bomb}"/>
+                        <GridViewColumn Header="对潜" DisplayMemberBinding="{Binding ASW}"/>
+                        <GridViewColumn Header="命中" DisplayMemberBinding="{Binding Accuracy}"/>
+                        <GridViewColumn Header="回避" DisplayMemberBinding="{Binding Evasion}"/>
+                        <GridViewColumn Header="索敵" DisplayMemberBinding="{Binding LoS}"/>
+                        <GridViewColumn Header="射程" DisplayMemberBinding="{Binding Range}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
