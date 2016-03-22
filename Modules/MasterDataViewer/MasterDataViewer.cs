@@ -13,7 +13,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
     {
         private class ChildWindow : IChildWindow
         {
-            public ImageSource Icon => null;
 
             public string Title => "MasterData";
 

@@ -13,7 +13,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
     {
         private class ChildWindow : IChildWindow
         {
-            public ImageSource Icon => null;
 
             public string Title => "改修工廠";
 
