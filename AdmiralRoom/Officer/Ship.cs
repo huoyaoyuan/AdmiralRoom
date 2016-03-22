@@ -223,5 +223,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             equipcorrect = true;
         }
     }
-    public enum ShootRange { None = 0, Short = 1, Long = 2, VLong = 3 }
+    public enum ShootRange { None = 0, Short = 1, Medium = 2, Long = 3, VLong = 4 }
 }
