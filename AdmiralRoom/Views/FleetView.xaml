@@ -139,8 +139,9 @@
                                                         Margin="0,0,4,0">
                                                 <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
                                                     <Run Text="HP: "/>
-                                                    <Run FontSize="20" Text="{Binding HP.Current}"/>
-                                                    <Run Text="{Binding HP.Max, StringFormat={} / {0}}"/>
+                                                    <Run FontSize="20" Text="{Binding HP.Current, Mode=OneWay}"/>
+                                                    <Run x:Name="repairedhp" Foreground="DarkCyan" Text="{Binding RepairedHP, StringFormat={}+{0}, Mode=OneWay}"/>
+                                                    <Run Text="{Binding HP.Max, StringFormat={}/ {0}, Mode=OneWay}"/>
                                                 </TextBlock>
                                                 <control:PredicateProgressBar Width="120" Height="16"
                                                                               Minimum="0"
@@ -274,6 +275,9 @@
                                         <DataTrigger Binding="{Binding IsEscaped}" Value="True">
                                             <Setter TargetName="hpback" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="hpbacktext" Property="Text" Value="{ex:Localizable Fleet_Escaped}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RepairedHP}" Value="0">
+                                            <Setter TargetName="repairedhp" Property="Text" Value=""/>
                                         </DataTrigger>
                                     </DataTemplate.Triggers>
                                 </DataTemplate>

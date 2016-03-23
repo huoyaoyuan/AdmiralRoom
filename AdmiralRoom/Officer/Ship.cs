@@ -108,10 +108,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     _repairingHP = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(RepairedHP));
                 }
             }
         }
         #endregion
+
+        public int RepairedHP => RepairingHP - HP.Current;
 
         #region IsEscaped
         private bool _isescaped;
