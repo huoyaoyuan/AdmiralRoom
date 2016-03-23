@@ -796,6 +796,12 @@ Expedition {1} - {2}</value>
   <data name="Ship_Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Ship_NextHP" xml:space="preserve">
+    <value>Next repair: </value>
+  </data>
+  <data name="Ship_PerHP" xml:space="preserve">
+    <value>Per HP: </value>
+  </data>
   <data name="Ship_Preset01" xml:space="preserve">
     <value>DD</value>
   </data>

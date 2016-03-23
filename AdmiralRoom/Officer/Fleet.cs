@@ -35,7 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
         #endregion
-        
+
         public Fleet(getmember_deck api) : base(api)
         {
             WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
@@ -287,15 +287,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void CheckHomeportRepairing(object sender, ElapsedEventArgs e)
         {
             var during = DateTimeOffset.UtcNow - HomeportRepairingFrom;
-            if (during.TotalMinutes < 20)
-            {
-                HomeportRepaired = false;
-                return;
-            }
-            HomeportRepaired = true;
+            HomeportRepaired = during.TotalMinutes >= 20;
             foreach (var ship in HomeportRepairingList)
                 if (!ship.IsRepairing)
-                    ship.RepairingHP = ship.HP.Current + Math.Max((int)((during.TotalSeconds - 60) / ship.RepairTimePerHP.TotalSeconds), 1);
+                {
+                    if (HomeportRepaired)
+                        ship.RepairingHP = ship.HP.Current + Math.Max((int)((during.TotalSeconds - 60) / ship.RepairTimePerHP.TotalSeconds), 1);
+                    if (!HomeportRepaired) ship.NextHP = HomeportRepairingFrom.AddMinutes(20);
+                    else ship.NextHP = HomeportRepairingFrom.AddSeconds((ship.RepairedHP + 1) * ship.RepairTimePerHP.TotalSeconds + 60);
+                }
         }
     }
     public enum FleetStatus { Empty, Ready, NotReady, InSortie, InMission, Warning }

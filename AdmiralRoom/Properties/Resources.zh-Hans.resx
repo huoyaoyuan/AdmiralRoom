@@ -793,6 +793,12 @@
   <data name="Ship_Name" xml:space="preserve">
     <value>舰名</value>
   </data>
+  <data name="Ship_NextHP" xml:space="preserve">
+    <value>距离下一次回复：</value>
+  </data>
+  <data name="Ship_PerHP" xml:space="preserve">
+    <value>每HP需要：</value>
+  </data>
   <data name="Ship_Preset01" xml:space="preserve">
     <value>驱逐舰</value>
   </data>

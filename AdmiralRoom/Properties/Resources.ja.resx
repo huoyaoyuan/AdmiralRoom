@@ -781,6 +781,12 @@
   <data name="Ship_Name" xml:space="preserve">
     <value>艦名</value>
   </data>
+  <data name="Ship_NextHP" xml:space="preserve">
+    <value>次の回復まて：</value>
+  </data>
+  <data name="Ship_PerHP" xml:space="preserve">
+    <value>HP1あたり：</value>
+  </data>
   <data name="Ship_Preset01" xml:space="preserve">
     <value>駆逐艦</value>
   </data>

@@ -2096,6 +2096,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Next repair:  的本地化字符串。
+        /// </summary>
+        public static string Ship_NextHP {
+            get {
+                return ResourceManager.GetString("Ship_NextHP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Per HP:  的本地化字符串。
+        /// </summary>
+        public static string Ship_PerHP {
+            get {
+                return ResourceManager.GetString("Ship_PerHP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 DD 的本地化字符串。
         /// </summary>
         public static string Ship_Preset01 {

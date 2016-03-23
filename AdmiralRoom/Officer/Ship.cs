@@ -114,6 +114,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
+        #region NextHP
+        private DateTimeOffset _nexthp;
+        public DateTimeOffset NextHP
+        {
+            get { return _nexthp; }
+            set
+            {
+                _nexthp = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         public int RepairedHP => RepairingHP - HP.Current;
 
         #region IsEscaped

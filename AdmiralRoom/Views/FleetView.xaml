@@ -133,14 +133,24 @@
                                                            FontSize="12" Foreground="Gray"
                                                            x:Name="hpbacktext"/>
                                             </Border>
-                                            <StackPanel Orientation="Vertical"
+                                            <StackPanel x:Name="hpbar"
+                                                        Orientation="Vertical"
                                                         Grid.Column="2"
                                                         VerticalAlignment="Center"
                                                         Margin="0,0,4,0">
+                                                <StackPanel.ToolTip>
+                                                    <TextBlock>
+                                                        <Run Text="{ex:Localizable Ship_PerHP}"/>
+                                                        <Run Text="{Binding RepairTimePerHP, StringFormat={}{0:m\\:ss}, Mode=OneWay}"/>
+                                                        <LineBreak/>
+                                                        <Run Text="{ex:Localizable Ship_NextHP}"/>
+                                                        <Run Text="{Binding NextHP, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, Mode=OneWay}"/>
+                                                    </TextBlock>
+                                                </StackPanel.ToolTip>
                                                 <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
                                                     <Run Text="HP: "/>
                                                     <Run FontSize="20" Text="{Binding HP.Current, Mode=OneWay}"/>
-                                                    <Run x:Name="repairedhp" Foreground="DarkCyan" Text="{Binding RepairedHP, StringFormat={}+{0}, Mode=OneWay}"/>
+                                                    <Run x:Name="repairedhp" Foreground="DeepSkyBlue" Text="{Binding RepairedHP, StringFormat={}+{0}, Mode=OneWay}"/>
                                                     <Run Text="{Binding HP.Max, StringFormat={}/ {0}, Mode=OneWay}"/>
                                                 </TextBlock>
                                                 <control:PredicateProgressBar Width="120" Height="16"
@@ -271,6 +281,8 @@
                                         <DataTrigger Binding="{Binding IsRepairing}" Value="True">
                                             <Setter TargetName="hpback" Property="Visibility" Value="Visible"/>
                                             <Setter TargetName="hpbacktext" Property="Text" Value="{ex:Localizable Fleet_Repairing}"/>
+                                            <Setter TargetName="repairedhp" Property="Text" Value=""/>
+                                            <Setter TargetName="hpbar" Property="ToolTip" Value="{x:Null}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding IsEscaped}" Value="True">
                                             <Setter TargetName="hpback" Property="Visibility" Value="Visible"/>
@@ -278,6 +290,7 @@
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding RepairedHP}" Value="0">
                                             <Setter TargetName="repairedhp" Property="Text" Value=""/>
+                                            <Setter TargetName="hpbar" Property="ToolTip" Value="{x:Null}"/>
                                         </DataTrigger>
                                     </DataTemplate.Triggers>
                                 </DataTemplate>
