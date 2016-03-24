@@ -217,6 +217,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             rawdata.api_ndock_time = 0;
             rawdata.api_ndock_item = new[] { 0, 0 };
             IsRepairing = false;
+            NextHP = DateTimeOffset.Now;
             _ignorenextcondition = true;
         }
         public int ApplyMarriage(int raw) => Level >= 100 ? (int)(raw * 0.85) : raw;
