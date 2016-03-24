@@ -673,6 +673,21 @@ Expedition {1} - {2}</value>
   <data name="Settings_LoadFrom" xml:space="preserve">
     <value>Load from...</value>
   </data>
+  <data name="Settings_LoS" xml:space="preserve">
+    <value>Light of Sight</value>
+  </data>
+  <data name="Settings_LoS_Formula14Q3" xml:space="preserve">
+    <value>Formula 2-5 Old</value>
+  </data>
+  <data name="Settings_LoS_Formula14Q4" xml:space="preserve">
+    <value>Formula 2-5 Autumn</value>
+  </data>
+  <data name="Settings_LoS_Formula16Q1" xml:space="preserve">
+    <value>Formula "33" (2016Q1)</value>
+  </data>
+  <data name="Settings_LoS_SimpleSum" xml:space="preserve">
+    <value>Simple Sum</value>
+  </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>Notify shorting time(s): </value>
   </data>

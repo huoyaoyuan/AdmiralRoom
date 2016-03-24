@@ -664,6 +664,21 @@
   <data name="Settings_Layout" xml:space="preserve">
     <value>レイアウト</value>
   </data>
+  <data name="Settings_LoS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Settings_LoS_Formula14Q3" xml:space="preserve">
+    <value>2-5式(旧)</value>
+  </data>
+  <data name="Settings_LoS_Formula14Q4" xml:space="preserve">
+    <value>2-5式(秋)</value>
+  </data>
+  <data name="Settings_LoS_Formula16Q1" xml:space="preserve">
+    <value>2-5式「33」</value>
+  </data>
+  <data name="Settings_LoS_SimpleSum" xml:space="preserve">
+    <value>単純合計</value>
+  </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>通知短缩時間（秒）：</value>
   </data>

@@ -1727,6 +1727,51 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Light of Sight 的本地化字符串。
+        /// </summary>
+        public static string Settings_LoS {
+            get {
+                return ResourceManager.GetString("Settings_LoS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Formula 2-5 Old 的本地化字符串。
+        /// </summary>
+        public static string Settings_LoS_Formula14Q3 {
+            get {
+                return ResourceManager.GetString("Settings_LoS_Formula14Q3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Formula 2-5 Autumn 的本地化字符串。
+        /// </summary>
+        public static string Settings_LoS_Formula14Q4 {
+            get {
+                return ResourceManager.GetString("Settings_LoS_Formula14Q4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Formula &quot;33&quot; (2016Q1) 的本地化字符串。
+        /// </summary>
+        public static string Settings_LoS_Formula16Q1 {
+            get {
+                return ResourceManager.GetString("Settings_LoS_Formula16Q1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Simple Sum 的本地化字符串。
+        /// </summary>
+        public static string Settings_LoS_SimpleSum {
+            get {
+                return ResourceManager.GetString("Settings_LoS_SimpleSum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Notify shorting time(s):  的本地化字符串。
         /// </summary>
         public static string Settings_NotifyShortingTime {
