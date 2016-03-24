@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Timers;
 using System.Windows;
@@ -40,6 +41,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", Tick);
             WeakEventManager<Timer, ElapsedEventArgs>.AddHandler(Staff.Current.Ticker, "Elapsed", CheckHomeportRepairing);
+            WeakEventManager<Config, PropertyChangedEventArgs>.AddHandler(Config.Current, nameof(PropertyChanged), (_, e) =>
+            {
+                if (e.PropertyName == nameof(Config.LosCalcType))
+                    OnPropertyChanged(nameof(LoSInMap));
+            });
         }
         private void Tick(object sender, ElapsedEventArgs e)
         {
@@ -204,7 +210,24 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int[] AirFightPower { get; private set; }
         public int LevelSum => Ships.Sum(x => x.Level);
         public double LevelAverage => Ships.Any() ? Ships.Average(x => (double)x.Level) : 0;
-        public double LoSInMap => Ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
+        public double LoSInMap
+        {
+            get
+            {
+                switch (Config.Current.LosCalcType)
+                {
+                    case LosCalcType.SimpleSum:
+                    case LosCalcType.Formula14Q3:
+                        return Ships.Sum(x => x.LoSInMap);
+                    case LosCalcType.Formula14Q4:
+                        return Ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
+                    case LosCalcType.Formula16Q1:
+                        return Ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level * 0.4) + (6 - Ships.Count) * 2;
+                    default:
+                        return 0;
+                }
+            }
+        }
         public int[] ChargeCost => new[]
         {
             Ships.Sum(x => x.ApplyMarriage(x.Fuel.Shortage)),
@@ -297,6 +320,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else ship.NextHP = HomeportRepairingFrom.AddSeconds((ship.RepairedHP + 1) * ship.RepairTimePerHP.TotalSeconds + 60);
                 }
         }
+
+        public void LosTypeChanged() => OnPropertyChanged(nameof(LoSInMap));
     }
     public enum FleetStatus { Empty, Ready, NotReady, InSortie, InMission, Warning }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Serialization;
@@ -467,6 +466,22 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region LosCalcType
+        private LosCalcType _loscalctype;
+        public LosCalcType LosCalcType
+        {
+            get { return _loscalctype; }
+            set
+            {
+                if (value != _loscalctype)
+                {
+                    _loscalctype = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()
@@ -508,6 +523,7 @@ namespace Huoyaoyuan.AdmiralRoom
             _notifytimeadjust = 60;
             FontFamilyName = "DengXian";
             _fontsize = 15;
+            _loscalctype = LosCalcType.Formula14Q4;
         }
         public static Config Load(string path = "config.xml")
         {
@@ -571,4 +587,5 @@ namespace Huoyaoyuan.AdmiralRoom
             })
         };
     }
+    public enum LosCalcType { SimpleSum, Formula14Q3, Formula14Q4, Formula16Q1 }
 }

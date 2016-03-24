@@ -89,37 +89,103 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (!HasItem) return 0;
                 double factor = 0;
-                switch (Item.EquipInfo.EquipType.Id)
+                double improvementfactor = 0;
+                switch (Config.Current.LosCalcType)
                 {
-                    case 7://艦上爆撃機
-                        factor = 1.04;
+                    case LosCalcType.SimpleSum:
+                        return Item.EquipInfo.LoS;
+                    case LosCalcType.Formula14Q3:
+                        switch (Item.EquipInfo.EquipType.Id)
+                        {
+                            case 9://艦上偵察機
+                            case 94://艦上偵察機(II)
+                            case 10://水上偵察機
+                            case 11://水上爆撃機
+                                return 2 * Item.EquipInfo.LoS;
+                            case 12://小型電探
+                            case 13://大型電探
+                            case 93://大型電探(II)
+                                factor = 1;
+                                return Item.EquipInfo.LoS;
+                            default:
+                                return 0;
+                        }
+                    case LosCalcType.Formula14Q4:
+                        switch (Item.EquipInfo.EquipType.Id)
+                        {
+                            case 7://艦上爆撃機
+                                factor = 1.04;
+                                break;
+                            case 8://艦上攻撃機
+                                factor = 1.37;
+                                break;
+                            case 9://艦上偵察機
+                            case 94://艦上偵察機(II)
+                                factor = 1.66;
+                                break;
+                            case 10://水上偵察機
+                                factor = 2.00;
+                                break;
+                            case 11://水上爆撃機
+                                factor = 1.78;
+                                break;
+                            case 12://小型電探
+                                factor = 1.00;
+                                break;
+                            case 13://大型電探
+                            case 93://大型電探(II)
+                                factor = 0.99;
+                                break;
+                            case 29://探照灯
+                            case 42://大型探照灯
+                                factor = 0.91;
+                                break;
+                            default:
+                                return 0;
+                        }
                         break;
-                    case 8://艦上攻撃機
-                        factor = 1.37;
-                        break;
-                    case 9://艦上偵察機
-                    case 94://艦上偵察機(II)
-                        factor = 1.66;
-                        break;
-                    case 10://水上偵察機
-                        factor = 2.00;
-                        break;
-                    case 11://水上爆撃機
-                        factor = 1.78;
-                        break;
-                    case 12://小型電探
-                        factor = 1.00;
-                        break;
-                    case 13://大型電探
-                    case 93://大型電探(II)
-                        factor = 0.99;
-                        break;
-                    case 29://探照灯
-                    case 42://大型探照灯
-                        factor = 0.91;
+                    case LosCalcType.Formula16Q1:
+                        switch (Item.EquipInfo.EquipType.Id)
+                        {
+                            case 8://艦上攻撃機
+                                factor = 0.8;
+                                break;
+                            case 9://艦上偵察機
+                            case 94://艦上偵察機(II)
+                                factor = 1.0;
+                                break;
+                            case 10://水上偵察機
+                                factor = 1.2;
+                                improvementfactor = 1.2;
+                                break;
+                            case 11://水上爆撃機
+                                factor = 1.1;
+                                break;
+                            case 6://艦上戦闘機
+                            case 7://艦上爆撃機
+                            case 29://探照灯
+                            case 42://大型探照灯
+                            case 45://水上戦闘機
+                            case 41://大型飛行艇
+                            case 14://ソナー
+                            case 40://大型ソナー
+                            case 39://水上艦要員
+                            case 26://対潜哨戒機
+                            case 34://司令部施設
+                                factor = 0.6;
+                                break;
+                            case 12://小型電探
+                            case 13://大型電探
+                            case 93://大型電探(II)
+                                factor = 0.6;
+                                improvementfactor = 1.25;
+                                break;
+                            default:
+                                return 0;
+                        }
                         break;
                 }
-                return factor * Item.EquipInfo.LoS;
+                return factor * Item.EquipInfo.LoS + improvementfactor * Math.Sqrt(Item.ImproveLevel);
             }
         }
     }

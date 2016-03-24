@@ -222,7 +222,37 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public int ApplyMarriage(int raw) => Level >= 100 ? (int)(raw * 0.85) : raw;
         public int[] AirFightPower => Slots.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + (int)b).ToArray());
-        public double LoSInMap => Slots.Sum(x => x.LoSInMap) + Math.Sqrt(LoS.Current) * 1.69;
+
+        #region LoSInMap
+        public double LoSInMap
+        {
+            get
+            {
+                switch (Config.Current.LosCalcType)
+                {
+                    case LosCalcType.SimpleSum:
+                        return Slots.Sum(x => x.LoSInMap) + LoS.Current;
+                    case LosCalcType.Formula14Q3:
+                        {
+                            double sum = 0;
+                            double sqrtsum = LoS.Current;
+                            foreach (var slot in Slots)
+                                if (slot.HasItem && slot.LoSInMap == 0)
+                                    sqrtsum += slot.Item.EquipInfo.LoS;
+                                else sum += slot.LoSInMap;
+                            return sum + Math.Sqrt(sqrtsum);
+                        }
+                    case LosCalcType.Formula14Q4:
+                        return Slots.Sum(x => x.LoSInMap) + Math.Sqrt(LoS.Current) * 1.69;
+                    case LosCalcType.Formula16Q1:
+                        return Slots.Sum(x => x.LoSInMap) + Math.Sqrt(LoS.Current);
+                    default:
+                        return 0;
+                }
+            }
+        }
+        #endregion
+
         public void UpdateStatus()
         {
             OnPropertyChanged(nameof(AirFightPower));
