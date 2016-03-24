@@ -382,7 +382,7 @@ namespace Huoyaoyuan.AdmiralRoom
         [MemberwiseCopyIgnore]
         public string FontFamilyName
         {
-            get { return FontFamily.FamilyNames.Values.First(); }
+            get { return string.Join(",", FontFamily.FamilyNames.Values); }
             set { FontFamily = new FontFamily(value); }
         }
         #endregion
