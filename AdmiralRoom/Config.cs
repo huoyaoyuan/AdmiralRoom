@@ -238,50 +238,10 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     _screenshotfileformat = value;
                     OnPropertyChanged();
-                    OnPropertyChanged(nameof(IsScreenShotJpg));
-                    OnPropertyChanged(nameof(IsScreenShotPng));
                 }
             }
         }
         #endregion
-
-        [XmlIgnore]
-        [MemberwiseCopyIgnore]
-        public bool IsScreenShotJpg
-        {
-            get
-            {
-                return ScreenShotFileFormat.ToLower() == "jpg";
-            }
-            set
-            {
-                if (value)
-                {
-                    ScreenShotFileFormat = "jpg";
-                }
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsScreenShotPng));
-            }
-        }
-
-        [XmlIgnore]
-        [MemberwiseCopyIgnore]
-        public bool IsScreenShotPng
-        {
-            get
-            {
-                return ScreenShotFileFormat.ToLower() == "png";
-            }
-            set
-            {
-                if (value)
-                {
-                    ScreenShotFileFormat = "png";
-                }
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsScreenShotJpg));
-            }
-        }
 
         #region NotifyWhenExpedition
         private bool _notifywhenexpedition;
@@ -473,7 +433,7 @@ namespace Huoyaoyuan.AdmiralRoom
             get { return _loscalctype; }
             set
             {
-                if (value != _loscalctype)
+                if (_loscalctype != value)
                 {
                     _loscalctype = value;
                     OnPropertyChanged();

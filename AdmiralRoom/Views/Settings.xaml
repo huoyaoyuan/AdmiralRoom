@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=root:Config}">
     <StackPanel Orientation="Vertical">
-        <Grid HorizontalAlignment="Stretch">
+        <Grid HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -46,8 +46,8 @@
                     <Button Margin="2" Click="OpenScreenShotFolder" Content="{ex:Localizable Settings_FolderOpen}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton IsChecked="{Binding IsScreenShotPng}" Margin="2">PNG</RadioButton>
-                    <RadioButton IsChecked="{Binding IsScreenShotJpg}" Margin="2">JPG</RadioButton>
+                    <RadioButton IsChecked="{Binding ScreenShotFileFormat, Converter={StaticResource RadioButtonConverter}, ConverterParameter=png}" Margin="2">PNG</RadioButton>
+                    <RadioButton IsChecked="{Binding ScreenShotFileFormat, Converter={StaticResource RadioButtonConverter}, ConverterParameter=jpg}" Margin="2">JPG</RadioButton>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -116,10 +116,10 @@
         </GroupBox>
         <GroupBox Header="{ex:Localizable Settings_LoS}" Margin="5" HorizontalAlignment="Left">
             <StackPanel Orientation="Vertical">
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_SimpleSum}"/>
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q3}"/>
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q4}"/>
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula16Q1}"/>
+                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_SimpleSum}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=SimpleSum}"/>
+                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q3}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q3}"/>
+                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q4}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q4}"/>
+                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula16Q1}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula16Q1}"/>
             </StackPanel>
         </GroupBox>
     </StackPanel>
