@@ -228,13 +228,17 @@
                                                                    
                                                                    Height="48" Width="48"
                                                                    Canvas.Left="-6" Canvas.Top="-6"/>
+                                                            <TextBlock x:Name="improvement"
+                                                                       FontSize="14"
+                                                                       Canvas.Bottom="0" Canvas.Right="-2"
+                                                                       Text="{Binding Item.ImproveLevel, StringFormat={}★{0}}"
+                                                                       Foreground="DarkCyan"/>
                                                             <Image Source="{Binding Item.ProfIcon}"
                                                                    
                                                                    Height="16" Width="16"
                                                                    Canvas.Top="0" Canvas.Right="-4"
                                                                    Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}"/>
-                                                            <TextBlock Height="16"
-                                                                       Canvas.Left="0" Canvas.Bottom="0"
+                                                            <TextBlock Canvas.Left="0" Canvas.Bottom="0"
                                                                        FontSize="16"
                                                                        Text="{Binding AirCraft.Current}"
                                                                        FontWeight="Bold"
@@ -261,6 +265,13 @@
                                                                         </TextBlock>
                                                                     </Setter.Value>
                                                                 </Setter>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Item.ImproveLevel}" Value="0">
+                                                                <Setter TargetName="improvement" Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Item.ImproveLevel}" Value="10">
+                                                                <Setter TargetName="improvement" Property="Text" Value="★"/>
+                                                                <Setter TargetName="improvement" Property="FontSize" Value="18"/>
                                                             </DataTrigger>
                                                         </DataTemplate.Triggers>
                                                     </DataTemplate>
