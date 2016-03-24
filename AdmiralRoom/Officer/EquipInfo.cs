@@ -21,11 +21,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     try
                     {
-                        _icon = new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/Equip/{IconID}.png", UriKind.Absolute));
+                        _icon = new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/Equip/{IconID}.png", UriKind.Absolute)).TryFreeze();
                     }
                     catch
                     {
-                        _icon = new BitmapImage(new Uri("pack://application:,,,/AdmiralRoom;component/Images/Equip/Misc.png", UriKind.Absolute));
+                        _icon = new BitmapImage(new Uri("pack://application:,,,/AdmiralRoom;component/Images/Equip/Misc.png", UriKind.Absolute)).TryFreeze();
                     }
                 }
                 return _icon;
@@ -45,5 +45,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int[] DestroyMaterial => rawdata.api_broken;
         public string Info => rawdata.api_info;
         public EquipInfo(api_mst_slotitem api) : base(api) { }
+        protected override void UpdateProp() => _icon = null;
     }
 }

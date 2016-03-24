@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
@@ -18,9 +19,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// 熟练度
         /// </summary>
         public int AirProficiency => rawdata.api_alv;
+        private static readonly ImageSource[] ProfIcons =
+            Enumerable.Range(1, 7)
+            .Select(x => new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/AirProficiency/{x}.png", UriKind.Absolute)).TryFreeze())
+            .ToArray();
         public ImageSource ProfIcon
-            => AirProficiency == 0 ? null :
-            new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/AirProficiency/{AirProficiency}.png", UriKind.Absolute));
+            => AirProficiency == 0 ? null : ProfIcons[AirProficiency - 1];
         public Ship OnShip { get; set; }
         public void SetNotOnShip() => OnShip = null;
         public Equipment(getmember_slotitem api) : base(api) { }
