@@ -597,6 +597,13 @@
     <Resource Include="Images\Quest\9.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\AirProficiency\1.png" />
+    <Resource Include="Images\AirProficiency\2.png" />
+    <Resource Include="Images\AirProficiency\3.png" />
+    <Resource Include="Images\AirProficiency\4.png" />
+    <Resource Include="Images\AirProficiency\5.png" />
+    <Resource Include="Images\AirProficiency\6.png" />
+    <Resource Include="Images\AirProficiency\7.png" />
     <Content Include="Officer\StaticCounters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StaticCounters.cs</LastGenOutput>
@@ -625,6 +632,7 @@
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0-rc6\analyzers\dotnet\cs\CodeCracker.Common.dll" />
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0-rc6\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

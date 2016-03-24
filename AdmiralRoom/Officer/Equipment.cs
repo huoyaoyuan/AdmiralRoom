@@ -1,4 +1,7 @@
-﻿using Huoyaoyuan.AdmiralRoom.API;
+﻿using System;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Huoyaoyuan.AdmiralRoom.API;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -15,6 +18,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         /// 熟练度
         /// </summary>
         public int AirProficiency => rawdata.api_alv;
+        public ImageSource ProfIcon
+            => AirProficiency == 0 ? null :
+            new BitmapImage(new Uri($"pack://application:,,,/AdmiralRoom;component/Images/AirProficiency/{AirProficiency}.png", UriKind.Absolute));
         public Ship OnShip { get; set; }
         public void SetNotOnShip() => OnShip = null;
         public Equipment(getmember_slotitem api) : base(api) { }

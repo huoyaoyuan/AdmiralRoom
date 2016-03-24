@@ -228,8 +228,10 @@
                                                                    
                                                                    Height="48" Width="48"
                                                                    Canvas.Left="-6" Canvas.Top="-6"/>
-                                                            <Image Height="16" Width="16"
-                                                                   Canvas.Top="0" Canvas.Right="0"
+                                                            <Image Source="{Binding Item.ProfIcon}"
+                                                                   
+                                                                   Height="16" Width="16"
+                                                                   Canvas.Top="0" Canvas.Right="-4"
                                                                    Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}"/>
                                                             <TextBlock Height="16"
                                                                        Canvas.Left="0" Canvas.Bottom="0"
