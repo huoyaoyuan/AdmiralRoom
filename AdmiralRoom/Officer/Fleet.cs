@@ -299,7 +299,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             CanHomeportRepairing ? Ships[0].Slots.Count(x => x.Item?.EquipInfo.EquipType.Id == 31) + 2 : 0)
             .Where(x => !x.HP.IsMax && x.HP.Current * 2 > x.HP.Max);
 
-        public DateTimeOffset HomeportRepairingFrom { get; private set; }
+        public DateTimeOffset HomeportRepairingFrom { get; private set; } = DateTimeOffset.UtcNow;
         public void CheckHomeportRepairingTime(bool reset)
         {
             var time = DateTimeOffset.UtcNow;
