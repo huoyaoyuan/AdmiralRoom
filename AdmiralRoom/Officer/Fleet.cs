@@ -316,8 +316,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     if (HomeportRepaired)
                         ship.RepairingHP = ship.HP.Current + Math.Max((int)((during.TotalSeconds - 60) / ship.RepairTimePerHP.TotalSeconds), 1);
-                    if (!HomeportRepaired) ship.NextHP = HomeportRepairingFrom.AddMinutes(20);
-                    else ship.NextHP = HomeportRepairingFrom.AddSeconds((ship.RepairedHP + 1) * ship.RepairTimePerHP.TotalSeconds + 60);
+                    if (!HomeportRepaired)
+                        ship.NextHP = HomeportRepairingFrom.AddMinutes(20);
+                    else if (ship.RepairingHP != ship.HP.Max)
+                        ship.NextHP = HomeportRepairingFrom.AddSeconds((ship.RepairedHP + 1) * ship.RepairTimePerHP.TotalSeconds + 60);
                 }
         }
 
