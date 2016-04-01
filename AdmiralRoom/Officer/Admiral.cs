@@ -7,7 +7,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Admiral()
         {
             Staff.API("api_get_member/record").Subscribe<getmember_record>(RecordHandler);
-            //Staff.API("api_get_member/basic").Subscribe<getmember_basic>(BasicHandler);
         }
 
         #region Level

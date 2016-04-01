@@ -11,7 +11,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             Staff.API("api_get_member/require_info").Subscribe<getmember_require_info>(x =>
             {
-                Staff.Current.Admiral.BasicHandler(x.api_basic);
                 ItemsHandler(x.api_slot_item);
                 Staff.Current.Shipyard.KDockHandler(x.api_kdock);
             });
