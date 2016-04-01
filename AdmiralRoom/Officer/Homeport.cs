@@ -9,6 +9,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public Homeport()
         {
+            Staff.API("api_get_member/require_info").Subscribe<getmember_require_info>(x =>
+            {
+                Staff.Current.Admiral.BasicHandler(x.api_basic);
+                ItemsHandler(x.api_slot_item);
+                Staff.Current.Shipyard.KDockHandler(x.api_kdock);
+            });
             Staff.API("api_port/port").Subscribe<port_port>(PortHandler);
             Staff.API("api_get_member/deck").Subscribe<getmember_deck[]>(DecksHandler);
             Staff.API("api_get_member/slot_item").Subscribe<getmember_slotitem[]>(ItemsHandler);

@@ -124,7 +124,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             BuildingDocks[dockid].Secretary = Staff.Current.Homeport.Secretary;
             Logger.Loggers.MaterialLogger.ForceLog = true;
         }
-        private void KDockHandler(getmember_kdock[] api)
+        public void KDockHandler(getmember_kdock[] api)
         {
             DispatcherHelper.UIDispatcher.Invoke(() =>
                 BuildingDocks.UpdateAll(api, x => x.api_id));
