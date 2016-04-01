@@ -207,7 +207,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch (Exception ex)
             {
-                Models.Status.Current.StatusText = Properties.Resources.Screenshot_Fail + ex.ToString();
+                Models.Status.Current.StatusText = Properties.Resources.Screenshot_Fail + ex;
                 return false;
             }
             Models.Status.Current.StatusText = Properties.Resources.Screenshot_Success + path;

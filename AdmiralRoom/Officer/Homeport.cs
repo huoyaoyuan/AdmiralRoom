@@ -65,7 +65,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region SelectedFleet
-        private int _selectedfleet = 0;
+        private int _selectedfleet;
         public int SelectedFleet
         {
             get { return _selectedfleet; }
@@ -259,14 +259,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         private void ChargeHandler(hokyu_charge api)
         {
-            foreach (var ship in api.api_ship)
+            foreach (var s in api.api_ship)
             {
-                var Ship = Ships[ship.api_id];
-                Ship.Fuel = new LimitedValue(ship.api_fuel, Ship.Fuel.Max);
-                Ship.Bull = new LimitedValue(ship.api_bull, Ship.Bull.Max);
-                for (int i = 0; i < Ship.Slots.Count; i++)
-                    Ship.Slots[i].AirCraft = new LimitedValue(ship.api_onslot[i], Ship.Slots[i].AirCraft.Max);
-                Ship.UpdateStatus();
+                var ship = Ships[s.api_id];
+                ship.Fuel = new LimitedValue(s.api_fuel, ship.Fuel.Max);
+                ship.Bull = new LimitedValue(s.api_bull, ship.Bull.Max);
+                for (int i = 0; i < ship.Slots.Count; i++)
+                    ship.Slots[i].AirCraft = new LimitedValue(s.api_onslot[i], ship.Slots[i].AirCraft.Max);
+                ship.UpdateStatus();
             }
             Material.Fuel = api.api_material[0];
             Material.Bull = api.api_material[1];

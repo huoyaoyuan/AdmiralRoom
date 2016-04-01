@@ -51,7 +51,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         public bool HasItem => Item != null;
-        public override string ToString() => HasItem && Item.EquipInfo.EquipType.IsAirPlane ? Item.ToString() + " (" + AirCraft.ToString() + ")" : Item?.ToString();
+        public override string ToString() => HasItem && Item.EquipInfo.EquipType.IsAirPlane ? Item + " (" + AirCraft + ")" : Item?.ToString();
         private static readonly int[] fighttype = { 6, 7, 8, 11, 45 };
         private static readonly int[] bonus1 = { 0, 0, 2, 5, 9, 14, 14, 22 };//舰战
         private static readonly int[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆

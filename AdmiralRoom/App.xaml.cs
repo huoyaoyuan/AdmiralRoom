@@ -44,7 +44,7 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 StreamWriter sw = new StreamWriter(file);
                 sw.WriteLine("==================================================");
-                sw.WriteLine(e.ExceptionObject.ToString());
+                sw.WriteLine(e.ExceptionObject);
                 sw.Flush();
 #pragma warning restore CC0022
             }

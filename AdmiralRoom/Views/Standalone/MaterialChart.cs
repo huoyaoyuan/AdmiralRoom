@@ -54,7 +54,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         private int min1, min2, max1, max2;
         private double left, top, chartheight, chartwidth;
         private PathGeometry[] lines = new PathGeometry[8];
-        private bool colorsonly = false;
+        private bool colorsonly;
         protected override void OnRender(DrawingContext drawingContext)
         {
             var black = new SolidColorBrush(Colors.Black).TryFreeze();

@@ -261,7 +261,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             //if (_hpchanged) InFleet?.CheckHomeportRepairingTime(true);
             InFleet?.UpdateStatus();
         }
-        private bool equipcorrect = false;
+        private bool equipcorrect;
         public void InvalidEquip() => equipcorrect = false;
         public void TryUpdateEquip()
         {

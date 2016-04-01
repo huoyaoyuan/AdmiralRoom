@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int maxup;
         private DateTimeOffset increasefrom, increaseto, lastcheck;
         private bool updating;
-        private bool changed = false;
+        private bool changed;
         private readonly TimeSpan maxerror = TimeSpan.FromSeconds(2), period = TimeSpan.FromMinutes(3);
         public void OnCondition(int d)
         {

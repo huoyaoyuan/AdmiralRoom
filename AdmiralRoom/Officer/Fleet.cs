@@ -172,7 +172,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        private bool needupdateship = false;
+        private bool needupdateship;
         protected override void UpdateProp()
         {
             BackTime = DateTimeOffset.FromUnixTimeMilliseconds(rawdata.api_mission[2]);

@@ -141,7 +141,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         #endregion
 
-        private int? GetShipEquip = null;
+        private int? GetShipEquip;
         private sortie_battleresult.escape lastescapeinfo;
         private void StartBattle(sortie_battle api) =>
             CurrentBattle = new Battle(api, CurrentFleetType ?? CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, this);
@@ -166,7 +166,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (heavydamage.Any())
             {
                 Notifier.Current.Show(Properties.Resources.Notification_HeavyDamage_Title,
-                    heavydamage.Aggregate(Properties.Resources.Notification_HeavyDamage_Text, (text, ship) => text += "\n" + ship.ToString()));
+                    heavydamage.Aggregate(Properties.Resources.Notification_HeavyDamage_Text, (text, ship) => text += "\n" + ship));
             }
         }
         private void BattleResultHandler(sortie_battleresult api)
