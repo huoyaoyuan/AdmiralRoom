@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmiralRoom", "AdmiralRoom\AdmiralRoom.csproj", "{501AD96A-9AAE-4232-98E6-1ED41067C1FB}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akashi", "Modules\Akashi\Akashi.csproj", "{F0245DDE-EF28-4E72-8493-E1FCAF380E8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterDataViewer", "Modules\MasterDataViewer\MasterDataViewer.csproj", "{BCCF344F-69B8-443C-9173-0DC640735871}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ranking", "Modules\Ranking\Ranking.csproj", "{0394F232-C474-4F4F-9F0C-9865C92902DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{BCCF344F-69B8-443C-9173-0DC640735871}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCCF344F-69B8-443C-9173-0DC640735871}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCCF344F-69B8-443C-9173-0DC640735871}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,9 +48,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F0245DDE-EF28-4E72-8493-E1FCAF380E8B} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 		{BCCF344F-69B8-443C-9173-0DC640735871} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
+		{0394F232-C474-4F4F-9F0C-9865C92902DA} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ResXSortingComparison = InvariantCulture
 		RESX_SortFileContentOnSave = True
+		RESX_ResXSortingComparison = InvariantCulture
 	EndGlobalSection
 EndGlobal
