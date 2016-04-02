@@ -192,6 +192,7 @@
     <Compile Include="API\map_start_next.cs" />
     <Compile Include="API\mission_result.cs" />
     <Compile Include="API\port_port.cs" />
+    <Compile Include="API\ranking_getlist.cs" />
     <Compile Include="API\req_getship.cs" />
     <Compile Include="API\sortie_battle.cs" />
     <Compile Include="API\sortie_battleresult.cs" />
