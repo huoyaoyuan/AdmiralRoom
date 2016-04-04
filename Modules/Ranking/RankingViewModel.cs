@@ -113,9 +113,12 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 if (time.Date != lastExpUpdateTime.Date || time.Hour / 12 != lastExpUpdateTime.Hour / 12)
                 {
                     myLastExpStore = myExp;
+                    lastExpUpdateTime = time;
                     Save();
                 }
                 myExp = (sender as Admiral).Exp.Current;
+                if (myLastExp == 0) myLastExp = myLastExpStore = myExp;
+                lastExpUpdateTime = time;
                 OnPropertyChanged(nameof(MyPoint));
             }
         }
@@ -127,6 +130,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 using (var reader = File.OpenText(@"logs\ranking.txt"))
                 {
                     string[] line;
+                    lastExpUpdateTime = new DateTimeOffset(DateTime.Parse(reader.ReadLine()), TimeSpan.FromHours(7));
                     line = reader.ReadLine().Split(',');
                     Number1 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
                     line = reader.ReadLine().Split(',');
