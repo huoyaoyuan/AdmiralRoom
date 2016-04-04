@@ -4,11 +4,17 @@ using System.Globalization;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
+#pragma warning disable CC0021
+
 namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
 {
     [Export(typeof(IModule))]
     public class Ranking : IModule
     {
+        public Ranking()
+        {
+            RankingViewModel.Instance = new RankingViewModel();
+        }
         private class ChildView : IChildView
         {
             public string ContentId => "RankingView";
