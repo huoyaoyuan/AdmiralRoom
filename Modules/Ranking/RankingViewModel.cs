@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
@@ -9,6 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
     {
         public RankingViewModel()
         {
+            Load();
             Staff.API("api_req_ranking/getlist").Subscribe<ranking_getlist>(RankingListHandler);
             Staff.Current.Admiral.PropertyChanged += OnExpChanged;
         }
@@ -109,9 +111,60 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
             {
                 var time = DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(7));
                 if (time.Date != lastExpUpdateTime.Date || time.Hour / 12 != lastExpUpdateTime.Hour / 12)
+                {
                     myLastExpStore = myExp;
+                    Save();
+                }
                 myExp = (sender as Admiral).Exp.Current;
+                OnPropertyChanged(nameof(MyPoint));
             }
+        }
+
+        public void Load()
+        {
+            try
+            {
+                using (var reader = File.OpenText(@"logs\ranking.txt"))
+                {
+                    string[] line;
+                    line = reader.ReadLine().Split(',');
+                    Number1 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
+                    line = reader.ReadLine().Split(',');
+                    Number5 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
+                    line = reader.ReadLine().Split(',');
+                    Number20 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
+                    line = reader.ReadLine().Split(',');
+                    Number100 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
+                    line = reader.ReadLine().Split(',');
+                    Number500 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
+                    line = reader.ReadLine().Split(',');
+                    MyRank = int.Parse(line[0]);
+                    MyLastPoint = int.Parse(line[1]);
+                    myLastExp = int.Parse(line[2]);
+                    myLastExpStore = int.Parse(line[3]);
+                    myExp = int.Parse(line[4]);
+                }
+            }
+            catch { }
+        }
+
+        public void Save()
+        {
+            try
+            {
+                using (var writer = File.CreateText(@"logs\ranking.txt"))
+                {
+                    writer.WriteLine(lastExpUpdateTime.DateTime);
+                    writer.WriteLine($"{Number1.Point},{Number1.Diff}");
+                    writer.WriteLine($"{Number5.Point},{Number5.Diff}");
+                    writer.WriteLine($"{Number20.Point},{Number20.Diff}");
+                    writer.WriteLine($"{Number100.Point},{Number100.Diff}");
+                    writer.WriteLine($"{Number500.Point},{Number500.Diff}");
+                    writer.WriteLine($"{MyRank},{MyLastPoint},{myLastExp},{myLastExpStore},{myExp}");
+                    writer.Flush();
+                }
+            }
+            catch { }
         }
 
         public struct RankRecord
