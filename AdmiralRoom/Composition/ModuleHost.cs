@@ -39,5 +39,10 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
             };
 #pragma warning restore CC0020
         }
+        public void Unload()
+        {
+            foreach (var module in Modules)
+                module.Unload();
+        }
     }
 }

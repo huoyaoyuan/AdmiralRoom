@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Media;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
@@ -13,7 +12,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
     {
         private class ChildWindow : IChildWindow
         {
-
             public string Title => "MasterData";
 
             public Type WindowType => typeof(MasterDataWindow);
@@ -27,6 +25,11 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
         public FrameworkElement SettingView => null;
 
         public void OnCultureChanged(CultureInfo culture)
+        {
+            //nothing happens
+        }
+
+        public void Unload()
         {
             //nothing happens
         }

@@ -57,6 +57,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Config.Current.Save();
             Officer.Staff.Current.Quests.Save();
             (Notifier.Current as IDisposable)?.Dispose();
+            ModuleHost.Instance.Unload();
         }
     }
 }

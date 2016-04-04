@@ -9,6 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     {
         string Name { get; }
         void OnCultureChanged(CultureInfo culture);
+        void Unload();
         IEnumerable<IChildView> ChildViews { get; }
         IEnumerable<IChildWindow> ChildWindows { get; }
         FrameworkElement SettingView { get; }

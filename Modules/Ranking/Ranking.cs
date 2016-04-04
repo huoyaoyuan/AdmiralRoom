@@ -35,5 +35,10 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
         {
             //nothing happens
         }
+
+        public void Unload()
+        {
+            RankingViewModel.Instance.Save();
+        }
     }
 }
