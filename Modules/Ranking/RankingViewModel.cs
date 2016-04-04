@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
@@ -9,6 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
         public RankingViewModel()
         {
             Staff.API("api_req_ranking/getlist").Subscribe<ranking_getlist>(RankingListHandler);
+            Staff.Current.Admiral.PropertyChanged += OnExpChanged;
         }
         public static RankingViewModel Instance { get; set; }
         private void RankingListHandler(ranking_getlist api)
@@ -100,6 +102,18 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 }
             }
         }
+
+        private void OnExpChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Admiral.Exp))
+            {
+                var time = DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(7));
+                if (time.Date != lastExpUpdateTime.Date || time.Hour / 12 != lastExpUpdateTime.Hour / 12)
+                    myLastExpStore = myExp;
+                myExp = (sender as Admiral).Exp.Current;
+            }
+        }
+
         public struct RankRecord
         {
             public int Point { get; set; }
