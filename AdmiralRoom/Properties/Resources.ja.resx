@@ -862,6 +862,9 @@
   <data name="Status_Ready" xml:space="preserve">
     <value>準備完了</value>
   </data>
+  <data name="Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>

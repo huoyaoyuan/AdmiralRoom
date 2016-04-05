@@ -269,5 +269,17 @@ namespace Huoyaoyuan.AdmiralRoom
             //axIWebBrowser2.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, axIWebBrowser2, new object[] { issilence });
             axIWebBrowser2.Silent = issilence;
         }
+        public void Stop()
+        {
+            var provider = this.WebBrowser.Document as IServiceProvider;
+            if (provider == null) return;
+
+            object ppvObject;
+            provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out ppvObject);
+            var webBrowser = ppvObject as IWebBrowser2;
+            if (webBrowser == null) return;
+
+            webBrowser.Stop();
+        }
     }
 }

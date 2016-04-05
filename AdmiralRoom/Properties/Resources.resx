@@ -877,6 +877,9 @@ Expedition {1} - {2}</value>
   <data name="Status_Ready" xml:space="preserve">
     <value>Ready.</value>
   </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Success</value>
   </data>

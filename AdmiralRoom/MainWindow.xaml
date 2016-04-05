@@ -78,6 +78,7 @@
                                    KeyTip="H"
                                    x:Name="BrowserBackToGame"
                                    LargeIcon="{StaticResource IconGame}"/>
+                    <ribbon:Button Header="{ex:Localizable Stop}" KeyTip="S" x:Name="BrowserStop"/>
                 </ribbon:RibbonGroupBox>
                 <ribbon:RibbonGroupBox Header="{ex:Localizable Actions}">
                     <ribbon:ToggleButton Header="{ex:Localizable Mute}"
