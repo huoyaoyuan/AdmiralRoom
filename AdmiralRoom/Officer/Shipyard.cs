@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Newtonsoft.Json.Linq;
 
 #pragma warning disable CC0091
 
@@ -209,6 +210,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Item4 = req.GetInt("api_item4")
             });
             Logger.Loggers.MaterialLogger.ForceLog = true;
+            var obj = new JObject();
+            obj["items"] = new JArray
+            {
+                req.GetInt("api_item1"),
+                req.GetInt("api_item2"),
+                req.GetInt("api_item3"),
+                req.GetInt("api_item4")
+            };
+            obj["teitokuLv"] = Staff.Current.Admiral.Level;
+            obj["itemId"] = dev.Equip.Id;
+            obj["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id;
+            obj["successful"] = dev.IsSuccess;
+            Reporter.PoiDBReporter.ReportAsync(obj, "create_item");
         }
         private void KSpeedChangeHandler(NameValueCollection req)
         {
