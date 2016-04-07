@@ -220,6 +220,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             obj["teitokuLv"] = Staff.Current.Admiral.Level;
             obj["enemyShips"] = new JArray(api.api_ship_id);
             Reporter.PoiDBReporter.ReportAsync(obj, "drop_ship");
+            if (api.api_get_eventitem != null)
+            {
+                obj = new JObject();
+                obj["teitokuId"] = Staff.Current.Admiral.MemberID;
+                obj["teitokuLv"] = Staff.Current.Admiral.Level;
+                obj["teitoku"] = Staff.Current.Admiral.Nickname;
+                obj["mapId"] = CurrentMap.Id;
+                obj["mapLv"] = (int)CurrentMap.Difficulty;
+                Reporter.PoiDBReporter.ReportAsync(obj, "pass_event");
+            }
             foreach (var enemy in CurrentBattle.EnemyFleet)
                 if (enemy.ToHP <= 0)
                     switch (enemy.ShipInfo.ShipType.Id)
