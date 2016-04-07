@@ -19,6 +19,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int UseDevelopment => rawdata.api_item5;
         public ShipInfo CreatedShip { get; private set; }
         public bool IsLSC { get; set; }
+        public int HighSpeed { get; set; }
         public Ship Secretary { get; set; }
         public BuildingDock(getmember_kdock api) : base(api)
         {
