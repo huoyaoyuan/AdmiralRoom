@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Newtonsoft.Json.Linq;
 
 #pragma warning disable CC0091
 
@@ -122,6 +123,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int dockid = lastcreatedock = req.GetInt("api_kdock_id");
             BuildingDocks[dockid].IsLSC = req.GetInt("api_large_flag") != 0;
             BuildingDocks[dockid].Secretary = Staff.Current.Homeport.Secretary;
+            BuildingDocks[dockid].HighSpeed = req.GetInt("api_highspeed");
             Logger.Loggers.MaterialLogger.ForceLog = true;
         }
         public void KDockHandler(getmember_kdock[] api)
@@ -130,6 +132,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 BuildingDocks.UpdateAll(api, x => x.api_id));
             var dock = BuildingDocks[lastcreatedock];
             if (dock?.CreatedShip != null)
+            {
                 Logger.Loggers.CreateShipLogger.Log(new Logger.CreateShipLog
                 {
                     DateTime = DateTime.UtcNow,
@@ -145,6 +148,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     SecretaryLevel = Staff.Current.Homeport.Secretary.Level,
                     ShipId = dock.CreatedShip.Id
                 });
+                var obj = new JObject();
+                obj["items"] = new JArray
+                {
+                    dock.UseFuel,
+                    dock.UseBull,
+                    dock.UseSteel,
+                    dock.UseBauxite
+                };
+                obj["kdockId"] = lastcreatedock - 1;
+                obj["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id;
+                obj["teitokuLv"] = Staff.Current.Admiral.Level;
+                obj["largeFlag"] = dock.IsLSC;
+                obj["highspeed"] = dock.HighSpeed;
+                obj["shipId"] = dock.CreatedShip.Id;
+                Reporter.PoiDBReporter.ReportAsync(obj, "create_ship");
+            }
             lastcreatedock = -1;
         }
         private void GetShipHandler(req_getship api)
@@ -209,6 +228,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Item4 = req.GetInt("api_item4")
             });
             Logger.Loggers.MaterialLogger.ForceLog = true;
+            var obj = new JObject();
+            obj["items"] = new JArray
+            {
+                req.GetInt("api_item1"),
+                req.GetInt("api_item2"),
+                req.GetInt("api_item3"),
+                req.GetInt("api_item4")
+            };
+            obj["teitokuLv"] = Staff.Current.Admiral.Level;
+            obj["itemId"] = dev.Equip.Id;
+            obj["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id;
+            obj["successful"] = dev.IsSuccess;
+            Reporter.PoiDBReporter.ReportAsync(obj, "create_item");
         }
         private void KSpeedChangeHandler(NameValueCollection req)
         {

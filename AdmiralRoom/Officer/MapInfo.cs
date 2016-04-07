@@ -104,7 +104,23 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 else return new LimitedValue(1, 1);
             }
         }
-        public EventMapDifficulty Difficulty { get; set; }
+
+        #region Difficulty
+        private EventMapDifficulty _difficulty;
+        public EventMapDifficulty Difficulty
+        {
+            get { return _difficulty; }
+            set
+            {
+                if (_difficulty != value)
+                {
+                    _difficulty = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public MapInfo(api_mst_mapinfo api) : base(api) { }
     }
     public enum EventMapDifficulty { None = 0, Easy = 1, Medium = 2, Hard = 3 }
