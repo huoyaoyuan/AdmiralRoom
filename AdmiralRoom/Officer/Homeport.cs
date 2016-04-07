@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -26,6 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
             Staff.API("api_req_kaisou/slot_exchange_index").Subscribe(ExchangeHandler);
             Staff.API("api_get_member/mapinfo").Subscribe<getmembet_mapinfo[]>(RefreshMapInfo);
+            Staff.API("api_req_map/select_eventmap_rank").Subscribe(SelectRank);
             Staff.API("api_req_mission/result").Subscribe<mission_result>(MissionHandler);
         }
 
@@ -298,6 +300,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 map.NowHP = info.api_eventmap?.api_now_maphp ?? 0;
             }
             MapsInProgress = Staff.Current.MasterData.MapInfos.Where(x => !x.IsClear).ToArray();
+        }
+
+        private void SelectRank(NameValueCollection req)
+        {
+            int mapid = req.GetInt("api_maparea_id") * 10 + req.GetInt("api_map_no");
+            Staff.Current.MasterData.MapInfos[mapid].Difficulty = (EventMapDifficulty)req.GetInt("api_rank");
+            var obj = new JObject();
+            obj["teitokuLv"] = Staff.Current.Admiral.Level;
+            obj["teitokuId"] = Staff.Current.Admiral.MemberID;
+            obj["mapareaId"] = mapid;
+            obj["rank"] = req.GetInt("api_rank");
+            Reporter.PoiDBReporter.ReportAsync(obj, "select_rank");
         }
 
         private void MissionHandler(mission_result api)
