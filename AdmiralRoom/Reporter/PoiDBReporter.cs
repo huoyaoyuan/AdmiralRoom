@@ -17,8 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
             wrq.Method = "POST";
             var str = "data=" + @object.ToString().Replace("\r\n", "");
             wrq.ContentLength = Encoding.UTF8.GetByteCount(str);
-            using (var rqs = wrq.GetRequestStream())
-            using (var sw = new StreamWriter(rqs))
+            using (var sw = new StreamWriter(wrq.GetRequestStream()))
             {
                 sw.Write(str);
                 sw.Flush();
