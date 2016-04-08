@@ -457,6 +457,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Reporting to database 的本地化字符串。
+        /// </summary>
+        public static string Database_Report {
+            get {
+                return ResourceManager.GetString("Database_Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Complete 的本地化字符串。
         /// </summary>
         public static string Dock_Complete {

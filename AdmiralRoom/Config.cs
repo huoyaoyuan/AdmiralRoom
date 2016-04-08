@@ -442,6 +442,22 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region ReportToPoiDB
+        private bool _reporttopoidb;
+        public bool ReportToPoiDB
+        {
+            get { return _reporttopoidb; }
+            set
+            {
+                if (_reporttopoidb != value)
+                {
+                    _reporttopoidb = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()

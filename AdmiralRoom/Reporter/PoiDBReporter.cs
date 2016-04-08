@@ -11,6 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
         private static readonly string UAString = "AdmiralRoom Reporter v1.0";
         public static async void ReportAsync(JObject @object, string apiname)
         {
+            if (!Config.Current.ReportToPoiDB) return;
             var wrq = WebRequest.CreateHttp($"http://{SERVER_HOSTNAME}/api/report/v2/{apiname}");
             wrq.UserAgent = UAString;
             wrq.Method = "POST";

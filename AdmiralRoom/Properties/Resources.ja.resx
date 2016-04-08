@@ -249,6 +249,9 @@
   <data name="Compass_Transport" xml:space="preserve">
     <value>揚陸地点</value>
   </data>
+  <data name="Database_Report" xml:space="preserve">
+    <value>データベースへ送信する</value>
+  </data>
   <data name="Dock_Complete" xml:space="preserve">
     <value>完了</value>
   </data>

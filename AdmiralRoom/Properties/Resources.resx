@@ -249,6 +249,9 @@
   <data name="Compass_Transport" xml:space="preserve">
     <value>Landing Point</value>
   </data>
+  <data name="Database_Report" xml:space="preserve">
+    <value>Reporting to database</value>
+  </data>
   <data name="Dock_Complete" xml:space="preserve">
     <value>Complete</value>
   </data>

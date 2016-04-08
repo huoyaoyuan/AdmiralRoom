@@ -246,6 +246,9 @@
   <data name="Compass_Transport" xml:space="preserve">
     <value>登陆地点</value>
   </data>
+  <data name="Database_Report" xml:space="preserve">
+    <value>发送至数据库</value>
+  </data>
   <data name="Dock_Complete" xml:space="preserve">
     <value>完成</value>
   </data>
