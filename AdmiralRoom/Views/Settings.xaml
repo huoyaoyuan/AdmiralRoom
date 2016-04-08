@@ -130,6 +130,16 @@
                         <Run Text="http://db.kcwiki.moe"/>
                     </controls:Hyperlink2>
                 </CheckBox>
+                <CheckBox Margin="2" IsChecked="{Binding ReportToKancolleDB}">
+                    <TextBlock>
+                        <controls:Hyperlink2 CommandLineString="http://kancolle-db.net">
+                            <Run Text="http://kancolle-db.net"/>
+                        </controls:Hyperlink2>
+                        <LineBreak/>
+                        <Run Text="Access Key:"/>
+                        <TextBox Width="225" Text="{Binding KancolleDBToken}" TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}"/>
+                    </TextBlock>
+                </CheckBox>
             </StackPanel>
         </GroupBox>
     </StackPanel>

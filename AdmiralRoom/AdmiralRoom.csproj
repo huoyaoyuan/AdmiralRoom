@@ -293,6 +293,7 @@
       <DependentUpon>StaticCounters.tt</DependentUpon>
     </Compile>
     <Compile Include="Officer\UseItem.cs" />
+    <Compile Include="Reporter\KancolleDBReporter.cs" />
     <Compile Include="Reporter\PoiDBReporter.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>

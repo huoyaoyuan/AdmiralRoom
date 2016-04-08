@@ -458,6 +458,38 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region ReportToKancolleDB
+        private bool _reporttokancolledb;
+        public bool ReportToKancolleDB
+        {
+            get { return _reporttokancolledb; }
+            set
+            {
+                if (_reporttokancolledb != value)
+                {
+                    _reporttokancolledb = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region KancolleDBToken
+        private string _kancolledbtoken;
+        public string KancolleDBToken
+        {
+            get { return _kancolledbtoken; }
+            set
+            {
+                if (_kancolledbtoken != value)
+                {
+                    _kancolledbtoken = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()

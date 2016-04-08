@@ -23,6 +23,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
             Officer.Staff.Proxy = Config.Current.Proxy;
+            Reporter.KancolleDBReporter.Initialize();
 
             Officer.Staff.Current.Quests.Load();
             Officer.Staff.Current.MasterData.Load();
