@@ -514,12 +514,12 @@ namespace Huoyaoyuan.AdmiralRoom
             else if (OSVersion.Minor >= 2)//Windows 8
             {
                 _nodwm = false;
-                _aero = true;
+                _aero = false;
             }
             else//Windows 7
             {
                 _nodwm = false;
-                _aero = false;
+                _aero = true;
             }
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
