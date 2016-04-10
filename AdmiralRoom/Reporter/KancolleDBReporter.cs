@@ -38,6 +38,7 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
             "api_req_combined_battle/battle_water",
             "api_req_combined_battle/sp_midnight"
         };
+        private static readonly Regex regextoken = new Regex("&api(_|%5F)token=[0-9a-f]+|api(_|%5F)token=[0-9a-f]+&?", RegexOptions.Compiled);
         private static async void ReportAsync(Session oSession)
         {
             if (!Config.Current.ReportToKancolleDB) return;
@@ -47,7 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
                     try
                     {
                         var request = HttpUtility.HtmlDecode(oSession.GetRequestBodyAsString());
-                        request = Regex.Replace(request, @"&api(_|%5F)token=[0-9a-f]+|api(_|%5F)token=[0-9a-f]+&?", "");
+                        request = regextoken.Replace(request, "");
                         var response = oSession.GetResponseBodyAsString().Replace("svdata=", "");
                         var wrq = WebRequest.CreateHttp("http://api.kancolle-db.net/2/");
                         wrq.Method = "POST";
