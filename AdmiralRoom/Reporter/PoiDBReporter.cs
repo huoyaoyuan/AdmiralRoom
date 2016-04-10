@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Reporter
@@ -10,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
     {
         private static readonly string SERVER_HOSTNAME = "poi.0u0.moe";
         private static readonly string UAString = "AdmiralRoom Reporter v1.0";
-        public static async Task ReportAsync(JObject @object, string apiname)
+        public static async void ReportAsync(JObject @object, string apiname)
         {
             if (!Config.Current.ReportToPoiDB) return;
             try
