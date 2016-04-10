@@ -44,29 +44,34 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
             foreach (var api in apinames)
                 if (oSession.PathAndQuery.Contains(api))
                 {
-                    var request = HttpUtility.HtmlDecode(oSession.GetRequestBodyAsString());
-                    request = Regex.Replace(request, @"&api(_|%5F)token=[0-9a-f]+|api(_|%5F)token=[0-9a-f]+&?", "");
-                    var response = oSession.GetResponseBodyAsString().Replace("svdata=", "");
-                    var wrq = WebRequest.CreateHttp("http://api.kancolle-db.net/2/");
-                    wrq.Method = "POST";
-                    wrq.ContentType = "application/x-www-form-urlencoded";
-                    var data = "token=" + HttpUtility.UrlEncode(Config.Current.KancolleDBToken)
-                        + "&agent=LZXNXVGPejgSnEXLH2ur"//伪装为KCV
-                        + "&url=" + HttpUtility.UrlEncode(oSession.fullUrl)
-                        + "&requestbody=" + HttpUtility.UrlEncode(request)
-                        + "&responsebody=" + HttpUtility.UrlEncode(response);
-                    wrq.ContentLength = Encoding.UTF8.GetByteCount(data);
-                    using (var sw = new StreamWriter(wrq.GetRequestStream()))
-                    {
-                        sw.Write(data);
-                        sw.Flush();
-                    }
                     try
                     {
-                        using (var wrs = await wrq.GetResponseAsync()) { }
+                        var request = HttpUtility.HtmlDecode(oSession.GetRequestBodyAsString());
+                        request = Regex.Replace(request, @"&api(_|%5F)token=[0-9a-f]+|api(_|%5F)token=[0-9a-f]+&?", "");
+                        var response = oSession.GetResponseBodyAsString().Replace("svdata=", "");
+                        var wrq = WebRequest.CreateHttp("http://api.kancolle-db.net/2/");
+                        wrq.Method = "POST";
+                        wrq.ContentType = "application/x-www-form-urlencoded";
+                        var data = "token=" + HttpUtility.UrlEncode(Config.Current.KancolleDBToken)
+                            + "&agent=LZXNXVGPejgSnEXLH2ur"//伪装为KCV
+                            + "&url=" + HttpUtility.UrlEncode(oSession.fullUrl)
+                            + "&requestbody=" + HttpUtility.UrlEncode(request)
+                            + "&responsebody=" + HttpUtility.UrlEncode(response);
+                        wrq.ContentLength = Encoding.UTF8.GetByteCount(data);
+                        using (var sw = new StreamWriter(await wrq.GetRequestStreamAsync()))
+                        {
+                            sw.Write(data);
+                            sw.Flush();
+                        }
+                        using (var wrs = wrq.GetResponse() as HttpWebResponse)
+                        {
+                            System.Diagnostics.Debug.WriteLine(wrs.StatusCode);
+                        }
                     }
-                    catch { }
-                    return;
+                    catch (WebException ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex);
+                    }
                 }
         }
     }
