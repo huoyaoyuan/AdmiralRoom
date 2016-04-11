@@ -306,12 +306,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             int mapid = req.GetInt("api_maparea_id") * 10 + req.GetInt("api_map_no");
             Staff.Current.MasterData.MapInfos[mapid].Difficulty = (EventMapDifficulty)req.GetInt("api_rank");
-            var obj = new JObject();
-            obj["teitokuLv"] = Staff.Current.Admiral.Level;
-            obj["teitokuId"] = Staff.Current.Admiral.MemberID;
-            obj["mapareaId"] = mapid;
-            obj["rank"] = req.GetInt("api_rank");
-            Reporter.PoiDBReporter.ReportAsync(obj, "select_rank");
+            Reporter.PoiDBReporter.ReportAsync(new JObject
+            {
+                ["teitokuLv"] = Staff.Current.Admiral.Level,
+                ["teitokuId"] = Staff.Current.Admiral.MemberID,
+                ["mapareaId"] = mapid,
+                ["rank"] = req.GetInt("api_rank")
+            }, "select_rank");
         }
 
         private void MissionHandler(mission_result api)

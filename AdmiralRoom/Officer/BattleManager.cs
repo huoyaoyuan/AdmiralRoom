@@ -207,28 +207,30 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     (Staff.Current.Admiral.CanDropShip ? 0 : -1),
                 DropItem = api.api_get_useitem?.api_useitem_id ?? 0
             });
-            var obj = new JObject();
-            obj["mapId"] = CurrentMap.Id;
-            obj["cellId"] = CurrentNode.Id;
-            obj["isBoss"] = CurrentNode.Type == MapNodeType.BOSS;
-            obj["shipId"] = api.api_get_ship?.api_ship_id ??
-                    (Staff.Current.Admiral.CanDropShip ? -1 : 0);
-            obj["enemy"] = api.api_enemy_info.api_deck_name;
-            obj["quest"] = api.api_quest_name;
-            obj["mapLv"] = (int)CurrentMap.Difficulty;
-            obj["rank"] = api.api_win_rank;
-            obj["teitokuLv"] = Staff.Current.Admiral.Level;
-            obj["enemyShips"] = new JArray(api.api_ship_id);
-            Reporter.PoiDBReporter.ReportAsync(obj, "drop_ship");
+            Reporter.PoiDBReporter.ReportAsync(new JObject
+            {
+                ["mapId"] = CurrentMap.Id,
+                ["cellId"] = CurrentNode.Id,
+                ["isBoss"] = CurrentNode.Type == MapNodeType.BOSS,
+                ["shipId"] = api.api_get_ship?.api_ship_id ??
+                    (Staff.Current.Admiral.CanDropShip ? -1 : 0),
+                ["enemy"] = api.api_enemy_info.api_deck_name,
+                ["quest"] = api.api_quest_name,
+                ["mapLv"] = (int)CurrentMap.Difficulty,
+                ["rank"] = api.api_win_rank,
+                ["teitokuLv"] = Staff.Current.Admiral.Level,
+                ["enemyShips"] = new JArray(api.api_ship_id)
+            }, "drop_ship");
             if (api.api_get_eventitem != null)
             {
-                obj = new JObject();
-                obj["teitokuId"] = Staff.Current.Admiral.MemberID;
-                obj["teitokuLv"] = Staff.Current.Admiral.Level;
-                obj["teitoku"] = Staff.Current.Admiral.Nickname;
-                obj["mapId"] = CurrentMap.Id;
-                obj["mapLv"] = (int)CurrentMap.Difficulty;
-                Reporter.PoiDBReporter.ReportAsync(obj, "pass_event");
+                Reporter.PoiDBReporter.ReportAsync(new JObject
+                {
+                    ["teitokuId"] = Staff.Current.Admiral.MemberID,
+                    ["teitokuLv"] = Staff.Current.Admiral.Level,
+                    ["teitoku"] = Staff.Current.Admiral.Nickname,
+                    ["mapId"] = CurrentMap.Id,
+                    ["mapLv"] = (int)CurrentMap.Difficulty
+                }, "pass_event");
             }
             foreach (var enemy in CurrentBattle.EnemyFleet)
                 if (enemy.ToHP <= 0)

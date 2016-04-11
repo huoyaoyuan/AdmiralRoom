@@ -148,21 +148,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     SecretaryLevel = Staff.Current.Homeport.Secretary.Level,
                     ShipId = dock.CreatedShip.Id
                 });
-                var obj = new JObject();
-                obj["items"] = new JArray
+                Reporter.PoiDBReporter.ReportAsync(new JObject
                 {
-                    dock.UseFuel,
-                    dock.UseBull,
-                    dock.UseSteel,
-                    dock.UseBauxite
-                };
-                obj["kdockId"] = lastcreatedock - 1;
-                obj["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id;
-                obj["teitokuLv"] = Staff.Current.Admiral.Level;
-                obj["largeFlag"] = dock.IsLSC;
-                obj["highspeed"] = dock.HighSpeed;
-                obj["shipId"] = dock.CreatedShip.Id;
-                Reporter.PoiDBReporter.ReportAsync(obj, "create_ship");
+                    ["items"] = new JArray
+                    {
+                        dock.UseFuel,
+                        dock.UseBull,
+                        dock.UseSteel,
+                        dock.UseBauxite
+                    },
+                    ["kdockId"] = lastcreatedock - 1,
+                    ["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id,
+                    ["teitokuLv"] = Staff.Current.Admiral.Level,
+                    ["largeFlag"] = dock.IsLSC,
+                    ["highspeed"] = dock.HighSpeed,
+                    ["shipId"] = dock.CreatedShip.Id
+                }, "create_ship");
             }
             lastcreatedock = -1;
         }
@@ -228,19 +229,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Item4 = req.GetInt("api_item4")
             });
             Logger.Loggers.MaterialLogger.ForceLog = true;
-            var obj = new JObject();
-            obj["items"] = new JArray
+            Reporter.PoiDBReporter.ReportAsync(new JObject
             {
-                req.GetInt("api_item1"),
-                req.GetInt("api_item2"),
-                req.GetInt("api_item3"),
-                req.GetInt("api_item4")
-            };
-            obj["teitokuLv"] = Staff.Current.Admiral.Level;
-            obj["itemId"] = dev.Equip.Id;
-            obj["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id;
-            obj["successful"] = dev.IsSuccess;
-            Reporter.PoiDBReporter.ReportAsync(obj, "create_item");
+                ["items"] = new JArray
+                {
+                    req.GetInt("api_item1"),
+                    req.GetInt("api_item2"),
+                    req.GetInt("api_item3"),
+                    req.GetInt("api_item4")
+                },
+                ["teitokuLv"] = Staff.Current.Admiral.Level,
+                ["itemId"] = dev.Equip.Id,
+                ["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id,
+                ["successful"] = dev.IsSuccess
+            }, "create_item");
         }
         private void KSpeedChangeHandler(NameValueCollection req)
         {
