@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public int Damage { get; set; }
             public int DamageGiven { get; set; }
             public EquipInfo[] Equipments { get; set; }
+            public EquipInfo DamageControl { get; set; }
             public bool IsMostDamage { get; set; }
             public bool IsEscaped { get; set; }
             public bool CanAerialTorpedo => Equipments.Any(x => x.EquipType.Id == 8);
@@ -30,6 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 FromHP = ship.HP.Current;
                 ToHP = ship.HP.Current;
                 Equipments = ship.Slots.Where(y => y.HasItem).Select(y => y.Item.EquipInfo).ToArray();
+                DamageControl = ship.DamageControl;
                 IsEscaped = ship.IsEscaped;
             }
             public void SetMvp() => IsMostDamage = true;

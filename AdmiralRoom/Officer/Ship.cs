@@ -33,6 +33,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         public Slot SlotEx { get; private set; }
+        public EquipInfo DamageControl => new[] { SlotEx }.Concat(Slots).FirstOrDefault(x => x.Item?.EquipInfo.EquipType.Id == 23)?.Item.EquipInfo;
         public Modernizable Firepower { get; private set; }
         public Modernizable Torpedo { get; private set; }
         public Modernizable AA { get; private set; }

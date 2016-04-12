@@ -162,7 +162,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (ship == null) return;
                 ship.ToHP -= (int)damage;
-                if (ship.ToHP <= 0) ship.ToHP = 0;
+                if (ship.ToHP <= 0)
+                    if (ship.DamageControl == null)
+                        ship.ToHP = 0;
+                    else if (ship.DamageControl.Id == 42)//応急修理要員
+                        ship.ToHP = (int)(ship.MaxHP * 0.2);
+                    else if (ship.DamageControl.Id == 43)//応急修理女神
+                        ship.ToHP = ship.MaxHP;
                 ship.Damage += (int)damage;
             }
             public static void SetGiveDamage(ShipInBattle ship, decimal damage)
