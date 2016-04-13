@@ -252,7 +252,7 @@
                                                FontSize="15"
                                                HorizontalAlignment="Center"
                                                Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
-                                    <TextBlock Grid.Column="1">
+                                    <TextBlock Grid.Column="1" OverridesDefaultStyle="True">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Style.Triggers>
