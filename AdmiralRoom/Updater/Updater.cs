@@ -12,6 +12,8 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         private Updater() { }
         public Updater Instance { get; } = new Updater();
         private Uri updateurl;
+        private string downloadfilename;
+        private bool downloadcompleted;
 
         #region NewVersion
         private Version _newversion;
@@ -45,6 +47,22 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         }
         #endregion
 
+        #region DownloadPercentage
+        private int _downloadpercentage;
+        public int DownloadPercentage
+        {
+            get { return _downloadpercentage; }
+            private set
+            {
+                if (_downloadpercentage != value)
+                {
+                    _downloadpercentage = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public async Task<bool> TryFindUpdateAsync()
         {
             try
@@ -60,6 +78,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                     return false;
                 }
                 updateurl = new Uri((string)obj["assets"][0]["browser_download_url"]);
+                downloadfilename = (string)obj["assets"][0]["name"];
                 ReleaseTime = (DateTimeOffset)obj["published_at"];
                 return true;
             }
@@ -67,6 +86,16 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             {
                 updateurl = null;
                 return false;
+            }
+        }
+
+        public async Task DownloadUpdateAsync()
+        {
+            using (var webclient = new WebClient())
+            {
+                webclient.DownloadProgressChanged += (s, e) => DownloadPercentage = e.ProgressPercentage;
+                await webclient.DownloadFileTaskAsync(updateurl, downloadfilename);
+                downloadcompleted = true;
             }
         }
     }
