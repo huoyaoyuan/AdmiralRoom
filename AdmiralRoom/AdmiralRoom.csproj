@@ -295,6 +295,7 @@
     <Compile Include="Officer\UseItem.cs" />
     <Compile Include="Reporter\KancolleDBReporter.cs" />
     <Compile Include="Reporter\PoiDBReporter.cs" />
+    <Compile Include="Updater\Updater.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -636,6 +637,7 @@
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.Common.dll" />
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
