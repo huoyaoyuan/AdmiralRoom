@@ -29,7 +29,24 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Damage"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Margin="4,0,4,0" ToolTip="{Binding}">
+                            <StackPanel Orientation="Vertical" Margin="4,0,4,0">
+                                <StackPanel.ToolTip>
+                                    <TextBlock>
+                                        <Run Text="{Binding Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run Text="{ex:Localizable Ship_Firepower}"/>
+                                        <Run Text="{Binding TotalFirepower, Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run Text="{ex:Localizable Ship_Torpedo}"/>
+                                        <Run Text="{Binding TotalTorpedo, Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run Text="{ex:Localizable Ship_AA}"/>
+                                        <Run Text="{Binding TotalAA, Mode=OneWay}"/>
+                                        <LineBreak/>
+                                        <Run Text="{ex:Localizable Ship_Armor}"/>
+                                        <Run Text="{Binding TotalArmor, Mode=OneWay}"/>
+                                    </TextBlock>
+                                </StackPanel.ToolTip>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="20" Text="{Binding ShipInfo.ClassName}"/>
                                     <TextBlock FontSize="20" Foreground="DarkGray" Text="後期型"

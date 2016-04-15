@@ -33,8 +33,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Equipments = ship.Slots.Where(y => y.HasItem).Select(y => y.Item.EquipInfo).ToArray();
                 DamageControl = ship.DamageControl;
                 IsEscaped = ship.IsEscaped;
+                Firepower = ship.Firepower.Current;
+                Torpedo = ship.Torpedo.Current;
+                AA = ship.AA.Current;
+                Armor = ship.Armor.Current;
             }
             public void SetMvp() => IsMostDamage = true;
+            public int Firepower { get; set; }
+            public int Torpedo { get; set; }
+            public int AA { get; set; }
+            public int Armor { get; set; }
+            public Param TotalFirepower => new Param { Raw = Firepower, Equip = Equipments.Sum(x => x.FirePower) };
+            public Param TotalTorpedo => new Param { Raw = Torpedo, Equip = Equipments.Sum(x => x.Torpedo) };
+            public Param TotalAA => new Param { Raw = AA, Equip = Equipments.Sum(x => x.AA) };
+            public Param TotalArmor => new Param { Raw = Armor, Equip = Equipments.Sum(x => x.Armor) };
+            public struct Param
+            {
+                public int Raw { get; set; }
+                public int Equip { get; set; }
+                public int Total => Raw + Equip;
+                public override string ToString() => $"{Total} ({Raw}+{Equip})";
+            }
         }
         public CombinedFleetType FleetType { get; set; }
         public ShipInBattle[] Fleet1 { get; set; }

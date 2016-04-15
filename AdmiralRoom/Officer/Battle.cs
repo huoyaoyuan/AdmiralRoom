@@ -97,9 +97,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
             bool iscombined = fleettype != CombinedFleetType.None;
 
-            EnemyFleet = api.api_ship_ke.Where(x => x != -1).Select(x => new ShipInBattle { ShipInfo = Staff.Current.MasterData.ShipInfo[x] }).ToArray();
-            EnemyFleet.ArrayZip(api.api_ship_lv, 1, (x, y) => x.Level = y);
-            EnemyFleet.ArrayZip(api.api_eSlot, 0, (x, y) => x.Equipments = y.Where(z => z != -1).Select(z => Staff.Current.MasterData.EquipInfo[z]).ToArray());
+            EnemyFleet = api.api_ship_ke.Where(x => x != -1)
+                .Select((x, i) => new ShipInBattle
+                {
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[x],
+                    Level = api.api_ship_lv[i + 1],
+                    Equipments = api.api_eSlot[i].Where(y => y != -1).Select(y => Staff.Current.MasterData.EquipInfo[y]).ToArray(),
+                    Firepower = api.api_eParam[i][0] + api.api_eKyouka[i][0],
+                    Torpedo = api.api_eParam[i][1] + api.api_eKyouka[i][1],
+                    AA = api.api_eParam[i][2] + api.api_eKyouka[i][2],
+                    Armor = api.api_eParam[i][3] + api.api_eKyouka[i][3]
+                })
+                .ToArray();
 
             Fleet1.ArrayZip(api.api_maxhps, 1, Delegates.SetMaxHP);
             Fleet2?.ArrayZip(api.api_maxhps_combined, 1, Delegates.SetMaxHP);
