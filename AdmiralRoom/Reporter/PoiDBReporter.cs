@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -30,7 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Reporter
                     System.Diagnostics.Debug.WriteLine(wrs.StatusCode);
                 }
             }
-            catch (WebException ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
