@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Updater
@@ -10,7 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
     class Updater : NotificationObject
     {
         private Updater() { }
-        public Updater Instance { get; } = new Updater();
+        public static Updater Instance { get; } = new Updater();
         private Uri updateurl;
         private string downloadfilename;
         private bool downloadcompleted;
@@ -97,6 +101,49 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                 await webclient.DownloadFileTaskAsync(updateurl, downloadfilename);
                 downloadcompleted = true;
             }
+        }
+
+        public void UpdateFile()
+        {
+            Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+            var rootfolder = new DirectoryInfo(".");
+            foreach (var file in rootfolder.GetFiles())
+                if (file.Extension != "xml")
+                    file.MoveTo(file.FullName + ".old");
+            foreach (var folder in rootfolder.GetDirectories())
+            {
+                if (folder.Name.ToLowerInvariant() == "logs") continue;
+                if (folder.Name.ToLowerInvariant() == "information") continue;
+                if (folder.Name.ToLowerInvariant() == "modules") continue;
+                foreach (var file in folder.GetFiles())
+                    if (file.Name != downloadfilename)
+                        file.MoveTo(file.FullName + ".old");
+            }
+            using (var zip = ZipFile.OpenRead(downloadfilename))
+                foreach (var entry in zip.Entries)
+                {
+                    string name = entry.FullName;
+                    name = name.Substring(name.IndexOf(Path.DirectorySeparatorChar) + 1);
+                    using (var entrystream = entry.Open())
+                    {
+                        FileStream filestream = null;
+                        try
+                        {
+                            filestream = File.OpenWrite(name);
+                        }
+                        catch
+                        {
+                            File.Move(name, name + ".old");
+                            filestream = File.OpenWrite(name);
+                        }
+                        entrystream.CopyTo(filestream);
+                        filestream.Flush();
+                        filestream.Dispose();
+                    }
+                }
+            File.Delete(downloadfilename);
+            Application.Current.Exit += (_, __) => Process.Start(Process.GetCurrentProcess().MainModule.FileName);
+            Application.Current.Shutdown();
         }
     }
 }
