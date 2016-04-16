@@ -105,40 +105,44 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             }
         }
 
-        public void UpdateFile()
-        {
-            Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-            var rootfolder = new DirectoryInfo(".");
-            foreach (var file in rootfolder.GetFiles())
-                if (file.Extension != "xml" && file.Name != downloadfilename)
-                    file.MoveTo(file.FullName + ".old");
-            foreach (var folder in rootfolder.GetDirectories())
-                if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
-                    foreach (var file in folder.GetFiles())
+        public Task UpdateFileAsync() => Task.Factory.StartNew(() =>
+            {
+                Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+                var rootfolder = new DirectoryInfo(".");
+                foreach (var file in rootfolder.GetFiles())
+                    if (file.Extension != "xml" && file.Name != downloadfilename)
                         file.MoveTo(file.FullName + ".old");
-            using (var zip = ZipFile.OpenRead(downloadfilename))
-                foreach (var entry in zip.Entries)
-                {
-                    string name = entry.FullName;
-                    name = name.Substring(name.IndexOf(Path.DirectorySeparatorChar) + 1);
-                    using (var entrystream = entry.Open())
+                foreach (var folder in rootfolder.GetDirectories())
+                    if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
+                        foreach (var file in folder.GetFiles())
+                            file.MoveTo(file.FullName + ".old");
+                using (var zip = ZipFile.OpenRead(downloadfilename))
+                    foreach (var entry in zip.Entries)
                     {
-                        FileStream filestream = null;
-                        try
+                        string name = entry.FullName;
+                        name = name.Substring(name.IndexOf(Path.DirectorySeparatorChar) + 1);
+                        using (var entrystream = entry.Open())
                         {
-                            filestream = File.OpenWrite(name);
+                            FileStream filestream = null;
+                            try
+                            {
+                                filestream = File.OpenWrite(name);
+                            }
+                            catch
+                            {
+                                File.Move(name, name + ".old");
+                                filestream = File.OpenWrite(name);
+                            }
+                            entrystream.CopyTo(filestream);
+                            filestream.Flush();
+                            filestream.Dispose();
                         }
-                        catch
-                        {
-                            File.Move(name, name + ".old");
-                            filestream = File.OpenWrite(name);
-                        }
-                        entrystream.CopyTo(filestream);
-                        filestream.Flush();
-                        filestream.Dispose();
                     }
-                }
-            File.Delete(downloadfilename);
+                File.Delete(downloadfilename);
+            });
+
+        public void Restart()
+        {
             Application.Current.Exit += (_, __) => Process.Start(Process.GetCurrentProcess().MainModule.FileName);
             Application.Current.Shutdown();
         }
