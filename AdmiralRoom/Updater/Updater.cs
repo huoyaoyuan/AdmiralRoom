@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
     {
         private Updater() { }
         public static Updater Instance { get; } = new Updater();
+        public static readonly string[] ProtectedFolders = { "logs", "information", "modules" };
         private Uri updateurl;
         private string downloadfilename;
         private bool downloadcompleted;
@@ -108,17 +110,12 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles())
-                if (file.Extension != "xml")
+                if (file.Extension != "xml" && file.Name != downloadfilename)
                     file.MoveTo(file.FullName + ".old");
             foreach (var folder in rootfolder.GetDirectories())
-            {
-                if (folder.Name.ToLowerInvariant() == "logs") continue;
-                if (folder.Name.ToLowerInvariant() == "information") continue;
-                if (folder.Name.ToLowerInvariant() == "modules") continue;
-                foreach (var file in folder.GetFiles())
-                    if (file.Name != downloadfilename)
+                if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
+                    foreach (var file in folder.GetFiles())
                         file.MoveTo(file.FullName + ".old");
-            }
             using (var zip = ZipFile.OpenRead(downloadfilename))
                 foreach (var entry in zip.Entries)
                 {

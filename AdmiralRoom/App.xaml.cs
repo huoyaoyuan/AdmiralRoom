@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
@@ -41,9 +42,7 @@ namespace Huoyaoyuan.AdmiralRoom
             foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
                 file.Delete();
             foreach (var folder in rootfolder.GetDirectories())
-                if (folder.Name.ToLowerInvariant() != "logs" &&
-                    folder.Name.ToLowerInvariant() != "information" &&
-                    folder.Name.ToLowerInvariant() != "modules")
+                if (!Updater.Updater.ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
                     try
                     {
                         folder.Delete();
