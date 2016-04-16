@@ -94,7 +94,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 }
                 if (player.api_member_id == Staff.Current.Admiral.MemberID)
                 {
-                    if (MyLastPoint != player.api_rate)
+                    if (MyLastPoint != player.api_rate || MyRank != player.api_no)
                     {
                         MyRank = player.api_no;
                         MyLastPoint = player.api_rate;
