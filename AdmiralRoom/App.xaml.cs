@@ -36,6 +36,19 @@ namespace Huoyaoyuan.AdmiralRoom
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
+
+            var rootfolder = new DirectoryInfo(".");
+            foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
+                file.Delete();
+            foreach (var folder in rootfolder.GetDirectories())
+                if (folder.Name.ToLowerInvariant() != "logs" &&
+                    folder.Name.ToLowerInvariant() != "information" &&
+                    folder.Name.ToLowerInvariant() != "modules")
+                    try
+                    {
+                        folder.Delete();
+                    }
+                    catch { }
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
