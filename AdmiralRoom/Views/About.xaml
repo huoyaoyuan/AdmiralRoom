@@ -58,8 +58,21 @@
                     <Button Content="立即重启" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
                 </Grid>
                 <LineBreak/>
+                <Grid Margin="0,5,0,5">
+                    <TextBlock Text="未发现更新。" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Check}"/>
+                    <TextBlock Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}">
+                        <Run Text="已发现更新："/>
+                        <Run Text="{Binding NewVersion, Mode=OneWay}"/>
+                        <Run Text="发布时间："/>
+                        <Run Text="{Binding ReleaseTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Local, StringFormat={}{0:yyyy/MM/dd HH:mm}, Mode=OneWay}"/>
+                    </TextBlock>
+                    <TextBlock Text="正在下载更新" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                    <TextBlock Text="更新已完成下载" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                    <TextBlock Text="正在等待重启" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                </Grid>
+                <LineBreak/>
                 <ProgressBar x:Name="updateprogress"
-                             Height="20" Width="400" Margin="0,5,0,0"
+                             Height="20" Width="400"
                              Minimum="0" Maximum="100"
                              Value="{Binding DownloadPercentage, Mode=OneWay}"
                              Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
