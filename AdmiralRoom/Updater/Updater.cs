@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
 {
     class Updater : NotificationObject
     {
+        public static string VersionString => Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public DelegateCommand CheckCommand { get; }
         public DelegateCommand DownloadCommand { get; }
         public DelegateCommand CancelDownloadCommand { get; }
@@ -120,10 +121,13 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         {
             try
             {
-                string api;
-                using (var webclient = new WebClient())
-                    api = await webclient.DownloadStringTaskAsync("https://api.github.com/repos/huoyaoyuan/AdmiralRoom/releases/latest");
-                var obj = JObject.Parse(api);
+                JObject obj;
+                var wrq = WebRequest.CreateHttp("https://api.github.com/repos/huoyaoyuan/AdmiralRoom/releases/latest");
+                wrq.Method = "GET";
+                wrq.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586";
+                using (var wrs = await wrq.GetResponseAsync())
+                using (var reader = new StreamReader(wrs.GetResponseStream()))
+                    obj = JObject.Parse(reader.ReadToEnd());
                 NewVersion = new Version(Regex.Match((string)obj["name"], @"\d+(\.\d+)+").Value);
                 if (NewVersion <= Assembly.GetExecutingAssembly().GetName().Version)
                 {
@@ -147,6 +151,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             try
             {
                 downloadwebclient = new WebClient();
+                DownloadPercentage = 0;
                 downloadwebclient.DownloadProgressChanged += (s, e) => DownloadPercentage = e.ProgressPercentage;
                 await downloadwebclient.DownloadFileTaskAsync(updateurl, downloadfilename);
                 return true;

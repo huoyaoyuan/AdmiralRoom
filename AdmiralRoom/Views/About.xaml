@@ -11,7 +11,7 @@
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
             <Paragraph FontSize="24">
                 <Run Text="AdmiralRoom ver"/>
-                <Run Text="{x:Static local:About.Version}"/>
+                <Run Text="{x:Static updater:Updater.VersionString}"/>
             </Paragraph>
             <Paragraph>
                 <Run FontSize="28" Text="欢迎使用！"/>
@@ -51,15 +51,17 @@
             </Paragraph>
             <Paragraph DataContext="{x:Static updater:Updater.Instance}">
                 <Button Content="检查更新" Command="{Binding CheckCommand}"/>
-                <Button Content="下载更新" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
-                <Button Content="取消下载" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
-                <Button Content="展开更新" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
-                <Button Content="立即重启" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                <Grid>
+                    <Button Content="下载更新" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
+                    <Button Content="取消下载" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                    <Button Content="展开更新" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                    <Button Content="立即重启" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                </Grid>
                 <LineBreak/>
                 <ProgressBar x:Name="updateprogress"
                              Height="20" Width="400" Margin="0,5,0,0"
                              Minimum="0" Maximum="100"
-                             Value="{Binding DownloadPercentage}"
+                             Value="{Binding DownloadPercentage, Mode=OneWay}"
                              Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
             </Paragraph>
         </FlowDocument>
