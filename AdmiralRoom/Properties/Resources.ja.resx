@@ -905,7 +905,13 @@
     <value>直近6時間</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>アップデート</value>
+    <value>更新</value>
+  </data>
+  <data name="Update_AutoCheck" xml:space="preserve">
+    <value>更新を自動確認します</value>
+  </data>
+  <data name="Update_AutoDownload" xml:space="preserve">
+    <value>更新を自動ダウンロードします</value>
   </data>
   <data name="Update_Command_CancelDownload" xml:space="preserve">
     <value>ダウンロードをキャンセルする</value>

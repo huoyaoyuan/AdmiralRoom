@@ -922,6 +922,12 @@
   <data name="Update" xml:space="preserve">
     <value>更新</value>
   </data>
+  <data name="Update_AutoCheck" xml:space="preserve">
+    <value>自动检查更新</value>
+  </data>
+  <data name="Update_AutoDownload" xml:space="preserve">
+    <value>自动下载更新</value>
+  </data>
   <data name="Update_Command_CancelDownload" xml:space="preserve">
     <value>取消下载</value>
   </data>

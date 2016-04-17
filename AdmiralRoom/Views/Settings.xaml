@@ -142,5 +142,11 @@
                 </CheckBox>
             </StackPanel>
         </GroupBox>
+        <GroupBox Header="{ex:Localizable Update}" Margin="5" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical">
+                <CheckBox Margin="2" Content="{ex:Localizable Update_AutoCheck}" IsChecked="{Binding AutoCheckUpdate}"/>
+                <CheckBox Margin="2" Content="{ex:Localizable Update_AutoDownload}" IsChecked="{Binding AutoDownloadUpdate}" IsEnabled="{Binding AutoCheckUpdate}"/>
+            </StackPanel>
+        </GroupBox>
     </StackPanel>
 </UserControl>

@@ -2483,6 +2483,24 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Auto check for update 的本地化字符串。
+        /// </summary>
+        public static string Update_AutoCheck {
+            get {
+                return ResourceManager.GetString("Update_AutoCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Auto download update 的本地化字符串。
+        /// </summary>
+        public static string Update_AutoDownload {
+            get {
+                return ResourceManager.GetString("Update_AutoDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Cancel download 的本地化字符串。
         /// </summary>
         public static string Update_Command_CancelDownload {
