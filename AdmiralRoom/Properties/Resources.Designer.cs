@@ -2483,6 +2483,105 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Cancel download 的本地化字符串。
+        /// </summary>
+        public static string Update_Command_CancelDownload {
+            get {
+                return ResourceManager.GetString("Update_Command_CancelDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check for update 的本地化字符串。
+        /// </summary>
+        public static string Update_Command_Check {
+            get {
+                return ResourceManager.GetString("Update_Command_Check", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Download update 的本地化字符串。
+        /// </summary>
+        public static string Update_Command_Download {
+            get {
+                return ResourceManager.GetString("Update_Command_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Restart now 的本地化字符串。
+        /// </summary>
+        public static string Update_Command_Restart {
+            get {
+                return ResourceManager.GetString("Update_Command_Restart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Apply update 的本地化字符串。
+        /// </summary>
+        public static string Update_Command_UpdateFile {
+            get {
+                return ResourceManager.GetString("Update_Command_UpdateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Downloading update 的本地化字符串。
+        /// </summary>
+        public static string Update_Text_CancelDownload {
+            get {
+                return ResourceManager.GetString("Update_Text_CancelDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No update. 的本地化字符串。
+        /// </summary>
+        public static string Update_Text_Check {
+            get {
+                return ResourceManager.GetString("Update_Text_Check", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Update found: 的本地化字符串。
+        /// </summary>
+        public static string Update_Text_Download {
+            get {
+                return ResourceManager.GetString("Update_Text_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Release time: 的本地化字符串。
+        /// </summary>
+        public static string Update_Text_ReleaseTime {
+            get {
+                return ResourceManager.GetString("Update_Text_ReleaseTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Waiting for restart. 的本地化字符串。
+        /// </summary>
+        public static string Update_Text_Restart {
+            get {
+                return ResourceManager.GetString("Update_Text_Restart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Update downloaded. 的本地化字符串。
+        /// </summary>
+        public static string Update_Text_UpdateFile {
+            get {
+                return ResourceManager.GetString("Update_Text_UpdateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Admiral 的本地化字符串。
         /// </summary>
         public static string ViewTitle_AdmiralView {

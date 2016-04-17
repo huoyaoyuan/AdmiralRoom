@@ -922,6 +922,39 @@
   <data name="Update" xml:space="preserve">
     <value>更新</value>
   </data>
+  <data name="Update_Command_CancelDownload" xml:space="preserve">
+    <value>取消下载</value>
+  </data>
+  <data name="Update_Command_Check" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="Update_Command_Download" xml:space="preserve">
+    <value>下载更新</value>
+  </data>
+  <data name="Update_Command_Restart" xml:space="preserve">
+    <value>立即重启</value>
+  </data>
+  <data name="Update_Command_UpdateFile" xml:space="preserve">
+    <value>展开更新</value>
+  </data>
+  <data name="Update_Text_CancelDownload" xml:space="preserve">
+    <value>正在下载更新</value>
+  </data>
+  <data name="Update_Text_Check" xml:space="preserve">
+    <value>未发现更新。</value>
+  </data>
+  <data name="Update_Text_Download" xml:space="preserve">
+    <value>已发现更新：</value>
+  </data>
+  <data name="Update_Text_ReleaseTime" xml:space="preserve">
+    <value>发布时间：</value>
+  </data>
+  <data name="Update_Text_Restart" xml:space="preserve">
+    <value>正在等待重启。</value>
+  </data>
+  <data name="Update_Text_UpdateFile" xml:space="preserve">
+    <value>更新已完成下载。</value>
+  </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>
   </data>

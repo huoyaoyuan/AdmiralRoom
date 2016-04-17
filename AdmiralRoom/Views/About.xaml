@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:updater="clr-namespace:Huoyaoyuan.AdmiralRoom.Updater"
+             xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d">
     <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
@@ -50,25 +51,25 @@
                 </controls:Hyperlink2>
             </Paragraph>
             <Paragraph DataContext="{x:Static updater:Updater.Instance}">
-                <Button Content="检查更新" Command="{Binding CheckCommand}"/>
+                <Button Content="{ex:Localizable Update_Command_Check}" Command="{Binding CheckCommand}"/>
                 <Grid>
-                    <Button Content="下载更新" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
-                    <Button Content="取消下载" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
-                    <Button Content="展开更新" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
-                    <Button Content="立即重启" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                    <Button Content="{ex:Localizable Update_Command_Download}" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
+                    <Button Content="{ex:Localizable Update_Command_CancelDownload}" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                    <Button Content="{ex:Localizable Update_Command_UpdateFile}" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                    <Button Content="{ex:Localizable Update_Command_Restart}" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
                 </Grid>
                 <LineBreak/>
                 <Grid Margin="0,5,0,5">
-                    <TextBlock Text="未发现更新。" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Check}"/>
+                    <TextBlock Text="{ex:Localizable Update_Text_Check}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Check}"/>
                     <TextBlock Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}">
-                        <Run Text="已发现更新："/>
+                        <Run Text="{ex:Localizable Update_Text_Download}"/>
                         <Run Text="{Binding NewVersion, Mode=OneWay}"/>
-                        <Run Text="发布时间："/>
+                        <Run Text="{ex:Localizable Update_Text_ReleaseTime}"/>
                         <Run Text="{Binding ReleaseTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Local, StringFormat={}{0:yyyy/MM/dd HH:mm}, Mode=OneWay}"/>
                     </TextBlock>
-                    <TextBlock Text="正在下载更新" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
-                    <TextBlock Text="更新已完成下载" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
-                    <TextBlock Text="正在等待重启" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                    <TextBlock Text="{ex:Localizable Update_Text_CancelDownload}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                    <TextBlock Text="{ex:Localizable Update_Text_UpdateFile}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                    <TextBlock Text="{ex:Localizable Update_Text_Restart}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
                 </Grid>
                 <LineBreak/>
                 <ProgressBar x:Name="updateprogress"
