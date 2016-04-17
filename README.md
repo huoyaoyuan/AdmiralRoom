@@ -32,6 +32,7 @@ Each part is in seperated window and can be docked freely.
     * Battle/compass predicating
 * Theme switching
 * Plug-in support
+* Auto update
 
 ##System requirements
 ---
