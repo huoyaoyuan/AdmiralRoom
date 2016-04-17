@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns:updater="clr-namespace:Huoyaoyuan.AdmiralRoom.Updater"
              mc:Ignorable="d">
     <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
@@ -38,9 +39,6 @@
                 <Run Text="游戏表现异常、在特定位置连续通信错误时，请清理Internet缓存。另请确认在通常的IE与Flash下游戏是否能正常进行。"/>
             </Paragraph>
             <Paragraph>
-                <Run Text="本工具不定期更新，烦请手动检查更新。"/>
-                <LineBreak/>
-                <LineBreak/>
                 <Run Text="Source code:"/>
                 <controls:Hyperlink2 CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom">
                     <Run Text="https://github.com/huoyaoyuan/AdmiralRoom"/>
@@ -50,6 +48,19 @@
                 <controls:Hyperlink2 CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom/releases">
                     <Run Text="https://github.com/huoyaoyuan/AdmiralRoom/releases"/>
                 </controls:Hyperlink2>
+            </Paragraph>
+            <Paragraph DataContext="{x:Static updater:Updater.Instance}">
+                <Button Content="检查更新" Command="{Binding CheckCommand}"/>
+                <Button Content="下载更新" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
+                <Button Content="取消下载" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                <Button Content="展开更新" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                <Button Content="立即重启" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                <LineBreak/>
+                <ProgressBar x:Name="updateprogress"
+                             Height="20" Width="400" Margin="0,5,0,0"
+                             Minimum="0" Maximum="100"
+                             Value="{Binding DownloadPercentage}"
+                             Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
             </Paragraph>
         </FlowDocument>
     </FlowDocumentScrollViewer>
