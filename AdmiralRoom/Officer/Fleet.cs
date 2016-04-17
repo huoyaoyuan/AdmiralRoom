@@ -245,7 +245,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             foreach (var ship in Ships)
             {
                 LowCondition |= ship.Condition < 40;
-                HeavilyDamaged |= !ship.IsEscaped && ship != Ships.FirstOrDefault() && ship.HP.Current * 4 <= ship.HP.Max;
+                HeavilyDamaged |= !ship.IsEscaped && ship.DamageControl == null && ship != Ships.FirstOrDefault() && ship.HP.Current * 4 <= ship.HP.Max;
                 NeedCharge |= !(ship.Fuel.IsMax && ship.Bull.IsMax);
                 Repairing |= ship.IsRepairing;
             }
