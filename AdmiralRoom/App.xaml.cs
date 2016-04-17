@@ -48,6 +48,7 @@ namespace Huoyaoyuan.AdmiralRoom
                         folder.Delete();
                     }
                     catch { }
+            Updater.Updater.Instance.Timer.Start();
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

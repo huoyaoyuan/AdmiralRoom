@@ -15,7 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public event EventHandler CanExecuteChanged;
         bool ICommand.CanExecute(object parameter) => CanExecute;
-        void ICommand.Execute(object parameter) => action();
+        public void Execute(object parameter) => action();
 
         #region CanExecute
         private bool _canexecute;

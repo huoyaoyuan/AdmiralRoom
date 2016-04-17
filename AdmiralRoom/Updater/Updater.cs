@@ -7,8 +7,11 @@ using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using Newtonsoft.Json.Linq;
+
+#pragma warning disable CC0022
 
 namespace Huoyaoyuan.AdmiralRoom.Updater
 {
@@ -21,18 +24,32 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         public DelegateCommand UpdateFileCommand { get; }
         public DelegateCommand RestartCommand { get; }
         private WebClient downloadwebclient;
+        private bool isautoupdate;
         private Updater()
         {
             CheckCommand = new DelegateCommand(async () =>
             {
                 CheckCommand.CanExecute = false;
-                Status = await TryFindUpdateAsync() ? UpdaterStatus.Download : UpdaterStatus.Check;
+                bool result = await TryFindUpdateAsync();
+                Status = result ? UpdaterStatus.Download : UpdaterStatus.Check;
+                if (result && isautoupdate)
+                {
+                    DispatcherHelper.UIDispatcher.Invoke(() =>
+                        MessageBox.Show($"{Properties.Resources.Update_Text_Download}{NewVersion}",
+                            Properties.Resources.Update));
+                    if (Config.Current.AutoDownloadUpdate) DownloadCommand.Execute(null);
+                    else isautoupdate = false;
+                }
+                else isautoupdate = false;
                 CheckCommand.CanExecute = true;
             });
             DownloadCommand = new DelegateCommand(async () =>
             {
                 Status = UpdaterStatus.CancelDownload;
-                Status = await DownloadUpdateAsync() ? UpdaterStatus.UpdateFile : UpdaterStatus.Download;
+                bool result = await DownloadUpdateAsync();
+                Status = result ? UpdaterStatus.UpdateFile : UpdaterStatus.Download;
+                if (result && isautoupdate) UpdateFileCommand.Execute(null);
+                else isautoupdate = false;
             });
             CancelDownloadCommand = new DelegateCommand(() =>
             {
@@ -45,9 +62,21 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                 await UpdateFileAsync();
                 UpdateFileCommand.CanExecute = true;
                 Status = UpdaterStatus.Restart;
+                isautoupdate = false;
             });
             RestartCommand = new DelegateCommand(Restart);
+            Timer.Elapsed += (_, __) =>
+            {
+                if (Status == UpdaterStatus.Check && Config.Current.AutoCheckUpdate)
+                {
+                    isautoupdate = true;
+                    DispatcherHelper.UIDispatcher.Invoke(() => CheckCommand.Execute(null));
+                }
+            };
+            isautoupdate = true;
+            CheckCommand.Execute(null);
         }
+        public Timer Timer { get; } = new Timer(3600 * 12 * 1000);
         public static Updater Instance { get; } = new Updater();
         public static readonly string[] ProtectedFolders = { "logs", "information", "modules" };
         private Uri updateurl;
@@ -165,40 +194,40 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         }
 
         public Task UpdateFileAsync() => Task.Factory.StartNew(() =>
-            {
-                Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-                var rootfolder = new DirectoryInfo(".");
-                foreach (var file in rootfolder.GetFiles())
-                    if (file.Extension != "xml" && file.Name != downloadfilename)
+        {
+            Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+            var rootfolder = new DirectoryInfo(".");
+            foreach (var file in rootfolder.GetFiles())
+                if (file.Extension != "xml" && file.Name != downloadfilename)
+                    file.MoveTo(file.FullName + ".old");
+            foreach (var folder in rootfolder.GetDirectories())
+                if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
+                    foreach (var file in folder.GetFiles())
                         file.MoveTo(file.FullName + ".old");
-                foreach (var folder in rootfolder.GetDirectories())
-                    if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
-                        foreach (var file in folder.GetFiles())
-                            file.MoveTo(file.FullName + ".old");
-                using (var zip = ZipFile.OpenRead(downloadfilename))
-                    foreach (var entry in zip.Entries)
+            using (var zip = ZipFile.OpenRead(downloadfilename))
+                foreach (var entry in zip.Entries)
+                {
+                    string name = entry.FullName;
+                    name = name.Substring(name.IndexOf(Path.DirectorySeparatorChar) + 1);
+                    using (var entrystream = entry.Open())
                     {
-                        string name = entry.FullName;
-                        name = name.Substring(name.IndexOf(Path.DirectorySeparatorChar) + 1);
-                        using (var entrystream = entry.Open())
+                        FileStream filestream = null;
+                        try
                         {
-                            FileStream filestream = null;
-                            try
-                            {
-                                filestream = File.OpenWrite(name);
-                            }
-                            catch
-                            {
-                                File.Move(name, name + ".old");
-                                filestream = File.OpenWrite(name);
-                            }
-                            entrystream.CopyTo(filestream);
-                            filestream.Flush();
-                            filestream.Dispose();
+                            filestream = File.OpenWrite(name);
                         }
+                        catch
+                        {
+                            File.Move(name, name + ".old");
+                            filestream = File.OpenWrite(name);
+                        }
+                        entrystream.CopyTo(filestream);
+                        filestream.Flush();
+                        filestream.Dispose();
                     }
-                File.Delete(downloadfilename);
-            });
+                }
+            File.Delete(downloadfilename);
+        });
 
         public void Restart()
         {
