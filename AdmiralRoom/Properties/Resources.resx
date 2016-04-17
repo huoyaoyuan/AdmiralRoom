@@ -925,6 +925,45 @@ Expedition {1} - {2}</value>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="Update_AutoCheck" xml:space="preserve">
+    <value>Auto check for update</value>
+  </data>
+  <data name="Update_AutoDownload" xml:space="preserve">
+    <value>Auto download update</value>
+  </data>
+  <data name="Update_Command_CancelDownload" xml:space="preserve">
+    <value>Cancel download</value>
+  </data>
+  <data name="Update_Command_Check" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="Update_Command_Download" xml:space="preserve">
+    <value>Download update</value>
+  </data>
+  <data name="Update_Command_Restart" xml:space="preserve">
+    <value>Restart now</value>
+  </data>
+  <data name="Update_Command_UpdateFile" xml:space="preserve">
+    <value>Apply update</value>
+  </data>
+  <data name="Update_Text_CancelDownload" xml:space="preserve">
+    <value>Downloading update</value>
+  </data>
+  <data name="Update_Text_Check" xml:space="preserve">
+    <value>No update.</value>
+  </data>
+  <data name="Update_Text_Download" xml:space="preserve">
+    <value>Update found:</value>
+  </data>
+  <data name="Update_Text_ReleaseTime" xml:space="preserve">
+    <value>Release time:</value>
+  </data>
+  <data name="Update_Text_Restart" xml:space="preserve">
+    <value>Waiting for restart.</value>
+  </data>
+  <data name="Update_Text_UpdateFile" xml:space="preserve">
+    <value>Update downloaded.</value>
+  </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>Admiral</value>
   </data>

@@ -11,6 +11,5 @@ namespace Huoyaoyuan.AdmiralRoom.Views
         {
             InitializeComponent();
         }
-        public static string Version => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
     }
 }

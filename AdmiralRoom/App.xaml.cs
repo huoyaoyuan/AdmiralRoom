@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
@@ -36,6 +37,18 @@ namespace Huoyaoyuan.AdmiralRoom
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
+
+            var rootfolder = new DirectoryInfo(".");
+            foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
+                file.Delete();
+            foreach (var folder in rootfolder.GetDirectories())
+                if (!Updater.Updater.ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
+                    try
+                    {
+                        folder.Delete();
+                    }
+                    catch { }
+            Updater.Updater.Instance.Timer.Start();
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

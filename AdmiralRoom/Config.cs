@@ -490,6 +490,38 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region AutoCheckUpdate
+        private bool _autocheckupdate;
+        public bool AutoCheckUpdate
+        {
+            get { return _autocheckupdate; }
+            set
+            {
+                if (_autocheckupdate != value)
+                {
+                    _autocheckupdate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region AutoDownloadUpdate
+        private bool _autodownloadupdate;
+        public bool AutoDownloadUpdate
+        {
+            get { return _autodownloadupdate; }
+            set
+            {
+                if (_autodownloadupdate != value)
+                {
+                    _autodownloadupdate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()
@@ -532,6 +564,8 @@ namespace Huoyaoyuan.AdmiralRoom
             FontFamilyName = "DengXian";
             _fontsize = 15;
             _loscalctype = LosCalcType.Formula14Q4;
+            _autocheckupdate = true;
+            _autodownloadupdate = false;
         }
         public static Config Load(string path = "config.xml")
         {

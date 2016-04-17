@@ -104,6 +104,8 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
@@ -295,6 +297,7 @@
     <Compile Include="Officer\UseItem.cs" />
     <Compile Include="Reporter\KancolleDBReporter.cs" />
     <Compile Include="Reporter\PoiDBReporter.cs" />
+    <Compile Include="Updater\Updater.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -312,6 +315,7 @@
     </Compile>
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
+    <Compile Include="Views\Converter\EnumVisibilityConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
     <Compile Include="Views\Converter\RadioButtonConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
@@ -636,6 +640,7 @@
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.Common.dll" />
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

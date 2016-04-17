@@ -905,7 +905,46 @@
     <value>直近6時間</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>アップデート</value>
+    <value>更新</value>
+  </data>
+  <data name="Update_AutoCheck" xml:space="preserve">
+    <value>更新を自動確認します</value>
+  </data>
+  <data name="Update_AutoDownload" xml:space="preserve">
+    <value>更新を自動ダウンロードします</value>
+  </data>
+  <data name="Update_Command_CancelDownload" xml:space="preserve">
+    <value>ダウンロードをキャンセルする</value>
+  </data>
+  <data name="Update_Command_Check" xml:space="preserve">
+    <value>更新を確認する</value>
+  </data>
+  <data name="Update_Command_Download" xml:space="preserve">
+    <value>更新をダウンロードする</value>
+  </data>
+  <data name="Update_Command_Restart" xml:space="preserve">
+    <value>今すぐ再起動する</value>
+  </data>
+  <data name="Update_Command_UpdateFile" xml:space="preserve">
+    <value>更新します</value>
+  </data>
+  <data name="Update_Text_CancelDownload" xml:space="preserve">
+    <value>更新ダウンロード中</value>
+  </data>
+  <data name="Update_Text_Check" xml:space="preserve">
+    <value>更新はありません。</value>
+  </data>
+  <data name="Update_Text_Download" xml:space="preserve">
+    <value>新しいバージョン：</value>
+  </data>
+  <data name="Update_Text_ReleaseTime" xml:space="preserve">
+    <value>リリース日付：</value>
+  </data>
+  <data name="Update_Text_Restart" xml:space="preserve">
+    <value>再起動が必要です。</value>
+  </data>
+  <data name="Update_Text_UpdateFile" xml:space="preserve">
+    <value>更新ダウンロード完了。</value>
   </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>
