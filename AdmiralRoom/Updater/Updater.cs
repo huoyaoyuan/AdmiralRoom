@@ -14,12 +14,43 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
 {
     class Updater : NotificationObject
     {
-        private Updater() { }
+        public DelegateCommand CheckCommand { get; }
+        public DelegateCommand DownloadCommand { get; }
+        public DelegateCommand CancelDownloadCommand { get; }
+        public DelegateCommand UpdateFileCommand { get; }
+        public DelegateCommand RestartCommand { get; }
+        private WebClient downloadwebclient;
+        private Updater()
+        {
+            CheckCommand = new DelegateCommand(async () =>
+            {
+                CheckCommand.CanExecute = false;
+                Status = await TryFindUpdateAsync() ? UpdaterStatus.Download : UpdaterStatus.Check;
+                CheckCommand.CanExecute = true;
+            });
+            DownloadCommand = new DelegateCommand(async () =>
+            {
+                Status = UpdaterStatus.CancelDownload;
+                Status = await DownloadUpdateAsync() ? UpdaterStatus.UpdateFile : UpdaterStatus.Download;
+            });
+            CancelDownloadCommand = new DelegateCommand(() =>
+            {
+                downloadwebclient?.CancelAsync();
+                Status = UpdaterStatus.Download;
+            });
+            UpdateFileCommand = new DelegateCommand(async () =>
+            {
+                UpdateFileCommand.CanExecute = false;
+                await UpdateFileAsync();
+                UpdateFileCommand.CanExecute = true;
+                Status = UpdaterStatus.Restart;
+            });
+            RestartCommand = new DelegateCommand(Restart);
+        }
         public static Updater Instance { get; } = new Updater();
         public static readonly string[] ProtectedFolders = { "logs", "information", "modules" };
         private Uri updateurl;
         private string downloadfilename;
-        private bool downloadcompleted;
 
         #region NewVersion
         private Version _newversion;
@@ -69,6 +100,22 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         }
         #endregion
 
+        #region Status
+        private UpdaterStatus _status = UpdaterStatus.Check;
+        public UpdaterStatus Status
+        {
+            get { return _status; }
+            private set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public async Task<bool> TryFindUpdateAsync()
         {
             try
@@ -95,13 +142,20 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             }
         }
 
-        public async Task DownloadUpdateAsync()
+        public async Task<bool> DownloadUpdateAsync()
         {
-            using (var webclient = new WebClient())
+            try
             {
-                webclient.DownloadProgressChanged += (s, e) => DownloadPercentage = e.ProgressPercentage;
-                await webclient.DownloadFileTaskAsync(updateurl, downloadfilename);
-                downloadcompleted = true;
+                downloadwebclient = new WebClient();
+                downloadwebclient.DownloadProgressChanged += (s, e) => DownloadPercentage = e.ProgressPercentage;
+                await downloadwebclient.DownloadFileTaskAsync(updateurl, downloadfilename);
+                return true;
+            }
+            catch { return false; }
+            finally
+            {
+                downloadwebclient?.Dispose();
+                downloadwebclient = null;
             }
         }
 
@@ -147,4 +201,5 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             Application.Current.Shutdown();
         }
     }
+    enum UpdaterStatus { Check, Download, CancelDownload, UpdateFile, Restart }
 }
