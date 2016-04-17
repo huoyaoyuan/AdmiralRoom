@@ -2,8 +2,8 @@
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    static class DispatcherHelper
+    public static class DispatcherHelper
     {
-        public static Dispatcher UIDispatcher { get; set; }
+        public static Dispatcher UIDispatcher { get; internal set; }
     }
 }

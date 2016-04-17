@@ -1,6 +1,6 @@
 ﻿namespace Huoyaoyuan.AdmiralRoom
 {
-    static class ConstData
+    public static class ConstData
     {
         private static readonly int[] f99exp;
         private static readonly int[] ad100exp =

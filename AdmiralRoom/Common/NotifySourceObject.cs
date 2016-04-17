@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    class NotifySourceObject<TSource> : NotificationObject
+    abstract class NotifySourceObject<TSource> : NotificationObject
         where TSource : class, IUpdatable
     {
         public TSource Source { get; set; }

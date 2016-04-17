@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
-    public class CondColorConverter : IValueConverter
+    public sealed class CondColorConverter : IValueConverter
     {
         #region ConstantBrushes
         private static readonly SolidColorBrush Brush20Foreground = Brushes.Red;

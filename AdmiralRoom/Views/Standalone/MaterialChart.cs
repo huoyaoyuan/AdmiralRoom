@@ -10,7 +10,7 @@ using static Huoyaoyuan.AdmiralRoom.CollectionEx;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
 {
-    public class MaterialChart : FrameworkElement
+    internal class MaterialChart : FrameworkElement
     {
         public IEnumerable<MaterialLog> Source
         {

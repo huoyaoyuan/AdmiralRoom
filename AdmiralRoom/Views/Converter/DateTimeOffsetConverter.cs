@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
-    class DateTimeOffsetConverter : IValueConverter
+    public sealed class DateTimeOffsetConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

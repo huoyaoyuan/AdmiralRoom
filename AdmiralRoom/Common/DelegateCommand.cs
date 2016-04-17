@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 
-#pragma warning disable CS0067
-
 namespace Huoyaoyuan.AdmiralRoom
 {
     class DelegateCommand : ICommand

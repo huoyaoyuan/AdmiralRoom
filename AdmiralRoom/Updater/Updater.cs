@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Updater
 {
-    class Updater : NotificationObject
+    sealed class Updater : NotificationObject
     {
         public static string VersionString => Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public DelegateCommand CheckCommand { get; }

@@ -4,12 +4,11 @@ using System.Windows.Data;
 using System.Windows.Media;
 using Huoyaoyuan.AdmiralRoom.Officer;
 
-#pragma warning disable RECS0147
 #pragma warning disable CC0013
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
-    public class LVColorConverter : IValueConverter
+    public sealed class LVColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

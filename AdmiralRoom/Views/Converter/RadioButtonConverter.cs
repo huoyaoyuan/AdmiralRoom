@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
-    public class RadioButtonConverter : IValueConverter
+    public sealed class RadioButtonConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             => value.ToString().ToLower() == parameter.ToString().ToLower();

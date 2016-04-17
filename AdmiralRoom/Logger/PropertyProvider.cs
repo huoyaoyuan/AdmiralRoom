@@ -56,7 +56,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Expression convert;
             if (type.IsEnum)
             {
-                var parser = EnumParseHelper.Parser(type);
+                var parser = EnumParseHelper.GetParser(type);
                 convert = Expression.Invoke(parser, input);
             }
             else

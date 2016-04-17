@@ -1,6 +1,6 @@
 ﻿namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    public class ItemWithIndex<T>
+    class ItemWithIndex<T>
     {
         public int Index { get; set; }
         public T Item { get; set; }

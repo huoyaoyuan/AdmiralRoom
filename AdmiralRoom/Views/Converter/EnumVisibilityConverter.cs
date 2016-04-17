@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
-    public class EnumVisibilityConverter : IValueConverter
+    public sealed class EnumVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
             value.ToString().ToLower() == parameter.ToString().ToLower() ? Visibility.Visible : Visibility.Collapsed;

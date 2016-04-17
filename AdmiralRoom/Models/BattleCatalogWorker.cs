@@ -5,7 +5,7 @@ using Huoyaoyuan.AdmiralRoom.Logger;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    public class BattleCatalogWorker
+    sealed class BattleCatalogWorker
     {
         public class BattleCatalogViewModel
         {

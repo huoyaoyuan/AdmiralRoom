@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    public struct DiffNumber : IFormattable
+    struct DiffNumber : IFormattable
     {
         public int Value { get; set; }
         public int Diff { get; set; }

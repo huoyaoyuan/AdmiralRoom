@@ -6,7 +6,7 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     public static class EnumParseHelper
     {
-        public static Expression Parser(Type enumType)
+        public static Expression GetParser(Type enumType)
         {
             if (!enumType.IsEnum) throw new ArgumentException(nameof(enumType));
             var names = Enum.GetNames(enumType);

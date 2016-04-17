@@ -8,7 +8,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    public class Config : NotificationObject
+    public sealed class Config : NotificationObject
     {
         public static Config Current { get; } = new Config();
 

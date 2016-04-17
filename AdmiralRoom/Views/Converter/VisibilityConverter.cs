@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
-    public class VisibilityConverter : IValueConverter
+    public sealed class VisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

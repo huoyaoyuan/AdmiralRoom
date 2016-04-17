@@ -6,7 +6,7 @@ using Huoyaoyuan.AdmiralRoom.Officer;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class ShipCatalogWorker : NotificationObject, IUpdatable
+    sealed class ShipCatalogWorker : NotificationObject, IUpdatable
     {
         public class ShipTypeSelector : NotifySourceObject<ShipCatalogWorker>
         {

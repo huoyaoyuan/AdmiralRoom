@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    static class UnicodeEscape
+    public static class UnicodeEscape
     {
         private static readonly Regex reUnicode = new Regex(@"\\u([0-9a-fA-F]{4})", RegexOptions.Compiled);
         public static string UnicodeDecode(this string s)

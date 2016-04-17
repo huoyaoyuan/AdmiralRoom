@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    static class PresentationEx
+    public static class PresentationEx
     {
         public static T TryFreeze<T>(this T freezable)
             where T : Freezable

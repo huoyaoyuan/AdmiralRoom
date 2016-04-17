@@ -4,7 +4,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    public class MissionLog : ILog
+    class MissionLog : ILog
     {
         [Log]
         public DateTime DateTime { get; set; }

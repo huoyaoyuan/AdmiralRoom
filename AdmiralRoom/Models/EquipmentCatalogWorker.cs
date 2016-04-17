@@ -4,7 +4,7 @@ using Huoyaoyuan.AdmiralRoom.Officer;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class EquipmentCatalogWorker : NotificationObject
+    sealed class EquipmentCatalogWorker : NotificationObject
     {
         public class EquipmentGroup
         {

@@ -2,7 +2,7 @@
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    public class MaterialLog : ILog
+    class MaterialLog : ILog
     {
         [Log]
         public DateTime DateTime { get; set; }
@@ -61,7 +61,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             }
         }
     }
-    public class MaterialLogger : CsvLogger<MaterialLog>
+    sealed class MaterialLogger : CsvLogger<MaterialLog>
     {
         public MaterialLogger(string filename) : base(filename) { }
         private DateTimeOffset lastlog;

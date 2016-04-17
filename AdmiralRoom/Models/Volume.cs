@@ -3,7 +3,7 @@ using CoreAudioApi;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
-    class Volume : NotificationObject
+    sealed class Volume : NotificationObject
     {
         private SimpleAudioVolume simpleaudiovolume;
 
