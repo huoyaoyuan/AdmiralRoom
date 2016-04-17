@@ -14,8 +14,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 InSortie = false;
                 CurrentMap = null;
                 CurrentNode = null;
-                if (SortieFleet1 != null) SortieFleet1.InSortie = false;
-                if (SortieFleet2 != null) SortieFleet2.InSortie = false;
+                if (SortieFleet1 != null)
+                {
+                    SortieFleet1.InSortie = false;
+                    foreach (var ship in SortieFleet1.Ships) ship.IsEscaped = false;
+                }
+                if (SortieFleet2 != null)
+                {
+                    SortieFleet2.InSortie = false;
+                    foreach (var ship in SortieFleet2.Ships) ship.IsEscaped = false;
+                }
                 SortieFleet1 = null;
                 SortieFleet2 = null;
                 CurrentBattle = null;
