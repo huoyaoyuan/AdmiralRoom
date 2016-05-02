@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Fiddler;
 
@@ -39,19 +38,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
             FiddlerApplication.BeforeRequest += SetSessionProxy;
-            FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
+            FiddlerApplication.AfterSessionComplete += AfterSessionCompleteAsync;
 
             Win32Helper.RefreshIESettings($"localhost:{port}");
         }
 
-        private static void AfterSessionComplete(Session oSession)
+        private static async void AfterSessionCompleteAsync(Session oSession)
         {
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
                 Models.Status.Current.StatusText = string.Format(Properties.Resources.Status_GetResponse, oSession.url);
-                oSession.utilDecodeResponse();
-                Thread th = new Thread(new ParameterizedThreadStart(Distribute));
-                th.Start(oSession);
+                await DistributeAsync(oSession);
             }
         }
 
@@ -81,25 +78,25 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static void Stop()
         {
             FiddlerApplication.BeforeRequest -= SetSessionProxy;
-            FiddlerApplication.AfterSessionComplete -= AfterSessionComplete;
+            FiddlerApplication.AfterSessionComplete -= AfterSessionCompleteAsync;
             FiddlerApplication.Shutdown();
         }
 
         private static readonly object lockObj = new object();
-        private static void Distribute(object o)
-        {
-            Session oSession = o as Session;
-            lock (lockObj)
+        private static Task DistributeAsync(object o) => Task.Factory.StartNew(() =>
             {
-                foreach (string key in apisource.Keys.ToArray())
-                    if (oSession.PathAndQuery.EndsWith(key))
+                Session oSession = o as Session;
+                lock (lockObj)
+                {
+                    foreach (string key in apisource.Keys.ToArray())
+                        if (oSession.PathAndQuery.EndsWith(key))
 #if DEBUG == false
-                        apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
+                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
 #else
-                        apisource[key].Handler.GetInvocationList().ForEach(x => (x as Action<Session>)(oSession));
+                            apisource[key].Handler.GetInvocationList().ForEach(x => (x as Action<Session>)(oSession));
 #endif
-            }
-        }
+                }
+            });
 
         private static void ExceptionCatcher(Action<Session> action, Session parameter)
         {
