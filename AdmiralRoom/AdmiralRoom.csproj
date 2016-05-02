@@ -221,6 +221,7 @@
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logger\BattleDetailLogger.cs" />
     <Compile Include="Logger\BattleDropLog.cs" />
     <Compile Include="Logger\CreateItemLog.cs" />
     <Compile Include="Logger\CreateShipLog.cs" />

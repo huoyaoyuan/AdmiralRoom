@@ -10,11 +10,13 @@
             MissionLogger = new CsvLogger<MissionLog>(@"logs\mission.csv") { TitleKey = "Expedition" };
             BattleDropLogger = new CsvLogger<BattleDropLog>(@"logs\drop.csv") { TitleKey = "Logger_Drop" };
             MaterialLogger = new MaterialLogger(@"logs\material.csv");
+            BattleDetailLogger = new BattleDetailLogger();
         }
         public static CsvLogger<CreateItemLog> CreateItemLogger { get; private set; }
         public static CsvLogger<CreateShipLog> CreateShipLogger { get; private set; }
         public static CsvLogger<MissionLog> MissionLogger { get; private set; }
         public static CsvLogger<BattleDropLog> BattleDropLogger { get; private set; }
         public static MaterialLogger MaterialLogger { get; private set; }
+        public static BattleDetailLogger BattleDetailLogger { get; private set; }
     }
 }

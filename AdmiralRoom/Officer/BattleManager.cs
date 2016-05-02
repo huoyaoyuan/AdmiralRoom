@@ -200,9 +200,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 winrank = WinRank.Perfect;
             CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? Properties.Resources.Empty;
             GetShipEquip = api.api_get_ship == null ? null : (int?)0;//TODO:记录船附带的装备
+            var now = DateTime.UtcNow;
             Logger.Loggers.BattleDropLogger.Log(new Logger.BattleDropLog
             {
-                DateTime = DateTime.UtcNow,
+                DateTime = now,
                 MapArea = CurrentMap.Id,
                 MapCell = CurrentNode.Id,
                 IsBOSS = CurrentNode.Type == MapNodeType.BOSS,
@@ -213,6 +214,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     (Staff.Current.Admiral.CanDropShip ? 0 : -1),
                 DropItem = api.api_get_useitem?.api_useitem_id ?? 0
             });
+            Logger.Loggers.BattleDetailLogger.SetTimeStamp(now);
             Reporter.PoiDBReporter.ReportAsync(new JObject
             {
                 ["mapId"] = CurrentMap.Id,
