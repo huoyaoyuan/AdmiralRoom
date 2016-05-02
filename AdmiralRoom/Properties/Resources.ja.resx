@@ -946,6 +946,9 @@
   <data name="Update_Text_UpdateFile" xml:space="preserve">
     <value>更新ダウンロード完了。</value>
   </data>
+  <data name="Update_UsingProxy" xml:space="preserve">
+    <value>プロキシを使用しての更新します</value>
+  </data>
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>
   </data>

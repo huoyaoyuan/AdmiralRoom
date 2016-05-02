@@ -158,6 +158,9 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                 var wrq = WebRequest.CreateHttp("https://api.github.com/repos/huoyaoyuan/AdmiralRoom/releases/latest");
                 wrq.Method = "GET";
                 wrq.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586";
+                var proxy = Config.Current.GetHTTPSProxy();
+                if (Config.Current.UpdateUsingProxy && proxy != null)
+                    wrq.Proxy = new WebProxy($"http://{proxy.Host}:{proxy.Port}");
                 using (var wrs = await wrq.GetResponseAsync())
                 using (var reader = new StreamReader(wrs.GetResponseStream()))
                     obj = JObject.Parse(reader.ReadToEnd());
@@ -184,6 +187,9 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             try
             {
                 downloadwebclient = new WebClient();
+                var proxy = Config.Current.GetHTTPSProxy();
+                if (Config.Current.UpdateUsingProxy && proxy != null)
+                    downloadwebclient.Proxy = new WebProxy($"http://{proxy.Host}:{proxy.Port}");
                 DownloadPercentage = 0;
                 downloadwebclient.DownloadProgressChanged += (s, e) => DownloadPercentage = e.ProgressPercentage;
                 await downloadwebclient.DownloadFileTaskAsync(updateurl, downloadfilename);

@@ -522,6 +522,22 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region UpdateUsingProxy
+        private bool _updateusingproxy;
+        public bool UpdateUsingProxy
+        {
+            get { return _updateusingproxy; }
+            set
+            {
+                if (_updateusingproxy != value)
+                {
+                    _updateusingproxy = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()
@@ -566,6 +582,7 @@ namespace Huoyaoyuan.AdmiralRoom
             _loscalctype = LosCalcType.Formula14Q4;
             _autocheckupdate = true;
             _autodownloadupdate = false;
+            _updateusingproxy = false;
         }
         public static Config Load(string path = "config.xml")
         {
@@ -593,6 +610,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public string GenerateScreenShotFileName() =>
             Path.Combine(ScreenShotFolder, string.Format(ScreenShotNameFormat, DateTime.Now.ToString("yyMMdd-HHmmssff")) + "." + ScreenShotFileFormat.ToLower());
+        public Officer.Proxy GetHTTPSProxy() => EnableProxyHTTPS ? HTTPSProxy : EnableProxy ? Proxy : null;
         public class CommandSet
         {
             public ICommand Save { get; set; }

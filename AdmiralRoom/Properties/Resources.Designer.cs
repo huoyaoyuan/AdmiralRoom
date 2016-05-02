@@ -2600,6 +2600,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Update using proxy 的本地化字符串。
+        /// </summary>
+        public static string Update_UsingProxy {
+            get {
+                return ResourceManager.GetString("Update_UsingProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Admiral 的本地化字符串。
         /// </summary>
         public static string ViewTitle_AdmiralView {
