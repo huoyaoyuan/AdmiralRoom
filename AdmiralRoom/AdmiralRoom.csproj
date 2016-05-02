@@ -534,45 +534,6 @@
     <Resource Include="Images\Material\FurnitureCoin.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Equip\1.png" />
-    <Resource Include="Images\Equip\2.png" />
-    <Resource Include="Images\Equip\3.png" />
-    <Resource Include="Images\Equip\4.png" />
-    <Resource Include="Images\Equip\5.png" />
-    <Resource Include="Images\Equip\6.png" />
-    <Resource Include="Images\Equip\7.png" />
-    <Resource Include="Images\Equip\8.png" />
-    <Resource Include="Images\Equip\9.png" />
-    <Resource Include="Images\Equip\10.png" />
-    <Resource Include="Images\Equip\11.png" />
-    <Resource Include="Images\Equip\12.png" />
-    <Resource Include="Images\Equip\13.png" />
-    <Resource Include="Images\Equip\14.png" />
-    <Resource Include="Images\Equip\15.png" />
-    <Resource Include="Images\Equip\16.png" />
-    <Resource Include="Images\Equip\17.png" />
-    <Resource Include="Images\Equip\18.png" />
-    <Resource Include="Images\Equip\19.png" />
-    <Resource Include="Images\Equip\20.png" />
-    <Resource Include="Images\Equip\21.png" />
-    <Resource Include="Images\Equip\22.png" />
-    <Resource Include="Images\Equip\23.png" />
-    <Resource Include="Images\Equip\24.png" />
-    <Resource Include="Images\Equip\25.png" />
-    <Resource Include="Images\Equip\26.png" />
-    <Resource Include="Images\Equip\27.png" />
-    <Resource Include="Images\Equip\28.png" />
-    <Resource Include="Images\Equip\29.png" />
-    <Resource Include="Images\Equip\30.png" />
-    <Resource Include="Images\Equip\31.png" />
-    <Resource Include="Images\Equip\32.png" />
-    <Resource Include="Images\Equip\33.png" />
-    <Resource Include="Images\Equip\34.png" />
-    <Resource Include="Images\Equip\35.png" />
-    <Resource Include="Images\Equip\36.png" />
-    <Resource Include="Images\Equip\Misc.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AvalonDock.Themes.VS2013\Xceed.Wpf.AvalonDock.Themes.VS2013\Xceed.Wpf.AvalonDock.Themes.VS2013.csproj">
       <Project>{89286eb4-b4a1-418c-839a-067b00f442d8}</Project>
       <Name>Xceed.Wpf.AvalonDock.Themes.VS2013</Name>
@@ -622,6 +583,46 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Counters.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Equip\1.png" />
+    <Resource Include="Images\Equip\2.png" />
+    <Resource Include="Images\Equip\3.png" />
+    <Resource Include="Images\Equip\4.png" />
+    <Resource Include="Images\Equip\5.png" />
+    <Resource Include="Images\Equip\6.png" />
+    <Resource Include="Images\Equip\7.png" />
+    <Resource Include="Images\Equip\8.png" />
+    <Resource Include="Images\Equip\9.png" />
+    <Resource Include="Images\Equip\10.png" />
+    <Resource Include="Images\Equip\11.png" />
+    <Resource Include="Images\Equip\12.png" />
+    <Resource Include="Images\Equip\13.png" />
+    <Resource Include="Images\Equip\14.png" />
+    <Resource Include="Images\Equip\15.png" />
+    <Resource Include="Images\Equip\16.png" />
+    <Resource Include="Images\Equip\17.png" />
+    <Resource Include="Images\Equip\18.png" />
+    <Resource Include="Images\Equip\19.png" />
+    <Resource Include="Images\Equip\20.png" />
+    <Resource Include="Images\Equip\21.png" />
+    <Resource Include="Images\Equip\22.png" />
+    <Resource Include="Images\Equip\23.png" />
+    <Resource Include="Images\Equip\24.png" />
+    <Resource Include="Images\Equip\25.png" />
+    <Resource Include="Images\Equip\26.png" />
+    <Resource Include="Images\Equip\27.png" />
+    <Resource Include="Images\Equip\28.png" />
+    <Resource Include="Images\Equip\29.png" />
+    <Resource Include="Images\Equip\30.png" />
+    <Resource Include="Images\Equip\31.png" />
+    <Resource Include="Images\Equip\32.png" />
+    <Resource Include="Images\Equip\33.png" />
+    <Resource Include="Images\Equip\34.png" />
+    <Resource Include="Images\Equip\35.png" />
+    <Resource Include="Images\Equip\36.png" />
+    <Resource Include="Images\Equip\37.png" />
+    <Resource Include="Images\Equip\Misc.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
