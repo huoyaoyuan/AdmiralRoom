@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.Officer;
+using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
@@ -43,6 +45,21 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             if (type == "startnext") datastring = string.Empty;
             datastring += $",\"{type}\":{{\"api\":\"{oSession.PathAndQuery.Substring(8)}\",\"data\":{oSession.GetResponseBodyAsString().Substring(7)}}}";
         }
+        private void AddFleets()
+        {
+            datastring += ",\"fleet1\":[" + SerializeFleet(Staff.Current.Battle.SortieFleet1) + "]";
+            if (Staff.Current.Battle.SortieFleet2 != null)
+                datastring += ",\"fleet2\":[" + SerializeFleet(Staff.Current.Battle.SortieFleet2) + "]";
+        }
+        private static string SerializeFleet(Fleet fleet)
+            => string.Join(",",
+                fleet.Ships.Select(x =>
+                {
+                    var obj = new JObject(x.rawdata);
+                    obj["api_slot"] = new JArray(x.Slots.Where(y => y.HasItem).Select(y => new JObject(y.Item.rawdata)).ToArray());
+                    obj["api_slot_ex"] = new JObject(x.SlotEx?.Item.rawdata);
+                    return obj.ToString();
+                }));
         public void SetTimeStamp(DateTime utctime)
         {
             var today = utctime.Date;
@@ -51,7 +68,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 CompressFile();
                 date = today;
             }
-            File.AppendAllLines($@"logs\battlelog\{date}.log", new[] { $"{{time:{utctime}{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
+            AddFleets();
+            File.AppendAllLines($@"logs\battlelog\{date}.log", new[] { $"{{time:{utctime}{datastring.Replace(Environment.NewLine, string.Empty).Replace(" ", string.Empty)}}}" });
             datastring = string.Empty;
         }
     }
