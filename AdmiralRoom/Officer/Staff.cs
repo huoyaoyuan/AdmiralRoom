@@ -38,17 +38,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
             FiddlerApplication.BeforeRequest += SetSessionProxy;
-            FiddlerApplication.AfterSessionComplete += AfterSessionCompleteAsync;
+            FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
 
             Win32Helper.RefreshIESettings($"localhost:{port}");
         }
 
-        private static async void AfterSessionCompleteAsync(Session oSession)
+        private static void AfterSessionComplete(Session oSession)
         {
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
                 Models.Status.Current.StatusText = string.Format(Properties.Resources.Status_GetResponse, oSession.url);
-                await DistributeAsync(oSession);
+                DistributeAsync(oSession);
             }
         }
 
@@ -78,7 +78,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public static void Stop()
         {
             FiddlerApplication.BeforeRequest -= SetSessionProxy;
-            FiddlerApplication.AfterSessionComplete -= AfterSessionCompleteAsync;
+            FiddlerApplication.AfterSessionComplete -= AfterSessionComplete;
             FiddlerApplication.Shutdown();
         }
 
