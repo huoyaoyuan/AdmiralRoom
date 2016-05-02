@@ -408,6 +408,12 @@ namespace Huoyaoyuan.AdmiralRoom
             w.Activate();
         }
 
+        public void ShowUpdatePage()
+        {
+            backstage.IsOpen = true;
+            (backstage.Content as Fluent.BackstageTabControl).SelectedIndex = 1;
+        }
+
         private void SetBrowserZoomFactor(object sender, RoutedPropertyChangedEventArgs<double> e)
             => this.GameHost.ApplyZoomFactor(e.NewValue);
 

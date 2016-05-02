@@ -35,8 +35,12 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                 if (result && isautoupdate)
                 {
                     DispatcherHelper.UIDispatcher.Invoke(() =>
-                        MessageBox.Show($"{Properties.Resources.Update_Text_Download}{NewVersion}",
-                            Properties.Resources.Update));
+                    {
+                        if (MessageBox.Show($"{Properties.Resources.Update_Text_Download}{NewVersion}",
+                            Properties.Resources.Update, MessageBoxButton.OKCancel, MessageBoxImage.Information)
+                            == MessageBoxResult.OK)
+                            (App.Current.MainWindow as MainWindow).ShowUpdatePage();
+                    });
                     if (Config.Current.AutoDownloadUpdate) DownloadCommand.Execute(null);
                     else isautoupdate = false;
                 }
