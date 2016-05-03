@@ -4,7 +4,6 @@ using System.IO.Compression;
 using System.Linq;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.Officer;
-using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
@@ -30,15 +29,15 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Staff.API("api_req_combined_battle/sp_midnight").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/battle_water").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/ld_airbattle").Subscribe(x => AddApi("battle", x));
-            date = DateTime.Today;
+            date = DateTime.UtcNow.Date;
         }
         private DateTime? date;
         private string datastring;
         private void CompressFile()
         {
-            using (var zipfile = new ZipArchive(File.Create($@"logs\battlelog\{date}.zip")))
-                zipfile.CreateEntryFromFile($@"logs\battlelog\{date}.log", $"{date}.log");
-            File.Delete($@"logs\battlelog\{date}.log");
+            using (var zipfile = new ZipArchive(File.Create($@"logs\battlelog\{date:yyyy-MM-dd}.zip"), ZipArchiveMode.Create))
+                zipfile.CreateEntryFromFile($@"logs\battlelog\{date:yyyy-MM-dd}.log", $"{date:yyyy-MM-dd}.log");
+            File.Delete($@"logs\battlelog\{date:yyyy-MM-dd}.log");
         }
         private void AddApi(string type, Session oSession)
         {
@@ -53,13 +52,44 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         }
         private static string SerializeFleet(Fleet fleet)
             => string.Join(",",
-                fleet.Ships.Select(x =>
-                {
-                    var obj = new JObject(x.rawdata);
-                    obj["api_slot"] = new JArray(x.Slots.Where(y => y.HasItem).Select(y => new JObject(y.Item.rawdata)).ToArray());
-                    obj["api_slot_ex"] = new JObject(x.SlotEx?.Item.rawdata);
-                    return obj.ToString();
-                }));
+                fleet.Ships.Select(x => string.Concat(
+                        "{\"id\":",
+                        x.Id,
+                        ",\"shipid\":",
+                        x.ShipId,
+                        ",\"lv\":",
+                        x.Level,
+                        ",\"karyoku\":",
+                        x.Firepower.Current,
+                        ",\"raisou\":",
+                        x.Torpedo.Current,
+                        ",\"taiku\":",
+                        x.AA.Current,
+                        ",\"soukou\":",
+                        x.Armor.Current,
+                        ",\"kaihi\":",
+                        x.Evasion.Current,
+                        ",\"taisen\":",
+                        x.ASW.Current,
+                        ",\"sakuteki\":",
+                        x.LoS.Current,
+                        ",\"lucky\":",
+                        x.Luck.Current,
+                        ",\"slots\":[",
+                        string.Join(",", x.Slots.Where(y => y.HasItem).Select(y => EquipToString(y.Item))),
+                        "],\"slotex\":",
+                        x.SlotEx.HasItem ? EquipToString(x.SlotEx.Item) : "null",
+                        "}")
+                ));
+        private static string EquipToString(Equipment equip)
+            => string.Concat(
+                "{\"itemid\":",
+                equip.EquipInfo.Id,
+                ",\"level\":",
+                equip.ImproveLevel,
+                ",\"alv\":",
+                equip.AirProficiency,
+                "}");
         public void SetTimeStamp(DateTime utctime)
         {
             var today = utctime.Date;
@@ -69,7 +99,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 date = today;
             }
             AddFleets();
-            File.AppendAllLines($@"logs\battlelog\{date}.log", new[] { $"{{time:{utctime}{datastring.Replace(Environment.NewLine, string.Empty).Replace(" ", string.Empty)}}}" });
+            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{time:\"{utctime}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
             datastring = string.Empty;
         }
     }
