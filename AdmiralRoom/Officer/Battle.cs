@@ -123,6 +123,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
             AirCombat1 = AirBattle(api.api_kouku, false);
             AirCombat2 = AirBattle(api.api_kouku2, false);
+            foreach (var airbase in api.api_air_base_attack)
+                AirBaseAttack(airbase);
             SupportAttack(api.api_support_info);
             TorpedoAttack(api.api_opening_atack);
             switch (fleettype)
@@ -267,6 +269,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AirBattle(api.api_support_airatack, true);
             if (api.api_support_hourai != null)
                 EnemyFleet.ArrayZip(api.api_support_hourai.api_damage, 1, Delegates.SetDamage);
+        }
+        private void AirBaseAttack(sortie_battle.air_base_attack api)
+        {
+            if (api?.api_stage3 != null)
+                EnemyFleet.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
         }
         private void TorpedoAttack(sortie_battle.torpedo api)
         {
