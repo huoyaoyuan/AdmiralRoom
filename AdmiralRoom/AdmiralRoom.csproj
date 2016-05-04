@@ -574,6 +574,7 @@
     <Resource Include="Images\AirProficiency\5.png" />
     <Resource Include="Images\AirProficiency\6.png" />
     <Resource Include="Images\AirProficiency\7.png" />
+    <Resource Include="Images\Equip\38.png" />
     <Content Include="Officer\StaticCounters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StaticCounters.cs</LastGenOutput>
