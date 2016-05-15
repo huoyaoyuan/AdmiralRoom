@@ -1,29 +1,29 @@
 ﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.CompassView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
-             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              d:DataContext="{d:DesignInstance officer:Staff}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             mc:Ignorable="d">
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
-        <TabItem Header="{ex:Localizable Predict_Enable}" Background="SpringGreen">
+        <TabItem Background="SpringGreen" Header="{ex:Localizable Predict_Enable}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Vertical"
+                <StackPanel d:DataContext="{d:DesignInstance officer:BattleManager}"
                             DataContext="{Binding Battle}"
-                            d:DataContext="{d:DesignInstance officer:BattleManager}"
+                            Orientation="Vertical"
                             Visibility="{Binding InSortie, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">
                     <TextBlock>
                         <Run Text="{ex:Localizable Compass_SortieArea}"/>
                         <Run>
                             <Run.Text>
                                 <MultiBinding StringFormat="{}{0}-{1}">
-                                    <Binding Path="CurrentMap.AreaNo" Mode="OneWay"/>
-                                    <Binding Path="CurrentMap.No" Mode="OneWay"/>
+                                    <Binding Mode="OneWay" Path="CurrentMap.AreaNo"/>
+                                    <Binding Mode="OneWay" Path="CurrentMap.No"/>
                                 </MultiBinding>
                             </Run.Text>
                         </Run>
@@ -89,14 +89,29 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <StackPanel Orientation="Horizontal" TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
-                            <Image Height="16" Width="16" Source="{Binding CurrentNode.Material.ItemIcon}"/>
-                            <TextBlock Text="{Binding CurrentNode.Material.ItemCount}" VerticalAlignment="Bottom"/>
-                        </StackPanel>
+                        <ItemsControl ItemsSource="{Binding CurrentNode.Material}" TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,5,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Width="16" Height="16" Source="{Binding ItemIcon}"/>
+                                        <TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="{Binding ItemCount}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </TextBlock>
                 </StackPanel>
             </ScrollViewer>
         </TabItem>
-        <TabItem Header="{ex:Localizable Predict_Disable}" Background="Red"/>
+        <TabItem Background="Red" Header="{ex:Localizable Predict_Disable}"/>
     </TabControl>
 </UserControl>

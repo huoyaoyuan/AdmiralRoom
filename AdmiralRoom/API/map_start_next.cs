@@ -24,7 +24,7 @@
             public string api_name { get; set; }
             public int api_icon_id { get; set; }
         }
-        public itemget api_itemget { get; set; }
+        public itemget[] api_itemget { get; set; }
         public class happening
         {
             public int api_type { get; set; }

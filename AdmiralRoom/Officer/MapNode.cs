@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
@@ -40,7 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             public bool ItemLostReduced { get; set; }
         }
-        public MaterialInfo Material { get; private set; }
+        public MaterialInfo[] Material { get; private set; }
         public int AirSearchType { get; private set; }
         public int AirSearchResult { get; private set; }
         public MapNode(map_start_next api) : base(api) { }
@@ -50,20 +51,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 case 2:
                     Type = MapNodeType.ItemGet;
-                    Material = new MaterialInfo
+                    Material = rawdata.api_itemget.Select(x => new MaterialInfo
                     {
-                        ItemType = rawdata.api_itemget.api_id,
-                        ItemCount = rawdata.api_itemget.api_getcount
-                    };
+                        ItemType = x.api_id,
+                        ItemCount = x.api_getcount
+                    }).ToArray();
                     break;
                 case 3:
                     Type = MapNodeType.ItemLost;
-                    Material = new MaterialInfo
+                    Material = new[] { new MaterialInfo
                     {
                         ItemType = rawdata.api_happening.api_mst_id,
                         ItemCount = rawdata.api_happening.api_count,
                         ItemLostReduced = rawdata.api_happening.api_dentan != 0
-                    };
+                    } };
                     break;
                 case 4:
                     switch (rawdata.api_event_kind)
@@ -103,11 +104,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     break;
                 case 8:
                     Type = MapNodeType.Guard;
-                    Material = new MaterialInfo
+                    Material = new[] { new MaterialInfo
                     {
                         ItemType = rawdata.api_itemget_eo_comment.api_id,
                         ItemCount = rawdata.api_itemget_eo_comment.api_getcount
-                    };
+                    } };
                     break;
                 case 9:
                     Type = MapNodeType.Transport;
