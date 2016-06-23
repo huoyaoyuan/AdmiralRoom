@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private int lastcheckedfrom;
         private int lastcheckedto;
         private DateTimeOffset lastcheckedtime;
-        private void CheckQuestPage(getmember_questlist api)
+        private void CheckQuestPage(NameValueCollection req, getmember_questlist api)
         {
             int checkfrom, checkto;
+            int type = req.GetInt("api_tab_id");
             CycleCount();
             if (api.api_list == null)
             {
@@ -42,8 +44,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             else if (lastcheckedpage == api.api_disp_page - 1) checkfrom = lastcheckedto + 1;
             if (api.api_disp_page == api.api_page_count) checkto = int.MaxValue;
             else if (lastcheckedpage == api.api_disp_page + 1) checkto = lastcheckedfrom - 1;
-            foreach (var item in AvilableQuests.Where(x => x.Id >= checkfrom && x.Id <= checkto).ToList())
-                AvilableQuests.Remove(item);
+            IEnumerable<Quest> checkremovelist = null;
+            switch (type)
+            {
+                case 0:
+                    checkremovelist = AvilableQuests;
+                    break;
+                case 1:
+                    checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Daily || x.Period == QuestPeriod.Day037 || x.Period == QuestPeriod.Day28);
+                    break;
+                case 2:
+                    checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Weekly);
+                    break;
+                case 3:
+                    checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Monthly);
+                    break;
+                case 4:
+                    checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Once);
+                    break;
+            }
+            if (checkremovelist != null)
+                foreach (var item in checkremovelist.Where(x => x.Id >= checkfrom && x.Id <= checkto).ToList())
+                    AvilableQuests.Remove(item);
             AvilableQuests.UpdateWithoutRemove(api.api_list, x => x.api_no);
             AvilableCount = api.api_count;
             InProgressCount = api.api_exec_count;
