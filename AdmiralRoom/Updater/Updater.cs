@@ -82,7 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         }
         public Timer Timer { get; } = new Timer(3600 * 12 * 1000);
         public static Updater Instance { get; } = new Updater();
-        public static readonly string[] ProtectedFolders = { "logs", "information", "modules" };
+        public static readonly string[] ProtectedFolders = { "logs", "information", "modules", "sound" };
         private Uri updateurl;
         private string downloadfilename;
 
