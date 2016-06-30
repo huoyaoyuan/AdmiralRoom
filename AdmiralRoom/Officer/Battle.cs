@@ -125,6 +125,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AirCombat2 = AirBattle(api.api_kouku2, false);
             AirBaseAttack(api.api_air_base_attack);
             SupportAttack(api.api_support_info);
+            FireAttack(api.api_opening_taisen, NightOrTorpedo);
             TorpedoAttack(api.api_opening_atack);
             switch (fleettype)
             {

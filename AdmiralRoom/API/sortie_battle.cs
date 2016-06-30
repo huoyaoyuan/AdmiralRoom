@@ -115,6 +115,8 @@
             public support_hourai api_support_hourai { get; set; }
         }
         public support api_support_info { get; set; }
+        public int api_opening_taisen_flag { get; set; }
+        public fire api_opening_taisen { get; set; }
         public int api_opening_flag { get; set; }
         public class torpedo
         {
