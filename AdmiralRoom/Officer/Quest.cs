@@ -10,7 +10,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public override int Id => rawdata.api_no;
         public QuestType Type => (QuestType)rawdata.api_category;
         public QuestPeriod Period => (QuestPeriod)rawdata.api_type;
-        public bool IsDaily => Period == QuestPeriod.Daily || Period == QuestPeriod.Day037 || Period == QuestPeriod.Day28;
         public QuestState State => (QuestState)rawdata.api_state;
         public string Title => rawdata.api_title ?? "（未知任务）";
         public string Detail => rawdata.api_detail;
@@ -53,7 +52,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
     }
     public enum QuestType { Unknown = 0, Organization = 1, Sortie = 2, Exercise = 3, Expedition = 4, Charge = 5, Shipyard = 6, Powerup = 7, Sortie2 = 8, Other = 9 }
-    public enum QuestPeriod { Once = 1, Daily = 2, Weekly = 3, Day037 = 4, Day28 = 5, Monthly = 6 }
+    public enum QuestPeriod { Daily = 1, Weekly = 2, Monthly = 3, Once = 4, Other = 5 }
     public enum QuestState { None = 1, InProgress = 2, Complete = 3 }
     public enum QuestBonus { None = 0, Normal = 1, Ship = 2 }
     public enum QuestProgress { None = 0, Percent50 = 1, Percent80 = 2 }

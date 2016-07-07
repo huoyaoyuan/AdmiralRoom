@@ -589,12 +589,6 @@ Expedition {1} - {2}</value>
   <data name="Quest_Peroid_Daily" xml:space="preserve">
     <value>Daily</value>
   </data>
-  <data name="Quest_Peroid_Day037" xml:space="preserve">
-    <value>Date ends with 0,3,7</value>
-  </data>
-  <data name="Quest_Peroid_Day28" xml:space="preserve">
-    <value>Date ends with 2,8</value>
-  </data>
   <data name="Quest_Peroid_Monthly" xml:space="preserve">
     <value>Monthly</value>
   </data>

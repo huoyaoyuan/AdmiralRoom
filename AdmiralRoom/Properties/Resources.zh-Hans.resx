@@ -586,12 +586,6 @@
   <data name="Quest_Peroid_Daily" xml:space="preserve">
     <value>日常</value>
   </data>
-  <data name="Quest_Peroid_Day037" xml:space="preserve">
-    <value>日期尾数0，3，7时可用</value>
-  </data>
-  <data name="Quest_Peroid_Day28" xml:space="preserve">
-    <value>日期尾数2，8时可用</value>
-  </data>
   <data name="Quest_Peroid_Monthly" xml:space="preserve">
     <value>月常</value>
   </data>

@@ -586,12 +586,6 @@
   <data name="Quest_Peroid_Daily" xml:space="preserve">
     <value>デーリー</value>
   </data>
-  <data name="Quest_Peroid_Day037" xml:space="preserve">
-    <value>日付の一の位が3,7,0</value>
-  </data>
-  <data name="Quest_Peroid_Day28" xml:space="preserve">
-    <value>日付の一の位が2,8</value>
-  </data>
   <data name="Quest_Peroid_Monthly" xml:space="preserve">
     <value>マンスリー</value>
   </data>

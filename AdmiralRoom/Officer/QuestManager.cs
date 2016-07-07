@@ -51,7 +51,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     checkremovelist = AvilableQuests;
                     break;
                 case 1:
-                    checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Daily || x.Period == QuestPeriod.Day037 || x.Period == QuestPeriod.Day28);
+                    checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Daily);
                     break;
                 case 2:
                     checkremovelist = AvilableQuests.Where(x => x.Period == QuestPeriod.Weekly);
@@ -92,7 +92,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             foreach (var quest in KnownQuests.Known) targets.AddRange(quest.Targets);
             if (checktime.Date != lastcheckedtime.Date)
             {
-                foreach (var item in AvilableQuests.Where(x => x.IsDaily).ToList())
+                foreach (var item in AvilableQuests.Where(x => x.Period == QuestPeriod.Daily).ToList())
                     AvilableQuests.Remove(item);
                 foreach (var target in targets.Where(x => x.Period == QuestPeriod.Daily))
                     target.SetProgress(0, true);

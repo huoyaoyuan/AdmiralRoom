@@ -116,12 +116,6 @@
                                 <DataTrigger Binding="{Binding Period}" Value="Monthly">
                                     <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Monthly}"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Period}" Value="Day037">
-                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Day037}"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Period}" Value="Day28">
-                                    <Setter TargetName="period" Property="Text" Value="{ex:Localizable Quest_Peroid_Day28}"/>
-                                </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

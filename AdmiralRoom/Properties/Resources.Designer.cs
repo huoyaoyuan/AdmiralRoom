@@ -1475,24 +1475,6 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Date ends with 0,3,7 的本地化字符串。
-        /// </summary>
-        public static string Quest_Peroid_Day037 {
-            get {
-                return ResourceManager.GetString("Quest_Peroid_Day037", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Date ends with 2,8 的本地化字符串。
-        /// </summary>
-        public static string Quest_Peroid_Day28 {
-            get {
-                return ResourceManager.GetString("Quest_Peroid_Day28", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Monthly 的本地化字符串。
         /// </summary>
         public static string Quest_Peroid_Monthly {
