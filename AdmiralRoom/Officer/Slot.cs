@@ -76,8 +76,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 else if (itemtype == 11) res[6] = res[7] = bonus2[level];
                 res[6] += Math.Sqrt(inner[level] / 10.0);
                 res[7] += Math.Sqrt((inner[level + 1] - 1) / 10.0);
-                res[3] = itemtype == 6 ? res[4] + res[7] : 0;
-                res[2] = itemtype == 6 ? res[4] + res[6] : 0;
+                res[3] = itemtype == 6 || itemtype == 45 ? res[4] + res[7] : 0;
+                res[2] = itemtype == 6 || itemtype == 45 ? res[4] + res[6] : 0;
                 res[1] = res[4] + res[7];
                 res[0] = res[4] + res[6];
                 return res;
