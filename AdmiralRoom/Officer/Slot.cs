@@ -58,7 +58,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private static readonly int[] inner = { 0, 10, 25, 40, 55, 70, 85, 100, 121 };
         public bool CanProvideAirFightPower => fighttype.Contains(Item?.EquipInfo.EquipType.Id ?? 0);
         /// <summary>
-        /// [0]:总min [1]:总max [2]:除攻击机min [3]:除攻击机max [4]:裸 [5]:除攻击机裸 [6]:熟练度加成min [7]:熟练度加成max
+        /// [0]:总min [1]:总max [2]:除攻击机min [3]:除攻击机max [4]:裸 [5]:除攻击机裸 [6]:加成min [7]:加成max
         /// </summary>
         public double[] AirFightPower
         {
@@ -74,8 +74,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 res[5] = itemtype == 6 ? res[4] : 0;
                 if (itemtype == 6 || itemtype == 45) res[6] = res[7] = bonus1[level];
                 else if (itemtype == 11) res[6] = res[7] = bonus2[level];
-                res[6] += Math.Sqrt(inner[level] / 10.0);
-                res[7] += Math.Sqrt((inner[level + 1] - 1) / 10.0);
+                res[6] += Math.Sqrt(inner[level] / 10.0) + Math.Sqrt(AirCraft.Current) * Item.ImproveLevel * 0.2;
+                res[7] += Math.Sqrt((inner[level + 1] - 1) / 10.0) + Math.Sqrt(AirCraft.Current) * Item.ImproveLevel * 0.2;
                 res[3] = itemtype == 6 || itemtype == 45 ? res[4] + res[7] : 0;
                 res[2] = itemtype == 6 || itemtype == 45 ? res[4] + res[6] : 0;
                 res[1] = res[4] + res[7];

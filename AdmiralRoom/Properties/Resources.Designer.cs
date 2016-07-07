@@ -637,7 +637,7 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Proficiency Bonus 的本地化字符串。
+        ///   查找类似 Bonus 的本地化字符串。
         /// </summary>
         public static string Fleet_AFP_Bonus {
             get {

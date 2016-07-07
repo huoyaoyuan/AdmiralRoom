@@ -310,7 +310,7 @@
     <value>Basic</value>
   </data>
   <data name="Fleet_AFP_Bonus" xml:space="preserve">
-    <value>Proficiency Bonus</value>
+    <value>Bonus</value>
   </data>
   <data name="Fleet_AFP_Fighter" xml:space="preserve">
     <value>Fighters Only</value>

@@ -307,7 +307,7 @@
     <value>基础</value>
   </data>
   <data name="Fleet_AFP_Bonus" xml:space="preserve">
-    <value>熟练度加成</value>
+    <value>加成</value>
   </data>
   <data name="Fleet_AFP_Fighter" xml:space="preserve">
     <value>仅战斗机</value>

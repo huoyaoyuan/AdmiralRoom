@@ -310,7 +310,7 @@
     <value>基本</value>
   </data>
   <data name="Fleet_AFP_Bonus" xml:space="preserve">
-    <value>熟練度ボーナス</value>
+    <value>ボーナス</value>
   </data>
   <data name="Fleet_AFP_Fighter" xml:space="preserve">
     <value>艦戦のみ</value>
