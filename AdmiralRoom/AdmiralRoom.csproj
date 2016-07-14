@@ -187,6 +187,7 @@
     <Compile Include="API\getmembet_mapinfo.cs" />
     <Compile Include="API\hokyu_charge.cs" />
     <Compile Include="API\kaisou_powerup.cs" />
+    <Compile Include="API\kaisou_slot_deprive.cs" />
     <Compile Include="API\kousyou_createitem.cs" />
     <Compile Include="API\kousyou_destroyitem2.cs" />
     <Compile Include="API\kousyou_destroyship.cs" />

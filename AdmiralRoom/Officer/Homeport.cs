@@ -26,6 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.API("api_req_member/itemuse_cond").Subscribe(x => Fleets[x.GetInt("api_deck_id")].Ships.ForEach(y => y.IgnoreNextCondition()));
             Staff.API("api_req_hensei/preset_select").Subscribe<getmember_deck>(PresetHandler);
             Staff.API("api_req_kaisou/slot_exchange_index").Subscribe(ExchangeHandler);
+            Staff.API("api_req_kaisou/slot_deprive").Subscribe<kaisou_slot_deprive>(DepriveHandler);
             Staff.API("api_get_member/mapinfo").Subscribe<getmembet_mapinfo[]>(RefreshMapInfo);
             Staff.API("api_req_map/select_eventmap_rank").Subscribe(SelectRank);
             Staff.API("api_req_mission/result").Subscribe<mission_result>(MissionHandler);
@@ -286,6 +287,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             ship.Slots[src].Item = item2;
             ship.Slots[dst].Item = item1;
             ship.UpdateStatus();
+        }
+
+        private void DepriveHandler(kaisou_slot_deprive api)
+        {
+            Ships[api.api_ship_data.api_set_ship.api_id].Update(api.api_ship_data.api_set_ship);
+            Ships[api.api_ship_data.api_unset_ship.api_id].Update(api.api_ship_data.api_unset_ship);
         }
 
         private void RefreshMapInfo(getmembet_mapinfo[] api)
