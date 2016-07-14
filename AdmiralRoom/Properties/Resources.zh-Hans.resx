@@ -583,6 +583,9 @@
   <data name="Proxy_UseProxy" xml:space="preserve">
     <value>使用代理</value>
   </data>
+  <data name="Quest_Period_Other" xml:space="preserve">
+    <value>其它</value>
+  </data>
   <data name="Quest_Peroid_Daily" xml:space="preserve">
     <value>日常</value>
   </data>

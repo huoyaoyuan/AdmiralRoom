@@ -1466,6 +1466,15 @@ namespace Huoyaoyuan.AdmiralRoom.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Other 的本地化字符串。
+        /// </summary>
+        public static string Quest_Period_Other {
+            get {
+                return ResourceManager.GetString("Quest_Period_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Daily 的本地化字符串。
         /// </summary>
         public static string Quest_Peroid_Daily {

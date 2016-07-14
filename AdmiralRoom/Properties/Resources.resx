@@ -586,6 +586,9 @@ Expedition {1} - {2}</value>
   <data name="Proxy_UseProxy" xml:space="preserve">
     <value>Use proxy</value>
   </data>
+  <data name="Quest_Period_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
   <data name="Quest_Peroid_Daily" xml:space="preserve">
     <value>Daily</value>
   </data>
