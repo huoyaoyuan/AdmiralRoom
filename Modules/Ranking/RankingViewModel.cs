@@ -19,91 +19,95 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
         {
             foreach (var player in api.api_list)
             {
+                int rate = DecodeRate(player);
                 switch (player.api_no)
                 {
                     case 1:
-                        if (Number1.Point < player.api_rate)
+                        if (Number1.Point < rate)
                             Number1 = new RankRecord
                             {
-                                Point = player.api_rate,
-                                Diff = player.api_rate - Number1.Point
+                                Point = rate,
+                                Diff = rate - Number1.Point
                             };
-                        else if (Number1.Point > player.api_rate)
+                        else if (Number1.Point > rate)
                             Number1 = new RankRecord
                             {
-                                Point = player.api_rate,
+                                Point = rate,
                                 Diff = 0
                             };
                         break;
                     case 5:
-                        if (Number5.Point < player.api_rate)
+                        if (Number5.Point < rate)
                             Number5 = new RankRecord
                             {
-                                Point = player.api_rate,
-                                Diff = player.api_rate - Number5.Point
+                                Point = rate,
+                                Diff = rate - Number5.Point
                             };
-                        else if (Number5.Point > player.api_rate)
+                        else if (Number5.Point > rate)
                             Number5 = new RankRecord
                             {
-                                Point = player.api_rate,
+                                Point = rate,
                                 Diff = 0
                             };
                         break;
                     case 20:
-                        if (Number20.Point < player.api_rate)
+                        if (Number20.Point < rate)
                             Number20 = new RankRecord
                             {
-                                Point = player.api_rate,
-                                Diff = player.api_rate - Number20.Point
+                                Point = rate,
+                                Diff = rate - Number20.Point
                             };
-                        else if (Number20.Point > player.api_rate)
+                        else if (Number20.Point > rate)
                             Number20 = new RankRecord
                             {
-                                Point = player.api_rate,
+                                Point = rate,
                                 Diff = 0
                             };
                         break;
                     case 100:
-                        if (Number100.Point < player.api_rate)
+                        if (Number100.Point < rate)
                             Number100 = new RankRecord
                             {
-                                Point = player.api_rate,
-                                Diff = player.api_rate - Number100.Point
+                                Point = rate,
+                                Diff = rate - Number100.Point
                             };
-                        else if (Number100.Point > player.api_rate)
+                        else if (Number100.Point > rate)
                             Number100 = new RankRecord
                             {
-                                Point = player.api_rate,
+                                Point = rate,
                                 Diff = 0
                             };
                         break;
                     case 500:
-                        if (Number500.Point < player.api_rate)
+                        if (Number500.Point < rate)
                             Number500 = new RankRecord
                             {
-                                Point = player.api_rate,
-                                Diff = player.api_rate - Number500.Point
+                                Point = rate,
+                                Diff = rate - Number500.Point
                             };
-                        else if (Number500.Point > player.api_rate)
+                        else if (Number500.Point > rate)
                             Number500 = new RankRecord
                             {
-                                Point = player.api_rate,
+                                Point = rate,
                                 Diff = 0
                             };
                         break;
                 }
-                if (player.api_member_id == Staff.Current.Admiral.MemberID)
+                if (player.api_nickname == Staff.Current.Admiral.Nickname && player.api_comment == Staff.Current.Admiral.Comment)
                 {
-                    if (MyLastPoint != player.api_rate || MyRank != player.api_no)
+                    if (MyLastPoint != rate || MyRank != player.api_no)
                     {
                         MyRank = player.api_no;
-                        MyLastPoint = player.api_rate;
+                        MyLastPoint = rate;
                         myLastExp = myLastExpStore;
                         OnPropertyChanged(nameof(MyPoint));
                     }
                 }
             }
         }
+
+        private static int[] magic = { 2, 5, 7, 2, 7, 3, 1, 6, 9, 9 };
+        private int DecodeRate(ranking_getlist.ranking_list api) => api.api_rate / api.api_no / magic[Staff.Current.Admiral.MemberID % 10];
 
         private void OnExpChanged(object sender, PropertyChangedEventArgs e)
         {
