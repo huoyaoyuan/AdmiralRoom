@@ -42,9 +42,12 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         private string datastring;
         private void CompressFile()
         {
-            using (var zipfile = new ZipArchive(File.Create($@"logs\battlelog\{date:yyyy-MM-dd}.zip"), ZipArchiveMode.Create))
-                zipfile.CreateEntryFromFile($@"logs\battlelog\{date:yyyy-MM-dd}.log", $"{date:yyyy-MM-dd}.log");
-            File.Delete($@"logs\battlelog\{date:yyyy-MM-dd}.log");
+            if (File.Exists($@"logs\battlelog\{date:yyyy-MM-dd}.log"))
+            {
+                using (var zipfile = new ZipArchive(File.Create($@"logs\battlelog\{date:yyyy-MM-dd}.zip"), ZipArchiveMode.Create))
+                    zipfile.CreateEntryFromFile($@"logs\battlelog\{date:yyyy-MM-dd}.log", $"{date:yyyy-MM-dd}.log");
+                File.Delete($@"logs\battlelog\{date:yyyy-MM-dd}.log");
+            }
         }
         private void AddApi(string type, Session oSession)
         {
