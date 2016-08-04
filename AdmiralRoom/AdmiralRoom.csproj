@@ -237,6 +237,9 @@
     <Compile Include="Logger\ViewProvider.cs" />
     <Compile Include="Models\BattleCatalogWorker.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />
+    <Compile Include="NewWindow.xaml.cs">
+      <DependentUpon>NewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Officer\Exp.cs" />
     <Compile Include="Models\ItemWithIndex.cs" />
     <Compile Include="Models\ShipCatalogWorker.cs" />
@@ -389,6 +392,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\StaticResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
