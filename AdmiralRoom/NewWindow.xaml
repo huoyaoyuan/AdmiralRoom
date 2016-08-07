@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
-        mc:Ignorable="d"
-        Title="NewWindow" Height="1080" Width="1920">
+        xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        Title="NewWindow"
+        mc:Ignorable="d">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="视图"/>
+            <MenuItem Header="窗口"/>
+            <MenuItem Header="统计"/>
+            <MenuItem Header="选项">
+                <MenuItem Header="设置"/>
+                <MenuItem Header="关于"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"/>
+        <dock:DockingManager Grid.Row="2">
+            
+        </dock:DockingManager>
+        <StatusBar Grid.Row="3"/>
     </Grid>
 </Window>
