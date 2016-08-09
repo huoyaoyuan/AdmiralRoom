@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
         Title="提督の部屋"
         Loaded="LoadLayout" Closed="SaveLayout"
@@ -56,6 +57,33 @@
                 </dock:LayoutPanel>
             </dock:LayoutRoot>
         </dock:DockingManager>
-        <StatusBar Grid.Row="3"/>
+        <StatusBar Grid.Row="3" FontSize="18" DataContext="{x:Static models:Status.Current}">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" Content="{Binding StatusText}"/>
+            <Separator Grid.Column="1"/>
+            <StatusBarItem Grid.Column="3" Margin="0,0,10,0">
+                <TextBlock Text="{Binding BrowserZoomFactor, StringFormat={}{0:P0}, Source={x:Static local:Config.Current}}"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="4">
+                <Slider Width="100"
+                        Minimum="0.5" Maximum="2"
+                        IsSnapToTickEnabled="True"
+                        Ticks="0.5,0.75,1,1.25,1.5,1.75,2"
+                        ValueChanged="SetBrowserZoomFactor"
+                        Value="{Binding BrowserZoomFactor, Source={x:Static local:Config.Current}, Mode=TwoWay}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
