@@ -32,5 +32,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         public Window CreateWindow() => new ShipCatalog();
 
         public string GetTitle(CultureInfo culture) => Properties.Resources.ViewTitle_ShipCatalog;
+
+        public SubWindowCategory Category => SubWindowCategory.Overview;
     }
 }

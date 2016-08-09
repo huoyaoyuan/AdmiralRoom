@@ -25,5 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         public Window CreateWindow() => new EquipmentCatalog();
 
         public string GetTitle(CultureInfo culture) => Properties.Resources.ViewTitle_EquipmentCatalog;
+
+        public SubWindowCategory Category => SubWindowCategory.Overview;
     }
 }

@@ -18,8 +18,9 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem x:Name="subviews" Header="视图"/>
-            <MenuItem x:Name="subwindows" Header="窗口"/>
-            <MenuItem Header="统计"/>
+            <MenuItem x:Name="subwindowOverview" Header="概览"/>
+            <MenuItem x:Name="subwindowStatistics" Header="统计"/>
+            <MenuItem x:Name="subwindowInformation" Header="信息"/>
             <MenuItem Header="选项">
                 <MenuItem Header="设置"/>
                 <MenuItem Header="关于"/>

@@ -7,5 +7,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     {
         Window CreateWindow();
         string GetTitle(CultureInfo culture);
+        SubWindowCategory Category { get; }
     }
+    public enum SubWindowCategory { Overview, Statistics, Information }
 }
