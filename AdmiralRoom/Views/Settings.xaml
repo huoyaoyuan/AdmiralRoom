@@ -8,51 +8,24 @@
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
-             mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=root:Config}">
+             d:DataContext="{d:DesignInstance Type=root:Config}"
+             mc:Ignorable="d">
     <StackPanel Orientation="Vertical">
-        <Grid HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <ribbon:DropDownButton Grid.Column="0"
-                                   Header="{ex:Localizable Settings_ConfigFile}"
-                                   
-                                   Margin="40,20,20,10"
-                                   ClosePopupOnMouseDown="True">
-                <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding Commands.Save}"/>
-                <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding Commands.Load}"/>
-                <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding Commands.LoadFrom}"/>
-                <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding Commands.SaveAs}"/>
-            </ribbon:DropDownButton>
-            <ribbon:DropDownButton Grid.Column="1"
-                                   Header="{ex:Localizable Settings_Layout}"
-                                   
-                                   Margin="20,20,20,10"
-                                   ClosePopupOnMouseDown="True"
-                                   DataContext="{Binding RelativeSource={RelativeSource AncestorType=root:MainWindow}}">
-                <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding DockCommands.Save}"/>
-                <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding DockCommands.Load}"/>
-                <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding DockCommands.LoadFrom}"/>
-                <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding DockCommands.SaveAs}"/>
-            </ribbon:DropDownButton>
-        </Grid>
-        <GroupBox Header="{ex:Localizable Screenshot}" Margin="5" HorizontalAlignment="Left">
+        <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Screenshot}">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="2" Text="{ex:Localizable Settings_ScreenShotFolder}"/>
-                    <TextBox Margin="2" Width="200" Text="{Binding ScreenShotFolder}"/>
+                    <TextBox Width="200" Margin="2" Text="{Binding ScreenShotFolder}"/>
                     <Button Margin="2" Click="SelectScreenFolder" Content="{ex:Localizable Settings_FolderSelect}"/>
                     <Button Margin="2" Click="OpenScreenShotFolder" Content="{ex:Localizable Settings_FolderOpen}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton IsChecked="{Binding ScreenShotFileFormat, Converter={StaticResource RadioButtonConverter}, ConverterParameter=png}" Margin="2">PNG</RadioButton>
-                    <RadioButton IsChecked="{Binding ScreenShotFileFormat, Converter={StaticResource RadioButtonConverter}, ConverterParameter=jpg}" Margin="2">JPG</RadioButton>
+                    <RadioButton Margin="2" IsChecked="{Binding ScreenShotFileFormat, Converter={StaticResource RadioButtonConverter}, ConverterParameter=png}">PNG</RadioButton>
+                    <RadioButton Margin="2" IsChecked="{Binding ScreenShotFileFormat, Converter={StaticResource RadioButtonConverter}, ConverterParameter=jpg}">JPG</RadioButton>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="{ex:Localizable Notification}" Margin="5" HorizontalAlignment="Left">
+        <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Notification}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -66,56 +39,61 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Margin="2"
-                           Grid.Column="2"
+                <TextBlock Grid.Column="2"
+                           Margin="2"
                            VerticalAlignment="Top"
                            Text="{ex:Localizable Settings_NotifyShortingTime}"/>
-                <TextBox Margin="2"
-                         Grid.Column="3"
-                         Width="40"
+                <TextBox Grid.Column="3"
+                         Width="40" Margin="2"
                          Text="{Binding NotifyTimeAdjust}"/>
-                <CheckBox Margin="2"
+                <CheckBox Grid.Row="0"
+                          Margin="2"
                           VerticalAlignment="Center"
-                          Grid.Row="0"
                           IsChecked="{Binding NotifyWhenExpedition}"
                           Content="{ex:Localizable Settings_NotifyWhenExpedition}"/>
-                <TextBox Margin="2" Width="80"
-                         Grid.Column="1" Grid.Row="0"
+                <TextBox Grid.Row="0" Grid.Column="1"
+                         Width="80" Margin="2"
                          Text="{Binding NotifyExpeditionSound, Mode=TwoWay}"/>
-                <CheckBox Margin="2"
+                <CheckBox Grid.Row="1"
+                          Margin="2"
                           VerticalAlignment="Center"
-                          Grid.Row="1"
                           IsChecked="{Binding NotifyWhenRepair}"
                           Content="{ex:Localizable Settings_NotifyWhenRepair}"/>
-                <TextBox Margin="2" Width="80"
-                         Grid.Column="1" Grid.Row="1"
+                <TextBox Grid.Row="1" Grid.Column="1"
+                         Width="80" Margin="2"
                          Text="{Binding NotifyRepairSound, Mode=TwoWay}"/>
-                <TextBlock Margin="2"
-                           Grid.Row="1" Grid.RowSpan="3" Grid.Column="2"
-                           Grid.ColumnSpan="2">
+                <CheckBox Grid.Row="2"
+                          Margin="2"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding NotifyWhenBuild}"
+                          Content="{ex:Localizable Settings_NotifyWhenBuild}"/>
+                <TextBox Grid.Row="2" Grid.Column="1"
+                         Width="80" Margin="2"
+                         Text="{Binding NotifyBuildSound, Mode=TwoWay}"/>
+                <CheckBox Grid.Row="3"
+                          Margin="2"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding NotifyWhenCondition}"
+                          Content="{ex:Localizable Settings_NotifyWhenCondition}"/>
+                <TextBox Grid.Row="3" Grid.Column="1"
+                         Width="80" Margin="2"
+                         Text="{Binding NotifyConditionSound, Mode=TwoWay}"/>
+                <CheckBox Grid.Row="1" Grid.Column="2"
+                          Margin="2"
+                          Content="{ex:Localizable Notification_Toast}"
+                          IsEnabled="{x:Static root:ToastNotifier.IsSupported}"
+                          IsChecked="{Binding PreferToastNotify}"
+                          ToolTip="{ex:Localizable Notification_ToolTip_Win10}"/>
+                <TextBlock Grid.Row="2" Grid.RowSpan="2" Grid.Column="2"
+                           Grid.ColumnSpan="2"
+                           Margin="2">
                     ※Sound file in sound\ folder
                     <LineBreak/>
                     Ballon only
                 </TextBlock>
-                <CheckBox Margin="2"
-                          VerticalAlignment="Center"
-                          Grid.Row="2"
-                          IsChecked="{Binding NotifyWhenBuild}"
-                          Content="{ex:Localizable Settings_NotifyWhenBuild}"/>
-                <TextBox Margin="2" Width="80"
-                         Grid.Column="1" Grid.Row="2"
-                         Text="{Binding NotifyBuildSound, Mode=TwoWay}"/>
-                <CheckBox Margin="2"
-                          VerticalAlignment="Center"
-                          Grid.Row="3"
-                          IsChecked="{Binding NotifyWhenCondition}"
-                          Content="{ex:Localizable Settings_NotifyWhenCondition}"/>
-                <TextBox Margin="2" Width="80"
-                         Grid.Column="1" Grid.Row="3"
-                         Text="{Binding NotifyConditionSound, Mode=TwoWay}"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="{ex:Localizable Settings_LoS}" Margin="5" HorizontalAlignment="Left">
+        <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Settings_LoS}">
             <StackPanel Orientation="Vertical">
                 <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_SimpleSum}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=SimpleSum}"/>
                 <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q3}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q3}"/>
@@ -123,7 +101,7 @@
                 <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula16Q1}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula16Q1}"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="{ex:Localizable Database_Report}" Margin="5" HorizontalAlignment="Left">
+        <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Database_Report}">
             <StackPanel Orientation="Vertical">
                 <CheckBox Margin="2" IsChecked="{Binding ReportToPoiDB}">
                     <controls:Hyperlink2 CommandLineString="http://db.kcwiki.moe">
@@ -142,10 +120,13 @@
                 </CheckBox>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="{ex:Localizable Update}" Margin="5" HorizontalAlignment="Left">
+        <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Update}">
             <StackPanel Orientation="Vertical">
                 <CheckBox Margin="2" Content="{ex:Localizable Update_AutoCheck}" IsChecked="{Binding AutoCheckUpdate}"/>
-                <CheckBox Margin="2" Content="{ex:Localizable Update_AutoDownload}" IsChecked="{Binding AutoDownloadUpdate}" IsEnabled="{Binding AutoCheckUpdate}"/>
+                <CheckBox Margin="2"
+                          Content="{ex:Localizable Update_AutoDownload}"
+                          IsChecked="{Binding AutoDownloadUpdate}"
+                          IsEnabled="{Binding AutoCheckUpdate}"/>
                 <CheckBox Margin="2" Content="{ex:Localizable Update_UsingProxy}" IsChecked="{Binding UpdateUsingProxy}"/>
             </StackPanel>
         </GroupBox>

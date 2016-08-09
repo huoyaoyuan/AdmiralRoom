@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        xmlns:views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
         xmlns:controlzex="urn:controlzex"
         Title="ConfigWindow"
         Width="800" Height="600"
@@ -64,6 +65,12 @@
                          IsEnabled="{Binding EnableProxyHTTPS, Mode=OneWay}"
                          Text="{Binding HTTPSProxy.Port, Mode=TwoWay}"/>
             </Grid>
+        </TabItem>
+        <TabItem Header="界面">
+            
+        </TabItem>
+        <TabItem Header="功能">
+            <views:Settings/>
         </TabItem>
     </controlzex:TabControlEx>
 </Window>
