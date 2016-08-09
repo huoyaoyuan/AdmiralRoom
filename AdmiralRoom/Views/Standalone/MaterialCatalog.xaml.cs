@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.Composition;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
 {
@@ -26,5 +29,15 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                 check.Select(x => x.IsChecked.Value).ToArray(),
                 check.FirstOrDefault(x => x.IsMouseOver)?.Tag as int?);
         }
+    }
+
+    [Export(typeof(ISubWindow))]
+    public class MaterialCatalogSubWindow : ISubWindow
+    {
+        public SubWindowCategory Category => SubWindowCategory.Statistics;
+
+        public Window CreateWindow() => new MaterialCatalog { DataContext = new Logger.MaterialProvider(Logger.Loggers.MaterialLogger) };
+
+        public string GetTitle(CultureInfo culture) => Properties.Resources.Material;
     }
 }

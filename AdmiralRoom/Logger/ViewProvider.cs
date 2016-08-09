@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    class ViewProvider<T> : NotificationObject, IUpdatable
+    internal class ViewProvider<T> : ViewProviderBase, IUpdatable
         where T : ILog
     {
         public class Column : NotifySourceObject<ViewProvider<T>>
@@ -90,7 +90,6 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             }
         }
         public Column[] Columns { get; }
-        public GridViewColumn[] ViewColumns { get; }
         public readonly Logger<T> Logger;
         private readonly T[] readed;
         public int TotalCount { get; }

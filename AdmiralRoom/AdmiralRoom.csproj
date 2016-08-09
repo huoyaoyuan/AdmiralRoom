@@ -237,6 +237,7 @@
     <Compile Include="Logger\MissionLog.cs" />
     <Compile Include="Logger\PropertyProvider.cs" />
     <Compile Include="Logger\ViewProvider.cs" />
+    <Compile Include="Logger\ViewProviderBase.cs" />
     <Compile Include="Models\BattleCatalogWorker.cs" />
     <Compile Include="Models\EquipmentCatalogWorker.cs" />
     <Compile Include="NewWindow.xaml.cs">
@@ -356,6 +357,7 @@
     <Compile Include="Views\Standalone\EquipmentCatalog.xaml.cs">
       <DependentUpon>EquipmentCatalog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Standalone\LoggerExports.cs" />
     <Compile Include="Views\Standalone\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
