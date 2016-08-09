@@ -33,7 +33,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Logger.Loggers.Initialize();
             ModuleHost.Instance.Initialize();
 
-            this.MainWindow = new MainWindow();
+            this.MainWindow = new NewWindow();
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
             Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;

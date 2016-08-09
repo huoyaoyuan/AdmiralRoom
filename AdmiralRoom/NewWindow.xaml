@@ -24,8 +24,16 @@
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal"/>
-        <dock:DockingManager Grid.Row="2">
-            
+        <dock:DockingManager x:Name="DockMan" Grid.Row="2">
+            <dock:LayoutRoot>
+                <dock:LayoutPanel>
+                    <dock:LayoutDocumentPane>
+                        <dock:LayoutDocument CanClose="False" CanFloat="False" ContentId="GameHost">
+                            <local:KanColleBrowser x:Name="GameHost"/>
+                        </dock:LayoutDocument>
+                    </dock:LayoutDocumentPane>
+                </dock:LayoutPanel>
+            </dock:LayoutRoot>
         </dock:DockingManager>
         <StatusBar Grid.Row="3"/>
     </Grid>
