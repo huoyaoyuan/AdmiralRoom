@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using CoreAudioApi;
+using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {

@@ -1,4 +1,6 @@
-﻿namespace Huoyaoyuan.AdmiralRoom.Models
+﻿using Meowtrix.ComponentModel;
+
+namespace Huoyaoyuan.AdmiralRoom.Models
 {
     sealed class Status : NotificationObject
     {

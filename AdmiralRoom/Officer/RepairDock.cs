@@ -3,6 +3,7 @@ using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Properties;
+using Meowtrix;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {

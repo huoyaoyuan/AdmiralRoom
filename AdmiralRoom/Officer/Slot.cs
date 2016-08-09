@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {

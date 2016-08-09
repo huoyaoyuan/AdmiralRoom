@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer

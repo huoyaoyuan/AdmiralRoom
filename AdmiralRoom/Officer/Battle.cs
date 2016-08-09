@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.Linq;
 using static System.Math;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -159,9 +160,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Fleet2?.ForEach(Delegates.OnEndUpdate);
             EnemyFleet.ForEach(Delegates.OnEndUpdate);
             //mvp
-            Fleet1.TakeMax(x => x.DamageGiven).SetMvp();
-            Fleet2?.TakeMax(x => x.DamageGiven).SetMvp();
-            EnemyFleet.TakeMax(x => x.DamageGiven).SetMvp();
+            Fleet1.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
+            Fleet2?.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
+            EnemyFleet.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
 
             OnAllPropertyChanged();
         }
@@ -211,10 +212,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     combat.FriendStage2 = new LimitedValue(api.api_stage2.api_f_count - api.api_stage2.api_f_lostcount, api.api_stage2.api_f_count);
                     combat.EnemyStage2 = new LimitedValue(api.api_stage2.api_e_count - api.api_stage2.api_e_lostcount, api.api_stage2.api_e_count);
                 }
-                friendtorpedo = Fleet1.Where(x => x.CanAerialTorpedo).TakeSingle();
-                friendbomb = Fleet1.Where(x => x.CanAerialBomb).TakeSingle();
-                enemytorpedo = EnemyFleet.Where(x => x.CanAerialTorpedo).TakeSingle();
-                enemybomb = EnemyFleet.Where(x => x.CanAerialBomb).TakeSingle();
+                friendtorpedo = Fleet1.Where(x => x.CanAerialTorpedo).TakeIfSingle();
+                friendbomb = Fleet1.Where(x => x.CanAerialBomb).TakeIfSingle();
+                enemytorpedo = EnemyFleet.Where(x => x.CanAerialTorpedo).TakeIfSingle();
+                enemybomb = EnemyFleet.Where(x => x.CanAerialBomb).TakeIfSingle();
             }
             if (api.api_stage3 != null)
             {

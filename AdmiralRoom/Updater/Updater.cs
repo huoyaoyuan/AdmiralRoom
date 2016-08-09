@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
+using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
 #pragma warning disable CC0022

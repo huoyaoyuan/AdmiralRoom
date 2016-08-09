@@ -11,8 +11,6 @@ namespace Huoyaoyuan.AdmiralRoom
             foreach (T s in source)
                 func(s);
         }
-        public static T First<T>(this T[] array) => array[0];
-        public static T Last<T>(this T[] array) => array[array.Length - 1];
         public static bool HasItem<T>(this IEnumerable<T> source) => source?.Any() ?? false;
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => !source.HasItem();
         public static void ArrayZip<T1, T2>(this T1[] source, T2[] param, int from, Action<T1, T2> func)
@@ -29,36 +27,6 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static IEnumerable<T> ConcatNotNull<T>(this IEnumerable<T> source, IEnumerable<T> param)
             => param != null ? source.Concat(param) : source;
-        public static T TakeSingle<T>(this IEnumerable<T> source)
-        {
-            using (var e = source.GetEnumerator())
-            {
-                if (!e.MoveNext()) return default(T);
-                T result = e.Current;
-                if (e.MoveNext()) return default(T);
-                return result;
-            }
-        }
-        public static T TakeMax<T, TResult>(this IEnumerable<T> source, Func<T, TResult> selector)
-            where TResult : IComparable
-        {
-            using (var e = source.GetEnumerator())
-            {
-                if (!e.MoveNext()) return default(T);
-                T max = e.Current;
-                TResult key = selector(max);
-                while (e.MoveNext())
-                {
-                    TResult key2 = selector(e.Current);
-                    if (key2.CompareTo(key) > 0)
-                    {
-                        key = key2;
-                        max = e.Current;
-                    }
-                }
-                return max;
-            }
-        }
         public static int Max(int a, params int[] array)
         {
             int max = a;

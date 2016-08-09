@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
 #pragma warning disable CC0091

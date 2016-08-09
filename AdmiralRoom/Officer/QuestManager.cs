@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {

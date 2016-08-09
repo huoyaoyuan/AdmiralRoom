@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using Meowtrix.ComponentModel;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Huoyaoyuan.AdmiralRoom

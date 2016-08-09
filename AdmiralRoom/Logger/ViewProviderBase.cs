@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {

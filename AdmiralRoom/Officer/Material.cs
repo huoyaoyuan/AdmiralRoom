@@ -1,4 +1,5 @@
 ﻿using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
