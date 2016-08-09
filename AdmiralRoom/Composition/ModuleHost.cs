@@ -12,6 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         public static ModuleHost Instance { get; } = new ModuleHost();
         [ImportMany(typeof(IModule))]
         public IList<IModule> Modules { get; } = new List<IModule>();
+        public IList<ISubView> SubViews { get; } = new List<ISubView>();
         public void Initialize()
         {
 #pragma warning disable CC0022

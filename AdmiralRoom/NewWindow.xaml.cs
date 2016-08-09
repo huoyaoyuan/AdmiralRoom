@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using Huoyaoyuan.AdmiralRoom.Composition;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
@@ -18,6 +19,17 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             InitializeComponent();
             ResourceService.Current.CultureChanged += OnCultureChanged;
+
+            foreach (var subview in ModuleHost.Instance.SubViews)
+            {
+                AddOrShowView(subview, false);
+                var menuitem = new MenuItem
+                {
+                    Header = subview.GetTitle(ResourceService.Current.CurrentCulture)
+                };
+                menuitem.Click += (_, __) => AddOrShowView(subview, true);
+                ResourceService.Current.CultureChanged += c => menuitem.Header = subview.GetTitle(c);
+            }
         }
 
         private void MakeViewList(ILayoutElement elem)
@@ -86,7 +98,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 var content = view.View;
                 targetView.Content = content;
                 targetView.ContentId = viewname;
-                targetView.Title = view.GetTitle(Properties.Resources.Culture);
+                targetView.Title = view.GetTitle(ResourceService.Current.CurrentCulture);
                 targetView.CanAutoHide = true;
             }
             if (show) targetView.IsVisible = true;

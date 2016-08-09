@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="视图"/>
+            <MenuItem x:Name="subviews" Header="视图"/>
             <MenuItem Header="窗口"/>
             <MenuItem Header="统计"/>
             <MenuItem Header="选项">
