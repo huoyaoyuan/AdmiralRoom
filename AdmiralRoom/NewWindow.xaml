@@ -7,6 +7,7 @@
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
         Title="提督の部屋"
         Loaded="LoadLayout" Closed="SaveLayout"
         FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
@@ -45,6 +46,9 @@
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal"/>
         <dock:DockingManager x:Name="DockMan" Grid.Row="2">
+            <dock:DockingManager.Theme>
+                <theme2013:Vs2013BlueTheme/>
+            </dock:DockingManager.Theme>
             <dock:LayoutRoot>
                 <dock:LayoutPanel>
                     <dock:LayoutDocumentPane>
