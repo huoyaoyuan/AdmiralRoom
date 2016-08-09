@@ -39,7 +39,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                         if (MessageBox.Show($"{Properties.Resources.Update_Text_Download}{NewVersion}",
                             Properties.Resources.Update, MessageBoxButton.OKCancel, MessageBoxImage.Information)
                             == MessageBoxResult.OK)
-                            (App.Current.MainWindow as MainWindow).ShowUpdatePage();
+                            new AboutWindow { Owner = Application.Current.MainWindow }.ShowDialog();
                     });
                     if (Config.Current.AutoDownloadUpdate) DownloadCommand.Execute(null);
                     else isautoupdate = false;
