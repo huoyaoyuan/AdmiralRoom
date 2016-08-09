@@ -12,7 +12,9 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         public static ModuleHost Instance { get; } = new ModuleHost();
         [ImportMany(typeof(IModule))]
         public IList<IModule> Modules { get; } = new List<IModule>();
+        [ImportMany(typeof(ISubView))]
         public IList<ISubView> SubViews { get; } = new List<ISubView>();
+        [ImportMany(typeof(ISubWindow))]
         public IList<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
         public void Initialize()
         {

@@ -9,7 +9,7 @@
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
+             DataContext="{x:Static officer:Staff.Current}"
              d:DesignHeight="400" d:DesignWidth="720">
     <TabControl ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
         <TabControl.ItemTemplate>

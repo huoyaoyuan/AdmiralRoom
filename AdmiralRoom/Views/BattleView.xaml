@@ -9,7 +9,7 @@
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance officer:Staff}">
+             DataContext="{x:Static officer:Staff.Current}">
     <UserControl.Resources>
         <Style TargetType="{x:Type ItemsControl}" x:Key="FleetKey">
             <Setter Property="ItemsPanel">

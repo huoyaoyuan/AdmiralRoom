@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel.Composition;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
+using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
 {
@@ -21,5 +24,13 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             var param = (sender as Button).Tag as int[];
             worker.SelectTypes(param);
         }
+    }
+
+    [Export(typeof(ISubWindow))]
+    public class ShipCatalogSubWindow : ISubWindow
+    {
+        public Window CreateWindow() => new ShipCatalog();
+
+        public string GetTitle(CultureInfo culture) => Properties.Resources.ViewTitle_ShipCatalog;
     }
 }

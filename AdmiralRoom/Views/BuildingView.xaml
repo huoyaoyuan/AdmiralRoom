@@ -9,7 +9,7 @@
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              Background="White"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance {x:Type officer:Staff}}"
+             DataContext="{x:Static officer:Staff.Current}"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical">
         <ItemsControl ItemsSource="{Binding Shipyard.BuildingDocks}">

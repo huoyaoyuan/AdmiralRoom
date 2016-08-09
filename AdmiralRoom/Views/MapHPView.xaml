@@ -7,7 +7,7 @@
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance officer:Staff}"
+             DataContext="{x:Static officer:Staff.Current}"
              d:DesignHeight="300" d:DesignWidth="300">
     <control:ContentNullChooser ContentChooser="{Binding Homeport.MapsInProgress}">
         <control:ContentNullChooser.NullContent>

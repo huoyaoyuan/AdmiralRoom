@@ -29,6 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 };
                 menuitem.Click += (_, __) => AddOrShowView(subview, true);
                 ResourceService.Current.CultureChanged += c => menuitem.Header = subview.GetTitle(c);
+                subviews.Items.Add(menuitem);
             }
 
             foreach (var subwindow in ModuleHost.Instance.SubWindows)
@@ -40,6 +41,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 var closure = new SubWindowClosure(menuitem, subwindow);
                 menuitem.Click += closure.Click;
                 ResourceService.Current.CultureChanged += closure.OnCultureChanged;
+                subwindows.Items.Add(menuitem);
             }
 
             ResourceService.Current.CultureChanged += _ => viewList[nameof(GameHost)].Title = Properties.Resources.Browser;
@@ -98,6 +100,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 layoutserializer.Deserialize(path);
             }
             catch { }
+            viewList.Clear();
             MakeViewList(DockMan.Layout);
         }
         private void TrySaveLayout(string path = "layout.xml")
@@ -132,8 +135,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             if (targetView.Content == null)
             {
-                var content = view.View;
-                targetView.Content = content;
+                targetView.Content = view.View;
                 targetView.ContentId = viewname;
                 targetView.Title = view.GetTitle(ResourceService.Current.CurrentCulture);
                 targetView.CanAutoHide = true;

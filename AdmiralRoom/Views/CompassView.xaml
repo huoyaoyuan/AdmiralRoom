@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
-             d:DataContext="{d:DesignInstance officer:Staff}"
+             DataContext="{x:Static officer:Staff.Current}"
              d:DesignHeight="300" d:DesignWidth="300"
              mc:Ignorable="d">
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
