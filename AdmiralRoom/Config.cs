@@ -30,53 +30,18 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        #region Theme
-        private string _theme;
-        public string Theme
+        #region SystemTheme
+        private string _systemtheme;
+        public string SystemTheme
         {
-            get { return _theme; }
+            get { return _systemtheme; }
             set
             {
-                if (value != _theme)
+                if (_systemtheme != value)
                 {
-                    _theme = value;
+                    _systemtheme = value;
                     OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
-
-        #region NoDWM
-        private bool _nodwm;
-        public event Action<bool> NoDwmChanged;
-        public bool NoDWM
-        {
-            get { return _nodwm; }
-            set
-            {
-                if (value != _nodwm)
-                {
-                    _nodwm = value;
-                    OnPropertyChanged();
-                    NoDwmChanged?.Invoke(value);
-                }
-            }
-        }
-        #endregion
-
-        #region Aero
-        private bool _aero;
-        public event Action<bool> AeroChanged;
-        public bool Aero
-        {
-            get { return _aero; }
-            set
-            {
-                if (value != _aero)
-                {
-                    _aero = value;
-                    OnPropertyChanged();
-                    AeroChanged?.Invoke(value);
+                    ThemeService.SetSystemTheme(value);
                 }
             }
         }
@@ -543,7 +508,6 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private Config()
         {
-            _theme = "Windows 8";
             var thisculture = CultureInfo.CurrentUICulture;
             foreach (var culture in ResourceService.SupportedCultures)
             {
@@ -555,21 +519,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             if (_language == null) _language = "en";
             var OSVersion = Environment.OSVersion.Version;
-            if (OSVersion.Major >= 10)//Windows 10
-            {
-                _nodwm = true;
-                _aero = false;
-            }
-            else if (OSVersion.Minor >= 2)//Windows 8
-            {
-                _nodwm = false;
-                _aero = false;
-            }
-            else//Windows 7
-            {
-                _nodwm = false;
-                _aero = true;
-            }
+            SystemTheme = OSVersion.Major == 6 && OSVersion.Minor == 1 ? "Aero" : "Aero2";
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
             _prefertoast = ToastNotifier.IsSupported;
