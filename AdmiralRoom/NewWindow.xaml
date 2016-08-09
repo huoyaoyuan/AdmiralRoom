@@ -40,7 +40,7 @@
                     <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding DockCommands.SaveAs}"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="关于"/>
+                <MenuItem Header="关于" Click="ShowAboutWindow"/>
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal"/>

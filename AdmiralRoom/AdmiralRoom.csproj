@@ -309,8 +309,8 @@
     <Compile Include="Reporter\KancolleDBReporter.cs" />
     <Compile Include="Reporter\PoiDBReporter.cs" />
     <Compile Include="Updater\Updater.cs" />
-    <Compile Include="Views\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdmiralView.xaml.cs">
       <DependentUpon>AdmiralView.xaml</DependentUpon>
@@ -419,7 +419,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\About.xaml">
+    <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -201,5 +201,7 @@ namespace Huoyaoyuan.AdmiralRoom
         private void ShowConfigWindow(object sender, RoutedEventArgs e) => new ConfigWindow { Owner = this }.ShowDialog();
 
         public Config.CommandSet DockCommands { get; }
+
+        private void ShowAboutWindow(object sender, RoutedEventArgs e) => new AboutWindow { Owner = this }.ShowDialog();
     }
 }
