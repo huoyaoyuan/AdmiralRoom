@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
         Title="NewWindow"
+        Loaded="LoadLayout" Closed="SaveLayout"
         mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
