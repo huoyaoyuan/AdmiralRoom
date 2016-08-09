@@ -13,6 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
         [ImportMany(typeof(IModule))]
         public IList<IModule> Modules { get; } = new List<IModule>();
         public IList<ISubView> SubViews { get; } = new List<ISubView>();
+        public IList<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
         public void Initialize()
         {
 #pragma warning disable CC0022

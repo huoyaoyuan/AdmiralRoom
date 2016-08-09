@@ -30,6 +30,41 @@ namespace Huoyaoyuan.AdmiralRoom
                 menuitem.Click += (_, __) => AddOrShowView(subview, true);
                 ResourceService.Current.CultureChanged += c => menuitem.Header = subview.GetTitle(c);
             }
+
+            foreach (var subwindow in ModuleHost.Instance.SubWindows)
+            {
+                var menuitem = new MenuItem
+                {
+                    Header = subwindow.GetTitle(ResourceService.Current.CurrentCulture)
+                };
+                var closure = new SubWindowClosure(menuitem, subwindow);
+                menuitem.Click += closure.Click;
+                ResourceService.Current.CultureChanged += closure.OnCultureChanged;
+            }
+        }
+
+        private class SubWindowClosure
+        {
+            private MenuItem _menuitem;
+            private ISubWindow _isubwindow;
+            private Window _window;
+            public SubWindowClosure(MenuItem menuitem, ISubWindow isubwindow)
+            {
+                _menuitem = menuitem;
+                _isubwindow = isubwindow;
+            }
+            public void Click(object sender, RoutedEventArgs e)
+            {
+                if (_window == null)
+                {
+                    _window = _isubwindow.CreateWindow();
+                    _window.Closed += WindowClosed;
+                }
+                _window.Show();
+                _window.Activate();
+            }
+            private void WindowClosed(object sender, EventArgs e) => _window = null;
+            public void OnCultureChanged(CultureInfo culture) => _menuitem.Header = _isubwindow.GetTitle(culture);
         }
 
         private void MakeViewList(ILayoutElement elem)

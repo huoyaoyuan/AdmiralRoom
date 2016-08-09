@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem x:Name="subviews" Header="视图"/>
-            <MenuItem Header="窗口"/>
+            <MenuItem x:Name="subwindows" Header="窗口"/>
             <MenuItem Header="统计"/>
             <MenuItem Header="选项">
                 <MenuItem Header="设置"/>
