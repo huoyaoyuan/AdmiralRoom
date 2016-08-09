@@ -4,11 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
+        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        xmlns:controlzex="urn:controlzex"
         Title="ConfigWindow"
         Width="800" Height="600"
         DataContext="{x:Static local:Config.Current}"
+        FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
+        FontSize="18"
         mc:Ignorable="d">
-    <Grid>
-        
-    </Grid>
+    <controlzex:TabControlEx>
+        <TabItem Header="网络">
+            <Grid Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Row="0" Grid.ColumnSpan="2"
+                          Margin="4"
+                          Content="{ex:Localizable Proxy_UseProxy}"
+                          IsChecked="{Binding EnableProxy, Mode=TwoWay}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="{ex:Localizable Proxy_Address}"/>
+                <TextBox Grid.Row="1" Grid.Column="1"
+                         Width="100" Margin="2"
+                         IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
+                         Text="{Binding Proxy.Host, Mode=TwoWay}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="{ex:Localizable Proxy_Port}"/>
+                <TextBox Grid.Row="2" Grid.Column="1"
+                         Width="100" Margin="2"
+                         IsEnabled="{Binding IsChecked, ElementName=EnableProxy}"
+                         Text="{Binding Proxy.Port, Mode=TwoWay}"/>
+                <CheckBox Grid.Row="3" Grid.ColumnSpan="2"
+                          Margin="4"
+                          Content="{ex:Localizable Proxy_UseHTTPS}"
+                          IsChecked="{Binding EnableProxyHTTPS, Mode=TwoWay}"/>
+                <TextBlock Grid.Row="4" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="{ex:Localizable Proxy_Address}"/>
+                <TextBox Grid.Row="4" Grid.Column="1"
+                         Width="100" Margin="2"
+                         IsEnabled="{Binding EnableProxyHTTPS, Mode=OneWay}"
+                         Text="{Binding HTTPSProxy.Host, Mode=TwoWay}"/>
+                <TextBlock Grid.Row="5" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="{ex:Localizable Proxy_Port}"/>
+                <TextBox Grid.Row="5" Grid.Column="1"
+                         Width="100" Margin="2"
+                         IsEnabled="{Binding EnableProxyHTTPS, Mode=OneWay}"
+                         Text="{Binding HTTPSProxy.Port, Mode=TwoWay}"/>
+            </Grid>
+        </TabItem>
+    </controlzex:TabControlEx>
 </Window>
