@@ -57,7 +57,10 @@
                 </dock:LayoutPanel>
             </dock:LayoutRoot>
         </dock:DockingManager>
-        <StatusBar Grid.Row="3" FontSize="18" DataContext="{x:Static models:Status.Current}">
+        <StatusBar Grid.Row="3"
+                   FontSize="18"
+                   DataContext="{x:Static models:Status.Current}"
+                   FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
