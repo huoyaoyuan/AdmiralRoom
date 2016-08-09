@@ -1,29 +1,18 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls">
-    <Style TargetType="{x:Type local:AnimateProgress}">
-        <Setter Property="Foreground" Value="#FF01D328"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:AnimateProgress}">
-                    <ProgressBar x:Name="PART_Progress"
-                                 Minimum="{TemplateBinding Minimum}"
-                                 Maximum="{TemplateBinding Maximum}"
-                                 Foreground="{TemplateBinding Foreground}"
-                                 Background="{TemplateBinding Background}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+                    xmlns:meowtrix="urn:meowtrix">
     <Style TargetType="{x:Type local:PredicateProgressBar}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PredicateProgressBar}">
                     <Grid>
-                        <local:AnimateProgress Minimum="{TemplateBinding Minimum}"
+                        <meowtrix:AnimateProgress Minimum="{TemplateBinding Minimum}"
                                                Maximum="{TemplateBinding Maximum}"
                                                Value="{TemplateBinding PredictValue}"
                                                Foreground="{TemplateBinding PredictForeground}"
                                                Background="{TemplateBinding Background}"/>
-                        <local:AnimateProgress Minimum="{TemplateBinding Minimum}"
+                        <meowtrix:AnimateProgress Minimum="{TemplateBinding Minimum}"
                                                Maximum="{TemplateBinding Maximum}"
                                                Value="{TemplateBinding Value}"
                                                Foreground="{TemplateBinding Foreground}"
@@ -44,7 +33,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock FontSize="18" Text="{Binding Level, RelativeSource={x:Static RelativeSource.TemplatedParent}, StringFormat=Lv. {0}}"/>
-                        <local:AnimateProgress Grid.Row="1"
+                        <meowtrix:AnimateProgress Grid.Row="1"
                                                Background="Transparent"
                                                Minimum="{Binding Exp.PrevLevel, RelativeSource={RelativeSource TemplatedParent}}"
                                                Maximum="{Binding Exp.NextLevel, RelativeSource={RelativeSource TemplatedParent}}"
@@ -55,5 +44,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type local:Hyperlink2}" BasedOn="{StaticResource {x:Type Hyperlink}}"/>
 </ResourceDictionary>

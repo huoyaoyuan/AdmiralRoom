@@ -8,10 +8,11 @@
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             mc:Ignorable="d"
-             DataContext="{x:Static officer:Staff.Current}">
+             xmlns:meowtrix="urn:meowtrix"
+             DataContext="{x:Static officer:Staff.Current}"
+             mc:Ignorable="d">
     <UserControl.Resources>
-        <Style TargetType="{x:Type ItemsControl}" x:Key="FleetKey">
+        <Style x:Key="FleetKey" TargetType="{x:Type ItemsControl}">
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
@@ -29,7 +30,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Damage"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Margin="4,0,4,0">
+                            <StackPanel Margin="4,0,4,0" Orientation="Vertical">
                                 <StackPanel.ToolTip>
                                     <TextBlock>
                                         <Run Text="{Binding Mode=OneWay}"/>
@@ -51,36 +52,34 @@
                                     <TextBlock FontSize="20" Text="{Binding ShipInfo.ClassName}"/>
                                     <TextBlock FontSize="20" Foreground="DarkGray" Text="後期型"
                                                Visibility="{Binding ShipInfo.IsLateModel, Converter={StaticResource VisibilityConverter}}"/>
-                                    <TextBlock FontSize="20" x:Name="enemyclass"/>
+                                    <TextBlock x:Name="enemyclass" FontSize="20"/>
                                 </StackPanel>
                                 <TextBlock FontSize="14">
                                     <Run Text="{Binding ShipInfo.ShipType.DisplayName, Mode=OneWay}"/>
                                     <Run Text="{Binding Level, StringFormat=Lv. {0}, Mode=OneWay}"/>
                                 </TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical"
-                                        Grid.Column="1"
+                            <StackPanel Grid.Column="1"
+                                        Margin="0,0,4,0"
                                         VerticalAlignment="Center"
-                                        Margin="0,0,4,0">
-                                <TextBlock HorizontalAlignment="Center" FontSize="16" Margin="0,0,0,0">
+                                        Orientation="Vertical">
+                                <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center" FontSize="16">
                                     <Run FontSize="20" Text="{Binding ToHP}"/>
                                     <Run Text="{Binding MaxHP, StringFormat={} / {0}}"/>
                                     <Run Text="{Binding Damage, StringFormat={} (-{0})}"/>
                                 </TextBlock>
                                 <control:PredicateProgressBar Width="120" Height="16"
-                                                              Minimum="0"
-                                                              Maximum="{Binding MaxHP}"
-                                                              Value="{Binding ToHP}"
+                                                              Minimum="0" Maximum="{Binding MaxHP}"
                                                               PredictValue="{Binding FromHP}"
                                                               Style="{StaticResource HPBarInBattle}"
                                                               Background="Transparent"
                                                               Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
-                                                              PredictForeground="Wheat"/>
+                                                              PredictForeground="Wheat"
+                                                              Value="{Binding ToHP}"/>
                             </StackPanel>
                             <TextBlock Grid.Column="2"
-                                       FontSize="16"
                                        VerticalAlignment="Center"
-                                       Text="{Binding DamageGiven}">
+                                       FontSize="16" Text="{Binding DamageGiven}">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
@@ -140,17 +139,17 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock FontSize="20"
-                                               Grid.Column="0"
+                                    <TextBlock Grid.Column="0"
                                                HorizontalAlignment="Center"
+                                               FontSize="20"
                                                Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
-                                    <TextBlock FontSize="20"
-                                               Grid.Column="1"
+                                    <TextBlock Grid.Column="1"
                                                HorizontalAlignment="Center"
+                                               FontSize="20"
                                                Text="{Binding Battle.CurrentBattle.Direction}"/>
-                                    <TextBlock FontSize="20"
-                                               Grid.Column="2"
+                                    <TextBlock Grid.Column="2"
                                                HorizontalAlignment="Center"
+                                               FontSize="20"
                                                Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
                                 </Grid>
                                 <Grid Grid.Row="1" DataContext="{Binding Battle.CurrentBattle.AirCombat1, Mode=OneWay}">
@@ -159,7 +158,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Center">
+                                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -180,11 +179,10 @@
                                         </Run>
                                         <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
                                     </TextBlock>
-                                    <TextBlock FontSize="20"
-                                               Grid.Column="1"
+                                    <TextBlock Grid.Column="1"
                                                VerticalAlignment="Center"
-                                               Text="{Binding AirControl}"/>
-                                    <TextBlock Grid.Column="2" FontSize="14" HorizontalAlignment="Center">
+                                               FontSize="20" Text="{Binding AirControl}"/>
+                                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -212,7 +210,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Center">
+                                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -233,11 +231,10 @@
                                         </Run>
                                         <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
                                     </TextBlock>
-                                    <TextBlock FontSize="20"
-                                               Grid.Column="1"
+                                    <TextBlock Grid.Column="1"
                                                VerticalAlignment="Center"
-                                               Text="{Binding AirControl}"/>
-                                    <TextBlock Grid.Column="2" FontSize="14" HorizontalAlignment="Center">
+                                               FontSize="20" Text="{Binding AirControl}"/>
+                                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14">
                                         <Run>
                                             <Run.Text>
                                                 <MultiBinding StringFormat="{}{0}→{1}">
@@ -266,8 +263,8 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0"
-                                               FontSize="15"
                                                HorizontalAlignment="Center"
+                                               FontSize="15"
                                                Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
                                     <TextBlock Grid.Column="1" OverridesDefaultStyle="True">
                                         <TextBlock.Style>
@@ -306,8 +303,8 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <TextBlock Grid.Column="2"
-                                               FontSize="15"
                                                HorizontalAlignment="Center"
+                                               FontSize="15"
                                                Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
                                 </Grid>
                                 <Grid Grid.Row="4">
@@ -315,19 +312,19 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <control:AnimateProgress Grid.Column="0"
-                                                             Height="10" Margin="2"
-                                                             Maximum="1" Foreground="SpringGreen"
-                                                             InitAnimateFrom="Minimum"
-                                                             Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
-                                    <control:AnimateProgress Grid.Column="1"
-                                                             Height="10" Margin="2"
-                                                             Maximum="1" Foreground="Red"
-                                                             InitAnimateFrom="Minimum"
-                                                             Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
+                                    <meowtrix:AnimateProgress Grid.Column="0"
+                                                              Height="10" Margin="2"
+                                                              Maximum="1" Foreground="SpringGreen"
+                                                              InitAnimateFrom="Minimum"
+                                                              Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
+                                    <meowtrix:AnimateProgress Grid.Column="1"
+                                                              Height="10" Margin="2"
+                                                              Maximum="1" Foreground="Red"
+                                                              InitAnimateFrom="Minimum"
+                                                              Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
                                 </Grid>
                             </Grid>
-                            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
                                 <ItemsControl Grid.Row="1" Grid.Column="0"
                                               ItemsSource="{Binding Battle.CurrentBattle.Fleet1}"
                                               Style="{StaticResource FleetKey}"/>

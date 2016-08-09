@@ -8,14 +8,15 @@
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             mc:Ignorable="d"
+             xmlns:meowtrix="urn:meowtrix"
+             d:DesignHeight="400" d:DesignWidth="720"
              DataContext="{x:Static officer:Staff.Current}"
-             d:DesignHeight="400" d:DesignWidth="720">
+             mc:Ignorable="d">
     <TabControl ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
         <TabControl.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
                 <StackPanel Orientation="Horizontal">
-                    <Ellipse x:Name="status" Height="18" Width="18">
+                    <Ellipse x:Name="status" Width="18" Height="18">
                         <Ellipse.Effect>
                             <BlurEffect Radius="10"/>
                         </Ellipse.Effect>
@@ -90,7 +91,7 @@
                                 </EventTrigger>
                             </Rectangle.Triggers>
                         </Rectangle>
-                        <TextBlock Grid.Row="0" Margin="2" x:Name="statustext"/>
+                        <TextBlock x:Name="statustext" Grid.Row="0" Margin="2"/>
                     </Grid>
                     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding Ships}" Grid.IsSharedSizeScope="True">
@@ -112,32 +113,29 @@
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,4,0">
+                                            <StackPanel Grid.Column="0" Margin="0,0,4,0" Orientation="Vertical">
                                                 <TextBlock FontSize="20" Text="{Binding ShipInfo.Name}"/>
-                                                <TextBlock FontSize="14" Text="{Binding ShipInfo.ShipType.Name}" VerticalAlignment="Bottom"/>
+                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding ShipInfo.ShipType.Name}" FontSize="14"/>
                                             </StackPanel>
                                             <control:ExpBar Grid.Column="1"
                                                             Width="80" Margin="0,0,4,0"
-                                                            Level="{Binding Level}"
-                                                            Exp="{Binding Exp}"
-                                                            
-                                                            VerticalAlignment="Center"/>
-                                            <Border Grid.Column="2"
-                                                    Background="Wheat"
+                                                            VerticalAlignment="Center"
+                                                            Level="{Binding Level}" Exp="{Binding Exp}"/>
+                                            <Border x:Name="hpback"
+                                                    Grid.Column="2"
                                                     Margin="0,0,4,0"
-                                                    CornerRadius="2"
-                                                    x:Name="hpback"
+                                                    Background="Wheat" CornerRadius="2"
                                                     Visibility="Hidden">
-                                                <TextBlock HorizontalAlignment="Right"
+                                                <TextBlock x:Name="hpbacktext"
+                                                           HorizontalAlignment="Right"
                                                            VerticalAlignment="Top"
-                                                           FontSize="12" Foreground="Gray"
-                                                           x:Name="hpbacktext"/>
+                                                           FontSize="12" Foreground="Gray"/>
                                             </Border>
                                             <StackPanel x:Name="hpbar"
-                                                        Orientation="Vertical"
                                                         Grid.Column="2"
+                                                        Margin="0,0,4,0"
                                                         VerticalAlignment="Center"
-                                                        Margin="0,0,4,0">
+                                                        Orientation="Vertical">
                                                 <StackPanel.ToolTip>
                                                     <TextBlock>
                                                         <Run Text="{ex:Localizable Ship_PerHP}"/>
@@ -147,19 +145,18 @@
                                                         <Run Text="{Binding NextHP, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, Mode=OneWay}"/>
                                                     </TextBlock>
                                                 </StackPanel.ToolTip>
-                                                <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="0,0,0,0">
+                                                <TextBlock Margin="0,0,0,0" HorizontalAlignment="Left" FontSize="16">
                                                     <Run Text="HP: "/>
                                                     <Run FontSize="20" Text="{Binding HP.Current, Mode=OneWay}"/>
                                                     <Run x:Name="repairedhp" Foreground="DeepSkyBlue" Text="{Binding RepairedHP, StringFormat={}+{0}, Mode=OneWay}"/>
                                                     <Run Text="{Binding HP.Max, StringFormat={}/ {0}, Mode=OneWay}"/>
                                                 </TextBlock>
                                                 <control:PredicateProgressBar Width="120" Height="16"
-                                                                              Minimum="0"
-                                                                              Maximum="{Binding HP.Max}"
-                                                                              Value="{Binding HP.Current}"
+                                                                              Minimum="0" Maximum="{Binding HP.Max}"
                                                                               PredictValue="{Binding RepairingHP}"
                                                                               Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
-                                                                              PredictForeground="Aqua" Background="Transparent"/>
+                                                                              PredictForeground="Aqua" Background="Transparent"
+                                                                              Value="{Binding HP.Current}"/>
                                             </StackPanel>
                                             <Grid Grid.Column="3" Margin="0,0,8,0" VerticalAlignment="Stretch">
                                                 <Ellipse Fill="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=False, Mode=OneWay}">
@@ -167,7 +164,7 @@
                                                         <BlurEffect Radius="48"/>
                                                     </Ellipse.Effect>
                                                 </Ellipse>
-                                                <TextBlock FontSize="12" VerticalAlignment="Center" Foreground="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=True, Mode=OneWay}">
+                                                <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{Binding Condition, Converter={StaticResource CondColorConverter}, ConverterParameter=True, Mode=OneWay}">
                                                     <Run FontStyle="Italic" Text="cond."/>
                                                     <Run FontSize="18" Text="{Binding Condition, Mode=OneWay}"/>
                                                 </TextBlock>
@@ -181,38 +178,29 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Image Margin="0,0,2,1"
-                                                       Grid.Row="0"
-                                                       Height="16"
+                                                <Image Grid.Row="0"
+                                                       Height="16" Margin="0,0,2,1"
                                                        Source="/AdmiralRoom;component/Images/Material/1.png"/>
-                                                <control:AnimateProgress Margin="0,0,0,1"
-                                                                         Grid.Row="0" Grid.Column="1"
-                                                                         Width="80" Height="12"
-                                                                         Minimum="0"
-                                                                         Maximum="{Binding Fuel.Max}"
-                                                                         Value="{Binding Fuel.Current}"
-                                                                         ToolTip="{Binding Fuel}"
-                                                                         Background="Transparent"
-                                                                         Foreground="{Binding Fuel, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"/>
-                                                <Image Margin="0,1,2,0"
-                                                       Grid.Row="1"
-                                                       Height="16"
+                                                <meowtrix:AnimateProgress Grid.Row="0" Grid.Column="1"
+                                                                          Width="80" Height="12" Margin="0,0,0,1"
+                                                                          Minimum="0" Maximum="{Binding Fuel.Max}"
+                                                                          ToolTip="{Binding Fuel}" Background="Transparent"
+                                                                          Foreground="{Binding Fuel, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
+                                                                          Value="{Binding Fuel.Current}"/>
+                                                <Image Grid.Row="1"
+                                                       Height="16" Margin="0,1,2,0"
                                                        Source="/AdmiralRoom;component/Images/Material/2.png"/>
-                                                <control:AnimateProgress Margin="0,1,0,0"
-                                                                         Grid.Row="1" Grid.Column="1"
-                                                                         Width="80" Height="12"
-                                                                         Minimum="0"
-                                                                         Maximum="{Binding Bull.Max}"
-                                                                         Value="{Binding Bull.Current}"
-                                                                         ToolTip="{Binding Bull}"
-                                                                         Background="Transparent"
-                                                                         Foreground="{Binding Bull, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"/>
+                                                <meowtrix:AnimateProgress Grid.Row="1" Grid.Column="1"
+                                                                          Width="80" Height="12" Margin="0,1,0,0"
+                                                                          Minimum="0" Maximum="{Binding Bull.Max}"
+                                                                          ToolTip="{Binding Bull}" Background="Transparent"
+                                                                          Foreground="{Binding Bull, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
+                                                                          Value="{Binding Bull.Current}"/>
                                             </Grid>
                                             <ItemsControl Grid.Column="5"
                                                           Margin="0,0,4,0"
-                                                          ItemsSource="{Binding Slots}"
-                                                          
-                                                          VerticalAlignment="Center">
+                                                          VerticalAlignment="Center"
+                                                          ItemsSource="{Binding Slots}">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
                                                         <StackPanel Orientation="Horizontal"/>
@@ -220,26 +208,23 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type officer:Slot}">
-                                                        <Canvas Margin="0,0,4,0" Height="36" Width="36"
-                                                                x:Name="item"
+                                                        <Canvas x:Name="item"
+                                                                Width="36" Height="36" Margin="0,0,4,0"
                                                                 ToolTip="{Binding}"
                                                                 Visibility="{Binding HasItem, Converter={StaticResource VisibilityConverter}}">
-                                                            <Image Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}"
-                                                                   
-                                                                   Height="48" Width="48"
-                                                                   Canvas.Left="-6" Canvas.Top="-6"/>
+                                                            <Image Canvas.Left="-6" Canvas.Top="-6"
+                                                                   Width="48" Height="48"
+                                                                   Source="{Binding Item.EquipInfo.Icon, Mode=OneWay}"/>
                                                             <TextBlock x:Name="improvement"
+                                                                       Canvas.Right="-2" Canvas.Bottom="0"
                                                                        FontSize="14"
-                                                                       Canvas.Bottom="0" Canvas.Right="-2"
                                                                        Text="{Binding Item.ImproveLevel, StringFormat={}★{0}}"
                                                                        Foreground="DarkCyan"/>
-                                                            <Image Source="{Binding Item.ProfIcon}"
-                                                                   
-                                                                   Height="16" Width="16"
-                                                                   Canvas.Top="0" Canvas.Right="-4"/>
+                                                            <Image Canvas.Top="0" Canvas.Right="-4"
+                                                                   Width="16" Height="16"
+                                                                   Source="{Binding Item.ProfIcon}"/>
                                                             <TextBlock Canvas.Left="0" Canvas.Bottom="0"
-                                                                       FontSize="16"
-                                                                       Text="{Binding AirCraft.Current}"
+                                                                       FontSize="16" Text="{Binding AirCraft.Current}"
                                                                        FontWeight="Bold"
                                                                        Foreground="{Binding AirCraft, Converter={StaticResource LVColorConverter}, ConverterParameter=AirCraft}"
                                                                        Visibility="{Binding Item.EquipInfo.EquipType.IsAirPlane, Converter={StaticResource VisibilityConverter}}"/>
@@ -276,18 +261,17 @@
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
-                                            <StackPanel Orientation="Horizontal" Grid.Column="6" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
-                                                <Rectangle Width="1" Fill="Gray" Margin="0,2,2,4"/>
-                                                <Canvas Height="36" Width="36">
-                                                    <Image Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
-                                                           
-                                                           Height="48" Width="48"
-                                                           Canvas.Left="-6" Canvas.Top="-6"
+                                            <StackPanel Grid.Column="6" Orientation="Horizontal" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
+                                                <Rectangle Width="1" Margin="0,2,2,4" Fill="Gray"/>
+                                                <Canvas Width="36" Height="36">
+                                                    <Image Canvas.Left="-6" Canvas.Top="-6"
+                                                           Width="48" Height="48"
+                                                           Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
                                                            ToolTip="{Binding SlotEx.Item}"/>
                                                 </Canvas>
                                             </StackPanel>
                                         </Grid>
-                                        <Rectangle Height="1" Fill="Gray" Margin="2"/>
+                                        <Rectangle Height="1" Margin="2" Fill="Gray"/>
                                     </StackPanel>
                                     <DataTemplate.Triggers>
                                         <DataTrigger Binding="{Binding IsRepairing}" Value="True">
@@ -311,16 +295,16 @@
                     </ScrollViewer>
                     <WrapPanel Grid.Row="2" Orientation="Horizontal">
                         <TextBlock Text="{ex:Localizable Fleet_ChargeCost}"/>
-                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                        <Image Height="16" Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png"/>
                         <TextBlock Text="{Binding ChargeCost[0]}"/>
-                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/2.png"/>
+                        <Image Height="16" Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/2.png"/>
                         <TextBlock Text="{Binding ChargeCost[1]}"/>
-                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/4.png"/>
+                        <Image Height="16" Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/4.png"/>
                         <TextBlock Text="{Binding ChargeCost[2]}"/>
                         <TextBlock Margin="10,0,0,0" Text="{ex:Localizable Fleet_RepairCost}"/>
-                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/1.png"/>
+                        <Image Height="16" Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/1.png"/>
                         <TextBlock Text="{Binding RepairCost[0]}"/>
-                        <Image Margin="4,0,0,0" Height="16" Source="/AdmiralRoom;component/Images/Material/3.png"/>
+                        <Image Height="16" Margin="4,0,0,0" Source="/AdmiralRoom;component/Images/Material/3.png"/>
                         <TextBlock Text="{Binding RepairCost[1]}"/>
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
@@ -331,7 +315,7 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
-                        <TextBlock Margin="10,0,0,0" x:Name="akashi">
+                        <TextBlock x:Name="akashi" Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1}">
                                     <ex:Localizable ResourceKey="Fleet_HomeportRepair"/>

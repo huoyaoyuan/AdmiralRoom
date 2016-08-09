@@ -8,6 +8,7 @@
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+             xmlns:meowtrix="urn:meowtrix"
              d:DataContext="{d:DesignInstance Type=root:Config}"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical">
@@ -104,15 +105,15 @@
         <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Database_Report}">
             <StackPanel Orientation="Vertical">
                 <CheckBox Margin="2" IsChecked="{Binding ReportToPoiDB}">
-                    <controls:Hyperlink2 CommandLineString="http://db.kcwiki.moe">
+                    <meowtrix:CommandHyperlink CommandLineString="http://db.kcwiki.moe">
                         <Run Text="http://db.kcwiki.moe"/>
-                    </controls:Hyperlink2>
+                    </meowtrix:CommandHyperlink>
                 </CheckBox>
                 <CheckBox Margin="2" IsChecked="{Binding ReportToKancolleDB}">
                     <TextBlock>
-                        <controls:Hyperlink2 CommandLineString="http://kancolle-db.net">
+                        <meowtrix:CommandHyperlink CommandLineString="http://kancolle-db.net">
                             <Run Text="http://kancolle-db.net"/>
-                        </controls:Hyperlink2>
+                        </meowtrix:CommandHyperlink>
                         <LineBreak/>
                         <Run Text="Access Key:"/>
                         <TextBox Width="225" Text="{Binding KancolleDBToken}" TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}"/>

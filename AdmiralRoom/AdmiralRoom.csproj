@@ -233,10 +233,8 @@
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConstData.cs" />
-    <Compile Include="Controls\AnimateProgress.cs" />
     <Compile Include="Controls\ContentNullChooser.cs" />
     <Compile Include="Controls\ExpBar.cs" />
-    <Compile Include="Controls\Hyperlink2.cs" />
     <Compile Include="Controls\PredicateProgressBar.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>

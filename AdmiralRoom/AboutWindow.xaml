@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
         xmlns:updater="clr-namespace:Huoyaoyuan.AdmiralRoom.Updater"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        xmlns:meowtrix="urn:meowtrix"
         mc:Ignorable="d">
     <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
@@ -41,14 +42,14 @@
             </Paragraph>
             <Paragraph>
                 <Run Text="Source code:"/>
-                <controls:Hyperlink2 CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom">
+                <meowtrix:CommandHyperlink CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom">
                     <Run Text="https://github.com/huoyaoyuan/AdmiralRoom"/>
-                </controls:Hyperlink2>
+                </meowtrix:CommandHyperlink>
                 <LineBreak/>
                 <Run Text="Release:"/>
-                <controls:Hyperlink2 CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom/releases">
+                <meowtrix:CommandHyperlink CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom/releases">
                     <Run Text="https://github.com/huoyaoyuan/AdmiralRoom/releases"/>
-                </controls:Hyperlink2>
+                </meowtrix:CommandHyperlink>
             </Paragraph>
             <Paragraph DataContext="{x:Static updater:Updater.Instance}">
                 <Button Content="{ex:Localizable Update_Command_Check}" Command="{Binding CheckCommand}"/>
