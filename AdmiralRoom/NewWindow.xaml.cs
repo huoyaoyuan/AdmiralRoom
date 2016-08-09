@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
+using Huoyaoyuan.AdmiralRoom.Composition;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
@@ -18,22 +17,19 @@ namespace Huoyaoyuan.AdmiralRoom
         public NewWindow()
         {
             InitializeComponent();
+            ResourceService.Current.CultureChanged += OnCultureChanged;
         }
 
         private void MakeViewList(ILayoutElement elem)
         {
             if (elem is LayoutContent)
             {
-                ViewList[(elem as LayoutContent).ContentId] = elem as LayoutContent;
+                viewList[(elem as LayoutContent).ContentId] = elem as LayoutContent;
                 return;
             }
             if (elem is ILayoutContainer)
-            {
                 foreach (var child in (elem as ILayoutContainer).Children)
-                {
                     MakeViewList(child);
-                }
-            }
         }
 
         #region Layout
@@ -41,9 +37,7 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             TryLoadLayout();
             foreach (var view in DockMan.Layout.Hidden.Where(x => x.PreviousContainerIndex == -1).ToArray())
-            {
                 DockMan.Layout.Hidden.Remove(view);
-            }
         }
         private void SaveLayout(object sender, EventArgs e) => TrySaveLayout();
         private void TryLoadLayout(string path = "layout.xml")
@@ -56,7 +50,6 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch { }
             MakeViewList(DockMan.Layout);
-            SetToggleBindings();
         }
         private void TrySaveLayout(string path = "layout.xml")
         {
@@ -69,48 +62,45 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        private readonly Dictionary<string, LayoutContent> ViewList = new Dictionary<string, LayoutContent>();
-        private Action SetToggleBindings;
-        private void RegisterToggleBinding(object sender, RoutedEventArgs e)
+        private readonly Dictionary<string, LayoutContent> viewList = new Dictionary<string, LayoutContent>();
+        private readonly Dictionary<string, ISubView> subviewmap = new Dictionary<string, ISubView>();
+        private void AddOrShowView(ISubView view, bool show)
         {
-            SetToggleBindings += () => SetToggleBinding(sender as ToggleButton);
-            SetToggleBinding(sender as ToggleButton);
-            (sender as Control).Loaded -= RegisterToggleBinding;
+            subviewmap[view.ContentID] = view;
+            string viewname = view.ContentID;
+            LayoutContent targetContent;
+            LayoutAnchorable targetView;
+            viewList.TryGetValue(viewname, out targetContent);
+            targetView = targetContent as LayoutAnchorable;
+            if (targetView == null)
+            {
+                targetView = new LayoutAnchorable();
+                viewList.Add(viewname, targetView);
+                targetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
+                targetView.DockAsDocument();
+                targetView.CanClose = false;
+                targetView.Hide();
+            }
+            if (targetView.Content == null)
+            {
+                var content = view.View;
+                targetView.Content = content;
+                targetView.ContentId = viewname;
+                targetView.Title = view.GetTitle(Properties.Resources.Culture);
+                targetView.CanAutoHide = true;
+            }
+            if (show) targetView.IsVisible = true;
         }
-        private void SetToggleBinding(ToggleButton sender)
+
+        private void OnCultureChanged(CultureInfo culture)
         {
-            var content = sender.Tag as FrameworkElement;
-            string ViewName = content.GetType().Name;
-            LayoutContent TargetContent;
-            LayoutAnchorable TargetView;
-            ViewList.TryGetValue(ViewName, out TargetContent);
-            TargetView = TargetContent as LayoutAnchorable;
-            if (TargetView == null)
+            foreach (var viewname in viewList.Keys)
             {
-                TargetView = new LayoutAnchorable();
-                ViewList.Add(ViewName, TargetView);
-                TargetView.AddToLayout(DockMan, AnchorableShowStrategy.Most);
-                TargetView.DockAsDocument();
-                TargetView.CanClose = false;
-                TargetView.Hide();
+                var target = viewList[viewname];
+                ISubView view;
+                if (subviewmap.TryGetValue(viewname, out view))
+                    target.Title = view.GetTitle(culture);
             }
-            if (TargetView.Content == null)
-            {
-                TargetView.Content = content;
-                if (content.DataContext == null)
-                    content.DataContext = Officer.Staff.Current;
-                TargetView.ContentId = ViewName;
-                TargetView.Title = ViewName;
-                TargetView.CanAutoHide = true;
-                TargetView.FloatingHeight = content.Height;
-                TargetView.FloatingWidth = content.Width;
-                //TargetView.FloatingTop = this.ActualHeight / 2;
-                //TargetView.FloatingWidth = this.ActualWidth / 2;
-                Binding titlebinding = new Views.Extensions.LocalizableExtension("ViewTitle_" + ViewName);
-                BindingOperations.SetBinding(TargetView, LayoutContent.TitleProperty, titlebinding);
-            }
-            sender.SetBinding(ToggleButton.IsCheckedProperty,
-                new Binding(nameof(LayoutAnchorable.IsVisible)) { Source = TargetView, Mode = BindingMode.TwoWay });
         }
 
         private void SetBrowserZoomFactor(object sender, RoutedPropertyChangedEventArgs<double> e)
