@@ -32,6 +32,10 @@
     <CodeAnalysisRuleSet>..\..\AdmiralRoom\AdmiralRoom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Meowtrix.UniversalClassLibrary, Version=1.2.1.0, Culture=neutral, PublicKeyToken=5dcaec6183d7c002, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Meowtrix.UniversalClassLibrary.1.2.1\lib\net46\Meowtrix.UniversalClassLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -65,6 +69,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
