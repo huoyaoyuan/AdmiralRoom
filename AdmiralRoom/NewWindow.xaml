@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
-        Title="NewWindow"
+        Title="提督の部屋"
         Loaded="LoadLayout" Closed="SaveLayout"
+        FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
+        FontSize="{Binding FontSize, Source={x:Static local:Config.Current}, Mode=OneWay}"
         mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -22,7 +24,21 @@
             <MenuItem x:Name="subwindowStatistics" Header="统计"/>
             <MenuItem x:Name="subwindowInformation" Header="信息"/>
             <MenuItem Header="选项">
-                <MenuItem Header="设置"/>
+                <MenuItem Header="设置" Click="ShowConfigWindow"/>
+                <Separator/>
+                <MenuItem Header="设置内容" DataContext="{x:Static local:Config.Commands}">
+                    <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding Save}"/>
+                    <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding Load}"/>
+                    <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding LoadFrom}"/>
+                    <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding SaveAs}"/>
+                </MenuItem>
+                <MenuItem Header="界面布局" DataContext="{RelativeSource AncestorType=local:NewWindow}">
+                    <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding DockCommands.Save}"/>
+                    <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding DockCommands.Load}"/>
+                    <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding DockCommands.LoadFrom}"/>
+                    <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding DockCommands.SaveAs}"/>
+                </MenuItem>
+                <Separator/>
                 <MenuItem Header="关于"/>
             </MenuItem>
         </Menu>

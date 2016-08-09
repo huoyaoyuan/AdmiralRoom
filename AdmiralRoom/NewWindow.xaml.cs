@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Huoyaoyuan.AdmiralRoom.Composition;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
@@ -56,6 +57,35 @@ namespace Huoyaoyuan.AdmiralRoom
             }
 
             ResourceService.Current.CultureChanged += _ => viewList[nameof(GameHost)].Title = Properties.Resources.Browser;
+
+            DockCommands = new Config.CommandSet
+            {
+                Save = new DelegateCommand(() => TrySaveLayout()),
+                Load = new DelegateCommand(() => TryLoadLayout()),
+                SaveAs = new DelegateCommand(() =>
+                {
+                    using (var filedialog = new CommonSaveFileDialog())
+                    {
+                        filedialog.InitialDirectory = Environment.CurrentDirectory;
+                        filedialog.DefaultFileName = "config.xml";
+                        filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
+                        filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
+                        if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
+                            TrySaveLayout(filedialog.FileName);
+                    }
+                }),
+                LoadFrom = new DelegateCommand(() =>
+                {
+                    using (var filedialog = new CommonOpenFileDialog())
+                    {
+                        filedialog.InitialDirectory = Environment.CurrentDirectory;
+                        filedialog.Filters.Add(new CommonFileDialogFilter("Xml Files", "*.xml"));
+                        filedialog.Filters.Add(new CommonFileDialogFilter("All Files", "*"));
+                        if (filedialog.ShowDialog() == CommonFileDialogResult.Ok)
+                            TryLoadLayout(filedialog.FileName);
+                    }
+                })
+            };
         }
 
         private class SubWindowClosure
@@ -167,5 +197,9 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private void SetBrowserZoomFactor(object sender, RoutedPropertyChangedEventArgs<double> e)
             => this.GameHost.ApplyZoomFactor(e.NewValue);
+
+        private void ShowConfigWindow(object sender, RoutedEventArgs e) => new ConfigWindow { Owner = this }.ShowDialog();
+
+        public Config.CommandSet DockCommands { get; }
     }
 }
