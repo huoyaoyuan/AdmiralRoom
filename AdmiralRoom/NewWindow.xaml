@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
+        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
         Title="NewWindow"
         Loaded="LoadLayout" Closed="SaveLayout"
@@ -29,7 +30,9 @@
             <dock:LayoutRoot>
                 <dock:LayoutPanel>
                     <dock:LayoutDocumentPane>
-                        <dock:LayoutDocument CanClose="False" CanFloat="False" ContentId="GameHost">
+                        <dock:LayoutDocument Title="{ex:Localizable Browser}"
+                                             CanClose="False" CanFloat="False"
+                                             ContentId="GameHost">
                             <local:KanColleBrowser x:Name="GameHost"/>
                         </dock:LayoutDocument>
                     </dock:LayoutDocumentPane>

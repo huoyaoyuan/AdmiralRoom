@@ -41,6 +41,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 menuitem.Click += closure.Click;
                 ResourceService.Current.CultureChanged += closure.OnCultureChanged;
             }
+
+            ResourceService.Current.CultureChanged += _ => viewList[nameof(GameHost)].Title = Properties.Resources.Browser;
         }
 
         private class SubWindowClosure
