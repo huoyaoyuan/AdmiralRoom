@@ -34,13 +34,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             return v;
         }
-        public static void Start(int port = 39175)
+        public static bool IsStarted { get; private set; }
+        public static bool Start(int port = 39175)
         {
+            if (FiddlerApplication.IsStarted()) FiddlerApplication.Shutdown();
             FiddlerApplication.Startup(port, FiddlerCoreStartupFlags.ChainToUpstreamGateway);
+            if (FiddlerApplication.oProxy.ListenPort == 0) return IsStarted = false;
+
             FiddlerApplication.BeforeRequest += SetSessionProxy;
             FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
 
             Win32Helper.RefreshIESettings($"localhost:{port}");
+            return IsStarted = true;
         }
 
         private static void AfterSessionComplete(Session oSession)

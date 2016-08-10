@@ -22,7 +22,11 @@ namespace Huoyaoyuan.AdmiralRoom
             Win32Helper.SetMMCSSTask();
             Config.Current.MemberwiseCopy(Config.Load());
 
-            Officer.Staff.Start(AdmiralRoom.Properties.Settings.Default.ListenPort);
+            var random = new Random();
+            for (int listenPort = AdmiralRoom.Properties.Settings.Default.ListenPort; !Officer.Staff.Start(listenPort); listenPort = random.Next() % 32768 + 32768)
+                if (MessageBox.Show($"Listen on port {listenPort} failed. Change and retry?", "", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+                    break;
+
             Officer.Staff.Proxy = Config.Current.Proxy;
             Reporter.KancolleDBReporter.Initialize();
 

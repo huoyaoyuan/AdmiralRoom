@@ -90,6 +90,12 @@ namespace Huoyaoyuan.AdmiralRoom
                     else MessageBox.Show(Properties.Resources.CleanCache_Fail);
                 button.IsEnabled = true;
             };
+
+            this.Loaded += (_, __) =>
+            {
+                if (Officer.Staff.IsStarted)
+                    WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
+            };
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)
         {
