@@ -309,7 +309,10 @@
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1:hh\:mm\:ss} (±{2}s)">
-                                    <ex:Localizable ResourceKey="Fleet_Condition"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Condition"/>
                                     <Binding Path="ConditionTimeRemain"/>
                                     <Binding Path="ConditionTimeOffset"/>
                                 </MultiBinding>
@@ -318,7 +321,10 @@
                         <TextBlock x:Name="akashi" Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1}">
-                                    <ex:Localizable ResourceKey="Fleet_HomeportRepair"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_HomeportRepair"/>
                                     <Binding Path="HomeportRepairingFrom" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="During"/>
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -328,7 +334,10 @@
                         <TextBlock>
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}: {1}~{2}" Mode="OneWay">
-                                    <ex:Localizable ResourceKey="Fleet_AFP"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_AFP"/>
                                     <Binding Path="AirFightPower[0]"/>
                                     <Binding Path="AirFightPower[1]"/>
                                 </MultiBinding>
@@ -345,10 +354,22 @@
                                             <Binding Path="AirFightPower[5]"/>
                                             <Binding Path="AirFightPower[6]"/>
                                             <Binding Path="AirFightPower[7]"/>
-                                            <ex:Localizable ResourceKey="Fleet_AFP"/>
-                                            <ex:Localizable ResourceKey="Fleet_AFP_Basic"/>
-                                            <ex:Localizable ResourceKey="Fleet_AFP_Bonus"/>
-                                            <ex:Localizable ResourceKey="Fleet_AFP_Fighter"/>
+                                            <Binding Path="(root:ResourceService.CurrentCulture)"
+                                                     Mode="OneWay"
+                                                     Converter="{StaticResource StringTableConverter}"
+                                                     ConverterParameter="Fleet_AFP"/>
+                                            <Binding Path="(root:ResourceService.CurrentCulture)"
+                                                     Mode="OneWay"
+                                                     Converter="{StaticResource StringTableConverter}"
+                                                     ConverterParameter="Fleet_AFP_Basic"/>
+                                            <Binding Path="(root:ResourceService.CurrentCulture)"
+                                                     Mode="OneWay"
+                                                     Converter="{StaticResource StringTableConverter}"
+                                                     ConverterParameter="Fleet_AFP_Bonus"/>
+                                            <Binding Path="(root:ResourceService.CurrentCulture)"
+                                                     Mode="OneWay"
+                                                     Converter="{StaticResource StringTableConverter}"
+                                                     ConverterParameter="Fleet_AFP_Fighter"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
@@ -357,7 +378,10 @@
                         <TextBlock Margin="10,0,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}: {1:F2}" Mode="OneWay">
-                                    <ex:Localizable ResourceKey="Fleet_LoS"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_LoS"/>
                                     <Binding Path="LoSInMap"/>
                                 </MultiBinding>
                             </TextBlock.Text>
@@ -367,8 +391,14 @@
                                 <MultiBinding StringFormat="{}{2}: {0}  {3}: {1:F2}" Mode="OneWay">
                                     <Binding Path="LevelSum"/>
                                     <Binding Path="LevelAverage"/>
-                                    <ex:Localizable ResourceKey="Fleet_Level_Sum"/>
-                                    <ex:Localizable ResourceKey="Fleet_Level_Average"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Level_Sum"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Level_Average"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -390,7 +420,10 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} - {1:hh\:mm\:ss} (±{2}s)">
-                                    <ex:Localizable ResourceKey="Fleet_Status_LowCondition"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Status_LowCondition"/>
                                     <Binding Path="ConditionTimeRemain"/>
                                     <Binding Path="ConditionTimeOffset"/>
                                 </MultiBinding>
@@ -401,7 +434,10 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} - {1}">
-                                    <ex:Localizable ResourceKey="Fleet_Status_Akashi"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Status_Akashi"/>
                                     <Binding Path="HomeportRepairingFrom" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="During"/>
                                 </MultiBinding>
                             </Setter.Value>
@@ -421,7 +457,10 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} - {1} {2}">
-                                    <ex:Localizable ResourceKey="Fleet_Status_InMission"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Status_InMission"/>
                                     <Binding Path="MissionInfo.Name"/>
                                     <Binding Path="BackTime" Converter="{StaticResource DateTimeOffsetConverter}" ConverterParameter="Remain"/>
                                 </MultiBinding>
@@ -433,7 +472,10 @@
                         <Setter TargetName="statustext" Property="Text">
                             <Setter.Value>
                                 <MultiBinding StringFormat="{}{0} {1}-{2} {3} {4}">
-                                    <ex:Localizable ResourceKey="Fleet_Status_InSortie"/>
+                                    <Binding Path="(root:ResourceService.CurrentCulture)"
+                                             Mode="OneWay"
+                                             Converter="{StaticResource StringTableConverter}"
+                                             ConverterParameter="Fleet_Status_InSortie"/>
                                     <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.AreaNo"/>
                                     <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.No"/>
                                     <Binding Source="{x:Static officer:Staff.Current}" Path="Battle.CurrentMap.Name"/>

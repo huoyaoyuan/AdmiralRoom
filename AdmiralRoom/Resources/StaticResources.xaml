@@ -13,6 +13,7 @@
     <converter:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter"/>
     <converter:RadioButtonConverter x:Key="RadioButtonConverter"/>
     <converter:EnumVisibilityConverter x:Key="EnumVisibilityConverter"/>
+    <converter:StringTableConverter x:Key="StringTableConverter"/>
     <LinearGradientBrush x:Key="BuildingProgressForegroundKey" StartPoint="0,0" EndPoint="1,0" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="Red"/>
         <GradientStop Offset="0.17" Color="Orange"/>

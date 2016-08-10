@@ -341,6 +341,7 @@
     <Compile Include="Views\Converter\EnumVisibilityConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
     <Compile Include="Views\Converter\RadioButtonConverter.cs" />
+    <Compile Include="Views\Converter\StringTableConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />
     <Compile Include="Views\DevelopView.xaml.cs">
       <DependentUpon>DevelopView.xaml</DependentUpon>
