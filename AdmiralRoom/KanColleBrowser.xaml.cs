@@ -59,6 +59,37 @@ namespace Huoyaoyuan.AdmiralRoom
             WebBrowser.LoadCompleted += HandleLoadCompleted;
             SetSilence(true);
             SetAllowDrop(false);
+
+            btnBack.Click += (_, __) => WebBrowser.GoBack();
+            btnFoward.Click += (_, __) => WebBrowser.GoForward();
+            btnGoto.Click += (_, __) =>
+            {
+                if (!txtAddress.Text.Contains(":"))
+                    txtAddress.Text = "http://" + txtAddress.Text;
+                try
+                {
+                    WebBrowser.Navigate(txtAddress.Text);
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                }
+            };
+            btnRefresh.Click += (_, __) => WebBrowser.Navigate(WebBrowser.Source);
+            btnBackToGame.Click += (_, __) => WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
+            btnStop.Click += (_, __) => Stop();
+
+            btnScreenShot.Click += (_, __) => TakeScreenShot(Config.Current.GenerateScreenShotFileName());
+            btnCleanCache.Click += async (sender, _) =>
+            {
+                var button = sender as Button;
+                button.IsEnabled = false;
+                if (MessageBox.Show(Properties.Resources.CleanCache_Alert, "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                    if (await WinInetHelper.DeleteInternetCacheAsync())
+                        MessageBox.Show(Properties.Resources.CleanCache_Success);
+                    else MessageBox.Show(Properties.Resources.CleanCache_Fail);
+                button.IsEnabled = true;
+            };
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)
         {
