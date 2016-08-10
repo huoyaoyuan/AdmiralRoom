@@ -6,5 +6,5 @@
 <#@ output extension=".xaml" #>
 <#@ include file="..\resx2xaml.ttinclude"#>
 <#
-	Resx2Xaml(this.Host.ResolvePath("StringTable.resx"));
+	Resx2Xaml(this.Host.ResolvePath(@"..\StringTable.zh-Hans.resx"));
 #>

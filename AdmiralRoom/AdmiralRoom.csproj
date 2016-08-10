@@ -522,9 +522,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Localization\ja\StringTable.resx" />
-    <None Include="Localization\zh-Hans\StringTable.resx" />
-    <None Include="Localization\en\StringTable.resx" />
+    <None Include="Localization\StringTable.en.resx">
+      <DependentUpon>StringTable.zh-Hans.resx</DependentUpon>
+    </None>
+    <None Include="Localization\StringTable.ja.resx">
+      <DependentUpon>StringTable.zh-Hans.resx</DependentUpon>
+    </None>
+    <None Include="Localization\StringTable.zh-Hans.resx" />
     <None Include="AdmiralRoom.ruleset" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>

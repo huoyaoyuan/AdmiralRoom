@@ -18,7 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom
     internal static class StringTable
     {
     <#
-    XDocument document = XDocument.Load(this.Host.ResolvePath(@"zh-Hans\StringTable.resx"));
+    XDocument document = XDocument.Load(this.Host.ResolvePath(@"StringTable.zh-Hans.resx"));
     var nameAttr = XName.Get("name");
     var valueAttr = XName.Get("value");
     foreach (var node in document.XPathSelectElements("/root/data"))
