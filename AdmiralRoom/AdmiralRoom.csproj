@@ -401,6 +401,27 @@
     </Compile>
     <Compile Include="Common\ResourceService.cs" />
     <Compile Include="Common\ThemeService.cs" />
+    <Page Include="Localization\en\StringTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringTable.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Localization\ja\StringTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringTable.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Localization\zh-Hans\StringTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringTable.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="NewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -490,26 +511,14 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.zh-Hans.resx">
-      <DependentUpon>Resources.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ja.resx">
-      <DependentUpon>Resources.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <None Include="Localization\ja\StringTable.resx" />
+    <None Include="Localization\zh-Hans\StringTable.resx" />
+    <None Include="Localization\en\StringTable.resx" />
     <None Include="AdmiralRoom.ruleset" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>
@@ -593,6 +602,18 @@
     <Resource Include="Images\AirProficiency\6.png" />
     <Resource Include="Images\AirProficiency\7.png" />
     <Resource Include="Images\Equip\38.png" />
+    <Content Include="Localization\en\StringTable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringTable.xaml</LastGenOutput>
+    </Content>
+    <Content Include="Localization\ja\StringTable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringTable.xaml</LastGenOutput>
+    </Content>
+    <Content Include="Localization\zh-Hans\StringTable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringTable.xaml</LastGenOutput>
+    </Content>
     <Content Include="Officer\StaticCounters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StaticCounters.cs</LastGenOutput>
@@ -661,11 +682,7 @@
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.Common.dll" />
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Localization\en\" />
-    <Folder Include="Localization\ja\" />
-    <Folder Include="Localization\zh-Hans\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
