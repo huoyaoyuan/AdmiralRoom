@@ -513,11 +513,11 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 if (thisculture.ThreeLetterWindowsLanguageName == culture.ThreeLetterWindowsLanguageName)
                 {
-                    _language = culture.Name;
+                    Language = culture.Name;
                     break;
                 }
             }
-            if (_language == null) _language = "en";
+            if (Language == null) Language = "en";
             var OSVersion = Environment.OSVersion.Version;
             SystemTheme = OSVersion.Major == 6 && OSVersion.Minor == 1 ? "Aero" : "Aero2";
             _proxy = new Officer.Proxy();

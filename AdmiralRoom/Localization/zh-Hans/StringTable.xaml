@@ -1,7 +1,9 @@
 ﻿
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom">
+    <s:Object x:Key="{x:Static local:ResourceService.LocalizationDictionaryKey}"/>
     <s:String xml:space="preserve" x:Key="LocalizedString_About">关于</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Actions">操作</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_All">全部</s:String>

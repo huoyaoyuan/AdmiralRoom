@@ -11,7 +11,7 @@
 namespace Huoyaoyuan.AdmiralRoom
 {
     ///<summary>
-    ///以强类型方式从String Table中查找字符串
+    ///以强类型方式从String Table中查找字符串。
     ///</summary>
     [System.Diagnostics.DebuggerNonUserCode]
     [System.Runtime.CompilerServices.CompilerGenerated]
