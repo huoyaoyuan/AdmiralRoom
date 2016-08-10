@@ -66,7 +66,7 @@
                             <Setter TargetName="ship" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="text" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="progress" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="time" Property="Text" Value="{Binding (root:ResourceService.CurrentCulture), Mode=OneWay, Converter={StaticResource StringTableConverter}, ConverterParameter=Dock_Complete, StringFormat={} - {0}!}"/>
+                            <Setter TargetName="time" Property="Text" Value="{Binding Path=(root:ResourceService.CurrentCulture), Mode=OneWay, Converter={StaticResource StringTableConverter}, ConverterParameter=Dock_Complete, StringFormat={} - {0}!}"/>
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
