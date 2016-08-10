@@ -20,17 +20,17 @@ namespace Huoyaoyuan.AdmiralRoom
         public NewWindow()
         {
             InitializeComponent();
-            ResourceService.Current.CultureChanged += OnCultureChanged;
+            ResourceService.CultureChanged += OnCultureChanged;
 
             foreach (var subview in ModuleHost.Instance.SubViews)
             {
                 AddOrShowView(subview, false);
                 var menuitem = new MenuItem
                 {
-                    Header = subview.GetTitle(ResourceService.Current.CurrentCulture)
+                    Header = subview.GetTitle(ResourceService.CurrentCulture)
                 };
                 menuitem.Click += (_, __) => AddOrShowView(subview, true);
-                ResourceService.Current.CultureChanged += (_, e) => menuitem.Header = subview.GetTitle(e.NewValue);
+                ResourceService.CultureChanged += (_, e) => menuitem.Header = subview.GetTitle(e.NewValue);
                 subviews.Items.Add(menuitem);
             }
 
@@ -38,11 +38,11 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 var menuitem = new MenuItem
                 {
-                    Header = subwindow.GetTitle(ResourceService.Current.CurrentCulture)
+                    Header = subwindow.GetTitle(ResourceService.CurrentCulture)
                 };
                 var closure = new SubWindowClosure(menuitem, subwindow);
                 menuitem.Click += closure.Click;
-                ResourceService.Current.CultureChanged += closure.OnCultureChanged;
+                ResourceService.CultureChanged += closure.OnCultureChanged;
                 switch (subwindow.Category)
                 {
                     case SubWindowCategory.Overview:
@@ -57,7 +57,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             }
 
-            ResourceService.Current.CultureChanged += (_, __) => viewList[nameof(GameHost)].Title = StringTable.Browser;
+            ResourceService.CultureChanged += (_, __) => viewList[nameof(GameHost)].Title = StringTable.Browser;
 
             DockCommands = new Config.CommandSet
             {
@@ -179,7 +179,7 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 targetView.Content = view.View;
                 targetView.ContentId = viewname;
-                targetView.Title = view.GetTitle(ResourceService.Current.CurrentCulture);
+                targetView.Title = view.GetTitle(ResourceService.CurrentCulture);
                 targetView.CanAutoHide = true;
             }
             if (show) targetView.IsVisible = true;

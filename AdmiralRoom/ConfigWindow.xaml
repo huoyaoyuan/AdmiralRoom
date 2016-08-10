@@ -84,7 +84,7 @@
                           Margin="5"
                           ItemsSource="{x:Static local:ResourceService.SupportedCultures}"
                           DisplayMemberPath="NativeName"
-                          SelectedValue="{Binding CurrentCulture, Source={x:Static local:ResourceService.Current}, Mode=TwoWay}"/>
+                          SelectedValue="{Binding (local:ResourceService.CurrentCulture), Mode=TwoWay}"/>
                 <TextBlock Grid.Row="1" Margin="5" Text="控件风格"/>
                 <ComboBox Grid.Row="1" Grid.Column="1"
                           Margin="5"

@@ -204,7 +204,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     {
                         DisplayMemberBinding = new Binding(x.Name)
                     };
-                    ResourceService.Current.SetStringTableBinding(column, GridViewColumn.HeaderProperty,
+                    ResourceService.SetStringTableBinding(column, GridViewColumn.HeaderProperty,
                         "LogTitle_" + ((Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute).Title ?? x.Name));
                     return column;
                 }).ToArray();

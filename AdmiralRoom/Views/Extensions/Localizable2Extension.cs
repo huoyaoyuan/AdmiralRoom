@@ -34,7 +34,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
             Type type = datacontext.GetType();
             PropertyInfo property = type.GetProperty(PathSource);
             if (property == null) return;
-            ResourceService.Current.SetStringTableBinding(target, dp, property.GetValue(datacontext).ToString());
+            ResourceService.SetStringTableBinding(target, dp, property.GetValue(datacontext).ToString());
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     _language = value;
                     OnPropertyChanged();
-                    ResourceService.Current.ChangeCulture(value);
+                    ResourceService.ChangeCulture(value);
                 }
             }
         }
