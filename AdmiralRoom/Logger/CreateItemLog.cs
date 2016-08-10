@@ -29,7 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public bool IsSuccess { get; set; }
         [Show, Filter]
-        public string Success => IsSuccess ? Properties.Resources.Success : Properties.Resources.Fail;
+        public string Success => IsSuccess ? StringTable.Success : StringTable.Fail;
         [Log]
         public int EquipId { get; set; }
         [Show("EquipmentCreated"), Filter(nameof(EquipId))]

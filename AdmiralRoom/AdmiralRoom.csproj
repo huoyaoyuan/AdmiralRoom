@@ -234,6 +234,11 @@
     <Compile Include="KanColleBrowser.xaml.cs">
       <DependentUpon>KanColleBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Localization\StringTable.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringTable.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logger\BattleDetailLogger.cs" />
     <Compile Include="Logger\BattleDropLog.cs" />
     <Compile Include="Logger\CreateItemLog.cs" />
@@ -609,6 +614,10 @@
     <Content Include="Localization\ja\StringTable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringTable.xaml</LastGenOutput>
+    </Content>
+    <Content Include="Localization\StringTable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StringTable.cs</LastGenOutput>
     </Content>
     <Content Include="Localization\zh-Hans\StringTable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -84,10 +84,10 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 var button = sender as Button;
                 button.IsEnabled = false;
-                if (MessageBox.Show(Properties.Resources.CleanCache_Alert, "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                if (MessageBox.Show(StringTable.CleanCache_Alert, "", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                     if (await WinInetHelper.DeleteInternetCacheAsync())
-                        MessageBox.Show(Properties.Resources.CleanCache_Success);
-                    else MessageBox.Show(Properties.Resources.CleanCache_Fail);
+                        MessageBox.Show(StringTable.CleanCache_Success);
+                    else MessageBox.Show(StringTable.CleanCache_Fail);
                 button.IsEnabled = true;
             };
 
@@ -244,10 +244,10 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             catch (Exception ex)
             {
-                Models.Status.Current.StatusText = Properties.Resources.Screenshot_Fail + ex;
+                Models.Status.Current.StatusText = StringTable.Screenshot_Fail + ex;
                 return false;
             }
-            Models.Status.Current.StatusText = Properties.Resources.Screenshot_Success + path;
+            Models.Status.Current.StatusText = StringTable.Screenshot_Success + path;
             return true;
         }
         private static void SaveScreenshot(int width, int height, IViewObject viewObject, string path)

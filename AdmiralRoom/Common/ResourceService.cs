@@ -26,13 +26,13 @@ namespace Huoyaoyuan.AdmiralRoom
                 CultureChanged?.Invoke(value);
             }
         }
-        public Properties.Resources Resources { get; } = new Properties.Resources();
+        public static string GetString(string key) => App.Current.TryFindResource("LocalizedString_" + key)?.ToString() ?? key;
         public void ChangeCulture(string CultureName)
         {
             CultureInfo culture = SupportedCultures.SingleOrDefault(x => x.Name == CultureName);
             if (culture != null)
             {
-                Properties.Resources.Culture = culture;
+                //Properties.Resources.Culture = culture;
                 CurrentCulture = culture;
             }
         }

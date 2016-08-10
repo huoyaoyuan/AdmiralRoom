@@ -40,7 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom
             this.MainWindow = new NewWindow();
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
             this.MainWindow.Show();
-            Models.Status.Current.StatusText = AdmiralRoom.Properties.Resources.Status_Ready;
+            Models.Status.Current.StatusText = StringTable.Status_Ready;
 
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))

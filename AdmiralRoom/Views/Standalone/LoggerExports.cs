@@ -12,7 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 
         public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<CreateShipLog>(Loggers.CreateShipLogger) };
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.Logger_CreateShip;
+        public string GetTitle(CultureInfo culture) => StringTable.Logger_CreateShip;
     }
     [Export(typeof(ISubWindow))]
     public class CreateItemLoggerView : ISubWindow
@@ -21,7 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 
         public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<CreateItemLog>(Loggers.CreateItemLogger) };
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.Logger_CreateItem;
+        public string GetTitle(CultureInfo culture) => StringTable.Logger_CreateItem;
     }
     [Export(typeof(ISubWindow))]
     public class BattleDropLoggerView : ISubWindow
@@ -30,7 +30,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 
         public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<BattleDropLog>(Loggers.BattleDropLogger) };
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.Logger_Drop;
+        public string GetTitle(CultureInfo culture) => StringTable.Logger_Drop;
     }
     [Export(typeof(ISubWindow))]
     public class MissionLoggerView : ISubWindow
@@ -39,6 +39,6 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 
         public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<MissionLog>(Loggers.MissionLogger) };
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.Expedition;
+        public string GetTitle(CultureInfo culture) => StringTable.Expedition;
     }
 }

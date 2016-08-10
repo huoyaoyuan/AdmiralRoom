@@ -174,8 +174,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             var heavydamage = SortieFleet1.Ships.Skip(1).ConcatNotNull(SortieFleet2?.Ships.Skip(1))
                 .Where(x => !x.IsEscaped && x.HP.Current * 4 <= x.HP.Max);
             if (heavydamage.Any())
-                Notifier.Current.Show(Properties.Resources.Notification_HeavyDamage_Title,
-                    heavydamage.Aggregate(Properties.Resources.Notification_HeavyDamage_Text, (text, ship) => text += "\n" + ship));
+                Notifier.Current.Show(StringTable.Notification_HeavyDamage_Title,
+                    heavydamage.Aggregate(StringTable.Notification_HeavyDamage_Text, (text, ship) => text += "\n" + ship));
         }
         private void BattleResultHandler(sortie_battleresult api)
         {
@@ -199,7 +199,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 winrank = (CurrentBattle as Battle).WinRank;
             else if (winrank == WinRank.S && (CurrentBattle as Battle)?.FriendDamageRate == 0)
                 winrank = WinRank.Perfect;
-            CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? Properties.Resources.Empty;
+            CurrentBattle.GetShip = api.api_get_ship?.api_ship_name ?? StringTable.Empty;
             GetShipEquip = api.api_get_ship == null ? null : (int?)0;//TODO:记录船附带的装备
             var now = DateTime.UtcNow;
             Logger.Loggers.BattleDropLogger.Log(new Logger.BattleDropLog

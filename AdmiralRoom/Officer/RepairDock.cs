@@ -2,7 +2,6 @@
 using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
-using Huoyaoyuan.AdmiralRoom.Properties;
 using Meowtrix;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -28,7 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Ship.RepairingHP = Ship.HP.Max - (int)Math.Ceiling(CompleteTime.Remain().TotalSeconds / Ship.RepairTimePerHP.TotalSeconds);
             }
             if (State == DockState.Repairing && Config.Current.NotifyWhenRepair && CompleteTime.InASecond(Config.Current.NotifyTimeAdjust))
-                Notifier.Current?.Show(Resources.Notification_Repair_Title, string.Format(Resources.Notification_Repair_Text, Id, Ship.ShipInfo.Name),
+                Notifier.Current?.Show(StringTable.Notification_Repair_Title, string.Format(StringTable.Notification_Repair_Text, Id, Ship.ShipInfo.Name),
 Config.MakeSoundWithPath(Config.Current.NotifyRepairSound));
         }
         protected override void UpdateProp()

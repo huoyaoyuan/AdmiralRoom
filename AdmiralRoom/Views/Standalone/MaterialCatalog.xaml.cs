@@ -38,6 +38,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
 
         public Window CreateWindow() => new MaterialCatalog { DataContext = new Logger.MaterialProvider(Logger.Loggers.MaterialLogger) };
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.Material;
+        public string GetTitle(CultureInfo culture) => StringTable.Material;
     }
 }

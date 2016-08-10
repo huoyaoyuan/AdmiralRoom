@@ -31,7 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public bool IsLSC { get; set; }
         [Show("BuildingType"), Filter]
-        public string Type => IsLSC ? Properties.Resources.LSC_Yes : Properties.Resources.LSC_No;
+        public string Type => IsLSC ? StringTable.LSC_Yes : StringTable.LSC_No;
         [Log]
         public int ShipId { get; set; }
         [Show("ShipCreated"), Filter(nameof(ShipId))]

@@ -22,7 +22,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views
 
         public UIElement View => this;
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.ViewTitle_DevelopView;
+        public string GetTitle(CultureInfo culture) => StringTable.ViewTitle_DevelopView;
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {

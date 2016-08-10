@@ -52,7 +52,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (oSession.PathAndQuery.StartsWith("/kcsapi") && oSession.oResponse.MIMEType.Equals("text/plain"))
             {
-                Models.Status.Current.StatusText = string.Format(Properties.Resources.Status_GetResponse, oSession.url);
+                Models.Status.Current.StatusText = string.Format(StringTable.Status_GetResponse, oSession.url);
                 DistributeAsync(oSession);
             }
         }

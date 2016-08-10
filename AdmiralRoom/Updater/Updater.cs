@@ -37,8 +37,8 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
                 {
                     DispatcherHelper.UIDispatcher.Invoke(() =>
                     {
-                        if (MessageBox.Show($"{Properties.Resources.Update_Text_Download}{NewVersion}",
-                            Properties.Resources.Update, MessageBoxButton.OKCancel, MessageBoxImage.Information)
+                        if (MessageBox.Show($"{StringTable.Update_Text_Download}{NewVersion}",
+                            StringTable.Update, MessageBoxButton.OKCancel, MessageBoxImage.Information)
                             == MessageBoxResult.OK)
                             new AboutWindow { Owner = Application.Current.MainWindow }.ShowDialog();
                     });

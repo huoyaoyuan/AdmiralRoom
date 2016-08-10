@@ -21,6 +21,6 @@ namespace Huoyaoyuan.AdmiralRoom.Views
 
         public UIElement View => this;
 
-        public string GetTitle(CultureInfo culture) => Properties.Resources.ViewTitle_AdmiralView;
+        public string GetTitle(CultureInfo culture) => StringTable.ViewTitle_AdmiralView;
     }
 }

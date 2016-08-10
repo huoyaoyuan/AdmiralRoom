@@ -56,7 +56,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             }
 
-            ResourceService.Current.CultureChanged += _ => viewList[nameof(GameHost)].Title = Properties.Resources.Browser;
+            ResourceService.Current.CultureChanged += _ => viewList[nameof(GameHost)].Title = StringTable.Browser;
 
             DockCommands = new Config.CommandSet
             {

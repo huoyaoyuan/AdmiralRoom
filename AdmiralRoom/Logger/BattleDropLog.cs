@@ -21,9 +21,9 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public bool IsBOSS { get; set; }
         [Show("BOSS")]
-        public string BOSSShown => IsBOSS ? Properties.Resources.Compass_BOSS : "";
+        public string BOSSShown => IsBOSS ? StringTable.Compass_BOSS : "";
         [Filter]
-        public string BOSS => IsBOSS ? Properties.Resources.Compass_BOSS : "-";
+        public string BOSS => IsBOSS ? StringTable.Compass_BOSS : "-";
         [Log]
         public Officer.WinRank WinRank { get; set; }
         [Show("WinRank"), Filter(nameof(WinRank))]
@@ -34,19 +34,19 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 switch (WinRank)
                 {
                     case Officer.WinRank.Perfect:
-                        return Properties.Resources.Battle_WinRank_Perfect;
+                        return StringTable.Battle_WinRank_Perfect;
                     case Officer.WinRank.S:
-                        return Properties.Resources.Battle_WinRank_S;
+                        return StringTable.Battle_WinRank_S;
                     case Officer.WinRank.A:
-                        return Properties.Resources.Battle_WinRank_A;
+                        return StringTable.Battle_WinRank_A;
                     case Officer.WinRank.B:
-                        return Properties.Resources.Battle_WinRank_B;
+                        return StringTable.Battle_WinRank_B;
                     case Officer.WinRank.C:
-                        return Properties.Resources.Battle_WinRank_C;
+                        return StringTable.Battle_WinRank_C;
                     case Officer.WinRank.D:
-                        return Properties.Resources.Battle_WinRank_D;
+                        return StringTable.Battle_WinRank_D;
                     case Officer.WinRank.E:
-                        return Properties.Resources.Battle_WinRank_E;
+                        return StringTable.Battle_WinRank_E;
                     default:
                         return "";
                 }
@@ -59,7 +59,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Filter(nameof(DropShipId))]
         public string DropShipName => Officer.Staff.Current.MasterData.ShipInfo?[DropShipId]?.Name ?? "";
         [Show("DropShipName")]
-        public string DropShipNameShown => DropShipId == -1 ? Properties.Resources.Log_ShipFull : DropShipName;
+        public string DropShipNameShown => DropShipId == -1 ? StringTable.Log_ShipFull : DropShipName;
         [Log]
         public int DropItem { get; set; }
         [Show("DropItem"), Filter(nameof(DropItem))]

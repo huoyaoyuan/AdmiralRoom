@@ -15,8 +15,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Log]
         public int ResultRank { get; set; }
         [Show, Filter]
-        public string Result => ResultRank == 0 ? Properties.Resources.Expedition_Fail :
-            ResultRank == 1 ? Properties.Resources.Expedition_Success : Properties.Resources.Expedition_Great;
+        public string Result => ResultRank == 0 ? StringTable.Expedition_Fail :
+            ResultRank == 1 ? StringTable.Expedition_Success : StringTable.Expedition_Great;
         [Log, Show]
         public int Item1 { get; set; }
         [Log, Show]
