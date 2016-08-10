@@ -517,6 +517,7 @@
     <None Include="information\masterdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Localization\resx2xaml.ttinclude" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -660,7 +661,11 @@
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.Common.dll" />
     <Analyzer Include="..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Localization\en\" />
+    <Folder Include="Localization\ja\" />
+    <Folder Include="Localization\zh-Hans\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
