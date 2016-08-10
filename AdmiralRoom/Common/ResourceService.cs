@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Windows;
 using Meowtrix.ComponentModel;
+using Meowtrix.WPF.Extend;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
-    internal class ResourceService : NotificationObject
+    public class ResourceService : NotificationObject
     {
         private ResourceService() { }
         public static ResourceService Current { get; } = new ResourceService();
@@ -21,9 +23,11 @@ namespace Huoyaoyuan.AdmiralRoom
             get { return _currentCulture; }
             set
             {
+                var oldCulture = _currentCulture;
                 _currentCulture = value;
                 OnAllPropertyChanged();
-                CultureChanged?.Invoke(value);
+                var temp = CultureChanged;
+                temp?.Invoke(this, new PropertyChangedEventArgs<CultureInfo>(oldCulture, value));
             }
         }
         public static string GetString(string key) => App.Current.TryFindResource("LocalizedString_" + key)?.ToString() ?? key;
@@ -36,6 +40,14 @@ namespace Huoyaoyuan.AdmiralRoom
                 CurrentCulture = culture;
             }
         }
-        public event Action<CultureInfo> CultureChanged;
+        public event EventHandler<PropertyChangedEventArgs<CultureInfo>> CultureChanged;
+        public void SetStringTableBinding(DependencyObject @object, DependencyProperty property, string key)
+        {
+            SetStringFromTable(@object, property, key);
+            WeakEventManager<ResourceService, PropertyChangedEventArgs<CultureInfo>>.AddHandler(this, nameof(CultureChanged),
+                (_, __) => SetStringFromTable(@object, property, key));
+        }
+        public static void SetStringFromTable(DependencyObject @object, DependencyProperty property, string key)
+            => @object.SetCurrentValue(property, GetString(key));
     }
 }

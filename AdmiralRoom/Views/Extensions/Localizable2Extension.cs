@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
 {
     [MarkupExtensionReturnType(typeof(object))]
-    class RuntimePathBindingExtension : MarkupExtension
+    class Localizable2Extension : MarkupExtension
     {
         [ConstructorArgument("pathsource")]
         public string PathSource { get; set; }
-        public object Source { get; set; }
-        public BindingMode Mode { get; set; }
-        public RuntimePathBindingExtension() { }
-        public RuntimePathBindingExtension(string pathsource)
+        public Localizable2Extension() { }
+        public Localizable2Extension(string pathsource)
         {
             PathSource = pathsource;
         }
@@ -35,10 +32,9 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
         {
             if (datacontext == null || target == null) return;
             Type type = datacontext.GetType();
-            PropertyInfo property = type.GetProperty(this.PathSource);
+            PropertyInfo property = type.GetProperty(PathSource);
             if (property == null) return;
-            Binding binding = new Binding { Path = new PropertyPath(property.GetValue(datacontext).ToString()), Source = this.Source ?? datacontext, Mode = this.Mode };
-            BindingOperations.SetBinding(target, dp, binding);
+            ResourceService.Current.SetStringTableBinding(target, dp, property.GetValue(datacontext).ToString());
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Huoyaoyuan.AdmiralRoom.Composition;
+using Meowtrix.WPF.Extend;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
@@ -29,7 +30,7 @@ namespace Huoyaoyuan.AdmiralRoom
                     Header = subview.GetTitle(ResourceService.Current.CurrentCulture)
                 };
                 menuitem.Click += (_, __) => AddOrShowView(subview, true);
-                ResourceService.Current.CultureChanged += c => menuitem.Header = subview.GetTitle(c);
+                ResourceService.Current.CultureChanged += (_, e) => menuitem.Header = subview.GetTitle(e.NewValue);
                 subviews.Items.Add(menuitem);
             }
 
@@ -56,7 +57,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             }
 
-            ResourceService.Current.CultureChanged += _ => viewList[nameof(GameHost)].Title = StringTable.Browser;
+            ResourceService.Current.CultureChanged += (_, __) => viewList[nameof(GameHost)].Title = StringTable.Browser;
 
             DockCommands = new Config.CommandSet
             {
@@ -109,7 +110,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 _window.Activate();
             }
             private void WindowClosed(object sender, EventArgs e) => _window = null;
-            public void OnCultureChanged(CultureInfo culture) => _menuitem.Header = _isubwindow.GetTitle(culture);
+            public void OnCultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e) => _menuitem.Header = _isubwindow.GetTitle(e.NewValue);
         }
 
         private void MakeViewList(ILayoutElement elem)
@@ -184,14 +185,14 @@ namespace Huoyaoyuan.AdmiralRoom
             if (show) targetView.IsVisible = true;
         }
 
-        private void OnCultureChanged(CultureInfo culture)
+        private void OnCultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
         {
             foreach (var viewname in viewList.Keys)
             {
                 var target = viewList[viewname];
                 ISubView view;
                 if (subviewmap.TryGetValue(viewname, out view))
-                    target.Title = view.GetTitle(culture);
+                    target.Title = view.GetTitle(e.NewValue);
             }
         }
 

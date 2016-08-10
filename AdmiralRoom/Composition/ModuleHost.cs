@@ -35,11 +35,11 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
                 container.ComposeParts(this);
             }
 #pragma warning disable CC0020
-            ResourceService.Current.CultureChanged += culture =>
-            {
-                foreach (var module in Modules)
-                    module.OnCultureChanged(culture);
-            };
+            //ResourceService.Current.CultureChanged += culture =>
+            //{
+            //    foreach (var module in Modules)
+            //        module.OnCultureChanged(culture);
+            //};
 #pragma warning restore CC0020
         }
         public void Unload()

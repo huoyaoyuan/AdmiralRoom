@@ -1,32 +1,22 @@
 ﻿using System.Windows;
-using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Extensions
 {
-    class LocalizableExtension : Binding
+    class LocalizableExtension : DynamicResourceExtension
     {
         private string _resourcekey;
         [ConstructorArgument("resourcekey")]
-        public string ResourceKey
+        public new string ResourceKey
         {
             get { return _resourcekey; }
             set
             {
                 _resourcekey = value;
-                Path = new PropertyPath("Resources." + value);
+                base.ResourceKey = "LocalizedString_" + _resourcekey;
             }
         }
-        public LocalizableExtension()
-        {
-            Source = ResourceService.Current;
-            Mode = BindingMode.OneWay;
-        }
-        public LocalizableExtension(string resourcekey)
-        {
-            ResourceKey = resourcekey;
-            Source = ResourceService.Current;
-            Mode = BindingMode.OneWay;
-        }
+        public LocalizableExtension() { }
+        public LocalizableExtension(string resourcekey) : base("LocalizedString_" + resourcekey) { }
     }
 }

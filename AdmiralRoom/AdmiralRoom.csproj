@@ -347,7 +347,7 @@
     </Compile>
     <Compile Include="Views\Extensions\IntExtension.cs" />
     <Compile Include="Views\Extensions\LocalizableExtension.cs" />
-    <Compile Include="Views\Extensions\RuntimePathBindingExtension.cs" />
+    <Compile Include="Views\Extensions\Localizable2Extension.cs" />
     <Compile Include="Views\FleetView.xaml.cs">
       <DependentUpon>FleetView.xaml</DependentUpon>
     </Compile>

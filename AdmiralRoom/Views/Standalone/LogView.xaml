@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-        mc:Ignorable="d"
         Height="800"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
-        FontSize="16">
+        FontSize="16"
+        mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,13 +29,10 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="2">
-                                <CheckBox IsChecked="{Binding Enable}" VerticalAlignment="Center">
-                                    <ex:RuntimePathBinding PathSource="FullTitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                                </CheckBox>
-                                <ComboBox IsEnabled="{Binding Enable}"
-                                          
-                                          VerticalAlignment="Center"
+                            <StackPanel Margin="2" Orientation="Horizontal">
+                                <CheckBox VerticalAlignment="Center" IsChecked="{Binding Enable}" Content="{ex:Localizable2 FullTitleKey}"/>
+                                <ComboBox VerticalAlignment="Center"
+                                          IsEnabled="{Binding Enable}"
                                           ItemsSource="{Binding Values}"
                                           SelectedValue="{Binding SelectedValue}"/>
                             </StackPanel>
@@ -49,18 +46,14 @@
                     BorderThickness="1" CornerRadius="5" Padding="2"
                     BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox VerticalAlignment="Center"
-                              Margin="2" Width="120"
+                    <ComboBox Width="120" Margin="2"
+                              VerticalAlignment="Center"
                               ItemsSource="{Binding TimeRanges}"
                               SelectedValuePath="Time"
                               SelectedValue="{Binding SelectedTimeRange}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <ex:RuntimePathBinding PathSource="TitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                                    </TextBlock.Text>
-                                </TextBlock>
+                                <TextBlock Text="{ex:Localizable2 TitleKey}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>

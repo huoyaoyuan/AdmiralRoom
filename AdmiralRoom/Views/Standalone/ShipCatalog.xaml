@@ -8,12 +8,11 @@
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
-
         Height="800"
+        d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
-        FontSize="16">
+        FontSize="16"
+        mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,7 +33,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox Content="{Binding ShipType.DisplayName}" IsChecked="{Binding IsSelected}" Margin="2"/>
+                                <CheckBox Margin="2" IsChecked="{Binding IsSelected}" Content="{Binding ShipType.DisplayName}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -150,20 +149,16 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.RowSpan="3" VerticalAlignment="Center">
-                                                <TextBlock.Text>
-                                                    <ex:RuntimePathBinding PathSource="TitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <RadioButton Grid.Column="1" Grid.Row="0"
+                                            <TextBlock Grid.RowSpan="3" VerticalAlignment="Center" Text="{ex:Localizable2 TitleKey}"/>
+                                            <RadioButton Grid.Row="0" Grid.Column="1"
                                                          Content="{ex:Localizable All}"
                                                          IsChecked="{Binding NoneSelected}"/>
-                                            <RadioButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding TrueSelected}">
-                                                <ex:RuntimePathBinding PathSource="TrueKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                                            </RadioButton>
-                                            <RadioButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding FalseSelected}">
-                                                <ex:RuntimePathBinding PathSource="FalseKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                                            </RadioButton>
+                                            <RadioButton Grid.Row="1" Grid.Column="1"
+                                                         IsChecked="{Binding TrueSelected}"
+                                                         Content="{ex:Localizable2 TrueKey}"/>
+                                            <RadioButton Grid.Row="2" Grid.Column="1"
+                                                         IsChecked="{Binding FalseSelected}"
+                                                         Content="{ex:Localizable2 FalseKey}"/>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -189,15 +184,11 @@
                                 <Border Margin="2"
                                         BorderThickness="1" CornerRadius="5" Padding="2"
                                         BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
-                                    <StackPanel Orientation="Vertical" Width="100">
+                                    <StackPanel Width="100" Orientation="Vertical">
                                         <ComboBox Margin="2" ItemsSource="{Binding Source.Sortings}" SelectedIndex="{Binding SelectedIndex}">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock>
-                                                        <TextBlock.Text>
-                                                            <ex:RuntimePathBinding PathSource="ResourceNameKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                                                        </TextBlock.Text>
-                                                    </TextBlock>
+                                                    <TextBlock Text="{ex:Localizable2 ResourceNameKey}"/>
                                                 </DataTemplate>
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
@@ -216,8 +207,8 @@
         <ListView Grid.Row="2" ItemsSource="{Binding ShownShips}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Index}" Width="40"/>
-                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Item.Id}" Width="55"/>
+                    <GridViewColumn Width="40" DisplayMemberBinding="{Binding Index}"/>
+                    <GridViewColumn Width="55" DisplayMemberBinding="{Binding Item.Id}" Header="id"/>
                     <GridViewColumn Header="{ex:Localizable Ship_Class}" DisplayMemberBinding="{Binding Item.ShipInfo.ShipType.Name}"/>
                     <GridViewColumn Header="{ex:Localizable Ship_Name}" DisplayMemberBinding="{Binding Item.ShipInfo.Name}"/>
                     <GridViewColumn Header="{ex:Localizable Ship_Level}" DisplayMemberBinding="{Binding Item.Level}"/>
@@ -240,11 +231,10 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Canvas Height="15" Width="15" ToolTip="{Binding}">
-                                                <Image Source="{Binding Item.EquipInfo.Icon}"
-
-                                                       Height="20" Width="20"
-                                                       Canvas.Left="-2.5" Canvas.Top="-2.5"/>
+                                            <Canvas Width="15" Height="15" ToolTip="{Binding}">
+                                                <Image Canvas.Left="-2.5" Canvas.Top="-2.5"
+                                                       Width="20" Height="20"
+                                                       Source="{Binding Item.EquipInfo.Icon}"/>
                                             </Canvas>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

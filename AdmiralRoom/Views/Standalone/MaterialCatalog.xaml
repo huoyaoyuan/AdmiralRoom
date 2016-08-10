@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-        mc:Ignorable="d"
         Title="{ex:Localizable Material}"
-        
-        Height="675" Width="900"
+        Width="900" Height="675"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
-        FontSize="16">
+        FontSize="16"
+        mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,83 +24,78 @@
                       SelectedValue="{Binding From}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <ex:RuntimePathBinding PathSource="TitleKey" Source="{x:Static root:ResourceService.Current}" Mode="OneWay"/>
-                            </TextBlock.Text>
-                        </TextBlock>
+                        <TextBlock Text="{ex:Localizable2 TitleKey}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_1}"
-                      Tag="{ex:Int 0}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 0}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor1}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_2}"
-                      Tag="{ex:Int 1}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 1}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor2}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_3}"
-                      Tag="{ex:Int 2}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 2}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor3}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_4}"
-                      Tag="{ex:Int 3}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 3}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor4}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_5}"
-                      Tag="{ex:Int 4}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 4}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor5}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_6}"
-                      Tag="{ex:Int 5}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 5}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor6}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_7}"
-                      Tag="{ex:Int 6}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 6}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor7}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
-            <CheckBox VerticalAlignment="Center"
-                      Margin="2"
+            <CheckBox Margin="2"
+                      VerticalAlignment="Center"
                       Content="{ex:Localizable Material_8}"
-                      Tag="{ex:Int 7}"
-                      IsChecked="True" Click="CheckBox_Click"
+                      Tag="{ex:Int 7}" IsChecked="True"
+                      Click="CheckBox_Click"
                       Foreground="{StaticResource MaterialColor8}"
                       MouseEnter="CheckBox_Mouse"
                       MouseLeave="CheckBox_Mouse"/>
         </WrapPanel>
         <local:MaterialChart x:Name="chart"
                              Grid.Row="1"
-                             Source="{Binding All}"
-                             From="{Binding From}"
+                             Source="{Binding All}" From="{Binding From}"
                              To="{Binding Now}"/>
         <ListView Grid.Row="2" ItemsSource="{Binding AsDays}">
             <ListView.View>
