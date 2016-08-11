@@ -28,7 +28,7 @@ using System.Windows;
 //对以下 NeutralResourceLanguage 特性的注释。  更新
 //以下行中的“en-US”以匹配项目文件中的 UICulture 设置。
 
-//[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+//[assembly: NeutralResourcesLanguage("en", UltimateResourceFallbackLocation.Satellite)]
 
 
 [assembly: ThemeInfo(
@@ -51,7 +51,5 @@ using System.Windows;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.6.0.609")]
-[assembly: AssemblyFileVersion("0.6.0.609")]
-[assembly: NeutralResourcesLanguage("en")]
-
+[assembly: AssemblyVersion("0.6.1.622")]
+[assembly: AssemblyFileVersion("0.6.1.622")]
