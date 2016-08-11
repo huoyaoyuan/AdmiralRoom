@@ -162,38 +162,17 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             try
             {
-                var document = this.WebBrowser.Document as HTMLDocument;
-                if (document == null) return;
-
-                var gameFrame = document.getElementById("game_frame");
-
-                if (gameFrame == null) gameFrame = document.getElementById("ooi-game");
-                if (gameFrame == null) gameFrame = document.getElementById("flashWrap");
-                if (gameFrame == null)
+                if (FindFlashElement() != null)
                 {
-                    if (document.url.Contains(".swf?"))
-                    {
-                        gameFrame = document.body;
-                    }
-                }
-
-                if (gameFrame != null)
-                {
-                    var target = gameFrame.document as HTMLDocument;
-                    if (target != null)
-                    {
-                        target.createStyleSheet().cssText = OverrideStyleSheet;
-                        this.styleSheetApplied = true;
-                        return;
-                    }
+                    var target = WebBrowser.Document as HTMLDocument;
+                    target.createStyleSheet().cssText = OverrideStyleSheet;
+                    styleSheetApplied = true;
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
-
-            return;
         }
         private static Size GetSystemDpi()
         {
