@@ -8,7 +8,8 @@
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
         Title="提督の部屋"
-        Loaded="LoadLayout" Closed="SaveLayout"
+        Loaded="OnLoaded" Closed="OnClosed"
+        Closing="OnClosing"
         FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
         FontSize="{Binding FontSize, Source={x:Static local:Config.Current}, Mode=OneWay}"
         mc:Ignorable="d">

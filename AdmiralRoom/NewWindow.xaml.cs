@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -124,15 +125,17 @@ namespace Huoyaoyuan.AdmiralRoom
                 foreach (var child in (elem as ILayoutContainer).Children)
                     MakeViewList(child);
         }
-
-        #region Layout
-        private void LoadLayout(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            Win32Helper.GetRestoreWindowPosition(this);
             TryLoadLayout();
             foreach (var view in DockMan.Layout.Hidden.Where(x => x.PreviousContainerIndex == -1).ToArray())
                 DockMan.Layout.Hidden.Remove(view);
         }
-        private void SaveLayout(object sender, EventArgs e) => TrySaveLayout();
+        private void OnClosed(object sender, EventArgs e) => TrySaveLayout();
+        private void OnClosing(object sender, CancelEventArgs e) => Win32Helper.SetRestoreWindowPosition(this);
+
+        #region Layout
         private void TryLoadLayout(string path = "layout.xml")
         {
             XmlLayoutSerializer layoutserializer = new XmlLayoutSerializer(DockMan);
