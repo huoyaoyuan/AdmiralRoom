@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
+using System.Linq;
 using System.Reflection;
+using Meowtrix.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Composition
 {
@@ -10,42 +11,50 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     {
         private ModuleHost() { }
         public static ModuleHost Instance { get; } = new ModuleHost();
-        [ImportMany(typeof(IModule))]
-        public IList<IModule> Modules { get; } = new List<IModule>();
-        [ImportMany(typeof(ISubView))]
-        public IList<ISubView> SubViews { get; } = new List<ISubView>();
-        [ImportMany(typeof(ISubWindow))]
-        public IList<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
+        public IList<Lazy<IModuleInfo, IModuleMetadata>> Modules { get; private set; }
+        public List<ISubView> SubViews { get; } = new List<ISubView>();
+        public List<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
         public void Initialize()
         {
-#pragma warning disable CC0022
             var a = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            ComposablePartCatalog catalog;
+            using (var container = new CompositionContainer(a))
+            {
+                SubViews.AddRange(container.GetExportedValues<ISubView>());
+                SubWindows.AddRange(container.GetExportedValues<ISubWindow>());
+            }
+
             try
             {
-                catalog = new AggregateCatalog(a, new DirectoryCatalog("modules"));
+                var d = new DirectoryCatalog("modules");
+                using (var container = new CompositionContainer(d))
+                    Modules = container.GetExports<IModuleInfo, IModuleMetadata>().ToList();
+                //TODO: verify contract version
             }
-            catch
+            catch (Exception ex)
             {
-                catalog = a;
+                System.Diagnostics.Debug.WriteLine(ex);
             }
-#pragma warning restore CC0022
-            using (var container = new CompositionContainer(catalog))
+
+            foreach (var module in Modules)
             {
-                container.ComposeParts(this);
+                if (module.Value.AutoLoadComponents)
+                {
+                    var c = new AssemblyCatalog(module.Value.GetType().Assembly);
+                    using (var container = new CompositionContainer(c))
+                    {
+                        module.Value.SubViews.AddRange(container.GetExportedValues<ISubView>());
+                        module.Value.SubWindows.AddRange(container.GetExportedValues<ISubWindow>());
+                    }
+                }
+                SubViews.AddRange(module.Value.SubViews);
+                SubWindows.AddRange(module.Value.SubWindows);
+                module.Value.Initialize();
             }
-#pragma warning disable CC0020
-            //ResourceService.Current.CultureChanged += culture =>
-            //{
-            //    foreach (var module in Modules)
-            //        module.OnCultureChanged(culture);
-            //};
-#pragma warning restore CC0020
         }
         public void Unload()
         {
             foreach (var module in Modules)
-                module.Unload();
+                module.Value.Unload();
         }
     }
 }
