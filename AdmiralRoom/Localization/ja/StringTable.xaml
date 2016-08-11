@@ -5,7 +5,6 @@
                     xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom">
     <s:Object x:Key="{x:Static local:ResourceService.LocalizationDictionaryKey}"/>
     <s:String xml:space="preserve" x:Key="LocalizedString_About">バージョン情報</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Actions">アクション</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_All">すべて</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Back">戻る</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BackToGame">ゲームに戻る</s:String>
@@ -129,6 +128,10 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_WinRank">ランク</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LSC_No">通常艦建造</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LSC_Yes">大型艦建造</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Information">情報</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Overview">概要</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Statistics">統計</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Views">表示</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material">資材</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material_1">燃料</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material_2">弾薬</s:String>
@@ -152,7 +155,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Text">入渠第 {0} ドックでの「{1}」の整備が完了しました。</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">整備完了</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Toast">トースト通知を使用する</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Options">設定</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Option">オプション</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">プラグイン</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Disable">非表示</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Enable">表示</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Proxy">プロキシ</s:String>
@@ -174,15 +178,12 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Quest_Type_Shipyard">工廠任務</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Quest_Type_Sortie">出撃任務</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Refresh">更新</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Browse">閱覧</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Module">モデル</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Plugin">プラグイン</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_View">介面</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Window">ウィンドウ</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot">スクリーンショート</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot_Fail">スクリーンショットの保存に失敗しました: </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot_Success">スクリーンショットを保存しました: </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_SelectAll">すべて選択</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings">設定</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Actions">動作</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_ConfigFile">設定ファイル</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_FolderOpen">開く</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_FolderSelect">選択</s:String>
@@ -192,12 +193,16 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula14Q4">2-5式(秋)</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula16Q1">2-5式「33」</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_SimpleSum">単純合計</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Network">ネットワーク</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyShortingTime">通知短缩時間（秒）：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenBuild">建造完了時に通知を表示する</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenCondition">疲労回復時に通知を表示する</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenExpedition">遠征帰投時に通知を表示する</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenRepair">入渠完了時に通知を表示する</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_ScreenShotFolder">スクリーンショット保存前：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_SystemStyle">スタイル</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Theme">テーマ</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Zoom">ズーム</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_AA">対空</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_Armor">装甲</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_ASW">対潜</s:String>
@@ -256,7 +261,6 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Stop">停止</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Success">成功</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Theme">テーマ</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Theme_NoDWM">DWMを使用しない</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange">期間</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange_All">すべて</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange_Custom">日付指定</s:String>

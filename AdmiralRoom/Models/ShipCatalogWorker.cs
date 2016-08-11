@@ -35,9 +35,9 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public class ShipFilter : NotifySourceObject<ShipCatalogWorker>
         {
             public string TextKey { get; set; }
-            public string TitleKey => "Resources.Ship_Filter_" + TextKey + "_Title";
-            public string TrueKey => "Resources.Ship_Filter_" + TextKey + "_True";
-            public string FalseKey => "Resources.Ship_Filter_" + TextKey + "_False";
+            public string TitleKey => "Ship_Filter_" + TextKey + "_Title";
+            public string TrueKey => "Ship_Filter_" + TextKey + "_True";
+            public string FalseKey => "Ship_Filter_" + TextKey + "_False";
             public bool? Value { get; set; }
             public bool NoneSelected
             {
@@ -90,7 +90,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
         public class ShipSortColumn
         {
             public string NameKey { get; set; } = "Sort_None";
-            public string ResourceNameKey => "Resources.Ship_" + NameKey;
+            public string ResourceNameKey => "Ship_" + NameKey;
             public Func<Ship, int> KeySelector { get; set; } = x => 0;
             public bool IsDefaultDescend { get; set; }
         }

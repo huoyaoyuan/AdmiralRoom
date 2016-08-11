@@ -5,7 +5,6 @@
                     xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom">
     <s:Object x:Key="{x:Static local:ResourceService.LocalizationDictionaryKey}"/>
     <s:String xml:space="preserve" x:Key="LocalizedString_About">About</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Actions">Actions</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_All">All</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Back">Back</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BackToGame">Back to game</s:String>
@@ -129,6 +128,10 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_WinRank">Win Rank</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LSC_No">NSC</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LSC_Yes">LSC</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Information">Information</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Overview">Overview</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Statistics">Statistics</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Views">Views</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material">Material</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material_1">Fuel</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material_2">Bull</s:String>
@@ -153,7 +156,8 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">Repairs Completed</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Toast">Prefer toast notify</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_ToolTip_Win10">Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Options">Options</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Option">Option</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">Plugin</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Disable">Disable</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Enable">Enable</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Proxy">Proxy</s:String>
@@ -175,18 +179,16 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Quest_Type_Shipyard">Shipyard</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Quest_Type_Sortie">Sortie</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Refresh">Refresh</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Browse">Browse</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Module">Modules</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Plugin">Plugin</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_View">View</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Window">Window</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot">Screenshot</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot_Fail">Screenshot save failed: </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot_Success">Screenshot saved: </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_SelectAll">Select All</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings">Settings</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Actions">Action</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_ConfigFile">Config File</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_FolderOpen">Open</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_FolderSelect">Select</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Font_Mix">Font mixing...</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Layout">Layout</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Load">Load</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoadFrom">Load from...</s:String>
@@ -195,6 +197,7 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula14Q4">Formula 2-5 Autumn</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula16Q1">Formula "33" (2016Q1)</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_SimpleSum">Simple Sum</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Network">Network</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyShortingTime">Notify shorting time(s): </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenBuild">Notify when building complete</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenCondition">Notify when condition recovery</s:String>
@@ -203,6 +206,9 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Save">Save</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_SaveAs">Save as...</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_ScreenShotFolder">Screenshot Folder: </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_SystemStyle">System Style</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Theme">Theme</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Zoom">Zoom</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_AA">AntiAir</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_Armor">Armor</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_ASW">ASW</s:String>
@@ -261,8 +267,6 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Stop">Stop</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Success">Success</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Theme">Theme</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Theme_Aero">Use aero style controls</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Theme_NoDWM">Don't use DWM</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange">Time Range</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange_All">All</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange_Custom">Specified</s:String>
@@ -299,6 +303,4 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_QuestOverview">Quest In Progress</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_RepairView">Repairing</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_ShipCatalog">All Ships</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Window_Standalone">Standalone window</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Window_Subwindow">Subwindow</s:String>
 </ResourceDictionary>

@@ -20,15 +20,15 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             if (All.Count > 0) firsttime = All[0].DateTime;
             Durations = new[]
             {
-                new { TitleKey = "Resources.ChartTimeRange_Days1", From = Now.AddDays(-1) },
-                new { TitleKey = "Resources.ChartTimeRange_Weeks1", From = Now.AddDays(-7) },
-                new { TitleKey = "Resources.ChartTimeRange_Weeks2", From = Now.AddDays(-14) },
-                new { TitleKey = "Resources.ChartTimeRange_Months1", From = Now.AddMonths(-1) },
-                new { TitleKey = "Resources.ChartTimeRange_Months2", From = Now.AddMonths(-2) },
-                new { TitleKey = "Resources.ChartTimeRange_Months3", From = Now.AddMonths(-3) },
-                new { TitleKey = "Resources.ChartTimeRange_Months6", From = Now.AddMonths(-6) },
-                new { TitleKey = "Resources.ChartTimeRange_Years1", From = Now.AddYears(-1) },
-                new { TitleKey = "Resources.ChartTimeRange_All", From = firsttime }
+                new { TitleKey = "ChartTimeRange_Days1", From = Now.AddDays(-1) },
+                new { TitleKey = "ChartTimeRange_Weeks1", From = Now.AddDays(-7) },
+                new { TitleKey = "ChartTimeRange_Weeks2", From = Now.AddDays(-14) },
+                new { TitleKey = "ChartTimeRange_Months1", From = Now.AddMonths(-1) },
+                new { TitleKey = "ChartTimeRange_Months2", From = Now.AddMonths(-2) },
+                new { TitleKey = "ChartTimeRange_Months3", From = Now.AddMonths(-3) },
+                new { TitleKey = "ChartTimeRange_Months6", From = Now.AddMonths(-6) },
+                new { TitleKey = "ChartTimeRange_Years1", From = Now.AddYears(-1) },
+                new { TitleKey = "ChartTimeRange_All", From = firsttime }
             };
             From = Now.AddDays(-14);
         }

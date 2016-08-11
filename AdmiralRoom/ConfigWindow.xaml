@@ -7,14 +7,14 @@
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         xmlns:views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
         xmlns:controlzex="urn:controlzex"
-        Title="ConfigWindow"
+        Title="{ex:Localizable Settings}"
         Width="800" Height="600"
         DataContext="{x:Static local:Config.Current}"
         FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
         FontSize="18"
         mc:Ignorable="d">
     <controlzex:TabControlEx>
-        <TabItem Header="网络">
+        <TabItem Header="{ex:Localizable Settings_Network}">
             <Grid Margin="20,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -66,7 +66,7 @@
                          Text="{Binding HTTPSProxy.Port, Mode=TwoWay}"/>
             </Grid>
         </TabItem>
-        <TabItem Header="界面">
+        <TabItem Header="{ex:Localizable Settings_Theme}">
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -85,12 +85,12 @@
                           ItemsSource="{x:Static local:ResourceService.SupportedCultures}"
                           DisplayMemberPath="NativeName"
                           SelectedValue="{Binding Path=(local:ResourceService.CurrentCulture), Mode=TwoWay}"/>
-                <TextBlock Grid.Row="1" Margin="5" Text="控件风格"/>
+                <TextBlock Grid.Row="1" Margin="5" Text="{ex:Localizable Settings_SystemStyle}"/>
                 <ComboBox Grid.Row="1" Grid.Column="1"
                           Margin="5"
                           ItemsSource="{x:Static local:ThemeService.SystemThemes}"
                           SelectedValue="{Binding SystemTheme, Mode=TwoWay}"/>
-                <TextBlock Grid.Row="2" Margin="5" Text="主题"/>
+                <TextBlock Grid.Row="2" Margin="5" Text="{ex:Localizable Settings_Theme}"/>
                 <ComboBox Grid.Row="2" Grid.Column="1" Margin="5"/>
                 <TextBlock Grid.Row="3" Margin="5" Text="{ex:Localizable Font}"/>
                 <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
@@ -98,13 +98,13 @@
                               ItemsSource="{x:Static local:ThemeService.FontSource}"
                               DisplayMemberPath="Name" SelectedValuePath="Font"
                               SelectedValue="{Binding FontFamily, Mode=TwoWay}"/>
-                    <Button Margin="5" Content="混合字体" IsEnabled="False"/>
+                    <Button Margin="5" Content="{ex:Localizable Settings_Font_Mix}" IsEnabled="False"/>
                 </StackPanel>
-                <TextBlock Grid.Row="4" Margin="5" Text="界面缩放"/>
+                <TextBlock Grid.Row="4" Margin="5" Text="{ex:Localizable Settings_Zoom}"/>
                 <ComboBox Grid.Row="4" Grid.Column="1" Margin="5"/>
             </Grid>
         </TabItem>
-        <TabItem Header="功能">
+        <TabItem Header="{ex:Localizable Settings_Actions}">
             <views:Settings/>
         </TabItem>
     </controlzex:TabControlEx>

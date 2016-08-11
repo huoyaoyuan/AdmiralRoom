@@ -120,9 +120,6 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
-  </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
@@ -492,6 +489,18 @@
   <data name="LSC_Yes" xml:space="preserve">
     <value>LSC</value>
   </data>
+  <data name="MainMenu_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="MainMenu_Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="MainMenu_Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="MainMenu_Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
   <data name="Material" xml:space="preserve">
     <value>Material</value>
   </data>
@@ -562,8 +571,11 @@ Expedition {1} - {2}</value>
   <data name="Notification_ToolTip_Win10" xml:space="preserve">
     <value>Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</value>
   </data>
-  <data name="Options" xml:space="preserve">
-    <value>Options</value>
+  <data name="Option" xml:space="preserve">
+    <value>Option</value>
+  </data>
+  <data name="Plugin" xml:space="preserve">
+    <value>Plugin</value>
   </data>
   <data name="Predict_Disable" xml:space="preserve">
     <value>Disable</value>
@@ -628,21 +640,6 @@ Expedition {1} - {2}</value>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
-  <data name="RibbonTab_Browse" xml:space="preserve">
-    <value>Browse</value>
-  </data>
-  <data name="RibbonTab_Module" xml:space="preserve">
-    <value>Modules</value>
-  </data>
-  <data name="RibbonTab_Plugin" xml:space="preserve">
-    <value>Plugin</value>
-  </data>
-  <data name="RibbonTab_View" xml:space="preserve">
-    <value>View</value>
-  </data>
-  <data name="RibbonTab_Window" xml:space="preserve">
-    <value>Window</value>
-  </data>
   <data name="Screenshot" xml:space="preserve">
     <value>Screenshot</value>
   </data>
@@ -655,6 +652,12 @@ Expedition {1} - {2}</value>
   <data name="SelectAll" xml:space="preserve">
     <value>Select All</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings_Actions" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="Settings_ConfigFile" xml:space="preserve">
     <value>Config File</value>
   </data>
@@ -663,6 +666,9 @@ Expedition {1} - {2}</value>
   </data>
   <data name="Settings_FolderSelect" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="Settings_Font_Mix" xml:space="preserve">
+    <value>Font mixing...</value>
   </data>
   <data name="Settings_Layout" xml:space="preserve">
     <value>Layout</value>
@@ -688,6 +694,9 @@ Expedition {1} - {2}</value>
   <data name="Settings_LoS_SimpleSum" xml:space="preserve">
     <value>Simple Sum</value>
   </data>
+  <data name="Settings_Network" xml:space="preserve">
+    <value>Network</value>
+  </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>Notify shorting time(s): </value>
   </data>
@@ -711,6 +720,15 @@ Expedition {1} - {2}</value>
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>Screenshot Folder: </value>
+  </data>
+  <data name="Settings_SystemStyle" xml:space="preserve">
+    <value>System Style</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Settings_Zoom" xml:space="preserve">
+    <value>Zoom</value>
   </data>
   <data name="Ship_AA" xml:space="preserve">
     <value>AntiAir</value>
@@ -886,12 +904,6 @@ Expedition {1} - {2}</value>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
   </data>
-  <data name="Theme_Aero" xml:space="preserve">
-    <value>Use aero style controls</value>
-  </data>
-  <data name="Theme_NoDWM" xml:space="preserve">
-    <value>Don't use DWM</value>
-  </data>
   <data name="TimeRange" xml:space="preserve">
     <value>Time Range</value>
   </data>
@@ -999,11 +1011,5 @@ Expedition {1} - {2}</value>
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>All Ships</value>
-  </data>
-  <data name="Window_Standalone" xml:space="preserve">
-    <value>Standalone window</value>
-  </data>
-  <data name="Window_Subwindow" xml:space="preserve">
-    <value>Subwindow</value>
   </data>
 </root>

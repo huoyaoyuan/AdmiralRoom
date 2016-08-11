@@ -10,7 +10,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         public SubWindowCategory Category => SubWindowCategory.Statistics;
 
-        public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<CreateShipLog>(Loggers.CreateShipLogger) };
+        public Window CreateWindow()
+            => new Views.Standalone.LogView { DataContext = new ViewProvider<CreateShipLog>(Loggers.CreateShipLogger), TitleKey = "Logger_CreateShip" };
 
         public string GetTitle(CultureInfo culture) => StringTable.Logger_CreateShip;
     }
@@ -19,7 +20,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         public SubWindowCategory Category => SubWindowCategory.Statistics;
 
-        public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<CreateItemLog>(Loggers.CreateItemLogger) };
+        public Window CreateWindow()
+            => new Views.Standalone.LogView { DataContext = new ViewProvider<CreateItemLog>(Loggers.CreateItemLogger), TitleKey = "Logger_CreateItem" };
 
         public string GetTitle(CultureInfo culture) => StringTable.Logger_CreateItem;
     }
@@ -28,7 +30,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         public SubWindowCategory Category => SubWindowCategory.Statistics;
 
-        public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<BattleDropLog>(Loggers.BattleDropLogger) };
+        public Window CreateWindow()
+            => new Views.Standalone.LogView { DataContext = new ViewProvider<BattleDropLog>(Loggers.BattleDropLogger), TitleKey = "Logger_Drop" };
 
         public string GetTitle(CultureInfo culture) => StringTable.Logger_Drop;
     }
@@ -37,7 +40,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         public SubWindowCategory Category => SubWindowCategory.Statistics;
 
-        public Window CreateWindow() => new Views.Standalone.LogView { DataContext = new ViewProvider<MissionLog>(Loggers.MissionLogger) };
+        public Window CreateWindow()
+            => new Views.Standalone.LogView { DataContext = new ViewProvider<MissionLog>(Loggers.MissionLogger), TitleKey = "Expedition" };
 
         public string GetTitle(CultureInfo culture) => StringTable.Expedition;
     }

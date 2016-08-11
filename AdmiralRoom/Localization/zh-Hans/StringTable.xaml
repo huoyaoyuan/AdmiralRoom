@@ -5,7 +5,6 @@
                     xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom">
     <s:Object x:Key="{x:Static local:ResourceService.LocalizationDictionaryKey}"/>
     <s:String xml:space="preserve" x:Key="LocalizedString_About">关于</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Actions">操作</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_All">全部</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Back">后退</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BackToGame">回到游戏</s:String>
@@ -129,6 +128,10 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_WinRank">评价</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LSC_No">通常舰建造</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LSC_Yes">大型舰建造</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Information">信息</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Overview">概览</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Statistics">统计</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_MainMenu_Views">视图</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material">资源</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material_1">燃料</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Material_2">弹药</s:String>
@@ -153,7 +156,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">修理完毕</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Toast">使用Toast通知</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_ToolTip_Win10">Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Options">选项</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Option">选项</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">插件</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Disable">不看剧透</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Enable">看剧透</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Proxy">代理</s:String>
@@ -175,18 +179,16 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Quest_Type_Shipyard">工厂任务</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Quest_Type_Sortie">出击任务</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Refresh">刷新</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Browse">浏览</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Module">模块</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Plugin">插件</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_View">界面</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_RibbonTab_Window">窗口</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot">截图</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot_Fail">截图保存失败：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Screenshot_Success">截图保存成功：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_SelectAll">全选</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings">设置</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Actions">行为</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_ConfigFile">配置文件</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_FolderOpen">打开</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_FolderSelect">选择</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Font_Mix">混合字体...</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Layout">界面布局</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Load">读取</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoadFrom">加载…</s:String>
@@ -195,6 +197,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula14Q4">2-5式（秋）</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula16Q1">2-5式 “33”</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_SimpleSum">简单求和</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Network">网络</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyShortingTime">通知提前时间（秒）：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenBuild">建造完毕时通知</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenCondition">疲劳恢复时通知</s:String>
@@ -203,6 +206,9 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Save">保存</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_SaveAs">另存为…</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_ScreenShotFolder">截图文件夹：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_SystemStyle">系统控件风格</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Theme">主题</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Zoom">缩放</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_AA">对空</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_Armor">装甲</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_ASW">对潜</s:String>
@@ -261,8 +267,6 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Stop">停止</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Success">成功</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Theme">主题</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Theme_Aero">使用Aero风格控件</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Theme_NoDWM">不使用DWM</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange">时间范围</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange_All">全部</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_TimeRange_Custom">指定</s:String>
@@ -299,6 +303,4 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_QuestOverview">已接任务</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_RepairView">入渠</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_ShipCatalog">所有舰娘一览</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Window_Standalone">独立窗口</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Window_Subwindow">子窗口</s:String>
 </ResourceDictionary>

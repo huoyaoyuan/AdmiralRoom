@@ -8,6 +8,7 @@
         xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        Title="{ex:Localizable ViewTitle_ShipCatalog}"
         Height="800"
         d:DataContext="{d:DesignInstance models:ShipCatalogWorker}"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"

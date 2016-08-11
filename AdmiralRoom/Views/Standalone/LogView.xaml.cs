@@ -21,5 +21,12 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
         }
         public void SetGridColumns(IEnumerable<GridViewColumn> columns) =>
             columns.ForEach(x => gridview.Columns.Add((x)));
+        public string TitleKey
+        {
+            set
+            {
+                ResourceService.SetStringTableReference(this, Window.TitleProperty, value);
+            }
+        }
     }
 }

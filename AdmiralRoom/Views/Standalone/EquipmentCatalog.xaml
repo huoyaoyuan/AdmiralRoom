@@ -7,13 +7,12 @@
         xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance models:EquipmentCatalogWorker}"
-        
-        Title="EquipmentCatalog"
+        Title="{ex:Localizable ViewTitle_EquipmentCatalog}"
         Height="800"
+        d:DataContext="{d:DesignInstance models:EquipmentCatalogWorker}"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
-        FontSize="16">
+        FontSize="16"
+        mc:Ignorable="d">
     <Grid>
         <ListView ItemsSource="{Binding Groups}"
                   VirtualizingPanel.IsVirtualizing="False"
@@ -31,11 +30,10 @@
                     <GridViewColumn Header="">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Canvas Height="15" Width="15">
-                                    <Image Source="{Binding Item.Icon}"
-                                           
-                                           Height="20" Width="20"
-                                           Canvas.Left="-2.5" Canvas.Top="-2.5"/>
+                                <Canvas Width="15" Height="15">
+                                    <Image Canvas.Left="-2.5" Canvas.Top="-2.5"
+                                           Width="20" Height="20"
+                                           Source="{Binding Item.Icon}"/>
                                 </Canvas>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -50,10 +48,10 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Width="52" Grid.Column="0" Text="{ex:Localizable Equip_Improvement}"/>
-                                <TextBlock Width="52" Grid.Column="1" Text="{ex:Localizable Equip_Proficiency}"/>
-                                <TextBlock Width="82" Grid.Column="2" Text="{ex:Localizable Equip_CountLeft}"/>
-                                <TextBlock Width="582" Grid.Column="3" Text="{ex:Localizable Equip_OnShip}"/>
+                                <TextBlock Grid.Column="0" Width="52" Text="{ex:Localizable Equip_Improvement}"/>
+                                <TextBlock Grid.Column="1" Width="52" Text="{ex:Localizable Equip_Proficiency}"/>
+                                <TextBlock Grid.Column="2" Width="82" Text="{ex:Localizable Equip_CountLeft}"/>
+                                <TextBlock Grid.Column="3" Width="582" Text="{ex:Localizable Equip_OnShip}"/>
                             </Grid>
                         </GridViewColumn.Header>
                         <GridViewColumn.CellTemplate>
@@ -75,9 +73,9 @@
                                                     <TextBlock x:Name="level"
                                                                Grid.Column="0"
                                                                Width="53"
+                                                               VerticalAlignment="Center"
                                                                Text="{Binding Level, StringFormat=★+{0}}"
-                                                               Foreground="DarkCyan"
-                                                               VerticalAlignment="Center"/>
+                                                               Foreground="DarkCyan"/>
                                                     <ItemsControl Grid.Column="1" ItemsSource="{Binding Groups}">
                                                         <ItemsControl.ItemsPanel>
                                                             <ItemsPanelTemplate>
@@ -98,15 +96,15 @@
                                                                         <TextBlock x:Name="proficiency"
                                                                                    Grid.Column="0"
                                                                                    Width="53"
+                                                                                   VerticalAlignment="Center"
                                                                                    Text="{Binding Level, StringFormat=+{0}}"
-                                                                                   Foreground="LightGray"
-                                                                                   VerticalAlignment="Center"/>
+                                                                                   Foreground="LightGray"/>
                                                                         <StackPanel Grid.Column="1"
-                                                                                    Orientation="Horizontal"
                                                                                     Width="83"
-                                                                                    VerticalAlignment="Center">
+                                                                                    VerticalAlignment="Center"
+                                                                                    Orientation="Horizontal">
                                                                             <TextBlock Text="{Binding Count}"/>
-                                                                            <TextBlock Text="{Binding Left, StringFormat=({0})}" Opacity="0.6" Margin="2,0,0,0"/>
+                                                                            <TextBlock Margin="2,0,0,0" Opacity="0.6" Text="{Binding Left, StringFormat=({0})}"/>
                                                                         </StackPanel>
                                                                         <ItemsControl Grid.Column="2" ItemsSource="{Binding Equipped}">
                                                                             <ItemsControl.ItemsPanel>
@@ -116,7 +114,7 @@
                                                                             </ItemsControl.ItemsPanel>
                                                                             <ItemsControl.ItemTemplate>
                                                                                 <DataTemplate>
-                                                                                    <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
+                                                                                    <StackPanel Margin="0,0,5,0" Orientation="Horizontal">
                                                                                         <TextBlock Text="{Binding Key}"/>
                                                                                         <TextBlock x:Name="count" Text="{Binding Value, StringFormat=x{0}}" Opacity="0.6"/>
                                                                                     </StackPanel>

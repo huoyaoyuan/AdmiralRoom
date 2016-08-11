@@ -7,7 +7,6 @@
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
         xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
-        xmlns:theme2013="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.VS2013"
         Title="提督の部屋"
         Loaded="LoadLayout" Closed="SaveLayout"
         FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
@@ -21,33 +20,33 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem x:Name="subviews" Header="视图"/>
-            <MenuItem x:Name="subwindowOverview" Header="概览"/>
-            <MenuItem x:Name="subwindowStatistics" Header="统计"/>
-            <MenuItem x:Name="subwindowInformation" Header="信息"/>
-            <MenuItem Header="选项">
-                <MenuItem Header="设置" Click="ShowConfigWindow"/>
+            <MenuItem x:Name="subviews" Header="{ex:Localizable MainMenu_Views}"/>
+            <MenuItem x:Name="subwindowOverview" Header="{ex:Localizable MainMenu_Overview}"/>
+            <MenuItem x:Name="subwindowStatistics" Header="{ex:Localizable MainMenu_Statistics}"/>
+            <MenuItem x:Name="subwindowInformation" Header="{ex:Localizable MainMenu_Information}"/>
+            <MenuItem Header="{ex:Localizable Option}">
+                <MenuItem Header="{ex:Localizable Settings}" Click="ShowConfigWindow"/>
                 <Separator/>
-                <MenuItem Header="设置内容" DataContext="{x:Static local:Config.Commands}">
+                <MenuItem Header="{ex:Localizable Settings_ConfigFile}" DataContext="{x:Static local:Config.Commands}">
                     <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding Save}"/>
                     <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding Load}"/>
                     <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding LoadFrom}"/>
                     <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding SaveAs}"/>
                 </MenuItem>
-                <MenuItem Header="界面布局" DataContext="{RelativeSource AncestorType=local:NewWindow}">
+                <MenuItem Header="{ex:Localizable Settings_Layout}" DataContext="{RelativeSource AncestorType=local:NewWindow}">
                     <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding DockCommands.Save}"/>
                     <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding DockCommands.Load}"/>
                     <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding DockCommands.LoadFrom}"/>
                     <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding DockCommands.SaveAs}"/>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="关于" Click="ShowAboutWindow"/>
+                <MenuItem Header="{ex:Localizable About}" Click="ShowAboutWindow"/>
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal"/>
         <dock:DockingManager x:Name="DockMan" Grid.Row="2">
             <dock:DockingManager.Theme>
-                <theme2013:Vs2013BlueTheme/>
+                <dock:Vs2013BlueTheme/>
             </dock:DockingManager.Theme>
             <dock:LayoutRoot>
                 <dock:LayoutPanel>

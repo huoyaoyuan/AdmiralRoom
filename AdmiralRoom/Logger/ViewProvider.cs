@@ -18,7 +18,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public MethodInfo MemberGetter { get; set; }
             public MethodInfo FilterGetter { get; set; }
             public string Title { get; set; }
-            public string FullTitleKey => "Resources.LogTitle_" + Title;
+            public string FullTitleKey => "LogTitle_" + Title;
             public object[] Values
             {
                 get
@@ -167,7 +167,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public class TimeRange
         {
             public string Title { get; set; }
-            public string TitleKey => "Resources.TimeRange_" + Title;
+            public string TitleKey => "TimeRange_" + Title;
             public TimeSpan? Time { get; set; }
         }
         public TimeRange[] TimeRanges { get; } =

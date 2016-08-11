@@ -12,10 +12,6 @@
         ///</summary>
         public static string About => ResourceService.GetString("About");
         ///<summary>
-        ///   查找类似 操作 的本地化字符串。
-        ///</summary>
-        public static string Actions => ResourceService.GetString("Actions");
-        ///<summary>
         ///   查找类似 全部 的本地化字符串。
         ///</summary>
         public static string All => ResourceService.GetString("All");
@@ -508,6 +504,22 @@
         ///</summary>
         public static string LSC_Yes => ResourceService.GetString("LSC_Yes");
         ///<summary>
+        ///   查找类似 信息 的本地化字符串。
+        ///</summary>
+        public static string MainMenu_Information => ResourceService.GetString("MainMenu_Information");
+        ///<summary>
+        ///   查找类似 概览 的本地化字符串。
+        ///</summary>
+        public static string MainMenu_Overview => ResourceService.GetString("MainMenu_Overview");
+        ///<summary>
+        ///   查找类似 统计 的本地化字符串。
+        ///</summary>
+        public static string MainMenu_Statistics => ResourceService.GetString("MainMenu_Statistics");
+        ///<summary>
+        ///   查找类似 视图 的本地化字符串。
+        ///</summary>
+        public static string MainMenu_Views => ResourceService.GetString("MainMenu_Views");
+        ///<summary>
         ///   查找类似 资源 的本地化字符串。
         ///</summary>
         public static string Material => ResourceService.GetString("Material");
@@ -603,7 +615,11 @@
         ///<summary>
         ///   查找类似 选项 的本地化字符串。
         ///</summary>
-        public static string Options => ResourceService.GetString("Options");
+        public static string Option => ResourceService.GetString("Option");
+        ///<summary>
+        ///   查找类似 插件 的本地化字符串。
+        ///</summary>
+        public static string Plugin => ResourceService.GetString("Plugin");
         ///<summary>
         ///   查找类似 不看剧透 的本地化字符串。
         ///</summary>
@@ -689,26 +705,6 @@
         ///</summary>
         public static string Refresh => ResourceService.GetString("Refresh");
         ///<summary>
-        ///   查找类似 浏览 的本地化字符串。
-        ///</summary>
-        public static string RibbonTab_Browse => ResourceService.GetString("RibbonTab_Browse");
-        ///<summary>
-        ///   查找类似 模块 的本地化字符串。
-        ///</summary>
-        public static string RibbonTab_Module => ResourceService.GetString("RibbonTab_Module");
-        ///<summary>
-        ///   查找类似 插件 的本地化字符串。
-        ///</summary>
-        public static string RibbonTab_Plugin => ResourceService.GetString("RibbonTab_Plugin");
-        ///<summary>
-        ///   查找类似 界面 的本地化字符串。
-        ///</summary>
-        public static string RibbonTab_View => ResourceService.GetString("RibbonTab_View");
-        ///<summary>
-        ///   查找类似 窗口 的本地化字符串。
-        ///</summary>
-        public static string RibbonTab_Window => ResourceService.GetString("RibbonTab_Window");
-        ///<summary>
         ///   查找类似 截图 的本地化字符串。
         ///</summary>
         public static string Screenshot => ResourceService.GetString("Screenshot");
@@ -725,6 +721,14 @@
         ///</summary>
         public static string SelectAll => ResourceService.GetString("SelectAll");
         ///<summary>
+        ///   查找类似 设置 的本地化字符串。
+        ///</summary>
+        public static string Settings => ResourceService.GetString("Settings");
+        ///<summary>
+        ///   查找类似 行为 的本地化字符串。
+        ///</summary>
+        public static string Settings_Actions => ResourceService.GetString("Settings_Actions");
+        ///<summary>
         ///   查找类似 配置文件 的本地化字符串。
         ///</summary>
         public static string Settings_ConfigFile => ResourceService.GetString("Settings_ConfigFile");
@@ -736,6 +740,10 @@
         ///   查找类似 选择 的本地化字符串。
         ///</summary>
         public static string Settings_FolderSelect => ResourceService.GetString("Settings_FolderSelect");
+        ///<summary>
+        ///   查找类似 混合字体... 的本地化字符串。
+        ///</summary>
+        public static string Settings_Font_Mix => ResourceService.GetString("Settings_Font_Mix");
         ///<summary>
         ///   查找类似 界面布局 的本地化字符串。
         ///</summary>
@@ -769,6 +777,10 @@
         ///</summary>
         public static string Settings_LoS_SimpleSum => ResourceService.GetString("Settings_LoS_SimpleSum");
         ///<summary>
+        ///   查找类似 网络 的本地化字符串。
+        ///</summary>
+        public static string Settings_Network => ResourceService.GetString("Settings_Network");
+        ///<summary>
         ///   查找类似 通知提前时间（秒）： 的本地化字符串。
         ///</summary>
         public static string Settings_NotifyShortingTime => ResourceService.GetString("Settings_NotifyShortingTime");
@@ -800,6 +812,18 @@
         ///   查找类似 截图文件夹： 的本地化字符串。
         ///</summary>
         public static string Settings_ScreenShotFolder => ResourceService.GetString("Settings_ScreenShotFolder");
+        ///<summary>
+        ///   查找类似 系统控件风格 的本地化字符串。
+        ///</summary>
+        public static string Settings_SystemStyle => ResourceService.GetString("Settings_SystemStyle");
+        ///<summary>
+        ///   查找类似 主题 的本地化字符串。
+        ///</summary>
+        public static string Settings_Theme => ResourceService.GetString("Settings_Theme");
+        ///<summary>
+        ///   查找类似 缩放 的本地化字符串。
+        ///</summary>
+        public static string Settings_Zoom => ResourceService.GetString("Settings_Zoom");
         ///<summary>
         ///   查找类似 对空 的本地化字符串。
         ///</summary>
@@ -1033,14 +1057,6 @@
         ///</summary>
         public static string Theme => ResourceService.GetString("Theme");
         ///<summary>
-        ///   查找类似 使用Aero风格控件 的本地化字符串。
-        ///</summary>
-        public static string Theme_Aero => ResourceService.GetString("Theme_Aero");
-        ///<summary>
-        ///   查找类似 不使用DWM 的本地化字符串。
-        ///</summary>
-        public static string Theme_NoDWM => ResourceService.GetString("Theme_NoDWM");
-        ///<summary>
         ///   查找类似 时间范围 的本地化字符串。
         ///</summary>
         public static string TimeRange => ResourceService.GetString("TimeRange");
@@ -1184,13 +1200,5 @@
         ///   查找类似 所有舰娘一览 的本地化字符串。
         ///</summary>
         public static string ViewTitle_ShipCatalog => ResourceService.GetString("ViewTitle_ShipCatalog");
-        ///<summary>
-        ///   查找类似 独立窗口 的本地化字符串。
-        ///</summary>
-        public static string Window_Standalone => ResourceService.GetString("Window_Standalone");
-        ///<summary>
-        ///   查找类似 子窗口 的本地化字符串。
-        ///</summary>
-        public static string Window_Subwindow => ResourceService.GetString("Window_Subwindow");
     }
 }

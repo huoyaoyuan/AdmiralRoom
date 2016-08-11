@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,16 +112,13 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
     <value>关于</value>
-  </data>
-  <data name="Actions" xml:space="preserve">
-    <value>操作</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
@@ -489,6 +489,18 @@
   <data name="LSC_Yes" xml:space="preserve">
     <value>大型舰建造</value>
   </data>
+  <data name="MainMenu_Information" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="MainMenu_Overview" xml:space="preserve">
+    <value>概览</value>
+  </data>
+  <data name="MainMenu_Statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
+  <data name="MainMenu_Views" xml:space="preserve">
+    <value>视图</value>
+  </data>
   <data name="Material" xml:space="preserve">
     <value>资源</value>
   </data>
@@ -559,8 +571,11 @@
   <data name="Notification_ToolTip_Win10" xml:space="preserve">
     <value>Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip</value>
   </data>
-  <data name="Options" xml:space="preserve">
+  <data name="Option" xml:space="preserve">
     <value>选项</value>
+  </data>
+  <data name="Plugin" xml:space="preserve">
+    <value>插件</value>
   </data>
   <data name="Predict_Disable" xml:space="preserve">
     <value>不看剧透</value>
@@ -625,21 +640,6 @@
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
   </data>
-  <data name="RibbonTab_Browse" xml:space="preserve">
-    <value>浏览</value>
-  </data>
-  <data name="RibbonTab_Module" xml:space="preserve">
-    <value>模块</value>
-  </data>
-  <data name="RibbonTab_Plugin" xml:space="preserve">
-    <value>插件</value>
-  </data>
-  <data name="RibbonTab_View" xml:space="preserve">
-    <value>界面</value>
-  </data>
-  <data name="RibbonTab_Window" xml:space="preserve">
-    <value>窗口</value>
-  </data>
   <data name="Screenshot" xml:space="preserve">
     <value>截图</value>
   </data>
@@ -652,6 +652,12 @@
   <data name="SelectAll" xml:space="preserve">
     <value>全选</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Settings_Actions" xml:space="preserve">
+    <value>行为</value>
+  </data>
   <data name="Settings_ConfigFile" xml:space="preserve">
     <value>配置文件</value>
   </data>
@@ -660,6 +666,9 @@
   </data>
   <data name="Settings_FolderSelect" xml:space="preserve">
     <value>选择</value>
+  </data>
+  <data name="Settings_Font_Mix" xml:space="preserve">
+    <value>混合字体...</value>
   </data>
   <data name="Settings_Layout" xml:space="preserve">
     <value>界面布局</value>
@@ -685,6 +694,9 @@
   <data name="Settings_LoS_SimpleSum" xml:space="preserve">
     <value>简单求和</value>
   </data>
+  <data name="Settings_Network" xml:space="preserve">
+    <value>网络</value>
+  </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>通知提前时间（秒）：</value>
   </data>
@@ -708,6 +720,15 @@
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>截图文件夹：</value>
+  </data>
+  <data name="Settings_SystemStyle" xml:space="preserve">
+    <value>系统控件风格</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Settings_Zoom" xml:space="preserve">
+    <value>缩放</value>
   </data>
   <data name="Ship_AA" xml:space="preserve">
     <value>对空</value>
@@ -883,12 +904,6 @@
   <data name="Theme" xml:space="preserve">
     <value>主题</value>
   </data>
-  <data name="Theme_Aero" xml:space="preserve">
-    <value>使用Aero风格控件</value>
-  </data>
-  <data name="Theme_NoDWM" xml:space="preserve">
-    <value>不使用DWM</value>
-  </data>
   <data name="TimeRange" xml:space="preserve">
     <value>时间范围</value>
   </data>
@@ -996,11 +1011,5 @@
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有舰娘一览</value>
-  </data>
-  <data name="Window_Standalone" xml:space="preserve">
-    <value>独立窗口</value>
-  </data>
-  <data name="Window_Subwindow" xml:space="preserve">
-    <value>子窗口</value>
   </data>
 </root>

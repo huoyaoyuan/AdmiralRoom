@@ -8,6 +8,7 @@
         xmlns:updater="clr-namespace:Huoyaoyuan.AdmiralRoom.Updater"
         xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
         xmlns:meowtrix="urn:meowtrix"
+        Title="{ex:Localizable About}"
         mc:Ignorable="d">
     <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
         <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">

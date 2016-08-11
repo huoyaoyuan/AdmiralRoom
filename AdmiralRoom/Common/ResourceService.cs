@@ -62,5 +62,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public static void SetStringFromTable(DependencyObject @object, DependencyProperty property, string key)
             => @object.SetValue(property, GetString(key));
+        public static void SetStringTableReference(FrameworkElement e, DependencyProperty property, string key)
+            => e.SetResourceReference(property, "LocalizedString_" + key);
     }
 }

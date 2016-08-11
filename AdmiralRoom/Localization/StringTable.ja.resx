@@ -120,9 +120,6 @@
   <data name="About" xml:space="preserve">
     <value>バージョン情報</value>
   </data>
-  <data name="Actions" xml:space="preserve">
-    <value>アクション</value>
-  </data>
   <data name="All" xml:space="preserve">
     <value>すべて</value>
   </data>
@@ -492,6 +489,18 @@
   <data name="LSC_Yes" xml:space="preserve">
     <value>大型艦建造</value>
   </data>
+  <data name="MainMenu_Information" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="MainMenu_Overview" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="MainMenu_Statistics" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="MainMenu_Views" xml:space="preserve">
+    <value>表示</value>
+  </data>
   <data name="Material" xml:space="preserve">
     <value>資材</value>
   </data>
@@ -559,8 +568,11 @@
   <data name="Notification_Toast" xml:space="preserve">
     <value>トースト通知を使用する</value>
   </data>
-  <data name="Options" xml:space="preserve">
-    <value>設定</value>
+  <data name="Option" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="Plugin" xml:space="preserve">
+    <value>プラグイン</value>
   </data>
   <data name="Predict_Disable" xml:space="preserve">
     <value>非表示</value>
@@ -625,21 +637,6 @@
   <data name="Refresh" xml:space="preserve">
     <value>更新</value>
   </data>
-  <data name="RibbonTab_Browse" xml:space="preserve">
-    <value>閱覧</value>
-  </data>
-  <data name="RibbonTab_Module" xml:space="preserve">
-    <value>モデル</value>
-  </data>
-  <data name="RibbonTab_Plugin" xml:space="preserve">
-    <value>プラグイン</value>
-  </data>
-  <data name="RibbonTab_View" xml:space="preserve">
-    <value>介面</value>
-  </data>
-  <data name="RibbonTab_Window" xml:space="preserve">
-    <value>ウィンドウ</value>
-  </data>
   <data name="Screenshot" xml:space="preserve">
     <value>スクリーンショート</value>
   </data>
@@ -651,6 +648,12 @@
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>すべて選択</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings_Actions" xml:space="preserve">
+    <value>動作</value>
   </data>
   <data name="Settings_ConfigFile" xml:space="preserve">
     <value>設定ファイル</value>
@@ -679,6 +682,9 @@
   <data name="Settings_LoS_SimpleSum" xml:space="preserve">
     <value>単純合計</value>
   </data>
+  <data name="Settings_Network" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
   <data name="Settings_NotifyShortingTime" xml:space="preserve">
     <value>通知短缩時間（秒）：</value>
   </data>
@@ -696,6 +702,15 @@
   </data>
   <data name="Settings_ScreenShotFolder" xml:space="preserve">
     <value>スクリーンショット保存前：</value>
+  </data>
+  <data name="Settings_SystemStyle" xml:space="preserve">
+    <value>スタイル</value>
+  </data>
+  <data name="Settings_Theme" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="Settings_Zoom" xml:space="preserve">
+    <value>ズーム</value>
   </data>
   <data name="Ship_AA" xml:space="preserve">
     <value>対空</value>
@@ -870,9 +885,6 @@
   </data>
   <data name="Theme" xml:space="preserve">
     <value>テーマ</value>
-  </data>
-  <data name="Theme_NoDWM" xml:space="preserve">
-    <value>DWMを使用しない</value>
   </data>
   <data name="TimeRange" xml:space="preserve">
     <value>期間</value>
