@@ -220,8 +220,6 @@
     <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
     <Compile Include="Composition\IModule.cs" />
-    <Compile Include="Composition\ISubView.cs" />
-    <Compile Include="Composition\ISubWindow.cs" />
     <Compile Include="Composition\ModuleHost.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigWindow.xaml.cs">
@@ -567,6 +565,10 @@
     <Resource Include="Images\Material\FurnitureCoin.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdmiralRoom.Composition\AdmiralRoom.Composition.csproj">
+      <Project>{fd8cbe4d-4e71-4b78-9ab2-7fd3c50a7edc}</Project>
+      <Name>AdmiralRoom.Composition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AvalonDock.Themes.VS2013\Xceed.Wpf.AvalonDock.Themes.VS2013\Xceed.Wpf.AvalonDock.Themes.VS2013.csproj">
       <Project>{89286eb4-b4a1-418c-839a-067b00f442d8}</Project>
       <Name>Xceed.Wpf.AvalonDock.Themes.VS2013</Name>

@@ -59,6 +59,10 @@
     <Compile Include="RankingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AdmiralRoom.Composition\AdmiralRoom.Composition.csproj">
+      <Project>{fd8cbe4d-4e71-4b78-9ab2-7fd3c50a7edc}</Project>
+      <Name>AdmiralRoom.Composition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\AdmiralRoom\AdmiralRoom.csproj">
       <Project>{501ad96a-9aae-4232-98e6-1ed41067c1fb}</Project>
       <Name>AdmiralRoom</Name>
