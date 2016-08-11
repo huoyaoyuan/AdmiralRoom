@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmiralRoom", "AdmiralRoom\AdmiralRoom.csproj", "{501AD96A-9AAE-4232-98E6-1ED41067C1FB}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterDataViewer", "Modules\MasterDataViewer\MasterDataViewer.csproj", "{BCCF344F-69B8-443C-9173-0DC640735871}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ranking", "Modules\Ranking\Ranking.csproj", "{0394F232-C474-4F4F-9F0C-9865C92902DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AvalonDock.Themes.VS2013", "AvalonDock.Themes.VS2013", "{0318DF2A-6ED5-4D0B-BD3A-D8295A3045A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,12 +48,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{89286EB4-B4A1-418C-839A-067B00F442D8} = {0318DF2A-6ED5-4D0B-BD3A-D8295A3045A6}
 		{F0245DDE-EF28-4E72-8493-E1FCAF380E8B} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 		{BCCF344F-69B8-443C-9173-0DC640735871} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 		{0394F232-C474-4F4F-9F0C-9865C92902DA} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SortFileContentOnSave = True
 		RESX_ResXSortingComparison = InvariantCulture
+		RESX_SortFileContentOnSave = True
 	EndGlobalSection
 EndGlobal

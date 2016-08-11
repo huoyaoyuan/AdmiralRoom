@@ -1,2 +1,0 @@
-git submodule update
-nuget restore AvalonDock.Themes.VS2013
