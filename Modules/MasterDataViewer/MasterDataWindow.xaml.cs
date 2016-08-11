@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Huoyaoyuan.AdmiralRoom.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
 {
@@ -23,5 +14,14 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
         {
             InitializeComponent();
         }
+    }
+    [Export(typeof(ISubWindow))]
+    public class MasterDataSubWindow : ISubWindow
+    {
+        public SubWindowCategory Category => SubWindowCategory.Information;
+
+        public Window CreateWindow() => new MasterDataWindow();
+
+        public string GetTitle(CultureInfo culture) => "MasterData";
     }
 }

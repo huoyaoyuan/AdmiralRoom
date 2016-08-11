@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Meowtrix.UniversalClassLibrary, Version=1.2.1.0, Culture=neutral, PublicKeyToken=5dcaec6183d7c002, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Meowtrix.UniversalClassLibrary.1.2.1\lib\net46\Meowtrix.UniversalClassLibrary.dll</HintPath>
+    <Reference Include="Meowtrix.UniversalClassLibrary, Version=1.2.2.0, Culture=neutral, PublicKeyToken=5dcaec6183d7c002, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Meowtrix.UniversalClassLibrary.1.2.2\lib\net46\Meowtrix.UniversalClassLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
