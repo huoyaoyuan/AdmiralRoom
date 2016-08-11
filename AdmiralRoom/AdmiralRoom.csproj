@@ -564,10 +564,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\GrowFont.png" />
-    <Resource Include="Images\ShrinkFont.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Material\FurnitureCoin.png" />
   </ItemGroup>
   <ItemGroup>
@@ -612,6 +608,7 @@
     <Resource Include="Images\AirProficiency\6.png" />
     <Resource Include="Images\AirProficiency\7.png" />
     <Resource Include="Images\Equip\38.png" />
+    <Resource Include="Images\AdmiralRoom.png" />
     <Content Include="Localization\en\StringTable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringTable.xaml</LastGenOutput>

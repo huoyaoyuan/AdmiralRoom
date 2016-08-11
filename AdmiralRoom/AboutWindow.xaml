@@ -10,76 +10,82 @@
         xmlns:meowtrix="urn:meowtrix"
         Title="{ex:Localizable About}"
         mc:Ignorable="d">
-    <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
-        <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
-            <Paragraph FontSize="24">
-                <Run Text="AdmiralRoom ver"/>
-                <Run Text="{x:Static updater:Updater.VersionString}"/>
-            </Paragraph>
-            <Paragraph>
-                <Run FontSize="28" Text="欢迎使用！"/>
-            </Paragraph>
-            <Paragraph>
-                <Run Text="「提督の部屋(AdmiralRoom)」是「艦これ」游戏的专用工具。"/>
-                <LineBreak/>
-                <Run Text="艦これ运行于嵌入的Internet Explorer 11中。本工具不进行任何更改通信内容或作弊、外挂类的行为。"/>
-            </Paragraph>
-            <Paragraph>
-                <Run Text="运行环境要求："/>
-                <LineBreak/>
-                <Run Text="Windows 7/8/8.1/10 Desktop"/>
-                <LineBreak/>
-                <Run Text=".Net Framework 4.6"/>
-                <LineBreak/>
-                <Run Text="Internet Explorer 11"/>
-            </Paragraph>
-            <Paragraph>
-                <Run Text="Q:为什么仅限于Windows？"/>
-                <LineBreak/>
-                <Run Text="A:因为目前仅有Windows Forms的跨平台实现，而Windows Presentation Framework(WPF)并没有。"/>
-            </Paragraph>
-            <Paragraph>
-                <Run Text="游戏表现异常、在特定位置连续通信错误时，请清理Internet缓存。另请确认在通常的IE与Flash下游戏是否能正常进行。"/>
-            </Paragraph>
-            <Paragraph>
-                <Run Text="Source code:"/>
-                <meowtrix:CommandHyperlink CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom">
-                    <Run Text="https://github.com/huoyaoyuan/AdmiralRoom"/>
-                </meowtrix:CommandHyperlink>
-                <LineBreak/>
-                <Run Text="Release:"/>
-                <meowtrix:CommandHyperlink CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom/releases">
-                    <Run Text="https://github.com/huoyaoyuan/AdmiralRoom/releases"/>
-                </meowtrix:CommandHyperlink>
-            </Paragraph>
-            <Paragraph DataContext="{x:Static updater:Updater.Instance}">
-                <Button Content="{ex:Localizable Update_Command_Check}" Command="{Binding CheckCommand}"/>
-                <Grid>
-                    <Button Content="{ex:Localizable Update_Command_Download}" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
-                    <Button Content="{ex:Localizable Update_Command_CancelDownload}" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
-                    <Button Content="{ex:Localizable Update_Command_UpdateFile}" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
-                    <Button Content="{ex:Localizable Update_Command_Restart}" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
-                </Grid>
-                <LineBreak/>
-                <Grid Margin="0,5,0,5">
-                    <TextBlock Text="{ex:Localizable Update_Text_Check}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Check}"/>
-                    <TextBlock Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}">
-                        <Run Text="{ex:Localizable Update_Text_Download}"/>
-                        <Run Text="{Binding NewVersion, Mode=OneWay}"/>
-                        <Run Text="{ex:Localizable Update_Text_ReleaseTime}"/>
-                        <Run Text="{Binding ReleaseTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Local, StringFormat={}{0:yyyy/MM/dd HH:mm}, Mode=OneWay}"/>
-                    </TextBlock>
-                    <TextBlock Text="{ex:Localizable Update_Text_CancelDownload}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
-                    <TextBlock Text="{ex:Localizable Update_Text_UpdateFile}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
-                    <TextBlock Text="{ex:Localizable Update_Text_Restart}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
-                </Grid>
-                <LineBreak/>
-                <ProgressBar x:Name="updateprogress"
-                             Width="400" Height="20"
-                             Minimum="0" Maximum="100"
-                             Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"
-                             Value="{Binding DownloadPercentage, Mode=OneWay}"/>
-            </Paragraph>
-        </FlowDocument>
-    </FlowDocumentScrollViewer>
+    <Grid>
+        <Image Width="250"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               Source="Images/AdmiralRoom.png" Opacity="0.5"/>
+        <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
+            <FlowDocument FontSize="16" TextAlignment="Left" FontFamily="DengXian">
+                <Paragraph FontSize="24">
+                    <Run Text="AdmiralRoom ver"/>
+                    <Run Text="{x:Static updater:Updater.VersionString}"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run FontSize="28" Text="欢迎使用！"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="「提督の部屋(AdmiralRoom)」是「艦これ」游戏的专用工具。"/>
+                    <LineBreak/>
+                    <Run Text="艦これ运行于嵌入的Internet Explorer 11中。本工具不进行任何更改通信内容或作弊、外挂类的行为。"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="运行环境要求："/>
+                    <LineBreak/>
+                    <Run Text="Windows 7/8/8.1/10 Desktop"/>
+                    <LineBreak/>
+                    <Run Text=".Net Framework 4.6"/>
+                    <LineBreak/>
+                    <Run Text="Internet Explorer 11"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Q:为什么仅限于Windows？"/>
+                    <LineBreak/>
+                    <Run Text="A:因为目前仅有Windows Forms的跨平台实现，而Windows Presentation Framework(WPF)并没有。"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="游戏表现异常、在特定位置连续通信错误时，请清理Internet缓存。另请确认在通常的IE与Flash下游戏是否能正常进行。"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Source code:"/>
+                    <meowtrix:CommandHyperlink CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom">
+                        <Run Text="https://github.com/huoyaoyuan/AdmiralRoom"/>
+                    </meowtrix:CommandHyperlink>
+                    <LineBreak/>
+                    <Run Text="Release:"/>
+                    <meowtrix:CommandHyperlink CommandLineString="https://github.com/huoyaoyuan/AdmiralRoom/releases">
+                        <Run Text="https://github.com/huoyaoyuan/AdmiralRoom/releases"/>
+                    </meowtrix:CommandHyperlink>
+                </Paragraph>
+                <Paragraph DataContext="{x:Static updater:Updater.Instance}">
+                    <Button Content="{ex:Localizable Update_Command_Check}" Command="{Binding CheckCommand}"/>
+                    <Grid>
+                        <Button Content="{ex:Localizable Update_Command_Download}" Command="{Binding DownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}"/>
+                        <Button Content="{ex:Localizable Update_Command_CancelDownload}" Command="{Binding CancelDownloadCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                        <Button Content="{ex:Localizable Update_Command_UpdateFile}" Command="{Binding UpdateFileCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                        <Button Content="{ex:Localizable Update_Command_Restart}" Command="{Binding RestartCommand}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                    </Grid>
+                    <LineBreak/>
+                    <Grid Margin="0,5,0,5">
+                        <TextBlock Text="{ex:Localizable Update_Text_Check}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Check}"/>
+                        <TextBlock Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Download}">
+                            <Run Text="{ex:Localizable Update_Text_Download}"/>
+                            <Run Text="{Binding NewVersion, Mode=OneWay}"/>
+                            <Run Text="{ex:Localizable Update_Text_ReleaseTime}"/>
+                            <Run Text="{Binding ReleaseTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Local, StringFormat={}{0:yyyy/MM/dd HH:mm}, Mode=OneWay}"/>
+                        </TextBlock>
+                        <TextBlock Text="{ex:Localizable Update_Text_CancelDownload}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"/>
+                        <TextBlock Text="{ex:Localizable Update_Text_UpdateFile}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=UpdateFile}"/>
+                        <TextBlock Text="{ex:Localizable Update_Text_Restart}" Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=Restart}"/>
+                    </Grid>
+                    <LineBreak/>
+                    <ProgressBar x:Name="updateprogress"
+                                 Width="400" Height="20"
+                                 Minimum="0" Maximum="100"
+                                 Visibility="{Binding Status, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter=CancelDownload}"
+                                 Value="{Binding DownloadPercentage, Mode=OneWay}"/>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
 </Window>
