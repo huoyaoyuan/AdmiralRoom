@@ -79,7 +79,12 @@ namespace Huoyaoyuan.AdmiralRoom
             btnRefresh.Click += (_, __) => WebBrowser.Navigate(WebBrowser.Source);
             btnBackToGame.Click += (_, __) => WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
             btnStop.Click += (_, __) => Stop();
-
+            WebBrowser.Navigating += (_, e) =>
+            {
+                txtAddress.Text = e.Uri.ToString();
+                btnBack.IsEnabled = WebBrowser.CanGoBack;
+                btnFoward.IsEnabled = WebBrowser.CanGoForward;
+            };
             btnScreenShot.Click += (_, __) => TakeScreenShot(Config.Current.GenerateScreenShotFileName());
             btnCleanCache.Click += async (sender, _) =>
             {
