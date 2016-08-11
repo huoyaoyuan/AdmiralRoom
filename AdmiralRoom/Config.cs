@@ -5,12 +5,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using Meowtrix.ComponentModel;
+using Meowtrix.Globalization;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
     public sealed class Config : NotificationObject
     {
+        static Config()
+        {
+            ResourceService.CultureChanged += (_, e) => Current._language = e.NewValue.Name;
+        }
         public static Config Current { get; } = new Config();
 
         #region Language
@@ -510,13 +515,11 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             var thisculture = CultureInfo.CurrentUICulture;
             foreach (var culture in ResourceService.SupportedCultures)
-            {
-                if (thisculture.ThreeLetterWindowsLanguageName == culture.ThreeLetterWindowsLanguageName)
+                if (culture.IsAncestorOf(thisculture))
                 {
                     Language = culture.Name;
                     break;
                 }
-            }
             if (Language == null) Language = "en";
             var OSVersion = Environment.OSVersion.Version;
             SystemTheme = OSVersion.Major == 6 && OSVersion.Minor == 1 ? "Aero" : "Aero2";
@@ -530,10 +533,10 @@ namespace Huoyaoyuan.AdmiralRoom
             _notifytimeadjust = 60;
             FontFamilyName = "DengXian";
             _fontsize = 15;
-            _loscalctype = LosCalcType.Formula14Q4;
+            _loscalctype = LosCalcType.Formula16Q1;
             _autocheckupdate = true;
             _autodownloadupdate = false;
-            _updateusingproxy = false;
+            _updateusingproxy = true;
         }
         public static Config Load(string path = "config.xml")
         {
