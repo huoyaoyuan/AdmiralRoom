@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using Huoyaoyuan.AdmiralRoom.Composition;
 
 [assembly: AssemblyTitle("AdmiralRoom.Composition")]
 [assembly: AssemblyDescription("提督の部屋")]
@@ -12,5 +13,5 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion(ContractVersion.Version)]
+[assembly: AssemblyFileVersion(ContractVersion.Version)]

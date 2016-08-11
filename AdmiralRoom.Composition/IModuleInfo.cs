@@ -9,6 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     /// <para>Title</para>
     /// <para>Author</para>
     /// <para>Description</para>
+    /// <para>ContractVersion: should always use <see cref="ContractVersion.Version"/>.</para>
     /// </summary>
     public interface IModuleInfo
     {

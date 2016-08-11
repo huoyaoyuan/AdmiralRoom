@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractVersion.cs" />
     <Compile Include="IModuleInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISubView.cs" />
