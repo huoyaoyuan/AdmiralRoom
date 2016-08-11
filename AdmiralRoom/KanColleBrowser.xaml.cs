@@ -85,6 +85,8 @@ namespace Huoyaoyuan.AdmiralRoom
                 txtAddress.Text = e.Uri.ToString();
                 btnBack.IsEnabled = WebBrowser.CanGoBack;
                 btnFoward.IsEnabled = WebBrowser.CanGoForward;
+                styleSheetApplied = false;
+                UpdateSize(false);
             };
             btnScreenShot.Click += (_, __) => TakeScreenShot(Config.Current.GenerateScreenShotFileName());
             btnCleanCache.Click += async (sender, _) =>
@@ -109,19 +111,21 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)
         {
-            this.ApplyStyleSheet();
-
-            this.UpdateSize();
+            ApplyStyleSheet();
+            UpdateSize(true);
         }
-        private void UpdateSize()
+        private void UpdateSize(bool shrink)
         {
             Size dpi = GetSystemDpi();
-            if (styleSheetApplied)
+            if (styleSheetApplied && shrink)
             {
-                this.WebBrowser.Width = kanColleSize.Width * zoomFactor * OriginDpi / dpi.Width;
-                this.WebBrowser.Height = kanColleSize.Height * zoomFactor * OriginDpi / dpi.Height;
-                //this.WebBrowser.Width = this.WebBrowser.MinWidth;
-                //this.WebBrowser.Height = this.WebBrowser.MinHeight;
+                WebBrowser.Width = kanColleSize.Width * zoomFactor * OriginDpi / dpi.Width;
+                WebBrowser.Height = kanColleSize.Height * zoomFactor * OriginDpi / dpi.Height;
+            }
+            else
+            {
+                WebBrowser.Width = double.NaN;
+                WebBrowser.Height = double.NaN;
             }
         }
         public HTMLEmbed FindFlashElement()
@@ -252,7 +256,7 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
-            UpdateSize();
+            UpdateSize(true);
         }
         private void SetAllowDrop(bool allowdrop)
         {
