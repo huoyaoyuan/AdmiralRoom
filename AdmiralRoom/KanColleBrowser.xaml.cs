@@ -188,80 +188,21 @@ namespace Huoyaoyuan.AdmiralRoom
             var dpi = GetSystemDpi();
             return dpi.Height == dpi.Width ? dpi.Height / OriginDpi : 1;
         }
-
-        /// <remarks>
-        /// 本スクリーンショット機能は、「艦これ 司令部室」開発者の @haxe さんより多大なご協力を頂き実装できました。
-        /// ありがとうございました。
-        /// </remarks>
         public bool TakeScreenShot(string path)
         {
-            var document = this.WebBrowser.Document as HTMLDocument;
-            if (document == null)
-            {
-                return false;
-            }
+            var document = WebBrowser.Document as HTMLDocument;
+            if (document == null) return false;
 
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                if (document.url.Contains(".swf?"))
-                {
-                    var viewObject = document.getElementsByTagName("embed").item(0, 0) as IViewObject;
-                    if (viewObject == null)
-                        return false;
+                var flash = FindFlashElement();
+                var viewObject = flash as IViewObject;
+                if (viewObject == null) return false;
 
-                    var width = ((HTMLEmbed)viewObject).clientWidth;
-                    var height = ((HTMLEmbed)viewObject).clientHeight;
-                    SaveScreenshot(width, height, viewObject, path);
-                }
-                else
-                {
-                    var gameFrame = document.getElementById("game_frame").document as HTMLDocument;
-                    if (gameFrame == null) gameFrame = document.getElementById("ooi-game") as HTMLDocument;
-                    if (gameFrame == null) gameFrame = document.getElementById("flashWrap") as HTMLDocument;
-                    if (gameFrame == null) return false;
-
-                    var frames = document.frames;
-                    var find = false;
-                    for (var i = 0; i < frames.length; i++)
-                    {
-                        var item = frames.item(i);
-                        var provider = item as IServiceProvider;
-                        if (provider == null) continue;
-
-                        object ppvObject;
-                        provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out ppvObject);
-                        var webBrowser = ppvObject as IWebBrowser2;
-                        if (webBrowser == null) continue;
-
-                        var iframeDocument = webBrowser.Document as HTMLDocument;
-                        if (iframeDocument == null) continue;
-
-                        //flash要素が<embed>である場合と<object>である場合を判別して抽出
-                        IViewObject viewObject = null;
-                        int width = 0, height = 0;
-                        var swf = iframeDocument.getElementById("externalswf");
-                        if (swf == null) continue;
-                        Func<dynamic, bool> function = target =>
-                        {
-                            if (target == null) return false;
-                            viewObject = target as IViewObject;
-                            if (viewObject == null) return false;
-                            width = int.Parse(target.width);
-                            height = int.Parse(target.height);
-                            return true;
-                        };
-                        if (!function(swf as HTMLEmbed) && !function(swf as HTMLObjectElement)) continue;
-
-                        find = true;
-                        SaveScreenshot(width, height, viewObject, path);
-
-                        break;
-                    }
-
-                    if (!find)
-                        return false;
-                }
+                int width = Convert.ToInt32(flash.width);
+                int height = Convert.ToInt32(flash.height);
+                SaveScreenshot(width, height, viewObject, path);
             }
             catch (Exception ex)
             {
