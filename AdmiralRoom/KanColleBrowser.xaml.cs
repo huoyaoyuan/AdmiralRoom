@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -111,12 +112,6 @@ namespace Huoyaoyuan.AdmiralRoom
             this.ApplyStyleSheet();
 
             this.UpdateSize();
-
-            var window = Window.GetWindow(this.WebBrowser);
-            if (window != null)
-            {
-                window.Width = this.WebBrowser.Width;
-            }
         }
         private void UpdateSize()
         {
@@ -128,6 +123,40 @@ namespace Huoyaoyuan.AdmiralRoom
                 //this.WebBrowser.Width = this.WebBrowser.MinWidth;
                 //this.WebBrowser.Height = this.WebBrowser.MinHeight;
             }
+        }
+        public HTMLEmbed FindFlashElement()
+        {
+            var document = WebBrowser.Document as HTMLDocument;
+            if (document == null) return null;
+
+            return FindFlashElementRecursive(document);
+        }
+        private HTMLEmbed FindFlashElementRecursive(HTMLDocument document)
+        {
+            var embed = document.getElementsByTagName("embed").OfType<HTMLEmbed>().FirstOrDefault(x => x.src.Contains(".swf?"));
+            if (embed != null) return embed;
+
+            var frames = document.frames;
+            if (frames == null) return null;
+            int count = frames.length;
+            for (int i = 0; i < count; i++)
+            {
+                var item = frames.item(i);
+                var provider = item as IServiceProvider;
+                if (provider == null) continue;
+
+                object ppvObject;
+                provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out ppvObject);
+                var webBrowser = ppvObject as IWebBrowser2;
+                if (webBrowser == null) continue;
+
+                var iframeDocument = webBrowser.Document as HTMLDocument;
+                if (iframeDocument == null) continue;
+
+                embed = FindFlashElementRecursive(iframeDocument);
+                if (embed != null) return embed;
+            }
+            return null;
         }
         private void ApplyStyleSheet()
         {
