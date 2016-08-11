@@ -49,6 +49,7 @@ namespace Huoyaoyuan.AdmiralRoom
         private static readonly int OriginDpi = 96;
         private bool styleSheetApplied;
         private double zoomFactor = 1;
+        private bool firstLoad = true;
 
         public WebBrowser Browser => this.WebBrowser;
 
@@ -93,8 +94,11 @@ namespace Huoyaoyuan.AdmiralRoom
 
             this.Loaded += (_, __) =>
             {
-                if (Officer.Staff.IsStarted)
+                if (firstLoad && Officer.Staff.IsStarted)
+                {
                     WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
+                    firstLoad = false;
+                }
             };
         }
         private void HandleLoadCompleted(object sender, NavigationEventArgs e)
