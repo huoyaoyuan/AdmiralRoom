@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -132,12 +132,16 @@ namespace Huoyaoyuan.AdmiralRoom
                 if (document == null) return;
 
                 var gameFrame = document.getElementById("game_frame");
+                
+                if (gameFrame == null) gameFrame = document.getElementById("ooi-game");
+                if (gameFrame == null) gameFrame = document.getElementById("flashWrap");
                 if (gameFrame == null)
                 {
                     if (document.url.Contains(".swf?"))
                     {
                         gameFrame = document.body;
-                    }
+                    }  
+                   
                 }
 
                 if (gameFrame != null)
@@ -190,6 +194,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 if (document.url.Contains(".swf?"))
                 {
+                
                     var viewObject = document.getElementsByTagName("embed").item(0, 0) as IViewObject;
                     if (viewObject == null)
                         return false;
@@ -198,11 +203,12 @@ namespace Huoyaoyuan.AdmiralRoom
                     var height = ((HTMLEmbed)viewObject).clientHeight;
                     SaveScreenshot(width, height, viewObject, path);
                 }
-                else
+                else 
                 {
                     var gameFrame = document.getElementById("game_frame").document as HTMLDocument;
-                    if (gameFrame == null)
-                        return false;
+                    if (gameFrame == null) gameFrame = document.getElementById("ooi-game");
+                    if (gameFrame == null) gameFrame = document.getElementById("flashWrap");
+                    if (gameFrame == null) return false;
 
                     var frames = document.frames;
                     var find = false;
