@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using System.Windows.Navigation;
 using Huoyaoyuan.AdmiralRoom.Win32;
 using mshtml;
 using SHDocVw;
@@ -54,11 +53,28 @@ namespace Huoyaoyuan.AdmiralRoom
 
         public WebBrowser Browser => this.WebBrowser;
 
+        public bool IsFlashLocked
+        {
+            get { return (bool)GetValue(IsFlashLockedProperty); }
+            set { SetValue(IsFlashLockedProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsFlashLocked.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsFlashLockedProperty =
+            DependencyProperty.Register(nameof(IsFlashLocked), typeof(bool), typeof(KanColleBrowser),
+                new PropertyMetadata(true, (d, e) => ((KanColleBrowser)d).LockFlash((bool)e.NewValue)));
+
+        private void LockFlash(bool islocked)
+        {
+            ApplyStyleSheet(islocked);
+            UpdateSize(islocked);
+        }
+
         public KanColleBrowser()
         {
             InitializeComponent();
             WebBrowser.Navigated += (_, __) => ApplyZoomFactor(zoomFactor);
-            WebBrowser.LoadCompleted += HandleLoadCompleted;
+            WebBrowser.LoadCompleted += (_, __) => LockFlash(IsFlashLocked);
             SetSilence(true);
             SetAllowDrop(false);
 
@@ -109,11 +125,6 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             };
         }
-        private void HandleLoadCompleted(object sender, NavigationEventArgs e)
-        {
-            ApplyStyleSheet();
-            UpdateSize(true);
-        }
         private void UpdateSize(bool shrink)
         {
             Size dpi = GetSystemDpi();
@@ -162,26 +173,29 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             return null;
         }
-        private void ApplyStyleSheet()
+        private void ApplyStyleSheet(bool apply)
         {
             try
             {
-                if (FindFlashElement() != null)
+                if (apply)
                 {
-                    var target = WebBrowser.Document as HTMLDocument;
-                    styleSheet = target.createStyleSheet();
-                    styleSheet.cssText = OverrideStyleSheet;
+                    if (FindFlashElement() != null)
+                    {
+                        var target = WebBrowser.Document as HTMLDocument;
+                        styleSheet = target.createStyleSheet();
+                        styleSheet.cssText = OverrideStyleSheet;
+                    }
+                }
+                else
+                {
+                    if (styleSheet != null)
+                        styleSheet.cssText = string.Empty;
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
-        }
-        private void DetachStyleSheet()
-        {
-            if (styleSheet != null)
-                styleSheet.cssText = string.Empty;
         }
         private static Size GetSystemDpi()
         {

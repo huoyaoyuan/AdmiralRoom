@@ -21,6 +21,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -53,19 +54,24 @@
                 Content="{ex:Localizable Stop}"
                 ToolTip="{ex:Localizable Stop}"/>
         <WebBrowser x:Name="WebBrowser"
-                    Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="7"/>
+                    Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="7"/>
         <ToggleButton Grid.Row="1" Grid.Column="7"
+                      Margin="2"
+                      VerticalAlignment="Center"
+                      Content="{ex:Localizable Browser_LockFlash}"
+                      IsChecked="{Binding IsFlashLocked, RelativeSource={RelativeSource AncestorType=local:KanColleBrowser}, Mode=TwoWay}"/>
+        <ToggleButton Grid.Row="2" Grid.Column="7"
                       Margin="2"
                       VerticalAlignment="Center"
                       Content="{ex:Localizable Mute}"
                       IsEnabled="{Binding IsGameLoaded, Source={x:Static models:Status.Current}, Mode=OneWay}"
                       IsChecked="{Binding Volume.IsMute, Source={x:Static models:Status.Current}, Mode=TwoWay}"/>
         <Button x:Name="btnScreenShot"
-                Grid.Row="2" Grid.Column="7"
+                Grid.Row="3" Grid.Column="7"
                 VerticalAlignment="Center"
                 Content="{ex:Localizable Screenshot}"/>
         <Button x:Name="btnCleanCache"
-                Grid.Row="3" Grid.Column="7"
+                Grid.Row="4" Grid.Column="7"
                 VerticalAlignment="Center"
                 Content="{ex:Localizable CleanCache}"/>
     </Grid>

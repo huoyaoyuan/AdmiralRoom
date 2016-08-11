@@ -159,6 +159,9 @@
   <data name="Browser" xml:space="preserve">
     <value>浏览器</value>
   </data>
+  <data name="Browser_LockFlash" xml:space="preserve">
+    <value>锁定Flash</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>撤销</value>
   </data>

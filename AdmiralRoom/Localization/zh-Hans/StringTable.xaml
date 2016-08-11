@@ -18,6 +18,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_Perfect">完全胜利S</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_S">胜利S</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Browser">浏览器</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Browser_LockFlash">锁定Flash</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Cancel">撤销</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ChartTimeRange_All">全部</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ChartTimeRange_Days1">1天</s:String>

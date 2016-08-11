@@ -64,6 +64,10 @@
         ///</summary>
         public static string Browser => ResourceService.GetString("Browser");
         ///<summary>
+        ///   查找类似 锁定Flash 的本地化字符串。
+        ///</summary>
+        public static string Browser_LockFlash => ResourceService.GetString("Browser_LockFlash");
+        ///<summary>
         ///   查找类似 撤销 的本地化字符串。
         ///</summary>
         public static string Cancel => ResourceService.GetString("Cancel");

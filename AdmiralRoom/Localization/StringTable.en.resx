@@ -159,6 +159,9 @@
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
   </data>
+  <data name="Browser_LockFlash" xml:space="preserve">
+    <value>Lock Flash</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
