@@ -48,9 +48,9 @@ namespace Huoyaoyuan.AdmiralRoom
         private static readonly Size kanColleSize = new Size(800.0, 480.0);
         private static readonly Size browserSize = new Size(960.0, 572.0);
         private static readonly int OriginDpi = 96;
-        private bool styleSheetApplied;
         private double zoomFactor = 1;
         private bool firstLoad = true;
+        private IHTMLStyleSheet styleSheet;
 
         public WebBrowser Browser => this.WebBrowser;
 
@@ -85,7 +85,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 txtAddress.Text = e.Uri.ToString();
                 btnBack.IsEnabled = WebBrowser.CanGoBack;
                 btnFoward.IsEnabled = WebBrowser.CanGoForward;
-                styleSheetApplied = false;
+                styleSheet = null;
                 UpdateSize(false);
             };
             btnScreenShot.Click += (_, __) => TakeScreenShot(Config.Current.GenerateScreenShotFileName());
@@ -117,7 +117,7 @@ namespace Huoyaoyuan.AdmiralRoom
         private void UpdateSize(bool shrink)
         {
             Size dpi = GetSystemDpi();
-            if (styleSheetApplied && shrink)
+            if (styleSheet != null && shrink)
             {
                 WebBrowser.Width = kanColleSize.Width * zoomFactor * OriginDpi / dpi.Width;
                 WebBrowser.Height = kanColleSize.Height * zoomFactor * OriginDpi / dpi.Height;
@@ -169,14 +169,19 @@ namespace Huoyaoyuan.AdmiralRoom
                 if (FindFlashElement() != null)
                 {
                     var target = WebBrowser.Document as HTMLDocument;
-                    target.createStyleSheet().cssText = OverrideStyleSheet;
-                    styleSheetApplied = true;
+                    styleSheet = target.createStyleSheet();
+                    styleSheet.cssText = OverrideStyleSheet;
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
+        }
+        private void DetachStyleSheet()
+        {
+            if (styleSheet != null)
+                styleSheet.cssText = string.Empty;
         }
         private static Size GetSystemDpi()
         {
