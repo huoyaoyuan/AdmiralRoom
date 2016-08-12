@@ -9,16 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
 {
     internal class ModuleHost
     {
-        private ModuleHost() { }
-        public static ModuleHost Instance { get; } = new ModuleHost();
-        [ImportMany(typeof(IModuleInfo))]
-        public IList<Lazy<IModuleInfo, IModuleMetadata>> Modules { get; } = new List<Lazy<IModuleInfo, IModuleMetadata>>();
-        [ImportMany(typeof(ISubView))]
-        public IList<ISubView> SubViews { get; } = new List<ISubView>();
-        [ImportMany(typeof(ISubWindow))]
-        public IList<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
-        private CompositionContainer container;
-        public void Initialize()
+        private ModuleHost()
         {
             var a = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             ComposablePartCatalog catalog;
@@ -31,10 +22,18 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
             container = new CompositionContainer(catalog);
             container.ComposeParts(this);
         }
-        public void Unload()
+        public static ModuleHost Instance { get; } = new ModuleHost();
+        [ImportMany(typeof(ModuleInfo))]
+        public IList<Lazy<ModuleInfo, IModuleMetadata>> Modules { get; } = new List<Lazy<ModuleInfo, IModuleMetadata>>();
+        [ImportMany(typeof(ISubView))]
+        public IList<ISubView> SubViews { get; } = new List<ISubView>();
+        [ImportMany(typeof(ISubWindow))]
+        public IList<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
+        private CompositionContainer container;
+        public void Dispose()
         {
             foreach (var module in Modules)
-                module.Value.Unload();
+                (module.Value as IDisposable)?.Dispose();
         }
     }
 }

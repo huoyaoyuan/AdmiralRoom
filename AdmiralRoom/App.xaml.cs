@@ -35,7 +35,6 @@ namespace Huoyaoyuan.AdmiralRoom
             Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
             Logger.Loggers.Initialize();
-            ModuleHost.Instance.Initialize();
 
             this.MainWindow = new NewWindow();
             DispatcherHelper.UIDispatcher = MainWindow.Dispatcher;
@@ -75,7 +74,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Config.Current.Save();
             Officer.Staff.Current.Quests.Save();
             (Notifier.Current as IDisposable)?.Dispose();
-            ModuleHost.Instance.Unload();
+            ModuleHost.Instance.Dispose();
         }
     }
 }
