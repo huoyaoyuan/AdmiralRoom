@@ -219,7 +219,6 @@
     <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
-    <Compile Include="Composition\IModule.cs" />
     <Compile Include="Composition\IModuleMetadata.cs" />
     <Compile Include="Composition\ModuleHost.cs" />
     <Compile Include="Config.cs" />
