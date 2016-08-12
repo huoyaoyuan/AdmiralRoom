@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
+using Huoyaoyuan.AdmiralRoom;
 
 [assembly: AssemblyTitle("提督の部屋")]
 [assembly: AssemblyDescription("提督の部屋")]
@@ -18,5 +19,5 @@ using System.Windows;
     ResourceDictionaryLocation.SourceAssembly
 )]
 
-[assembly: AssemblyVersion("0.6.2.632")]
-[assembly: AssemblyFileVersion("0.6.2.632")]
+[assembly: AssemblyVersion(_Version.Version)]
+[assembly: AssemblyFileVersion(_Version.Version)]

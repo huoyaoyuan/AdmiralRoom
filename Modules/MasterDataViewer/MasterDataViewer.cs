@@ -7,6 +7,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
     [ExportMetadata("Title", "MasterDataViewer")]
     [ExportMetadata("Author", "huoyaoyuan")]
     [ExportMetadata("Description", "MasterDataViewer")]
-    [ExportMetadata("ContractVersion", ContractVersion.Version)]
+    [ExportMetadata("ContractVersion", _Version.Version)]
     public class MasterDataViewer : ModuleInfo { }
 }

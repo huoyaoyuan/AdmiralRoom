@@ -8,7 +8,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
     [ExportMetadata("Title", "戦果情報")]
     [ExportMetadata("Author", "huoyaoyuan")]
     [ExportMetadata("Description", "戦果情報")]
-    [ExportMetadata("ContractVersion", ContractVersion.Version)]
+    [ExportMetadata("ContractVersion", _Version.Version)]
     public class Ranking : ModuleInfo, IDisposable
     {
         public Ranking()

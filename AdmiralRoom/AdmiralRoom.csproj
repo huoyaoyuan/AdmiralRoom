@@ -219,7 +219,7 @@
     <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
-    <Compile Include="Composition\ContractVersion.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Composition\IModuleMetadata.cs" />
     <Compile Include="Composition\ISubView.cs" />
     <Compile Include="Composition\ISubWindow.cs" />

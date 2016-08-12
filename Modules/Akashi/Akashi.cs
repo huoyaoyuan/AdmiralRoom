@@ -7,6 +7,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
     [ExportMetadata("Title", "改修工廠")]
     [ExportMetadata("Author", "huoyaoyuan")]
     [ExportMetadata("Description", "明石の改修工廠")]
-    [ExportMetadata("ContractVersion", ContractVersion.Version)]
+    [ExportMetadata("ContractVersion", _Version.Version)]
     public class Akashi : ModuleInfo { }
 }

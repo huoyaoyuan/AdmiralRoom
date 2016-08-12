@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     /// <para>Title</para>
     /// <para>Author</para>
     /// <para>Description</para>
-    /// <para>ContractVersion: should always use <see cref="ContractVersion.Version"/>.</para>
+    /// <para>ContractVersion: should always use <see cref="_Version.Version"/>.</para>
     /// </summary>
     public abstract class ModuleInfo
     {
