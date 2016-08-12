@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ranking", "Modules\Ranking\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AvalonDock.Themes.VS2013", "AvalonDock.Themes.VS2013", "{0318DF2A-6ED5-4D0B-BD3A-D8295A3045A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmiralRoom.Composition", "AdmiralRoom.Composition\AdmiralRoom.Composition.csproj", "{FD8CBE4D-4E71-4B78-9AB2-7FD3C50A7EDC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,10 +43,6 @@ Global
 		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0394F232-C474-4F4F-9F0C-9865C92902DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD8CBE4D-4E71-4B78-9AB2-7FD3C50A7EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD8CBE4D-4E71-4B78-9AB2-7FD3C50A7EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD8CBE4D-4E71-4B78-9AB2-7FD3C50A7EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD8CBE4D-4E71-4B78-9AB2-7FD3C50A7EDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,7 +54,7 @@ Global
 		{0394F232-C474-4F4F-9F0C-9865C92902DA} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ResXSortingComparison = InvariantCulture
 		RESX_SortFileContentOnSave = True
+		RESX_ResXSortingComparison = InvariantCulture
 	EndGlobalSection
 EndGlobal

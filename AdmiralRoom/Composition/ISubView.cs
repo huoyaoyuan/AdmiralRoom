@@ -9,7 +9,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     public interface ISubView
     {
         /// <summary>
-        /// The sub view. 
+        /// The sub view.
         /// </summary>
         UIElement View { get; }
         /// <summary>
