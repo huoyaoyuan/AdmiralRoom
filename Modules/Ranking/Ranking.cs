@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Huoyaoyuan.AdmiralRoom.Composition;
-
-#pragma warning disable CC0021
 
 namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
 {
@@ -11,18 +8,14 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
     [ExportMetadata("Author", "huoyaoyuan")]
     [ExportMetadata("Description", "戦果情報")]
     [ExportMetadata("ContractVersion", ContractVersion.Version)]
-    public class Ranking : ModuleInfoBase
+    public class Ranking : IModuleInfo
     {
-        public override bool AutoLoadComponents => false;
-
-        public override IList<ISubView> SubViews { get; } = new ISubView[] { new RankingView() };
-
-        public override void Initialize()
+        public void Initialize()
         {
             RankingViewModel.Instance = new RankingViewModel();
         }
 
-        public override void Unload()
+        public void Unload()
         {
             RankingViewModel.Instance.Save();
         }

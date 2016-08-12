@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 
 namespace Huoyaoyuan.AdmiralRoom.Composition
 {
@@ -14,20 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     public interface IModuleInfo
     {
         /// <summary>
-        /// The components of <see cref="SubViews"/> and <see cref="SubWindows"/> will be filled by the host if true.
-        /// Otherwise the inherited class should fill them by self.
-        /// </summary>
-        bool AutoLoadComponents { get; }
-        /// <summary>
-        /// The <see cref="ISubView"/>s provided. Should be initialized to not null.
-        /// </summary>
-        IList<ISubView> SubViews { get; }
-        /// <summary>
-        /// The <see cref="ISubWindow"/>s provided. Should be initialized to not null.
-        /// </summary>
-        IList<ISubWindow> SubWindows { get; }
-        /// <summary>
-        /// Called by the host after <see cref="SubViews"/> and <see cref="SubWindows"/> are filled.
+        /// Called by the host after loaded.
         /// </summary>
         void Initialize();
         /// <summary>

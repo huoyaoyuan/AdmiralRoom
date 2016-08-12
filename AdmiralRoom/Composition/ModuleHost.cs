@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Linq;
+using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
-using Meowtrix.Linq;
 
 namespace Huoyaoyuan.AdmiralRoom.Composition
 {
@@ -11,45 +11,25 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     {
         private ModuleHost() { }
         public static ModuleHost Instance { get; } = new ModuleHost();
-        public IList<Lazy<IModuleInfo, IModuleMetadata>> Modules { get; private set; }
-        public List<ISubView> SubViews { get; } = new List<ISubView>();
-        public List<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
+        [ImportMany(typeof(IModuleInfo))]
+        public IList<Lazy<IModuleInfo, IModuleMetadata>> Modules { get; } = new List<Lazy<IModuleInfo, IModuleMetadata>>();
+        [ImportMany(typeof(ISubView))]
+        public IList<ISubView> SubViews { get; } = new List<ISubView>();
+        [ImportMany(typeof(ISubWindow))]
+        public IList<ISubWindow> SubWindows { get; } = new List<ISubWindow>();
+        private CompositionContainer container;
         public void Initialize()
         {
             var a = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            using (var container = new CompositionContainer(a))
-            {
-                SubViews.AddRange(container.GetExportedValues<ISubView>());
-                SubWindows.AddRange(container.GetExportedValues<ISubWindow>());
-            }
-
+            ComposablePartCatalog catalog;
             try
             {
                 var d = new DirectoryCatalog("modules");
-                using (var container = new CompositionContainer(d))
-                    Modules = container.GetExports<IModuleInfo, IModuleMetadata>().ToList();
-                //TODO: verify contract version
+                catalog = new AggregateCatalog(a, d);
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex);
-            }
-
-            foreach (var module in Modules)
-            {
-                if (module.Value.AutoLoadComponents)
-                {
-                    var c = new AssemblyCatalog(module.Value.GetType().Assembly);
-                    using (var container = new CompositionContainer(c))
-                    {
-                        module.Value.SubViews.AddRange(container.GetExportedValues<ISubView>());
-                        module.Value.SubWindows.AddRange(container.GetExportedValues<ISubWindow>());
-                    }
-                }
-                SubViews.AddRange(module.Value.SubViews);
-                SubWindows.AddRange(module.Value.SubWindows);
-                module.Value.Initialize();
-            }
+            catch { catalog = a; }
+            container = new CompositionContainer(catalog);
+            container.ComposeParts(this);
         }
         public void Unload()
         {
