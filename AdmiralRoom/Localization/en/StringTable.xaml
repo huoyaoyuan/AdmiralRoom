@@ -263,6 +263,7 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_Torpedo">Torpedo</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ShipCount">Ships: </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Statistics">Statistics</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Status_Exception">Exception happens in program</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Status_GetResponse">Get response: {0}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Status_Ready">Ready.</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Stop">Stop</s:String>

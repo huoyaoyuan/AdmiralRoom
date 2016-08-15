@@ -892,6 +892,9 @@ Expedition {1} - {2}</value>
   <data name="Statistics" xml:space="preserve">
     <value>Statistics</value>
   </data>
+  <data name="Status_Exception" xml:space="preserve">
+    <value>Exception happens in program</value>
+  </data>
   <data name="Status_GetResponse" xml:space="preserve">
     <value>Get response: {0}</value>
   </data>

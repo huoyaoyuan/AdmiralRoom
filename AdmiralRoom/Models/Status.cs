@@ -1,4 +1,5 @@
-﻿using Meowtrix.ComponentModel;
+﻿using System;
+using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
 {
@@ -47,6 +48,24 @@ namespace Huoyaoyuan.AdmiralRoom.Models
                 }
             }
         }
+        #endregion
+
+        #region LatestException
+        private Exception _latestexception;
+        public Exception LatestException
+        {
+            get { return _latestexception; }
+            set
+            {
+                if (_latestexception != value)
+                {
+                    _latestexception = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(HasException));
+                }
+            }
+        }
+        public bool HasException => LatestException != null;
         #endregion
     }
 }

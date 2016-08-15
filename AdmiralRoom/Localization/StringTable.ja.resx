@@ -874,6 +874,9 @@
   <data name="Statistics" xml:space="preserve">
     <value>統計</value>
   </data>
+  <data name="Status_Exception" xml:space="preserve">
+    <value>内部エラーが発生しました</value>
+  </data>
   <data name="Status_GetResponse" xml:space="preserve">
     <value>データを読みました: {0}</value>
   </data>

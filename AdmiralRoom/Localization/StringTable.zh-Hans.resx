@@ -892,6 +892,9 @@
   <data name="Statistics" xml:space="preserve">
     <value>统计</value>
   </data>
+  <data name="Status_Exception" xml:space="preserve">
+    <value>程序发生内部错误</value>
+  </data>
   <data name="Status_GetResponse" xml:space="preserve">
     <value>获得数据：{0}</value>
   </data>

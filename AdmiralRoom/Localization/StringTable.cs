@@ -1041,6 +1041,10 @@
         ///</summary>
         public static string Statistics => ResourceService.GetString("Statistics");
         ///<summary>
+        ///   查找类似 程序发生内部错误 的本地化字符串。
+        ///</summary>
+        public static string Status_Exception => ResourceService.GetString("Status_Exception");
+        ///<summary>
         ///   查找类似 获得数据：{0} 的本地化字符串。
         ///</summary>
         public static string Status_GetResponse => ResourceService.GetString("Status_GetResponse");

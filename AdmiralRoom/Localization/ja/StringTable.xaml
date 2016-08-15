@@ -257,6 +257,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_Torpedo">雷装</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ShipCount">艦娘数：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Statistics">統計</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Status_Exception">内部エラーが発生しました</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Status_GetResponse">データを読みました: {0}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Status_Ready">準備完了</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Stop">停止</s:String>

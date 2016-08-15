@@ -263,6 +263,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Ship_Torpedo">雷装</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ShipCount">舰娘数：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Statistics">统计</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Status_Exception">程序发生内部错误</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Status_GetResponse">获得数据：{0}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Status_Ready">就绪</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Stop">停止</s:String>

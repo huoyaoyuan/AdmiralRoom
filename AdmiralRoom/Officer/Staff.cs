@@ -95,11 +95,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     foreach (string key in apisource.Keys.ToArray())
                         if (oSession.PathAndQuery.EndsWith(key))
-#if DEBUG == false
                             apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
-#else
-                            apisource[key].Handler.GetInvocationList().ForEach(x => (x as Action<Session>)(oSession));
-#endif
                 }
             });
 
@@ -111,7 +107,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch (Exception ex)
             {
-                DispatcherHelper.UIDispatcher.InvokeAsync(() => System.Windows.MessageBox.Show(App.Current.MainWindow, ex.StackTrace, ex.Message));
+                DispatcherHelper.UIDispatcher.InvokeAsync(() => Models.Status.Current.LatestException = ex);
             }
         }
         public class APIObservable

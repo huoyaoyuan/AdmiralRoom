@@ -5,7 +5,9 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Huoyaoyuan.AdmiralRoom.Composition;
+using Huoyaoyuan.AdmiralRoom.Models;
 using Meowtrix.WPF.Extend;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Xceed.Wpf.AvalonDock.Layout;
@@ -207,5 +209,12 @@ namespace Huoyaoyuan.AdmiralRoom
         public Config.CommandSet DockCommands { get; }
 
         private void ShowAboutWindow(object sender, RoutedEventArgs e) => new AboutWindow { Owner = this }.ShowDialog();
+
+        private void ShowLastException(object sender, MouseButtonEventArgs e)
+        {
+            var exception = Status.Current.LatestException;
+            if (exception != null)
+                MessageBox.Show(this, exception.StackTrace, exception.Message);
+        }
     }
 }
