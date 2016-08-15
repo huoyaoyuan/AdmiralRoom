@@ -34,7 +34,7 @@
                     <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding LoadFrom}"/>
                     <MenuItem Header="{ex:Localizable Settings_SaveAs}" Command="{Binding SaveAs}"/>
                 </MenuItem>
-                <MenuItem Header="{ex:Localizable Settings_Layout}" DataContext="{RelativeSource AncestorType=local:NewWindow}">
+                <MenuItem Header="{ex:Localizable Settings_Layout}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:NewWindow}}">
                     <MenuItem Header="{ex:Localizable Settings_Save}" Command="{Binding DockCommands.Save}"/>
                     <MenuItem Header="{ex:Localizable Settings_Load}" Command="{Binding DockCommands.Load}"/>
                     <MenuItem Header="{ex:Localizable Settings_LoadFrom}" Command="{Binding DockCommands.LoadFrom}"/>
