@@ -36,7 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public LimitedValue AA { get; private set; }
         public LimitedValue Armor { get; private set; }
         public LimitedValue Luck { get; private set; }
-        public int MaxHP => rawdata.api_tyku?[0] ?? 0;
+        public int MaxHP => rawdata.api_taik?[0] ?? 0;
         public ShootRange Range => (ShootRange)rawdata.api_leng;
         public int SlotNum => rawdata.api_slot_num;
         public int[] AirCraft => rawdata.api_maxeq;
