@@ -103,7 +103,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
                     Level = api.api_ship_lv[i + 1],
-                    Equipments = api.api_eSlot[i].Where(y => y != -1).Select(y => Staff.Current.MasterData.EquipInfo[y]).ToArray(),
+                    Equipments = api.api_eSlot[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).ToArray(),
                     Firepower = api.api_eParam[i][0],
                     Torpedo = api.api_eParam[i][1],
                     AA = api.api_eParam[i][2],
