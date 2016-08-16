@@ -76,14 +76,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch { }
         }
-        public void Save(Session oSession)
+        public void Save(CachedSession oSession)
         {
             try
             {
                 Directory.CreateDirectory("logs");
                 using (var writer = File.CreateText(@"information\masterdata.json"))
                 {
-                    writer.Write(oSession.GetResponseBodyAsString().Substring(7).UnicodeDecode());
+                    writer.Write(oSession.JsonResponse.UnicodeDecode());
                     writer.Flush();
                 }
             }

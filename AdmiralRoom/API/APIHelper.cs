@@ -7,10 +7,22 @@ using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
 using Newtonsoft.Json;
 
-#pragma warning disable CC0022
-
 namespace Huoyaoyuan.AdmiralRoom
 {
+    public class CachedSession
+    {
+        public Session Session { get; }
+        public string Request { get; }
+        public string Response { get; }
+        public string JsonResponse { get; }
+        public CachedSession(Session oSession)
+        {
+            Session = oSession;
+            Request = oSession.GetRequestBodyAsString();
+            Response = oSession.GetResponseBodyAsString();
+            JsonResponse = Response.Substring(7);
+        }
+    }
     public static class APIHelper
     {
         private static void APIError(Exception ex) => DispatcherHelper.UIDispatcher.Invoke(() => System.Windows.MessageBox.Show(ex.Message));
@@ -28,15 +40,15 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             JSerializer.Error += (s, e) => e.ErrorContext.Handled = true;
         }
-        public static APIData Parse(this Session oSession)
+        public static APIData Parse(this CachedSession oSession)
         {
             svdata _svdata = null;
-            var reader = new StringReader(oSession.GetResponseBodyAsString().Substring(7));
+            var reader = new StringReader(oSession.JsonResponse);
             using (var jreader = new JsonTextReader(reader))
                 _svdata = JSerializer.Deserialize<svdata>(jreader);
-            return new APIData(_svdata, oSession.GetRequestBodyAsString());
+            return new APIData(_svdata, oSession.Request);
         }
-        public static bool TryParse(this Session oSession, out APIData result)
+        public static bool TryParse(this CachedSession oSession, out APIData result)
         {
             try
             {
@@ -49,17 +61,17 @@ namespace Huoyaoyuan.AdmiralRoom
                 return false;
             }
         }
-        public static APIData<T> Parse<T>(this Session oSession)
+        public static APIData<T> Parse<T>(this CachedSession oSession)
         {
-            var reader = new StringReader(oSession.GetResponseBodyAsString().Substring(7));
-            return new APIData<T>(Parse<T>(reader), oSession.GetRequestBodyAsString());
+            var reader = new StringReader(oSession.JsonResponse);
+            return new APIData<T>(Parse<T>(reader), oSession.Request);
         }
         public static svdata<T> Parse<T>(TextReader reader)
         {
             using (var jreader = new JsonTextReader(reader))
                 return JSerializer.Deserialize<svdata<T>>(jreader);
         }
-        public static bool TryParse<T>(this Session oSession, out APIData<T> result)
+        public static bool TryParse<T>(this CachedSession oSession, out APIData<T> result)
         {
             try
             {

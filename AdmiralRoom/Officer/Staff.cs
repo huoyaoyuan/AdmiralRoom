@@ -95,11 +95,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     foreach (string key in apisource.Keys.ToArray())
                         if (oSession.PathAndQuery.EndsWith(key))
-                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<Session>, oSession));
+                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, new CachedSession(oSession)));
                 }
             });
 
-        private static void ExceptionCatcher(Action<Session> action, Session parameter)
+        private static void ExceptionCatcher(Action<CachedSession> action, CachedSession parameter)
         {
             try
             {
@@ -112,8 +112,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public class APIObservable
         {
-            public Action<Session> Handler;
-            public void Subscribe(Action<Session> handler) => Handler += handler;
+            public Action<CachedSession> Handler;
+            public void Subscribe(Action<CachedSession> handler) => Handler += handler;
             public void Subscribe<T>(Action<T> handler) => Subscribe(x =>
             {
                 API.APIData<T> svdata;
@@ -129,16 +129,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 API.APIData<T> svdata;
                 if (x.TryParse(out svdata)) handler(svdata.Request, svdata.Data);
             });
-            //public void SubscribeDynamic(Action<dynamic> handler) => Subscribe(x =>
-            //{
-            //    API.APIData<dynamic> svdata;
-            //    if (x.TryParseDynamic(out svdata)) handler(svdata.Data);
-            //});
-            //public void SubscribeDynamic(Action<NameValueCollection, dynamic> handler) => Subscribe(x =>
-            //{
-            //    API.APIData<dynamic> svdata;
-            //    if (x.TryParseDynamic(out svdata)) handler(svdata.Request, svdata.Data);
-            //});
             public SubObservable<T> Where<T>(Func<T, bool> selector) => new SubObservable<T> { Parent = this, Selector = selector };
         }
         public class SubObservable<T>

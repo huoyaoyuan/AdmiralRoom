@@ -49,10 +49,10 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 File.Delete($@"logs\battlelog\{date:yyyy-MM-dd}.log");
             }
         }
-        private void AddApi(string type, Session oSession)
+        private void AddApi(string type, CachedSession oSession)
         {
             if (type == "startnext") datastring = string.Empty;
-            datastring += $",\"{type}\":{{\"api\":\"{oSession.PathAndQuery.Substring(8)}\",\"data\":{oSession.GetResponseBodyAsString().Substring(7)}}}";
+            datastring += $",\"{type}\":{{\"api\":\"{oSession.Session.PathAndQuery.Substring(8)}\",\"data\":{oSession.JsonResponse}}}";
         }
         private void AddFleets()
         {
