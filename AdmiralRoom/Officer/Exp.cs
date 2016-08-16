@@ -2,11 +2,11 @@
 {
     public class Exp
     {
-        public int Current { get; set; }
-        public int Next { get; set; }
-        public int NextLevel { get; set; }
-        public int PrevLevel { get; set; }
-        public Exp() { }
+        public int Current { get; }
+        public int Next { get; }
+        public int NextLevel { get; }
+        public int PrevLevel { get; }
+        public bool IsOverflow { get; }
         public Exp(int[] arr, int level, bool isShipExp)
         {
             Current = arr[0];
@@ -23,6 +23,15 @@
                     Next = NextLevel - Current;
                 PrevLevel = ConstData.GetAdmiralExp(level);
             }
+        }
+        public Exp(int exp, int level)//提督exp
+        {
+            Current = exp;
+            NextLevel = ConstData.GetAdmiralExp(level + 1);
+            PrevLevel = ConstData.GetAdmiralExp(level);
+            if (NextLevel != 0)
+                Next = NextLevel - Current;
+            else IsOverflow = true;
         }
         public override string ToString() => $"{Current}/{NextLevel}";
     }

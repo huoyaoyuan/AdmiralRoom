@@ -242,13 +242,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             MemberID = data.api_member_id;
             Nickname = data.api_nickname;
             Comment = data.api_comment;
-            Exp = new Exp
-            {
-                Current = data.api_experience,
-                NextLevel = ConstData.GetAdmiralExp(Level + 1),
-                PrevLevel = ConstData.GetAdmiralExp(Level)
-            };
-            Exp.Next = Exp.NextLevel - Exp.Current;
+            Exp = new Exp(data.api_experience, data.api_level);
             Rank = ConstData.AdmiralRanks[data.api_rank];
             Fleet = data.api_count_deck;
             MaxShip = data.api_max_chara;

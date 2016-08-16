@@ -8,21 +8,21 @@
              xmlns:controls="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             mc:Ignorable="d"
+             MinWidth="{Binding Width, ElementName=ContentPanel}"
+             MinHeight="{Binding Height, ElementName=ContentPanel}"
              Background="White"
              DataContext="{x:Static officer:Staff.Current}"
-             MinHeight="{Binding Height, ElementName=ContentPanel}"
-             MinWidth="{Binding Width, ElementName=ContentPanel}">
+             mc:Ignorable="d">
     <StackPanel x:Name="ContentPanel" Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+            <StackPanel Margin="0,0,10,0" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock FontSize="24" Text="{Binding Admiral.Nickname}"/>
-                    <TextBlock FontSize="16" Text="{Binding Admiral.Rank}" VerticalAlignment="Bottom"/>
+                    <TextBlock VerticalAlignment="Bottom" Text="{Binding Admiral.Rank}" FontSize="16"/>
                 </StackPanel>
                 <TextBlock FontSize="12" Text="{Binding Admiral.Comment}"/>
             </StackPanel>
-            <controls:ExpBar Exp="{Binding Admiral.Exp}" Level="{Binding Admiral.Level}"/>
+            <controls:ExpBar MinWidth="60" Exp="{Binding Admiral.Exp}" Level="{Binding Admiral.Level}"/>
             <Grid Margin="10,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -38,22 +38,18 @@
                         <Setter Property="VerticalAlignment" Value="Bottom"/>
                     </Style>
                 </Grid.Resources>
-                <TextBlock Grid.Column="0" Grid.Row="0"
-                           FontSize="12"
-                           Text="{ex:Localizable ShipCount}"/>
-                <TextBlock Grid.Column="1" Grid.Row="0"
-                           FontSize="16"
-                           Text="{Binding Admiral.ShipCount}"/>
-                <TextBlock Grid.Column="2" Grid.Row="0"
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           FontSize="12" Text="{ex:Localizable ShipCount}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           FontSize="16" Text="{Binding Admiral.ShipCount}"/>
+                <TextBlock Grid.Row="0" Grid.Column="2"
                            FontSize="12"
                            Text="{Binding Admiral.MaxShip, StringFormat={} / {0}}"/>
-                <TextBlock Grid.Column="0" Grid.Row="1"
-                           FontSize="12"
-                           Text="{ex:Localizable ItemCount}"/>
-                <TextBlock Grid.Column="1" Grid.Row="1"
-                           FontSize="16"
-                           Text="{Binding Admiral.EquipCount}"/>
-                <TextBlock Grid.Column="2" Grid.Row="1"
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           FontSize="12" Text="{ex:Localizable ItemCount}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           FontSize="16" Text="{Binding Admiral.EquipCount}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2"
                            FontSize="12"
                            Text="{Binding Admiral.MaxEquip, StringFormat={} / {0}}"/>
             </Grid>
@@ -74,77 +70,69 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Grid.Row="0"
-                       Height="16" Width="16"
+                <Image Grid.Row="0" Grid.Column="0"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/1.png"/>
-                <TextBlock Grid.Column="1" Grid.Row="0"
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.Fuel}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="2" Grid.Row="0"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.Fuel}"/>
+                <Image Grid.Row="0" Grid.Column="2"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/3.png"/>
-                <TextBlock Grid.Column="3" Grid.Row="0"
+                <TextBlock Grid.Row="0" Grid.Column="3"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.Steel}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="4" Grid.Row="0"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.Steel}"/>
+                <Image Grid.Row="0" Grid.Column="4"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/6.png"/>
-                <TextBlock Grid.Column="5" Grid.Row="0"
+                <TextBlock Grid.Row="0" Grid.Column="5"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.InstantRepair}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="6" Grid.Row="0"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.InstantRepair}"/>
+                <Image Grid.Row="0" Grid.Column="6"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/7.png"/>
-                <TextBlock Grid.Column="7" Grid.Row="0"
+                <TextBlock Grid.Row="0" Grid.Column="7"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.DevelopmentKit}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="0" Grid.Row="1"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.DevelopmentKit}"/>
+                <Image Grid.Row="1" Grid.Column="0"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/2.png"/>
-                <TextBlock Grid.Column="1" Grid.Row="1"
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.Bull}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="2" Grid.Row="1"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.Bull}"/>
+                <Image Grid.Row="1" Grid.Column="2"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/4.png"/>
-                <TextBlock Grid.Column="3" Grid.Row="1"
+                <TextBlock Grid.Row="1" Grid.Column="3"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.Bauxite}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="4" Grid.Row="1"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.Bauxite}"/>
+                <Image Grid.Row="1" Grid.Column="4"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/5.png"/>
-                <TextBlock Grid.Column="5" Grid.Row="1"
+                <TextBlock Grid.Row="1" Grid.Column="5"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.InstantBuild}"
-
-                           Margin="0,0,5,0"/>
-                <Image Grid.Column="6" Grid.Row="1"
-                       Height="16" Width="16"
+                           Text="{Binding Homeport.Material.InstantBuild}"/>
+                <Image Grid.Row="1" Grid.Column="6"
+                       Width="16" Height="16"
                        Source="/AdmiralRoom;component/Images/Material/8.png"/>
-                <TextBlock Grid.Column="7" Grid.Row="1"
+                <TextBlock Grid.Row="1" Grid.Column="7"
+                           Margin="0,0,5,0"
                            FontSize="16"
-                           Text="{Binding Homeport.Material.ImprovementKit}"
-
-                           Margin="0,0,5,0"/>
+                           Text="{Binding Homeport.Material.ImprovementKit}"/>
             </Grid>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <!--<Image Height="16" Width="16"/>
             <TextBlock FontSize="16" Text="{Binding Admiral.Furniture}" Margin="0,0,5,0"/>-->
-            <Image Height="16" Width="16" Source="/AdmiralRoom;component/Images/Material/FurnitureCoin.png"/>
-            <TextBlock FontSize="16" Text="{Binding Admiral.FurnitureCoin}" Margin="0,0,5,0"/>
+            <Image Width="16" Height="16" Source="/AdmiralRoom;component/Images/Material/FurnitureCoin.png"/>
+            <TextBlock Margin="0,0,5,0" Text="{Binding Admiral.FurnitureCoin}" FontSize="16"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

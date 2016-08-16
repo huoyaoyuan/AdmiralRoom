@@ -8,15 +8,15 @@
                 <ControlTemplate TargetType="{x:Type local:PredicateProgressBar}">
                     <Grid>
                         <meowtrix:AnimateProgress Minimum="{TemplateBinding Minimum}"
-                                               Maximum="{TemplateBinding Maximum}"
-                                               Value="{TemplateBinding PredictValue}"
-                                               Foreground="{TemplateBinding PredictForeground}"
-                                               Background="{TemplateBinding Background}"/>
+                                                  Maximum="{TemplateBinding Maximum}"
+                                                  Foreground="{TemplateBinding PredictForeground}"
+                                                  Background="{TemplateBinding Background}"
+                                                  Value="{TemplateBinding PredictValue}"/>
                         <meowtrix:AnimateProgress Minimum="{TemplateBinding Minimum}"
-                                               Maximum="{TemplateBinding Maximum}"
-                                               Value="{TemplateBinding Value}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               Background="Transparent"/>
+                                                  Maximum="{TemplateBinding Maximum}"
+                                                  Foreground="{TemplateBinding Foreground}"
+                                                  Background="Transparent"
+                                                  Value="{TemplateBinding Value}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -26,22 +26,28 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ExpBar}">
-                    <Grid ToolTip="{TemplateBinding Exp}">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="6"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock FontSize="18" Text="{Binding Level, RelativeSource={x:Static RelativeSource.TemplatedParent}, StringFormat=Lv. {0}}"/>
+                        <TextBlock FontSize="18" Text="{Binding Level, RelativeSource={RelativeSource TemplatedParent}, StringFormat=Lv. {0}}"/>
                         <meowtrix:AnimateProgress Grid.Row="1"
-                                               Background="Transparent"
-                                               Minimum="{Binding Exp.PrevLevel, RelativeSource={RelativeSource TemplatedParent}}"
-                                               Maximum="{Binding Exp.NextLevel, RelativeSource={RelativeSource TemplatedParent}}"
-                                               Value="{Binding Exp.Current, RelativeSource={RelativeSource TemplatedParent}}"/>
-                        <TextBlock FontSize="12" Grid.Row="2" Text="{Binding Exp.Next, RelativeSource={x:Static RelativeSource.TemplatedParent}, StringFormat=Next. {0}}"/>
+                                                  Background="Transparent"
+                                                  Minimum="{Binding Exp.PrevLevel, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                  Maximum="{Binding Exp.NextLevel, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                  Value="{Binding Exp.Current, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                        <TextBlock Grid.Row="2" FontSize="12" Text="{Binding Exp.Next, RelativeSource={x:Static RelativeSource.TemplatedParent}, Mode=OneWay, StringFormat=Next. {0}}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="ToolTip" Value="{Binding Exp, RelativeSource={RelativeSource Self}}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Exp.IsOverflow, RelativeSource={RelativeSource Self}, Mode=OneWay}" Value="True">
+                <Setter Property="ToolTip" Value="{Binding Exp.Current, RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
