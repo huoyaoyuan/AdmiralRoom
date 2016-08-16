@@ -19,14 +19,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -48,16 +49,15 @@
         <Button x:Name="btnStop" Grid.Column="5" ToolTip="{ex:Localizable Stop}">
             <Image Source="{DynamicResource IconStop}"/>
         </Button>
-        <WebBrowser x:Name="WebBrowser"
-                    Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="6"/>
-        <ToggleButton Grid.Row="1" Grid.Column="6"
+        <WebBrowser x:Name="WebBrowser" Grid.Row="1" Grid.ColumnSpan="10"/>
+        <ToggleButton Grid.Column="6"
                       Margin="2"
                       VerticalAlignment="Center"
                       ToolTip="{ex:Localizable Browser_LockFlash}"
                       IsChecked="{Binding IsFlashLocked, RelativeSource={RelativeSource AncestorType=local:KanColleBrowser}, Mode=TwoWay}">
             <Image Source="{DynamicResource IconFlashLock}"/>
         </ToggleButton>
-        <ToggleButton Grid.Row="2" Grid.Column="6"
+        <ToggleButton Grid.Column="7"
                       Margin="2"
                       VerticalAlignment="Center"
                       ToolTip="{ex:Localizable Mute}"
@@ -66,13 +66,13 @@
             <Image Source="{DynamicResource IconVolumeOff}"/>
         </ToggleButton>
         <Button x:Name="btnScreenShot"
-                Grid.Row="3" Grid.Column="6"
+                Grid.Column="8"
                 VerticalAlignment="Center"
                 ToolTip="{ex:Localizable Screenshot}">
             <Image Source="{DynamicResource IconScreenshot}"/>
         </Button>
         <Button x:Name="btnCleanCache"
-                Grid.Row="4" Grid.Column="6"
+                Grid.Column="9"
                 VerticalAlignment="Center"
                 ToolTip="{ex:Localizable CleanCache}">
             <Image Source="{DynamicResource IconCleanCache}"/>
