@@ -39,7 +39,11 @@
         <Button x:Name="btnFoward" Grid.Column="1" ToolTip="{ex:Localizable Forward}">
             <Image Source="{DynamicResource IconForward}"/>
         </Button>
-        <TextBox x:Name="txtAddress" Grid.Column="2" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtAddress" Grid.Column="2" VerticalAlignment="Center">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding GotoUrlCommand, RelativeSource={RelativeSource AncestorType=local:KanColleBrowser}, Mode=OneTime}"/>
+            </TextBox.InputBindings>
+        </TextBox>
         <Button x:Name="btnRefresh" Grid.Column="3" ToolTip="{ex:Localizable Refresh}">
             <Image Source="{DynamicResource IconRefresh}"/>
         </Button>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Markup;
 using Huoyaoyuan.AdmiralRoom.Win32;
 using mshtml;
@@ -70,6 +71,8 @@ namespace Huoyaoyuan.AdmiralRoom
             UpdateSize(islocked);
         }
 
+        public ICommand GotoUrlCommand { get; }
+
         public KanColleBrowser()
         {
             InitializeComponent();
@@ -80,7 +83,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             btnBack.Click += (_, __) => WebBrowser.GoBack();
             btnFoward.Click += (_, __) => WebBrowser.GoForward();
-            btnGoto.Click += (_, __) =>
+            GotoUrlCommand = new DelegateCommand(() =>
             {
                 if (!txtAddress.Text.Contains(":"))
                     txtAddress.Text = "http://" + txtAddress.Text;
@@ -92,7 +95,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     System.Diagnostics.Debug.WriteLine(e);
                 }
-            };
+            });
             btnRefresh.Click += (_, __) => WebBrowser.Navigate(WebBrowser.Source);
             btnBackToGame.Click += (_, __) => WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
             btnStop.Click += (_, __) => Stop();
