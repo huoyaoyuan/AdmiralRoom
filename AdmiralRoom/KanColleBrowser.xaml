@@ -88,11 +88,11 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
                                          Value="True">
-                                <Setter Property="Source" Value="{DynamicResource IconVolumeOn}"/>
+                                <Setter Property="Source" Value="{DynamicResource IconVolumeOff}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
                                          Value="False">
-                                <Setter Property="Source" Value="{DynamicResource IconVolumeOff}"/>
+                                <Setter Property="Source" Value="{DynamicResource IconVolumeOn}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
