@@ -13,23 +13,28 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0" ItemsSource="{Binding List}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                  DisplayMemberPath="Session.Session.PathAndQuery">
-            <!--<ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Session.Session.PathAndQuery}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>-->
-        </ListView>
-        <GridSplitter Grid.Column="1"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Column="0" Grid.ColumnSpan="2"
+                  ItemsSource="{Binding List}"
+                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                  DisplayMemberPath="Session.Session.PathAndQuery"/>
+        <TextBlock Grid.Row="1" Text="Trace count:"/>
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Margin="2"
+                 Text="{Binding SaveCount, Mode=TwoWay}"/>
+        <GridSplitter Grid.RowSpan="2" Grid.Column="2"
                       Width="5"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Stretch"/>
-        <ex:TabControlEx Grid.Column="2">
+        <ex:TabControlEx Grid.RowSpan="2" Grid.Column="3">
             <TabItem Header="Text">
                 <TextBox Text="{Binding SelectedItem.Session.Response, Mode=OneWay}"
                          FontFamily="Consolas" TextWrapping="Wrap"
