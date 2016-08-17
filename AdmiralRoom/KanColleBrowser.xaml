@@ -59,7 +59,22 @@
                       VerticalAlignment="Center"
                       ToolTip="{ex:Localizable Browser_LockFlash}"
                       IsChecked="{Binding IsFlashLocked, RelativeSource={RelativeSource AncestorType=local:KanColleBrowser}, Mode=TwoWay}">
-            <Image Source="{DynamicResource IconFlashLock}"/>
+            <Image>
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                         Value="True">
+                                <Setter Property="Source" Value="{DynamicResource IconFlashLock}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                         Value="False">
+                                <Setter Property="Source" Value="{DynamicResource IconFlashUnlock}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </ToggleButton>
         <ToggleButton Grid.Column="7"
                       Margin="2"
@@ -67,7 +82,22 @@
                       ToolTip="{ex:Localizable Mute}"
                       IsEnabled="{Binding IsGameLoaded, Source={x:Static models:Status.Current}, Mode=OneWay}"
                       IsChecked="{Binding Volume.IsMute, Source={x:Static models:Status.Current}, Mode=TwoWay}">
-            <Image Source="{DynamicResource IconVolumeOff}"/>
+            <Image>
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                         Value="True">
+                                <Setter Property="Source" Value="{DynamicResource IconVolumeOn}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                         Value="False">
+                                <Setter Property="Source" Value="{DynamicResource IconVolumeOff}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </ToggleButton>
         <Button x:Name="btnScreenShot"
                 Grid.Column="8"
