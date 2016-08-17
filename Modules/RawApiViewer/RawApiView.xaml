@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="RawApiViewer.RawApiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RawApiViewer"
+             xmlns:ex="urn:controlzex"
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{x:Static local:RawApiViewModel.Instance}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:JsonConverter x:Key="JsonConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" ItemsSource="{Binding List}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                  DisplayMemberPath="Session.Session.PathAndQuery">
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Session.Session.PathAndQuery}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+        </ListView>
+        <GridSplitter Grid.Column="1"
+                      Width="5"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch"/>
+        <ex:TabControlEx Grid.Column="2">
+            <TabItem Header="Text">
+                <TextBox Text="{Binding SelectedItem.Session.Response, Mode=OneWay}"
+                         FontFamily="Consolas" TextWrapping="Wrap"
+                         IsReadOnly="True" AcceptsReturn="True"/>
+            </TabItem>
+            <TabItem Header="Json">
+                <TreeView ItemsSource="{Binding SelectedJTokens}">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Converter={StaticResource JsonConverter}, ConverterParameter=Children}">
+                            <TextBlock Text="{Binding Converter={StaticResource JsonConverter}, ConverterParameter=Value}"/>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </TabItem>
+        </ex:TabControlEx>
+    </Grid>
+</UserControl>

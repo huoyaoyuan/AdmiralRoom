@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Huoyaoyuan.AdmiralRoom;
 using Huoyaoyuan.AdmiralRoom.Officer;
 using Meowtrix.ComponentModel;
+using Newtonsoft.Json.Linq;
 
 namespace RawApiViewer
 {
@@ -57,11 +58,13 @@ namespace RawApiViewer
                     _selectedindex = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(SelectedItem));
+                    OnPropertyChanged(nameof(SelectedJTokens));
                 }
             }
         }
         #endregion
 
         public ApiModel SelectedItem => List[SelectedIndex];
+        public JToken[] SelectedJTokens => new[] { SelectedItem.Json };
     }
 }
