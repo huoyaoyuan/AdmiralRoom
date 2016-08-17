@@ -9,13 +9,13 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
 {
     class RankingViewModel : NotificationObject
     {
-        public RankingViewModel()
+        private RankingViewModel()
         {
             Load();
             Staff.API("api_req_ranking/getlist").Subscribe<ranking_getlist>(RankingListHandler);
             Staff.Current.Admiral.PropertyChanged += OnExpChanged;
         }
-        public static RankingViewModel Instance { get; set; }
+        public static RankingViewModel Instance { get; } = new RankingViewModel();
         private void RankingListHandler(ranking_getlist api)
         {
             foreach (var player in api.api_list)

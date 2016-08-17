@@ -8,7 +8,7 @@ namespace RawApiViewer
 {
     class RawApiViewModel : NotificationObject
     {
-        public static RawApiViewModel Instance { get; set; }
+        public static RawApiViewModel Instance { get; } = new RawApiViewModel();
         private RawApiViewModel()
         {
             Staff.API("").Subscribe(AddSession);

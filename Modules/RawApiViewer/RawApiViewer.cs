@@ -9,11 +9,5 @@ namespace RawApiViewer
     [ExportMetadata("Author", "huoyaoyuan")]
     [ExportMetadata("Description", "RawApiViewer")]
     [ExportMetadata("ContractVersion", _Version.Version)]
-    public class RawApiViewer : ModuleInfo
-    {
-        public RawApiViewer()
-        {
-            RawApiViewModel.Instance = new RawApiViewModel();
-        }
-    }
+    public class RawApiViewer : ModuleInfo { }
 }
