@@ -19,10 +19,8 @@ namespace RawApiViewer
             DispatcherHelper.UIDispatcher.Invoke(() =>
             {
                 _list.Insert(0, new ApiModel(session));
-                int max = SaveCount;
-                if (SelectedIndex >= max) max = SelectedIndex + 1;
-                while (_list.Count > max)
-                    _list.RemoveAt(max);
+                while (_list.Count > SaveCount)
+                    _list.RemoveAt(SaveCount);
             });
         }
 
