@@ -94,8 +94,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 lock (lockObj)
                 {
                     foreach (string key in apisource.Keys.ToArray())
-                        if (oSession.PathAndQuery.EndsWith(key))
+                    {
+                        if (key.EndsWith("/") && oSession.PathAndQuery.Contains(key))
                             apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, new CachedSession(oSession)));
+                        else if (oSession.PathAndQuery.EndsWith(key))
+                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, new CachedSession(oSession)));
+                    }
                 }
             });
 

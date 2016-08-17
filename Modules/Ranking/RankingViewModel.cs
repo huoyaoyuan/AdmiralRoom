@@ -12,7 +12,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
         private RankingViewModel()
         {
             Load();
-            Staff.API("api_req_ranking/getlist").Subscribe<ranking_getlist>(RankingListHandler);
+            Staff.API("api_req_ranking/").Subscribe<ranking_getlist>(RankingListHandler);
             Staff.Current.Admiral.PropertyChanged += OnExpChanged;
         }
         public static RankingViewModel Instance { get; } = new RankingViewModel();
