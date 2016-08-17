@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Meowtrix.UniversalClassLibrary, Version=1.2.2.0, Culture=neutral, PublicKeyToken=5dcaec6183d7c002, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Meowtrix.UniversalClassLibrary.1.2.2\lib\net46\Meowtrix.UniversalClassLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -45,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawApiViewer.cs" />
     <Compile Include="RawApiViewModel.cs" />
