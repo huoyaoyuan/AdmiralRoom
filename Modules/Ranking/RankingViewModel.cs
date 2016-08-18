@@ -21,7 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
             foreach (var player in api.api_list)
             {
                 int rate = DecodeRate(player);
-                switch (player.api_no)
+                switch (player.api_mxltvkpyuklh)
                 {
                     case 1:
                         if (Number1.Point < rate)
@@ -94,11 +94,11 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                             };
                         break;
                 }
-                if (player.api_nickname == Staff.Current.Admiral.Nickname && player.api_comment == Staff.Current.Admiral.Comment)
+                if (player.api_mtjmdcwtvhdr == Staff.Current.Admiral.Nickname && player.api_itbrdpdbkynm == Staff.Current.Admiral.Comment)
                 {
-                    if (MyLastPoint != rate || MyRank != player.api_no)
+                    if (MyLastPoint != rate || MyRank != player.api_mxltvkpyuklh)
                     {
-                        MyRank = player.api_no;
+                        MyRank = player.api_mxltvkpyuklh;
                         MyLastPoint = rate;
                         myLastExp = myLastExpStore;
                         OnPropertyChanged(nameof(MyPoint));
@@ -107,8 +107,10 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
             }
         }
 
-        private static int[] magic = { 2, 5, 7, 2, 7, 3, 1, 6, 9, 9 };
-        private int DecodeRate(ranking_getlist.ranking_list api) => api.api_rate / api.api_no / magic[Staff.Current.Admiral.MemberID % 10];
+        private static int[] magic = { 21, 70, 48, 36, 72, 55, 30, 54, 95, 43 };
+        private static int[] magic_r = { 8831, 1201, 1175, 555, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6569 };
+        private int DecodeRate(ranking_getlist.ranking_list api)
+            => api.api_wuhnhojjxmke / magic_r[api.api_mxltvkpyuklh % 13] / magic[Staff.Current.Admiral.MemberID % 10] - 91;
 
         private void OnExpChanged(object sender, PropertyChangedEventArgs e)
         {
