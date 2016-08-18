@@ -11,11 +11,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
     [ExportMetadata("ContractVersion", _Version.Version)]
     public class Ranking : ModuleInfo, IDisposable
     {
-        public Ranking()
-        {
-            RankingViewModel.Instance = new RankingViewModel();
-        }
-
         public void Dispose()
         {
             RankingViewModel.Instance.Save();
