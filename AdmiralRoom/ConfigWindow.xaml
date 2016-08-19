@@ -1,18 +1,18 @@
 ﻿<Window x:Class="Huoyaoyuan.AdmiralRoom.ConfigWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
-        xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
-        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controlzex="urn:controlzex"
         xmlns:meowtrix="urn:meowtrix"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        xmlns:controlzex="urn:controlzex"
+        xmlns:views="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
         Title="{ex:Localizable Settings}"
         Width="800" Height="600"
+        DataContext="{x:Static local:Config.Current}"
         FontFamily="{Binding FontFamily, Source={x:Static local:Config.Current}, Mode=OneWay}"
         FontSize="18"
-        DataContext="{x:Static local:Config.Current}"
         mc:Ignorable="d">
     <controlzex:TabControlEx>
         <TabItem Header="{ex:Localizable Settings_Network}">
@@ -125,8 +125,11 @@
                         Margin="5"
                         Minimum="0" Maximum="1"
                         IsEnabled="{Binding ShowMainBackground, Mode=OneWay}"
-                        ToolTip="{Binding MainBackgroundOpacity, Mode=OneWay, StringFormat=P0}"
-                        Value="{Binding MainBackgroundOpacity, Mode=TwoWay}"/>
+                        Value="{Binding MainBackgroundOpacity, Mode=TwoWay}">
+                    <Slider.ToolTip>
+                        <TextBlock Text="{Binding MainBackgroundOpacity, Mode=OneWay, StringFormat={}{0:P0}}"/>
+                    </Slider.ToolTip>
+                </Slider>
                 <TextBlock Grid.Row="8" Grid.Column="0"
                            Margin="20,5,5,5"
                            Text="{ex:Localizable Settings_MainBackground_BlurRadius}"/>
