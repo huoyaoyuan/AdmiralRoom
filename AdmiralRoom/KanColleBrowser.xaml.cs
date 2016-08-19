@@ -182,9 +182,21 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 if (apply)
                 {
+                    var document = WebBrowser.Document as HTMLDocument;
+                    if (document == null) return;
+
+                    var gameFrame = document.getElementById("game_frame");
+                    if (gameFrame == null) gameFrame = document.getElementById("ooi-game");
+                    if (gameFrame == null) gameFrame = document.getElementById("flashWrap");
+                    if (gameFrame == null && document.url.Contains(".swf?"))
+                        gameFrame = document.body;
+                    HTMLDocument target;
+                    HTMLEmbed flash;
+                    if (gameFrame != null) target = gameFrame.document as HTMLDocument;
+                    else if ((flash = FindFlashElement()) != null) target = flash.document;
+                    else return;
                     if (FindFlashElement() != null)
                     {
-                        var target = WebBrowser.Document as HTMLDocument;
                         styleSheet = target.createStyleSheet();
                         styleSheet.cssText = OverrideStyleSheet;
                     }
