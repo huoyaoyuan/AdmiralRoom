@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using Meowtrix.ComponentModel;
 using Meowtrix.Globalization;
@@ -509,6 +510,79 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region ShowMainBackground
+        private bool _showmainwindowbackground;
+        public bool ShowMainBackground
+        {
+            get { return _showmainwindowbackground; }
+            set
+            {
+                if (_showmainwindowbackground != value)
+                {
+                    _showmainwindowbackground = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region MainBackgroundImage
+        private string _mainbackgroundimage;
+        public string MainBackgroundImage
+        {
+            get { return _mainbackgroundimage; }
+            set
+            {
+                if (_mainbackgroundimage != value)
+                {
+                    _mainbackgroundimage = value;
+                    OnPropertyChanged();
+                    try
+                    {
+                        MainBackgroundImageSource = new BitmapImage(new Uri(value));
+                        MainBackgroundImageSource.Freeze();
+                    }
+                    catch { MainBackgroundImageSource = null; }
+                    OnPropertyChanged(nameof(MainBackgroundImageSource));
+                }
+            }
+        }
+        [XmlIgnore, MemberwiseCopyIgnore]
+        public ImageSource MainBackgroundImageSource { get; private set; }
+        #endregion
+
+        #region MainBackgroundOpacity
+        private double _mainbackgroundopacity;
+        public double MainBackgroundOpacity
+        {
+            get { return _mainbackgroundopacity; }
+            set
+            {
+                if (_mainbackgroundopacity != value)
+                {
+                    _mainbackgroundopacity = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region MainBackgroundBlurRadius
+        private double _mainbackgroundblurradius;
+        public double MainBackgroundBlurRadius
+        {
+            get { return _mainbackgroundblurradius; }
+            set
+            {
+                if (_mainbackgroundblurradius != value)
+                {
+                    _mainbackgroundblurradius = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         public static string MakeSoundWithPath(string filename) => Path.Combine("sound", filename);
 
         private Config()
@@ -537,6 +611,7 @@ namespace Huoyaoyuan.AdmiralRoom
             _autocheckupdate = true;
             _autodownloadupdate = false;
             _updateusingproxy = true;
+            _mainbackgroundopacity = 1;
         }
         public static Config Load(string path = "config.xml")
         {

@@ -20,6 +20,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Border Grid.Row="1" Grid.RowSpan="3"
+                DataContext="{x:Static local:Config.Current}"
+                Visibility="{Binding ShowMainBackground, Converter={StaticResource VisibilityConverter}}">
+            <Border.CacheMode>
+                <BitmapCache SnapsToDevicePixels="True"/>
+            </Border.CacheMode>
+            <Image Stretch="UniformToFill" Source="{Binding MainBackgroundImageSource}" Opacity="{Binding MainBackgroundOpacity}">
+                <Image.Effect>
+                    <BlurEffect Radius="{Binding MainBackgroundBlurRadius}"/>
+                </Image.Effect>
+            </Image>
+        </Border>
         <Menu Grid.Row="0">
             <MenuItem x:Name="subviews" Header="{ex:Localizable MainMenu_Views}"/>
             <MenuItem x:Name="subwindowOverview" Header="{ex:Localizable MainMenu_Overview}"/>
