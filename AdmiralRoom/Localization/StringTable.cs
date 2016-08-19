@@ -781,6 +781,22 @@
         ///</summary>
         public static string Settings_LoS_SimpleSum => ResourceService.GetString("Settings_LoS_SimpleSum");
         ///<summary>
+        ///   查找类似 模糊化半径 的本地化字符串。
+        ///</summary>
+        public static string Settings_MainBackground_BlurRadius => ResourceService.GetString("Settings_MainBackground_BlurRadius");
+        ///<summary>
+        ///   查找类似 在主窗口显示一张背景图片 的本地化字符串。
+        ///</summary>
+        public static string Settings_MainBackground_Enable => ResourceService.GetString("Settings_MainBackground_Enable");
+        ///<summary>
+        ///   查找类似 图片文件名 的本地化字符串。
+        ///</summary>
+        public static string Settings_MainBackground_Filename => ResourceService.GetString("Settings_MainBackground_Filename");
+        ///<summary>
+        ///   查找类似 不透明度 的本地化字符串。
+        ///</summary>
+        public static string Settings_MainBackground_Opacity => ResourceService.GetString("Settings_MainBackground_Opacity");
+        ///<summary>
         ///   查找类似 网络 的本地化字符串。
         ///</summary>
         public static string Settings_Network => ResourceService.GetString("Settings_Network");

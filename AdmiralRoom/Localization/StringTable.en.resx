@@ -697,6 +697,18 @@ Expedition {1} - {2}</value>
   <data name="Settings_LoS_SimpleSum" xml:space="preserve">
     <value>Simple Sum</value>
   </data>
+  <data name="Settings_MainBackground_BlurRadius" xml:space="preserve">
+    <value>Blur radius</value>
+  </data>
+  <data name="Settings_MainBackground_Enable" xml:space="preserve">
+    <value>Show a background image on main window</value>
+  </data>
+  <data name="Settings_MainBackground_Filename" xml:space="preserve">
+    <value>Image file name</value>
+  </data>
+  <data name="Settings_MainBackground_Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
   <data name="Settings_Network" xml:space="preserve">
     <value>Network</value>
   </data>

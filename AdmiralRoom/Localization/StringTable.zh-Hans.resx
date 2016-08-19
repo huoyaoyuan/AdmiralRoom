@@ -697,6 +697,18 @@
   <data name="Settings_LoS_SimpleSum" xml:space="preserve">
     <value>简单求和</value>
   </data>
+  <data name="Settings_MainBackground_BlurRadius" xml:space="preserve">
+    <value>模糊化半径</value>
+  </data>
+  <data name="Settings_MainBackground_Enable" xml:space="preserve">
+    <value>在主窗口显示一张背景图片</value>
+  </data>
+  <data name="Settings_MainBackground_Filename" xml:space="preserve">
+    <value>图片文件名</value>
+  </data>
+  <data name="Settings_MainBackground_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
   <data name="Settings_Network" xml:space="preserve">
     <value>网络</value>
   </data>

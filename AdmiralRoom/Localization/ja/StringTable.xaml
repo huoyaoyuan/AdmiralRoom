@@ -194,6 +194,10 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula14Q4">2-5式(秋)</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_Formula16Q1">2-5式「33」</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_LoS_SimpleSum">単純合計</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_MainBackground_BlurRadius">ぼかし半径</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_MainBackground_Enable">ウィンドウに背景画像を表示します</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_MainBackground_Filename">画像のファイル名</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Settings_MainBackground_Opacity">不透明度</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_Network">ネットワーク</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyShortingTime">通知短缩時間（秒）：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Settings_NotifyWhenBuild">建造完了時に通知を表示する</s:String>

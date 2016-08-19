@@ -685,6 +685,18 @@
   <data name="Settings_LoS_SimpleSum" xml:space="preserve">
     <value>単純合計</value>
   </data>
+  <data name="Settings_MainBackground_BlurRadius" xml:space="preserve">
+    <value>ぼかし半径</value>
+  </data>
+  <data name="Settings_MainBackground_Enable" xml:space="preserve">
+    <value>ウィンドウに背景画像を表示します</value>
+  </data>
+  <data name="Settings_MainBackground_Filename" xml:space="preserve">
+    <value>画像のファイル名</value>
+  </data>
+  <data name="Settings_MainBackground_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
   <data name="Settings_Network" xml:space="preserve">
     <value>ネットワーク</value>
   </data>
