@@ -46,6 +46,23 @@
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal"/>
         <dock:DockingManager x:Name="DockMan" Grid.Row="2">
+            <dock:DockingManager.Resources>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013Background" Color="Transparent"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013PanelBorderBrush" Color="#808E9BBC"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013TabBackground" Color="Transparent"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013AutoHideTabDefaultBackground" Color="#80293955"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013AutoHideTabDefaultBorder" Color="#80465A7D"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013DocumentWellTabSelectedActiveBackground" Color="#80FFF29D"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013DocumentWellTabSelectedInactiveBackground" Color="#804D6082"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013DocumentWellTabUnselectedBackground" Color="#80364E6F"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowCaptionActiveBackground" Color="#80FFF29D"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowCaptionActiveGrip" Color="#80FFF29D"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowCaptionInactiveBackground" Color="#804D6082"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowCaptionInactiveGrip" Color="#804D6082"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowTabSelectedActiveBackground" Color="#80FFFFFF"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowTabSelectedInactiveBackground" Color="#80FFFFFF"/>
+                <SolidColorBrush x:Key="AvalonDockThemeVs2013ToolWindowTabUnselectedBackground" Color="#804D6082"/>
+            </dock:DockingManager.Resources>
             <dock:DockingManager.Theme>
                 <dock:Vs2013BlueTheme/>
             </dock:DockingManager.Theme>
