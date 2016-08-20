@@ -36,6 +36,23 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
+        #region Theme
+        private string _theme;
+        public string Theme
+        {
+            get { return _theme; }
+            set
+            {
+                if (_theme != value)
+                {
+                    _theme = value;
+                    OnPropertyChanged();
+                    ThemeService.CurrentTheme = value;
+                }
+            }
+        }
+        #endregion
+
         #region SystemTheme
         private string _systemtheme;
         public string SystemTheme
@@ -597,6 +614,7 @@ namespace Huoyaoyuan.AdmiralRoom
             if (Language == null) Language = "en";
             var OSVersion = Environment.OSVersion.Version;
             SystemTheme = OSVersion.Major == 6 && OSVersion.Minor == 1 ? "Aero" : "Aero2";
+            Theme = "Default";
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
             _prefertoast = ToastNotifier.IsSupported;

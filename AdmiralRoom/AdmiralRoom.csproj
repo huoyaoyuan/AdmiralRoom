@@ -407,8 +407,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Common\ResourceService.cs" />
-    <Compile Include="Common\ThemeService.cs" />
+    <Compile Include="Localization\ResourceService.cs" />
+    <Compile Include="Resources\ThemeService.cs" />
     <Page Include="Localization\en\StringTable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <AutoGen>True</AutoGen>
@@ -431,6 +431,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
