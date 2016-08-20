@@ -7,10 +7,9 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             mc:Ignorable="d"
-             Background="White"
+             d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{x:Static officer:Staff.Current}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -26,9 +25,9 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type officer:DevelopmentInfo}">
                         <StackPanel Orientation="Horizontal">
-                            <Border Margin="2"
-                                    CornerRadius="4" Padding="2"
-                                    x:Name="issuccess">
+                            <Border x:Name="issuccess"
+                                    Margin="2"
+                                    CornerRadius="4" Padding="2">
                                 <TextBlock x:Name="successtext"/>
                             </Border>
                             <TextBlock VerticalAlignment="Center" Text="{Binding Equip.Name}"/>

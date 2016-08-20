@@ -8,7 +8,6 @@
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              d:DesignHeight="300" d:DesignWidth="300"
-             Background="White"
              DataContext="{x:Static officer:Staff.Current}"
              mc:Ignorable="d">
     <ItemsControl ItemsSource="{Binding Homeport.Fleets}">

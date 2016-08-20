@@ -8,13 +8,12 @@
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             Background="White"
-             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{x:Static officer:Staff.Current}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d">
     <control:ContentNullChooser ContentChooser="{Binding Quests.QuestInProgress}">
         <control:ContentNullChooser.NullContent>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">No Data</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">No Data</TextBlock>
         </control:ContentNullChooser.NullContent>
         <control:ContentNullChooser.NotNullContent>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -32,7 +31,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Height="16" Stretch="Uniform" Source="{Binding Icon}"/>
-                                <TextBlock Grid.Column="1" TextWrapping="Wrap" Margin="1">
+                                <TextBlock Grid.Column="1" Margin="1" TextWrapping="Wrap">
                                     <Run Text="{Binding Title, Mode=OneWay}"/>
                                     <Border x:Name="counter"
                                             Background="{Binding Counter.Progress, Converter={StaticResource LVColorConverter}, ConverterParameter=Quest}"

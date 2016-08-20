@@ -8,7 +8,6 @@
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              d:DesignHeight="300" d:DesignWidth="300"
-             Background="White"
              DataContext="{x:Static officer:Staff.Current}"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical">

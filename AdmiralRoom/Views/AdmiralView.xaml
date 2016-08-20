@@ -10,7 +10,6 @@
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              MinWidth="{Binding Width, ElementName=ContentPanel}"
              MinHeight="{Binding Height, ElementName=ContentPanel}"
-             Background="White"
              DataContext="{x:Static officer:Staff.Current}"
              mc:Ignorable="d">
     <StackPanel x:Name="ContentPanel" Orientation="Vertical">

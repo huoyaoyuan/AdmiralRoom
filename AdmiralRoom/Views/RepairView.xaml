@@ -8,10 +8,9 @@
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
-             mc:Ignorable="d"
-             Background="White"
+             d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{x:Static officer:Staff.Current}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d">
     <ItemsControl ItemsSource="{Binding Shipyard.RepairDocks}" Grid.IsSharedSizeScope="True">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -22,13 +21,12 @@
             <DataTemplate DataType="{x:Type officer:RepairDock}">
                 <Grid Height="18" Margin="2">
                     <control:PredicateProgressBar x:Name="progress"
-                                                  Minimum="0"
-                                                  Maximum="{Binding Ship.HP.Max}"
-                                                  Value="{Binding Ship.HP.Current}"
+                                                  Minimum="0" Maximum="{Binding Ship.HP.Max}"
                                                   PredictValue="{Binding Ship.RepairingHP}"
                                                   Foreground="{Binding Ship.HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
                                                   PredictForeground="Aqua" Background="Transparent"
-                                                  Visibility="Collapsed"/>
+                                                  Visibility="Collapsed"
+                                                  Value="{Binding Ship.HP.Current}"/>
                     <TextBlock x:Name="text" FontSize="15"/>
                     <Grid x:Name="ship" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
@@ -37,9 +35,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock FontSize="16" Text="{Binding Ship.ShipInfo.Name}"/>
                         <TextBlock Grid.Column="1"
+                                   VerticalAlignment="Center"
                                    Text="{Binding CompleteTime, Converter={StaticResource DateTimeOffsetConverter}, ConverterParameter=Remain, StringFormat={} - {0}}"
-                                   FontSize="14"
-                                   VerticalAlignment="Center"/>
+                                   FontSize="14"/>
                     </Grid>
                 </Grid>
                 <DataTemplate.Triggers>
