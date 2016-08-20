@@ -3,6 +3,10 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
              ShutdownMode="OnMainWindowClose">
     <Application.Resources>
-        <ResourceDictionary Source="Resources/StaticResources.xaml"/>
+        <ResourceDictionary Source="Resources/StaticResources.xaml">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/DefaultTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
