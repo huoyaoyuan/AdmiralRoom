@@ -214,7 +214,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.api_fdata.Split(',')[1])];
             }
-            DispatcherHelper.UIDispatcher.Invoke(() => Development.Add(dev));
+            DispatcherHelper.UIDispatcher.Invoke(() => Development.Insert(0, dev));
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
             Logger.Loggers.CreateItemLogger.Log(new Logger.CreateItemLog
             {
