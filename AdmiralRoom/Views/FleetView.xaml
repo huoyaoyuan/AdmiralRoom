@@ -9,11 +9,12 @@
              xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              xmlns:meowtrix="urn:meowtrix"
+             xmlns:controlzex="urn:controlzex"
              d:DesignHeight="400" d:DesignWidth="720"
              DataContext="{x:Static officer:Staff.Current}"
              mc:Ignorable="d">
-    <TabControl ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
-        <TabControl.ItemTemplate>
+    <controlzex:TabControlEx ItemsSource="{Binding Homeport.Fleets}" SelectedIndex="{Binding Homeport.SelectedFleet}">
+        <controlzex:TabControlEx.ItemTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse x:Name="status" Width="18" Height="18">
@@ -64,8 +65,8 @@
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
-        </TabControl.ItemTemplate>
-        <TabControl.ContentTemplate>
+        </controlzex:TabControlEx.ItemTemplate>
+        <controlzex:TabControlEx.ContentTemplate>
             <DataTemplate DataType="{x:Type officer:Fleet}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -497,6 +498,6 @@
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
-        </TabControl.ContentTemplate>
-    </TabControl>
+        </controlzex:TabControlEx.ContentTemplate>
+    </controlzex:TabControlEx>
 </UserControl>
