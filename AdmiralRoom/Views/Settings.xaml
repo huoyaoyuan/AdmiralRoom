@@ -79,12 +79,6 @@
                 <TextBox Grid.Row="3" Grid.Column="1"
                          Width="80" Margin="2"
                          Text="{Binding NotifyConditionSound, Mode=TwoWay}"/>
-                <CheckBox Grid.Row="1" Grid.Column="2"
-                          Margin="2"
-                          Content="{ex:Localizable Notification_Toast}"
-                          IsEnabled="{x:Static root:ToastNotifier.IsSupported}"
-                          IsChecked="{Binding PreferToastNotify}"
-                          ToolTip="{ex:Localizable Notification_ToolTip_Win10}"/>
                 <TextBlock Grid.Row="2" Grid.RowSpan="2" Grid.Column="2"
                            Grid.ColumnSpan="2"
                            Margin="2">
@@ -94,14 +88,23 @@
                 </TextBlock>
             </Grid>
         </GroupBox>
-        <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Settings_LoS}">
-            <StackPanel Orientation="Vertical">
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_SimpleSum}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=SimpleSum}"/>
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q3}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q3}"/>
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q4}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q4}"/>
-                <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula16Q1}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula16Q1}"/>
-            </StackPanel>
-        </GroupBox>
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Settings_LoS}">
+                <StackPanel Orientation="Vertical">
+                    <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_SimpleSum}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=SimpleSum}"/>
+                    <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q3}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q3}"/>
+                    <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula14Q4}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula14Q4}"/>
+                    <RadioButton Margin="2" Content="{ex:Localizable Settings_LoS_Formula16Q1}" IsChecked="{Binding LosCalcType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Formula16Q1}"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Notification_Type}">
+                <StackPanel Orientation="Vertical">
+                    <RadioButton Margin="2" Content="Ballon" IsChecked="{Binding NotifierType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Ballon}"/>
+                    <RadioButton Margin="2" Content="Toast" IsChecked="{Binding NotifierType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=Toast}"/>
+                    <RadioButton Margin="2" Content="MessageBox" IsChecked="{Binding NotifierType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=MessageBox}"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
         <GroupBox Margin="5" HorizontalAlignment="Left" Header="{ex:Localizable Database_Report}">
             <StackPanel Orientation="Vertical">
                 <CheckBox Margin="2" IsChecked="{Binding ReportToPoiDB}">

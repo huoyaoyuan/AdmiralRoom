@@ -155,7 +155,7 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_HeavyDamage_Title">Heavy Damage Warning</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Text">Repairs on {1} in Dock {0} have been completed.</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">Repairs Completed</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Toast">Prefer toast notify</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">Notification Type</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_ToolTip_Win10">Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Option">Option</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">Plugin</s:String>

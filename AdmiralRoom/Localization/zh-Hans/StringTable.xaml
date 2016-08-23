@@ -155,7 +155,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_HeavyDamage_Title">大破警告</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Text">修理渠的第 {0} 修理坞的「{1}」整备完毕。</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">修理完毕</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Toast">使用Toast通知</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">通知类型</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_ToolTip_Win10">Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Option">选项</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">插件</s:String>

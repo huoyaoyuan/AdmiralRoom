@@ -609,9 +609,9 @@
         ///</summary>
         public static string Notification_Repair_Title => ResourceService.GetString("Notification_Repair_Title");
         ///<summary>
-        ///   查找类似 使用Toast通知 的本地化字符串。
+        ///   查找类似 通知类型 的本地化字符串。
         ///</summary>
-        public static string Notification_Toast => ResourceService.GetString("Notification_Toast");
+        public static string Notification_Type => ResourceService.GetString("Notification_Type");
         ///<summary>
         ///   查找类似 Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip 的本地化字符串。
         ///</summary>

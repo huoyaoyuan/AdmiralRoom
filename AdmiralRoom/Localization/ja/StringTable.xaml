@@ -155,7 +155,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_HeavyDamage_Title">大破警告</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Text">入渠第 {0} ドックでの「{1}」の整備が完了しました。</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">整備完了</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Toast">トースト通知を使用する</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">通知の種類</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Option">オプション</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">プラグイン</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Disable">非表示</s:String>

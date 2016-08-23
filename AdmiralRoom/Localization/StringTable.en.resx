@@ -568,8 +568,8 @@ Expedition {1} - {2}</value>
   <data name="Notification_Repair_Title" xml:space="preserve">
     <value>Repairs Completed</value>
   </data>
-  <data name="Notification_Toast" xml:space="preserve">
-    <value>Prefer toast notify</value>
+  <data name="Notification_Type" xml:space="preserve">
+    <value>Notification Type</value>
   </data>
   <data name="Notification_ToolTip_Win10" xml:space="preserve">
     <value>Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</value>
