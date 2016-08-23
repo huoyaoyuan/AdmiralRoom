@@ -6,9 +6,9 @@ using Application = System.Windows.Application;
 
 #pragma warning disable CC0029
 
-namespace Huoyaoyuan.AdmiralRoom
+namespace Huoyaoyuan.AdmiralRoom.Notifier
 {
-    public class BallonNotifier : Notifier, IDisposable
+    public class BallonNotifierFactory : NotifierFactory, IDisposable
     {
         private NotifyIcon notifyIcon;
 
@@ -16,7 +16,9 @@ namespace Huoyaoyuan.AdmiralRoom
 
         private readonly MediaPlayer player = new MediaPlayer();
 
-        public override void Initialize()
+        public static bool IsSupported => true;
+
+        public BallonNotifierFactory()
         {
             const string iconUri = "pack://application:,,,/AdmiralRoom;Component/Icons/app.ico";
 
@@ -30,7 +32,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             using (var stream = streamResourceInfo.Stream)
             {
-                this.notifyIcon = new NotifyIcon
+                notifyIcon = new NotifyIcon
                 {
                     Text = "提督の部屋",
                     Icon = new Icon(stream),

@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using Meowtrix.ComponentModel;
 using Meowtrix.Globalization;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -150,19 +151,14 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         #endregion
 
-        #region PreferToastNotify
-        private bool _prefertoast;
-        public bool PreferToastNotify
+        #region NotifierType
+        public NotifierType NotifierType
         {
-            get { return _prefertoast; }
+            get { return NotifierFactories.CurrentType; }
             set
             {
-                if (_prefertoast != value)
-                {
-                    _prefertoast = value;
-                    Notifier.SetNotifier(value);
-                    OnPropertyChanged();
-                }
+                NotifierFactories.CurrentType = value;
+                OnPropertyChanged();
             }
         }
         #endregion
@@ -617,7 +613,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Theme = "Default";
             _proxy = new Officer.Proxy();
             _httpsproxy = new Officer.Proxy();
-            _prefertoast = ToastNotifier.IsSupported;
+            NotifierType = NotifierFactories.DefaultType;
             _browserzoomfactor = 1;
             _screenshotfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             _screenshotnameformat = "KanColle-{0}";

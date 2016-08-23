@@ -3,6 +3,7 @@ using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
 using Meowtrix;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -30,9 +31,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged(nameof(CompleteTime));
             OnPropertyChanged(nameof(DuringTime));
             if (State == DockState.Building && Config.Current.NotifyWhenBuild && CompleteTime.InASecond())
-                Notifier.Current?.Show(StringTable.Notification_Build_Title,
+                NotifierFactories.Current?.Show(StringTable.Notification_Build_Title,
                     string.Format(StringTable.Notification_Build_Text, Id, Config.Current.ShowBuildingShipName ? $"「{CreatedShip.Name}」" : StringTable.Ship_LowerCase),
-Config.MakeSoundWithPath(Config.Current.NotifyBuildSound));
+                    Config.MakeSoundWithPath(Config.Current.NotifyBuildSound));
         }
         protected override void UpdateProp()
         {

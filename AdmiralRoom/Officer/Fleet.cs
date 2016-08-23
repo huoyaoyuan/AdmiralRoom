@@ -6,6 +6,7 @@ using System.Linq;
 using System.Timers;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -52,9 +53,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged(nameof(ConditionTimeRemain));
             OnPropertyChanged(nameof(HomeportRepairingFrom));
             if (MissionState == FleetMissionState.InMission && Config.Current.NotifyWhenExpedition && BackTime.InASecond(Config.Current.NotifyTimeAdjust))
-                Notifier.Current?.Show(StringTable.Notification_Expedition_Title, string.Format(StringTable.Notification_Expedition_Text, Name, MissionID, MissionInfo.Name), Config.MakeSoundWithPath(Config.Current.NotifyExpeditionSound));
+                NotifierFactories.Current?.Show(StringTable.Notification_Expedition_Title,
+                    string.Format(StringTable.Notification_Expedition_Text, Name, MissionID, MissionInfo.Name),
+                    Config.MakeSoundWithPath(Config.Current.NotifyExpeditionSound));
             if (!InSortie && Config.Current.NotifyWhenCondition && ConditionHelper.Instance.RemainCeiling(mincondition).InASecond())
-                Notifier.Current?.Show(StringTable.Notification_Condition_Title, string.Format(StringTable.Notification_Condition_Text, Name), Config.MakeSoundWithPath(Config.Current.NotifyConditionSound));
+                NotifierFactories.Current?.Show(StringTable.Notification_Condition_Title,
+                    string.Format(StringTable.Notification_Condition_Text, Name),
+                    Config.MakeSoundWithPath(Config.Current.NotifyConditionSound));
         }
 
         public enum FleetMissionState { None = 0, InMission = 1, Complete = 2, Abort = 3 }

@@ -7,9 +7,9 @@ using MS.WindowsAPICodePack.Internal;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
-namespace Huoyaoyuan.AdmiralRoom
+namespace Huoyaoyuan.AdmiralRoom.Notifier
 {
-    public class ToastNotifier : Notifier
+    public class ToastNotifierFactory : NotifierFactory
     {
         private static readonly string APP_ID = "Huoyaoyuan.AdmiralRoom";
         public static bool IsSupported
@@ -20,7 +20,11 @@ namespace Huoyaoyuan.AdmiralRoom
                 return (version.Major == 6 && version.Minor >= 2) || version.Major > 6;
             }
         }
-        public override void Initialize() => TryCreateShortcut();
+
+        public ToastNotifierFactory()
+        {
+            TryCreateShortcut();
+        }
         private static bool TryCreateShortcut()
         {
             string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\提督の部屋.lnk";
@@ -31,6 +35,7 @@ namespace Huoyaoyuan.AdmiralRoom
             }
             return false;
         }
+
         public static void InstallShortcut(string shortcutPath)
         {
             // Find the path to the current executable
@@ -55,6 +60,7 @@ namespace Huoyaoyuan.AdmiralRoom
 
             ErrorHelper.VerifySucceeded(newShortcutSave.Save(shortcutPath, true));
         }
+
         public override void Show(string title, string detail, string sound = null)
         {
             // Get a toast XML template

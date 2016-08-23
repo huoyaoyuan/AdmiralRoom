@@ -3,6 +3,7 @@ using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -174,7 +175,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             var heavydamage = SortieFleet1.Ships.Skip(1).ConcatNotNull(SortieFleet2?.Ships.Skip(1))
                 .Where(x => !x.IsEscaped && x.HP.Current * 4 <= x.HP.Max);
             if (heavydamage.Any())
-                Notifier.Current.Show(StringTable.Notification_HeavyDamage_Title,
+                NotifierFactories.Current.Show(StringTable.Notification_HeavyDamage_Title,
                     heavydamage.Aggregate(StringTable.Notification_HeavyDamage_Text, (text, ship) => text += "\n" + ship));
         }
         private void BattleResultHandler(sortie_battleresult api)

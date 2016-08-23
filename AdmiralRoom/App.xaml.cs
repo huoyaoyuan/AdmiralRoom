@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -32,7 +33,6 @@ namespace Huoyaoyuan.AdmiralRoom
 
             Officer.Staff.Current.Quests.Load();
             Officer.Staff.Current.MasterData.Load();
-            Notifier.SetNotifier(Config.Current.PreferToastNotify);
 
             Logger.Loggers.Initialize();
 
@@ -73,7 +73,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Stop();
             Config.Current.Save();
             Officer.Staff.Current.Quests.Save();
-            (Notifier.Current as IDisposable)?.Dispose();
+            (NotifierFactories.Current as IDisposable)?.Dispose();
             ModuleHost.Instance.Dispose();
         }
     }

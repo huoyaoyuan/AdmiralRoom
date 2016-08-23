@@ -219,6 +219,8 @@
     <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Common\UnicodeEscape.cs" />
+    <Compile Include="Notifier\MessageBoxNotifierFactory.cs" />
+    <Compile Include="Notifier\NotifierFactory.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Composition\IModuleMetadata.cs" />
     <Compile Include="Composition\ISubView.cs" />
@@ -266,10 +268,10 @@
     <Compile Include="Common\MultiComparer.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Volume.cs" />
-    <Compile Include="Notify\BallonNotifier.cs" />
-    <Compile Include="Notify\Notifier.cs" />
-    <Compile Include="Notify\ToastNotifier.cs" />
-    <Compile Include="Notify\ShellHelpers.cs" />
+    <Compile Include="Notifier\BallonNotifierFactory.cs" />
+    <Compile Include="Notifier\NotifierFactories.cs" />
+    <Compile Include="Notifier\ToastNotifierFactory.cs" />
+    <Compile Include="Notifier\ShellHelpers.cs" />
     <Compile Include="Officer\Admiral.cs" />
     <Compile Include="Officer\BattleBase.cs" />
     <Compile Include="Officer\BattleManager.cs" />
