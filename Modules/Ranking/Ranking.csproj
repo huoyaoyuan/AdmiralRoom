@@ -57,6 +57,7 @@
       <DependentUpon>RankingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="RankingViewModel.cs" />
+    <Compile Include="ranking_getlist.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AdmiralRoom\AdmiralRoom.csproj">
