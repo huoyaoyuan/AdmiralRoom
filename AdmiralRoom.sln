@@ -61,7 +61,7 @@ Global
 		{57FA364A-4801-406C-909A-D1AEAC7AFA2C} = {430ECE0C-AFBA-47EB-98DD-3F2D0186AF4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ResXSortingComparison = InvariantCulture
 		RESX_SortFileContentOnSave = True
+		RESX_ResXSortingComparison = InvariantCulture
 	EndGlobalSection
 EndGlobal
