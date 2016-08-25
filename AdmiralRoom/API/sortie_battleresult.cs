@@ -54,8 +54,8 @@
         public int api_get_eventflag { get; set; }
         public class escape
         {
-            public int api_escape_idx { get; set; }
-            public int api_tow_idx { get; set; }
+            public int[] api_escape_idx { get; set; }
+            public int[] api_tow_idx { get; set; }
         }
         public escape api_escape { get; set; }
         public int api_escape_flag { get; set; }

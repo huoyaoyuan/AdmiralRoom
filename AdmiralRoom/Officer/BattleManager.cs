@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
-using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
@@ -67,13 +67,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (lastescapeinfo != null)
                 {
-                    Staff.Current.Homeport.Ships[lastescapeinfo.api_escape_idx].IsEscaped = true;
-                    Staff.Current.Homeport.Ships[lastescapeinfo.api_tow_idx].IsEscaped = true;
+                    FindShip(lastescapeinfo.api_escape_idx[0]).IsEscaped = true;
+                    FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
                 }
             });
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }
+        private Ship FindShip(int index) => index <= 6 ? SortieFleet1.Ships[index - 1] : SortieFleet2.Ships[index - 7];
 
         #region InSortie
         private bool _insortie;
