@@ -35,7 +35,8 @@ namespace Huoyaoyuan.AdmiralRoom
         public static object ThemeDictionaryKey { get; } = new object();
         public static IReadOnlyCollection<string> Themes { get; } = new[]
         {
-            "Default"
+            "Default",
+            "VS2013Dark"
         };
         private static string _currenttheme;
         public static string CurrentTheme
