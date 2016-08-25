@@ -62,7 +62,7 @@ namespace RawApiViewer
         }
         #endregion
 
-        public ApiModel SelectedItem => List[SelectedIndex];
-        public JToken[] SelectedJTokens => new[] { SelectedItem.Json };
+        public ApiModel SelectedItem => SelectedIndex < 0 || SelectedIndex >= List.Count ? null : List[SelectedIndex];
+        public JToken[] SelectedJTokens => SelectedItem == null ? new JToken[0] : new[] { SelectedItem.Json };
     }
 }

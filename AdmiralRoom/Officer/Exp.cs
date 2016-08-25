@@ -21,6 +21,7 @@
                 NextLevel = arr[1];
                 if (NextLevel != 0)
                     Next = NextLevel - Current;
+                else IsOverflow = true;
                 PrevLevel = ConstData.GetAdmiralExp(level);
             }
         }
