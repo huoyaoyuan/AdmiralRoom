@@ -195,11 +195,9 @@ namespace Huoyaoyuan.AdmiralRoom
                     if (gameFrame != null) target = gameFrame.document as HTMLDocument;
                     else if ((flash = FindFlashElement()) != null) target = flash.document;
                     else return;
-                    if (FindFlashElement() != null)
-                    {
-                        styleSheet = target.createStyleSheet();
-                        styleSheet.cssText = OverrideStyleSheet;
-                    }
+
+                    styleSheet = target.createStyleSheet();
+                    styleSheet.cssText = OverrideStyleSheet;
                 }
                 else
                 {
