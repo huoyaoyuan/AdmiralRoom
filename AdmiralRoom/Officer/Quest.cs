@@ -2,10 +2,11 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Quest : GameObject<api_quest>, IIdentifiable
+    public class Quest : GameObject<api_quest>, IIdentifiable<int>
     {
         public override int Id => rawdata.api_no;
         public QuestType Type => (QuestType)rawdata.api_category;

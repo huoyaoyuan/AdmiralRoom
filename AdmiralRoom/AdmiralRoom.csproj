@@ -315,7 +315,6 @@
     <Compile Include="Common\IUpdatable.cs" />
     <Compile Include="Officer\Homeport.cs" />
     <Compile Include="Officer\General\IDTable.cs" />
-    <Compile Include="Officer\General\IIdentifiable.cs" />
     <Compile Include="Officer\General\LimitedValue.cs" />
     <Compile Include="Officer\General\ICounter.cs" />
     <Compile Include="Officer\KnownQuests.cs" />

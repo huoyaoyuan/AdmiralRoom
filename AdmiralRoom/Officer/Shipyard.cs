@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.Collections.Generic;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
@@ -37,8 +38,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
 
         #region RepairDocks
-        private IDTable<RepairDock> _repairdocks = new IDTable<RepairDock>();
-        public IDTable<RepairDock> RepairDocks
+        private IDTable<int, RepairDock> _repairdocks = new IDTable<int, RepairDock>();
+        public IDTable<int, RepairDock> RepairDocks
         {
             get { return _repairdocks; }
             set
@@ -53,8 +54,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region BuildingDocks
-        private IDTable<BuildingDock> _buildingdocks = new IDTable<BuildingDock>();
-        public IDTable<BuildingDock> BuildingDocks
+        private IDTable<int, BuildingDock> _buildingdocks = new IDTable<int, BuildingDock>();
+        public IDTable<int, BuildingDock> BuildingDocks
         {
             get { return _buildingdocks; }
             set

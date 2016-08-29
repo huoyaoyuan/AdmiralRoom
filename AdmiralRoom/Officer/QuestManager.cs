@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.Collections.Generic;
 using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -20,8 +21,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Logger.Loggers.MaterialLogger.ForceLog = true;
             });
         }
-        public readonly IDTable<Quest> AvilableQuests = new IDTable<Quest>();
-        public IDTable<Quest> QuestInProgress { get; private set; }
+        public readonly IDTable<int, Quest> AvilableQuests = new IDTable<int, Quest>();
+        public IDTable<int, Quest> QuestInProgress { get; private set; }
         public int InProgressCount { get; private set; }
         public int AvilableCount { get; private set; }
         private int lastcheckedpage;
@@ -84,7 +85,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             while (list.Count < InProgressCount)
                 list.Add(new Quest(new api_quest { api_no = mistindexstart++ }));
             list.Sort();
-            QuestInProgress = new IDTable<Quest>(list);
+            QuestInProgress = new IDTable<int, Quest>(list);
         }
         private void CycleCount()
         {

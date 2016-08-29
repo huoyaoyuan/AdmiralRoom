@@ -1,5 +1,6 @@
-﻿using static Huoyaoyuan.AdmiralRoom.Officer.QuestManager.KnownQuestTargets;
-#pragma warning disable CC0033
+﻿using Meowtrix.Collections.Generic;
+using static Huoyaoyuan.AdmiralRoom.Officer.QuestManager.KnownQuestTargets;
+
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     partial class QuestManager
@@ -39,7 +40,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public static class KnownQuests
         {
-            public static readonly IDTable<QuestInfo> Known = new IDTable<QuestInfo>();
+            public static readonly IDTable<int, QuestInfo> Known = new IDTable<int, QuestInfo>();
             static KnownQuests()
             {
                 Known.Add(new QuestInfo(Daily10));

@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.Collections.Generic;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
@@ -36,8 +37,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public Material Material { get; } = new Material();
 
         #region Fleets
-        private IDTable<Fleet> _fleets;
-        public IDTable<Fleet> Fleets
+        private IDTable<int, Fleet> _fleets;
+        public IDTable<int, Fleet> Fleets
         {
             get { return _fleets; }
             set
@@ -52,8 +53,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region Ships
-        private IDTable<Ship> _ships;
-        public IDTable<Ship> Ships
+        private IDTable<int, Ship> _ships;
+        public IDTable<int, Ship> Ships
         {
             get { return _ships; }
             set
@@ -84,8 +85,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         #endregion
 
         #region Equipments
-        private IDTable<Equipment> _equipments;
-        public IDTable<Equipment> Equipments
+        private IDTable<int, Equipment> _equipments;
+        public IDTable<int, Equipment> Equipments
         {
             get { return _equipments; }
             set
@@ -161,7 +162,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             ConditionHelper.Instance.BeginUpdate();
             Staff.Current.Shipyard.RepairDocks.ForEach(x => x.Ship?.IgnoreNextCondition());
             if (Ships == null)
-                Ships = new IDTable<Ship>(api.api_ship.Select(x => new Ship(x)));
+                Ships = new IDTable<int, Ship>(api.api_ship.Select(x => new Ship(x)));
             else Ships.UpdateAll(api.api_ship, x => x.api_id);
             ConditionHelper.Instance.EndUpdate();
             Staff.Current.Admiral.ShipCount = api.api_ship.Length;
@@ -180,7 +181,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (Fleets == null)
             {
-                Fleets = new IDTable<Fleet>(api.Select(x => new Fleet(x)));
+                Fleets = new IDTable<int, Fleet>(api.Select(x => new Fleet(x)));
                 SelectedFleet = 0;
             }
             else
@@ -192,7 +193,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private void ItemsHandler(getmember_slotitem[] api)
         {
             if (Equipments == null)
-                Equipments = new IDTable<Equipment>(api.Select(x => new Equipment(x)));
+                Equipments = new IDTable<int, Equipment>(api.Select(x => new Equipment(x)));
             else Equipments.UpdateAll(api, x => x.api_id);
             Staff.Current.Admiral.EquipCount = api.Length;
             Ships?.ForEach(x => x.TryUpdateEquip());

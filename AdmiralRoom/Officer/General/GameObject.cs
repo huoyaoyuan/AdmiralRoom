@@ -1,9 +1,10 @@
 ﻿using System;
+using Meowtrix;
 using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public abstract class GameObject<T> : NotificationObject, IUpdatable<T>, IIdentifiable, IComparable<GameObject<T>>
+    public abstract class GameObject<T> : NotificationObject, IUpdatable<T>, IIdentifiable<int>, IComparable<GameObject<T>>
     {
         protected T rawdata;
         protected GameObject(T data)

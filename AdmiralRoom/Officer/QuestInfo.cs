@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using System.Text;
+using Meowtrix;
 using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class QuestInfo : NotificationObject, IIdentifiable
+    public class QuestInfo : NotificationObject, IIdentifiable<int>
     {
         public int Id => MainTarget.QuestId;
         public QuestTarget[] Targets { get; set; }
