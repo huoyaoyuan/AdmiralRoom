@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Fiddler;
 using Huoyaoyuan.AdmiralRoom.API;
+using Meowtrix.Text;
 
 #pragma warning disable CC0021
 
