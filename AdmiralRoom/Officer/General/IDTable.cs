@@ -23,8 +23,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 else
                     addlist.Add((T)Activator.CreateInstance(typeof(T), e));
             }
-            idtable.RemoveMany(deletelist);
-            idtable.AddMany(addlist);
+            if (deletelist.Count > 0)
+                idtable.RemoveMany(deletelist);
+            if (addlist.Count > 0)
+                idtable.AddMany(addlist);
         }
 
         public static void UpdateWithoutRemove<T, T2>(this IDTable<int, T> idtable, IEnumerable<T2> source, Func<T2, int> getid)
@@ -39,7 +41,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 else
                     addlist.Add((T)Activator.CreateInstance(typeof(T), e));
             }
-            idtable.AddMany(addlist);
+            if (addlist.Count > 0)
+                idtable.AddMany(addlist);
         }
     }
 }
