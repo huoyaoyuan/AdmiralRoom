@@ -142,8 +142,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public void RemoveShip(Ship ship)
         {
-            if (ship.InFleet != null)
-                DispatcherHelper.UIDispatcher.Invoke(() => ship.InFleet.Ships.Remove(ship));
+            ship.InFleet?.Ships.Remove(ship);
             ship.InFleet?.UpdateStatus();
             foreach (var slot in ship.Slots)
                 if (slot.HasItem)
@@ -181,12 +180,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (Fleets == null)
             {
-                Fleets = new IDTable<int, Fleet>(api.Select(x => new Fleet(x)));
+                Fleets = new IDTable<int, Fleet>(api.Select(x => new Fleet(x))).WithSyncBindingEnabled();
                 SelectedFleet = 0;
             }
             else
             {
-                DispatcherHelper.UIDispatcher.Invoke(() => Fleets.UpdateAll(api, x => x.api_id));
+                Fleets.UpdateAll(api, x => x.api_id);
             }
         }
 
@@ -205,46 +204,43 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int fleetid = api.GetInt("api_id");
             int shipid = api.GetInt("api_ship_id");
             var fleet = Fleets[fleetid];
-            DispatcherHelper.UIDispatcher.Invoke(() =>
+            if (idx == -1)//旗艦以外全解除
             {
-                if (idx == -1)//旗艦以外全解除
+                for (int i = fleet.Ships.Count - 1; i > 0; i--)
                 {
-                    for (int i = fleet.Ships.Count - 1; i > 0; i--)
-                    {
-                        fleet.Ships[i].InFleet = null;
-                        fleet.Ships.RemoveAt(i);
-                    }
+                    fleet.Ships[i].InFleet = null;
+                    fleet.Ships.RemoveAt(i);
+                }
+            }
+            else
+            {
+                if (shipid == -1)//はずす
+                {
+                    fleet.Ships[idx].InFleet = null;
+                    fleet.Ships.RemoveAt(idx);
                 }
                 else
                 {
-                    if (shipid == -1)//はずす
+                    var ship = Ships[shipid];
+                    var destf = ship.InFleet;
+                    if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
+                    if (destf != null)
                     {
-                        fleet.Ships[idx].InFleet = null;
-                        fleet.Ships.RemoveAt(idx);
+                        if (idx < fleet.Ships.Count)
+                            destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                        else destf.Ships.Remove(ship);
+                        destf.UpdateStatus();
+                        if (destf != fleet && destf.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
+                            destf.CheckHomeportRepairingTime(true);
                     }
-                    else
-                    {
-                        var ship = Ships[shipid];
-                        var destf = ship.InFleet;
-                        if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
-                        if (destf != null)
-                        {
-                            if (idx < fleet.Ships.Count)
-                                destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
-                            else destf.Ships.Remove(ship);
-                            destf.UpdateStatus();
-                            if (destf != fleet && destf.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
-                                destf.CheckHomeportRepairingTime(true);
-                        }
-                        if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
-                        else fleet.Ships[idx] = ship;
-                        ship.InFleet = fleet;
-                    }
-                    if (fleet.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
-                        fleet.CheckHomeportRepairingTime(true);
+                    if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
+                    else fleet.Ships[idx] = ship;
+                    ship.InFleet = fleet;
                 }
-                fleet.UpdateStatus();
-            });
+                if (fleet.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
+                    fleet.CheckHomeportRepairingTime(true);
+            }
+            fleet.UpdateStatus();
         }
 
         private void PresetHandler(NameValueCollection req, getmember_deck api)

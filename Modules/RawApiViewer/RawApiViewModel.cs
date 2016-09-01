@@ -16,12 +16,9 @@ namespace RawApiViewer
         }
         private void AddSession(CachedSession session)
         {
-            DispatcherHelper.UIDispatcher.Invoke(() =>
-            {
-                _list.Insert(0, new ApiModel(session));
-                while (_list.Count > SaveCount)
-                    _list.RemoveAt(SaveCount);
-            });
+            _list.Insert(0, new ApiModel(session));
+            while (_list.Count > SaveCount)
+                _list.RemoveAt(SaveCount);
         }
 
         #region SaveCount
@@ -41,7 +38,7 @@ namespace RawApiViewer
         }
         #endregion
 
-        private ObservableCollection<ApiModel> _list = new ObservableCollection<ApiModel>();
+        private ObservableCollection<ApiModel> _list = new ObservableCollection<ApiModel>().WithSyncBindingEnabled();
         public IReadOnlyList<ApiModel> List => _list;
 
         #region SelectedIndex

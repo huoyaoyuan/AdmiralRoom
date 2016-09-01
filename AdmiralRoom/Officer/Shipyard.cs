@@ -37,59 +37,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             });
         }
 
-        #region RepairDocks
-        private IDTable<int, RepairDock> _repairdocks = new IDTable<int, RepairDock>();
-        public IDTable<int, RepairDock> RepairDocks
-        {
-            get { return _repairdocks; }
-            set
-            {
-                if (_repairdocks != value)
-                {
-                    _repairdocks = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
-
-        #region BuildingDocks
-        private IDTable<int, BuildingDock> _buildingdocks = new IDTable<int, BuildingDock>();
-        public IDTable<int, BuildingDock> BuildingDocks
-        {
-            get { return _buildingdocks; }
-            set
-            {
-                if (_buildingdocks != value)
-                {
-                    _buildingdocks = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
-
-        #region Development
-        private ObservableCollection<DevelopmentInfo> _development = new ObservableCollection<DevelopmentInfo>();
-        public ObservableCollection<DevelopmentInfo> Development
-        {
-            get { return _development; }
-            set
-            {
-                if (_development != value)
-                {
-                    _development = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
+        public IDTable<int, RepairDock> RepairDocks { get; } = new IDTable<int, RepairDock>().WithSyncBindingEnabled();
+        public IDTable<int, BuildingDock> BuildingDocks { get; } = new IDTable<int, BuildingDock>().WithSyncBindingEnabled();
+        public ObservableCollection<DevelopmentInfo> Development { get; } = new ObservableCollection<DevelopmentInfo>().WithSyncBindingEnabled();
 
         private int[] inndock = { };
         private int lastcreatedock = -1;
         public void NDockHandler(getmember_ndock[] api)
         {
-            DispatcherHelper.UIDispatcher.Invoke(() => RepairDocks.UpdateAll(api, x => x.api_id));
+            RepairDocks.UpdateAll(api, x => x.api_id);
             var newindock = api.Select(x => x.api_ship_id).ToArray();
             foreach (var ship in Staff.Current.Homeport.Ships)
             {
@@ -130,8 +86,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public void KDockHandler(getmember_kdock[] api)
         {
-            DispatcherHelper.UIDispatcher.Invoke(() =>
-                BuildingDocks.UpdateAll(api, x => x.api_id));
+            BuildingDocks.UpdateAll(api, x => x.api_id);
             var dock = BuildingDocks[lastcreatedock];
             if (dock?.CreatedShip != null)
             {
@@ -215,7 +170,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 dev.Equip = Staff.Current.MasterData.EquipInfo[int.Parse(api.api_fdata.Split(',')[1])];
             }
-            DispatcherHelper.UIDispatcher.Invoke(() => Development.Insert(0, dev));
+            Development.Insert(0, dev);
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
             Logger.Loggers.CreateItemLogger.Log(new Logger.CreateItemLog
             {

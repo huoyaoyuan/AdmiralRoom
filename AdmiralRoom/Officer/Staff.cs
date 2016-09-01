@@ -111,7 +111,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch (Exception ex)
             {
-                DispatcherHelper.UIDispatcher.InvokeAsync(() => Models.Status.Current.LatestException = ex);
+                Models.Status.Current.LatestException = ex;
             }
         }
         public class APIObservable

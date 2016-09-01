@@ -22,7 +22,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int ConditionTimeOffset => (int)ConditionHelper.Instance.Offset.TotalSeconds;
 
         #region Ships
-        private ObservableCollection<Ship> _ships = new ObservableCollection<Ship>();
+        private ObservableCollection<Ship> _ships;
         public ObservableCollection<Ship> Ships
         {
             get { return _ships; }
@@ -30,7 +30,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             {
                 if (_ships != value)
                 {
-                    _ships = value;
+                    _ships = value?.WithSyncBindingEnabled();
                     OnPropertyChanged();
                 }
             }
@@ -181,25 +181,27 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             BackTime = DateTimeOffset.FromUnixTimeMilliseconds(rawdata.api_mission[2]);
             needupdateship = false;
-            for (int i = 0; i < rawdata.api_ship.Length; i++)
-            {
-                if (rawdata.api_ship[i] == -1)
+            if (Ships == null) needupdateship = true;
+            else
+                for (int i = 0; i < rawdata.api_ship.Length; i++)
                 {
-                    if (Ships.Count > i)
+                    if (rawdata.api_ship[i] == -1)
                     {
-                        needupdateship = true;
-                        break;
+                        if (Ships.Count > i)
+                        {
+                            needupdateship = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (Ships.Count <= i || Ships[i].Id != rawdata.api_ship[i] || Ships[i].InFleet != this)
+                        {
+                            needupdateship = true;
+                            break;
+                        }
                     }
                 }
-                else
-                {
-                    if (Ships.Count <= i || Ships[i].Id != rawdata.api_ship[i] || Ships[i].InFleet != this)
-                    {
-                        needupdateship = true;
-                        break;
-                    }
-                }
-            }
             if (needupdateship)
                 Ships = new ObservableCollection<Ship>(rawdata.api_ship
                     .Where(x => x != -1)
