@@ -202,43 +202,46 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             int fleetid = api.GetInt("api_id");
             int shipid = api.GetInt("api_ship_id");
             var fleet = Fleets[fleetid];
-            if (idx == -1)//旗艦以外全解除
+            DispatcherHelper.UIDispatcher.Invoke(() =>
             {
-                for (int i = fleet.Ships.Count - 1; i > 0; i--)
+                if (idx == -1)//旗艦以外全解除
                 {
-                    fleet.Ships[i].InFleet = null;
-                    fleet.Ships.RemoveAt(i);
-                }
-            }
-            else
-            {
-                if (shipid == -1)//はずす
-                {
-                    fleet.Ships[idx].InFleet = null;
-                    fleet.Ships.RemoveAt(idx);
+                    for (int i = fleet.Ships.Count - 1; i > 0; i--)
+                    {
+                        fleet.Ships[i].InFleet = null;
+                        fleet.Ships.RemoveAt(i);
+                    }
                 }
                 else
                 {
-                    var ship = Ships[shipid];
-                    var destf = ship.InFleet;
-                    if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
-                    if (destf != null)
+                    if (shipid == -1)//はずす
                     {
-                        if (idx < fleet.Ships.Count)
-                            destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
-                        else destf.Ships.Remove(ship);
-                        destf.UpdateStatus();
-                        if (destf != fleet && destf.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
-                            destf.CheckHomeportRepairingTime(true);
+                        fleet.Ships[idx].InFleet = null;
+                        fleet.Ships.RemoveAt(idx);
                     }
-                    if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
-                    else fleet.Ships[idx] = ship;
-                    ship.InFleet = fleet;
+                    else
+                    {
+                        var ship = Ships[shipid];
+                        var destf = ship.InFleet;
+                        if (idx < fleet.Ships.Count) fleet.Ships[idx].InFleet = destf;
+                        if (destf != null)
+                        {
+                            if (idx < fleet.Ships.Count)
+                                destf.Ships[destf.Ships.IndexOf(ship)] = fleet.Ships[idx];
+                            else destf.Ships.Remove(ship);
+                            destf.UpdateStatus();
+                            if (destf != fleet && destf.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
+                                destf.CheckHomeportRepairingTime(true);
+                        }
+                        if (idx >= fleet.Ships.Count) fleet.Ships.Add(ship);
+                        else fleet.Ships[idx] = ship;
+                        ship.InFleet = fleet;
+                    }
+                    if (fleet.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
+                        fleet.CheckHomeportRepairingTime(true);
                 }
-                if (fleet.Ships?.FirstOrDefault()?.ShipInfo.ShipType.Id == 19)
-                    fleet.CheckHomeportRepairingTime(true);
-            }
-            fleet.UpdateStatus();
+                fleet.UpdateStatus();
+            });
         }
 
         private void PresetHandler(NameValueCollection req, getmember_deck api)
