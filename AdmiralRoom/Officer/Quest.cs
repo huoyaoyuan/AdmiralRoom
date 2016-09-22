@@ -13,7 +13,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public QuestPeriod Period => (QuestPeriod)rawdata.api_type;
         public QuestState State => (QuestState)rawdata.api_state;
         public string Title => rawdata.api_title ?? "（未知任务）";
-        public string Detail => rawdata.api_detail;
+        public string Detail => rawdata.api_detail.Replace("<br>", "");
         public int[] GetMaterial => rawdata.api_get_material;
         public QuestBonus Bonus => (QuestBonus)rawdata.api_bonus_flag;
         public QuestProgress Progress => (QuestProgress)rawdata.api_progress_flag;
