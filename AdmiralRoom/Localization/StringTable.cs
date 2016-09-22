@@ -228,6 +228,30 @@
         ///</summary>
         public static string Equip_Proficiency => ResourceService.GetString("Equip_Proficiency");
         ///<summary>
+        ///   查找类似 退出确认 的本地化字符串。
+        ///</summary>
+        public static string ExitConfirm => ResourceService.GetString("ExitConfirm");
+        ///<summary>
+        ///   查找类似 确认要退出吗？ 的本地化字符串。
+        ///</summary>
+        public static string ExitConfirm_Confirm => ResourceService.GetString("ExitConfirm_Confirm");
+        ///<summary>
+        ///   查找类似 有远征即将完成， 的本地化字符串。
+        ///</summary>
+        public static string ExitConfirm_MissionComplete => ResourceService.GetString("ExitConfirm_MissionComplete");
+        ///<summary>
+        ///   查找类似 有舰队可以进行远征， 的本地化字符串。
+        ///</summary>
+        public static string ExitConfirm_MissionStart => ResourceService.GetString("ExitConfirm_MissionStart");
+        ///<summary>
+        ///   查找类似 任务完成了吗？ 的本地化字符串。
+        ///</summary>
+        public static string ExitConfirm_Quest => ResourceService.GetString("ExitConfirm_Quest");
+        ///<summary>
+        ///   查找类似 有舰娘没有入渠， 的本地化字符串。
+        ///</summary>
+        public static string ExitConfirm_Repair => ResourceService.GetString("ExitConfirm_Repair");
+        ///<summary>
         ///   查找类似 远征 的本地化字符串。
         ///</summary>
         public static string Expedition => ResourceService.GetString("Expedition");
@@ -609,13 +633,13 @@
         ///</summary>
         public static string Notification_Repair_Title => ResourceService.GetString("Notification_Repair_Title");
         ///<summary>
-        ///   查找类似 通知类型 的本地化字符串。
-        ///</summary>
-        public static string Notification_Type => ResourceService.GetString("Notification_Type");
-        ///<summary>
         ///   查找类似 Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip 的本地化字符串。
         ///</summary>
         public static string Notification_ToolTip_Win10 => ResourceService.GetString("Notification_ToolTip_Win10");
+        ///<summary>
+        ///   查找类似 通知类型 的本地化字符串。
+        ///</summary>
+        public static string Notification_Type => ResourceService.GetString("Notification_Type");
         ///<summary>
         ///   查找类似 选项 的本地化字符串。
         ///</summary>

@@ -59,6 +59,12 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_Name">装备名</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_OnShip">装备所在舰船</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_Proficiency">熟练度</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm">退出确认</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Confirm">确认要退出吗？</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_MissionComplete">有远征即将完成，</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_MissionStart">有舰队可以进行远征，</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Quest">任务完成了吗？</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Repair">有舰娘没有入渠，</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition">远征</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition_BackTime">归来时间</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition_Fail">失败</s:String>
@@ -155,8 +161,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_HeavyDamage_Title">大破警告</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Text">修理渠的第 {0} 修理坞的「{1}」整备完毕。</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">修理完毕</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">通知类型</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_ToolTip_Win10">Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">通知类型</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Option">选项</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">插件</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Disable">不看剧透</s:String>

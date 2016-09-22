@@ -282,6 +282,24 @@
   <data name="Equip_Proficiency" xml:space="preserve">
     <value>熟練度</value>
   </data>
+  <data name="ExitConfirm" xml:space="preserve">
+    <value>終了確認</value>
+  </data>
+  <data name="ExitConfirm_Confirm" xml:space="preserve">
+    <value>ゲームを終了しますか？</value>
+  </data>
+  <data name="ExitConfirm_MissionComplete" xml:space="preserve">
+    <value>遠征は完了するには、</value>
+  </data>
+  <data name="ExitConfirm_MissionStart" xml:space="preserve">
+    <value>艦隊が遠征する可能、</value>
+  </data>
+  <data name="ExitConfirm_Quest" xml:space="preserve">
+    <value>任務を達成しましたか？</value>
+  </data>
+  <data name="ExitConfirm_Repair" xml:space="preserve">
+    <value>艦娘が入渠したい、</value>
+  </data>
   <data name="Expedition" xml:space="preserve">
     <value>遠征</value>
   </data>

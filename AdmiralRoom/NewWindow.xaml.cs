@@ -135,7 +135,30 @@ namespace Huoyaoyuan.AdmiralRoom
                 DockMan.Layout.Hidden.Remove(view);
         }
         private void OnClosed(object sender, EventArgs e) => TrySaveLayout();
-        private void OnClosing(object sender, CancelEventArgs e) => Win32Helper.SetRestoreWindowPosition(this);
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            string message = "";
+            if (Officer.Staff.Current.Homeport.Fleets.Skip(1)
+                .Any(x => x.Status == Officer.FleetStatus.InMission
+                && x.BackTime - DateTimeOffset.Now < TimeSpan.FromMinutes(10)))
+                message = StringTable.ExitConfirm_MissionComplete;
+            else if (Officer.Staff.Current.Homeport.Ships
+                .Any(x => !x.HP.IsMax
+                && !x.IsRepairing
+                && x.InFleet?.CanHomeportRepairing == false))
+                message = StringTable.ExitConfirm_Repair;
+            else if (Officer.Staff.Current.Homeport.Fleets.Skip(1).Any(x => x.Status == Officer.FleetStatus.Ready))
+                message = StringTable.ExitConfirm_MissionStart;
+            else if (Officer.Staff.Current.Quests.QuestInProgress.Any(x => x.Period == Officer.QuestPeriod.Daily))
+                message = StringTable.ExitConfirm_Quest;
+            message += StringTable.ExitConfirm_Confirm;
+            if (MessageBox.Show(message, StringTable.ExitConfirm, MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            {
+                e.Cancel = true;
+                return;
+            }
+            Win32Helper.SetRestoreWindowPosition(this);
+        }
 
         #region Layout
         private void TryLoadLayout(string path = "layout.xml")

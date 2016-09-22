@@ -282,6 +282,24 @@
   <data name="Equip_Proficiency" xml:space="preserve">
     <value>Proficiency</value>
   </data>
+  <data name="ExitConfirm" xml:space="preserve">
+    <value>Exit Confirm</value>
+  </data>
+  <data name="ExitConfirm_Confirm" xml:space="preserve">
+    <value>Are you sure to exit?</value>
+  </data>
+  <data name="ExitConfirm_MissionComplete" xml:space="preserve">
+    <value>Expedition is going to complete, </value>
+  </data>
+  <data name="ExitConfirm_MissionStart" xml:space="preserve">
+    <value>A fleet can start an expedition, </value>
+  </data>
+  <data name="ExitConfirm_Quest" xml:space="preserve">
+    <value>Quests completed? </value>
+  </data>
+  <data name="ExitConfirm_Repair" xml:space="preserve">
+    <value>Ship not repaired, </value>
+  </data>
   <data name="Expedition" xml:space="preserve">
     <value>Expedition</value>
   </data>
@@ -568,11 +586,11 @@ Expedition {1} - {2}</value>
   <data name="Notification_Repair_Title" xml:space="preserve">
     <value>Repairs Completed</value>
   </data>
-  <data name="Notification_Type" xml:space="preserve">
-    <value>Notification Type</value>
-  </data>
   <data name="Notification_ToolTip_Win10" xml:space="preserve">
     <value>Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</value>
+  </data>
+  <data name="Notification_Type" xml:space="preserve">
+    <value>Notification Type</value>
   </data>
   <data name="Option" xml:space="preserve">
     <value>Option</value>

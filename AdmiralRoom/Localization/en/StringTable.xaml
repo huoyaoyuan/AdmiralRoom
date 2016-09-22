@@ -59,6 +59,12 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_Name">Name</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_OnShip">Equipped on</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_Proficiency">Proficiency</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm">Exit Confirm</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Confirm">Are you sure to exit?</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_MissionComplete">Expedition is going to complete, </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_MissionStart">A fleet can start an expedition, </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Quest">Quests completed? </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Repair">Ship not repaired, </s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition">Expedition</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition_BackTime">Back Time</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition_Fail">Fail</s:String>
@@ -155,8 +161,8 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_HeavyDamage_Title">Heavy Damage Warning</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Text">Repairs on {1} in Dock {0} have been completed.</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Repair_Title">Repairs Completed</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">Notification Type</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Notification_ToolTip_Win10">Windows 10 forces to use toast notifications. To enable the BallonTip, edit registry.</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Notification_Type">Notification Type</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Option">Option</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Plugin">Plugin</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Predict_Disable">Disable</s:String>

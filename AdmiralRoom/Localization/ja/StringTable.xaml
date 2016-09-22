@@ -59,6 +59,12 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_Name">装備名</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_OnShip">装備している艦娘</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Equip_Proficiency">熟練度</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm">終了確認</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Confirm">ゲームを終了しますか？</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_MissionComplete">遠征は完了するには、</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_MissionStart">艦隊が遠征する可能、</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Quest">任務を達成しましたか？</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ExitConfirm_Repair">艦娘が入渠したい、</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition">遠征</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition_BackTime">帰投時刻</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Expedition_Fail">失敗</s:String>

@@ -282,6 +282,24 @@
   <data name="Equip_Proficiency" xml:space="preserve">
     <value>熟练度</value>
   </data>
+  <data name="ExitConfirm" xml:space="preserve">
+    <value>退出确认</value>
+  </data>
+  <data name="ExitConfirm_Confirm" xml:space="preserve">
+    <value>确认要退出吗？</value>
+  </data>
+  <data name="ExitConfirm_MissionComplete" xml:space="preserve">
+    <value>有远征即将完成，</value>
+  </data>
+  <data name="ExitConfirm_MissionStart" xml:space="preserve">
+    <value>有舰队可以进行远征，</value>
+  </data>
+  <data name="ExitConfirm_Quest" xml:space="preserve">
+    <value>任务完成了吗？</value>
+  </data>
+  <data name="ExitConfirm_Repair" xml:space="preserve">
+    <value>有舰娘没有入渠，</value>
+  </data>
   <data name="Expedition" xml:space="preserve">
     <value>远征</value>
   </data>
@@ -568,11 +586,11 @@
   <data name="Notification_Repair_Title" xml:space="preserve">
     <value>修理完毕</value>
   </data>
-  <data name="Notification_Type" xml:space="preserve">
-    <value>通知类型</value>
-  </data>
   <data name="Notification_ToolTip_Win10" xml:space="preserve">
     <value>Windows 10强制使用Toast通知，只能通过更改注册表来启用BallonTip</value>
+  </data>
+  <data name="Notification_Type" xml:space="preserve">
+    <value>通知类型</value>
   </data>
   <data name="Option" xml:space="preserve">
     <value>选项</value>
