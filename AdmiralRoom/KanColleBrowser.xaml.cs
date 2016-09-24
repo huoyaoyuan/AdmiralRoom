@@ -101,7 +101,7 @@ namespace Huoyaoyuan.AdmiralRoom
             btnStop.Click += (_, __) => Stop();
             WebBrowser.Navigating += (_, e) =>
             {
-                txtAddress.Text = e.Uri.ToString();
+                txtAddress.Text = e.Uri.AbsoluteUri;
                 btnBack.IsEnabled = WebBrowser.CanGoBack;
                 btnFoward.IsEnabled = WebBrowser.CanGoForward;
                 styleSheet = null;
