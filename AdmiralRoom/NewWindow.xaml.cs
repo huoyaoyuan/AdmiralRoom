@@ -138,16 +138,17 @@ namespace Huoyaoyuan.AdmiralRoom
         private void OnClosing(object sender, CancelEventArgs e)
         {
             string message = "";
-            if (Officer.Staff.Current.Homeport.Fleets.Skip(1)
+            if (Officer.Staff.Current.Homeport.Fleets?.Skip(1)
                 .Any(x => x.Status == Officer.FleetStatus.InMission
-                && x.BackTime - DateTimeOffset.Now < TimeSpan.FromMinutes(10)))
+                && x.BackTime - DateTimeOffset.Now < TimeSpan.FromMinutes(10))
+                == true)
                 message = StringTable.ExitConfirm_MissionComplete;
             else if (Officer.Staff.Current.Homeport.Ships
                 .Any(x => !x.HP.IsMax
                 && !x.IsRepairing
                 && x.InFleet?.CanHomeportRepairing == false))
                 message = StringTable.ExitConfirm_Repair;
-            else if (Officer.Staff.Current.Homeport.Fleets.Skip(1).Any(x => x.Status == Officer.FleetStatus.Ready))
+            else if (Officer.Staff.Current.Homeport.Fleets?.Skip(1).Any(x => x.Status == Officer.FleetStatus.Ready) == true)
                 message = StringTable.ExitConfirm_MissionStart;
             else if (Officer.Staff.Current.Quests.QuestInProgress.Any(x => x.Period == Officer.QuestPeriod.Daily))
                 message = StringTable.ExitConfirm_Quest;
