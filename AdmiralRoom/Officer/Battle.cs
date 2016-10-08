@@ -56,6 +56,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 int es = EnemySinkCount;
                 int fd = (int)(FriendDamageRate * 100);
                 int ed = (int)(EnemyDamageRate * 100);
+                int ec = AllEnemies.Count();
                 if (BattleType == MapNodeType.AirDefence)//空袭战
                 {
                     if (FriendDamageRate <= 0) return WinRank.Perfect;
@@ -66,11 +67,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
                 if (fl == 0)
                 {
-                    if (es == EnemyFleet.Length)
+                    if (es == ec)
                     {
                         return FriendDamageRate <= 0 ? WinRank.Perfect : WinRank.S;
                     }
-                    if (es >= Round(EnemyFleet.Length * 0.6)) return WinRank.A;
+                    if (es >= Round(ec * 0.6)) return WinRank.A;
                     if (EnemyFleet[0].ToHP <= 0) return WinRank.B;
                     if (ed > fd * 2.5) return WinRank.B;
                     if (ed > fd * 0.9) return WinRank.C;
@@ -78,7 +79,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
                 else
                 {
-                    if (es == EnemyFleet.Length) return WinRank.B;
+                    if (es == ec) return WinRank.B;
                     if (EnemyFleet[0].ToHP <= 0 && fl < es) return WinRank.B;
                     if (ed > fd * 2.5) return WinRank.B;
                     if (ed > fd * 0.9) return WinRank.C;
