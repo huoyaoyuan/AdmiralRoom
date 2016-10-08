@@ -221,20 +221,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 DropItem = api.api_get_useitem?.api_useitem_id ?? 0
             });
             Logger.Loggers.BattleDetailLogger.SetTimeStamp(now);
-            Reporter.PoiDBReporter.ReportAsync(new JObject
-            {
-                ["mapId"] = CurrentMap.Id,
-                ["cellId"] = CurrentNode.Id,
-                ["isBoss"] = CurrentNode.Type == MapNodeType.BOSS,
-                ["shipId"] = api.api_get_ship?.api_ship_id ??
-                    (Staff.Current.Admiral.CanDropShip ? -1 : 0),
-                ["enemy"] = api.api_enemy_info.api_deck_name,
-                ["quest"] = api.api_quest_name,
-                ["mapLv"] = (int)CurrentMap.Difficulty,
-                ["rank"] = api.api_win_rank,
-                ["teitokuLv"] = Staff.Current.Admiral.Level,
-                ["enemyShips"] = new JArray(api.api_ship_id)
-            }, "drop_ship");
+            if (Staff.Current.Admiral.CanDropShip)
+                Reporter.PoiDBReporter.ReportAsync(new JObject
+                {
+                    ["mapId"] = CurrentMap.Id,
+                    ["cellId"] = CurrentNode.Id,
+                    ["isBoss"] = CurrentNode.Type == MapNodeType.BOSS,
+                    ["shipId"] = api.api_get_ship?.api_ship_id ?? -1,
+                    ["enemy"] = api.api_enemy_info.api_deck_name,
+                    ["quest"] = api.api_quest_name,
+                    ["mapLv"] = (int)CurrentMap.Difficulty,
+                    ["rank"] = api.api_win_rank,
+                    ["teitokuLv"] = api.api_member_lv,
+                    ["enemyShips"] = new JArray(CurrentBattle.EnemyShipIds),
+                    ["enemyFormation"] = (int)(CurrentBattle as Battle).EnemyFormation
+                }, "drop_ship");
             if (api.api_get_eventitem != null)
             {
                 Reporter.PoiDBReporter.ReportAsync(new JObject

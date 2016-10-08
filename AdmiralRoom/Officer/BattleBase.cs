@@ -62,6 +62,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public ShipInBattle[] Fleet2 { get; set; }
         public ShipInBattle[] EnemyFleet { get; set; }
         public ShipInBattle[] EnemyFleet2 { get; set; }
+        public int[] EnemyShipIds { get; protected set; }
         public IEnumerable<ShipInBattle> AllFriends => Fleet1.ConcatNotNull(Fleet2);
         public IEnumerable<ShipInBattle> AllEnemies => EnemyFleet.ConcatNotNull(EnemyFleet2);
         public virtual bool IsBattling => false;

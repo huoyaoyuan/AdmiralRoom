@@ -132,6 +132,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 })
                 .ToArray();
 
+            EnemyShipIds = api.api_ship_ke.Skip(1).ConcatNotNull(api.api_ship_ke_combined?.Skip(1)).ToArray();
+
             Fleet1.ArrayZip(api.api_maxhps, 1, Delegates.SetMaxHP);
             Fleet2?.ArrayZip(api.api_maxhps_combined, 1, Delegates.SetMaxHP);
             EnemyFleet.ArrayZip(api.api_maxhps, 7, Delegates.SetMaxHP);
