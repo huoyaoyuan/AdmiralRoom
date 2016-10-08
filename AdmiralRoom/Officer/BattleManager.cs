@@ -236,17 +236,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     ["enemyShips"] = new JArray(CurrentBattle.EnemyShipIds),
                     ["enemyFormation"] = (int)(CurrentBattle as Battle).EnemyFormation
                 }, "drop_ship");
-            if (api.api_get_eventitem != null)
-            {
-                Reporter.PoiDBReporter.ReportAsync(new JObject
-                {
-                    ["teitokuId"] = Staff.Current.Admiral.MemberID,
-                    ["teitokuLv"] = Staff.Current.Admiral.Level,
-                    ["teitoku"] = Staff.Current.Admiral.Nickname,
-                    ["mapId"] = CurrentMap.Id,
-                    ["mapLv"] = (int)CurrentMap.Difficulty
-                }, "pass_event");
-            }
+            //if (api.api_get_eventitem != null)
+            //{
+            //    Reporter.PoiDBReporter.ReportAsync(new JObject
+            //    {
+            //        ["teitokuId"] = Staff.Current.Admiral.MemberID,
+            //        ["teitokuLv"] = Staff.Current.Admiral.Level,
+            //        ["teitoku"] = Staff.Current.Admiral.Nickname,
+            //        ["mapId"] = CurrentMap.Id,
+            //        ["mapLv"] = (int)CurrentMap.Difficulty
+            //    }, "pass_event");
+            //}
             foreach (var enemy in CurrentBattle.AllEnemies)
                 if (enemy.ToHP <= 0)
                     switch (enemy.ShipInfo.ShipType.Id)
