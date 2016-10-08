@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -60,6 +61,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public ShipInBattle[] Fleet1 { get; set; }
         public ShipInBattle[] Fleet2 { get; set; }
         public ShipInBattle[] EnemyFleet { get; set; }
+        public ShipInBattle[] EnemyFleet2 { get; set; }
+        public IEnumerable<ShipInBattle> AllFriends => Fleet1.ConcatNotNull(Fleet2);
+        public IEnumerable<ShipInBattle> AllEnemies => EnemyFleet.ConcatNotNull(EnemyFleet2);
         public virtual bool IsBattling => false;
 
         #region GetShip

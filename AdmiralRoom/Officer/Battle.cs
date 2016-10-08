@@ -19,6 +19,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             catch { return null; }
         }
+        private ShipInBattle FindEnemy(int index)
+        {
+            try
+            {
+                if (index <= 6) return EnemyFleet[index - 1];
+                return EnemyFleet2[index - 7];
+            }
+            catch { return null; }
+        }
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
@@ -34,11 +43,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public AirCombat AirCombat1 { get; set; }
         public AirCombat AirCombat2 { get; set; }
-        public double FriendDamageRate => (double)Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP - x.ToHP)
+        public double FriendDamageRate => (double)AllFriends.Sum(x => x.FromHP - x.ToHP)
             / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
-        public double EnemyDamageRate => (double)EnemyFleet.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
-        public int FriendLostCount => Fleet1.ConcatNotNull(Fleet2).Count(x => x.ToHP <= 0);
-        public int EnemySinkCount => EnemyFleet.Count(x => x.ToHP <= 0);
+        public double EnemyDamageRate => (double)AllEnemies.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
+        public int FriendLostCount => AllFriends.Count(x => x.ToHP <= 0);
+        public int EnemySinkCount => AllEnemies.Count(x => x.ToHP <= 0);
         public WinRank WinRank
         {
             get
@@ -110,14 +119,28 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     Armor = api.api_eParam[i][3]
                 })
                 .ToArray();
+            EnemyFleet2 = api.api_ship_ke_combined?.Where(x => x != -1)
+                .Select((x, i) => new ShipInBattle
+                {
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[x],
+                    Level = api.api_ship_lv_combined[i + 1],
+                    Equipments = api.api_eSlot_combined[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).ToArray(),
+                    Firepower = api.api_eParam_combined[i][0],
+                    Torpedo = api.api_eParam_combined[i][1],
+                    AA = api.api_eParam_combined[i][2],
+                    Armor = api.api_eParam_combined[i][3]
+                })
+                .ToArray();
 
             Fleet1.ArrayZip(api.api_maxhps, 1, Delegates.SetMaxHP);
             Fleet2?.ArrayZip(api.api_maxhps_combined, 1, Delegates.SetMaxHP);
             EnemyFleet.ArrayZip(api.api_maxhps, 7, Delegates.SetMaxHP);
+            EnemyFleet2?.ArrayZip(api.api_maxhps_combined, 7, Delegates.SetMaxHP);
 
             Fleet1.ArrayZip(api.api_nowhps, 1, Delegates.SetStartHP);
             Fleet2?.ArrayZip(api.api_nowhps_combined, 1, Delegates.SetStartHP);
             EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
+            EnemyFleet2?.ArrayZip(api.api_nowhps_combined, 7, Delegates.SetStartHP);
 
             api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
             api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
@@ -144,6 +167,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     FireAttack(api.api_hougeki1, Fleet1);
                     FireAttack(api.api_hougeki2, Fleet1);
                     FireAttack(api.api_hougeki3, Fleet2);
+                    break;
+                case CombinedFleetType.EnenyCombined:
+                    ECFireAttack(api.api_hougeki1);
+                    ECFireAttack(api.api_hougeki2);
+                    ECFireAttack(api.api_hougeki3);
                     break;
             }
             TorpedoAttack(api.api_raigeki);
@@ -249,7 +277,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             if (api.api_stage3_combined != null)
             {
-                Fleet2.ArrayZip(api.api_stage3_combined.api_fdam, 1, Delegates.SetDamage);
+                Fleet2?.ArrayZip(api.api_stage3_combined.api_fdam, 1, Delegates.SetDamage);
+                EnemyFleet2?.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
                 for (int i = 1; i < api.api_stage3_combined.api_fdam.Length; i++)
                     if (api.api_stage3_combined.api_frai_flag[i] != 0)
                         if (api.api_stage3_combined.api_fbak_flag[i] != 0)
@@ -261,6 +290,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (api.api_stage3_combined.api_fbak_flag[i] != 0)
                         if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
                         else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
+                for (int i = 1; i < api.api_stage3.api_edam.Length; i++)
+                    if (api.api_stage3.api_erai_flag[i] != 0)
+                        if (api.api_stage3.api_ebak_flag[i] != 0)
+                            if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
+                            else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                        else
+                            if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
+                        else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                    else if (api.api_stage3.api_ebak_flag[i] != 0)
+                        if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3.api_edam[i];
+                        else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
             }
             return combat;
         }
@@ -282,15 +322,32 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (api == null) return;
             NightOrTorpedo.ArrayZip(api.api_fdam, 1, Delegates.SetDamage);
-            EnemyFleet.ArrayZip(api.api_edam, 1, Delegates.SetDamage);
+            AllEnemies.ZipEach(api.api_edam.Skip(1), Delegates.SetDamage);
             NightOrTorpedo.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
-            EnemyFleet.ArrayZip(api.api_eydam, 1, Delegates.SetGiveDamage);
+            AllEnemies.ZipEach(api.api_eydam.Skip(1), Delegates.SetGiveDamage);
         }
         private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet)
         {
             if (api == null) return;
             api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(FindShip(a, fleet), b)));
             api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(FindShip(y, fleet), d)));
+        }
+        private void ECFireAttack(sortie_battle.fire api)
+        {
+            if (api == null) return;
+            for (int i = 1; i < api.api_at_eflag.Length; i++)
+            {
+                if (api.api_at_eflag[i] == 0)
+                {
+                    api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(FindEnemy(x), y));
+                    Delegates.SetGiveDamage(Fleet1[api.api_at_list[i] - 1], api.api_damage[i - 1].Sum());
+                }
+                else
+                {
+                    api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(Fleet1[x - 1], y));
+                    Delegates.SetGiveDamage(FindEnemy(api.api_at_list[i]), api.api_damage[i - 1].Sum());
+                }
+            }
         }
     }
     public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }

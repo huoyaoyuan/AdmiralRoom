@@ -71,6 +71,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
                 }
             });
+            Staff.API("api_req_combined_battle/ec_battle").Subscribe<sortie_battle>(api =>
+                CurrentBattle = new Battle(api, CombinedFleetType.EnenyCombined, CurrentNode?.Type ?? MapNodeType.Battle, this));
+            Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe<sortie_battle>(NightBattle);
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }
@@ -243,7 +246,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     ["mapLv"] = (int)CurrentMap.Difficulty
                 }, "pass_event");
             }
-            foreach (var enemy in CurrentBattle.EnemyFleet)
+            foreach (var enemy in CurrentBattle.AllEnemies)
                 if (enemy.ToHP <= 0)
                     switch (enemy.ShipInfo.ShipType.Id)
                     {
