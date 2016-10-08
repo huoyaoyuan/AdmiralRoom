@@ -41,6 +41,7 @@
             public airbattle.stage1 api_stage1 { get; set; }
             public airbattle.stage2 api_stage2 { get; set; }
             public airbattle.stage3 api_stage3 { get; set; }
+            public airbattle.stage3 api_stage3_combined { get; set; }
         }
         public air_base_attack[] api_air_base_attack { get; set; }
         public int[] api_stage_flag { get; set; }

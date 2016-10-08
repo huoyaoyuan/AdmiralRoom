@@ -278,7 +278,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (api.api_stage3_combined != null)
             {
                 Fleet2?.ArrayZip(api.api_stage3_combined.api_fdam, 1, Delegates.SetDamage);
-                EnemyFleet2?.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
+                EnemyFleet2?.ArrayZip(api.api_stage3_combined.api_edam, 1, Delegates.SetDamage);
                 for (int i = 1; i < api.api_stage3_combined.api_fdam.Length; i++)
                     if (api.api_stage3_combined.api_frai_flag[i] != 0)
                         if (api.api_stage3_combined.api_fbak_flag[i] != 0)
@@ -290,17 +290,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     else if (api.api_stage3_combined.api_fbak_flag[i] != 0)
                         if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
                         else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                for (int i = 1; i < api.api_stage3.api_edam.Length; i++)
-                    if (api.api_stage3.api_erai_flag[i] != 0)
-                        if (api.api_stage3.api_ebak_flag[i] != 0)
-                            if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
-                            else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                for (int i = 1; i < api.api_stage3_combined.api_edam.Length; i++)
+                    if (api.api_stage3_combined.api_erai_flag[i] != 0)
+                        if (api.api_stage3_combined.api_ebak_flag[i] != 0)
+                            if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
+                            else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
                         else
-                            if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
-                        else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
-                    else if (api.api_stage3.api_ebak_flag[i] != 0)
-                        if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3.api_edam[i];
-                        else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
+                            if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
+                        else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
+                    else if (api.api_stage3_combined.api_ebak_flag[i] != 0)
+                        if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
+                        else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
             }
             return combat;
         }
@@ -315,8 +315,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (api == null) return;
             foreach (var attack in api)
+            {
                 if (attack.api_stage3 != null)
                     EnemyFleet.ArrayZip(attack.api_stage3.api_edam, 1, Delegates.SetDamage);
+                if (attack.api_stage3_combined != null)
+                    EnemyFleet2.ArrayZip(attack.api_stage3_combined.api_edam, 1, Delegates.SetDamage);
+            }
         }
         private void TorpedoAttack(sortie_battle.torpedo api)
         {
