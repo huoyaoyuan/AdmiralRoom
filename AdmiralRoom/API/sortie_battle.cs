@@ -8,17 +8,21 @@
         /// </summary>
         public int api_dock_id { get; set; }
         public int[] api_ship_ke { get; set; }
+        public int[] api_ship_ke_combined { get; set; }
         public int[] api_ship_lv { get; set; }
+        public int[] api_ship_lv_combined { get; set; }
         public int[] api_nowhps { get; set; }
         public int[] api_nowhps_combined { get; set; }
         public int[] api_maxhps { get; set; }
         public int[] api_maxhps_combined { get; set; }
         public int api_midnight_flag { get; set; }
         public int[][] api_eSlot { get; set; }
+        public int[][] api_eSlot_combined { get; set; }
         public int[][] api_eKyouka { get; set; }
         public int[][] api_fParam { get; set; }
         public int[][] api_eParam { get; set; }
         public int[][] api_fParam_combined { get; set; }
+        public int[][] api_eParam_combined { get; set; }
         public int[] api_escape_idx { get; set; }
         public int[] api_escape_idx_combined { get; set; }
         public int[] api_search { get; set; }
@@ -68,22 +72,19 @@
                 public anti_air_cutin api_air_fire { get; set; }
             }
             public stage2 api_stage2 { get; set; }
-            public class stage3 : stage3_combined
+            public class stage3
             {
                 public int[] api_erai_flag { get; set; }
                 public int[] api_ebak_flag { get; set; }
                 public int[] api_ecl_flag { get; set; }
                 public decimal[] api_edam { get; set; }
-            }
-            public stage3 api_stage3 { get; set; }
-            public class stage3_combined
-            {
                 public int[] api_frai_flag { get; set; }
                 public int[] api_fbak_flag { get; set; }
                 public int[] api_fcl_flag { get; set; }
                 public decimal[] api_fdam { get; set; }
             }
-            public stage3_combined api_stage3_combined { get; set; }
+            public stage3 api_stage3 { get; set; }
+            public stage3 api_stage3_combined { get; set; }
         }
         public airbattle api_kouku { get; set; }
         public airbattle api_kouku2 { get; set; }
@@ -133,6 +134,10 @@
         public int[] api_hourai_flag { get; set; }
         public class fire
         {
+            /// <summary>
+            /// 好像就深海联合舰队在用
+            /// </summary>
+            public int[] api_at_eflag { get; set; }
             public int[] api_at_list { get; set; }
             /// <summary>
             /// 昼战特殊攻击

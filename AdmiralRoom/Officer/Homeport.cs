@@ -343,5 +343,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Logger.Loggers.MaterialLogger.ForceLog = true;
         }
     }
-    public enum CombinedFleetType { None, Carrier, Surface, Transport }
+    public enum CombinedFleetType { None, Carrier, Surface, Transport, EnenyCombined }
 }
