@@ -45,7 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public AirCombat AirCombat2 { get; set; }
         public double FriendDamageRate => (double)AllFriends.Sum(x => x.FromHP - x.ToHP)
             / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
-        public double EnemyDamageRate => (double)AllEnemies.Sum(x => x.FromHP - x.ToHP) / EnemyFleet.Sum(x => x.FromHP);
+        public double EnemyDamageRate => (double)AllEnemies.Sum(x => x.FromHP - x.ToHP) / AllEnemies.Sum(x => x.FromHP);
         public int FriendLostCount => AllFriends.Count(x => x.ToHP <= 0);
         public int EnemySinkCount => AllEnemies.Count(x => x.ToHP <= 0);
         public WinRank WinRank
