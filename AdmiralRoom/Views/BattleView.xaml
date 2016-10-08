@@ -332,6 +332,9 @@
                                               ItemsSource="{Binding Battle.CurrentBattle.Fleet2}"
                                               Style="{StaticResource FleetKey}"/>
                                 <ItemsControl Grid.Row="1" Grid.Column="3"
+                                              ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet2}"
+                                              Style="{StaticResource FleetKey}"/>
+                                <ItemsControl Grid.Row="1" Grid.Column="3"
                                               ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
                                               Style="{StaticResource FleetKey}"/>
                             </StackPanel>
