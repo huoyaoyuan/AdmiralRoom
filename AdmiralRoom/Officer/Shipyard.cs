@@ -112,7 +112,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         dock.UseFuel,
                         dock.UseBull,
                         dock.UseSteel,
-                        dock.UseBauxite
+                        dock.UseBauxite,
+                        dock.UseDevelopment
                     },
                     ["kdockId"] = lastcreatedock - 1,
                     ["secretary"] = Staff.Current.Homeport.Secretary.ShipInfo.Id,
