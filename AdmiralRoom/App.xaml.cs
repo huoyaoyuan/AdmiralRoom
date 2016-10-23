@@ -43,7 +43,8 @@ namespace Huoyaoyuan.AdmiralRoom
 
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
-                file.Delete();
+                if (!file.Name.EndsWith(".xml.old"))
+                    file.Delete();
             foreach (var folder in rootfolder.GetDirectories())
                 if (!Updater.Updater.ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
                     try

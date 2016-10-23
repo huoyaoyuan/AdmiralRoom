@@ -209,7 +209,7 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
             Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles())
-                if (file.Extension != "xml" && file.Name != downloadfilename)
+                if (!file.Name.EndsWith(".xml") && file.Name != downloadfilename)
                     file.MoveTo(file.FullName + ".old");
             foreach (var folder in rootfolder.GetDirectories())
                 if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
