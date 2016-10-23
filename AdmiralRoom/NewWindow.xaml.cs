@@ -144,13 +144,14 @@ namespace Huoyaoyuan.AdmiralRoom
                 == true)
                 message = StringTable.ExitConfirm_MissionComplete;
             else if (Officer.Staff.Current.Homeport.Ships
-                .Any(x => !x.HP.IsMax
+                ?.Any(x => !x.HP.IsMax
                 && !x.IsRepairing
-                && x.InFleet?.CanHomeportRepairing == false))
+                && x.InFleet?.CanHomeportRepairing == false)
+                == true)
                 message = StringTable.ExitConfirm_Repair;
             else if (Officer.Staff.Current.Homeport.Fleets?.Skip(1).Any(x => x.Status == Officer.FleetStatus.Ready) == true)
                 message = StringTable.ExitConfirm_MissionStart;
-            else if (Officer.Staff.Current.Quests.QuestInProgress.Any(x => x.Period == Officer.QuestPeriod.Daily))
+            else if (Officer.Staff.Current.Quests.QuestInProgress?.Any(x => x.Period == Officer.QuestPeriod.Daily) == true)
                 message = StringTable.ExitConfirm_Quest;
             message += StringTable.ExitConfirm_Confirm;
             if (MessageBox.Show(message, StringTable.ExitConfirm, MessageBoxButton.YesNo) != MessageBoxResult.Yes)
