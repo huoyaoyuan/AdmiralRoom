@@ -18,6 +18,19 @@ namespace Huoyaoyuan.AdmiralRoom
             Environment.CurrentDirectory = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+            var rootfolder = new DirectoryInfo(".");
+            foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
+                if (file.Name.EndsWith(".xml.old"))
+                    file.MoveTo(file.FullName.Replace(".old", ""));
+                else file.Delete();
+            foreach (var folder in rootfolder.GetDirectories())
+                if (!Updater.Updater.ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
+                    try
+                    {
+                        folder.Delete();
+                    }
+                    catch { }
+
             Win32Helper.SetIEEmulation(11001);
             Win32Helper.SetGPURendering(true);
             Win32Helper.SetMMCSSTask();
@@ -41,18 +54,6 @@ namespace Huoyaoyuan.AdmiralRoom
             this.MainWindow.Show();
             Models.Status.Current.StatusText = StringTable.Status_Ready;
 
-            var rootfolder = new DirectoryInfo(".");
-            foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
-                if (file.Name.EndsWith(".xml.old"))
-                    file.MoveTo(file.FullName.Replace(".old", ""));
-                else file.Delete();
-            foreach (var folder in rootfolder.GetDirectories())
-                if (!Updater.Updater.ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
-                    try
-                    {
-                        folder.Delete();
-                    }
-                    catch { }
             Updater.Updater.Instance.Timer.Start();
         }
 
