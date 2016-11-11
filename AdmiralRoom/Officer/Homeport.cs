@@ -142,8 +142,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public void RemoveShip(Ship ship)
         {
-            ship.InFleet?.Ships.Remove(ship);
-            ship.InFleet?.UpdateStatus();
+            var infleet = ship.InFleet;
+            if (infleet != null)
+                DispatcherHelper.UIDispatcher.Invoke(() =>
+                {
+                    infleet.Ships?.Remove(ship);
+                    infleet.UpdateStatus();
+                });
             foreach (var slot in ship.Slots)
                 if (slot.HasItem)
                     Equipments.Remove(slot.Item);
