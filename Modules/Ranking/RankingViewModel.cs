@@ -107,7 +107,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
             }
         }
 
-        private static int[] magic = { 21, 70, 48, 36, 72, 55, 30, 54, 95, 43 };
+        private static int[] magic = { 20, 25, 49, 49, 54, 66, 73, 63, 67, 96 };
         private static int[] magic_r = { 8831, 1201, 1175, 555, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6569 };
         private int DecodeRate(ranking_getlist.ranking_list api)
             => api.api_wuhnhojjxmke / magic_r[api.api_mxltvkpyuklh % 13] / magic[Staff.Current.Admiral.MemberID % 10] - 91;
