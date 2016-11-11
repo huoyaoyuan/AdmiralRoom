@@ -205,12 +205,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (needupdateship)
                 Ships = new ObservableCollection<Ship>(rawdata.api_ship
                     .Where(x => x != -1)
-                    .Select(x =>
-                    {
-                        if (x == -1) return null;
-                        Staff.Current.Homeport.Ships[x].InFleet = this;
-                        return Staff.Current.Homeport.Ships[x];
-                    }));
+                    .Select(x => Staff.Current.Homeport.Ships[x]
+                        .With(ship => ship.InFleet = this)));
             UpdateStatus();
         }
         public int[] AirFightPower { get; private set; }

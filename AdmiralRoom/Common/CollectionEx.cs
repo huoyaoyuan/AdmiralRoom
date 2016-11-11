@@ -11,6 +11,12 @@ namespace Huoyaoyuan.AdmiralRoom
             foreach (T s in source)
                 func(s);
         }
+        public static T With<T>(this T source, Action<T> action)
+            where T : class
+        {
+            action(source);
+            return source;
+        }
         public static bool HasItem<T>(this IEnumerable<T> source) => source?.Any() ?? false;
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => !source.HasItem();
         public static void ArrayZip<T1, T2>(this T1[] source, T2[] param, int from, Action<T1, T2> func)
