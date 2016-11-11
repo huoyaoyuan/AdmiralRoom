@@ -106,7 +106,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 }
             }
         }
-
+        private static DateTime ApiDate = new DateTime(2016, 11, 4);
         private static int[] magic = { 20, 25, 49, 49, 54, 66, 73, 63, 67, 96 };
         private static int[] magic_r = { 8831, 1201, 1175, 555, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6569 };
         private int DecodeRate(ranking_getlist.ranking_list api)
@@ -287,5 +287,6 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
         private int myLastExpStore;
         private int myExp;
         private DateTimeOffset lastExpUpdateTime;
+        public string ApiDateString => ApiDate.ToLongDateString();
     }
 }
