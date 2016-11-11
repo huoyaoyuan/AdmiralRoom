@@ -146,7 +146,7 @@ namespace Huoyaoyuan.AdmiralRoom
             else if (Officer.Staff.Current.Homeport.Ships
                 ?.Any(x => !x.HP.IsMax
                 && !x.IsRepairing
-                && x.InFleet?.CanHomeportRepairing == false)
+                && x.InFleet?.CanHomeportRepairing != true)
                 == true)
                 message = StringTable.ExitConfirm_Repair;
             else if (Officer.Staff.Current.Homeport.Fleets?.Skip(1).Any(x => x.Status == Officer.FleetStatus.Ready) == true)
