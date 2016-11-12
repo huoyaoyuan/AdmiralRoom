@@ -123,7 +123,9 @@ namespace Huoyaoyuan.AdmiralRoom
             {
                 if (firstLoad && Officer.Staff.IsStarted)
                 {
-                    WebBrowser.Navigate(Properties.Settings.Default.GameUrl);
+                    var url = Config.Current.OverrideGameUrl;
+                    if (string.IsNullOrWhiteSpace(url)) url = Properties.Settings.Default.GameUrl;
+                    WebBrowser.Navigate(url);
                     firstLoad = false;
                 }
             };

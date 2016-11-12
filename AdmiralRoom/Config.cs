@@ -5,10 +5,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using Huoyaoyuan.AdmiralRoom.Notifier;
 using Meowtrix.ComponentModel;
 using Meowtrix.Globalization;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using Huoyaoyuan.AdmiralRoom.Notifier;
 
 namespace Huoyaoyuan.AdmiralRoom
 {
@@ -132,6 +132,30 @@ namespace Huoyaoyuan.AdmiralRoom
                     OnPropertyChanged();
                 }
             }
+        }
+        #endregion
+
+        #region OverrideGameUrl
+        private string _overridegameurl;
+        public string OverrideGameUrl
+        {
+            get { return _overridegameurl; }
+            set
+            {
+                if (_overridegameurl != value)
+                {
+                    _overridegameurl = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(OverrideGameUrlEnabled));
+                }
+            }
+        }
+        [XmlIgnore]
+        [MemberwiseCopyIgnore]
+        public bool OverrideGameUrlEnabled
+        {
+            get { return OverrideGameUrl != null; }
+            set { OverrideGameUrl = value ? string.Empty : null; }
         }
         #endregion
 

@@ -48,8 +48,10 @@
                PlacementTarget="{Binding ElementName=btnGameUrl, Mode=OneWay}">
             <Border BorderBrush="Gray" BorderThickness="1" Padding="2">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox>Enable</CheckBox>
-                    <TextBox Width="200"/>
+                    <CheckBox IsChecked="{Binding OverrideGameUrlEnabled, Source={x:Static local:Config.Current}, Mode=TwoWay}">Enable</CheckBox>
+                    <TextBox Width="200"
+                             Text="{Binding OverrideGameUrl, Source={x:Static local:Config.Current}, Mode=TwoWay}"
+                             IsEnabled="{Binding OverrideGameUrlEnabled, Source={x:Static local:Config.Current}, Mode=OneWay}"/>
                 </StackPanel>
             </Border>
         </Popup>
