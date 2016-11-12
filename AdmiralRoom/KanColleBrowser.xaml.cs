@@ -81,8 +81,8 @@ namespace Huoyaoyuan.AdmiralRoom
             SetSilence(true);
             SetAllowDrop(false);
 
-            btnBack.Click += (_, __) => WebBrowser.GoBack();
-            btnFoward.Click += (_, __) => WebBrowser.GoForward();
+            //btnBack.Click += (_, __) => WebBrowser.GoBack();
+            //btnFoward.Click += (_, __) => WebBrowser.GoForward();
             GotoUrlCommand = new DelegateCommand(() =>
             {
                 if (!txtAddress.Text.Contains(":"))
@@ -102,8 +102,8 @@ namespace Huoyaoyuan.AdmiralRoom
             WebBrowser.Navigating += (_, e) =>
             {
                 txtAddress.Text = e.Uri.AbsoluteUri;
-                btnBack.IsEnabled = WebBrowser.CanGoBack;
-                btnFoward.IsEnabled = WebBrowser.CanGoForward;
+                //btnBack.IsEnabled = WebBrowser.CanGoBack;
+                //btnFoward.IsEnabled = WebBrowser.CanGoForward;
                 styleSheet = null;
                 UpdateSize(false);
             };
