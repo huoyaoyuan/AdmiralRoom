@@ -159,6 +159,12 @@
   <data name="Browser" xml:space="preserve">
     <value>ブラウザ</value>
   </data>
+  <data name="Browser_DefaultPage" xml:space="preserve">
+    <value>ゲームのアドレス</value>
+  </data>
+  <data name="Browser_DefaultPage_Override" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
   <data name="Browser_LockFlash" xml:space="preserve">
     <value>Flashをロックする</value>
   </data>

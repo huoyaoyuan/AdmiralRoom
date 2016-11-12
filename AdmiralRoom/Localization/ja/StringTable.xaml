@@ -18,6 +18,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_Perfect">完全勝利S</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_S">勝利S</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Browser">ブラウザ</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Browser_DefaultPage">ゲームのアドレス</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Browser_DefaultPage_Override">カスタム</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Browser_LockFlash">Flashをロックする</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Cancel">キャンセル</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ChartTimeRange_All">全部</s:String>

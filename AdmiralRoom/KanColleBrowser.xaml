@@ -39,7 +39,10 @@
         <Button x:Name="btnFoward" Grid.Column="1" ToolTip="{ex:Localizable Forward}">
             <Image Source="{DynamicResource IconForward}"/>
         </Button>-->
-        <ToggleButton x:Name="btnGameUrl" Grid.Column="0" Margin="2">
+        <ToggleButton x:Name="btnGameUrl"
+                      Grid.Column="0"
+                      Margin="2"
+                      ToolTip="{ex:Localizable Browser_DefaultPage}">
             <Image Source="{DynamicResource IconGameUrl}"/>
         </ToggleButton>
         <Popup IsOpen="{Binding IsChecked, ElementName=btnGameUrl, Mode=TwoWay}"
@@ -48,10 +51,8 @@
                PlacementTarget="{Binding ElementName=btnGameUrl, Mode=OneWay}">
             <Border BorderBrush="Gray" BorderThickness="1" Padding="2">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox IsChecked="{Binding OverrideGameUrlEnabled, Source={x:Static local:Config.Current}, Mode=TwoWay}">Enable</CheckBox>
-                    <TextBox Width="200"
-                             Text="{Binding OverrideGameUrl, Source={x:Static local:Config.Current}, Mode=TwoWay}"
-                             IsEnabled="{Binding OverrideGameUrlEnabled, Source={x:Static local:Config.Current}, Mode=OneWay}"/>
+                    <CheckBox IsChecked="{Binding OverrideGameUrlEnabled, Source={x:Static local:Config.Current}, Mode=TwoWay}" Content="{ex:Localizable Browser_DefaultPage_Override}"/>
+                    <TextBox Width="200" Text="{Binding OverrideGameUrl, Source={x:Static local:Config.Current}, Mode=TwoWay}" IsEnabled="{Binding OverrideGameUrlEnabled, Source={x:Static local:Config.Current}, Mode=OneWay}"/>
                 </StackPanel>
             </Border>
         </Popup>

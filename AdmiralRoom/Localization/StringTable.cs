@@ -64,6 +64,14 @@
         ///</summary>
         public static string Browser => ResourceService.GetString("Browser");
         ///<summary>
+        ///   查找类似 游戏网址 的本地化字符串。
+        ///</summary>
+        public static string Browser_DefaultPage => ResourceService.GetString("Browser_DefaultPage");
+        ///<summary>
+        ///   查找类似 自定义 的本地化字符串。
+        ///</summary>
+        public static string Browser_DefaultPage_Override => ResourceService.GetString("Browser_DefaultPage_Override");
+        ///<summary>
         ///   查找类似 锁定Flash 的本地化字符串。
         ///</summary>
         public static string Browser_LockFlash => ResourceService.GetString("Browser_LockFlash");
