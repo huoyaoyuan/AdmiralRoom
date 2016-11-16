@@ -31,7 +31,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         public SubWindowCategory Category => SubWindowCategory.Statistics;
 
         public Window CreateWindow()
-            => new Views.Standalone.LogView { DataContext = new ViewProvider<BattleDropLog>(Loggers.BattleDropLogger), TitleKey = "Logger_Drop" };
+            => new Views.Standalone.BattleDropLogViewWindow { DataContext = new ViewProvider<BattleDropLog>(Loggers.BattleDropLogger), TitleKey = "Logger_Drop" };
 
         public string GetTitle(CultureInfo culture) => StringTable.Logger_Drop;
     }

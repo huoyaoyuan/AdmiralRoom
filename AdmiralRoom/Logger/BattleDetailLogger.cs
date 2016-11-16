@@ -114,5 +114,9 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
             datastring = string.Empty;
         }
+        public BattleDetail FindLog(DateTime utctime)
+        {
+
+        }
     }
 }
