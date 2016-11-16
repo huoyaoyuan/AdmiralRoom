@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,7 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     internal class ViewProvider<T> : ViewProviderBase, IUpdatable
         where T : ILog
     {
-        public class Column : NotifySourceObject<ViewProvider<T>>
+        public abstract class Column : NotifySourceObject<ViewProvider<T>>
         {
             public Type MemberType { get; set; }
             public string MemberName { get; set; }
@@ -19,41 +18,6 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public MethodInfo FilterGetter { get; set; }
             public string Title { get; set; }
             public string FullTitleKey => "LogTitle_" + Title;
-            public object[] Values
-            {
-                get
-                {
-                    var input = Expression.Parameter(typeof(T));
-                    var getmember = Expression.Property(input, MemberGetter);
-                    var obj = Expression.Convert(getmember, typeof(object));
-                    var selector = Expression.Lambda<Func<T, object>>(obj, input).Compile();
-                    var filterselector = selector;
-                    if (FilterGetter != null)
-                    {
-                        var getfilter = Expression.Property(input, FilterGetter);
-                        var obj2 = Expression.Convert(getfilter, typeof(object));
-                        filterselector = Expression.Lambda<Func<T, object>>(obj2, input).Compile();
-                    }
-                    return Source.readed.GroupBy(filterselector).OrderBy(x => x.Key).Select(x => selector(x.First())).Distinct().ToArray();
-                }
-            }
-
-            #region SelectedValue
-            private object _selectedvalue;
-            public object SelectedValue
-            {
-                get { return _selectedvalue; }
-                set
-                {
-                    if (_selectedvalue != value)
-                    {
-                        _selectedvalue = value;
-                        RefreshSelector();
-                        OnPropertyChanged();
-                    }
-                }
-            }
-            #endregion
 
             #region Enable
             private bool _enable;
@@ -72,26 +36,46 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             }
             #endregion
 
-            public Func<T, bool> Selector { get; private set; } = _ => true;
-            private void RefreshSelector()
-            {
-                if (!Enable || SelectedValue == null)
-                {
-                    Selector = _ => true;
-                    return;
-                }
-                var input = Expression.Parameter(typeof(T));
-                var getmember = Expression.Property(input, MemberGetter);
-                var value = Convert.ChangeType(SelectedValue, MemberType);
-                var valueexp = Expression.Constant(value, MemberType);
-                var compare = Expression.Equal(getmember, valueexp);
-                var expression = Expression.Lambda<Func<T, bool>>(compare, input);
-                Selector = expression.Compile();
-            }
+            public Func<T, bool> Selector { get; protected set; } = SelectAll;
+            protected static bool SelectAll(T item) => true;
+            protected abstract void RefreshSelector();
+            public abstract void Initialize();
         }
         private class Column<TProperty> : Column
         {
+            private Func<T, TProperty> member, filter;
+            public TProperty[] Values { get; private set; }
 
+            #region SelectedValue
+            private TProperty _selectedvalue;
+            public TProperty SelectedValue
+            {
+                get { return _selectedvalue; }
+                set
+                {
+                    if (!EqualityComparer<TProperty>.Default.Equals(_selectedvalue, value))
+                    {
+                        _selectedvalue = value;
+                        RefreshSelector();
+                        OnPropertyChanged();
+                    }
+                }
+            }
+            #endregion
+
+            protected override void RefreshSelector()
+            {
+                if (!Enable || SelectedValue == null)
+                    Selector = SelectAll;
+                else Selector = SelectorCore;
+            }
+            private bool SelectorCore(T item) => EqualityComparer<TProperty>.Default.Equals(SelectedValue, member(item));
+            public override void Initialize()
+            {
+                member = (Func<T, TProperty>)MemberGetter.CreateDelegate(typeof(Func<T, TProperty>));
+                filter = (Func<T, TProperty>)FilterGetter.CreateDelegate(typeof(Func<T, TProperty>));
+                Values = Source.readed.GroupBy(filter).OrderBy(x => x.Key).Select(x => member(x.First())).Distinct().ToArray();
+            }
         }
         public Column[] Columns { get; }
         public readonly Logger<T> Logger;
@@ -200,6 +184,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     column.MemberType = x.PropertyType;
                     column.FilterGetter = FindFilter((Attribute.GetCustomAttribute(x, typeof(FilterAttribute)) as FilterAttribute).Filter);
                     column.Source = this;
+                    column.Initialize();
                     return column;
                 })
                 .ToArray();
