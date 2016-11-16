@@ -89,6 +89,10 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 Selector = expression.Compile();
             }
         }
+        private class Column<TProperty> : Column
+        {
+
+        }
         public Column[] Columns { get; }
         public readonly Logger<T> Logger;
         private readonly T[] readed;
@@ -187,14 +191,16 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Logger = logger;
             var prop = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             Columns = prop.Where(x => Attribute.IsDefined(x, typeof(FilterAttribute)))
-                .Select(x => new Column
+                .Select(x =>
                 {
-                    Title = (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute)?.Title ?? x.Name,
-                    MemberName = x.Name,
-                    MemberGetter = x.GetMethod,
-                    MemberType = x.PropertyType,
-                    FilterGetter = FindFilter((Attribute.GetCustomAttribute(x, typeof(FilterAttribute)) as FilterAttribute).Filter),
-                    Source = this
+                    var column = (Column)Activator.CreateInstance(typeof(Column<>).MakeGenericType(x.PropertyType));
+                    column.Title = (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute)?.Title ?? x.Name;
+                    column.MemberName = x.Name;
+                    column.MemberGetter = x.GetMethod;
+                    column.MemberType = x.PropertyType;
+                    column.FilterGetter = FindFilter((Attribute.GetCustomAttribute(x, typeof(FilterAttribute)) as FilterAttribute).Filter);
+                    column.Source = this;
+                    return column;
                 })
                 .ToArray();
             ViewColumns = prop.Where(x => Attribute.IsDefined(x, typeof(ShowAttribute)))
