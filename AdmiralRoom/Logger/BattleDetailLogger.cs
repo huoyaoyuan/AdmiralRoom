@@ -29,6 +29,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Staff.API("api_req_combined_battle/sp_midnight").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/battle_water").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/ld_airbattle").Subscribe(x => AddApi("battle", x));
+            Staff.API("api_req_combined_battle/ec_battle").Subscribe(x => AddApi("battle", x));
+            Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe(x => AddApi("battle", x));
             var dir = new DirectoryInfo(@"logs\battlelog");
             foreach (var file in dir.GetFiles("*.log"))
             {
