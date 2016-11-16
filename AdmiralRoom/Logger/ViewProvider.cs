@@ -12,7 +12,6 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
     {
         public abstract class Column : NotifySourceObject<ViewProvider<T>>
         {
-            public Type MemberType { get; set; }
             public string MemberName { get; set; }
             public MethodInfo MemberGetter { get; set; }
             public MethodInfo FilterGetter { get; set; }
@@ -41,10 +40,21 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             protected abstract void RefreshSelector();
             public abstract void Initialize();
         }
-        private class Column<TProperty> : Column
+        private class Column<TProperty, TFilter> : Column
         {
-            private Func<T, TProperty> member, filter;
-            public TProperty[] Values { get; private set; }
+            private Func<T, TProperty> member;
+            private Func<T, TFilter> filter;
+
+            private TProperty[] _values;
+            public TProperty[] Values
+            {
+                get
+                {
+                    if (_values == null)
+                        _values = Source.readed.GroupBy(filter).OrderBy(x => x.Key).Select(x => member(x.First())).Distinct().ToArray();
+                    return _values;
+                }
+            }
 
             #region SelectedValue
             private TProperty _selectedvalue;
@@ -73,8 +83,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public override void Initialize()
             {
                 member = (Func<T, TProperty>)MemberGetter.CreateDelegate(typeof(Func<T, TProperty>));
-                filter = (Func<T, TProperty>)FilterGetter.CreateDelegate(typeof(Func<T, TProperty>));
-                Values = Source.readed.GroupBy(filter).OrderBy(x => x.Key).Select(x => member(x.First())).Distinct().ToArray();
+                filter = (Func<T, TFilter>)FilterGetter.CreateDelegate(typeof(Func<T, TFilter>));
             }
         }
         public Column[] Columns { get; }
@@ -177,12 +186,12 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Columns = prop.Where(x => Attribute.IsDefined(x, typeof(FilterAttribute)))
                 .Select(x =>
                 {
-                    var column = (Column)Activator.CreateInstance(typeof(Column<>).MakeGenericType(x.PropertyType));
+                    var filter = FindFilter(x.GetCustomAttribute<FilterAttribute>().Filter) ?? x;
+                    var column = (Column)Activator.CreateInstance(typeof(Column<,>).MakeGenericType(typeof(T), x.PropertyType, filter.PropertyType));
                     column.Title = (Attribute.GetCustomAttribute(x, typeof(ShowAttribute)) as ShowAttribute)?.Title ?? x.Name;
                     column.MemberName = x.Name;
                     column.MemberGetter = x.GetMethod;
-                    column.MemberType = x.PropertyType;
-                    column.FilterGetter = FindFilter((Attribute.GetCustomAttribute(x, typeof(FilterAttribute)) as FilterAttribute).Filter);
+                    column.FilterGetter = filter.GetMethod;
                     column.Source = this;
                     column.Initialize();
                     return column;
@@ -218,10 +227,10 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 logs = logs.Where(column.Selector);
             Displayed = logs.ToArray();
         }
-        private static MethodInfo FindFilter(string filter)
+        private static PropertyInfo FindFilter(string filter)
         {
             if (filter == null) return null;
-            return typeof(T).GetProperty(filter).GetMethod;
+            return typeof(T).GetProperty(filter);
         }
     }
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
