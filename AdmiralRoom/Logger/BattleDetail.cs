@@ -1,12 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Meowtrix;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    class BattleDetail
+    class BattleDetail : IIdentifiable<DateTime>
     {
+        public string time { get; set; }
+        private DateTime? _utctime;
+        public DateTime GetTimeStamp()
+        {
+            if (_utctime == null)
+            {
+                var utc = DateTime.Parse(time);
+                _utctime = DateTime.SpecifyKind(utc, DateTimeKind.Unspecified);
+            }
+            return _utctime.Value;
+        }
+        DateTime IIdentifiable<DateTime>.Id => GetTimeStamp();
     }
 }
