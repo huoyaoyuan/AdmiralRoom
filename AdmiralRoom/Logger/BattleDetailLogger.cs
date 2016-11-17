@@ -119,7 +119,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 
         private static readonly JsonSerializerSettings JSettings = new JsonSerializerSettings
         {
-            MissingMemberHandling = MissingMemberHandling.Ignore
+            MissingMemberHandling = MissingMemberHandling.Ignore,
+            Error = (_, e) => e.ErrorContext.Handled = true
         };
         private const int cacheDays = 5;
         private List<DateTime> cacheIndex = new List<DateTime>();
