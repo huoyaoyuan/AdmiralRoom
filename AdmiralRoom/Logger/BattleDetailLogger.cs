@@ -113,7 +113,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 date = today;
             }
             AddFleets();
-            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
+            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime:yyyy/M/dd h:mm:ss}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
             datastring = string.Empty;
         }
 
