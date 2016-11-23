@@ -41,6 +41,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_AirSearch">航空侦察</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Battle">战斗</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_BOSS">BOSS</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Combined">联合舰队</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Guard">输送船团终点</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Imagination">错觉</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_ItemGet">资源获得</s:String>

@@ -228,6 +228,9 @@
   <data name="Compass_BOSS" xml:space="preserve">
     <value>ボス</value>
   </data>
+  <data name="Compass_Combined" xml:space="preserve">
+    <value>連合艦隊</value>
+  </data>
   <data name="Compass_Guard" xml:space="preserve">
     <value>輸送船団ゴール地点</value>
   </data>

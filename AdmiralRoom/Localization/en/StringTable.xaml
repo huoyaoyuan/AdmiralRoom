@@ -41,6 +41,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_AirSearch">Aerial Search</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Battle">Battle</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_BOSS">BOSS</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Combined">Combined Fleet</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Guard">Transport Finish</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Imagination">Imagination</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_ItemGet">Item Get</s:String>

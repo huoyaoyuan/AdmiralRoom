@@ -81,6 +81,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         case 4:
                             Type = MapNodeType.AirBattle;
                             break;
+                        case 5:
+                            Type = MapNodeType.Combined;
+                            break;
                         case 6:
                             Type = MapNodeType.AirDefence;
                             break;
@@ -119,5 +122,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
     }
-    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence }
+    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence, Combined }
 }
