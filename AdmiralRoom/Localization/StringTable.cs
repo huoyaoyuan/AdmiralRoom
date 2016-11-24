@@ -160,6 +160,10 @@
         ///</summary>
         public static string Compass_Combined => ResourceService.GetString("Compass_Combined");
         ///<summary>
+        ///   查找类似 联合舰队BOSS 的本地化字符串。
+        ///</summary>
+        public static string Compass_CombinedBOSS => ResourceService.GetString("Compass_CombinedBOSS");
+        ///<summary>
         ///   查找类似 输送船团终点 的本地化字符串。
         ///</summary>
         public static string Compass_Guard => ResourceService.GetString("Compass_Guard");
