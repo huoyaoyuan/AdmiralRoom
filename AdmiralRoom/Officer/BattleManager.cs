@@ -71,9 +71,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
                 }
             });
-            Staff.API("api_req_combined_battle/ec_battle").Subscribe<sortie_battle>(api =>
-                CurrentBattle = new Battle(api, CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, this));
+            Staff.API("api_req_combined_battle/ec_battle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe<sortie_battle>(NightBattle);
+            Staff.API("api_req_combined_battle/each_battle").Subscribe<sortie_battle>(StartBattle);
+            Staff.API("api_req_combined_battle/each_battle_water").Subscribe<sortie_battle>(StartBattle);
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }
