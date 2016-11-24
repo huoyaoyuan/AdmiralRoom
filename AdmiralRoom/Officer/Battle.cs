@@ -10,12 +10,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public override bool IsBattling => true;
         public MapNodeType BattleType { get; set; }
         private ShipInBattle[] NightOrTorpedo => Fleet2 ?? Fleet1;
-        private ShipInBattle FindShip(int index, ShipInBattle[] friend)
+        private ShipInBattle FindShip(int index, ShipInBattle[] friend, ShipInBattle[] enemy)
         {
             try
             {
                 if (index <= 6) return friend[index - 1];
-                return EnemyFleet[index - 7];
+                return enemy[index - 7];
+            }
+            catch { return null; }
+        }
+        private ShipInBattle FindFriend(int index)
+        {
+            try
+            {
+                if (index <= 6) return Fleet1[index - 1];
+                return Fleet2[index - 7];
             }
             catch { return null; }
         }
@@ -188,6 +197,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         public void NightBattle(sortie_battle api)
         {
+            if (api.api_active_deck != null)
+            {
+                if (api.api_active_deck[1] == 1)
+                    FireAttack(api.api_hougeki, NightOrTorpedo, EnemyFleet);
+                else FireAttack(api.api_hougeki, NightOrTorpedo, EnemyFleet2);
+            }
             FireAttack(api.api_hougeki, NightOrTorpedo);
             EndApplyBattle();
         }
@@ -353,11 +368,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AllFriends.ZipEach(api.api_fydam.Skip(1), Delegates.SetGiveDamage);
             AllEnemies.ZipEach(api.api_eydam.Skip(1), Delegates.SetGiveDamage);
         }
-        private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet)
+        private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet) => FireAttack(api, fleet, EnemyFleet);
+        private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet, ShipInBattle[] enemy)
         {
             if (api == null) return;
-            api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(FindShip(a, fleet), b)));
-            api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(FindShip(y, fleet), d)));
+            api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(FindShip(a, fleet, enemy), b)));
+            api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(FindShip(y, fleet, enemy), d)));
         }
         private void ECFireAttack(sortie_battle.fire api)
         {
@@ -367,11 +383,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 if (api.api_at_eflag[i] == 0)
                 {
                     api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(FindEnemy(x), y));
-                    Delegates.SetGiveDamage(Fleet1[api.api_at_list[i] - 1], api.api_damage[i - 1].Sum());
+                    Delegates.SetGiveDamage(FindFriend(api.api_at_list[i]), api.api_damage[i - 1].Sum());
                 }
                 else
                 {
-                    api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(Fleet1[x - 1], y));
+                    api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(FindFriend(x), y));
                     Delegates.SetGiveDamage(FindEnemy(api.api_at_list[i]), api.api_damage[i - 1].Sum());
                 }
             }

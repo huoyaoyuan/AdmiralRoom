@@ -2,6 +2,7 @@
 {
     public class sortie_battle
     {
+        public int[] api_active_deck { get; set; }
         public int api_deck_id { get; set; }
         /// <summary>
         /// 将错就错，还只改一半，那只能让你们全家爆炸了
