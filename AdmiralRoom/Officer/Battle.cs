@@ -320,7 +320,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             if (api == null) return;
             AirBattle(api.api_support_airatack, true);
             if (api.api_support_hourai != null)
-                EnemyFleet.ArrayZip(api.api_support_hourai.api_damage, 1, Delegates.SetDamage);
+                AllEnemies.ZipEach(api.api_support_hourai.api_damage.Skip(1), Delegates.SetDamage);
         }
         private void AirBaseAttack(sortie_battle.air_base_attack[] api)
         {
