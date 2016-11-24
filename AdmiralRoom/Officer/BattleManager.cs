@@ -72,7 +72,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 }
             });
             Staff.API("api_req_combined_battle/ec_battle").Subscribe<sortie_battle>(api =>
-                CurrentBattle = new Battle(api, CombinedFleetType.EnenyCombined, CurrentNode?.Type ?? MapNodeType.Battle, this));
+                CurrentBattle = new Battle(api, CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, this));
             Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe<sortie_battle>(NightBattle);
         }
         public Fleet SortieFleet1 { get; private set; }
@@ -186,7 +186,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             SortieFleet1?.Ships.ForEach(y => y.IgnoreNextCondition());
             SortieFleet2?.Ships.ForEach(y => y.IgnoreNextCondition());
-            if (CurrentNode.Type == MapNodeType.BOSS)
+            if (CurrentNode.Type.IsBOSS())
             {
                 StaticCounters.BossCounter.Increase();
                 if (ConstData.RanksWin.Contains(api.api_win_rank))
@@ -226,7 +226,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 {
                     ["mapId"] = CurrentMap.Id,
                     ["cellId"] = CurrentNode.Id,
-                    ["isBoss"] = CurrentNode.Type == MapNodeType.BOSS,
+                    ["isBoss"] = CurrentNode.Type.IsBOSS(),
                     ["shipId"] = api.api_get_ship?.api_ship_id ?? -1,
                     ["enemy"] = api.api_enemy_info.api_deck_name,
                     ["quest"] = api.api_quest_name,

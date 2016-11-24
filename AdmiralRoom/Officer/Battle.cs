@@ -107,6 +107,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
 
             bool iscombined = fleettype != CombinedFleetType.None;
+            bool isenemycombined = battletype == MapNodeType.Combined || battletype == MapNodeType.CombinedBOSS;
 
             EnemyFleet = api.api_ship_ke.Where(x => x != -1)
                 .Select((x, i) => new ShipInBattle
@@ -154,29 +155,30 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             SupportAttack(api.api_support_info);
             FireAttack(api.api_opening_taisen, NightOrTorpedo);
             TorpedoAttack(api.api_opening_atack);
-            switch (fleettype)
+            if (isenemycombined)
             {
-                case CombinedFleetType.None:
-                    FireAttack(api.api_hougeki1, Fleet1);
-                    FireAttack(api.api_hougeki2, Fleet1);
-                    break;
-                case CombinedFleetType.Carrier:
-                case CombinedFleetType.Transport:
-                    FireAttack(api.api_hougeki1, Fleet2);
-                    FireAttack(api.api_hougeki2, Fleet1);
-                    FireAttack(api.api_hougeki3, Fleet1);
-                    break;
-                case CombinedFleetType.Surface:
-                    FireAttack(api.api_hougeki1, Fleet1);
-                    FireAttack(api.api_hougeki2, Fleet1);
-                    FireAttack(api.api_hougeki3, Fleet2);
-                    break;
-                case CombinedFleetType.EnenyCombined:
-                    ECFireAttack(api.api_hougeki1);
-                    ECFireAttack(api.api_hougeki2);
-                    ECFireAttack(api.api_hougeki3);
-                    break;
+                ECFireAttack(api.api_hougeki1);
+                ECFireAttack(api.api_hougeki2);
+                ECFireAttack(api.api_hougeki3);
             }
+            else switch (fleettype)
+                {
+                    case CombinedFleetType.None:
+                        FireAttack(api.api_hougeki1, Fleet1);
+                        FireAttack(api.api_hougeki2, Fleet1);
+                        break;
+                    case CombinedFleetType.Carrier:
+                    case CombinedFleetType.Transport:
+                        FireAttack(api.api_hougeki1, Fleet2);
+                        FireAttack(api.api_hougeki2, Fleet1);
+                        FireAttack(api.api_hougeki3, Fleet1);
+                        break;
+                    case CombinedFleetType.Surface:
+                        FireAttack(api.api_hougeki1, Fleet1);
+                        FireAttack(api.api_hougeki2, Fleet1);
+                        FireAttack(api.api_hougeki3, Fleet2);
+                        break;
+                }
             TorpedoAttack(api.api_raigeki);
             NightBattle(api);
         }
