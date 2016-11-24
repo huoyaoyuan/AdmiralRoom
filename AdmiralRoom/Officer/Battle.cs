@@ -154,7 +154,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AirBaseAttack(api.api_air_base_attack);
             SupportAttack(api.api_support_info);
             FireAttack(api.api_opening_taisen, NightOrTorpedo);
-            TorpedoAttack(api.api_opening_atack);
+            if (iscombined)
+                CombinedTorpedoAttack(api.api_opening_atack);
+            else TorpedoAttack(api.api_opening_atack);
             if (isenemycombined)
             {
                 ECFireAttack(api.api_hougeki1);
@@ -179,7 +181,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         FireAttack(api.api_hougeki3, Fleet2);
                         break;
                 }
-            TorpedoAttack(api.api_raigeki);
+            if (iscombined)
+                CombinedTorpedoAttack(api.api_raigeki);
+            else TorpedoAttack(api.api_raigeki);
             NightBattle(api);
         }
         public void NightBattle(sortie_battle api)
@@ -337,8 +341,16 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             if (api == null) return;
             NightOrTorpedo.ArrayZip(api.api_fdam, 1, Delegates.SetDamage);
-            AllEnemies.ZipEach(api.api_edam.Skip(1), Delegates.SetDamage);
+            EnemyFleet.ArrayZip(api.api_edam, 1, Delegates.SetDamage);
             NightOrTorpedo.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
+            EnemyFleet.ArrayZip(api.api_eydam, 1, Delegates.SetGiveDamage);
+        }
+        private void CombinedTorpedoAttack(sortie_battle.torpedo api)
+        {
+            if (api == null) return;
+            AllFriends.ZipEach(api.api_fdam.Skip(1), Delegates.SetDamage);
+            AllEnemies.ZipEach(api.api_edam.Skip(1), Delegates.SetDamage);
+            AllFriends.ZipEach(api.api_fydam.Skip(1), Delegates.SetGiveDamage);
             AllEnemies.ZipEach(api.api_eydam.Skip(1), Delegates.SetGiveDamage);
         }
         private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet)
