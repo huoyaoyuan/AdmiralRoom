@@ -282,30 +282,36 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
             if (api.api_stage3_combined != null)
             {
-                Fleet2?.ArrayZip(api.api_stage3_combined.api_fdam, 1, Delegates.SetDamage);
-                EnemyFleet2?.ArrayZip(api.api_stage3_combined.api_edam, 1, Delegates.SetDamage);
-                for (int i = 1; i < api.api_stage3_combined.api_fdam.Length; i++)
-                    if (api.api_stage3_combined.api_frai_flag[i] != 0)
-                        if (api.api_stage3_combined.api_fbak_flag[i] != 0)
-                            if (enemytorpedo == enemybomb && enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
+                if (api.api_stage3_combined.api_fdam != null)
+                {
+                    Fleet2?.ArrayZip(api.api_stage3_combined.api_fdam, 1, Delegates.SetDamage);
+                    for (int i = 1; i < api.api_stage3_combined.api_fdam.Length; i++)
+                        if (api.api_stage3_combined.api_frai_flag[i] != 0)
+                            if (api.api_stage3_combined.api_fbak_flag[i] != 0)
+                                if (enemytorpedo == enemybomb && enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
+                                else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
+                            else
+                                if (enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
                             else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                        else
-                            if (enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
-                        else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                    else if (api.api_stage3_combined.api_fbak_flag[i] != 0)
-                        if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
-                        else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                for (int i = 1; i < api.api_stage3_combined.api_edam.Length; i++)
-                    if (api.api_stage3_combined.api_erai_flag[i] != 0)
-                        if (api.api_stage3_combined.api_ebak_flag[i] != 0)
-                            if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
+                        else if (api.api_stage3_combined.api_fbak_flag[i] != 0)
+                            if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
+                            else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
+                }
+                if (api.api_stage3_combined.api_edam != null)
+                {
+                    EnemyFleet2?.ArrayZip(api.api_stage3_combined.api_edam, 1, Delegates.SetDamage);
+                    for (int i = 1; i < api.api_stage3_combined.api_edam.Length; i++)
+                        if (api.api_stage3_combined.api_erai_flag[i] != 0)
+                            if (api.api_stage3_combined.api_ebak_flag[i] != 0)
+                                if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
+                                else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
+                            else
+                                if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
                             else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
-                        else
-                            if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
-                        else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
-                    else if (api.api_stage3_combined.api_ebak_flag[i] != 0)
-                        if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
-                        else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
+                        else if (api.api_stage3_combined.api_ebak_flag[i] != 0)
+                            if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
+                            else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
+                }
             }
             return combat;
         }
