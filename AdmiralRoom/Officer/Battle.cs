@@ -203,7 +203,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     FireAttack(api.api_hougeki, NightOrTorpedo, EnemyFleet);
                 else FireAttack(api.api_hougeki, NightOrTorpedo, EnemyFleet2);
             }
-            FireAttack(api.api_hougeki, NightOrTorpedo);
             EndApplyBattle();
         }
         private void EndApplyBattle()
