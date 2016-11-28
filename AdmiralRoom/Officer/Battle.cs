@@ -163,8 +163,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             AirBaseAttack(api.api_air_base_attack);
             SupportAttack(api.api_support_info);
             FireAttack(api.api_opening_taisen, NightOrTorpedo);
-            if (iscombined)
-                CombinedTorpedoAttack(api.api_opening_atack);
+            if (isenemycombined)
+                ECTorpedoAttack(api.api_opening_atack);
             else TorpedoAttack(api.api_opening_atack);
             if (isenemycombined)
             {
@@ -190,8 +190,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         FireAttack(api.api_hougeki3, Fleet2);
                         break;
                 }
-            if (iscombined)
-                CombinedTorpedoAttack(api.api_raigeki);
+            if (isenemycombined)
+                ECTorpedoAttack(api.api_raigeki);
             else TorpedoAttack(api.api_raigeki);
             NightBattle(api);
         }
@@ -359,7 +359,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             NightOrTorpedo.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
             EnemyFleet.ArrayZip(api.api_eydam, 1, Delegates.SetGiveDamage);
         }
-        private void CombinedTorpedoAttack(sortie_battle.torpedo api)
+        private void ECTorpedoAttack(sortie_battle.torpedo api)
         {
             if (api == null) return;
             AllFriends.ZipEach(api.api_fdam.Skip(1), Delegates.SetDamage);
