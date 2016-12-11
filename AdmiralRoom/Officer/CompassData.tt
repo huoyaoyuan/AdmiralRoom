@@ -1,0 +1,62 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ output extension=".cs" #>
+using System.Linq;
+using System.Collections.Generic;
+namespace Huoyaoyuan.AdmiralRoom.Officer.CompassData
+{
+    public class OneMapData
+    {
+        public int MapAreaId{get;private set;}
+        public int MapNo{get;private set;}
+        public List<PathData> PathList{get;private set;}
+		public PathData SelectPath(int PathNo) =>PathList?.Find(x=>x.No==PathNo);
+        public OneMapData (int MapAreaId, int MapNo)
+        {
+            this.MapAreaId = MapAreaId;
+            this.MapNo = MapNo;
+            PathList = new List<PathData>();
+        }
+    }
+    public class PathData
+    {
+        public int No{get;private set;}
+        public string Name{get;private set;}
+        public int Angle{get;private set;}
+        public PathData (int No ,string  Name,int Angle)
+        {
+			this.No = No;
+            this.Name = Name;
+            this.Angle = Angle;
+        }
+    }
+    public static class MapData
+    {
+        public static List<OneMapData> MapList{get;private set;}
+		public static OneMapData SelectMap(int AreaId, int No) => MapList?.Find(x => x.MapAreaId == AreaId && x.MapNo == No);
+		public static PathData SelectPath(int AreaId, int No, int PathNo) => SelectMap(AreaId, No)?.SelectPath(PathNo);
+        static MapData ()
+		{
+			MapList=new List<OneMapData> ();
+<#			using (var reader = new StreamReader(this.Host.ResolvePath("CompassData.txt")))
+			while (!reader.EndOfStream)
+			{
+			string maptext = reader.ReadLine().Trim();
+			if(maptext == string.Empty) continue;
+			var info = maptext.Split('|');
+#>
+			MapList.Add(new OneMapData(<#= info[0] #>,<#= info[1] #>));
+<#			var mappaths = info[2].Split('/');
+			foreach(string onepath in mappaths)
+			{
+			var tple=onepath.Split(',');
+#>			MapList.Last().PathList.Add(new PathData(<#= tple[0] #>,"<#= tple[1] #>",<#= tple[2] #>));
+<#			}				
+			}
+#>		}
+	}
+}
