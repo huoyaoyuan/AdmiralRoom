@@ -209,7 +209,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         .With(ship => ship.InFleet = this)));
             UpdateStatus();
         }
-        public int[] AirFightPower { get; private set; }
+        public AirFightPower AirFightPower { get; private set; }
         public int LevelSum => Ships.Sum(x => x.Level);
         public double LevelAverage => Ships.Any() ? Ships.Average(x => (double)x.Level) : 0;
         public double LoSInMap
@@ -262,7 +262,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
 #pragma warning restore CC0014
-            AirFightPower = Ships.Where(x => !x.IsEscaped).Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + b).ToArray());
+            AirFightPower = Ships.Where(x => !x.IsEscaped).Aggregate(new AirFightPower(), (x, y) => x + y.AirFightPower);
             if (Ships.Any())
                 mincondition = Ships.Min(x => x.Condition);
             else

@@ -58,45 +58,42 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private static readonly int[] bonus2 = { 0, 0, 1, 1, 1, 3, 3, 6 };//水爆
         private static readonly int[] inner = { 0, 10, 25, 40, 55, 70, 85, 100, 121 };
         public bool CanProvideAirFightPower => fighttype.Contains(Item?.EquipInfo.EquipType.Id ?? 0);
-        /// <summary>
-        /// [0]:总min [1]:总max [2]:除攻击机min [3]:除攻击机max [4]:裸 [5]:除攻击机裸 [6]:加成min [7]:加成max
-        /// </summary>
-        public double[] AirFightPower
+        public AirFightPower AirFightPower
         {
             get
             {
-                double[] res = new double[8];
-                if (Item == null) return res;
-                if (AirCraft.Current == 0) return res;
+                if (Item == null) return new AirFightPower();
+                if (AirCraft.Current == 0) return new AirFightPower();
+                double raw, bonusmin, bonusmax;
                 int itemtype = Item.EquipInfo.EquipType.Id;
                 int level = Item.AirProficiency;
+                bool isfighter;
                 switch (itemtype)
                 {
                     case 6://艦上戦闘機
                     case 45://水上戦闘機
                     case 56://噴式戦闘機
-                        res[6] = res[7] = bonus1[level];
+                        bonusmin = bonusmax = bonus1[level];
+                        isfighter = true;
                         break;
                     case 11://水上爆撃機
-                        res[6] = res[7] = bonus2[level];
+                        bonusmin = bonusmax = bonus2[level];
+                        isfighter = false;
                         break;
                     case 7://艦上爆撃機
                     case 8://艦上攻撃機
                     case 57://噴式戦闘爆撃機
                     case 58://噴式攻撃機
+                        bonusmin = bonusmax = 0;
+                        isfighter = false;
                         break;
                     default:
-                        return res;
+                        return new AirFightPower();
                 }
-                res[4] = Math.Sqrt(AirCraft.Current) * Item.EquipInfo.AA;
-                res[5] = itemtype == 6 ? res[4] : 0;
-                res[6] += Math.Sqrt(inner[level] / 10.0) + Math.Sqrt(AirCraft.Current) * Item.ImproveLevel * 0.2;
-                res[7] += Math.Sqrt((inner[level + 1] - 1) / 10.0) + Math.Sqrt(AirCraft.Current) * Item.ImproveLevel * 0.2;
-                res[3] = itemtype == 6 || itemtype == 45 ? res[4] + res[7] : 0;
-                res[2] = itemtype == 6 || itemtype == 45 ? res[4] + res[6] : 0;
-                res[1] = res[4] + res[7];
-                res[0] = res[4] + res[6];
-                return res;
+                raw = Math.Sqrt(AirCraft.Current) * Item.EquipInfo.AA;
+                bonusmin += Math.Sqrt(inner[level] / 10.0) + Math.Sqrt(AirCraft.Current) * Item.ImproveLevel * 0.2;
+                bonusmax += Math.Sqrt((inner[level + 1] - 1) / 10.0) + Math.Sqrt(AirCraft.Current) * Item.ImproveLevel * 0.2;
+                return new AirFightPower(isfighter, raw, bonusmin, bonusmax);
             }
         }
         public double LoSInMap
@@ -202,6 +199,53 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         break;
                 }
                 return factor * Item.EquipInfo.LoS + improvementfactor * Math.Sqrt(Item.ImproveLevel);
+            }
+        }
+    }
+    public struct AirFightPower
+    {
+        public double TotalMin => Raw + BonusMin;
+        public double TotalMax => Raw + BonusMax;
+        public double FighterMin => FighterRaw + FighterBonusMin;
+        public double FighterMax => FighterRaw + FighterBonusMax;
+        public double Raw => FighterRaw + BomberRaw;
+        public double FighterRaw { get; set; }
+        public double BomberRaw { get; set; }
+        public double FighterBonusMin { get; set; }
+        public double FighterBonusMax { get; set; }
+        public double BomberBonusMin { get; set; }
+        public double BomberBonusMax { get; set; }
+        public double BonusMin => FighterBonusMin + BomberBonusMin;
+        public double BonusMax => FighterBonusMax + BomberBonusMax;
+        public static AirFightPower operator +(AirFightPower a, AirFightPower b)
+            => new AirFightPower
+            {
+                FighterRaw = a.FighterRaw + b.FighterRaw,
+                BomberRaw = a.BomberRaw + b.BomberRaw,
+                FighterBonusMin = a.FighterBonusMin + b.FighterBonusMin,
+                FighterBonusMax = a.FighterBonusMax + b.FighterBonusMax,
+                BomberBonusMin = a.BomberBonusMin + b.BomberBonusMin,
+                BomberBonusMax = a.BomberBonusMax + b.BomberBonusMax
+            };
+        public AirFightPower(bool isfighter, double raw, double bonusmin, double bonusmax)
+        {
+            if (isfighter)
+            {
+                FighterRaw = raw;
+                FighterBonusMin = bonusmin;
+                FighterBonusMax = bonusmax;
+                BomberRaw = 0;
+                BomberBonusMin = 0;
+                BomberBonusMax = 0;
+            }
+            else
+            {
+                FighterRaw = 0;
+                FighterBonusMin = 0;
+                FighterBonusMax = 0;
+                BomberRaw = raw;
+                BomberBonusMin = bonusmin;
+                BomberBonusMax = bonusmax;
             }
         }
     }
