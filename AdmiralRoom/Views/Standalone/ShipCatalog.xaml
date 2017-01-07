@@ -224,22 +224,31 @@
                     <GridViewColumn Header="{ex:Localizable Ship_Equip}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Item.Slots}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Canvas Width="15" Height="15" ToolTip="{Binding}">
-                                                <Image Canvas.Left="-2.5" Canvas.Top="-2.5"
-                                                       Width="20" Height="20"
-                                                       Source="{Binding Item.EquipInfo.Icon}"/>
-                                            </Canvas>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                                <StackPanel Orientation="Horizontal">
+                                    <ItemsControl ItemsSource="{Binding Item.Slots}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Canvas Width="15" Height="15" ToolTip="{Binding}">
+                                                    <Image Canvas.Left="-2.5" Canvas.Top="-2.5"
+                                                           Width="20" Height="20"
+                                                           Source="{Binding Item.EquipInfo.Icon}"/>
+                                                </Canvas>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Rectangle Width="1" Margin="0,1,1,2" Fill="Gray" Visibility="{Binding Item.SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}"/>
+                                    <Canvas Width="15" Height="15">
+                                        <Image Canvas.Left="-2.5" Canvas.Top="-2.5"
+                                               Width="20" Height="20"
+                                               Source="{Binding Item.SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
+                                               ToolTip="{Binding Item.SlotEx.Item}"/>
+                                    </Canvas>
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
