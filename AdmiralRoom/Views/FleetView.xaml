@@ -112,6 +112,7 @@
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Condition"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Charge"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotExLock"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Margin="0,0,4,0" Orientation="Vertical">
@@ -262,15 +263,13 @@
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
-                                            <StackPanel Grid.Column="6" Orientation="Horizontal" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
-                                                <Rectangle Width="1" Margin="0,2,2,4" Fill="Gray"/>
-                                                <Canvas Width="36" Height="36">
-                                                    <Image Canvas.Left="-6" Canvas.Top="-6"
-                                                           Width="48" Height="48"
-                                                           Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
-                                                           ToolTip="{Binding SlotEx.Item}"/>
-                                                </Canvas>
-                                            </StackPanel>
+                                            <Rectangle Grid.Column="6" Width="1" Margin="0,2,2,4" Fill="Gray" Visibility="{Binding SlotEx.IsLocked, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
+                                            <Canvas Grid.Column="7" Width="36" Height="36" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
+                                                <Image Canvas.Left="-6" Canvas.Top="-6"
+                                                       Width="48" Height="48"
+                                                       Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
+                                                       ToolTip="{Binding SlotEx.Item}"/>
+                                            </Canvas>
                                         </Grid>
                                         <Rectangle Height="1" Margin="2" Fill="Gray"/>
                                     </StackPanel>

@@ -241,8 +241,8 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-                                    <Rectangle Width="1" Margin="0,1,1,2" Fill="Gray" Visibility="{Binding Item.SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}"/>
-                                    <Canvas Width="15" Height="15">
+                                    <Rectangle Width="1" Margin="0,1,1,2" Fill="Gray" Visibility="{Binding Item.SlotEx.IsLocked, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
+                                    <Canvas Width="15" Height="15" Visibility="{Binding Item.SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
                                         <Image Canvas.Left="-2.5" Canvas.Top="-2.5"
                                                Width="20" Height="20"
                                                Source="{Binding Item.SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
