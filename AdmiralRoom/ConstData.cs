@@ -122,7 +122,7 @@
         {
             try
             {
-                return level < 99 ? f99exp[level - 1] : ship100exp[level - 100];
+                return level <= 99 ? f99exp[level - 1] : ship100exp[level - 100];
             }
             catch { return 0; }
         }
