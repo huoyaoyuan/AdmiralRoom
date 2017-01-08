@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
+using Huoyaoyuan.AdmiralRoom.Officer.CompassData;
 
 #pragma warning disable CC0014
 
@@ -15,6 +16,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MapArea MapArea => Staff.Current.MasterData.MapAreas[MapAreaId];
         public int MapNo => rawdata.api_mapinfo_no;
         public MapInfo Map => MapArea[MapNo];
+        public PathData AfterPath => MapData.SelectPath(MapAreaId, MapNo,Id);
         /// <summary>
         /// 后续分歧个数
         /// </summary>
@@ -81,18 +83,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         case 4:
                             Type = MapNodeType.AirBattle;
                             break;
-                        case 5:
-                            Type = MapNodeType.Combined;
-                            break;
                         case 6:
                             Type = MapNodeType.AirDefence;
                             break;
                     }
                     break;
                 case 5:
-                    if (rawdata.api_event_kind == 5)
-                        Type = MapNodeType.CombinedBOSS;
-                    else Type = MapNodeType.BOSS;
+                    Type = MapNodeType.BOSS;
                     break;
                 case 6:
                     if (rawdata.api_event_kind == 2) Type = MapNodeType.SelectRoute;
@@ -124,9 +121,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
     }
-    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence, Combined, CombinedBOSS }
-    public static class MapNodeTypeExtension
-    {
-        public static bool IsBOSS(this MapNodeType node) => node == MapNodeType.BOSS || node == MapNodeType.CombinedBOSS;
-    }
+    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence }
 }
