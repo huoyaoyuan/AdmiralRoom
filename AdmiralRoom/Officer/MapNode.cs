@@ -21,6 +21,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int Forewards => rawdata.api_next;
         public MapNodeType Type { get; private set; } = MapNodeType.Unknown;
         public bool LoSAlert => rawdata.api_production_kind == 1;
+        public PathData AfterPath => MapData.SelectPath(MapAreaId, MapNo,Id);
         public class MaterialInfo
         {
             public int ItemType { get; set; }
