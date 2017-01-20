@@ -222,7 +222,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             _ignorenextcondition = true;
         }
         public int ApplyMarriage(int raw) => Level >= 100 ? (int)(raw * 0.85) : raw;
-        public int[] AirFightPower => Slots.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + (int)b).ToArray());
+        public AirFightPower AirFightPower => Slots.Aggregate(new AirFightPower(), (x, y) => x + y.AirFightPower);
 
         #region LoSInMap
         public double LoSInMap

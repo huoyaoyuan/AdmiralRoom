@@ -85,6 +85,14 @@
                                             <Setter Property="Text" Value="{ex:Localizable Compass_AirDefence}"/>
                                             <Setter Property="Foreground" Value="Orange"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Combined">
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_Combined}"/>
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentNode.Type}" Value="CombinedBOSS">
+                                            <Setter Property="Text" Value="{ex:Localizable Compass_CombinedBOSS}"/>
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>

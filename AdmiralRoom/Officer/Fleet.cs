@@ -209,22 +209,24 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         .With(ship => ship.InFleet = this)));
             UpdateStatus();
         }
-        public int[] AirFightPower { get; private set; }
+        public AirFightPower AirFightPower { get; private set; }
         public int LevelSum => Ships.Sum(x => x.Level);
         public double LevelAverage => Ships.Any() ? Ships.Average(x => (double)x.Level) : 0;
         public double LoSInMap
         {
             get
             {
+                var ships = Ships.Where(x => !x.IsEscaped);
                 switch (Config.Current.LosCalcType)
                 {
                     case LosCalcType.SimpleSum:
+                        return ships.Sum(x => x.LoS.Current + x.Slots.Where(y => y.HasItem).Sum(y => y.Item.EquipInfo.LoS));
                     case LosCalcType.Formula14Q3:
-                        return Ships.Sum(x => x.LoSInMap);
+                        return ships.Sum(x => x.LoSInMap);
                     case LosCalcType.Formula14Q4:
-                        return Ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
+                        return ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level / 5.0) * 5.0 * 0.61;
                     case LosCalcType.Formula16Q1:
-                        return Ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level * 0.4) + (6 - Ships.Count) * 2;
+                        return ships.Sum(x => x.LoSInMap) - Math.Ceiling(Staff.Current.Admiral.Level * 0.4) + (6 - ships.Count()) * 2;
                     default:
                         return 0;
                 }
@@ -260,7 +262,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 Status = FleetStatus.NotReady;
             else Status = FleetStatus.Ready;
 #pragma warning restore CC0014
-            AirFightPower = Ships.Aggregate(new int[8], (x, y) => x.Zip(y.AirFightPower, (a, b) => a + b).ToArray());
+            AirFightPower = Ships.Where(x => !x.IsEscaped).Aggregate(new AirFightPower(), (x, y) => x + y.AirFightPower);
             if (Ships.Any())
                 mincondition = Ships.Min(x => x.Condition);
             else

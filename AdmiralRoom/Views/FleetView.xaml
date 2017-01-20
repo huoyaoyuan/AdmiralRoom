@@ -112,6 +112,7 @@
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Condition"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Charge"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="SlotItem"/>
+                                                <ColumnDefinition Width="Auto" SharedSizeGroup="SlotExLock"/>
                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="SlotEx"/>
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Margin="0,0,4,0" Orientation="Vertical">
@@ -240,11 +241,11 @@
                                                                             <Run Text="{ex:Localizable Fleet_AFP}"/>
                                                                             <Run>
                                                                                 <MultiBinding StringFormat="{}{0:F2}~{1:F2} ({2:F2} + {3:F2}~{4:F2})" Mode="OneWay">
-                                                                                    <Binding Path="AirFightPower[0]"/>
-                                                                                    <Binding Path="AirFightPower[1]"/>
-                                                                                    <Binding Path="AirFightPower[4]"/>
-                                                                                    <Binding Path="AirFightPower[6]"/>
-                                                                                    <Binding Path="AirFightPower[7]"/>
+                                                                                    <Binding Path="AirFightPower.TotalMin"/>
+                                                                                    <Binding Path="AirFightPower.TotalMax"/>
+                                                                                    <Binding Path="AirFightPower.Raw"/>
+                                                                                    <Binding Path="AirFightPower.BonusMin"/>
+                                                                                    <Binding Path="AirFightPower.BonusMax"/>
                                                                                 </MultiBinding>
                                                                             </Run>
                                                                         </TextBlock>
@@ -262,15 +263,13 @@
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
-                                            <StackPanel Grid.Column="6" Orientation="Horizontal" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
-                                                <Rectangle Width="1" Margin="0,2,2,4" Fill="Gray"/>
-                                                <Canvas Width="36" Height="36">
-                                                    <Image Canvas.Left="-6" Canvas.Top="-6"
-                                                           Width="48" Height="48"
-                                                           Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
-                                                           ToolTip="{Binding SlotEx.Item}"/>
-                                                </Canvas>
-                                            </StackPanel>
+                                            <Rectangle Grid.Column="6" Width="1" Margin="0,2,2,4" Fill="Gray" Visibility="{Binding SlotEx.IsLocked, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}"/>
+                                            <Canvas Grid.Column="7" Width="36" Height="36" Visibility="{Binding SlotEx.HasItem, Converter={StaticResource VisibilityConverter}}">
+                                                <Image Canvas.Left="-6" Canvas.Top="-6"
+                                                       Width="48" Height="48"
+                                                       Source="{Binding SlotEx.Item.EquipInfo.Icon, Mode=OneWay}"
+                                                       ToolTip="{Binding SlotEx.Item}"/>
+                                            </Canvas>
                                         </Grid>
                                         <Rectangle Height="1" Margin="2" Fill="Gray"/>
                                     </StackPanel>
@@ -334,27 +333,27 @@
                     <StackPanel Grid.Row="3" Orientation="Horizontal">
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0}: {1}~{2}" Mode="OneWay">
+                                <MultiBinding StringFormat="{}{0}: {1:F0}~{2:F0}" Mode="OneWay">
                                     <Binding Path="(root:ResourceService.CurrentCulture)"
                                              Mode="OneWay"
                                              Converter="{StaticResource StringTableConverter}"
                                              ConverterParameter="Fleet_AFP"/>
-                                    <Binding Path="AirFightPower[0]"/>
-                                    <Binding Path="AirFightPower[1]"/>
+                                    <Binding Path="AirFightPower.TotalMin"/>
+                                    <Binding Path="AirFightPower.TotalMax"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                             <TextBlock.ToolTip>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{8}: {0}~{1}   {9}: {4}  {10}: {6}~{7} {11}: {2}~{3}  {9}: {5}" Mode="OneWay">
-                                            <Binding Path="AirFightPower[0]"/>
-                                            <Binding Path="AirFightPower[1]"/>
-                                            <Binding Path="AirFightPower[2]"/>
-                                            <Binding Path="AirFightPower[3]"/>
-                                            <Binding Path="AirFightPower[4]"/>
-                                            <Binding Path="AirFightPower[5]"/>
-                                            <Binding Path="AirFightPower[6]"/>
-                                            <Binding Path="AirFightPower[7]"/>
+                                        <MultiBinding StringFormat="{}{8}: {0:F0}~{1:F0}   {9}: {4:F0}  {10}: {6:F0}~{7:F0} {11}: {2:F0}~{3:F0}  {9}: {5:F0}" Mode="OneWay">
+                                            <Binding Path="AirFightPower.TotalMin"/>
+                                            <Binding Path="AirFightPower.TotalMax"/>
+                                            <Binding Path="AirFightPower.FighterMin"/>
+                                            <Binding Path="AirFightPower.FighterMax"/>
+                                            <Binding Path="AirFightPower.Raw"/>
+                                            <Binding Path="AirFightPower.FighterRaw"/>
+                                            <Binding Path="AirFightPower.BonusMin"/>
+                                            <Binding Path="AirFightPower.BonusMax"/>
                                             <Binding Path="(root:ResourceService.CurrentCulture)"
                                                      Mode="OneWay"
                                                      Converter="{StaticResource StringTableConverter}"

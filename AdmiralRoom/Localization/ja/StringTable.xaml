@@ -41,6 +41,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_AirSearch">航空偵察</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Battle">戦闘</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_BOSS">ボス</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Combined">連合艦隊</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Compass_CombinedBOSS">連合艦隊ボス</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Guard">輸送船団ゴール地点</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_Imagination">気のせい</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Compass_ItemGet">資材獲得</s:String>

@@ -2,6 +2,7 @@
 {
     public class sortie_battle
     {
+        public int[] api_active_deck { get; set; }
         public int api_deck_id { get; set; }
         /// <summary>
         /// 将错就错，还只改一半，那只能让你们全家爆炸了
@@ -27,6 +28,8 @@
         public int[] api_escape_idx_combined { get; set; }
         public int[] api_search { get; set; }
         public int[] api_formation { get; set; }
+        public airbattle api_air_base_injection { get; set; }
+        public airbattle api_injection_kouku { get; set; }
         public class air_base_attack
         {
             public int api_base_id { get; set; }

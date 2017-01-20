@@ -1,6 +1,6 @@
 ﻿namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    public class Exp
+    public struct Exp
     {
         public int Current { get; }
         public int Next { get; }
@@ -9,6 +9,8 @@
         public bool IsOverflow { get; }
         public Exp(int[] arr, int level, bool isShipExp)
         {
+            IsOverflow = false;
+            Next = 0;
             Current = arr[0];
             if (isShipExp)//舰娘exp
             {
@@ -27,6 +29,8 @@
         }
         public Exp(int exp, int level)//提督exp
         {
+            IsOverflow = false;
+            Next = 0;
             Current = exp;
             NextLevel = ConstData.GetAdmiralExp(level + 1);
             PrevLevel = ConstData.GetAdmiralExp(level);

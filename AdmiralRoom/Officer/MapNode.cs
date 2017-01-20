@@ -81,13 +81,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         case 4:
                             Type = MapNodeType.AirBattle;
                             break;
+                        case 5:
+                            Type = MapNodeType.Combined;
+                            break;
                         case 6:
                             Type = MapNodeType.AirDefence;
                             break;
                     }
                     break;
                 case 5:
-                    Type = MapNodeType.BOSS;
+                    if (rawdata.api_event_kind == 5)
+                        Type = MapNodeType.CombinedBOSS;
+                    else Type = MapNodeType.BOSS;
                     break;
                 case 6:
                     if (rawdata.api_event_kind == 2) Type = MapNodeType.SelectRoute;
@@ -119,5 +124,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
     }
-    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence }
+    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence, Combined, CombinedBOSS }
+    public static class MapNodeTypeExtension
+    {
+        public static bool IsBOSS(this MapNodeType node) => node == MapNodeType.BOSS || node == MapNodeType.CombinedBOSS;
+    }
 }
