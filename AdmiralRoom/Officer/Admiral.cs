@@ -82,11 +82,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             get { return _exp; }
             set
             {
-                if (_exp != value)
-                {
-                    _exp = value;
-                    OnPropertyChanged();
-                }
+                _exp = value;
+                OnPropertyChanged();
             }
         }
         #endregion
