@@ -5,7 +5,7 @@ using Huoyaoyuan.AdmiralRoom.Notifier;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
-namespace Huoyaoyuan.AdmiralRoom.Officer
+namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 {
     public class BattleManager : NotificationObject
     {

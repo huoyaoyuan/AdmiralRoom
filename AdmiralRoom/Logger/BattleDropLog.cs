@@ -1,4 +1,5 @@
 ﻿using System;
+using Huoyaoyuan.AdmiralRoom.Officer.Battle;
 
 #pragma warning disable CC0021
 
@@ -25,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
         [Filter]
         public string BOSS => IsBOSS ? StringTable.Compass_BOSS : "-";
         [Log]
-        public Officer.WinRank WinRank { get; set; }
+        public WinRank WinRank { get; set; }
         [Show("WinRank"), Filter(nameof(WinRank))]
         public string WinRankString
         {
@@ -33,19 +34,19 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             {
                 switch (WinRank)
                 {
-                    case Officer.WinRank.Perfect:
+                    case WinRank.Perfect:
                         return StringTable.Battle_WinRank_Perfect;
-                    case Officer.WinRank.S:
+                    case WinRank.S:
                         return StringTable.Battle_WinRank_S;
-                    case Officer.WinRank.A:
+                    case WinRank.A:
                         return StringTable.Battle_WinRank_A;
-                    case Officer.WinRank.B:
+                    case WinRank.B:
                         return StringTable.Battle_WinRank_B;
-                    case Officer.WinRank.C:
+                    case WinRank.C:
                         return StringTable.Battle_WinRank_C;
-                    case Officer.WinRank.D:
+                    case WinRank.D:
                         return StringTable.Battle_WinRank_D;
-                    case Officer.WinRank.E:
+                    case WinRank.E:
                         return StringTable.Battle_WinRank_E;
                     default:
                         return "";

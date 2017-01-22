@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using Fiddler;
+using Huoyaoyuan.AdmiralRoom.Officer.Battle;
 
 #pragma warning disable CC0022
 

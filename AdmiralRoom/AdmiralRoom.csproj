@@ -296,9 +296,9 @@
     <Compile Include="Notifier\ToastNotifierFactory.cs" />
     <Compile Include="Notifier\ShellHelpers.cs" />
     <Compile Include="Officer\Admiral.cs" />
-    <Compile Include="Officer\BattleBase.cs" />
-    <Compile Include="Officer\BattleManager.cs" />
-    <Compile Include="Officer\Battle.cs" />
+    <Compile Include="Officer\Battle\BattleBase.cs" />
+    <Compile Include="Officer\Battle\BattleManager.cs" />
+    <Compile Include="Officer\Battle\Battle.cs" />
     <Compile Include="Officer\BuildingDock.cs" />
     <Compile Include="Officer\ConditionHelper.cs" />
     <Compile Include="Officer\CounterBase.cs" />

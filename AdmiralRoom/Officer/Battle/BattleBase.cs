@@ -2,7 +2,7 @@
 using System.Linq;
 using Meowtrix.ComponentModel;
 
-namespace Huoyaoyuan.AdmiralRoom.Officer
+namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 {
     public class BattleBase : NotificationObject
     {

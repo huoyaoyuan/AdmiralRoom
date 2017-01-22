@@ -3,7 +3,7 @@ using Huoyaoyuan.AdmiralRoom.API;
 using Meowtrix.Linq;
 using static System.Math;
 
-namespace Huoyaoyuan.AdmiralRoom.Officer
+namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 {
     public class Battle : BattleBase
     {
