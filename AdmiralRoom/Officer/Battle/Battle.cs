@@ -5,7 +5,7 @@ using static System.Math;
 
 namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 {
-    public class Battle : BattleBase
+    public partial class Battle : BattleBase
     {
         public override bool IsBattling => true;
         public MapNodeType BattleType { get; set; }
