@@ -362,5 +362,38 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             }
         }
         #endregion
+
+        #region 支援艦隊
+        public class SupportAttack : Stage
+        {
+            public SupportType Type { get; }
+            public AerialSupport Aerial { get; }
+            public SupportAttack(Battle battle, sortie_battle.support api, int type)
+            {
+                Type = (SupportType)type;
+                if (Type == SupportType.Aerial)
+                    Aerial = new AerialSupport(battle, api.api_support_airatack);
+                else
+                {
+                    var result = new List<Attack>();
+                    for (int i = 1; i < api.api_support_hourai.api_damage.Length; i++)
+                    {
+                        var damage = Attack.ParseDamage(api.api_support_hourai.api_damage[i]);
+                        result.Add(new Attack
+                        {
+                            Friend = null,
+                            Enemy = FindShip(i, battle.EnemyFleet, battle.EnemyFleet2),
+                            Direction = true,
+                            Damage = damage.damage,
+                            Shield = damage.shield,
+                            IsCritical = api.api_support_hourai.api_cl_list[i] == 2
+                        });
+                    }
+                    Attacks = result.ToArray();
+                }
+            }
+        }
+        #endregion
     }
+    public enum SupportType { None = 0, Aerial = 1, Fire = 2, Torpedo = 3 }
 }
