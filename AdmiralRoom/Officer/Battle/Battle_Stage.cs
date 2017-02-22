@@ -71,18 +71,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     attack.Apply(battle);
             }
         }
-        public class AerialCombat : Stage
+
+        #region 航空戦
+        public abstract class AerialBase : Stage
         {
-            public AirControl AirControl { get; }
-            public LimitedValue FriendStage1 { get; }
-            public LimitedValue EnemyStage1 { get; }
-            public LimitedValue FriendStage2 { get; }
-            public LimitedValue EnemyStage2 { get; }
-            public AerialCombat(Battle battle, sortie_battle.airbattle api, bool isSupport)
+            public AirControl AirControl { get; protected set; }
+            public LimitedValue FriendStage1 { get; protected set; }
+            public LimitedValue EnemyStage1 { get; protected set; }
+            public LimitedValue FriendStage2 { get; protected set; }
+            public LimitedValue EnemyStage2 { get; protected set; }
+            protected AerialBase(sortie_battle.airbattle api)
             {
                 if (api.api_stage1 != null)
                 {
-                    AirControl = (AirControl)api.api_stage1.api_disp_seiku;
                     FriendStage1 = new LimitedValue(api.api_stage1.api_f_count - api.api_stage1.api_f_lostcount, api.api_stage1.api_f_count);
                     EnemyStage1 = new LimitedValue(api.api_stage1.api_e_count - api.api_stage1.api_e_lostcount, api.api_stage1.api_e_count);
                 }
@@ -91,15 +92,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     FriendStage2 = new LimitedValue(api.api_stage2.api_f_count - api.api_stage2.api_f_lostcount, api.api_stage2.api_f_count);
                     EnemyStage2 = new LimitedValue(api.api_stage2.api_e_count - api.api_stage2.api_e_lostcount, api.api_stage2.api_e_count);
                 }
-                ShipInBattle friendtorpedo = null, friendbomb = null, enemytorpedo = null, enemybomb = null;
-                if (!isSupport)
-                {
-                    friendtorpedo = battle.Fleet1.Where(x => x.CanAerialTorpedo).TakeIfSingle();
-                    friendbomb = battle.Fleet1.Where(x => x.CanAerialBomb).TakeIfSingle();
-                }
-                enemytorpedo = battle.EnemyFleet.Where(x => x.CanAerialTorpedo).TakeIfSingle();
-                enemybomb = battle.EnemyFleet.Where(x => x.CanAerialBomb).TakeIfSingle();
-
+            }
+            protected void ParseAttacks(Battle battle, sortie_battle.airbattle api, ShipInBattle friendtorpedo, ShipInBattle friendbomb, ShipInBattle enemytorpedo, ShipInBattle enemybomb)
+            {
                 var result = Enumerable.Empty<Attack>();
 
                 void ParseStage3(sortie_battle.airbattle.stage3 stage3)
@@ -143,5 +138,85 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 }
             }
         }
+        public class AerialCombat : AerialBase
+        {
+            public EquipInfo FriendTouch { get; }
+            public EquipInfo EnemyTouch { get; }
+            public class AntiAirCutin
+            {
+                public ShipInBattle Ship { get; }
+                public int Type { get; }
+                public EquipInfo[] EquipList { get; }
+                public AntiAirCutin(Battle battle, sortie_battle.airbattle.stage2.anti_air_cutin api)
+                {
+                    if (api.api_idx < 6) Ship = battle.Fleet1[api.api_idx];
+                    else Ship = battle.Fleet2[api.api_idx - 6];
+                    Type = api.api_kind;
+                    EquipList = api.api_use_items.Select(x => Staff.Current.MasterData.EquipInfo[x]).ToArray();
+                }
+            }
+            public AntiAirCutin AntiAir { get; }
+            public AerialCombat(Battle battle, sortie_battle.airbattle api) : base(api)
+            {
+                if (api.api_stage1 != null)
+                {
+                    AirControl = (AirControl)api.api_stage1.api_disp_seiku;
+                    FriendTouch = Staff.Current.MasterData.EquipInfo[api.api_stage1.api_touch_plane[0]];
+                    EnemyTouch = Staff.Current.MasterData.EquipInfo[api.api_stage1.api_touch_plane[1]];
+                }
+
+                if (api.api_stage2?.api_air_fire != null)
+                    AntiAir = new AntiAirCutin(battle, api.api_stage2.api_air_fire);
+
+                ShipInBattle friendtorpedo = null, friendbomb = null, enemytorpedo = null, enemybomb = null;
+                friendtorpedo = battle.Fleet1.Where(x => x.CanAerialTorpedo).TakeIfSingle();
+                friendbomb = battle.Fleet1.Where(x => x.CanAerialBomb).TakeIfSingle();
+                enemytorpedo = battle.EnemyFleet.Where(x => x.CanAerialTorpedo).TakeIfSingle();
+                enemybomb = battle.EnemyFleet.Where(x => x.CanAerialBomb).TakeIfSingle();
+
+                ParseAttacks(battle, api, friendtorpedo, friendbomb, enemytorpedo, enemybomb);
+            }
+        }
+        public class AerialSupport : AerialBase
+        {
+            public AerialSupport(Battle battle, sortie_battle.airbattle api) : base(api)
+            {
+                if (api.api_stage1 != null)
+                    AirControl = (AirControl)api.api_stage1.api_disp_seiku;
+
+                ShipInBattle enemytorpedo = null, enemybomb = null;
+                enemytorpedo = battle.EnemyFleet.Where(x => x.CanAerialTorpedo).TakeIfSingle();
+                enemybomb = battle.EnemyFleet.Where(x => x.CanAerialBomb).TakeIfSingle();
+
+                ParseAttacks(battle, api, null, null, enemytorpedo, enemybomb);
+            }
+        }
+        public class JetPlaneAttack : AerialBase
+        {
+            public JetPlaneAttack(Battle battle, sortie_battle.airbattle api, bool isSupport) : base(api)
+            {
+                ShipInBattle friendjet = null, enemyjet = null;
+                if (api.api_plane_from[0]?.Length == 1 && api.api_plane_from[0][0] > 0)
+                    friendjet = battle.Fleet1[api.api_plane_from[0][0] - 1];
+                if (api.api_plane_from.Length >= 2 && api.api_plane_from[1]?.Length == 1 && api.api_plane_from[1][0] > 0)
+                    enemyjet = battle.EnemyFleet[api.api_plane_from[1][0] - 1];
+
+                ParseAttacks(battle, api, null, friendjet, null, enemyjet);
+            }
+        }
+        public class AirBaseAttack : AerialBase
+        {
+            sortie_battle.airbattle.squadron[] SquadronList { get; }
+            public AirBaseAttack(Battle battle, sortie_battle.airbattle api) : base(api)
+            {
+                SquadronList = api.api_squadron_plane;
+                if (api.api_stage1 != null)
+                    AirControl = (AirControl)api.api_stage1.api_disp_seiku;
+
+                ParseAttacks(battle, api, null, null, null, null);
+            }
+        }
+        #endregion
+
     }
 }

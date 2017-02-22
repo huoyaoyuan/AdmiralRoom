@@ -51,6 +51,12 @@
         public class airbattle
         {
             public int[][] api_plane_from { get; set; }
+            public class squadron
+            {
+                public int api_mst_id { get; }
+                public int api_count { get; }
+            }
+            public squadron[] api_squadron_plane { get; set; }
             public class stage1
             {
                 public int api_f_count { get; set; }
