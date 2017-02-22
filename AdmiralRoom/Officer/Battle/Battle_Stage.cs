@@ -131,7 +131,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         Friend = friend,
                         Enemy = enemy,
                         Direction = direction,
-                        IsCritical = criticalList[i] != 0,
+                        IsCritical = criticalList[i] == 2,
                         Damage = damage.damage,
                         Shield = damage.shield
                     };
@@ -218,5 +218,71 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
         #endregion
 
+        #region 砲雷撃戦
+        public class FireCombat : Stage
+        {
+            public FireCombat(sortie_battle.fire api, ShipInBattle[] friends, ShipInBattle[] enemies)
+            {
+                var result = new List<Attack>();
+                for (int i = 0; i < api.api_df_list.Length; i++)
+                {
+                    int sourceidx = api.api_at_list[i + 1];
+                    bool direction = sourceidx <= 6;
+                    var source = direction ? friends[sourceidx - 1] : enemies[sourceidx - 7];
+                    for (int j = 0; j < api.api_df_list[i].Length; j++)
+                    {
+                        int destidx = api.api_df_list[i][0];
+                        var dest = direction ? enemies[sourceidx - 7] : friends[sourceidx - 1];
+                        var damage = Attack.ParseDamage(api.api_damage[i][j]);
+                        (var friend, var enemy) = direction ? (source, dest) : (dest, source);
+                        result.Add(new Attack
+                        {
+                            Friend = friend,
+                            Enemy = enemy,
+                            Direction = direction,
+                            Damage = damage.damage,
+                            IsCritical = api.api_cl_list[i][j] == 2,
+                            Shield = damage.shield
+                        });
+                    }
+                }
+                Attacks = result.ToArray();
+            }
+        }
+        public class ECFireCombat : Stage
+        {
+            public ECFireCombat(Battle battle, sortie_battle.fire api)
+            {
+                var result = new List<Attack>();
+                for (int i = 0; i < api.api_df_list.Length; i++)
+                {
+                    int sourceidx = api.api_at_list[i + 1];
+                    bool direction = api.api_at_eflag[i + 1] == 0;
+                    var source = direction ?
+                        (sourceidx <= 6 ? battle.Fleet1[sourceidx - 1] : battle.Fleet2[sourceidx - 7]) :
+                        (sourceidx <= 6 ? battle.EnemyFleet[sourceidx - 1] : battle.EnemyFleet2[sourceidx - 7]);
+                    for (int j = 0; j < api.api_df_list[i].Length; j++)
+                    {
+                        int destidx = api.api_df_list[i][j];
+                        var dest = direction ?
+                            (destidx <= 6 ? battle.Fleet1[destidx - 1] : battle.Fleet2[destidx - 7]) :
+                            (destidx <= 6 ? battle.EnemyFleet[destidx - 1] : battle.EnemyFleet2[destidx - 7]);
+                        var damage = Attack.ParseDamage(api.api_damage[i][j]);
+                        (var friend, var enemy) = direction ? (source, dest) : (dest, source);
+                        result.Add(new Attack
+                        {
+                            Friend = friend,
+                            Enemy = enemy,
+                            Direction = direction,
+                            Damage = damage.damage,
+                            IsCritical = api.api_cl_list[i][j] == 2,
+                            Shield = damage.shield
+                        });
+                    }
+                }
+                Attacks = result.ToArray();
+            }
+        }
+        #endregion
     }
 }
