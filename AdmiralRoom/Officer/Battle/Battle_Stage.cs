@@ -70,6 +70,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 foreach (var attack in Attacks)
                     attack.Apply(battle);
             }
+            protected static ShipInBattle FindShip(int index, ShipInBattle[] fleet1, ShipInBattle[] fleet2)
+                => index <= 6 ? fleet1[index - 1] : fleet2[index - 7];
         }
 
         #region 航空戦
@@ -228,11 +230,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 {
                     int sourceidx = api.api_at_list[i + 1];
                     bool direction = sourceidx <= 6;
-                    var source = direction ? friends[sourceidx - 1] : enemies[sourceidx - 7];
+                    var source = FindShip(sourceidx, friends, enemies);
                     for (int j = 0; j < api.api_df_list[i].Length; j++)
                     {
                         int destidx = api.api_df_list[i][0];
-                        var dest = direction ? enemies[sourceidx - 7] : friends[sourceidx - 1];
+                        var dest = FindShip(destidx, friends, enemies);
                         var damage = Attack.ParseDamage(api.api_damage[i][j]);
                         (var friend, var enemy) = direction ? (source, dest) : (dest, source);
                         result.Add(new Attack
@@ -259,14 +261,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     int sourceidx = api.api_at_list[i + 1];
                     bool direction = api.api_at_eflag[i + 1] == 0;
                     var source = direction ?
-                        (sourceidx <= 6 ? battle.Fleet1[sourceidx - 1] : battle.Fleet2[sourceidx - 7]) :
-                        (sourceidx <= 6 ? battle.EnemyFleet[sourceidx - 1] : battle.EnemyFleet2[sourceidx - 7]);
+                        FindShip(sourceidx, battle.Fleet1, battle.Fleet2) :
+                        FindShip(sourceidx, battle.EnemyFleet, battle.EnemyFleet2);
                     for (int j = 0; j < api.api_df_list[i].Length; j++)
                     {
                         int destidx = api.api_df_list[i][j];
                         var dest = direction ?
-                            (destidx <= 6 ? battle.Fleet1[destidx - 1] : battle.Fleet2[destidx - 7]) :
-                            (destidx <= 6 ? battle.EnemyFleet[destidx - 1] : battle.EnemyFleet2[destidx - 7]);
+                            FindShip(destidx, battle.Fleet1, battle.Fleet2) :
+                            FindShip(destidx, battle.EnemyFleet, battle.EnemyFleet2);
                         var damage = Attack.ParseDamage(api.api_damage[i][j]);
                         (var friend, var enemy) = direction ? (source, dest) : (dest, source);
                         result.Add(new Attack
@@ -279,6 +281,82 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                             Shield = damage.shield
                         });
                     }
+                }
+                Attacks = result.ToArray();
+            }
+        }
+        public class TorpedoCombat : Stage
+        {
+            public TorpedoCombat(sortie_battle.torpedo api, ShipInBattle[] friends, ShipInBattle[] enemies)
+            {
+                var result = new List<Attack>();
+                for (int i = 1; i < api.api_fydam.Length; i++)
+                {
+                    int target = api.api_frai[i - 1];
+                    if (target == 0) continue;
+                    var damage = Attack.ParseDamage(api.api_fydam[i]);
+                    result.Add(new Attack
+                    {
+                        Friend = friends[i - 1],
+                        Enemy = enemies[target - 1],
+                        Direction = true,
+                        Damage = damage.damage,
+                        Shield = damage.shield,
+                        IsCritical = api.api_fcl[i - 1] == 2
+                    });
+                }
+                for (int i = 1; i < api.api_eydam.Length; i++)
+                {
+                    int target = api.api_erai[i - 1];
+                    if (target == 0) continue;
+                    var damage = Attack.ParseDamage(api.api_eydam[i]);
+                    result.Add(new Attack
+                    {
+                        Friend = friends[target - 1],
+                        Enemy = enemies[i - 1],
+                        Direction = false,
+                        Damage = damage.damage,
+                        Shield = damage.shield,
+                        IsCritical = api.api_ecl[i - 1] == 2
+                    });
+                }
+                Attacks = result.ToArray();
+            }
+        }
+        public class ECTorpedoCombat : Stage
+        {
+            public ECTorpedoCombat(Battle battle, sortie_battle.torpedo api)
+            {
+                var result = new List<Attack>();
+                for (int i = 1; i < api.api_fydam.Length; i++)
+                {
+                    int target = api.api_frai[i - 1];
+                    if (target == 0) continue;
+                    var damage = Attack.ParseDamage(api.api_fydam[i]);
+                    result.Add(new Attack
+                    {
+                        Friend = FindShip(i, battle.Fleet1, battle.Fleet2),
+                        Enemy = FindShip(target, battle.EnemyFleet, battle.EnemyFleet2),
+                        Direction = true,
+                        Damage = damage.damage,
+                        Shield = damage.shield,
+                        IsCritical = api.api_fcl[i - 1] == 2
+                    });
+                }
+                for (int i = 1; i < api.api_eydam.Length; i++)
+                {
+                    int target = api.api_erai[i - 1];
+                    if (target == 0) continue;
+                    var damage = Attack.ParseDamage(api.api_eydam[i]);
+                    result.Add(new Attack
+                    {
+                        Friend = FindShip(target, battle.Fleet1, battle.Fleet2),
+                        Enemy = FindShip(i, battle.EnemyFleet, battle.EnemyFleet2),
+                        Direction = false,
+                        Damage = damage.damage,
+                        Shield = damage.shield,
+                        IsCritical = api.api_ecl[i - 1] == 2
+                    });
                 }
                 Attacks = result.ToArray();
             }
