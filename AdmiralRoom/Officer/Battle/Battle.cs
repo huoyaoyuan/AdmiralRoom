@@ -205,7 +205,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 if (api.api_raigeki != null)
                     TorpedoStage = new TorpedoCombat(api.api_raigeki, NightOrTorpedo, EnemyFleet);
             }
-            NightBattle(api);
+            if (api.api_hougeki != null)
+                NightBattle(api);
+            else EndApplyBattle();
         }
         public void NightBattle(sortie_battle api)
         {

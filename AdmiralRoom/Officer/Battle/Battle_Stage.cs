@@ -65,7 +65,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public abstract class Stage
         {
             public Attack[] Attacks { get; protected set; }
-            protected void Apply(Battle battle)
+            public void Apply(Battle battle)
             {
                 foreach (var attack in Attacks)
                     attack.Apply(battle);
@@ -294,7 +294,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 var result = new List<Attack>();
                 for (int i = 1; i < api.api_fydam.Length; i++)
                 {
-                    int target = api.api_frai[i - 1];
+                    int target = api.api_frai[i];
                     if (target == 0) continue;
                     var damage = Attack.ParseDamage(api.api_fydam[i]);
                     result.Add(new Attack
@@ -304,12 +304,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         Direction = true,
                         Damage = damage.damage,
                         Shield = damage.shield,
-                        IsCritical = api.api_fcl[i - 1] == 2
+                        IsCritical = api.api_fcl[i] == 2
                     });
                 }
                 for (int i = 1; i < api.api_eydam.Length; i++)
                 {
-                    int target = api.api_erai[i - 1];
+                    int target = api.api_erai[i];
                     if (target == 0) continue;
                     var damage = Attack.ParseDamage(api.api_eydam[i]);
                     result.Add(new Attack
@@ -319,7 +319,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         Direction = false,
                         Damage = damage.damage,
                         Shield = damage.shield,
-                        IsCritical = api.api_ecl[i - 1] == 2
+                        IsCritical = api.api_ecl[i] == 2
                     });
                 }
                 Attacks = result.ToArray();
@@ -332,7 +332,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 var result = new List<Attack>();
                 for (int i = 1; i < api.api_fydam.Length; i++)
                 {
-                    int target = api.api_frai[i - 1];
+                    int target = api.api_frai[i];
                     if (target == 0) continue;
                     var damage = Attack.ParseDamage(api.api_fydam[i]);
                     result.Add(new Attack
@@ -342,12 +342,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         Direction = true,
                         Damage = damage.damage,
                         Shield = damage.shield,
-                        IsCritical = api.api_fcl[i - 1] == 2
+                        IsCritical = api.api_fcl[i] == 2
                     });
                 }
                 for (int i = 1; i < api.api_eydam.Length; i++)
                 {
-                    int target = api.api_erai[i - 1];
+                    int target = api.api_erai[i];
                     if (target == 0) continue;
                     var damage = Attack.ParseDamage(api.api_eydam[i]);
                     result.Add(new Attack
@@ -357,7 +357,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         Direction = false,
                         Damage = damage.damage,
                         Shield = damage.shield,
-                        IsCritical = api.api_ecl[i - 1] == 2
+                        IsCritical = api.api_ecl[i] == 2
                     });
                 }
                 Attacks = result.ToArray();
