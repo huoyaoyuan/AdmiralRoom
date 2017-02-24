@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             public bool Direction { get; set; }
             public bool Shield { get; set; }
             private bool applied;
-            public void Apply(Battle battle)
+            public void Apply(Battle battle = null)
             {
                 if (applied) return;
                 applied = true;
@@ -43,8 +43,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 }
                 if (source != null)
                     source.DamageGiven += Damage;
-                else if (Direction) battle.AnonymousFriendDamage += Damage;
-                else battle.AnonymousEnemyDamage += Damage;
+                else if (battle != null)
+                {
+                    if (Direction) battle.AnonymousFriendDamage += Damage;
+                    else battle.AnonymousEnemyDamage += Damage;
+                }
                 if (dest != null)
                 {
                     FromHP = dest.ToHP;
@@ -64,9 +67,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
         public abstract class Stage
         {
-            public Attack[] Attacks { get; protected set; }
-            public void Apply(Battle battle)
+            public Attack[] Attacks { get; private set; }
+            public void ApplyAttacks(IEnumerable<Attack> attacks, Battle battle = null)
             {
+                Attacks = attacks.ToArray();
                 foreach (var attack in Attacks)
                     attack.Apply(battle);
             }
@@ -113,7 +117,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 ParseStage3(api.api_stage3);
                 ParseStage3(api.api_stage3_combined);
 
-                Attacks = result.ToArray();
+                ApplyAttacks(result, battle);
             }
             private static IEnumerable<Attack> ParseAttack(decimal[] damageList, int[] torpedoFlags, int[] bombFlags, int[] criticalList, bool direction,
                 ShipInBattle[] fleet, ShipInBattle torpedoSource, ShipInBattle bombSource)
@@ -250,7 +254,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         });
                     }
                 }
-                Attacks = result.ToArray();
+                ApplyAttacks(result);
             }
         }
         public class ECFireCombat : Stage
@@ -284,7 +288,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         });
                     }
                 }
-                Attacks = result.ToArray();
+                ApplyAttacks(result);
             }
         }
         public class TorpedoCombat : Stage
@@ -322,7 +326,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         IsCritical = api.api_ecl[i] == 2
                     });
                 }
-                Attacks = result.ToArray();
+                ApplyAttacks(result);
             }
         }
         public class ECTorpedoCombat : Stage
@@ -360,7 +364,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         IsCritical = api.api_ecl[i] == 2
                     });
                 }
-                Attacks = result.ToArray();
+                ApplyAttacks(result);
             }
         }
         #endregion
@@ -391,7 +395,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                             IsCritical = api.api_support_hourai.api_cl_list[i] == 2
                         });
                     }
-                    Attacks = result.ToArray();
+                    ApplyAttacks(result);
                 }
             }
         }
