@@ -15,15 +15,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             public int ToHP { get; set; }
             public int Damage { get; set; }
             public int DamageGiven { get; set; }
-            public EquipInfo[] Equipments { get; set; }
-            public EquipInfo DamageControl { get; set; }
+            public EquipInBattle[] Equipments { get; set; }
+            public EquipInBattle EquipmentEx { get; set; }
+            public EquipInfo DamageControl => new[] { EquipmentEx }.Concat(Equipments).FirstOrDefault(x => x?.EquipInfo.EquipType.Id == 23)?.EquipInfo;
             public bool IsMostDamage { get; set; }
             public bool IsEscaped { get; set; }
-            public bool CanAerialTorpedo => Equipments.Any(x => x.EquipType.Id == 8);
-            public bool CanAerialBomb => Equipments.Any(x => x.EquipType.Id == 7 || x.EquipType.Id == 11);
+            public bool CanAerialTorpedo => Equipments.Any(x => x.EquipInfo.EquipType.Id == 8);
+            public bool CanAerialBomb => Equipments.Any(x => x.EquipInfo.EquipType.Id == 7 || x.EquipInfo.EquipType.Id == 11);
             public LimitedValue HP => new LimitedValue(ToHP, MaxHP);
             public void EndUpdate() => OnAllPropertyChanged();
-            public override string ToString() => $"{ShipInfo.FullName}(Lv.{Level}): " + string.Join(", ", Equipments.Select(x => x.Name));
+            public override string ToString()
+                => $"{ShipInfo.FullName}(Lv.{Level}): " + string.Join<EquipInBattle>(", ", Equipments) + (EquipmentEx != null ? "|" + EquipmentEx : string.Empty);
             public ShipInBattle() { }
             public ShipInBattle(Ship ship)
             {
@@ -32,8 +34,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 MaxHP = ship.HP.Max;
                 FromHP = ship.HP.Current;
                 ToHP = ship.HP.Current;
-                Equipments = ship.Slots.Where(y => y.HasItem).Select(y => y.Item.EquipInfo).ToArray();
-                DamageControl = ship.DamageControl;
+                Equipments = ship.Slots.Where(y => y.HasItem).Select(y => new EquipInBattle(y.Item)).ToArray();
+                if (ship.SlotEx.HasItem)
+                    EquipmentEx = new EquipInBattle(ship.SlotEx.Item);
+
                 IsEscaped = ship.IsEscaped;
                 Firepower = ship.Firepower.Current;
                 Torpedo = ship.Torpedo.Current;
@@ -45,16 +49,40 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             public int Torpedo { get; set; }
             public int AA { get; set; }
             public int Armor { get; set; }
-            public Param TotalFirepower => new Param { Raw = Firepower, Equip = Equipments.Sum(x => x.FirePower) };
-            public Param TotalTorpedo => new Param { Raw = Torpedo, Equip = Equipments.Sum(x => x.Torpedo) };
-            public Param TotalAA => new Param { Raw = AA, Equip = Equipments.Sum(x => x.AA) };
-            public Param TotalArmor => new Param { Raw = Armor, Equip = Equipments.Sum(x => x.Armor) };
+            public Param TotalFirepower => new Param { Raw = Firepower, Equip = Equipments.Sum(x => x.EquipInfo.FirePower) };
+            public Param TotalTorpedo => new Param { Raw = Torpedo, Equip = Equipments.Sum(x => x.EquipInfo.Torpedo) };
+            public Param TotalAA => new Param { Raw = AA, Equip = Equipments.Sum(x => x.EquipInfo.AA) };
+            public Param TotalArmor => new Param { Raw = Armor, Equip = Equipments.Sum(x => x.EquipInfo.Armor) };
             public struct Param
             {
                 public int Raw { get; set; }
                 public int Equip { get; set; }
                 public int Total => Raw + Equip;
                 public override string ToString() => $"{Total} ({Raw}+{Equip})";
+            }
+        }
+        public class EquipInBattle
+        {
+            public EquipInfo EquipInfo { get; set; }
+            public int ImproveLevel { get; set; }
+            public int AirProficiency { get; set; }
+            public override string ToString()
+            {
+                string s = EquipInfo.Name;
+                if (ImproveLevel > 0 && ImproveLevel < 10) s += $" ★+{ImproveLevel}";
+                if (ImproveLevel == 10) s += " ★max";
+                if (AirProficiency > 0) s += $" +{AirProficiency}";
+                return s;
+            }
+            public EquipInBattle(Equipment equip)
+            {
+                EquipInfo = equip.EquipInfo;
+                ImproveLevel = equip.ImproveLevel;
+                AirProficiency = equip.AirProficiency;
+            }
+            public EquipInBattle(EquipInfo info)
+            {
+                EquipInfo = info;
             }
         }
         public CombinedFleetType FleetType { get; set; }

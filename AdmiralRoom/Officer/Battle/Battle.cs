@@ -77,16 +77,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public Stage Night { get; private set; }
         #endregion
 
-        public Battle(sortie_battle api, CombinedFleetType fleettype, MapNodeType battletype, BattleManager source)
+        public Battle(sortie_battle api, CombinedFleetType fleettype, MapNodeType battletype, ShipInBattle[] fleet1, ShipInBattle[] fleet2)
         {
             FleetType = fleettype;
             BattleType = battletype;
-            Fleet1 = (source.SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
-                .Select(x => new ShipInBattle(x)).ToArray();
-            Fleet2 = source.SortieFleet2?.Ships
-                .Select(x => new ShipInBattle(x)).ToArray();
-            if (source.SortieFleet1 == null)//演习
-                Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships.ForEach(x => x.IgnoreNextCondition());
+            Fleet1 = fleet1;
+            Fleet2 = fleet2;
 
             if (api.api_formation != null)
             {
@@ -103,7 +99,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 {
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
                     Level = api.api_ship_lv[i + 1],
-                    Equipments = api.api_eSlot[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).ToArray(),
+                    Equipments = api.api_eSlot[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
                     Firepower = api.api_eParam[i][0],
                     Torpedo = api.api_eParam[i][1],
                     AA = api.api_eParam[i][2],
@@ -115,7 +111,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 {
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
                     Level = api.api_ship_lv_combined[i + 1],
-                    Equipments = api.api_eSlot_combined[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).ToArray(),
+                    Equipments = api.api_eSlot_combined[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
                     Firepower = api.api_eParam_combined[i][0],
                     Torpedo = api.api_eParam_combined[i][1],
                     AA = api.api_eParam_combined[i][2],
