@@ -30,26 +30,11 @@
         public int[] api_formation { get; set; }
         public airbattle api_air_base_injection { get; set; }
         public airbattle api_injection_kouku { get; set; }
-        public class air_base_attack
-        {
-            public int api_base_id { get; set; }
-            public int[] api_stage_flag { get; set; }
-            public int[][] api_plane_from { get; set; }
-            public class squadron_plane
-            {
-                public int api_mst_id { get; set; }
-                public int api_count { get; set; }
-            }
-            public squadron_plane[] api_squadron_plane { get; set; }
-            public airbattle.stage1 api_stage1 { get; set; }
-            public airbattle.stage2 api_stage2 { get; set; }
-            public airbattle.stage3 api_stage3 { get; set; }
-            public airbattle.stage3 api_stage3_combined { get; set; }
-        }
-        public air_base_attack[] api_air_base_attack { get; set; }
+        public airbattle[] api_air_base_attack { get; set; }
         public int[] api_stage_flag { get; set; }
         public class airbattle
         {
+            public int api_base_id { get; set; }
             public int[][] api_plane_from { get; set; }
             public class squadron
             {

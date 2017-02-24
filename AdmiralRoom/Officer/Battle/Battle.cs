@@ -10,48 +10,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public override bool IsBattling => true;
         public MapNodeType BattleType { get; set; }
         private ShipInBattle[] NightOrTorpedo => Fleet2 ?? Fleet1;
-        private ShipInBattle FindShip(int index, ShipInBattle[] friend, ShipInBattle[] enemy)
-        {
-            try
-            {
-                if (index <= 6) return friend[index - 1];
-                return enemy[index - 7];
-            }
-            catch { return null; }
-        }
-        private ShipInBattle FindFriend(int index)
-        {
-            try
-            {
-                if (index <= 6) return Fleet1[index - 1];
-                return Fleet2[index - 7];
-            }
-            catch { return null; }
-        }
-        private ShipInBattle FindEnemy(int index)
-        {
-            try
-            {
-                if (index <= 6) return EnemyFleet[index - 1];
-                return EnemyFleet2[index - 7];
-            }
-            catch { return null; }
-        }
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
         public int AnonymousFriendDamage { get; set; }
         public int AnonymousEnemyDamage { get; set; }
-        public class AirCombat
-        {
-            public AirControl AirControl { get; set; }
-            public LimitedValue FriendStage1 { get; set; }
-            public LimitedValue EnemyStage1 { get; set; }
-            public LimitedValue FriendStage2 { get; set; }
-            public LimitedValue EnemyStage2 { get; set; }
-        }
-        public AirCombat AirCombat1 { get; set; }
-        public AirCombat AirCombat2 { get; set; }
         public double FriendDamageRate => (double)AllFriends.Sum(x => x.FromHP - x.ToHP)
             / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
         public double EnemyDamageRate => (double)AllEnemies.Sum(x => x.FromHP - x.ToHP) / AllEnemies.Sum(x => x.FromHP);
@@ -97,6 +60,23 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 }
             }
         }
+
+        #region Stages
+        public JetPlaneAttack Jet { get; }
+        public JetPlaneAttack AirBaseJet { get; }
+        public AirBaseAttack[] AirBaseAttacks { get; }
+        public AerialCombat AirCombat1 { get; }
+        public AerialCombat AirCombat2 { get; }
+        public SupportAttack Support { get; }
+        public Stage OpeningASW { get; }
+        public Stage OpeningTorpedo { get; }
+        public Stage FireStage1 { get; }
+        public Stage FireStage2 { get; }
+        public Stage FireStage3 { get; }
+        public Stage TorpedoStage { get; }
+        public Stage Night { get; private set; }
+        #endregion
+
         public Battle(sortie_battle api, CombinedFleetType fleettype, MapNodeType battletype, BattleManager source)
         {
             FleetType = fleettype;
@@ -145,295 +125,113 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 
             EnemyShipIds = api.api_ship_ke.Skip(1).ConcatNotNull(api.api_ship_ke_combined?.Skip(1)).ToArray();
 
-            Fleet1.ArrayZip(api.api_maxhps, 1, Delegates.SetMaxHP);
-            Fleet2?.ArrayZip(api.api_maxhps_combined, 1, Delegates.SetMaxHP);
-            EnemyFleet.ArrayZip(api.api_maxhps, 7, Delegates.SetMaxHP);
-            EnemyFleet2?.ArrayZip(api.api_maxhps_combined, 7, Delegates.SetMaxHP);
+            void SetHPs(ShipInBattle[] fleet, int index, int[] hps, int[] maxhps)
+            {
+                if (fleet == null) return;
+                for (int i = 0; i < fleet.Length; i++)
+                {
+                    var ship = fleet[i];
+                    ship.MaxHP = maxhps[i + index];
+                    ship.FromHP = ship.ToHP = hps[i + index];
+                }
+            }
 
-            Fleet1.ArrayZip(api.api_nowhps, 1, Delegates.SetStartHP);
-            Fleet2?.ArrayZip(api.api_nowhps_combined, 1, Delegates.SetStartHP);
-            EnemyFleet.ArrayZip(api.api_nowhps, 7, Delegates.SetStartHP);
-            EnemyFleet2?.ArrayZip(api.api_nowhps_combined, 7, Delegates.SetStartHP);
+            SetHPs(Fleet1, 1, api.api_nowhps, api.api_maxhps);
+            SetHPs(EnemyFleet, 7, api.api_nowhps, api.api_maxhps);
+            SetHPs(Fleet2, 1, api.api_nowhps_combined, api.api_maxhps_combined);
+            SetHPs(EnemyFleet2, 7, api.api_nowhps_combined, api.api_maxhps_combined);
 
             api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
             api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
 
-            JetAttack(api.api_air_base_injection);
-            JetAttack(api.api_injection_kouku);
-            AirBaseAttack(api.api_air_base_attack);
-            AirCombat1 = AirBattle(api.api_kouku, false);
-            AirCombat2 = AirBattle(api.api_kouku2, false);
-            SupportAttack(api.api_support_info);
-            FireAttack(api.api_opening_taisen, NightOrTorpedo);
-            if (isenemycombined)
-                ECTorpedoAttack(api.api_opening_atack);
-            else TorpedoAttack(api.api_opening_atack);
+            if (api.api_injection_kouku != null)
+                Jet = new JetPlaneAttack(this, api.api_injection_kouku, false);
+            if (api.api_air_base_injection != null)
+                AirBaseJet = new JetPlaneAttack(this, api.api_air_base_injection, true);
+            if (api.api_air_base_attack != null)
+                AirBaseAttacks = api.api_air_base_attack.Select(x => new AirBaseAttack(this, x)).ToArray();
+            if (api.api_kouku != null)
+                AirCombat1 = new AerialCombat(this, api.api_kouku);
+            if (api.api_kouku2 != null)
+                AirCombat2 = new AerialCombat(this, api.api_kouku2);
+            if (api.api_support_flag != 0)
+                Support = new SupportAttack(this, api.api_support_info, api.api_support_flag);
             if (isenemycombined)
             {
-                ECFireAttack(api.api_hougeki1);
-                ECFireAttack(api.api_hougeki2);
-                ECFireAttack(api.api_hougeki3);
+
+                if (api.api_opening_atack != null)
+                    OpeningTorpedo = new ECTorpedoCombat(this, api.api_opening_atack);
+                if (api.api_hougeki1 != null)
+                    FireStage1 = new ECFireCombat(this, api.api_hougeki1);
+                if (api.api_hougeki2 != null)
+                    FireStage2 = new ECFireCombat(this, api.api_hougeki2);
+                if (api.api_hougeki3 != null)
+                    FireStage3 = new ECFireCombat(this, api.api_hougeki3);
+                if (api.api_raigeki != null)
+                    TorpedoStage = new ECTorpedoCombat(this, api.api_raigeki);
             }
-            else switch (fleettype)
+            else
+            {
+                if (api.api_opening_taisen != null)
+                    OpeningASW = new FireCombat(api.api_opening_taisen, NightOrTorpedo, EnemyFleet);
+                if (api.api_opening_atack != null)
+                    OpeningTorpedo = new TorpedoCombat(api.api_opening_atack, NightOrTorpedo, EnemyFleet);
+                switch (fleettype)
                 {
                     case CombinedFleetType.None:
-                        FireAttack(api.api_hougeki1, Fleet1);
-                        FireAttack(api.api_hougeki2, Fleet1);
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(api.api_hougeki1, Fleet1, EnemyFleet);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(api.api_hougeki2, Fleet1, EnemyFleet);
                         break;
                     case CombinedFleetType.Carrier:
                     case CombinedFleetType.Transport:
-                        FireAttack(api.api_hougeki1, Fleet2);
-                        FireAttack(api.api_hougeki2, Fleet1);
-                        FireAttack(api.api_hougeki3, Fleet1);
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(api.api_hougeki1, Fleet2, EnemyFleet);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(api.api_hougeki2, Fleet1, EnemyFleet);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(api.api_hougeki3, Fleet1, EnemyFleet);
                         break;
                     case CombinedFleetType.Surface:
-                        FireAttack(api.api_hougeki1, Fleet1);
-                        FireAttack(api.api_hougeki2, Fleet1);
-                        FireAttack(api.api_hougeki3, Fleet2);
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(api.api_hougeki1, Fleet1, EnemyFleet);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(api.api_hougeki2, Fleet1, EnemyFleet);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(api.api_hougeki3, Fleet2, EnemyFleet);
                         break;
                 }
-            if (isenemycombined)
-                ECTorpedoAttack(api.api_raigeki);
-            else TorpedoAttack(api.api_raigeki);
+                if (api.api_raigeki != null)
+                    TorpedoStage = new TorpedoCombat(api.api_raigeki, NightOrTorpedo, EnemyFleet);
+            }
             NightBattle(api);
         }
         public void NightBattle(sortie_battle api)
         {
             if (api.api_active_deck != null)
-            {
-                if (api.api_active_deck[1] == 1)
-                    FireAttack(api.api_hougeki, NightOrTorpedo, EnemyFleet);
-                else FireAttack(api.api_hougeki, NightOrTorpedo, EnemyFleet2);
-            }
-            else FireAttack(api.api_hougeki, NightOrTorpedo);
+                Night = new FireCombat(api.api_hougeki, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
+            else Night = new FireCombat(api.api_hougeki, NightOrTorpedo, EnemyFleet);
             EndApplyBattle();
         }
         private void EndApplyBattle()
         {
-            Fleet1.ForEach(Delegates.OnEndUpdate);
-            Fleet2?.ForEach(Delegates.OnEndUpdate);
-            EnemyFleet.ForEach(Delegates.OnEndUpdate);
-            //mvp
-            Fleet1.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
-            Fleet2?.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
-            EnemyFleet.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
-
-            OnAllPropertyChanged();
-        }
-        private static class Delegates
-        {
-            public static void SetMaxHP(ShipInBattle ship, int hp) => ship.MaxHP = hp;
-            public static void SetStartHP(ShipInBattle ship, int hp) => ship.FromHP = ship.ToHP = hp;
-            public static void SetDamage(ShipInBattle ship, decimal damage)
-            {
-                if (ship == null) return;
-                ship.ToHP -= (int)damage;
-                if (ship.ToHP <= 0)
-                    if (ship.DamageControl == null)
-                        ship.ToHP = 0;
-                    else if (ship.DamageControl.Id == 42)//応急修理要員
-                        ship.ToHP = (int)(ship.MaxHP * 0.2);
-                    else if (ship.DamageControl.Id == 43)//応急修理女神
-                        ship.ToHP = ship.MaxHP;
-                ship.Damage += (int)damage;
-            }
-            public static void SetGiveDamage(ShipInBattle ship, decimal damage)
-            {
-                if (ship == null) return;
-                ship.DamageGiven += (int)damage;
-            }
-            public static void OnEndUpdate(ShipInBattle ship)
+            void OnEndUpdate(ShipInBattle ship)
             {
                 ship.EndUpdate();
                 ship.IsMostDamage = false;
             }
-        }
-        private void JetAttack(sortie_battle.airbattle api)
-        {
-            if (api == null) return;
-            ShipInBattle friendattack = null, enemyattack = null;
-            if (api.api_plane_from[0]?.Length == 1 && api.api_plane_from[0][0] > 0) friendattack = Fleet1[api.api_plane_from[0][0] - 1];
-            if (api.api_plane_from.Length >= 2 && api.api_plane_from[1]?.Length == 1 && api.api_plane_from[1][0] > 0) enemyattack = EnemyFleet[api.api_plane_from[1][0] - 1];
-            if (api.api_stage3 != null)
-            {
-                if (api.api_stage3.api_edam != null)
-                {
-                    EnemyFleet.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
-                    for (int i = 1; i < api.api_stage3.api_edam.Length; i++)
-                        if (friendattack != null) friendattack.DamageGiven += (int)api.api_stage3.api_edam[i];
-                        else AnonymousEnemyDamage += (int)api.api_stage3.api_edam[i];
-                }
-                if (api.api_stage3.api_fdam != null)
-                {
-                    Fleet1.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
-                    for (int i = 1; i < api.api_stage3.api_fdam.Length; i++)
-                        if (enemyattack != null) enemyattack.DamageGiven += (int)api.api_stage3.api_fdam[i];
-                        else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
-                }
-            }
-            if (api.api_stage3_combined != null)
-            {
-                if (api.api_stage3_combined.api_fdam != null)
-                {
-                    Fleet2?.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
-                    for (int i = 1; i < api.api_stage3.api_fdam.Length; i++)
-                        if (enemyattack != null) enemyattack.DamageGiven += (int)api.api_stage3.api_fdam[i];
-                        else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
-                }
-                if (api.api_stage3_combined.api_edam != null)
-                {
-                    EnemyFleet2?.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
-                    for (int i = 1; i < api.api_stage3.api_edam.Length; i++)
-                        if (friendattack != null) friendattack.DamageGiven += (int)api.api_stage3.api_edam[i];
-                        else AnonymousEnemyDamage += (int)api.api_stage3.api_edam[i];
-                }
-            }
-        }
-        private AirCombat AirBattle(sortie_battle.airbattle api, bool issupport)
-        {
-            if (api == null) return null;
-            AirCombat combat = new AirCombat();
-            ShipInBattle friendtorpedo = null, friendbomb = null, enemytorpedo = null, enemybomb = null;
-            if (!issupport)
-            {
-                if (api.api_stage1 != null)//stage1一直都有吧
-                {
-                    combat.AirControl = (AirControl)api.api_stage1.api_disp_seiku;
-                    combat.FriendStage1 = new LimitedValue(api.api_stage1.api_f_count - api.api_stage1.api_f_lostcount, api.api_stage1.api_f_count);
-                    combat.EnemyStage1 = new LimitedValue(api.api_stage1.api_e_count - api.api_stage1.api_e_lostcount, api.api_stage1.api_e_count);
-                }
-                if (api.api_stage2 != null)
-                {
-                    combat.FriendStage2 = new LimitedValue(api.api_stage2.api_f_count - api.api_stage2.api_f_lostcount, api.api_stage2.api_f_count);
-                    combat.EnemyStage2 = new LimitedValue(api.api_stage2.api_e_count - api.api_stage2.api_e_lostcount, api.api_stage2.api_e_count);
-                }
-                friendtorpedo = Fleet1.Where(x => x.CanAerialTorpedo).TakeIfSingle();
-                friendbomb = Fleet1.Where(x => x.CanAerialBomb).TakeIfSingle();
-                enemytorpedo = EnemyFleet.Where(x => x.CanAerialTorpedo).TakeIfSingle();
-                enemybomb = EnemyFleet.Where(x => x.CanAerialBomb).TakeIfSingle();
-            }
-            if (api.api_stage3 != null)
-            {
-                if (!issupport) Fleet1.ArrayZip(api.api_stage3.api_fdam, 1, Delegates.SetDamage);
-                EnemyFleet.ArrayZip(api.api_stage3.api_edam, 1, Delegates.SetDamage);
-                if (!issupport)
-                {
-                    for (int i = 1; i < api.api_stage3.api_fdam.Length; i++)
-                        if (api.api_stage3.api_frai_flag[i] != 0)
-                            if (api.api_stage3.api_fbak_flag[i] != 0)
-                                if (enemytorpedo == enemybomb && enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3.api_fdam[i];
-                                else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
-                            else
-                                if (enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3.api_fdam[i];
-                            else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
-                        else if (api.api_stage3.api_fbak_flag[i] != 0)
-                            if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3.api_fdam[i];
-                            else AnonymousEnemyDamage += (int)api.api_stage3.api_fdam[i];
-                    for (int i = 1; i < api.api_stage3.api_edam.Length; i++)
-                        if (api.api_stage3.api_erai_flag[i] != 0)
-                            if (api.api_stage3.api_ebak_flag[i] != 0)
-                                if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
-                                else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
-                            else
-                                if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3.api_edam[i];
-                            else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
-                        else if (api.api_stage3.api_ebak_flag[i] != 0)
-                            if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3.api_edam[i];
-                            else AnonymousFriendDamage += (int)api.api_stage3.api_edam[i];
-                }
-            }
-            if (api.api_stage3_combined != null)
-            {
-                if (api.api_stage3_combined.api_fdam != null)
-                {
-                    Fleet2?.ArrayZip(api.api_stage3_combined.api_fdam, 1, Delegates.SetDamage);
-                    for (int i = 1; i < api.api_stage3_combined.api_fdam.Length; i++)
-                        if (api.api_stage3_combined.api_frai_flag[i] != 0)
-                            if (api.api_stage3_combined.api_fbak_flag[i] != 0)
-                                if (enemytorpedo == enemybomb && enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
-                                else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                            else
-                                if (enemytorpedo != null) enemytorpedo.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
-                            else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                        else if (api.api_stage3_combined.api_fbak_flag[i] != 0)
-                            if (enemybomb != null) enemybomb.DamageGiven += (int)api.api_stage3_combined.api_fdam[i];
-                            else AnonymousEnemyDamage += (int)api.api_stage3_combined.api_fdam[i];
-                }
-                if (api.api_stage3_combined.api_edam != null)
-                {
-                    EnemyFleet2?.ArrayZip(api.api_stage3_combined.api_edam, 1, Delegates.SetDamage);
-                    for (int i = 1; i < api.api_stage3_combined.api_edam.Length; i++)
-                        if (api.api_stage3_combined.api_erai_flag[i] != 0)
-                            if (api.api_stage3_combined.api_ebak_flag[i] != 0)
-                                if (friendtorpedo == friendbomb && friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
-                                else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
-                            else
-                                if (friendtorpedo != null) friendtorpedo.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
-                            else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
-                        else if (api.api_stage3_combined.api_ebak_flag[i] != 0)
-                            if (friendbomb != null) friendbomb.DamageGiven += (int)api.api_stage3_combined.api_edam[i];
-                            else AnonymousFriendDamage += (int)api.api_stage3_combined.api_edam[i];
-                }
-            }
-            return combat;
-        }
-        private void SupportAttack(sortie_battle.support api)
-        {
-            if (api == null) return;
-            AirBattle(api.api_support_airatack, true);
-            if (api.api_support_hourai != null)
-                AllEnemies.ZipEach(api.api_support_hourai.api_damage.Skip(1), Delegates.SetDamage);
-        }
-        private void AirBaseAttack(sortie_battle.air_base_attack[] api)
-        {
-            if (api == null) return;
-            foreach (var attack in api)
-            {
-                if (attack.api_stage3 != null)
-                    EnemyFleet.ArrayZip(attack.api_stage3.api_edam, 1, Delegates.SetDamage);
-                if (attack.api_stage3_combined != null)
-                    EnemyFleet2.ArrayZip(attack.api_stage3_combined.api_edam, 1, Delegates.SetDamage);
-            }
-        }
-        private void TorpedoAttack(sortie_battle.torpedo api)
-        {
-            if (api == null) return;
-            NightOrTorpedo.ArrayZip(api.api_fdam, 1, Delegates.SetDamage);
-            EnemyFleet.ArrayZip(api.api_edam, 1, Delegates.SetDamage);
-            NightOrTorpedo.ArrayZip(api.api_fydam, 1, Delegates.SetGiveDamage);
-            EnemyFleet.ArrayZip(api.api_eydam, 1, Delegates.SetGiveDamage);
-        }
-        private void ECTorpedoAttack(sortie_battle.torpedo api)
-        {
-            if (api == null) return;
-            AllFriends.ZipEach(api.api_fdam.Skip(1), Delegates.SetDamage);
-            AllEnemies.ZipEach(api.api_edam.Skip(1), Delegates.SetDamage);
-            AllFriends.ZipEach(api.api_fydam.Skip(1), Delegates.SetGiveDamage);
-            AllEnemies.ZipEach(api.api_eydam.Skip(1), Delegates.SetGiveDamage);
-        }
-        private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet) => FireAttack(api, fleet, EnemyFleet);
-        private void FireAttack(sortie_battle.fire api, ShipInBattle[] fleet, ShipInBattle[] enemy)
-        {
-            if (api == null) return;
-            api.api_df_list.ZipEach(api.api_damage, (x, y) => x.ZipEach(y, (a, b) => Delegates.SetDamage(FindShip(a, fleet, enemy), b)));
-            api.api_damage.ArrayZip(api.api_at_list, 1, (x, y) => x.ForEach(d => Delegates.SetGiveDamage(FindShip(y, fleet, enemy), d)));
-        }
-        private void ECFireAttack(sortie_battle.fire api)
-        {
-            if (api == null) return;
-            for (int i = 1; i < api.api_at_eflag.Length; i++)
-            {
-                if (api.api_at_eflag[i] == 0)
-                {
-                    api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(FindEnemy(x), y));
-                    Delegates.SetGiveDamage(FindFriend(api.api_at_list[i]), api.api_damage[i - 1].Sum());
-                }
-                else
-                {
-                    api.api_df_list[i - 1].ZipEach(api.api_damage[i - 1], (x, y) => Delegates.SetDamage(FindFriend(x), y));
-                    Delegates.SetGiveDamage(FindEnemy(api.api_at_list[i]), api.api_damage[i - 1].Sum());
-                }
-            }
+            Fleet1.ForEach(OnEndUpdate);
+            Fleet2?.ForEach(OnEndUpdate);
+            EnemyFleet.ForEach(OnEndUpdate);
+            EnemyFleet2?.ForEach(OnEndUpdate);
+            //mvp
+            Fleet1.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
+            Fleet2?.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
+            EnemyFleet.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
+            EnemyFleet2?.TakeMaxOrDefault(x => x.DamageGiven).SetMvp();
+
+            OnAllPropertyChanged();
         }
     }
     public enum Formation { 単縦陣 = 1, 複縦陣 = 2, 輪形陣 = 3, 梯形陣 = 4, 単横陣 = 5, 第一警戒航行序列 = 11, 第二警戒航行序列 = 12, 第三警戒航行序列 = 13, 第四警戒航行序列 = 14 }
