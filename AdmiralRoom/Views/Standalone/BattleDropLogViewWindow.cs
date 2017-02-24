@@ -10,7 +10,7 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
             var log = item.DataContext as BattleDropLog;
             var detail = Loggers.BattleDetailLogger.FindLog(log.DateTime);
             if (detail != null)
-                new BattleDetail { DataContext = detail }.Show();
+                new BattleDetail { DataContext = detail.GetBattle() }.Show();
         }
     }
 }
