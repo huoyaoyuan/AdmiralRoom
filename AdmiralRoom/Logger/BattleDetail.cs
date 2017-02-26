@@ -69,7 +69,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             ["api_req_combined_battle/each_battle"] = CombinedFleetType.Carrier,
             ["api_req_combined_battle/each_battle_water"] = CombinedFleetType.Surface
         };
-        public BattleDetailViewModel ToViewModel()
+        public BattleDetailViewModel ToViewModel(BattleDropLog log)
         {
             ShipInBattle[] fleet1, fleet2;
             EquipInBattle EquipSelector(EquipInfo equip)
@@ -97,7 +97,21 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             apimap.TryGetValue(battle.api, out var type);
             var result = new Battle(battle.data.api_data, type, node.Type, fleet1, fleet2);
             if (nightbattle != null) result.NightBattle(nightbattle.data.api_data);
-            return result;
+            return new BattleDetailViewModel
+            {
+                Log = log,
+                Node = node,
+                Battle = result,
+                Time = new DateTimeOffset(GetTimeStamp(), TimeSpan.Zero)
+            };
         }
+    }
+    class BattleDetailViewModel
+    {
+        public BattleDropLog Log { get; set; }
+        public MapNode Node { get; set; }
+        public Battle Battle { get; set; }
+        public DateTimeOffset Time { get; set; }
+        public string LocalTimeString => Time.LocalDateTime.ToString();
     }
 }
