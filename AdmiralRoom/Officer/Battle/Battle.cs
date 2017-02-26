@@ -142,10 +142,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
             api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
 
-            if (api.api_injection_kouku != null)
-                Jet = new JetPlaneAttack(this, api.api_injection_kouku, false);
             if (api.api_air_base_injection != null)
                 AirBaseJet = new JetPlaneAttack(this, api.api_air_base_injection, true);
+            if (api.api_injection_kouku != null)
+                Jet = new JetPlaneAttack(this, api.api_injection_kouku, false);
             if (api.api_air_base_attack != null)
                 AirBaseAttacks = api.api_air_base_attack.Select(x => new AirBaseAttack(this, x)).ToArray();
             if (api.api_kouku != null)
