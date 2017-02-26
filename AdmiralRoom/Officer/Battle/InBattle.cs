@@ -6,6 +6,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 
     public class ShipInBattle : NotificationObject
     {
+        public int Index { get; set; }
+        public string DisplayName => $"{Index}. {ShipInfo.FullName}";
         public int Level { get; set; }
         public ShipInfo ShipInfo { get; set; }
         public int MaxHP { get; set; }

@@ -79,20 +79,32 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     ImproveLevel = equip.level,
                     AirProficiency = equip.alv
                 } : null;
-            ShipInBattle ShipSelector(ShipInfo ship) => new ShipInBattle
-            {
-                Level = ship.lv,
-                ShipInfo = Staff.Current.MasterData.ShipInfo[ship.id],
-                Firepower = ship.karyoku,
-                Torpedo = ship.raisou,
-                AA = ship.taiku,
-                Armor = ship.soukou,
-                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
-                    .Select(EquipSelector).ToArray(),
-                EquipmentEx = EquipSelector(ship.slotex)
-            };
-            fleet1 = this.fleet1?.Select(ShipSelector).ToArray();
-            fleet2 = this.fleet2?.Select(ShipSelector).ToArray();
+            fleet1 = this.fleet1?.Select((ship, i) => new ShipInBattle
+                {
+                    Index = i + 1,
+                    Level = ship.lv,
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.id],
+                    Firepower = ship.karyoku,
+                    Torpedo = ship.raisou,
+                    AA = ship.taiku,
+                    Armor = ship.soukou,
+                    Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+                        .Select(EquipSelector).ToArray(),
+                    EquipmentEx = EquipSelector(ship.slotex)
+                }).ToArray();
+            fleet2 = this.fleet2?.Select((ship, i) => new ShipInBattle
+                {
+                    Index = i + 7,
+                    Level = ship.lv,
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.id],
+                    Firepower = ship.karyoku,
+                    Torpedo = ship.raisou,
+                    AA = ship.taiku,
+                    Armor = ship.soukou,
+                    Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+                            .Select(EquipSelector).ToArray(),
+                    EquipmentEx = EquipSelector(ship.slotex)
+                }).ToArray();
             var node = new MapNode(startnext.data.api_data);
             apimap.TryGetValue(battle.api, out var type);
             var result = new Battle(battle.data.api_data, type, node.Type, fleet1, fleet2);

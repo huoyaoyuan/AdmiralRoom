@@ -36,9 +36,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public BattleBase(BattleManager source)
         {
             Fleet1 = source.SortieFleet1.Ships
-                .Select(x => new ShipInBattle(x)).ToArray();
+                .Select((x, i) => new ShipInBattle(x) { Index = i + 1 }).ToArray();
             Fleet2 = source.SortieFleet2?.Ships
-                .Select(x => new ShipInBattle(x)).ToArray();
+                .Select((x, i) => new ShipInBattle(x) { Index = i + 7 }).ToArray();
         }
     }
 }

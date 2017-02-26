@@ -97,6 +97,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             EnemyFleet = api.api_ship_ke.Where(x => x != -1)
                 .Select((x, i) => new ShipInBattle
                 {
+                    Index = i + 1,
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
                     Level = api.api_ship_lv[i + 1],
                     Equipments = api.api_eSlot[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
@@ -109,6 +110,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             EnemyFleet2 = api.api_ship_ke_combined?.Where(x => x != -1)
                 .Select((x, i) => new ShipInBattle
                 {
+                    Index = i + 7,
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
                     Level = api.api_ship_lv_combined[i + 1],
                     Equipments = api.api_eSlot_combined[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
