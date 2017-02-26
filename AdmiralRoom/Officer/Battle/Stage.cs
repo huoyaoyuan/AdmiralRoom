@@ -105,10 +105,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             {
                 if (stage3 == null) return;
                 if (stage3.api_fdam != null)
-                    result.Concat(ParseAttack(stage3.api_fdam, stage3.api_frai_flag, stage3.api_fbak_flag, stage3.api_fcl_flag,
+                    result = result.Concat(ParseAttack(stage3.api_fdam, stage3.api_frai_flag, stage3.api_fbak_flag, stage3.api_fcl_flag,
                         false, battle.Fleet1, enemytorpedo, enemybomb));
                 if (stage3.api_edam != null)
-                    result.Concat(ParseAttack(stage3.api_edam, stage3.api_erai_flag, stage3.api_ebak_flag, stage3.api_ecl_flag,
+                    result = result.Concat(ParseAttack(stage3.api_edam, stage3.api_erai_flag, stage3.api_ebak_flag, stage3.api_ecl_flag,
                         true, battle.EnemyFleet, friendtorpedo, friendbomb));
             }
 
