@@ -69,17 +69,17 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             ["api_req_combined_battle/each_battle"] = CombinedFleetType.Carrier,
             ["api_req_combined_battle/each_battle_water"] = CombinedFleetType.Surface
         };
-        public Battle GetBattle()
+        public BattleDetailViewModel ToViewModel()
         {
-            BattleBase.ShipInBattle[] fleet1, fleet2;
-            BattleBase.EquipInBattle EquipSelector(EquipInfo equip)
+            ShipInBattle[] fleet1, fleet2;
+            EquipInBattle EquipSelector(EquipInfo equip)
                 => equip != null ?
-                new BattleBase.EquipInBattle(Staff.Current.MasterData.EquipInfo[equip.itemid])
+                new EquipInBattle(Staff.Current.MasterData.EquipInfo[equip.itemid])
                 {
                     ImproveLevel = equip.level,
                     AirProficiency = equip.alv
                 } : null;
-            BattleBase.ShipInBattle ShipSelector(ShipInfo ship) => new BattleBase.ShipInBattle
+            ShipInBattle ShipSelector(ShipInfo ship) => new ShipInBattle
             {
                 Level = ship.lv,
                 ShipInfo = Staff.Current.MasterData.ShipInfo[ship.id],

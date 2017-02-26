@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:battle="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer.Battle"
              xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
              DataContext="{x:Static officer:Staff.Current}"
              d:DesignHeight="300" d:DesignWidth="300"
@@ -13,7 +14,7 @@
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
         <TabItem Background="SpringGreen" Header="{ex:Localizable Predict_Enable}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <StackPanel d:DataContext="{d:DesignInstance officer:BattleManager}"
+                <StackPanel d:DataContext="{d:DesignInstance battle:BattleManager}"
                             DataContext="{Binding Battle}"
                             Orientation="Vertical"
                             Visibility="{Binding InSortie, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}">

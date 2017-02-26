@@ -161,11 +161,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         private sortie_battleresult.escape lastescapeinfo;
         private void StartBattle(sortie_battle api)
         {
-            BattleBase.ShipInBattle[] fleet1, fleet2;
+            ShipInBattle[] fleet1, fleet2;
             fleet1 = (SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
-                .Select(x => new BattleBase.ShipInBattle(x)).ToArray();
+                .Select(x => new ShipInBattle(x)).ToArray();
             fleet2 = SortieFleet2?.Ships
-                .Select(x => new BattleBase.ShipInBattle(x)).ToArray();
+                .Select(x => new ShipInBattle(x)).ToArray();
             if (SortieFleet1 == null)//演习
                 Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships.ForEach(x => x.IgnoreNextCondition());
             CurrentBattle = new Battle(api, CurrentFleetType ?? CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, fleet1, fleet2);
