@@ -266,42 +266,7 @@
                                                HorizontalAlignment="Center"
                                                FontSize="15"
                                                Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
-                                    <TextBlock Grid.Column="1" OverridesDefaultStyle="True">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="Perfect">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_Perfect}"/>
-                                                        <Setter Property="Foreground" Value="Gold"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="S">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_S}"/>
-                                                        <Setter Property="Foreground" Value="Gold"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="A">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_A}"/>
-                                                        <Setter Property="Foreground" Value="Red"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="B">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_B}"/>
-                                                        <Setter Property="Foreground" Value="Orange"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="C">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_C}"/>
-                                                        <Setter Property="Foreground" Value="Magenta"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="D">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_D}"/>
-                                                        <Setter Property="Foreground" Value="Green"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Battle.CurrentBattle.WinRank}" Value="E">
-                                                        <Setter Property="Text" Value="{ex:Localizable Battle_WinRank_E}"/>
-                                                        <Setter Property="Foreground" Value="Blue"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    <control:WinRankText Grid.Column="1" WinRank="{Binding Battle.CurrentBattle.WinRank, Mode=OneWay}"/>
                                     <TextBlock Grid.Column="2"
                                                HorizontalAlignment="Center"
                                                FontSize="15"

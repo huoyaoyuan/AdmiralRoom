@@ -244,6 +244,7 @@
     <Compile Include="Common\MemberwiseCopyHelper.cs" />
     <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\PresentationEx.cs" />
+    <Compile Include="Controls\WinRankText.cs" />
     <Compile Include="Logger\BattleDetail.cs" />
     <Compile Include="Notifier\MessageBoxNotifierFactory.cs" />
     <Compile Include="Notifier\NotifierFactory.cs" />
