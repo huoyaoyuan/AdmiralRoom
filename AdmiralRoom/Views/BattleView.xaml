@@ -11,108 +11,6 @@
              xmlns:meowtrix="urn:meowtrix"
              DataContext="{x:Static officer:Staff.Current}"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <Style x:Key="FleetKey" TargetType="{x:Type ItemsControl}">
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
-            <Setter Property="ItemTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <Grid x:Name="shipinfleet">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="HP"/>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Damage"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Margin="4,0,4,0" Orientation="Vertical">
-                                <StackPanel.ToolTip>
-                                    <TextBlock>
-                                        <Run Text="{Binding Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run Text="{ex:Localizable Ship_Firepower}"/>
-                                        <Run Text="{Binding TotalFirepower, Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run Text="{ex:Localizable Ship_Torpedo}"/>
-                                        <Run Text="{Binding TotalTorpedo, Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run Text="{ex:Localizable Ship_AA}"/>
-                                        <Run Text="{Binding TotalAA, Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run Text="{ex:Localizable Ship_Armor}"/>
-                                        <Run Text="{Binding TotalArmor, Mode=OneWay}"/>
-                                    </TextBlock>
-                                </StackPanel.ToolTip>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="20" Text="{Binding ShipInfo.ClassName}"/>
-                                    <TextBlock FontSize="20" Foreground="DarkGray" Text="後期型"
-                                               Visibility="{Binding ShipInfo.IsLateModel, Converter={StaticResource VisibilityConverter}}"/>
-                                    <TextBlock x:Name="enemyclass" FontSize="20"/>
-                                </StackPanel>
-                                <TextBlock FontSize="14">
-                                    <Run Text="{Binding ShipInfo.ShipType.DisplayName, Mode=OneWay}"/>
-                                    <Run Text="{Binding Level, StringFormat=Lv. {0}, Mode=OneWay}"/>
-                                </TextBlock>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1"
-                                        Margin="0,0,4,0"
-                                        VerticalAlignment="Center"
-                                        Orientation="Vertical">
-                                <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center" FontSize="16">
-                                    <Run FontSize="20" Text="{Binding ToHP}"/>
-                                    <Run Text="{Binding MaxHP, StringFormat={} / {0}}"/>
-                                    <Run Text="{Binding Damage, StringFormat={} (-{0})}"/>
-                                </TextBlock>
-                                <control:PredicateProgressBar Width="120" Height="16"
-                                                              Minimum="0" Maximum="{Binding MaxHP}"
-                                                              PredictValue="{Binding FromHP}"
-                                                              Style="{StaticResource HPBarInBattle}"
-                                                              Background="Transparent"
-                                                              Foreground="{Binding HP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
-                                                              PredictForeground="Wheat"
-                                                              Value="{Binding ToHP}"/>
-                            </StackPanel>
-                            <TextBlock Grid.Column="2"
-                                       VerticalAlignment="Center"
-                                       FontSize="16" Text="{Binding DamageGiven}">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsMostDamage}" Value="True">
-                                                <Setter Property="FontWeight" Value="Black"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="Elite">
-                                <Setter TargetName="enemyclass" Property="Foreground" Value="Red"/>
-                                <Setter TargetName="enemyclass" Property="Text" Value="elite"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="Flagship">
-                                <Setter TargetName="enemyclass" Property="Foreground" Value="Gold"/>
-                                <Setter TargetName="enemyclass" Property="Text" Value="flagship"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding ShipInfo.AbyssalClass}" Value="KFlagship">
-                                <Setter TargetName="enemyclass" Property="Foreground" Value="Cyan"/>
-                                <Setter TargetName="enemyclass" Property="Text" Value="flagship"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsEscaped}" Value="True">
-                                <Setter TargetName="shipinfleet" Property="Opacity" Value="0.4"/>
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
         <TabItem Header="{ex:Localizable Predict_Enable}" Background="SpringGreen">
             <ScrollViewer Visibility="{Binding Battle.CurrentBattle, Converter={StaticResource NullToVisibilityConverter}}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -290,16 +188,16 @@
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <ItemsControl Grid.Row="1" Grid.Column="0"
                                       ItemsSource="{Binding Battle.CurrentBattle.Fleet1}"
-                                      Style="{StaticResource FleetKey}"/>
+                                      Style="{StaticResource FleetInBattleKey}"/>
                         <ItemsControl Grid.Row="1" Grid.Column="1"
                                       ItemsSource="{Binding Battle.CurrentBattle.Fleet2}"
-                                      Style="{StaticResource FleetKey}"/>
+                                      Style="{StaticResource FleetInBattleKey}"/>
                         <ItemsControl Grid.Row="1" Grid.Column="3"
                                       ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet2}"
-                                      Style="{StaticResource FleetKey}"/>
+                                      Style="{StaticResource FleetInBattleKey}"/>
                         <ItemsControl Grid.Row="1" Grid.Column="3"
                                       ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
-                                      Style="{StaticResource FleetKey}"/>
+                                      Style="{StaticResource FleetInBattleKey}"/>
                     </StackPanel>
                     <Grid Grid.Row="2" Margin="0,4,0,0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
                         <Grid.ColumnDefinitions>

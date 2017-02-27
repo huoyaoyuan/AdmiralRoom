@@ -10,7 +10,7 @@
         xmlns:battle="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer.Battle"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=logger:BattleDetailViewModel}"
-        Title="BattleDetail" Height="800" Width="600"
+        Title="BattleDetail" Height="768" Width="1024"
         FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
         FontSize="16">
     <Window.Resources>
@@ -216,11 +216,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.Resources>
                     <Style TargetType="TextBlock" x:Key="Searching">
@@ -256,6 +257,20 @@
                            DataContext="{Binding Battle.FriendSearching, Mode=OneTime}" Foreground="MediumSeaGreen"/>
                 <TextBlock Margin="2" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource Searching}"
                            DataContext="{Binding Battle.EnemySearching, Mode=OneTime}" Foreground="Red"/>
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="2" Orientation="Horizontal">
+                    <ItemsControl Grid.Row="1" Grid.Column="0"
+                                  ItemsSource="{Binding Battle.Fleet1}"
+                                  Style="{StaticResource FleetInBattleKey}"/>
+                    <ItemsControl Grid.Row="1" Grid.Column="1"
+                                  ItemsSource="{Binding Battle.Fleet2}"
+                                  Style="{StaticResource FleetInBattleKey}"/>
+                    <ItemsControl Grid.Row="1" Grid.Column="3"
+                                  ItemsSource="{Binding Battle.EnemyFleet2}"
+                                  Style="{StaticResource FleetInBattleKey}"/>
+                    <ItemsControl Grid.Row="1" Grid.Column="3"
+                                  ItemsSource="{Binding Battle.EnemyFleet}"
+                                  Style="{StaticResource FleetInBattleKey}"/>
+                </StackPanel>
             </Grid>
             <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_AirBaseJet}"
                                     Visibility="{Binding Battle.AirBaseJet, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
