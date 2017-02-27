@@ -105,19 +105,19 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         {
             var result = Enumerable.Empty<Attack>();
 
-            void ParseStage3(sortie_battle.airbattle.stage3 stage3)
+            void ParseStage3(sortie_battle.airbattle.stage3 stage3, ShipInBattle[] friend, ShipInBattle[] enemy)
             {
                 if (stage3 == null) return;
                 if (stage3.api_fdam != null)
                     result = result.Concat(ParseAttack(stage3.api_fdam, stage3.api_frai_flag, stage3.api_fbak_flag, stage3.api_fcl_flag,
-                        false, battle.Fleet1, enemytorpedo, enemybomb));
+                        false, friend, enemytorpedo, enemybomb));
                 if (stage3.api_edam != null)
                     result = result.Concat(ParseAttack(stage3.api_edam, stage3.api_erai_flag, stage3.api_ebak_flag, stage3.api_ecl_flag,
-                        true, battle.EnemyFleet, friendtorpedo, friendbomb));
+                        true, enemy, friendtorpedo, friendbomb));
             }
 
-            ParseStage3(api.api_stage3);
-            ParseStage3(api.api_stage3_combined);
+            ParseStage3(api.api_stage3, battle.Fleet1, battle.EnemyFleet);
+            ParseStage3(api.api_stage3_combined, battle.Fleet2, battle.EnemyFleet2);
 
             ApplyAttacks(result, battle);
         }
@@ -289,8 +289,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 {
                     int destidx = api.api_df_list[i][j];
                     var dest = direction ?
-                        FindShip(destidx, battle.Fleet1, battle.Fleet2) :
-                        FindShip(destidx, battle.EnemyFleet, battle.EnemyFleet2);
+                        FindShip(destidx, battle.EnemyFleet, battle.EnemyFleet2) :
+                        FindShip(destidx, battle.Fleet1, battle.Fleet2);
                     var damage = Attack.ParseDamage(api.api_damage[i][j]);
                     (var friend, var enemy) = direction ? (source, dest) : (dest, source);
                     result.Add(new Attack
