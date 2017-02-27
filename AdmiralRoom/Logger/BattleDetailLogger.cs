@@ -156,7 +156,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     {
                         var reader = new StreamReader(stream);
                         while (!reader.EndOfStream)
-                            cache.Add(JsonConvert.DeserializeObject<BattleDetail>(reader.ReadLine(), JSettings));
+                            cache.Add(JsonConvert.DeserializeObject<BattleDetail>(FixBrokenLog(reader.ReadLine()), JSettings));
                     }
                     index = cacheList.Count;
                     cacheIndex.Add(date);
@@ -165,6 +165,14 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 else return null;
             }
             return cacheList[index][utctime];
+        }
+        private static string FixBrokenLog(string input)
+        {
+            int first = input.IndexOf("\"battle\"");
+            int last = input.LastIndexOf("\"battle\"");
+            if (first != last)
+                return input.Insert(last + 1, "night");
+            else return input;
         }
     }
 }
