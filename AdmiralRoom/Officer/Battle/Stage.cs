@@ -401,6 +401,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 for (int i = 1; i < api.api_support_hourai.api_damage.Length; i++)
                 {
                     var damage = Attack.ParseDamage(api.api_support_hourai.api_damage[i]);
+                    if (damage.damage == 0 && !damage.shield) continue;
                     result.Add(new Attack
                     {
                         Friend = null,

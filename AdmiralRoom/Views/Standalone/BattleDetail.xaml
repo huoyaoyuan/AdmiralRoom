@@ -270,11 +270,11 @@
                                 <Setter TargetName="supporttype" Property="Text" Value="航空支援"/>
                                 <Setter TargetName="aerialsupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Aerial">
+                            <DataTrigger Binding="{Binding Type}" Value="Fire">
                                 <Setter TargetName="supporttype" Property="Text" Value="炮击支援"/>
                                 <Setter TargetName="firesupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Type}" Value="Aerial">
+                            <DataTrigger Binding="{Binding Type}" Value="Torpedo">
                                 <Setter TargetName="supporttype" Property="Text" Value="雷击支援"/>
                                 <Setter TargetName="firesupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
