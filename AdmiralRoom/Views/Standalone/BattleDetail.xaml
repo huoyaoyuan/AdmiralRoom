@@ -63,6 +63,9 @@
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
+        <DataTemplate x:Key="StageTemplate" DataType="{x:Type battle:Stage}">
+            <ItemsControl ItemsSource="{Binding Attacks, Mode=OneWay}" ItemTemplate="{StaticResource AttackTemplate}"/>
+        </DataTemplate>
         <DataTemplate x:Key="AerialCombatTemplate">
             <StackPanel Orientation="Vertical">
                 <Grid>
@@ -257,7 +260,8 @@
                     <DataTemplate DataType="{x:Type battle:SupportAttack}">
                         <StackPanel Orientation="Vertical">
                             <TextBlock x:Name="supporttype"/>
-                            
+                            <ContentPresenter x:Name="firesupport" Visibility="Collapsed"
+                                              Content="{Binding Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
                             <ContentPresenter x:Name="aerialsupport" Visibility="Collapsed"
                                               Content="{Binding Aerial, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
                         </StackPanel>
@@ -268,14 +272,37 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Type}" Value="Aerial">
                                 <Setter TargetName="supporttype" Property="Text" Value="炮击支援"/>
+                                <Setter TargetName="firesupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Type}" Value="Aerial">
                                 <Setter TargetName="supporttype" Property="Text" Value="雷击支援"/>
+                                <Setter TargetName="firesupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </HeaderedContentControl.ContentTemplate>
             </HeaderedContentControl>
+            <HeaderedContentControl Header="先制反潜"
+                                    Visibility="{Binding Battle.OpeningASW, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.OpeningASW, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="开幕雷击"
+                                    Visibility="{Binding Battle.OpeningTorpedo, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.OpeningTorpedo, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="炮击战1"
+                                    Visibility="{Binding Battle.FireStage1, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.FireStage1, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="炮击战2"
+                                    Visibility="{Binding Battle.FireStage2, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.FireStage2, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="炮击战3"
+                                    Visibility="{Binding Battle.FireStage3, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.FireStage3, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="雷击战"
+                                    Visibility="{Binding Battle.TorpedoStage, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.TorpedoStage, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="夜战"
+                                    Visibility="{Binding Battle.Night, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.Night, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
         </StackPanel>
     </ScrollViewer>
 </Window>
