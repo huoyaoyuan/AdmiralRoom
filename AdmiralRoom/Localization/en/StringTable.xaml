@@ -105,7 +105,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Log_ShipFull">※Full of ships</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logger_CreateItem">Create Item</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logger_CreateShip">Construction</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Logger_Drop">Drop</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Logger_Drop">Drop (battle detail)</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logs">Logs</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_AdmiralLevel">Admiral Level</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_BOSS">BOSS</s:String>

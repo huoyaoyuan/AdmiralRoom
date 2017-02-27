@@ -330,7 +330,7 @@
             <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_OpeningASW}"
                                     Visibility="{Binding Battle.OpeningASW, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.OpeningASW, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_OpendingTorpedo}"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_OpeningTorpedo}"
                                     Visibility="{Binding Battle.OpeningTorpedo, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.OpeningTorpedo, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
             <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Fire1}"

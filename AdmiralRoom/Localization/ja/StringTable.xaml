@@ -105,7 +105,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Log_ShipFull">※空きなし</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logger_CreateItem">開発</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logger_CreateShip">建造</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Logger_Drop">ドロップ</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Logger_Drop">ドロップ（戦闘詳細）</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logs">ログ</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_AdmiralLevel">提督レベル</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_BOSS">ボス</s:String>

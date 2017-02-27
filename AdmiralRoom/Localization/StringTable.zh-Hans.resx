@@ -502,7 +502,7 @@
     <value>建造</value>
   </data>
   <data name="Logger_Drop" xml:space="preserve">
-    <value>掉落</value>
+    <value>掉落（战斗详情）</value>
   </data>
   <data name="Logs" xml:space="preserve">
     <value>记录</value>

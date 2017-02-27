@@ -520,7 +520,7 @@
         ///</summary>
         public static string Logger_CreateShip => ResourceService.GetString("Logger_CreateShip");
         ///<summary>
-        ///   查找类似 掉落 的本地化字符串。
+        ///   查找类似 掉落（战斗详情） 的本地化字符串。
         ///</summary>
         public static string Logger_Drop => ResourceService.GetString("Logger_Drop");
         ///<summary>

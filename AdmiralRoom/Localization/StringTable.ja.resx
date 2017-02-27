@@ -421,7 +421,7 @@
     <value>建造</value>
   </data>
   <data name="Logger_Drop" xml:space="preserve">
-    <value>ドロップ</value>
+    <value>ドロップ（戦闘詳細）</value>
   </data>
   <data name="Logs" xml:space="preserve">
     <value>ログ</value>

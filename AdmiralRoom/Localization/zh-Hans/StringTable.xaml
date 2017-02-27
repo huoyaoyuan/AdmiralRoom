@@ -132,7 +132,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Log_ShipFull">※满船</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logger_CreateItem">开发</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logger_CreateShip">建造</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_Logger_Drop">掉落</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Logger_Drop">掉落（战斗详情）</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Logs">记录</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_AdmiralLevel">提督等级</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_LogTitle_BOSS">BOSS</s:String>
