@@ -13,6 +13,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public Formation FriendFormation { get; set; }
         public Formation EnemyFormation { get; set; }
         public Direction Direction { get; set; }
+        public int FriendSearching { get; set; }
+        public int EnemySearching { get; set; }
         public int AnonymousFriendDamage { get; set; }
         public int AnonymousEnemyDamage { get; set; }
         public double FriendDamageRate => (double)AllFriends.Sum(x => x.FromHP - x.ToHP)
@@ -89,6 +91,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 FriendFormation = (Formation)api.api_formation[0];
                 EnemyFormation = (Formation)api.api_formation[1];
                 Direction = (Direction)api.api_formation[2];
+            }
+            if (api.api_search != null)
+            {
+                FriendSearching = api.api_search[0];
+                EnemySearching = api.api_search[1];
             }
 
             bool iscombined = fleettype != CombinedFleetType.None;
@@ -210,8 +217,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public void NightBattle(sortie_battle api)
         {
             if (api.api_active_deck != null)
-                Night = new FireCombat(api.api_hougeki, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
-            else Night = new FireCombat(api.api_hougeki, NightOrTorpedo, EnemyFleet);
+                Night = new NightCombat(api, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
+            else Night = new NightCombat(api, NightOrTorpedo, EnemyFleet);
             EndApplyBattle();
         }
         private void EndApplyBattle()

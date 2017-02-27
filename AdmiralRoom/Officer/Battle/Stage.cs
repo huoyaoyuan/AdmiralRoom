@@ -383,6 +383,59 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             ApplyAttacks(result);
         }
     }
+    public class NightCombat : FireCombat
+    {
+        public EquipInfo FriendTouch { get; }
+        public EquipInfo EnemyTouch { get; }
+        public ShipInBattle FriendFlare { get; }
+        public ShipInBattle EnemyFlare { get; }
+        public ShipInBattle FriendLight { get; }
+        public ShipInBattle EnemyLight { get; }
+        public FireCombat Combat { get; }
+        public NightCombat(sortie_battle api, ShipInBattle[] friends, ShipInBattle[] enemies)
+            : base(api.api_hougeki, friends, enemies)
+        {
+            if (api.api_touch_plane != null)
+            {
+                FriendTouch = Staff.Current.MasterData.EquipInfo[api.api_touch_plane[0]];
+                EnemyTouch = Staff.Current.MasterData.EquipInfo[api.api_touch_plane[1]];
+            }
+            if (api.api_flare_pos != null)
+            {
+                int pos = api.api_flare_pos[0];
+                if (pos >= 1 && pos <= 6) FriendFlare = friends[pos - 1];
+                pos = api.api_flare_pos[1];
+                if (pos >= 1 && pos <= 6) EnemyFlare = enemies[pos - 1];
+            }
+            foreach (var ship in friends)
+            {
+                if (FriendLight != null) break;
+                if (ship.IsEscaped) continue;
+                foreach (var equip in ship.Equipments)
+                {
+                    int id = equip.EquipInfo.EquipType.Id;
+                    if (id == 29 || id == 42)
+                    {
+                        FriendLight = ship;
+                        break;
+                    }
+                }
+            }
+            foreach (var ship in enemies)
+            {
+                if (EnemyLight != null) break;
+                foreach (var equip in ship.Equipments)
+                {
+                    int id = equip.EquipInfo.EquipType.Id;
+                    if (id == 29 || id == 42)
+                    {
+                        EnemyLight = ship;
+                        break;
+                    }
+                }
+            }
+        }
+    }
     #endregion
 
     #region 支援艦隊
