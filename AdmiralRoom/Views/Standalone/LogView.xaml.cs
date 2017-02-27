@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Huoyaoyuan.AdmiralRoom.Logger;
 
 namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
@@ -28,5 +29,11 @@ namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
                 ResourceService.SetStringTableReference(this, Window.TitleProperty, value);
             }
         }
+        private void ItemDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ItemDetail(sender as ListViewItem);
+            e.Handled = true;
+        }
+        protected virtual void ItemDetail(ListViewItem item) { }
     }
 }

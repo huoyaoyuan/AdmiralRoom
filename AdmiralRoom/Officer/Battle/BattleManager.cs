@@ -5,7 +5,7 @@ using Huoyaoyuan.AdmiralRoom.Notifier;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
-namespace Huoyaoyuan.AdmiralRoom.Officer
+namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
 {
     public class BattleManager : NotificationObject
     {
@@ -159,8 +159,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         private int? GetShipEquip;
         private sortie_battleresult.escape lastescapeinfo;
-        private void StartBattle(sortie_battle api) =>
-            CurrentBattle = new Battle(api, CurrentFleetType ?? CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, this);
+        private void StartBattle(sortie_battle api)
+        {
+            ShipInBattle[] fleet1, fleet2;
+            fleet1 = (SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
+                .Select((x, i) => new ShipInBattle(x) { Index = i + 1 }).ToArray();
+            fleet2 = SortieFleet2?.Ships
+                .Select((x, i) => new ShipInBattle(x) { Index = i + 7 }).ToArray();
+            if (SortieFleet1 == null)//演习
+                Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships.ForEach(x => x.IgnoreNextCondition());
+            CurrentBattle = new Battle(api, CurrentFleetType ?? CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, fleet1, fleet2);
+        }
         private void NightBattle(sortie_battle api) =>
             (CurrentBattle as Battle).NightBattle(api);
         private void StartNextHandler(map_start_next api)
@@ -213,7 +222,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 DateTime = now,
                 MapArea = CurrentMap.Id,
                 MapCell = CurrentNode.Id,
-                IsBOSS = CurrentNode.Type == MapNodeType.BOSS,
+                IsBOSS = CurrentNode.Type.IsBOSS(),
                 MapAreaName = CurrentMap.Name,
                 EnemyFleetName = api.api_enemy_info?.api_deck_name ?? "",
                 WinRank = winrank,

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using Fiddler;
 using Huoyaoyuan.AdmiralRoom.Officer;
+using Meowtrix.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
@@ -30,7 +32,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             Staff.API("api_req_combined_battle/battle_water").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/ld_airbattle").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/ec_battle").Subscribe(x => AddApi("battle", x));
-            Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe(x => AddApi("battle", x));
+            Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe(x => AddApi("nightbattle", x));
             Staff.API("api_req_combined_battle/each_battle").Subscribe(x => AddApi("battle", x));
             Staff.API("api_req_combined_battle/each_battle_water").Subscribe(x => AddApi("battle", x));
             var dir = new DirectoryInfo(@"logs\battlelog");
@@ -113,8 +115,64 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 date = today;
             }
             AddFleets();
-            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
+            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime:yyyy/M/dd h:mm:ss}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
             datastring = string.Empty;
+        }
+
+        private static readonly JsonSerializerSettings JSettings = new JsonSerializerSettings
+        {
+            MissingMemberHandling = MissingMemberHandling.Ignore,
+            Error = (_, e) => e.ErrorContext.Handled = true
+        };
+        private const int cacheDays = 5;
+        private List<DateTime> cacheIndex = new List<DateTime>();
+        private List<IDTable<DateTime, BattleDetail>> cacheList = new List<IDTable<DateTime, BattleDetail>>();
+        public BattleDetail FindLog(DateTime utctime)
+        {
+            var date = utctime.Date;
+            int index = cacheIndex.IndexOf(date);
+            if (index == -1)
+            {
+                if (cacheIndex.Count >= cacheDays)
+                {
+                    cacheIndex.RemoveAt(0);
+                    cacheList.RemoveAt(0);
+                }
+                if (File.Exists($@"logs\battlelog\{date:yyyy-MM-dd}.log"))
+                {
+                    foreach (string line in File.ReadAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log"))
+                    {
+                        var item = JsonConvert.DeserializeObject<BattleDetail>(line, JSettings);
+                        if (item.GetTimeStamp() == utctime)
+                            return item;
+                    }
+                    return null;
+                }
+                else if (File.Exists($@"logs\battlelog\{date:yyyy-MM-dd}.zip"))
+                {
+                    var cache = new IDTable<DateTime, BattleDetail>();
+                    using (var zipfile = ZipFile.OpenRead($@"logs\battlelog\{date:yyyy-MM-dd}.zip"))
+                    using (var stream = zipfile.GetEntry($"{date:yyyy-MM-dd}.log").Open())
+                    {
+                        var reader = new StreamReader(stream);
+                        while (!reader.EndOfStream)
+                            cache.Add(JsonConvert.DeserializeObject<BattleDetail>(FixBrokenLog(reader.ReadLine()), JSettings));
+                    }
+                    index = cacheList.Count;
+                    cacheIndex.Add(date);
+                    cacheList.Add(cache);
+                }
+                else return null;
+            }
+            return cacheList[index][utctime];
+        }
+        private static string FixBrokenLog(string input)
+        {
+            int first = input.IndexOf("\"battle\"");
+            int last = input.LastIndexOf("\"battle\"");
+            if (first != last)
+                return input.Insert(last + 1, "night");
+            else return input;
         }
     }
 }

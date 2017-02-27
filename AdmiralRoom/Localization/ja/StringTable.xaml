@@ -313,4 +313,31 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_QuestOverview">遂行中任務</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_RepairView">入渠</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_ShipCatalog">所有艦娘一覧</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_1">索敵成功</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_2">索敵成功(未帰還機あり)</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_3">索敵機未帰還</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_4">索敵失敗</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_5">索敵成功(艦載機使用せず)</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_6">索敵失敗(艦載機使用せず)</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_AA">対空カットイン</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_AA_Type">タイプ</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_FlareShip">照明弾発射艦：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_NightTouch">夜間触接：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_LightShip">探照灯装備艦：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Touching">触接：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Aerial">航空支援</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Fire">砲撃支援</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Torpedo">雷撃支援</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Torpedo">雷撃戦</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Support">支援艦隊</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Aerial">航空戦</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningASW">開幕対潜攻撃</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningTorpedo">開幕雷撃</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">夜戦</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_AirBase">基地航空隊</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">噴式強襲</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_AirBaseJet">基地噴式強襲</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire1">砲撃戦1巡目</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire2">砲撃戦2巡目</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">砲撃戦3巡目</s:String>
 </ResourceDictionary>
