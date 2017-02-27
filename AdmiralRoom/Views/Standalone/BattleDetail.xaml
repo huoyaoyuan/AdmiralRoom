@@ -3,10 +3,279 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Standalone"
+        xmlns:root="clr-namespace:Huoyaoyuan.AdmiralRoom"
+        xmlns:logger="clr-namespace:Huoyaoyuan.AdmiralRoom.Logger"
+        xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
+        xmlns:control="clr-namespace:Huoyaoyuan.AdmiralRoom.Controls"
+        xmlns:battle="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer.Battle"
         mc:Ignorable="d"
-        Title="BattleDetail" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        d:DataContext="{d:DesignInstance Type=logger:BattleDetailViewModel}"
+        Title="BattleDetail" Height="800" Width="600"
+        FontFamily="{Binding FontFamily, Source={x:Static root:Config.Current}, Mode=OneWay}"
+        FontSize="16">
+    <Window.Resources>
+        <DataTemplate x:Key="AttackTemplate" DataType="{x:Type battle:Attack}">
+            <Grid d:DataContext="{d:DesignInstance Type=battle:Attack}" Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Source"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Destination"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Damage"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shield"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="HPBar"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="12"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="friend" Text="{Binding Friend.DisplayName, Mode=OneWay}" Foreground="MediumSeaGreen"
+                           Grid.RowSpan="2" VerticalAlignment="Center"/>
+                <TextBlock x:Name="enemy" Text="{Binding Enemy.DisplayName, Mode=OneWay}" Foreground="Red"
+                           Grid.RowSpan="2" VerticalAlignment="Center"/>
+                <TextBlock Text="→" Margin="10,0" Grid.Column="1"
+                           Grid.RowSpan="2" VerticalAlignment="Center"/>
+                <TextBlock x:Name="damage" Text="{Binding Damage, Mode=OneWay}" Grid.Column="3"
+                           Grid.RowSpan="2" VerticalAlignment="Center" Margin="10,0"/>
+                <TextBlock FontSize="12" Grid.Column="5" HorizontalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} → {1}">
+                            <Binding Path="FromHP" Mode="OneWay"/>
+                            <Binding Path="ToHP" Mode="OneWay"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <control:PredicateProgressBar Grid.Column="5" Grid.Row="1" Width="100"
+                                              Minimum="0" Maximum="{Binding MaxHP}" Value="{Binding ToHP}" PredictValue="{Binding FromHP}"
+                                              Foreground="{Binding ResultHP, Converter={StaticResource LVColorConverter}, ConverterParameter=HP}"
+                                              PredictForeground="Wheat" Background="Transparent"/>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Direction}" Value="True">
+                    <Setter TargetName="friend" Property="Grid.Column" Value="0"/>
+                    <Setter TargetName="enemy" Property="Grid.Column" Value="2"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Direction}" Value="False">
+                    <Setter TargetName="friend" Property="Grid.Column" Value="2"/>
+                    <Setter TargetName="enemy" Property="Grid.Column" Value="0"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsCritical}" Value="True">
+                    <Setter TargetName="damage" Property="FontWeight" Value="Black"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        <DataTemplate x:Key="AerialCombatTemplate">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14" Foreground="MediumSeaGreen">
+                        <Run>
+                            <Run.Text>
+                                <MultiBinding StringFormat="{}{0}→{1}">
+                                    <Binding Path="FriendStage1.Max" Mode="OneWay"/>
+                                    <Binding Path="FriendStage1.Current" Mode="OneWay"/>
+                                </MultiBinding>
+                            </Run.Text>
+                        </Run>
+                        <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                        <LineBreak/>
+                        <Run>
+                            <Run.Text>
+                                <MultiBinding StringFormat="{}{0}→{1}">
+                                    <Binding Path="FriendStage2.Max" Mode="OneWay"/>
+                                    <Binding Path="FriendStage2.Current" Mode="OneWay"/>
+                                </MultiBinding>
+                            </Run.Text>
+                        </Run>
+                        <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               FontSize="20" Text="{Binding AirControl}"/>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14" Foreground="Red">
+                        <Run>
+                            <Run.Text>
+                                <MultiBinding StringFormat="{}{0}→{1}">
+                                    <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
+                                    <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
+                                </MultiBinding>
+                            </Run.Text>
+                        </Run>
+                        <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                        <LineBreak/>
+                        <Run>
+                            <Run.Text>
+                                <MultiBinding StringFormat="{}{0}→{1}">
+                                    <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
+                                    <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
+                                </MultiBinding>
+                            </Run.Text>
+                        </Run>
+                        <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                    </TextBlock>
+                </Grid>
+                <Grid Visibility="{Binding IsFullAerialStage, Converter={StaticResource VisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Right" Foreground="MediumSeaGreen" Text="触接："
+                               Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
+                    <Image Grid.Column="1" Height="16" Source="{Binding FriendTouch.Icon, Mode=OneWay}"
+                           Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Left" Text="{Binding FriendTouch.Name, Mode=OneWay}"
+                               Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Right" Foreground="Red" Text="触接："
+                               Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
+                    <Image Grid.Column="4" Height="16" Source="{Binding EnemyTouch.Icon, Mode=OneWay}"
+                           Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
+                    <TextBlock Grid.Column="5" HorizontalAlignment="Left" Text="{Binding EnemyTouch.Name, Mode=OneWay}"
+                               Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Center"
+                               Visibility="{Binding AntiAir, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
+                        <Run>对空Cut-in：</Run>
+                        <Run Text="{Binding AntiAir.Ship.DisplayName, Mode=OneWay}"/>
+                        <Run>类型</Run>
+                        <Run Text="{Binding AntiAir.Type, Mode=OneWay}"/>
+                        <ItemsControl ItemsSource="{Binding AntiAir.EquipList, Mode=OneWay}"
+                                      TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Height="16" Source="{Binding Icon, Mode=OneWay}" ToolTip="{Binding Name, Mode=OneWay}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </TextBlock>
+                </Grid>
+                <ItemsControl ItemsSource="{Binding Attacks, Mode=OneWay}" ItemTemplate="{StaticResource AttackTemplate}"/>
+            </StackPanel>
+        </DataTemplate>
+        <Style TargetType="HeaderedContentControl">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontSize="20" Margin="2"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HeaderedContentControl">
+                        <StackPanel Orientation="Vertical">
+                            <Rectangle Height="2" Margin="0,8,0,0" Fill="DarkGray"/>
+                            <ContentPresenter Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
+            <TextBlock Text="{Binding LocalTimeString, Mode=OneTime}" Margin="2"/>
+            <TextBlock Margin="2">
+                <Run Text="{ex:Localizable Compass_SortieArea}"/>
+                <Run Text="{Binding Log.MapAreaId, Mode=OneTime}"/>
+                <Run Text="{Binding Log.MapAreaName, Mode=OneTime}"/>
+                <LineBreak/>
+                <Run Text="{ex:Localizable Compass_Position}"/>
+                <Run Text="{Binding Node.Id, Mode=OneTime}"/>
+                <Run Text="{Binding Log.EnemyFleetName, Mode=OneTime}"/>
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <control:WinRankText WinRank="{Binding Battle.WinRank, Mode=OneTime}" Margin="2"/>
+                <TextBlock Margin="2">
+                    <Run Text="{ex:Localizable Battle_Drop}"/>
+                    <Run Text="{Binding Log.DropShipNameShown, Mode=OneTime}"/>
+                </TextBlock>
+            </StackPanel>
+            <HeaderedContentControl Header="陆航喷气强袭"
+                                    Visibility="{Binding Battle.AirBaseJet, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.AirBaseJet, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
+            <HeaderedContentControl Header="喷气强袭"
+                                    Visibility="{Binding Battle.Jet, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.Jet, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
+            <HeaderedContentControl Header="陆航"
+                                    Visibility="{Binding Battle.AirBaseAttacks, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}">
+                <ItemsControl ItemsSource="{Binding Battle.AirBaseAttacks, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type battle:AirBaseAttack}">
+                            <StackPanel Orientation="Vertical" Margin="2">
+                                <Rectangle x:Name="seperator" Height="1" Margin="1" Fill="Gray"/>
+                                <!--<ItemsControl ItemsSource="{Binding SquadronList, Mode=OneWay}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Count, Mode=OneWay}" Margin="5,0"/>
+                                                <Image Height="16" Source="{Binding Plane.Icon, Mode=OneWay}"/>
+                                                <TextBlock Text="{Binding Plane.Name, Mode=OneWay}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>-->
+                                <ContentPresenter Content="{Binding Mode=OneWay}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                                    <Setter TargetName="seperator" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="航空战"
+                                    Visibility="{Binding Battle.AirCombat1.IsFaked, Converter={StaticResource VisibilityConverter}, ConverterParameter=False, Mode=OneTime}"
+                                    Content="{Binding Battle.AirCombat1, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
+            <ContentControl HorizontalAlignment="Left" Margin="2"
+                            Visibility="{Binding Battle.AirCombat2, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                            Content="{Binding Battle.AirCombat2, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
+            <HeaderedContentControl Header="支援舰队"
+                                    Visibility="{Binding Battle.Support, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.Support, Mode=OneTime}">
+                <HeaderedContentControl.ContentTemplate>
+                    <DataTemplate DataType="{x:Type battle:SupportAttack}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock x:Name="supporttype"/>
+                            
+                            <ContentPresenter x:Name="aerialsupport" Visibility="Collapsed"
+                                              Content="{Binding Aerial, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
+                        </StackPanel>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Type}" Value="Aerial">
+                                <Setter TargetName="supporttype" Property="Text" Value="航空支援"/>
+                                <Setter TargetName="aerialsupport" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Type}" Value="Aerial">
+                                <Setter TargetName="supporttype" Property="Text" Value="炮击支援"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Type}" Value="Aerial">
+                                <Setter TargetName="supporttype" Property="Text" Value="雷击支援"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </HeaderedContentControl.ContentTemplate>
+            </HeaderedContentControl>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

@@ -11,6 +11,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public ShipInBattle Enemy { get; set; }
         public int FromHP { get; set; }
         public int ToHP { get; set; }
+        public int MaxHP { get; set; }
+        public LimitedValue ResultHP => new LimitedValue(ToHP, MaxHP);
         public int Damage { get; set; }
         public bool IsCritical { get; set; }
         /// <summary>
@@ -48,6 +50,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             }
             if (dest != null)
             {
+                MaxHP = dest.MaxHP;
                 FromHP = dest.ToHP;
                 dest.Damage += Damage;
                 dest.ToHP -= Damage;
@@ -79,6 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     #region 航空戦
     public abstract class AerialBase : Stage
     {
+        public virtual bool IsFullAerialStage => false;
         public AirControl AirControl { get; protected set; }
         public LimitedValue FriendStage1 { get; protected set; }
         public LimitedValue EnemyStage1 { get; protected set; }
@@ -144,6 +148,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     }
     public class AerialCombat : AerialBase
     {
+        public override bool IsFullAerialStage => true;
+        public bool IsFaked => FriendStage1.Max == 0 && EnemyStage1.Max == 0;
         public EquipInfo FriendTouch { get; }
         public EquipInfo EnemyTouch { get; }
         public class AntiAirCutin
@@ -212,10 +218,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     }
     public class AirBaseAttack : AerialBase
     {
-        sortie_battle.airbattle.squadron[] SquadronList { get; }
+        public class Squadron
+        {
+            public EquipInfo Plane { get; set; }
+            public int Count { get; set; }
+        }
+        /// <summary>
+        /// not works
+        /// </summary>
+        public Squadron[] SquadronList { get; }
         public AirBaseAttack(Battle battle, sortie_battle.airbattle api) : base(api)
         {
-            SquadronList = api.api_squadron_plane;
+            //SquadronList = api.api_squadron_plane.Select(x => new Squadron
+            //{
+            //    Plane = Staff.Current.MasterData.EquipInfo[x.api_mst_id],
+            //    Count = x.api_count
+            //}).ToArray();
             if (api.api_stage1 != null)
                 AirControl = (AirControl)api.api_stage1.api_disp_seiku;
 
