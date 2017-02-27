@@ -45,7 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     {
                         return FriendDamageRate <= 0 ? WinRank.Perfect : WinRank.S;
                     }
-                    if (es >= Round(ec * 0.6)) return WinRank.A;
+                    if (es >= Round(ec * 0.625)) return WinRank.A;
                     if (EnemyFleet[0].ToHP <= 0) return WinRank.B;
                     if (ed > fd * 2.5) return WinRank.B;
                     if (ed > fd * 0.9) return WinRank.C;
