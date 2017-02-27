@@ -163,7 +163,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 Support = new SupportAttack(this, api.api_support_info, api.api_support_flag);
             if (isenemycombined)
             {
-
+                if (api.api_opening_taisen != null)
+                    OpeningASW = new ECFireCombat(this, api.api_opening_taisen);
                 if (api.api_opening_atack != null)
                     OpeningTorpedo = new ECTorpedoCombat(this, api.api_opening_atack);
                 if (api.api_hougeki1 != null)
