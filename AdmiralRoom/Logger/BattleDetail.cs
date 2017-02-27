@@ -83,7 +83,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 {
                     Index = i + 1,
                     Level = ship.lv,
-                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.id],
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
                     Firepower = ship.karyoku,
                     Torpedo = ship.raisou,
                     AA = ship.taiku,
@@ -96,7 +96,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 {
                     Index = i + 7,
                     Level = ship.lv,
-                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.id],
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
                     Firepower = ship.karyoku,
                     Torpedo = ship.raisou,
                     AA = ship.taiku,
