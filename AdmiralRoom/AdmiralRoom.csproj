@@ -244,6 +244,7 @@
     <Compile Include="Common\MemberwiseCopyHelper.cs" />
     <Compile Include="Common\NotifySourceObject.cs" />
     <Compile Include="Common\PresentationEx.cs" />
+    <Compile Include="Controls\ContentNullChooser.cs" />
     <Compile Include="Controls\WinRankText.cs" />
     <Compile Include="Logger\BattleDetail.cs" />
     <Compile Include="Notifier\MessageBoxNotifierFactory.cs" />
@@ -261,7 +262,6 @@
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConstData.cs" />
-    <Compile Include="Controls\ContentNullChooser.cs" />
     <Compile Include="Controls\ExpBar.cs" />
     <Compile Include="Controls\PredicateProgressBar.cs" />
     <Compile Include="KanColleBrowser.xaml.cs">
@@ -372,6 +372,7 @@
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\EnumVisibilityConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
+    <Compile Include="Views\Converter\NullToVisibilityConverter.cs" />
     <Compile Include="Views\Converter\RadioButtonConverter.cs" />
     <Compile Include="Views\Converter\StringTableConverter.cs" />
     <Compile Include="Views\Converter\VisibilityConverter.cs" />

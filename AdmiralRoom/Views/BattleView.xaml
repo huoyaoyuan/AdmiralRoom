@@ -115,218 +115,214 @@
     </UserControl.Resources>
     <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
         <TabItem Header="{ex:Localizable Predict_Enable}" Background="SpringGreen">
-            <control:ContentNullChooser ContentChooser="{Binding Battle.CurrentBattle}">
-                <control:ContentNullChooser.NotNullContent>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <Grid HorizontalAlignment="Left">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0"
-                                               HorizontalAlignment="Center"
-                                               FontSize="20"
-                                               Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
-                                    <TextBlock Grid.Column="1"
-                                               HorizontalAlignment="Center"
-                                               FontSize="20"
-                                               Text="{Binding Battle.CurrentBattle.Direction}"/>
-                                    <TextBlock Grid.Column="2"
-                                               HorizontalAlignment="Center"
-                                               FontSize="20"
-                                               Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
-                                </Grid>
-                                <Grid Grid.Row="1" DataContext="{Binding Battle.CurrentBattle.AirCombat1, Mode=OneWay}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14">
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="FriendStage1.Max" Mode="OneWay"/>
-                                                    <Binding Path="FriendStage1.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="FriendStage2.Max" Mode="OneWay"/>
-                                                    <Binding Path="FriendStage2.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                    </TextBlock>
-                                    <TextBlock Grid.Column="1"
-                                               VerticalAlignment="Center"
-                                               FontSize="20" Text="{Binding AirControl}"/>
-                                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14">
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
-                                                    <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
-                                                    <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                    </TextBlock>
-                                </Grid>
-                                <Grid Grid.Row="2" DataContext="{Binding Battle.CurrentBattle.AirCombat2, Mode=OneWay}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14">
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="FriendStage1.Max" Mode="OneWay"/>
-                                                    <Binding Path="FriendStage1.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="FriendStage2.Max" Mode="OneWay"/>
-                                                    <Binding Path="FriendStage2.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                    </TextBlock>
-                                    <TextBlock Grid.Column="1"
-                                               VerticalAlignment="Center"
-                                               FontSize="20" Text="{Binding AirControl}"/>
-                                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14">
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
-                                                    <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                        <LineBreak/>
-                                        <Run>
-                                            <Run.Text>
-                                                <MultiBinding StringFormat="{}{0}→{1}">
-                                                    <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
-                                                    <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
-                                    </TextBlock>
-                                </Grid>
-                                <Grid Grid.Row="3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0"
-                                               HorizontalAlignment="Center"
-                                               FontSize="15"
-                                               Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
-                                    <control:WinRankText Grid.Column="1" WinRank="{Binding Battle.CurrentBattle.WinRank, Mode=OneWay}"/>
-                                    <TextBlock Grid.Column="2"
-                                               HorizontalAlignment="Center"
-                                               FontSize="15"
-                                               Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
-                                </Grid>
-                                <Grid Grid.Row="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <meowtrix:AnimateProgress Grid.Column="0"
-                                                              Height="10" Margin="2"
-                                                              Maximum="1" Foreground="SpringGreen"
-                                                              InitAnimateFrom="Minimum"
-                                                              Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
-                                    <meowtrix:AnimateProgress Grid.Column="1"
-                                                              Height="10" Margin="2"
-                                                              Maximum="1" Foreground="Red"
-                                                              InitAnimateFrom="Minimum"
-                                                              Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
-                                </Grid>
-                            </Grid>
-                            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                <ItemsControl Grid.Row="1" Grid.Column="0"
-                                              ItemsSource="{Binding Battle.CurrentBattle.Fleet1}"
-                                              Style="{StaticResource FleetKey}"/>
-                                <ItemsControl Grid.Row="1" Grid.Column="1"
-                                              ItemsSource="{Binding Battle.CurrentBattle.Fleet2}"
-                                              Style="{StaticResource FleetKey}"/>
-                                <ItemsControl Grid.Row="1" Grid.Column="3"
-                                              ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet2}"
-                                              Style="{StaticResource FleetKey}"/>
-                                <ItemsControl Grid.Row="1" Grid.Column="3"
-                                              ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
-                                              Style="{StaticResource FleetKey}"/>
-                            </StackPanel>
-                            <Grid Grid.Row="2" Margin="0,4,0,0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" FontSize="16">
-                                    <Run Text="{ex:Localizable Battle_AnonymousDamage}"/>
-                                    <Run Text="{Binding Battle.CurrentBattle.AnonymousFriendDamage, Mode=OneWay}"/>
-                                </TextBlock>
-                                <TextBlock Grid.Column="1" HorizontalAlignment="Right" FontSize="16">
-                                    <Run Text="{ex:Localizable Battle_AnonymousDamage}"/>
-                                    <Run Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, Mode=OneWay}"/>
-                                </TextBlock>
-                            </Grid>
-                            <CheckBox Grid.Row="3" Margin="2,0,0,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{ex:Localizable Battle_Drop}"/>
-                                    <TextBlock Visibility="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}, Converter={StaticResource VisibilityConverter}}" Text="{Binding Battle.CurrentBattle.GetShip}"/>
-                                </StackPanel>
-                            </CheckBox>
+            <ScrollViewer Visibility="{Binding Battle.CurrentBattle, Converter={StaticResource NullToVisibilityConverter}}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Text="{Binding Battle.CurrentBattle.FriendFormation}"/>
+                            <TextBlock Grid.Column="1"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Text="{Binding Battle.CurrentBattle.Direction}"/>
+                            <TextBlock Grid.Column="2"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Text="{Binding Battle.CurrentBattle.EnemyFormation}"/>
                         </Grid>
-                    </ScrollViewer>
-                </control:ContentNullChooser.NotNullContent>
-            </control:ContentNullChooser>
+                        <Grid Grid.Row="1" DataContext="{Binding Battle.CurrentBattle.AirCombat1, Mode=OneWay}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14">
+                                <Run>
+                                    <Run.Text>
+                                        <MultiBinding StringFormat="{}{0}→{1}">
+                                            <Binding Path="FriendStage1.Max" Mode="OneWay"/>
+                                            <Binding Path="FriendStage1.Current" Mode="OneWay"/>
+                                        </MultiBinding>
+                                    </Run.Text>
+                                </Run>
+                                <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                <LineBreak/>
+                                <Run>
+                                    <Run.Text>
+                                        <MultiBinding StringFormat="{}{0}→{1}">
+                                            <Binding Path="FriendStage2.Max" Mode="OneWay"/>
+                                            <Binding Path="FriendStage2.Current" Mode="OneWay"/>
+                                        </MultiBinding>
+                                    </Run.Text>
+                                </Run>
+                                <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       FontSize="20" Text="{Binding AirControl}"/>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14">
+                                 <Run>
+                                     <Run.Text>
+                                         <MultiBinding StringFormat="{}{0}→{1}">
+                                             <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
+                                             <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
+                                         </MultiBinding>
+                                     </Run.Text>
+                                 </Run>
+                                 <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                 <LineBreak/>
+                                 <Run>
+                                     <Run.Text>
+                                         <MultiBinding StringFormat="{}{0}→{1}">
+                                             <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
+                                             <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
+                                         </MultiBinding>
+                                     </Run.Text>
+                                 </Run>
+                                 <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="2" DataContext="{Binding Battle.CurrentBattle.AirCombat2, Mode=OneWay}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" FontSize="14">
+                                 <Run>
+                                     <Run.Text>
+                                         <MultiBinding StringFormat="{}{0}→{1}">
+                                             <Binding Path="FriendStage1.Max" Mode="OneWay"/>
+                                             <Binding Path="FriendStage1.Current" Mode="OneWay"/>
+                                         </MultiBinding>
+                                     </Run.Text>
+                                 </Run>
+                                 <Run Text="{Binding FriendStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                 <LineBreak/>
+                                 <Run>
+                                     <Run.Text>
+                                         <MultiBinding StringFormat="{}{0}→{1}">
+                                             <Binding Path="FriendStage2.Max" Mode="OneWay"/>
+                                             <Binding Path="FriendStage2.Current" Mode="OneWay"/>
+                                         </MultiBinding>
+                                     </Run.Text>
+                                 </Run>
+                                 <Run Text="{Binding FriendStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       FontSize="20" Text="{Binding AirControl}"/>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" FontSize="14">
+                                 <Run>
+                                     <Run.Text>
+                                         <MultiBinding StringFormat="{}{0}→{1}">
+                                             <Binding Path="EnemyStage1.Max" Mode="OneWay"/>
+                                             <Binding Path="EnemyStage1.Current" Mode="OneWay"/>
+                                         </MultiBinding>
+                                     </Run.Text>
+                                 </Run>
+                                 <Run Text="{Binding EnemyStage1.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                                 <LineBreak/>
+                                 <Run>
+                                     <Run.Text>
+                                         <MultiBinding StringFormat="{}{0}→{1}">
+                                             <Binding Path="EnemyStage2.Max" Mode="OneWay"/>
+                                             <Binding Path="EnemyStage2.Current" Mode="OneWay"/>
+                                         </MultiBinding>
+                                     </Run.Text>
+                                 </Run>
+                                 <Run Text="{Binding EnemyStage2.Shortage, StringFormat=(-{0}), Mode=OneWay}"/>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                FontSize="15"
+                                Text="{Binding Battle.CurrentBattle.EnemyDamageRate, StringFormat={}{0:P}}"/>
+                            <control:WinRankText Grid.Column="1" WinRank="{Binding Battle.CurrentBattle.WinRank, Mode=OneWay}"/>
+                            <TextBlock Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                FontSize="15"
+                                Text="{Binding Battle.CurrentBattle.FriendDamageRate, StringFormat={}{0:P}}"/>
+                        </Grid>
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <meowtrix:AnimateProgress Grid.Column="0"
+                                                      Height="10" Margin="2"
+                                                      Maximum="1" Foreground="SpringGreen"
+                                                      InitAnimateFrom="Minimum"
+                                                      Value="{Binding Battle.CurrentBattle.EnemyDamageRate, Mode=OneWay}"/>
+                            <meowtrix:AnimateProgress Grid.Column="1"
+                                                      Height="10" Margin="2"
+                                                      Maximum="1" Foreground="Red"
+                                                      InitAnimateFrom="Minimum"
+                                                      Value="{Binding Battle.CurrentBattle.FriendDamageRate, Mode=OneWay}"/>
+                        </Grid>
+                    </Grid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <ItemsControl Grid.Row="1" Grid.Column="0"
+                                      ItemsSource="{Binding Battle.CurrentBattle.Fleet1}"
+                                      Style="{StaticResource FleetKey}"/>
+                        <ItemsControl Grid.Row="1" Grid.Column="1"
+                                      ItemsSource="{Binding Battle.CurrentBattle.Fleet2}"
+                                      Style="{StaticResource FleetKey}"/>
+                        <ItemsControl Grid.Row="1" Grid.Column="3"
+                                      ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet2}"
+                                      Style="{StaticResource FleetKey}"/>
+                        <ItemsControl Grid.Row="1" Grid.Column="3"
+                                      ItemsSource="{Binding Battle.CurrentBattle.EnemyFleet}"
+                                      Style="{StaticResource FleetKey}"/>
+                    </StackPanel>
+                    <Grid Grid.Row="2" Margin="0,4,0,0" Visibility="{Binding Battle.CurrentBattle.IsBattling, Converter={StaticResource VisibilityConverter}, ConverterParameter=True|Hidden}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Right" FontSize="16">
+                            <Run Text="{ex:Localizable Battle_AnonymousDamage}"/>
+                            <Run Text="{Binding Battle.CurrentBattle.AnonymousFriendDamage, Mode=OneWay}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Right" FontSize="16">
+                            <Run Text="{ex:Localizable Battle_AnonymousDamage}"/>
+                            <Run Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, Mode=OneWay}"/>
+                        </TextBlock>
+                    </Grid>
+                    <CheckBox Grid.Row="3" Margin="2,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{ex:Localizable Battle_Drop}"/>
+                            <TextBlock Visibility="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}, Converter={StaticResource VisibilityConverter}}" Text="{Binding Battle.CurrentBattle.GetShip}"/>
+                        </StackPanel>
+                    </CheckBox>
+                </Grid>
+            </ScrollViewer>
         </TabItem>
         <TabItem Header="{ex:Localizable Predict_Disable}" Background="Red"/>
     </TabControl>
