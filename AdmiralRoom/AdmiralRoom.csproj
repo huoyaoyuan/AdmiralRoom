@@ -638,6 +638,8 @@
     <Resource Include="Images\AdmiralRoom.png" />
     <Resource Include="Images\Equip\39.png" />
     <Resource Include="Images\Equip\40.png" />
+    <Resource Include="Images\Equip\41.png" />
+    <Resource Include="Images\Equip\42.png" />
     <Content Include="Localization\en\StringTable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringTable.xaml</LastGenOutput>

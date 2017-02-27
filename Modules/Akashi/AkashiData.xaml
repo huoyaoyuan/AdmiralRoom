@@ -1124,6 +1124,10 @@
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="10" CostDevelopmentConfirmed="20" CostImprovement="5" CostImprovementConfirmed="8"
                        CostItemId="33" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="14" CostDevelopmentConfirmed="28" CostImprovement="7" CostImprovementConfirmed="9"
+                       CostItemId="34" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="20" CostDevelopmentConfirmed="40" CostImprovement="8" CostImprovementConfirmed="12"
+                       CostItemId="34" CostItemCount="2" UpgradeToId="87"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="87" CostItem1="300" CostItem2="0" CostItem3="750" CostItem4="100">
