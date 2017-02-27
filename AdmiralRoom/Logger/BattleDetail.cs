@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Officer;
 using Huoyaoyuan.AdmiralRoom.Officer.Battle;
@@ -80,32 +81,40 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                     AirProficiency = equip.alv
                 } : null;
             fleet1 = this.fleet1?.Select((ship, i) => new ShipInBattle
-                {
-                    Index = i + 1,
-                    Level = ship.lv,
-                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
-                    Firepower = ship.karyoku,
-                    Torpedo = ship.raisou,
-                    AA = ship.taiku,
-                    Armor = ship.soukou,
-                    Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+            {
+                Index = i + 1,
+                Level = ship.lv,
+                ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
+                Firepower = ship.karyoku,
+                Torpedo = ship.raisou,
+                AA = ship.taiku,
+                Armor = ship.soukou,
+                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
                         .Select(EquipSelector).ToArray(),
-                    EquipmentEx = EquipSelector(ship.slotex)
-                }).ToArray();
+                EquipmentEx = EquipSelector(ship.slotex)
+            }).ToArray();
             fleet2 = this.fleet2?.Select((ship, i) => new ShipInBattle
-                {
-                    Index = i + 7,
-                    Level = ship.lv,
-                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
-                    Firepower = ship.karyoku,
-                    Torpedo = ship.raisou,
-                    AA = ship.taiku,
-                    Armor = ship.soukou,
-                    Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+            {
+                Index = i + 7,
+                Level = ship.lv,
+                ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
+                Firepower = ship.karyoku,
+                Torpedo = ship.raisou,
+                AA = ship.taiku,
+                Armor = ship.soukou,
+                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
                             .Select(EquipSelector).ToArray(),
-                    EquipmentEx = EquipSelector(ship.slotex)
-                }).ToArray();
+                EquipmentEx = EquipSelector(ship.slotex)
+            }).ToArray();
             var node = new MapNode(startnext.data.api_data);
+            //CombinedFleetType type;
+            //if (!apimap.TryGetValue(battle.api, out type) && fleet2 != null)//broken log
+            //{
+            //    if (DispatcherHelper.UIDispatcher.Invoke(() =>
+            //        MessageBox.Show("记录损坏。请问要将该场战斗作为机动/运输部队解析吗？", "记录损坏", MessageBoxButton.YesNo)) == MessageBoxResult.Yes)
+            //        type = CombinedFleetType.Carrier;
+            //    else type = CombinedFleetType.Surface;
+            //}
             apimap.TryGetValue(battle.api, out var type);
             var result = new Battle(battle.data.api_data, type, node.Type, fleet1, fleet2);
             if (nightbattle != null) result.NightBattle(nightbattle.data.api_data);
