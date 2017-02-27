@@ -222,7 +222,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 DateTime = now,
                 MapArea = CurrentMap.Id,
                 MapCell = CurrentNode.Id,
-                IsBOSS = CurrentNode.Type == MapNodeType.BOSS,
+                IsBOSS = CurrentNode.Type.IsBOSS(),
                 MapAreaName = CurrentMap.Name,
                 EnemyFleetName = api.api_enemy_info?.api_deck_name ?? "",
                 WinRank = winrank,
