@@ -156,6 +156,87 @@
   <data name="Battle_WinRank_S" xml:space="preserve">
     <value>胜利S</value>
   </data>
+  <data name="BattleDetail_AA" xml:space="preserve">
+    <value>对空Cut-in：</value>
+  </data>
+  <data name="BattleDetail_AA_Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="BattleDetail_FlareShip" xml:space="preserve">
+    <value>照明弹发射舰：</value>
+  </data>
+  <data name="BattleDetail_LightShip" xml:space="preserve">
+    <value>探照灯装备舰：</value>
+  </data>
+  <data name="BattleDetail_NightTouch" xml:space="preserve">
+    <value>夜间触接：</value>
+  </data>
+  <data name="BattleDetail_Searching_1" xml:space="preserve">
+    <value>索敌成功</value>
+  </data>
+  <data name="BattleDetail_Searching_2" xml:space="preserve">
+    <value>索敌成功（飞机未回归）</value>
+  </data>
+  <data name="BattleDetail_Searching_3" xml:space="preserve">
+    <value>索敌机未回归</value>
+  </data>
+  <data name="BattleDetail_Searching_4" xml:space="preserve">
+    <value>索敌失败</value>
+  </data>
+  <data name="BattleDetail_Searching_5" xml:space="preserve">
+    <value>索敌成功（未使用飞机）</value>
+  </data>
+  <data name="BattleDetail_Searching_6" xml:space="preserve">
+    <value>索敌失败（未使用飞机）</value>
+  </data>
+  <data name="BattleDetail_Stage_Aerial" xml:space="preserve">
+    <value>航空战</value>
+  </data>
+  <data name="BattleDetail_Stage_AirBase" xml:space="preserve">
+    <value>陆基航空队</value>
+  </data>
+  <data name="BattleDetail_Stage_AirBaseJet" xml:space="preserve">
+    <value>陆航喷气强袭</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire1" xml:space="preserve">
+    <value>炮击战第1轮</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire2" xml:space="preserve">
+    <value>炮击战第2轮</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire3" xml:space="preserve">
+    <value>炮击战第3轮</value>
+  </data>
+  <data name="BattleDetail_Stage_Jet" xml:space="preserve">
+    <value>喷气强袭</value>
+  </data>
+  <data name="BattleDetail_Stage_Night" xml:space="preserve">
+    <value>夜战</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningTorpedo" xml:space="preserve">
+    <value>开幕雷击</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningASW" xml:space="preserve">
+    <value>先制反潜</value>
+  </data>
+  <data name="BattleDetail_Stage_Support" xml:space="preserve">
+    <value>支援舰队</value>
+  </data>
+  <data name="BattleDetail_Stage_Torpedo" xml:space="preserve">
+    <value>雷击战</value>
+  </data>
+  <data name="BattleDetail_Support_Aerial" xml:space="preserve">
+    <value>航空支援</value>
+  </data>
+  <data name="BattleDetail_Support_Fire" xml:space="preserve">
+    <value>炮击支援</value>
+  </data>
+  <data name="BattleDetail_Support_Torpedo" xml:space="preserve">
+    <value>雷击支援</value>
+  </data>
+  <data name="BattleDetail_Touching" xml:space="preserve">
+    <value>触接：</value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>浏览器</value>
   </data>

@@ -319,4 +319,31 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_QuestOverview">Quest In Progress</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_RepairView">Repairing</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_ShipCatalog">All Ships</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_3">Searching plane lost</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_AA">Anti air cut-in: </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_AA_Type">Type</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_FlareShip">Flare from: </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_LightShip">Spotlight equipped: </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_NightTouch">Night touching: </s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_1">Searching success</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_2">Searching success (plane lost)</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_4">Searching failed</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_5">Searching success (without plane)</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_6">Searching failed (without plane)</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Aerial">Aerial Combat</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_AirBase">Land-base airplane</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">Jet plane attack</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_AirBaseJet">Land-base jet plane</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire1">Fire stage 1</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire2">Fire stage 2</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">Fire stage 3</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">Night battle</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningTorpedo">Opening torpedo</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningASW">Opening anti-submarine</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Support">Support fleet</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Torpedo">Torpedo attack</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Aerial">Aerial support</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Fire">Fire support</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Torpedo">Torpedo support</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Touching">Touching: </s:String>
 </ResourceDictionary>

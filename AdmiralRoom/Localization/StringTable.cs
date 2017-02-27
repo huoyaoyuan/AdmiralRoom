@@ -60,6 +60,114 @@
         ///</summary>
         public static string Battle_WinRank_S => ResourceService.GetString("Battle_WinRank_S");
         ///<summary>
+        ///   查找类似 对空Cut-in： 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_AA => ResourceService.GetString("BattleDetail_AA");
+        ///<summary>
+        ///   查找类似 类型 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_AA_Type => ResourceService.GetString("BattleDetail_AA_Type");
+        ///<summary>
+        ///   查找类似 照明弹发射舰： 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_FlareShip => ResourceService.GetString("BattleDetail_FlareShip");
+        ///<summary>
+        ///   查找类似 探照灯装备舰： 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_LightShip => ResourceService.GetString("BattleDetail_LightShip");
+        ///<summary>
+        ///   查找类似 夜间触接： 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_NightTouch => ResourceService.GetString("BattleDetail_NightTouch");
+        ///<summary>
+        ///   查找类似 索敌成功 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Searching_1 => ResourceService.GetString("BattleDetail_Searching_1");
+        ///<summary>
+        ///   查找类似 索敌成功（飞机未回归） 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Searching_2 => ResourceService.GetString("BattleDetail_Searching_2");
+        ///<summary>
+        ///   查找类似 索敌机未回归 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Searching_3 => ResourceService.GetString("BattleDetail_Searching_3");
+        ///<summary>
+        ///   查找类似 索敌失败 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Searching_4 => ResourceService.GetString("BattleDetail_Searching_4");
+        ///<summary>
+        ///   查找类似 索敌成功（未使用飞机） 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Searching_5 => ResourceService.GetString("BattleDetail_Searching_5");
+        ///<summary>
+        ///   查找类似 索敌失败（未使用飞机） 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Searching_6 => ResourceService.GetString("BattleDetail_Searching_6");
+        ///<summary>
+        ///   查找类似 航空战 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Aerial => ResourceService.GetString("BattleDetail_Stage_Aerial");
+        ///<summary>
+        ///   查找类似 陆基航空队 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_AirBase => ResourceService.GetString("BattleDetail_Stage_AirBase");
+        ///<summary>
+        ///   查找类似 陆航喷气强袭 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_AirBaseJet => ResourceService.GetString("BattleDetail_Stage_AirBaseJet");
+        ///<summary>
+        ///   查找类似 炮击战第1轮 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Fire1 => ResourceService.GetString("BattleDetail_Stage_Fire1");
+        ///<summary>
+        ///   查找类似 炮击战第2轮 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Fire2 => ResourceService.GetString("BattleDetail_Stage_Fire2");
+        ///<summary>
+        ///   查找类似 炮击战第3轮 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Fire3 => ResourceService.GetString("BattleDetail_Stage_Fire3");
+        ///<summary>
+        ///   查找类似 喷气强袭 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Jet => ResourceService.GetString("BattleDetail_Stage_Jet");
+        ///<summary>
+        ///   查找类似 夜战 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Night => ResourceService.GetString("BattleDetail_Stage_Night");
+        ///<summary>
+        ///   查找类似 开幕雷击 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_OpeningTorpedo => ResourceService.GetString("BattleDetail_Stage_OpeningTorpedo");
+        ///<summary>
+        ///   查找类似 先制反潜 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_OpeningASW => ResourceService.GetString("BattleDetail_Stage_OpeningASW");
+        ///<summary>
+        ///   查找类似 支援舰队 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Support => ResourceService.GetString("BattleDetail_Stage_Support");
+        ///<summary>
+        ///   查找类似 雷击战 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_Torpedo => ResourceService.GetString("BattleDetail_Stage_Torpedo");
+        ///<summary>
+        ///   查找类似 航空支援 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Support_Aerial => ResourceService.GetString("BattleDetail_Support_Aerial");
+        ///<summary>
+        ///   查找类似 炮击支援 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Support_Fire => ResourceService.GetString("BattleDetail_Support_Fire");
+        ///<summary>
+        ///   查找类似 雷击支援 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Support_Torpedo => ResourceService.GetString("BattleDetail_Support_Torpedo");
+        ///<summary>
+        ///   查找类似 触接： 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Touching => ResourceService.GetString("BattleDetail_Touching");
+        ///<summary>
         ///   查找类似 浏览器 的本地化字符串。
         ///</summary>
         public static string Browser => ResourceService.GetString("Browser");

@@ -17,6 +17,33 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_E">败北E</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_Perfect">完全胜利S</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Battle_WinRank_S">胜利S</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_AA">对空Cut-in：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_AA_Type">类型</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_FlareShip">照明弹发射舰：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_LightShip">探照灯装备舰：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_NightTouch">夜间触接：</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_1">索敌成功</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_2">索敌成功（飞机未回归）</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_3">索敌机未回归</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_4">索敌失败</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_5">索敌成功（未使用飞机）</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Searching_6">索敌失败（未使用飞机）</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Aerial">航空战</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_AirBase">陆基航空队</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_AirBaseJet">陆航喷气强袭</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire1">炮击战第1轮</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire2">炮击战第2轮</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">炮击战第3轮</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">喷气强袭</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">夜战</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningTorpedo">开幕雷击</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningASW">先制反潜</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Support">支援舰队</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Torpedo">雷击战</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Aerial">航空支援</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Fire">炮击支援</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Torpedo">雷击支援</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Touching">触接：</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Browser">浏览器</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Browser_DefaultPage">游戏网址</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Browser_DefaultPage_Override">自定义</s:String>

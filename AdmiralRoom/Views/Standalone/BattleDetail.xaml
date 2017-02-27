@@ -134,13 +134,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" HorizontalAlignment="Right" Foreground="MediumSeaGreen" Text="触接："
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Right" Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_Touching}"
                                Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
                     <Image Grid.Column="1" Height="16" Source="{Binding FriendTouch.Icon, Mode=OneWay}"
                            Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Left" Text="{Binding FriendTouch.Name, Mode=OneWay}"
                                Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
-                    <TextBlock Grid.Column="3" HorizontalAlignment="Right" Foreground="Red" Text="触接："
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Right" Foreground="Red" Text="{ex:Localizable BattleDetail_Touching}"
                                Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
                     <Image Grid.Column="4" Height="16" Source="{Binding EnemyTouch.Icon, Mode=OneWay}"
                            Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
@@ -148,9 +148,9 @@
                                Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}"/>
                     <TextBlock Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Center"
                                Visibility="{Binding AntiAir, Converter={StaticResource NullToVisibilityConverter}, Mode=OneWay}">
-                        <Run>对空Cut-in：</Run>
+                        <Run Text="{ex:Localizable BattleDetail_AA}"/>
                         <Run Text="{Binding AntiAir.Ship.DisplayName, Mode=OneWay}"/>
-                        <Run>类型</Run>
+                        <Run Text="{ex:Localizable BattleDetail_AA_Type}"/>
                         <Run Text="{Binding AntiAir.Type, Mode=OneWay}"/>
                         <ItemsControl ItemsSource="{Binding AntiAir.EquipList, Mode=OneWay}"
                                       TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}}">
@@ -226,22 +226,22 @@
                     <Style TargetType="TextBlock" x:Key="Searching">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding}" Value="1">
-                                <Setter Property="Text" Value="索敵成功"/>
+                                <Setter Property="Text" Value="{ex:Localizable BattleDetail_Searching_1}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding}" Value="2">
-                                <Setter Property="Text" Value="索敵成功(未帰還機あり)"/>
+                                <Setter Property="Text" Value="{ex:Localizable BattleDetail_Searching_2}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding}" Value="3">
-                                <Setter Property="Text" Value="索敵機未帰還"/>
+                                <Setter Property="Text" Value="{ex:Localizable BattleDetail_Searching_3}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding}" Value="4">
-                                <Setter Property="Text" Value="索敵失敗"/>
+                                <Setter Property="Text" Value="{ex:Localizable BattleDetail_Searching_4}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding}" Value="5">
-                                <Setter Property="Text" Value="索敵成功(艦載機使用せず)"/>
+                                <Setter Property="Text" Value="{ex:Localizable BattleDetail_Searching_5}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding}" Value="6">
-                                <Setter Property="Text" Value="索敵失敗(艦載機使用せず)"/>
+                                <Setter Property="Text" Value="{ex:Localizable BattleDetail_Searching_6}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -257,13 +257,13 @@
                 <TextBlock Margin="2" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" Style="{StaticResource Searching}"
                            DataContext="{Binding Battle.EnemySearching, Mode=OneTime}" Foreground="Red"/>
             </Grid>
-            <HeaderedContentControl Header="陆航喷气强袭"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_AirBaseJet}"
                                     Visibility="{Binding Battle.AirBaseJet, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.AirBaseJet, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
-            <HeaderedContentControl Header="喷气强袭"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Jet}"
                                     Visibility="{Binding Battle.Jet, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.Jet, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
-            <HeaderedContentControl Header="陆航"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_AirBase}"
                                     Visibility="{Binding Battle.AirBaseAttacks, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}">
                 <ItemsControl ItemsSource="{Binding Battle.AirBaseAttacks, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
@@ -292,13 +292,13 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </HeaderedContentControl>
-            <HeaderedContentControl Header="航空战"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Aerial}"
                                     Visibility="{Binding Battle.AirCombat1.IsFaked, Converter={StaticResource VisibilityConverter}, ConverterParameter=False, Mode=OneTime}"
                                     Content="{Binding Battle.AirCombat1, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
             <ContentControl HorizontalAlignment="Left" Margin="2"
                             Visibility="{Binding Battle.AirCombat2, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                             Content="{Binding Battle.AirCombat2, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>
-            <HeaderedContentControl Header="支援舰队"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Support}"
                                     Visibility="{Binding Battle.Support, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.Support, Mode=OneTime}">
                 <HeaderedContentControl.ContentTemplate>
@@ -312,40 +312,40 @@
                         </StackPanel>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Type}" Value="Aerial">
-                                <Setter TargetName="supporttype" Property="Text" Value="航空支援"/>
+                                <Setter TargetName="supporttype" Property="Text" Value="{ex:Localizable BattleDetail_Support_Aerial}"/>
                                 <Setter TargetName="aerialsupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Type}" Value="Fire">
-                                <Setter TargetName="supporttype" Property="Text" Value="炮击支援"/>
+                                <Setter TargetName="supporttype" Property="Text" Value="{ex:Localizable BattleDetail_Support_Fire}"/>
                                 <Setter TargetName="firesupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Type}" Value="Torpedo">
-                                <Setter TargetName="supporttype" Property="Text" Value="雷击支援"/>
+                                <Setter TargetName="supporttype" Property="Text" Value="{ex:Localizable BattleDetail_Support_Torpedo}"/>
                                 <Setter TargetName="firesupport" Property="Visibility" Value="Visible"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </HeaderedContentControl.ContentTemplate>
             </HeaderedContentControl>
-            <HeaderedContentControl Header="先制反潜"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_OpeningASW}"
                                     Visibility="{Binding Battle.OpeningASW, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.OpeningASW, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="开幕雷击"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_OpendingTorpedo}"
                                     Visibility="{Binding Battle.OpeningTorpedo, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.OpeningTorpedo, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="炮击战1"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Fire1}"
                                     Visibility="{Binding Battle.FireStage1, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.FireStage1, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="炮击战2"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Fire2}"
                                     Visibility="{Binding Battle.FireStage2, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.FireStage2, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="炮击战3"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Fire3}"
                                     Visibility="{Binding Battle.FireStage3, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.FireStage3, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="雷击战"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Torpedo}"
                                     Visibility="{Binding Battle.TorpedoStage, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.TorpedoStage, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="夜战" DataContext="{Binding Battle.Night, Mode=OneTime}"
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Night}" DataContext="{Binding Battle.Night, Mode=OneTime}"
                                     Visibility="{Binding Battle.Night, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -363,7 +363,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"
-                               Foreground="MediumSeaGreen" Text="夜间触接："
+                               Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_NightTouch}"
                                Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <Image Grid.Row="0" Grid.Column="1" Height="16"
                            Source="{Binding FriendTouch.Icon, Mode=OneTime}"
@@ -372,7 +372,7 @@
                                Text="{Binding FriendTouch.Name, Mode=OneTime}"
                                Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"
-                               Foreground="Red" Text="夜间触接："
+                               Foreground="Red" Text="{ex:Localizable BattleDetail_NightTouch}"
                                Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <Image Grid.Row="0" Grid.Column="4" Height="16"
                            Source="{Binding EnemyTouch.Icon, Mode=OneTime}"
@@ -381,25 +381,25 @@
                                Text="{Binding EnemyTouch.Name, Mode=OneTime}"
                                Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"
-                               Foreground="MediumSeaGreen" Text="照明弹发射舰："
+                               Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_FlareShip}"
                                Visibility="{Binding FriendFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                Text="{Binding FriendFlare.DisplayName, Mode=OneTime}"
                                Visibility="{Binding FriendFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
-                               Foreground="Red" Text="照明弹发射舰："
+                               Foreground="Red" Text="{ex:Localizable BattleDetail_FlareShip}"
                                Visibility="{Binding EnemyFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                Text="{Binding EnemyFlare.DisplayName, Mode=OneTime}"
                                Visibility="{Binding EnemyFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"
-                               Foreground="MediumSeaGreen" Text="探照灯装备舰："
+                               Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_LightShip}"
                                Visibility="{Binding FriendLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                Text="{Binding FriendLight.DisplayName, Mode=OneTime}"
                                Visibility="{Binding FriendLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"
-                               Foreground="Red" Text="探照灯装备舰："
+                               Foreground="Red" Text="{ex:Localizable BattleDetail_LightShip}"
                                Visibility="{Binding EnemyLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
                     <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                Text="{Binding EnemyLight.DisplayName, Mode=OneTime}"

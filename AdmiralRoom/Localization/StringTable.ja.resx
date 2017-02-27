@@ -1042,4 +1042,85 @@
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>所有艦娘一覧</value>
   </data>
+  <data name="BattleDetail_Searching_1" xml:space="preserve">
+    <value>索敵成功</value>
+  </data>
+  <data name="BattleDetail_Searching_2" xml:space="preserve">
+    <value>索敵成功(未帰還機あり)</value>
+  </data>
+  <data name="BattleDetail_Searching_3" xml:space="preserve">
+    <value>索敵機未帰還</value>
+  </data>
+  <data name="BattleDetail_Searching_4" xml:space="preserve">
+    <value>索敵失敗</value>
+  </data>
+  <data name="BattleDetail_Searching_5" xml:space="preserve">
+    <value>索敵成功(艦載機使用せず)</value>
+  </data>
+  <data name="BattleDetail_Searching_6" xml:space="preserve">
+    <value>索敵失敗(艦載機使用せず)</value>
+  </data>
+  <data name="BattleDetail_AA" xml:space="preserve">
+    <value>対空カットイン</value>
+  </data>
+  <data name="BattleDetail_AA_Type" xml:space="preserve">
+    <value>タイプ</value>
+  </data>
+  <data name="BattleDetail_FlareShip" xml:space="preserve">
+    <value>照明弾発射艦：</value>
+  </data>
+  <data name="BattleDetail_NightTouch" xml:space="preserve">
+    <value>夜間触接：</value>
+  </data>
+  <data name="BattleDetail_LightShip" xml:space="preserve">
+    <value>探照灯装備艦：</value>
+  </data>
+  <data name="BattleDetail_Touching" xml:space="preserve">
+    <value>触接：</value>
+  </data>
+  <data name="BattleDetail_Support_Aerial" xml:space="preserve">
+    <value>航空支援</value>
+  </data>
+  <data name="BattleDetail_Support_Fire" xml:space="preserve">
+    <value>砲撃支援</value>
+  </data>
+  <data name="BattleDetail_Support_Torpedo" xml:space="preserve">
+    <value>雷撃支援</value>
+  </data>
+  <data name="BattleDetail_Stage_Torpedo" xml:space="preserve">
+    <value>雷撃戦</value>
+  </data>
+  <data name="BattleDetail_Stage_Support" xml:space="preserve">
+    <value>支援艦隊</value>
+  </data>
+  <data name="BattleDetail_Stage_Aerial" xml:space="preserve">
+    <value>航空戦</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningASW" xml:space="preserve">
+    <value>開幕対潜攻撃</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningTorpedo" xml:space="preserve">
+    <value>開幕雷撃</value>
+  </data>
+  <data name="BattleDetail_Stage_Night" xml:space="preserve">
+    <value>夜戦</value>
+  </data>
+  <data name="BattleDetail_Stage_AirBase" xml:space="preserve">
+    <value>基地航空隊</value>
+  </data>
+  <data name="BattleDetail_Stage_Jet" xml:space="preserve">
+    <value>噴式強襲</value>
+  </data>
+  <data name="BattleDetail_Stage_AirBaseJet" xml:space="preserve">
+    <value>基地噴式強襲</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire1" xml:space="preserve">
+    <value>砲撃戦1巡目</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire2" xml:space="preserve">
+    <value>砲撃戦2巡目</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire3" xml:space="preserve">
+    <value>砲撃戦3巡目</value>
+  </data>
 </root>
