@@ -3,7 +3,7 @@
 
 An open source browser-like tool for KanColle.
 
-##Features
+## Features
 ---
 
 Each part is in seperated window and can be docked freely.
@@ -34,24 +34,23 @@ Each part is in seperated window and can be docked freely.
 * Plug-in support
 * Auto update
 
-##System requirements
+## System requirements
 ---
 
 + Windows 7/8/8.1/10
 + [.Net Framework 4.6](https://go.microsoft.com/fwlink/?LinkId=528222)
 + Internet Explorer 11
 
-##References
+## References
 ---
 
 + [CoreAudioApi](http://netcoreaudio.codeplex.com/)
 + [FiddlerCore](http://fiddler2.com/fiddlercore)
-+ [Fluent.Ribbon](https://github.com/fluentribbon/Fluent.Ribbon)
 + [AvalonDock](http://wpftoolkit.codeplex.com/)
 + [JSON.Net](http://www.newtonsoft.com/json)
 + [WindowsAPICodePack](http://archive.msdn.microsoft.com/WindowsAPICodePack)
 
-##Special Thanks
+## Special Thanks
 ---
 
 + [KanColleViewer](https://github.com/Grabacr07/KanColleViewer)
