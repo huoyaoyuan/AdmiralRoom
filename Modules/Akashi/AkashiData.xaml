@@ -131,6 +131,17 @@
                        CostItemId="50" CostItemCount="1"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
+    <EnhancementInfo EquipId="162" CostItem1="10" CostItem2="180" CostItem3="190" CostItem4="0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="15" Secratary="Zara" RedText=" due"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="4" CostDevelopmentConfirmed="5" CostImprovement="3" CostImprovementConfirmed="4"
+                       CostItemId="6" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="5" CostDevelopmentConfirmed="8" CostImprovement="4" CostImprovementConfirmed="7"
+                       CostItemId="90" CostItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
     <EnhancementInfo EquipId="7" CostItem1="20" CostItem2="240" CostItem3="300" CostItem4="0">
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="97" Secratary="扶桑"/>
@@ -1086,6 +1097,32 @@
                        CostItemId="74" CostItemCount="1"/>
             <RangeInfo CostDevelopment="5" CostDevelopmentConfirmed="10" CostImprovement="3" CostImprovementConfirmed="7"
                        CostItemId="74" CostItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="72" CostItem1="70" CostItem2="0" CostItem3="770" CostItem4="0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="15" Secratary="" RedText="Верный"/>
+            <SecretaryInfo WeekDays="30" Secratary="酒匂"/>
+            <SecretaryInfo WeekDays="14" Secratary="Zara" RedText=" due"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="7" CostDevelopmentConfirmed="9" CostImprovement="4" CostImprovementConfirmed="5"
+                       CostItemId="72" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="18" CostDevelopmentConfirmed="27" CostImprovement="6" CostImprovementConfirmed="9"
+                       CostItemId="72" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="28" CostDevelopmentConfirmed="35" CostImprovement="8" CostImprovementConfirmed="12"
+                       CostItemId="72" CostItemCount="3" UpgradeToId="203"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="203" CostItem1="170" CostItem2="0" CostItem3="870" CostItem4="70">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="28" Secratary="Zara" RedText=" due"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="16" CostDevelopmentConfirmed="24" CostImprovement="6" CostImprovementConfirmed="9"
+                       CostItemId="72" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="28" CostDevelopmentConfirmed="35" CostImprovement="8" CostImprovementConfirmed="12"
+                       CostItemId="72" CostItemCount="3"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="73" CostItem1="80" CostItem2="0" CostItem3="880" CostItem4="0">
