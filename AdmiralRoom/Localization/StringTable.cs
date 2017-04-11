@@ -136,13 +136,13 @@
         ///</summary>
         public static string BattleDetail_Stage_Night => ResourceService.GetString("BattleDetail_Stage_Night");
         ///<summary>
-        ///   查找类似 开幕雷击 的本地化字符串。
-        ///</summary>
-        public static string BattleDetail_Stage_OpeningTorpedo => ResourceService.GetString("BattleDetail_Stage_OpeningTorpedo");
-        ///<summary>
         ///   查找类似 先制反潜 的本地化字符串。
         ///</summary>
         public static string BattleDetail_Stage_OpeningASW => ResourceService.GetString("BattleDetail_Stage_OpeningASW");
+        ///<summary>
+        ///   查找类似 开幕雷击 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_OpeningTorpedo => ResourceService.GetString("BattleDetail_Stage_OpeningTorpedo");
         ///<summary>
         ///   查找类似 支援舰队 的本地化字符串。
         ///</summary>
@@ -455,6 +455,14 @@
         ///   查找类似 入渠中 的本地化字符串。
         ///</summary>
         public static string Fleet_Repairing => ResourceService.GetString("Fleet_Repairing");
+        ///<summary>
+        ///   查找类似 高速舰队 的本地化字符串。
+        ///</summary>
+        public static string Fleet_Speed_High => ResourceService.GetString("Fleet_Speed_High");
+        ///<summary>
+        ///   查找类似 低速舰队 的本地化字符串。
+        ///</summary>
+        public static string Fleet_Speed_Low => ResourceService.GetString("Fleet_Speed_Low");
         ///<summary>
         ///   查找类似 泊地修理中 的本地化字符串。
         ///</summary>

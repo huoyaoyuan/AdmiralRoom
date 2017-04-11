@@ -402,6 +402,7 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
+                        <TextBlock x:Name="speed" Margin="10,0,0,0"/>
                     </StackPanel>
                 </Grid>
                 <DataTemplate.Triggers>
@@ -494,6 +495,18 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding HomeportRepaired}" Value="True">
                         <Setter TargetName="akashi" Property="Background" Value="DeepSkyBlue"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Speed}" Value="Low">
+                        <Setter TargetName="speed" Property="Text" Value="{ex:Localizable Fleet_Speed_Low}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Speed}" Value="High">
+                        <Setter TargetName="speed" Property="Text" Value="{ex:Localizable Fleet_Speed_High}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Speed}" Value="VeryHigh">
+                        <Setter TargetName="speed" Property="Text" Value="{ex:Localizable Fleet_Speed_High}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Speed}" Value="Extreme">
+                        <Setter TargetName="speed" Property="Text" Value="{ex:Localizable Fleet_Speed_High}"/>
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>

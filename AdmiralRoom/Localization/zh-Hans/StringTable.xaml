@@ -36,8 +36,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">炮击战第3轮</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">喷气强袭</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">夜战</s:String>
-    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningTorpedo">开幕雷击</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningASW">先制反潜</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningTorpedo">开幕雷击</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Support">支援舰队</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Torpedo">雷击战</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Support_Aerial">航空支援</s:String>
@@ -116,6 +116,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_LoS">索敌</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_RepairCost">修理消耗</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_Repairing">入渠中</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_Speed_High">高速舰队</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_Speed_Low">低速舰队</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_Status_Akashi">泊地修理中</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_Status_Empty">舰队为空</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Fleet_Status_HeavilyDamaged">有舰娘处于大破状态</s:String>

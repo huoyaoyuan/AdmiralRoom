@@ -213,11 +213,11 @@
   <data name="BattleDetail_Stage_Night" xml:space="preserve">
     <value>夜战</value>
   </data>
-  <data name="BattleDetail_Stage_OpeningTorpedo" xml:space="preserve">
-    <value>开幕雷击</value>
-  </data>
   <data name="BattleDetail_Stage_OpeningASW" xml:space="preserve">
     <value>先制反潜</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningTorpedo" xml:space="preserve">
+    <value>开幕雷击</value>
   </data>
   <data name="BattleDetail_Stage_Support" xml:space="preserve">
     <value>支援舰队</value>
@@ -452,6 +452,12 @@
   </data>
   <data name="Fleet_Repairing" xml:space="preserve">
     <value>入渠中</value>
+  </data>
+  <data name="Fleet_Speed_High" xml:space="preserve">
+    <value>高速舰队</value>
+  </data>
+  <data name="Fleet_Speed_Low" xml:space="preserve">
+    <value>低速舰队</value>
   </data>
   <data name="Fleet_Status_Akashi" xml:space="preserve">
     <value>泊地修理中</value>

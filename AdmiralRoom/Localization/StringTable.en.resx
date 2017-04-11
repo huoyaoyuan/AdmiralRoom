@@ -156,6 +156,87 @@
   <data name="Battle_WinRank_S" xml:space="preserve">
     <value>Victory S</value>
   </data>
+  <data name="BattleDetail_AA" xml:space="preserve">
+    <value>Anti air cut-in: </value>
+  </data>
+  <data name="BattleDetail_AA_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="BattleDetail_FlareShip" xml:space="preserve">
+    <value>Flare from: </value>
+  </data>
+  <data name="BattleDetail_LightShip" xml:space="preserve">
+    <value>Spotlight equipped: </value>
+  </data>
+  <data name="BattleDetail_NightTouch" xml:space="preserve">
+    <value>Night touching: </value>
+  </data>
+  <data name="BattleDetail_Searching_1" xml:space="preserve">
+    <value>Searching success</value>
+  </data>
+  <data name="BattleDetail_Searching_2" xml:space="preserve">
+    <value>Searching success (plane lost)</value>
+  </data>
+  <data name="BattleDetail_Searching_3" xml:space="preserve">
+    <value>Searching plane lost</value>
+  </data>
+  <data name="BattleDetail_Searching_4" xml:space="preserve">
+    <value>Searching failed</value>
+  </data>
+  <data name="BattleDetail_Searching_5" xml:space="preserve">
+    <value>Searching success (without plane)</value>
+  </data>
+  <data name="BattleDetail_Searching_6" xml:space="preserve">
+    <value>Searching failed (without plane)</value>
+  </data>
+  <data name="BattleDetail_Stage_Aerial" xml:space="preserve">
+    <value>Aerial Combat</value>
+  </data>
+  <data name="BattleDetail_Stage_AirBase" xml:space="preserve">
+    <value>Land-base airplane</value>
+  </data>
+  <data name="BattleDetail_Stage_AirBaseJet" xml:space="preserve">
+    <value>Land-base jet plane</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire1" xml:space="preserve">
+    <value>Fire stage 1</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire2" xml:space="preserve">
+    <value>Fire stage 2</value>
+  </data>
+  <data name="BattleDetail_Stage_Fire3" xml:space="preserve">
+    <value>Fire stage 3</value>
+  </data>
+  <data name="BattleDetail_Stage_Jet" xml:space="preserve">
+    <value>Jet plane attack</value>
+  </data>
+  <data name="BattleDetail_Stage_Night" xml:space="preserve">
+    <value>Night battle</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningASW" xml:space="preserve">
+    <value>Opening anti-submarine</value>
+  </data>
+  <data name="BattleDetail_Stage_OpeningTorpedo" xml:space="preserve">
+    <value>Opening torpedo</value>
+  </data>
+  <data name="BattleDetail_Stage_Support" xml:space="preserve">
+    <value>Support fleet</value>
+  </data>
+  <data name="BattleDetail_Stage_Torpedo" xml:space="preserve">
+    <value>Torpedo attack</value>
+  </data>
+  <data name="BattleDetail_Support_Aerial" xml:space="preserve">
+    <value>Aerial support</value>
+  </data>
+  <data name="BattleDetail_Support_Fire" xml:space="preserve">
+    <value>Fire support</value>
+  </data>
+  <data name="BattleDetail_Support_Torpedo" xml:space="preserve">
+    <value>Torpedo support</value>
+  </data>
+  <data name="BattleDetail_Touching" xml:space="preserve">
+    <value>Touching: </value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
   </data>
@@ -371,6 +452,12 @@
   </data>
   <data name="Fleet_Repairing" xml:space="preserve">
     <value>Repairing</value>
+  </data>
+  <data name="Fleet_Speed_High" xml:space="preserve">
+    <value>High Speed</value>
+  </data>
+  <data name="Fleet_Speed_Low" xml:space="preserve">
+    <value>Low Speed</value>
   </data>
   <data name="Fleet_Status_Akashi" xml:space="preserve">
     <value>Homeport Repairing</value>
@@ -1059,86 +1146,5 @@ Expedition {1} - {2}</value>
   </data>
   <data name="ViewTitle_ShipCatalog" xml:space="preserve">
     <value>All Ships</value>
-  </data>
-  <data name="BattleDetail_Searching_3" xml:space="preserve">
-    <value>Searching plane lost</value>
-  </data>
-  <data name="BattleDetail_AA" xml:space="preserve">
-    <value>Anti air cut-in: </value>
-  </data>
-  <data name="BattleDetail_AA_Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="BattleDetail_FlareShip" xml:space="preserve">
-    <value>Flare from: </value>
-  </data>
-  <data name="BattleDetail_LightShip" xml:space="preserve">
-    <value>Spotlight equipped: </value>
-  </data>
-  <data name="BattleDetail_NightTouch" xml:space="preserve">
-    <value>Night touching: </value>
-  </data>
-  <data name="BattleDetail_Searching_1" xml:space="preserve">
-    <value>Searching success</value>
-  </data>
-  <data name="BattleDetail_Searching_2" xml:space="preserve">
-    <value>Searching success (plane lost)</value>
-  </data>
-  <data name="BattleDetail_Searching_4" xml:space="preserve">
-    <value>Searching failed</value>
-  </data>
-  <data name="BattleDetail_Searching_5" xml:space="preserve">
-    <value>Searching success (without plane)</value>
-  </data>
-  <data name="BattleDetail_Searching_6" xml:space="preserve">
-    <value>Searching failed (without plane)</value>
-  </data>
-  <data name="BattleDetail_Stage_Aerial" xml:space="preserve">
-    <value>Aerial Combat</value>
-  </data>
-  <data name="BattleDetail_Stage_AirBase" xml:space="preserve">
-    <value>Land-base airplane</value>
-  </data>
-  <data name="BattleDetail_Stage_Jet" xml:space="preserve">
-    <value>Jet plane attack</value>
-  </data>
-  <data name="BattleDetail_Stage_AirBaseJet" xml:space="preserve">
-    <value>Land-base jet plane</value>
-  </data>
-  <data name="BattleDetail_Stage_Fire1" xml:space="preserve">
-    <value>Fire stage 1</value>
-  </data>
-  <data name="BattleDetail_Stage_Fire2" xml:space="preserve">
-    <value>Fire stage 2</value>
-  </data>
-  <data name="BattleDetail_Stage_Fire3" xml:space="preserve">
-    <value>Fire stage 3</value>
-  </data>
-  <data name="BattleDetail_Stage_Night" xml:space="preserve">
-    <value>Night battle</value>
-  </data>
-  <data name="BattleDetail_Stage_OpeningTorpedo" xml:space="preserve">
-    <value>Opening torpedo</value>
-  </data>
-  <data name="BattleDetail_Stage_OpeningASW" xml:space="preserve">
-    <value>Opening anti-submarine</value>
-  </data>
-  <data name="BattleDetail_Stage_Support" xml:space="preserve">
-    <value>Support fleet</value>
-  </data>
-  <data name="BattleDetail_Stage_Torpedo" xml:space="preserve">
-    <value>Torpedo attack</value>
-  </data>
-  <data name="BattleDetail_Support_Aerial" xml:space="preserve">
-    <value>Aerial support</value>
-  </data>
-  <data name="BattleDetail_Support_Fire" xml:space="preserve">
-    <value>Fire support</value>
-  </data>
-  <data name="BattleDetail_Support_Torpedo" xml:space="preserve">
-    <value>Torpedo support</value>
-  </data>
-  <data name="BattleDetail_Touching" xml:space="preserve">
-    <value>Touching: </value>
   </data>
 </root>
