@@ -185,6 +185,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                             case 39://水上艦要員
                             case 26://対潜哨戒機
                             case 34://司令部施設
+                            case 57://噴式戦闘爆撃機
+                            case 58://噴式攻撃機
                                 factor = 0.6;
                                 break;
                             case 12://小型電探
