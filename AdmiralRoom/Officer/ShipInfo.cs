@@ -58,6 +58,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Luck = new LimitedValue(rawdata.api_luck);
         }
     }
-    public enum ShipSpeed { None = 0, Low = 5, High = 10 }
+    public enum ShipSpeed { None = 0, Low = 5, High = 10, VeryHigh = 15, Extreme = 20 }
     public enum AbyssalClass { Normal, Elite, Flagship, KFlagship }
 }

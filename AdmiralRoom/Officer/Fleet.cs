@@ -239,6 +239,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Ships.Sum(x => x.Slots.Sum(y => y.AirCraft.Shortage)) * 5
         };
         public int[] RepairCost => new[] { Ships.Sum(x => x.RepairFuel), Ships.Sum(x => x.RepairSteel) };
+        public ShipSpeed Speed => Ships.Select(x => x.Speed).Min();
         private int mincondition = 49;
         public void UpdateStatus()
         {
@@ -277,6 +278,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             OnPropertyChanged(nameof(ChargeCost));
             OnPropertyChanged(nameof(RepairCost));
             OnPropertyChanged(nameof(CanHomeportRepairing));
+            OnPropertyChanged(nameof(Speed));
         }
 
         protected override void OnAllPropertyChanged()

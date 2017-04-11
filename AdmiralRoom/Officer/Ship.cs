@@ -14,6 +14,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public int Level => rawdata.api_lv;
         public Exp Exp { get; private set; }
         public LimitedValue HP { get; private set; }
+        public ShipSpeed Speed => (ShipSpeed)rawdata.api_soku;
         public ShootRange Range => (ShootRange)rawdata.api_leng;
 
         #region Slots

@@ -9,6 +9,7 @@
         public int[] api_exp { get; set; }//[0]=累積, [1]=次のレベルまで, [2]=経験値バー割合
         public int api_nowhp { get; set; }
         public int api_maxhp { get; set; }
+        public int api_soku { get; set; }
         public int api_leng { get; set; }
         public int[] api_slot { get; set; }
         public int[] api_onslot { get; set; }
