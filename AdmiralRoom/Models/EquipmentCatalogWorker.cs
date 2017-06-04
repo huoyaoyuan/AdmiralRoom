@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Huoyaoyuan.AdmiralRoom.Officer;
+using Huoyaoyuan.AdmiralRoom.Officer.General;
 using Meowtrix.ComponentModel;
 
 namespace Huoyaoyuan.AdmiralRoom.Models
@@ -24,7 +25,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             public int Level { get; set; }
             public int Count { get; set; }
             public int Left { get; set; }
-            public IDictionary<Ship, int> Equipped { get; } = new Dictionary<Ship, int>();
+            public IDictionary<Ship, int> Equipped { get; } = new Dictionary<Ship, int>(new IdentifiableEqualityComparer<Ship, int>());
         }
         private EquipmentCatalogWorker() { }
         public static EquipmentCatalogWorker Instance { get; } = new EquipmentCatalogWorker();

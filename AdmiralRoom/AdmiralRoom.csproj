@@ -251,6 +251,7 @@
     <Compile Include="Notifier\NotifierFactory.cs" />
     <Compile Include="Officer\Battle\InBattle.cs" />
     <Compile Include="Officer\Battle\Stage.cs" />
+    <Compile Include="Officer\General\IdentifiableEqualityComparer.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Composition\IModuleMetadata.cs" />
     <Compile Include="Composition\ISubView.cs" />
