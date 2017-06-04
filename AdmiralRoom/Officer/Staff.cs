@@ -26,8 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         private static readonly Dictionary<string, APIObservable> apisource = new Dictionary<string, APIObservable>();
         public static APIObservable API(string apiname)
         {
-            APIObservable v;
-            apisource.TryGetValue(apiname, out v);
+            apisource.TryGetValue(apiname, out var v);
             if (v == null)
             {
                 v = new APIObservable();
@@ -121,18 +120,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             public void Subscribe(Action<CachedSession> handler) => Handler += handler;
             public void Subscribe<T>(Action<T> handler) => Subscribe(x =>
             {
-                API.APIData<T> svdata;
-                if (x.TryParse(out svdata)) handler(svdata.Data);
+                if (x.TryParse(out API.APIData<T> svdata)) handler(svdata.Data);
             });
             public void Subscribe(Action<NameValueCollection> handler) => Subscribe(x =>
             {
-                API.APIData svdata;
-                if (x.TryParse(out svdata)) handler(svdata.Request);
+                if (x.TryParse(out API.APIData svdata)) handler(svdata.Request);
             });
             public void Subscribe<T>(Action<NameValueCollection, T> handler) => Subscribe(x =>
             {
-                API.APIData<T> svdata;
-                if (x.TryParse(out svdata)) handler(svdata.Request, svdata.Data);
+                if (x.TryParse(out API.APIData<T> svdata)) handler(svdata.Request, svdata.Data);
             });
             public SubObservable<T> Where<T>(Func<T, bool> selector) => new SubObservable<T> { Parent = this, Selector = selector };
         }

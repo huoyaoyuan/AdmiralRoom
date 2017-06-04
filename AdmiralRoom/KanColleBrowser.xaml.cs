@@ -165,8 +165,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 var provider = item as IServiceProvider;
                 if (provider == null) continue;
 
-                object ppvObject;
-                provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out ppvObject);
+                provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out var ppvObject);
                 var webBrowser = ppvObject as IWebBrowser2;
                 if (webBrowser == null) continue;
 
@@ -278,8 +277,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 var provider = this.WebBrowser.Document as IServiceProvider;
                 if (provider == null) return;
 
-                object ppvObject;
-                provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out ppvObject);
+                provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out var ppvObject);
                 var webBrowser = ppvObject as IWebBrowser2;
                 if (webBrowser == null) return;
 
@@ -311,8 +309,7 @@ namespace Huoyaoyuan.AdmiralRoom
             var provider = this.WebBrowser.Document as IServiceProvider;
             if (provider == null) return;
 
-            object ppvObject;
-            provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out ppvObject);
+            provider.QueryService(typeof(IWebBrowserApp).GUID, typeof(IWebBrowser2).GUID, out var ppvObject);
             var webBrowser = ppvObject as IWebBrowser2;
             if (webBrowser == null) return;
 

@@ -22,8 +22,7 @@ namespace Huoyaoyuan.AdmiralRoom.Notifier
         {
             const string iconUri = "pack://application:,,,/AdmiralRoom;Component/Icons/app.ico";
 
-            Uri uri;
-            if (!Uri.TryCreate(iconUri, UriKind.Absolute, out uri))
+            if (!Uri.TryCreate(iconUri, UriKind.Absolute, out var uri))
                 return;
 
             var streamResourceInfo = Application.GetResourceStream(uri);

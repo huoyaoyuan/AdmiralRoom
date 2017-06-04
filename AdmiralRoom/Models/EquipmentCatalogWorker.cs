@@ -53,8 +53,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             foreach (var item in Staff.Current.Homeport.Equipments)
             {
                 int typeid = item.EquipInfo.Id;
-                EquipmentGroup group;
-                if (!d.TryGetValue(typeid, out group))
+                if (!d.TryGetValue(typeid, out EquipmentGroup group))
                 {
                     group = new EquipmentGroup { Item = item.EquipInfo };
                     d.Add(typeid, group);

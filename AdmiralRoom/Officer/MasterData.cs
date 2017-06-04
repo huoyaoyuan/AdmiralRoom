@@ -60,8 +60,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             try
             {
-                int[] r;
-                if (!finalhptable.TryGetValue(map.Id, out r)) return 1;
+                if (!finalhptable.TryGetValue(map.Id, out var r)) return 1;
                 if (r.Length == 1) return r[0];
                 return (r[(int)map.Difficulty]);
             }

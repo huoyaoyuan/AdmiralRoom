@@ -114,8 +114,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static void SetRestoreWindowPosition(Window window)
         {
             var hwnd = (HwndSource.FromVisual(window) as HwndSource).Handle;
-            WINDOWPLACEMENT placement;
-            GetWindowPlacement(hwnd, out placement);
+            GetWindowPlacement(hwnd, out var placement);
             var AppFilename = Process.GetCurrentProcess().MainModule.FileName;
             IntPtr buffer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WINDOWPLACEMENT)));
             try

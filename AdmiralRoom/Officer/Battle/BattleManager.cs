@@ -209,8 +209,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 }
             }
             lastescapeinfo = api.api_escape;
-            WinRank winrank;
-            if (!Enum.TryParse(api.api_win_rank, out winrank))
+            if (!Enum.TryParse(api.api_win_rank, out WinRank winrank))
                 winrank = (CurrentBattle as Battle).WinRank;
             else if (winrank == WinRank.S && (CurrentBattle as Battle)?.FriendDamageRate == 0)
                 winrank = WinRank.Perfect;

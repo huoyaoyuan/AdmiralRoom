@@ -192,9 +192,8 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             subviewmap[view.ContentID] = view;
             string viewname = view.ContentID;
-            LayoutContent targetContent;
             LayoutAnchorable targetView;
-            viewList.TryGetValue(viewname, out targetContent);
+            viewList.TryGetValue(viewname, out LayoutContent targetContent);
             targetView = targetContent as LayoutAnchorable;
             if (targetView == null)
             {
@@ -220,8 +219,7 @@ namespace Huoyaoyuan.AdmiralRoom
             foreach (var viewname in viewList.Keys)
             {
                 var target = viewList[viewname];
-                ISubView view;
-                if (subviewmap.TryGetValue(viewname, out view))
+                if (subviewmap.TryGetValue(viewname, out ISubView view))
                     target.Title = view.GetTitle(e.NewValue);
             }
         }
