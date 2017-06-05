@@ -15,12 +15,52 @@ namespace Huoyaoyuan.AdmiralRoom
         public string Request { get; }
         public string Response { get; }
         public string JsonResponse { get; }
+        public APIData CachedAPI { get; private set; }
         public CachedSession(Session oSession)
         {
             Session = oSession;
             Request = oSession.GetRequestBodyAsString();
             Response = oSession.GetResponseBodyAsString();
             JsonResponse = Response.Substring(7);
+        }
+        public bool TryParse(out APIData result)
+        {
+            if (CachedAPI != null)
+            {
+                result = CachedAPI;
+                return result.IsSuccess;
+            }
+            try
+            {
+                result = this.Parse();
+                CachedAPI = result;
+                return result.IsSuccess;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+        public bool TryParse<T>(out APIData<T> result)
+        {
+            var data = CachedAPI as APIData<T>;
+            if (data != null)
+            {
+                result = data;
+                return result.IsSuccess;
+            }
+            try
+            {
+                result = this.Parse<T>();
+                CachedAPI = result;
+                return result.IsSuccess;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
         }
     }
     public static class APIHelper
@@ -48,19 +88,6 @@ namespace Huoyaoyuan.AdmiralRoom
                 _svdata = JSerializer.Deserialize<svdata>(jreader);
             return new APIData(_svdata, oSession.Request);
         }
-        public static bool TryParse(this CachedSession oSession, out APIData result)
-        {
-            try
-            {
-                result = oSession.Parse();
-                return result.IsSuccess;
-            }
-            catch
-            {
-                result = null;
-                return false;
-            }
-        }
         public static APIData<T> Parse<T>(this CachedSession oSession)
         {
             var reader = new StringReader(oSession.JsonResponse);
@@ -70,19 +97,6 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             using (var jreader = new JsonTextReader(reader))
                 return JSerializer.Deserialize<svdata<T>>(jreader);
-        }
-        public static bool TryParse<T>(this CachedSession oSession, out APIData<T> result)
-        {
-            try
-            {
-                result = oSession.Parse<T>();
-                return result.IsSuccess;
-            }
-            catch
-            {
-                result = null;
-                return false;
-            }
         }
     }
 }
