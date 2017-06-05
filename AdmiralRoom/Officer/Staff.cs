@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using Fiddler;
+using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Officer.Battle;
 
 #pragma warning disable CC0022
@@ -88,18 +89,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
 
         private static readonly object lockObj = new object();
-        private static Task DistributeAsync(object o) => Task.Factory.StartNew(() =>
+        private static Task DistributeAsync(Session oSession) => Task.Factory.StartNew(() =>
             {
-                Session oSession = o as Session;
                 lock (lockObj)
                 {
+                    var cached = new CachedSession(oSession);
                     foreach (string key in apisource.Keys.ToArray())
                     {
                         if (key.EndsWith("/") && oSession.PathAndQuery.Contains(key))
-                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, new CachedSession(oSession)));
+                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, cached));
                         else if (oSession.PathAndQuery.EndsWith(key))
-                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, new CachedSession(oSession)));
+                            apisource[key].Handler.GetInvocationList().ForEach(x => ExceptionCatcher(x as Action<CachedSession>, cached));
                     }
+                    if (!cached.TryParse(out APIData api))
+                        if (api != null)
+                            Models.Status.Current.StatusText = $"Error: {api.SvData.api_result} {api.SvData.api_result_msg}";
                 }
             });
 
