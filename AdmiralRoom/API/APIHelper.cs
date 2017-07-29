@@ -44,8 +44,7 @@ namespace Huoyaoyuan.AdmiralRoom
         }
         public bool TryParse<T>(out APIData<T> result)
         {
-            var data = CachedAPI as APIData<T>;
-            if (data != null)
+            if (CachedAPI is APIData<T> data)
             {
                 result = data;
                 return result.IsSuccess;
