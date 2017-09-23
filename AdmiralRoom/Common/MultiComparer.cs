@@ -5,14 +5,14 @@ namespace Huoyaoyuan.AdmiralRoom
 {
     class MultiComparer<T> : IComparer<T>
     {
-        public IEnumerable<Tuple<Func<T, int>, bool>> Selectors { get; set; }
+        public IEnumerable<(Func<T, int> func, bool reverse)> Selectors { get; set; }
         public int Compare(T x, T y)
         {
-            foreach (var tuple in Selectors)
+            foreach (var selector in Selectors)
             {
-                int result = tuple.Item1(x) - tuple.Item1(y);
+                int result = selector.func(x) - selector.func(y);
                 if (result == 0) continue;
-                if (tuple.Item2) result = -result;
+                if (selector.reverse) result = -result;
                 return result;
             }
             return 0;

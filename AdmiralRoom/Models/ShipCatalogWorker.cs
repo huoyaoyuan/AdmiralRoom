@@ -251,7 +251,7 @@ namespace Huoyaoyuan.AdmiralRoom.Models
             baseships = baseships.Where(x => typeid.Contains(x.ShipInfo.ShipType.Id));
             Filters.ForEach(x => baseships = x.Apply(baseships));
             Ship[] sortedships = baseships.ToArray();
-            MultiComparer<Ship> comparer = new MultiComparer<Ship> { Selectors = Selectors.TakeWhile(x => x.SelectedIndex != 0).Select(x => new Tuple<Func<Ship, int>, bool>(x.Sorter.KeySelector, x.IsDescend)) };
+            MultiComparer<Ship> comparer = new MultiComparer<Ship> { Selectors = Selectors.TakeWhile(x => x.SelectedIndex != 0).Select(x => (x.Sorter.KeySelector, x.IsDescend)).ToArray() };
             Array.Sort(sortedships, comparer);
             ShownShips = sortedships.Select(ItemWithIndex<Ship>.Generator).ToArray();
         }
