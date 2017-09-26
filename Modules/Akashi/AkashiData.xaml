@@ -203,6 +203,30 @@
                        CostItemId="7" CostItemCount="2"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
+    <EnhancementInfo EquipId="190" CostItem1="24" CostItem2="280" CostItem3="380" CostItem4="0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="113" Secratary="Warspite"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="3" CostDevelopmentConfirmed="4" CostImprovement="3" CostImprovementConfirmed="4"
+                       CostItemId="7" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="4" CostDevelopmentConfirmed="6" CostImprovement="3" CostImprovementConfirmed="5"
+                       CostItemId="8" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="15" CostImprovement="6" CostImprovementConfirmed="12"
+                       CostItemId="49" CostItemCount="2" UpgradeToId="192"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="192" CostItem1="28" CostItem2="320" CostItem3="420" CostItem4="40">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="60" Secratary="Warspite"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="4" CostDevelopmentConfirmed="6" CostImprovement="3" CostImprovementConfirmed="5"
+                       CostItemId="8" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="8" CostImprovement="4" CostImprovementConfirmed="7"
+                       CostItemId="8" CostItemCount="2"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
     <EnhancementInfo EquipId="133" CostItem1="30" CostItem2="400" CostItem3="480" CostItem4="20">
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="60" Secratary="Littorio"/>
@@ -251,6 +275,20 @@
                        CostItemId="8" CostItemCount="2"/>
             <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="10" CostImprovement="5" CostImprovementConfirmed="8"
                        CostItemId="8" CostItemCount="3"/>
+            <RangeInfo CostDevelopment="15" CostDevelopmentConfirmed="30" CostImprovement="12" CostImprovementConfirmed="16"
+                       CostItemId="9" CostItemCount="2" UpgradeToId="236"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="236" CostItem1="45" CostItem2="450" CostItem3="700" CostItem4="45">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="14" Secratary="長門"/>
+            <SecretaryInfo WeekDays="268435968"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="8" CostImprovement="6" CostImprovementConfirmed="7"
+                       CostItemId="7" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="10" CostDevelopmentConfirmed="12" CostImprovement="7" CostImprovementConfirmed="10"
+                       CostItemId="8" CostItemCount="2"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="117" CostItem1="40" CostItem2="420" CostItem3="650" CostItem4="40">
@@ -374,6 +412,8 @@
             <SecretaryInfo WeekDays="7" Secratary="矢矧"/>
             <SecretaryInfo WeekDays="28" Secratary="鈴谷" RedText="改二"/>
             <SecretaryInfo WeekDays="28" Secratary="鈴谷" RedText="航改二"/>
+            <SecretaryInfo WeekDays="14" Secratary="熊野" RedText="改二"/>
+            <SecretaryInfo WeekDays="14" Secratary="熊野" RedText="航改二"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="4" CostDevelopmentConfirmed="5" CostImprovement="3" CostImprovementConfirmed="3"
@@ -401,6 +441,8 @@
             <SecretaryInfo WeekDays="28" Secratary="酒匂"/>
             <SecretaryInfo WeekDays="28" Secratary="鈴谷" RedText="改二"/>
             <SecretaryInfo WeekDays="28" Secratary="鈴谷" RedText="航改二"/>
+            <SecretaryInfo WeekDays="14" Secratary="熊野" RedText="改二"/>
+            <SecretaryInfo WeekDays="14" Secratary="熊野" RedText="航改二"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="8" CostImprovement="4" CostImprovementConfirmed="5"
@@ -623,6 +665,7 @@
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="121" Secratary="Saratoga"/>
             <SecretaryInfo WeekDays="96" Secratary="Saratoga" RedText="改"/>
+            <SecretaryInfo WeekDays="12" Secratary="Saratoga" RedText=" MK.II"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="5" CostImprovement="2" CostImprovementConfirmed="3"/>
@@ -636,6 +679,7 @@
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="6" Secratary="Saratoga"/>
             <SecretaryInfo WeekDays="14" Secratary="Saratoga" RedText="改"/>
+            <SecretaryInfo WeekDays="18" Secratary="Saratoga" RedText=" MK.II"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="3" CostDevelopmentConfirmed="6" CostImprovement="3" CostImprovementConfirmed="4"
@@ -649,12 +693,28 @@
     <EnhancementInfo EquipId="205" CostItem1="160" CostItem2="180" CostItem3="0" CostItem4="380">
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="28" Secratary="Saratoga" RedText="改"/>
+            <SecretaryInfo WeekDays="28" Secratary="Saratoga" RedText=" MK.II"/>
+            <SecretaryInfo WeekDays="28" Secratary="Saratoga" RedText=" MK.II Mod.2"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="7" CostImprovement="4" CostImprovementConfirmed="6"
                        CostItemId="21" CostItemCount="2"/>
             <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="10" CostImprovement="6" CostImprovementConfirmed="8"
                        CostItemId="55" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="12" CostDevelopmentConfirmed="18" CostImprovement="8" CostImprovementConfirmed="16"
+                       CostItemId="55" CostItemCount="2" UpgradeToId="206"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="206" CostItem1="200" CostItem2="250" CostItem3="0" CostItem4="450">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="28" Secratary="Saratoga" RedText=" MK.II"/>
+            <SecretaryInfo WeekDays="28" Secratary="Saratoga" RedText=" MK.II Mod.2"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="9" CostImprovement="6" CostImprovementConfirmed="7"
+                       CostItemId="55" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="12" CostDevelopmentConfirmed="16" CostImprovement="8" CostImprovementConfirmed="12"
+                       CostItemId="22" CostItemCount="1"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="60" CostItem1="120" CostItem2="120" CostItem3="0" CostItem4="280">
@@ -696,6 +756,7 @@
     <EnhancementInfo EquipId="219" CostItem1="130" CostItem2="140" CostItem3="0" CostItem4="290">
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="30" Secratary="鈴谷" RedText="航改二"/>
+            <SecretaryInfo WeekDays="60" Secratary="熊野" RedText="航改二"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="5" CostDevelopmentConfirmed="6" CostImprovement="4" CostImprovementConfirmed="6"
@@ -830,6 +891,44 @@
                        CostItemId="26" CostItemCount="2"/>
             <RangeInfo CostDevelopment="14" CostDevelopmentConfirmed="18" CostImprovement="6" CostImprovementConfirmed="7"
                        CostItemId="164" CostItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="26" CostItem1="160" CostItem2="160" CostItem3="0" CostItem4="360">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="97" Secratary="伊勢" RedText="改"/>
+            <SecretaryInfo WeekDays="97" Secratary="日向" RedText="改"/>
+            <SecretaryInfo WeekDays="30" Secratary="最上" RedText="改"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="5" CostDevelopmentConfirmed="7" CostImprovement="3" CostImprovementConfirmed="4"
+                       CostItemId="26" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="9" CostImprovement="5" CostImprovementConfirmed="7"
+                       CostItemId="26" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="16" CostDevelopmentConfirmed="24" CostImprovement="7" CostImprovementConfirmed="10"
+                       CostItemId="26" CostItemCount="1" UpgradeToId="79"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="79" CostItem1="180" CostItem2="180" CostItem3="0" CostItem4="480">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="97" Secratary="伊勢" RedText="改"/>
+            <SecretaryInfo WeekDays="97" Secratary="日向" RedText="改"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="8" CostImprovement="5" CostImprovementConfirmed="6"
+                       CostItemId="26" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="7" CostDevelopmentConfirmed="10" CostImprovement="6" CostImprovementConfirmed="8"
+                       CostItemId="26" CostItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="237" CostItem1="190" CostItem2="190" CostItem3="0" CostItem4="490">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="97" Secratary="日向" RedText="改"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="10" CostImprovement="6" CostImprovementConfirmed="7"
+                       CostItemId="26" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="10" CostDevelopmentConfirmed="16" CostImprovement="7" CostImprovementConfirmed="9"
+                       CostItemId="26" CostItemCount="3"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="27" CostItem1="10" CostItem2="0" CostItem3="20" CostItem4="30">
@@ -1331,6 +1430,19 @@
                        CostItemId="28" CostItemCount="2"/>
             <RangeInfo CostDevelopment="30" CostDevelopmentConfirmed="40" CostImprovement="8" CostImprovementConfirmed="10"
                        CostItemId="129" CostItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="145" CostItem1="10" CostItem2="0" CostItem3="0" CostItem4="5">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="97" Secratary="阿賀野"/>
+            <SecretaryInfo WeekDays="127" Secratary="長波"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="1" CostDevelopmentConfirmed="2" CostImprovement="0" CostImprovementConfirmed="0"
+                       CostItemId="145" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="1" CostDevelopmentConfirmed="2" CostImprovement="1" CostImprovementConfirmed="1"/>
+            <RangeInfo CostDevelopment="1" CostDevelopmentConfirmed="3" CostImprovement="0" CostImprovementConfirmed="1"
+                       CostItemId="145" CostItemCount="1" UpgradeToId="241"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
 </x:Array>
