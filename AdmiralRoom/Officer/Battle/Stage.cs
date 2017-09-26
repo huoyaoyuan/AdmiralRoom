@@ -55,7 +55,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 dest.Damage += Damage;
                 dest.ToHP -= Damage;
                 if (dest.ToHP <= 0)
-                    if (dest.DamageControl == null)
+                    if (dest.IsEnemy || dest.DamageControl == null)
                         dest.ToHP = 0;
                     else if (dest.DamageControl.Id == 42)//応急修理要員
                         dest.ToHP = (int)(dest.MaxHP * 0.2);

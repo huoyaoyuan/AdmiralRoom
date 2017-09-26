@@ -17,6 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public int DamageGiven { get; set; }
         public EquipInBattle[] Equipments { get; set; }
         public EquipInBattle EquipmentEx { get; set; }
+        public bool IsEnemy { get; set; }
         public EquipInfo DamageControl => new[] { EquipmentEx }.Concat(Equipments).FirstOrDefault(x => x?.EquipInfo.EquipType.Id == 23)?.EquipInfo;
         public bool IsMostDamage { get; set; }
         public bool IsEscaped { get; set; }
