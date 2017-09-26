@@ -88,12 +88,36 @@
     <EnhancementInfo EquipId="5" CostItem1="10" CostItem2="90" CostItem3="120" CostItem4="0">
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="96" Secratary="最上"/>
-            <SecretaryInfo WeekDays="3" Secratary="大淀"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="2" CostImprovement="2" CostImprovementConfirmed="3"/>
             <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="3" CostImprovement="2" CostImprovementConfirmed="4"
                        CostItemId="5" CostItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="5" CostItem1="10" CostItem2="90" CostItem3="120" CostItem4="0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="99" Secratary="大淀"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="2" CostImprovement="2" CostImprovementConfirmed="3"/>
+            <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="3" CostImprovement="2" CostImprovementConfirmed="4"
+                       CostItemId="5" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="12" CostImprovement="4" CostImprovementConfirmed="8"
+                       CostItemId="5" CostItemCount="2" UpgradeToId="235" UpgradeStar="0" UseItemId="75" UseItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="235" CostItem1="15" CostItem2="120" CostItem3="150" CostItem4="30">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="97" Secratary="大淀" RedText="改"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="7" CostImprovement="4" CostImprovementConfirmed="5"
+                       CostItemId="5" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="9" CostImprovement="5" CostImprovementConfirmed="7"
+                       CostItemId="12" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="9" CostDevelopmentConfirmed="10" CostImprovement="12" CostImprovementConfirmed="1"
+                       CostItemId="234" CostItemCount="7"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="6" CostItem1="10" CostItem2="90" CostItem3="120" CostItem4="0">
@@ -263,6 +287,8 @@
                        CostItemId="8" CostItemCount="1"/>
             <RangeInfo CostDevelopment="4" CostDevelopmentConfirmed="7" CostImprovement="3" CostImprovementConfirmed="6"
                        CostItemId="8" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="12" CostDevelopmentConfirmed="20" CostImprovement="10" CostImprovementConfirmed="15"
+                       CostItemId="9" CostItemCount="2" UpgradeToId="105" UpgradeStar="0" UseItemId="75" UseItemCount="2"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="105" CostItem1="40" CostItem2="440" CostItem3="620" CostItem4="40">
@@ -276,7 +302,7 @@
             <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="10" CostImprovement="5" CostImprovementConfirmed="8"
                        CostItemId="8" CostItemCount="3"/>
             <RangeInfo CostDevelopment="15" CostDevelopmentConfirmed="30" CostImprovement="12" CostImprovementConfirmed="16"
-                       CostItemId="9" CostItemCount="2" UpgradeToId="236"/>
+                       CostItemId="9" CostItemCount="2" UpgradeToId="236" UpgradeStar="0" UseItemId="75" UseItemCount="2"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="236" CostItem1="45" CostItem2="450" CostItem3="700" CostItem4="45">
@@ -307,7 +333,8 @@
     </EnhancementInfo>
     <EnhancementInfo EquipId="9" CostItem1="50" CostItem2="480" CostItem3="800" CostItem4="50">
         <EnhancementInfo.Secretaries>
-            <SecretaryInfo WeekDays="96" Secratary="大和"/>
+            <SecretaryInfo WeekDays="124" Secratary="大和"/>
+            <SecretaryInfo WeekDays="28" Secratary="大和" RedText="改"/>
             <SecretaryInfo WeekDays="3" Secratary="武蔵"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
@@ -377,6 +404,34 @@
                        CostItemId="11" CostItemCount="1"/>
             <RangeInfo CostDevelopment="3" CostDevelopmentConfirmed="4" CostImprovement="3" CostImprovementConfirmed="5"
                        CostItemId="11" CostItemCount="2" UpgradeToId="65"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="12" CostItem1="10" CostItem2="90" CostItem3="120" CostItem4="0">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="96" Secratary="大和"/>
+            <SecretaryInfo WeekDays="96" Secratary="武蔵" RedText="改"/>
+            <SecretaryInfo WeekDays="97" Secratary="武蔵"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="2" CostImprovement="2" CostImprovementConfirmed="3"/>
+            <RangeInfo CostDevelopment="2" CostDevelopmentConfirmed="3" CostImprovement="2" CostImprovementConfirmed="4"
+                       CostItemId="12" CostItemCount="1"/>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="12" CostImprovement="4" CostImprovementConfirmed="8"
+                       CostItemId="12" CostItemCount="2" UpgradeToId="234" UpgradeStar="0" UseItemId="75" UseItemCount="1"/>
+        </EnhancementInfo.Ranges>
+    </EnhancementInfo>
+    <EnhancementInfo EquipId="234" CostItem1="15" CostItem2="120" CostItem3="150" CostItem4="30">
+        <EnhancementInfo.Secretaries>
+            <SecretaryInfo WeekDays="96" Secratary="大和" RedText="改"/>
+            <SecretaryInfo WeekDays="3" Secratary="武蔵" RedText="改"/>
+        </EnhancementInfo.Secretaries>
+        <EnhancementInfo.Ranges>
+            <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="7" CostImprovement="4" CostImprovementConfirmed="5"
+                       CostItemId="12" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="8" CostDevelopmentConfirmed="9" CostImprovement="5" CostImprovementConfirmed="7"
+                       CostItemId="5" CostItemCount="2"/>
+            <RangeInfo CostDevelopment="9" CostDevelopmentConfirmed="10" CostImprovement="2" CostImprovementConfirmed="3"
+                       CostItemId="5" CostItemCount="1" UpgradeToId="235" UpgradeStar="7"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="134" CostItem1="10" CostItem2="90" CostItem3="120" CostItem4="0">
@@ -775,7 +830,8 @@
                        CostItemId="18" CostItemCount="1"/>
             <RangeInfo CostDevelopment="10" CostDevelopmentConfirmed="15" CostImprovement="7" CostImprovementConfirmed="10"
                        CostItemId="22" CostItemCount="1"/>
-            <RangeInfo CostDevelopment="20" CostDevelopmentConfirmed="30" CostImprovement="10" CostImprovementConfirmed="13"/>
+            <RangeInfo CostDevelopment="20" CostDevelopmentConfirmed="30" CostImprovement="10" CostImprovementConfirmed="13"
+                       CostItemId="0" CostItemCount="0" UpgradeToId="199" UpgradeStar="0" UseItemId="71" UseItemCount="1"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="25" CostItem1="90" CostItem2="20" CostItem3="0" CostItem4="300">
@@ -905,7 +961,7 @@
             <RangeInfo CostDevelopment="6" CostDevelopmentConfirmed="9" CostImprovement="5" CostImprovementConfirmed="7"
                        CostItemId="26" CostItemCount="1"/>
             <RangeInfo CostDevelopment="16" CostDevelopmentConfirmed="24" CostImprovement="7" CostImprovementConfirmed="10"
-                       CostItemId="26" CostItemCount="1" UpgradeToId="79"/>
+                       CostItemId="26" CostItemCount="2" UpgradeToId="79" UpgradeStar="0" UseItemId="70" UseItemCount="1"/>
         </EnhancementInfo.Ranges>
     </EnhancementInfo>
     <EnhancementInfo EquipId="79" CostItem1="180" CostItem2="180" CostItem3="0" CostItem4="480">

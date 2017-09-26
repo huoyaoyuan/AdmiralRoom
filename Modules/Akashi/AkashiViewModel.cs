@@ -69,5 +69,8 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
         public int UpgradeToId { get; set; }
         public EquipInfo UpgradeTo => Staff.Current.MasterData.EquipInfo?[UpgradeToId];
         public int UpgradeStar { get; set; }
+        public int UseItemId { get; set; }
+        public int UseItemCount { get; set; }
+        public UseItem UseItem => Staff.Current.MasterData.UseItems?[UseItemId];
     }
 }

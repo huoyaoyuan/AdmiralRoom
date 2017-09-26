@@ -8,10 +8,8 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:AkashiViewModel}"
         Icon="{x:Null}"
-        
-        Width="800"
+        Width="1000"
         FontFamily="{Binding FontFamily, Source={x:Static main:Config.Current}}"
-        
         Title="明石の改修工廠">
     <Window.DataContext>
         <local:AkashiViewModel/>
@@ -93,19 +91,16 @@
                                 Height="15" Width="15"
                                 VerticalAlignment="Center">
                             <Image Source="{Binding Equipment.Icon, Mode=OneTime}"
-                                   
                                    Height="20" Width="20"
                                    Canvas.Left="-2.5" Canvas.Top="-2.5"/>
                         </Canvas>
                         <TextBlock Grid.Column="1"
                                    Margin="2"
                                    Text="{Binding Equipment.Name, Mode=OneTime}"
-                                   
                                    VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="2"
                                    Margin="2"
                                    Text="{Binding Equipment.EquipType.Name, Mode=OneTime}"
-                                   
                                    VerticalAlignment="Center"/>
                         <ItemsControl Grid.Column="3" HorizontalAlignment="Right" ItemsSource="{Binding Secretaries, Mode=OneTime}">
                             <ItemsControl.ItemsPanel>
@@ -185,14 +180,17 @@
                                                     Height="15" Width="15"
                                                     VerticalAlignment="Center">
                                                 <Image Source="{Binding CostItem.Icon, Mode=OneTime}"
-                                                       
                                                        Height="20" Width="20"
                                                        Canvas.Left="-2.5" Canvas.Top="-2.5"/>
                                             </Canvas>
                                             <TextBlock x:Name="costitemname" Text="{Binding CostItem.Name, Mode=OneTime}"/>
                                             <TextBlock x:Name="costitemcount"
                                                        Text="{Binding CostItemCount, Mode=OneTime, StringFormat={}x{0}}"
-                                                       
+                                                       Margin="2,0,20,0"
+                                                       Opacity="0.7"/>
+                                            <TextBlock x:Name="useitemname" Text="{Binding UseItem.Name, Mode=OneTime}"/>
+                                            <TextBlock x:Name="useitemcount"
+                                                       Text="{Binding UseItemCount, Mode=OneTime, StringFormat={}x{0}}"
                                                        Margin="2,0,20,0"
                                                        Opacity="0.7"/>
                                             <TextBlock x:Name="upgradearrow" Text="→"/>
@@ -211,6 +209,10 @@
                                             <DataTrigger Binding="{Binding CostItem}" Value="{x:Null}">
                                                 <Setter TargetName="costitemname" Property="Visibility" Value="Collapsed"/>
                                                 <Setter TargetName="costitemcount" Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding UseItem}" Value="{x:Null}">
+                                                <Setter TargetName="useitemname" Property="Visibility" Value="Collapsed"/>
+                                                <Setter TargetName="useitemcount" Property="Visibility" Value="Collapsed"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding UpgradeTo}" Value="{x:Null}">
                                                 <Setter TargetName="upgradearrow" Property="Visibility" Value="Collapsed"/>

@@ -63,6 +63,10 @@ while (!reader.EndOfStream)
         {
             #> UpgradeStar="<#= col[7] #>"<#
         }
+        if (col.Length >= 10)
+        {
+            #> UseItemId="<#= col[8] #>" UseItemCount="<#= col[9] #>"<#
+        }
         #>/>
 <#
     }
