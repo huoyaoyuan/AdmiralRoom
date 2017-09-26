@@ -13,6 +13,8 @@ function Main
         $ignoreKeywords ='Xceed.Wpf.AvalonDock.resources.dll'
  
         $exeSource  = 'AdmiralRoom.exe'
+
+        $modules = 'Akashi', 'MasterDataViewer', 'Ranking', 'RawApiViewer'
  
         if (-not(Test-Path $bin))
         {
@@ -30,6 +32,16 @@ function Main
  
             Copy-StrictedFilterFileWithDirectoryStructure -Path $(Join-Path $bin $target) -Destination '.\' -Targets $targetKeywords -Exclude $ignoreKeywords #-ChildFolders $childFolders
  
+            $moduleDir = [System.IO.Path]::Combine('.\', $target, 'Modules')
+            New-Item $moduleDir -ItemType Directory
+
+            foreach ($module in $modules)
+            {
+                $moduleFile = $module+'.dll'
+                $modulePath = [System.IO.Path]::Combine('..\Modules\', $module, 'bin', $target, $moduleFile)
+                Copy-Item $modulePath -Destination $(Join-Path $moduleDir $moduleFile)
+            }
+
             # valid path check
             $versionSource = Join-Path $target $exeSource -Resolve
  
