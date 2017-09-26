@@ -60,5 +60,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             foreach (var target in Targets)
                 target.IsTook = v;
         }
+        public static implicit operator QuestInfo(QuestTarget target) => new QuestInfo(target);
     }
 }

@@ -45,7 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public bool HasCounter => Counter != null;
         protected override void UpdateProp()
         {
-            Counter = QuestManager.KnownQuests.Known[Id];
+            Counter = QuestManager.KnownQuests[Id];
             if (Progress == QuestProgress.Percent50) Counter?.Set50();
             else if (Progress == QuestProgress.Percent80) Counter?.Set80();
             if (State == QuestState.Complete) Counter?.Set100();

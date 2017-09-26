@@ -91,7 +91,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         {
             DateTimeOffset checktime = DateTimeOffset.UtcNow.ToOffset(QuestUpdateTime);
             var targets = new List<QuestTarget>();
-            foreach (var quest in KnownQuests.Known) targets.AddRange(quest.Targets);
+            foreach (var quest in KnownQuests) targets.AddRange(quest.Targets);
             if (checktime.Date != lastcheckedtime.Date)
             {
                 foreach (var item in AvilableQuests.Where(x => x.Period == QuestPeriod.Daily).ToList())
@@ -127,7 +127,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                         string line = file.ReadLine().Trim();
                         if (string.IsNullOrEmpty(line)) continue;
                         var parts = line.Split(':');
-                        var quest = KnownQuests.Known[int.Parse(parts[0])];
+                        var quest = KnownQuests[int.Parse(parts[0])];
                         if (quest == null) continue;
                         bool istook = bool.Parse(parts[1]);
                         quest.SetIsTook(istook);
@@ -147,7 +147,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             using (var file = new StreamWriter(@"logs\questcount.txt"))
             {
                 file.WriteLine(lastcheckedtime.ToOffset(QuestUpdateTime).Date.ToShortDateString());
-                foreach (var quest in KnownQuests.Known)
+                foreach (var quest in KnownQuests)
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append(quest.Id);

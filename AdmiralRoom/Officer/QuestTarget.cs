@@ -29,7 +29,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             get
             {
                 if (_sharedwith == null)
-                    _sharedwith = QuestManager.KnownQuests.Known[sharedwithid]?.MainTarget;
+                    _sharedwith = QuestManager.KnownQuests[sharedwithid]?.MainTarget;
                 return _sharedwith;
             }
         }
