@@ -36,8 +36,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static IReadOnlyCollection<string> Themes { get; } = new[]
         {
             "Default",
-            "Transparent",
-            "VS2013Dark"
+            "Transparent"
         };
         private static string _currenttheme;
         public static string CurrentTheme
