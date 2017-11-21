@@ -4,22 +4,21 @@
     {
         public int[] api_active_deck { get; set; }
         public int api_deck_id { get; set; }
-        /// <summary>
-        /// 将错就错，还只改一半，那只能让你们全家爆炸了
-        /// </summary>
-        public int api_dock_id { get; set; }
         public int[] api_ship_ke { get; set; }
         public int[] api_ship_ke_combined { get; set; }
         public int[] api_ship_lv { get; set; }
         public int[] api_ship_lv_combined { get; set; }
-        public int[] api_nowhps { get; set; }
-        public int[] api_nowhps_combined { get; set; }
-        public int[] api_maxhps { get; set; }
-        public int[] api_maxhps_combined { get; set; }
+        public int[] api_f_nowhps { get; set; }
+        public int[] api_f_maxhps { get; set; }
+        public int[] api_f_nowhps_combined { get; set; }
+        public int[] api_f_maxhps_combined { get; set; }
+        public int[] api_e_nowhps { get; set; }
+        public int[] api_e_maxhps { get; set; }
+        public int[] api_e_nowhps_combined { get; set; }
+        public int[] api_e_maxhps_combined { get; set; }
         public int api_midnight_flag { get; set; }
         public int[][] api_eSlot { get; set; }
         public int[][] api_eSlot_combined { get; set; }
-        public int[][] api_eKyouka { get; set; }
         public int[][] api_fParam { get; set; }
         public int[][] api_eParam { get; set; }
         public int[][] api_fParam_combined { get; set; }
@@ -111,6 +110,8 @@
             public support_hourai api_support_hourai { get; set; }
         }
         public support api_support_info { get; set; }
+        public int api_n_support_flag { get; set; }
+        public support api_n_support_info { get; set; }
         public int api_opening_taisen_flag { get; set; }
         public fire api_opening_taisen { get; set; }
         public int api_opening_flag { get; set; }
@@ -129,9 +130,6 @@
         public int[] api_hourai_flag { get; set; }
         public class fire
         {
-            /// <summary>
-            /// 好像就深海联合舰队在用
-            /// </summary>
             public int[] api_at_eflag { get; set; }
             public int[] api_at_list { get; set; }
             /// <summary>
