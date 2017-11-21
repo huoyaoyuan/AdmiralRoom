@@ -143,6 +143,7 @@
     <Compile Include="API\mission_result.cs" />
     <Compile Include="API\port_port.cs" />
     <Compile Include="API\req_getship.cs" />
+    <Compile Include="API\sortie_battle.old.cs" />
     <Compile Include="API\sortie_battle.cs" />
     <Compile Include="API\sortie_battleresult.cs" />
     <Compile Include="API\svdata.cs" />
@@ -156,10 +157,14 @@
     <Compile Include="Common\PresentationEx.cs" />
     <Compile Include="Controls\ContentNullChooser.cs" />
     <Compile Include="Controls\WinRankText.cs" />
+    <Compile Include="Logger\BattleDetail.old.cs" />
     <Compile Include="Logger\BattleDetail.cs" />
+    <Compile Include="Logger\IBattleDetail.cs" />
     <Compile Include="Notifier\MessageBoxNotifierFactory.cs" />
     <Compile Include="Notifier\NotifierFactory.cs" />
     <Compile Include="Officer\Battle\InBattle.cs" />
+    <Compile Include="Officer\Battle\Old\Battle.cs" />
+    <Compile Include="Officer\Battle\Old\Stage.cs" />
     <Compile Include="Officer\Battle\Stage.cs" />
     <Compile Include="Officer\General\IdentifiableEqualityComparer.cs" />
     <Compile Include="Properties\VersionInfo.cs" />

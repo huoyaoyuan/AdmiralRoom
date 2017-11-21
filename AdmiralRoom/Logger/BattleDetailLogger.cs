@@ -124,12 +124,14 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             MissingMemberHandling = MissingMemberHandling.Ignore,
             Error = (_, e) => e.ErrorContext.Handled = true
         };
+        private static readonly DateTime battleApiChangeStamp = new DateTime(2017, 11, 17, 3, 0, 0);
         private const int cacheDays = 5;
         private List<DateTime> cacheIndex = new List<DateTime>();
-        private List<IDTable<DateTime, BattleDetail>> cacheList = new List<IDTable<DateTime, BattleDetail>>();
-        public BattleDetail FindLog(DateTime utctime)
+        private List<IDTable<DateTime, IBattleDetail>> cacheList = new List<IDTable<DateTime, IBattleDetail>>();
+        public IBattleDetail FindLog(DateTime utctime)
         {
             var date = utctime.Date;
+            bool old = utctime < battleApiChangeStamp;
             int index = cacheIndex.IndexOf(date);
             if (index == -1)
             {
@@ -142,7 +144,10 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 {
                     foreach (string line in File.ReadAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log"))
                     {
-                        var item = JsonConvert.DeserializeObject<BattleDetail>(line, JSettings);
+                        IBattleDetail item;
+                        if (old)
+                            item = JsonConvert.DeserializeObject<OldBattleDetail>(line, JSettings);
+                        else item = JsonConvert.DeserializeObject<BattleDetail>(line, JSettings);
                         if (item.GetTimeStamp() == utctime)
                             return item;
                     }
@@ -150,13 +155,15 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 }
                 else if (File.Exists($@"logs\battlelog\{date:yyyy-MM-dd}.zip"))
                 {
-                    var cache = new IDTable<DateTime, BattleDetail>();
+                    var cache = new IDTable<DateTime, IBattleDetail>();
                     using (var zipfile = ZipFile.OpenRead($@"logs\battlelog\{date:yyyy-MM-dd}.zip"))
                     using (var stream = zipfile.GetEntry($"{date:yyyy-MM-dd}.log").Open())
                     {
                         var reader = new StreamReader(stream);
                         while (!reader.EndOfStream)
-                            cache.Add(JsonConvert.DeserializeObject<BattleDetail>(FixBrokenLog(reader.ReadLine()), JSettings));
+                            if (old)
+                                cache.Add(JsonConvert.DeserializeObject<OldBattleDetail>(FixBrokenLog(reader.ReadLine()), JSettings));
+                            else cache.Add(JsonConvert.DeserializeObject<BattleDetail>(FixBrokenLog(reader.ReadLine()), JSettings));
                     }
                     index = cacheList.Count;
                     cacheIndex.Add(date);

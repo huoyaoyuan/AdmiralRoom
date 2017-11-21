@@ -4,11 +4,12 @@ using System.Linq;
 using Huoyaoyuan.AdmiralRoom.API;
 using Huoyaoyuan.AdmiralRoom.Officer;
 using Huoyaoyuan.AdmiralRoom.Officer.Battle;
+using Huoyaoyuan.AdmiralRoom.Officer.Battle.Old;
 using Meowtrix;
 
 namespace Huoyaoyuan.AdmiralRoom.Logger
 {
-    class BattleDetail : IBattleDetail
+    class OldBattleDetail : IBattleDetail
     {
         public string time { get; set; }
         private DateTime? _utctime;
@@ -29,8 +30,8 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             public svdata<T> data { get; set; }
         }
         public APILog<map_start_next> startnext { get; set; }
-        public APILog<sortie_battle> battle { get; set; }
-        public APILog<sortie_battle> nightbattle { get; set; }
+        public APILog<sortie_battle_old> battle { get; set; }
+        public APILog<sortie_battle_old> nightbattle { get; set; }
         public class ShipInfo
         {
             public int id { get; set; }
@@ -71,6 +72,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             ["api_req_combined_battle/each_battle_water"] = CombinedFleetType.Surface
         };
 
+        private static readonly DateTime idChangeStamp = new DateTime(2017, 4, 5, 3, 0, 0);
         public BattleDetailViewModel ToViewModel(BattleDropLog log)
         {
             ShipInBattle[] fleet1, fleet2;
@@ -117,8 +119,22 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             //    else type = CombinedFleetType.Surface;
             //}
 
+            void PatchEnemyId(int[] enemy)
+            {
+                if (enemy == null) return;
+                for (int i = 0; i < enemy.Length; i++)
+                    if (enemy[i] > 500 && enemy[i] <= 1500)
+                        enemy[i] += 1000;
+            }
+
+            if (log.DateTime < idChangeStamp)
+            {
+                PatchEnemyId(battle.data.api_data.api_ship_ke);
+                PatchEnemyId(battle.data.api_data.api_ship_ke_combined);
+            }
+
             apimap.TryGetValue(battle.api, out var type);
-            var result = new Battle(battle.data.api_data, type, node.Type, fleet1, fleet2);
+            var result = new OldBattle(battle.data.api_data, type, node.Type, fleet1, fleet2);
             if (nightbattle != null) result.NightBattle(nightbattle.data.api_data);
             return new BattleDetailViewModel
             {
