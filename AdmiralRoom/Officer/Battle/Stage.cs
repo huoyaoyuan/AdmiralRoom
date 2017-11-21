@@ -71,7 +71,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public Attack[] Attacks { get; private set; }
         public void ApplyAttacks(IEnumerable<Attack> attacks, Battle battle = null)
         {
-            Attacks = attacks.ToArray();
+            Attacks = attacks.Where(x => x.Damage >= 0).ToArray();
             foreach (var attack in Attacks)
                 attack.Apply(battle);
         }
