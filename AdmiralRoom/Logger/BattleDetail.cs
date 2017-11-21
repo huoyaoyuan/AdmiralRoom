@@ -73,60 +73,64 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
 
         public BattleDetailViewModel ToViewModel(BattleDropLog log)
         {
-            ShipInBattle[] fleet1, fleet2;
-            EquipInBattle EquipSelector(EquipInfo equip)
-                => equip != null ?
-                new EquipInBattle(Staff.Current.MasterData.EquipInfo[equip.itemid])
+            try
+            {
+                ShipInBattle[] fleet1, fleet2;
+                EquipInBattle EquipSelector(EquipInfo equip)
+                    => equip != null ?
+                    new EquipInBattle(Staff.Current.MasterData.EquipInfo[equip.itemid])
+                    {
+                        ImproveLevel = equip.level,
+                        AirProficiency = equip.alv
+                    } : null;
+                fleet1 = this.fleet1?.Select((ship, i) => new ShipInBattle
                 {
-                    ImproveLevel = equip.level,
-                    AirProficiency = equip.alv
-                } : null;
-            fleet1 = this.fleet1?.Select((ship, i) => new ShipInBattle
-            {
-                Index = i + 1,
-                Level = ship.lv,
-                ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
-                Firepower = ship.karyoku,
-                Torpedo = ship.raisou,
-                AA = ship.taiku,
-                Armor = ship.soukou,
-                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
-                        .Select(EquipSelector).ToArray(),
-                EquipmentEx = EquipSelector(ship.slotex)
-            }).ToArray();
-            fleet2 = this.fleet2?.Select((ship, i) => new ShipInBattle
-            {
-                Index = i + 7,
-                Level = ship.lv,
-                ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
-                Firepower = ship.karyoku,
-                Torpedo = ship.raisou,
-                AA = ship.taiku,
-                Armor = ship.soukou,
-                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+                    Index = i + 1,
+                    Level = ship.lv,
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
+                    Firepower = ship.karyoku,
+                    Torpedo = ship.raisou,
+                    AA = ship.taiku,
+                    Armor = ship.soukou,
+                    Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
                             .Select(EquipSelector).ToArray(),
-                EquipmentEx = EquipSelector(ship.slotex)
-            }).ToArray();
-            var node = new MapNode(startnext.data.api_data);
-            //CombinedFleetType type;
-            //if (!apimap.TryGetValue(battle.api, out type) && fleet2 != null)//broken log
-            //{
-            //    if (DispatcherHelper.UIDispatcher.Invoke(() =>
-            //        MessageBox.Show("记录损坏。请问要将该场战斗作为机动/运输部队解析吗？", "记录损坏", MessageBoxButton.YesNo)) == MessageBoxResult.Yes)
-            //        type = CombinedFleetType.Carrier;
-            //    else type = CombinedFleetType.Surface;
-            //}
+                    EquipmentEx = EquipSelector(ship.slotex)
+                }).ToArray();
+                fleet2 = this.fleet2?.Select((ship, i) => new ShipInBattle
+                {
+                    Index = i + 7,
+                    Level = ship.lv,
+                    ShipInfo = Staff.Current.MasterData.ShipInfo[ship.shipid],
+                    Firepower = ship.karyoku,
+                    Torpedo = ship.raisou,
+                    AA = ship.taiku,
+                    Armor = ship.soukou,
+                    Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+                                .Select(EquipSelector).ToArray(),
+                    EquipmentEx = EquipSelector(ship.slotex)
+                }).ToArray();
+                var node = new MapNode(startnext.data.api_data);
+                //CombinedFleetType type;
+                //if (!apimap.TryGetValue(battle.api, out type) && fleet2 != null)//broken log
+                //{
+                //    if (DispatcherHelper.UIDispatcher.Invoke(() =>
+                //        MessageBox.Show("记录损坏。请问要将该场战斗作为机动/运输部队解析吗？", "记录损坏", MessageBoxButton.YesNo)) == MessageBoxResult.Yes)
+                //        type = CombinedFleetType.Carrier;
+                //    else type = CombinedFleetType.Surface;
+                //}
 
-            apimap.TryGetValue(battle.api, out var type);
-            var result = new Battle(battle.data.api_data, type, node.Type, fleet1, fleet2);
-            if (nightbattle != null) result.NightBattle(nightbattle.data.api_data);
-            return new BattleDetailViewModel
-            {
-                Log = log,
-                Node = node,
-                Battle = result,
-                Time = new DateTimeOffset(GetTimeStamp(), TimeSpan.Zero)
-            };
+                apimap.TryGetValue(battle.api, out var type);
+                var result = new Battle(battle.data.api_data, type, node.Type, fleet1, fleet2);
+                if (nightbattle != null) result.NightBattle(nightbattle.data.api_data);
+                return new BattleDetailViewModel
+                {
+                    Log = log,
+                    Node = node,
+                    Battle = result,
+                    Time = new DateTimeOffset(GetTimeStamp(), TimeSpan.Zero)
+                };
+            }
+            catch { return null; }
         }
     }
 }
