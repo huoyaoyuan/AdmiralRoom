@@ -125,7 +125,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             for (int i = 0; i < damageList.Length; i++)
             {
                 ShipInBattle source;
-                bool torpedo = torpedoFlags[i] != 0, bomb = bombFlags[i] != 0;
+                // TODO: api bug
+                bool torpedo = i < torpedoFlags.Length && torpedoFlags[i] != 0,
+                    bomb = i < bombFlags.Length && bombFlags[i] != 0;
                 if (torpedo && bomb) source = null;
                 else if (torpedo) source = torpedoSource;
                 else if (bomb) source = bombSource;
