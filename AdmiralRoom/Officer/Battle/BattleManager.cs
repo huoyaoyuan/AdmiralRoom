@@ -68,7 +68,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 if (lastescapeinfo != null)
                 {
                     FindShip(lastescapeinfo.api_escape_idx[0]).IsEscaped = true;
-                    FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
+                    if (lastescapeinfo.api_tow_idx != null)
+                        FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
                 }
             });
             Staff.API("api_req_combined_battle/ec_battle").Subscribe<sortie_battle>(StartBattle);
