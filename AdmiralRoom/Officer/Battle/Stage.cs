@@ -75,8 +75,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             foreach (var attack in Attacks)
                 attack.Apply(battle);
         }
-        protected static ShipInBattle FindShip(int index, ShipInBattle[] fleet1, ShipInBattle[] fleet2)
-            => index <= 6 ? fleet1[index - 1] : fleet2[index - 7];
     }
 
     #region 航空戦
@@ -124,7 +122,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         private static IEnumerable<Attack> ParseAttack(decimal[] damageList, int[] torpedoFlags, int[] bombFlags, int[] criticalList, bool direction,
             ShipInBattle[] fleet, ShipInBattle torpedoSource, ShipInBattle bombSource)
         {
-            for (int i = 1; i < damageList.Length; i++)
+            for (int i = 0; i < damageList.Length; i++)
             {
                 ShipInBattle source;
                 bool torpedo = torpedoFlags[i] != 0, bomb = bombFlags[i] != 0;
@@ -133,7 +131,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 else if (bomb) source = bombSource;
                 else continue;
                 var damage = Attack.ParseDamage(damageList[i]);
-                (var friend, var enemy) = direction ? (source, fleet[i - 1]) : (fleet[i - 1], source);
+                (var friend, var enemy) = direction ? (source, fleet[i]) : (fleet[i], source);
                 yield return new Attack
                 {
                     Friend = friend,
@@ -209,9 +207,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             if (!isSupport)
             {
                 if (api.api_plane_from[0]?.Length == 1 && api.api_plane_from[0][0] > 0)
-                    friendjet = battle.Fleet1[api.api_plane_from[0][0] - 1];
+                    friendjet = battle.Fleet1[api.api_plane_from[0][0]];
                 if (api.api_plane_from.Length >= 2 && api.api_plane_from[1]?.Length == 1 && api.api_plane_from[1][0] > 0)
-                    enemyjet = battle.EnemyFleet[api.api_plane_from[1][0] - 1];
+                    enemyjet = battle.EnemyFleet[api.api_plane_from[1][0]];
             }
             ParseAttacks(battle, api, null, friendjet, null, enemyjet);
         }
@@ -245,52 +243,22 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     #region 砲雷撃戦
     public class FireCombat : Stage
     {
-        public FireCombat(sortie_battle.fire api, ShipInBattle[] friends, ShipInBattle[] enemies)
+        public FireCombat(Battle battle, sortie_battle.fire api)
         {
             var result = new List<Attack>();
             for (int i = 0; i < api.api_df_list.Length; i++)
             {
-                int sourceidx = api.api_at_list[i + 1];
-                bool direction = sourceidx <= 6;
-                var source = FindShip(sourceidx, friends, enemies);
-                for (int j = 0; j < api.api_df_list[i].Length; j++)
-                {
-                    int destidx = api.api_df_list[i][0];
-                    var dest = FindShip(destidx, friends, enemies);
-                    var damage = Attack.ParseDamage(api.api_damage[i][j]);
-                    (var friend, var enemy) = direction ? (source, dest) : (dest, source);
-                    result.Add(new Attack
-                    {
-                        Friend = friend,
-                        Enemy = enemy,
-                        Direction = direction,
-                        Damage = damage.damage,
-                        IsCritical = api.api_cl_list[i][j] == 2,
-                        Shield = damage.shield
-                    });
-                }
-            }
-            ApplyAttacks(result);
-        }
-    }
-    public class ECFireCombat : Stage
-    {
-        public ECFireCombat(Battle battle, sortie_battle.fire api)
-        {
-            var result = new List<Attack>();
-            for (int i = 0; i < api.api_df_list.Length; i++)
-            {
-                int sourceidx = api.api_at_list[i + 1];
-                bool direction = api.api_at_eflag[i + 1] == 0;
+                int sourceidx = api.api_at_list[i];
+                bool direction = api.api_at_eflag[i] == 0;
                 var source = direction ?
-                    FindShip(sourceidx, battle.Fleet1, battle.Fleet2) :
-                    FindShip(sourceidx, battle.EnemyFleet, battle.EnemyFleet2);
+                    battle.FindFriend(sourceidx) :
+                    battle.FindEnemy(sourceidx);
                 for (int j = 0; j < api.api_df_list[i].Length; j++)
                 {
                     int destidx = api.api_df_list[i][j];
                     var dest = direction ?
-                        FindShip(destidx, battle.EnemyFleet, battle.EnemyFleet2) :
-                        FindShip(destidx, battle.Fleet1, battle.Fleet2);
+                        battle.FindEnemy(destidx) :
+                        battle.FindFriend(destidx);
                     var damage = Attack.ParseDamage(api.api_damage[i][j]);
                     (var friend, var enemy) = direction ? (source, dest) : (dest, source);
                     result.Add(new Attack
@@ -309,71 +277,33 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     }
     public class TorpedoCombat : Stage
     {
-        public TorpedoCombat(sortie_battle.torpedo api, ShipInBattle[] friends, ShipInBattle[] enemies)
+        public TorpedoCombat(Battle battle, sortie_battle.torpedo api)
         {
             var result = new List<Attack>();
-            for (int i = 1; i < api.api_fydam.Length; i++)
+            for (int i = 0; i < api.api_fydam.Length; i++)
             {
                 int target = api.api_frai[i];
-                if (target == 0) continue;
+                if (target == -1) continue;
                 var damage = Attack.ParseDamage(api.api_fydam[i]);
                 result.Add(new Attack
                 {
-                    Friend = friends[i - 1],
-                    Enemy = enemies[target - 1],
+                    Friend = battle.FindFriend(i),
+                    Enemy = battle.FindEnemy(target),
                     Direction = true,
                     Damage = damage.damage,
                     Shield = damage.shield,
                     IsCritical = api.api_fcl[i] == 2
                 });
             }
-            for (int i = 1; i < api.api_eydam.Length; i++)
+            for (int i = 0; i < api.api_eydam.Length; i++)
             {
                 int target = api.api_erai[i];
-                if (target == 0) continue;
+                if (target == -1) continue;
                 var damage = Attack.ParseDamage(api.api_eydam[i]);
                 result.Add(new Attack
                 {
-                    Friend = friends[target - 1],
-                    Enemy = enemies[i - 1],
-                    Direction = false,
-                    Damage = damage.damage,
-                    Shield = damage.shield,
-                    IsCritical = api.api_ecl[i] == 2
-                });
-            }
-            ApplyAttacks(result);
-        }
-    }
-    public class ECTorpedoCombat : Stage
-    {
-        public ECTorpedoCombat(Battle battle, sortie_battle.torpedo api)
-        {
-            var result = new List<Attack>();
-            for (int i = 1; i < api.api_fydam.Length; i++)
-            {
-                int target = api.api_frai[i];
-                if (target == 0) continue;
-                var damage = Attack.ParseDamage(api.api_fydam[i]);
-                result.Add(new Attack
-                {
-                    Friend = FindShip(i, battle.Fleet1, battle.Fleet2),
-                    Enemy = FindShip(target, battle.EnemyFleet, battle.EnemyFleet2),
-                    Direction = true,
-                    Damage = damage.damage,
-                    Shield = damage.shield,
-                    IsCritical = api.api_fcl[i] == 2
-                });
-            }
-            for (int i = 1; i < api.api_eydam.Length; i++)
-            {
-                int target = api.api_erai[i];
-                if (target == 0) continue;
-                var damage = Attack.ParseDamage(api.api_eydam[i]);
-                result.Add(new Attack
-                {
-                    Friend = FindShip(target, battle.Fleet1, battle.Fleet2),
-                    Enemy = FindShip(i, battle.EnemyFleet, battle.EnemyFleet2),
+                    Friend = battle.FindFriend(target),
+                    Enemy = battle.FindEnemy(i),
                     Direction = false,
                     Damage = damage.damage,
                     Shield = damage.shield,
@@ -392,8 +322,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public ShipInBattle FriendLight { get; }
         public ShipInBattle EnemyLight { get; }
         public FireCombat Combat { get; }
-        public NightCombat(sortie_battle api, ShipInBattle[] friends, ShipInBattle[] enemies)
-            : base(api.api_hougeki, friends, enemies)
+        public NightCombat(Battle battle, sortie_battle api, ShipInBattle[] friends, ShipInBattle[] enemies)
+            : base(battle, api.api_hougeki)
         {
             if (api.api_touch_plane != null)
             {
@@ -446,19 +376,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public SupportAttack(Battle battle, sortie_battle.support api, int type)
         {
             Type = (SupportType)type;
-            if (Type == SupportType.Aerial)
+            if (Type == SupportType.Aerial || Type == SupportType.ASW)
                 Aerial = new AerialSupport(battle, api.api_support_airatack);
             else
             {
+                if (api.api_support_hourai == null) return;
                 var result = new List<Attack>();
-                for (int i = 1; i < api.api_support_hourai.api_damage.Length; i++)
+                for (int i = 0; i < api.api_support_hourai.api_damage.Length; i++)
                 {
                     var damage = Attack.ParseDamage(api.api_support_hourai.api_damage[i]);
                     if (damage.damage == 0 && !damage.shield) continue;
                     result.Add(new Attack
                     {
                         Friend = null,
-                        Enemy = FindShip(i, battle.EnemyFleet, battle.EnemyFleet2),
+                        Enemy = battle.FindEnemy(i),
                         Direction = true,
                         Damage = damage.damage,
                         Shield = damage.shield,
@@ -470,5 +401,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
     }
     #endregion
-    public enum SupportType { None = 0, Aerial = 1, Fire = 2, Torpedo = 3 }
+    public enum SupportType { None = 0, Aerial = 1, Fire = 2, Torpedo = 3, ASW = 4 }
 }

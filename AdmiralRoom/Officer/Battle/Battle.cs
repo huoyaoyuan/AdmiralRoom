@@ -62,6 +62,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 }
             }
         }
+        public ShipInBattle FindFriend(int index)
+            => index < Fleet1.Length ? Fleet1[index] : Fleet2[index - 6];
+        public ShipInBattle FindEnemy(int index)
+            => index < EnemyFleet.Length ? EnemyFleet[index] : EnemyFleet2[index - 6];
 
         #region Stages
         public JetPlaneAttack Jet { get; }
@@ -101,13 +105,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             bool iscombined = fleettype != CombinedFleetType.None;
             bool isenemycombined = battletype == MapNodeType.Combined || battletype == MapNodeType.CombinedBOSS;
 
-            EnemyFleet = api.api_ship_ke.Where(x => x != -1)
+            EnemyFleet = api.api_ship_ke
                 .Select((x, i) => new ShipInBattle
                 {
                     Index = i + 1,
                     IsEnemy = true,
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
-                    Level = api.api_ship_lv[i + 1],
+                    Level = api.api_ship_lv[i],
                     Equipments = api.api_eSlot[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
                     Firepower = api.api_eParam[i][0],
                     Torpedo = api.api_eParam[i][1],
@@ -115,13 +119,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     Armor = api.api_eParam[i][3]
                 })
                 .ToArray();
-            EnemyFleet2 = api.api_ship_ke_combined?.Where(x => x != -1)
+            EnemyFleet2 = api.api_ship_ke_combined?
                 .Select((x, i) => new ShipInBattle
                 {
                     Index = i + 7,
                     IsEnemy = true,
                     ShipInfo = Staff.Current.MasterData.ShipInfo[x],
-                    Level = api.api_ship_lv_combined[i + 1],
+                    Level = api.api_ship_lv_combined[i],
                     Equipments = api.api_eSlot_combined[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
                     Firepower = api.api_eParam_combined[i][0],
                     Torpedo = api.api_eParam_combined[i][1],
@@ -130,23 +134,23 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 })
                 .ToArray();
 
-            EnemyShipIds = api.api_ship_ke.Skip(1).ConcatNotNull(api.api_ship_ke_combined?.Skip(1)).ToArray();
+            EnemyShipIds = api.api_ship_ke.ConcatNotNull(api.api_ship_ke_combined).ToArray();
 
-            void SetHPs(ShipInBattle[] fleet, int index, int[] hps, int[] maxhps)
+            void SetHPs(ShipInBattle[] fleet, int[] hps, int[] maxhps)
             {
                 if (fleet == null) return;
                 for (int i = 0; i < fleet.Length; i++)
                 {
                     var ship = fleet[i];
-                    ship.MaxHP = maxhps[i + index];
-                    ship.FromHP = ship.ToHP = hps[i + index];
+                    ship.MaxHP = maxhps[i];
+                    ship.FromHP = ship.ToHP = hps[i];
                 }
             }
 
-            SetHPs(Fleet1, 1, api.api_nowhps, api.api_maxhps);
-            SetHPs(EnemyFleet, 7, api.api_nowhps, api.api_maxhps);
-            SetHPs(Fleet2, 1, api.api_nowhps_combined, api.api_maxhps_combined);
-            SetHPs(EnemyFleet2, 7, api.api_nowhps_combined, api.api_maxhps_combined);
+            SetHPs(Fleet1, api.api_f_nowhps, api.api_f_maxhps);
+            SetHPs(EnemyFleet, api.api_e_nowhps, api.api_e_maxhps);
+            SetHPs(Fleet2, api.api_f_nowhps_combined, api.api_f_maxhps_combined);
+            SetHPs(EnemyFleet2, api.api_e_nowhps_combined, api.api_e_maxhps_combined);
 
             api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
             api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
@@ -166,52 +170,32 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             if (isenemycombined)
             {
                 if (api.api_opening_taisen != null)
-                    OpeningASW = new ECFireCombat(this, api.api_opening_taisen);
+                    OpeningASW = new FireCombat(this, api.api_opening_taisen);
                 if (api.api_opening_atack != null)
-                    OpeningTorpedo = new ECTorpedoCombat(this, api.api_opening_atack);
+                    OpeningTorpedo = new TorpedoCombat(this, api.api_opening_atack);
                 if (api.api_hougeki1 != null)
-                    FireStage1 = new ECFireCombat(this, api.api_hougeki1);
+                    FireStage1 = new FireCombat(this, api.api_hougeki1);
                 if (api.api_hougeki2 != null)
-                    FireStage2 = new ECFireCombat(this, api.api_hougeki2);
+                    FireStage2 = new FireCombat(this, api.api_hougeki2);
                 if (api.api_hougeki3 != null)
-                    FireStage3 = new ECFireCombat(this, api.api_hougeki3);
+                    FireStage3 = new FireCombat(this, api.api_hougeki3);
                 if (api.api_raigeki != null)
-                    TorpedoStage = new ECTorpedoCombat(this, api.api_raigeki);
+                    TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
             }
             else
             {
                 if (api.api_opening_taisen != null)
-                    OpeningASW = new FireCombat(api.api_opening_taisen, NightOrTorpedo, EnemyFleet);
+                    OpeningASW = new FireCombat(this, api.api_opening_taisen);
                 if (api.api_opening_atack != null)
-                    OpeningTorpedo = new TorpedoCombat(api.api_opening_atack, NightOrTorpedo, EnemyFleet);
-                switch (fleettype)
-                {
-                    case CombinedFleetType.None:
-                        if (api.api_hougeki1 != null)
-                            FireStage1 = new FireCombat(api.api_hougeki1, Fleet1, EnemyFleet);
-                        if (api.api_hougeki2 != null)
-                            FireStage2 = new FireCombat(api.api_hougeki2, Fleet1, EnemyFleet);
-                        break;
-                    case CombinedFleetType.Carrier:
-                    case CombinedFleetType.Transport:
-                        if (api.api_hougeki1 != null)
-                            FireStage1 = new FireCombat(api.api_hougeki1, Fleet2, EnemyFleet);
-                        if (api.api_hougeki2 != null)
-                            FireStage2 = new FireCombat(api.api_hougeki2, Fleet1, EnemyFleet);
-                        if (api.api_hougeki3 != null)
-                            FireStage3 = new FireCombat(api.api_hougeki3, Fleet1, EnemyFleet);
-                        break;
-                    case CombinedFleetType.Surface:
-                        if (api.api_hougeki1 != null)
-                            FireStage1 = new FireCombat(api.api_hougeki1, Fleet1, EnemyFleet);
-                        if (api.api_hougeki2 != null)
-                            FireStage2 = new FireCombat(api.api_hougeki2, Fleet1, EnemyFleet);
-                        if (api.api_hougeki3 != null)
-                            FireStage3 = new FireCombat(api.api_hougeki3, Fleet2, EnemyFleet);
-                        break;
-                }
+                    OpeningTorpedo = new TorpedoCombat(this, api.api_opening_atack);
+                if (api.api_hougeki1 != null)
+                    FireStage1 = new FireCombat(this, api.api_hougeki1);
+                if (api.api_hougeki2 != null)
+                    FireStage2 = new FireCombat(this, api.api_hougeki2);
+                if (api.api_hougeki3 != null)
+                    FireStage3 = new FireCombat(this, api.api_hougeki3);
                 if (api.api_raigeki != null)
-                    TorpedoStage = new TorpedoCombat(api.api_raigeki, NightOrTorpedo, EnemyFleet);
+                    TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
             }
             if (api.api_hougeki != null)
                 NightBattle(api);
@@ -220,8 +204,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public void NightBattle(sortie_battle api)
         {
             if (api.api_active_deck != null)
-                Night = new NightCombat(api, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
-            else Night = new NightCombat(api, NightOrTorpedo, EnemyFleet);
+                Night = new NightCombat(this, api, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
+            else Night = new NightCombat(this, api, NightOrTorpedo, EnemyFleet);
             EndApplyBattle();
         }
         private void EndApplyBattle()

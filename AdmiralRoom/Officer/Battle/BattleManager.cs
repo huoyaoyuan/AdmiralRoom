@@ -162,12 +162,12 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         private void StartBattle(sortie_battle api)
         {
             ShipInBattle[] fleet1, fleet2;
-            fleet1 = (SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships)
+            fleet1 = (SortieFleet1?.Ships ?? Staff.Current.Homeport.Fleets[api.api_deck_id].Ships)
                 .Select((x, i) => new ShipInBattle(x) { Index = i + 1 }).ToArray();
             fleet2 = SortieFleet2?.Ships
                 .Select((x, i) => new ShipInBattle(x) { Index = i + 7 }).ToArray();
             if (SortieFleet1 == null)//演习
-                Staff.Current.Homeport.Fleets[api.api_deck_id + api.api_dock_id].Ships.ForEach(x => x.IgnoreNextCondition());
+                Staff.Current.Homeport.Fleets[api.api_deck_id].Ships.ForEach(x => x.IgnoreNextCondition());
             CurrentBattle = new Battle(api, CurrentFleetType ?? CombinedFleetType.None, CurrentNode?.Type ?? MapNodeType.Battle, fleet1, fleet2);
         }
         private void NightBattle(sortie_battle api) =>
