@@ -272,6 +272,12 @@
                                   Style="{StaticResource FleetInBattleKey}"/>
                 </StackPanel>
             </Grid>
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_NightToDay1}"
+                                    Visibility="{Binding Battle.NightToDay1, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.NightToDay1, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_NightToDay2}"
+                                    Visibility="{Binding Battle.NightToDay2, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.NightToDay2, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
             <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_AirBaseJet}"
                                     Visibility="{Binding Battle.AirBaseJet, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.AirBaseJet, Mode=OneTime}" ContentTemplate="{StaticResource AerialCombatTemplate}"/>

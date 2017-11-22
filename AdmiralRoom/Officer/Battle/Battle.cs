@@ -74,13 +74,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public AerialCombat AirCombat1 { get; }
         public AerialCombat AirCombat2 { get; }
         public SupportAttack Support { get; private set; }
-        public Stage OpeningASW { get; }
-        public Stage OpeningTorpedo { get; }
-        public Stage FireStage1 { get; }
-        public Stage FireStage2 { get; }
-        public Stage FireStage3 { get; }
-        public Stage TorpedoStage { get; }
-        public Stage Night { get; private set; }
+        public FireCombat OpeningASW { get; }
+        public TorpedoCombat OpeningTorpedo { get; }
+        public FireCombat FireStage1 { get; }
+        public FireCombat FireStage2 { get; }
+        public FireCombat FireStage3 { get; }
+        public TorpedoCombat TorpedoStage { get; }
+        public FireCombat Night { get; private set; }
+        public FireCombat NightToDay1 { get; }
+        public FireCombat NightToDay2 { get; }
         #endregion
 
         public Battle(sortie_battle api, CombinedFleetType fleettype, MapNodeType battletype, ShipInBattle[] fleet1, ShipInBattle[] fleet2)
@@ -101,9 +103,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 FriendSearching = api.api_search[0];
                 EnemySearching = api.api_search[1];
             }
-
-            bool iscombined = fleettype != CombinedFleetType.None;
-            bool isenemycombined = battletype == MapNodeType.Combined || battletype == MapNodeType.CombinedBOSS;
 
             EnemyFleet = api.api_ship_ke
                 .Select((x, i) => new ShipInBattle
@@ -155,6 +154,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
             api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
 
+            if (api.api_n_hougeki1 != null)
+                NightToDay1 = new FireCombat(this, api.api_n_hougeki1);
+            if (api.api_n_hougeki2 != null)
+                NightToDay2 = new FireCombat(this, api.api_n_hougeki2);
             if (api.api_air_base_injection != null)
                 AirBaseJet = new JetPlaneAttack(this, api.api_air_base_injection, true);
             if (api.api_injection_kouku != null)
@@ -167,36 +170,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 AirCombat2 = new AerialCombat(this, api.api_kouku2);
             if (api.api_support_flag != 0)
                 Support = new SupportAttack(this, api.api_support_info, api.api_support_flag);
-            if (isenemycombined)
-            {
-                if (api.api_opening_taisen != null)
-                    OpeningASW = new FireCombat(this, api.api_opening_taisen);
-                if (api.api_opening_atack != null)
-                    OpeningTorpedo = new TorpedoCombat(this, api.api_opening_atack);
-                if (api.api_hougeki1 != null)
-                    FireStage1 = new FireCombat(this, api.api_hougeki1);
-                if (api.api_hougeki2 != null)
-                    FireStage2 = new FireCombat(this, api.api_hougeki2);
-                if (api.api_hougeki3 != null)
-                    FireStage3 = new FireCombat(this, api.api_hougeki3);
-                if (api.api_raigeki != null)
-                    TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
-            }
-            else
-            {
-                if (api.api_opening_taisen != null)
-                    OpeningASW = new FireCombat(this, api.api_opening_taisen);
-                if (api.api_opening_atack != null)
-                    OpeningTorpedo = new TorpedoCombat(this, api.api_opening_atack);
-                if (api.api_hougeki1 != null)
-                    FireStage1 = new FireCombat(this, api.api_hougeki1);
-                if (api.api_hougeki2 != null)
-                    FireStage2 = new FireCombat(this, api.api_hougeki2);
-                if (api.api_hougeki3 != null)
-                    FireStage3 = new FireCombat(this, api.api_hougeki3);
-                if (api.api_raigeki != null)
-                    TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
-            }
+            if (api.api_opening_taisen != null)
+                OpeningASW = new FireCombat(this, api.api_opening_taisen);
+            if (api.api_opening_atack != null)
+                OpeningTorpedo = new TorpedoCombat(this, api.api_opening_atack);
+            if (api.api_hougeki1 != null)
+                FireStage1 = new FireCombat(this, api.api_hougeki1);
+            if (api.api_hougeki2 != null)
+                FireStage2 = new FireCombat(this, api.api_hougeki2);
+            if (api.api_hougeki3 != null)
+                FireStage3 = new FireCombat(this, api.api_hougeki3);
+            if (api.api_raigeki != null)
+                TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
             if (api.api_hougeki != null)
                 NightBattle(api);
             else EndApplyBattle();

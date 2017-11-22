@@ -213,6 +213,12 @@
   <data name="BattleDetail_Stage_Night" xml:space="preserve">
     <value>夜戦</value>
   </data>
+  <data name="BattleDetail_Stage_NightToDay1" xml:space="preserve">
+    <value>連合艦隊夜戦1巡目</value>
+  </data>
+  <data name="BattleDetail_Stage_NightToDay2" xml:space="preserve">
+    <value>連合艦隊夜戦2巡目</value>
+  </data>
   <data name="BattleDetail_Stage_OpeningASW" xml:space="preserve">
     <value>開幕対潜攻撃</value>
   </data>

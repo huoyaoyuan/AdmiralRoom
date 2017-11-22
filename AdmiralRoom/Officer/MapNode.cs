@@ -124,9 +124,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             }
         }
     }
-    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence, Combined, CombinedBOSS }
+    public enum MapNodeType { Unknown, ItemGet, ItemLost, Imagination, Battle, NightBattle, NightToDayBattle, AirBattle, BOSS, SelectRoute, AirSearch, Guard, Transport, AirDefence, Combined, CombinedBOSS, NightToDayCombined, NightToDayCombinedBOSS }
     public static class MapNodeTypeExtension
     {
-        public static bool IsBOSS(this MapNodeType node) => node == MapNodeType.BOSS || node == MapNodeType.CombinedBOSS;
+        public static bool IsBOSS(this MapNodeType node) => node == MapNodeType.BOSS || node == MapNodeType.CombinedBOSS || node == MapNodeType.NightToDayCombinedBOSS;
     }
 }

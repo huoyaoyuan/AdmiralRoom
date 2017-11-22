@@ -36,6 +36,8 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">炮击战第3轮</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">喷气强袭</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">夜战</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_NightToDay1">联合舰队夜战第1轮</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_NightToDay2">联合舰队夜战第2轮</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningASW">先制反潜</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_OpeningTorpedo">开幕雷击</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Support">支援舰队</s:String>

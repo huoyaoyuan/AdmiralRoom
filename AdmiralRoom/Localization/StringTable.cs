@@ -136,6 +136,14 @@
         ///</summary>
         public static string BattleDetail_Stage_Night => ResourceService.GetString("BattleDetail_Stage_Night");
         ///<summary>
+        ///   查找类似 联合舰队夜战第1轮 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_NightToDay1 => ResourceService.GetString("BattleDetail_Stage_NightToDay1");
+        ///<summary>
+        ///   查找类似 联合舰队夜战第2轮 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_NightToDay2 => ResourceService.GetString("BattleDetail_Stage_NightToDay2");
+        ///<summary>
         ///   查找类似 先制反潜 的本地化字符串。
         ///</summary>
         public static string BattleDetail_Stage_OpeningASW => ResourceService.GetString("BattleDetail_Stage_OpeningASW");

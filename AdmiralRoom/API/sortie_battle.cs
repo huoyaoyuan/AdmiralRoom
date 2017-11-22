@@ -161,5 +161,7 @@
         /// 夜戦
         /// </summary>
         public fire api_hougeki { get; set; }
+        public fire api_n_hougeki1 { get; set; }
+        public fire api_n_hougeki2 { get; set; }
     }
 }
