@@ -73,7 +73,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public AirBaseAttack[] AirBaseAttacks { get; }
         public AerialCombat AirCombat1 { get; }
         public AerialCombat AirCombat2 { get; }
-        public SupportAttack Support { get; }
+        public SupportAttack Support { get; private set; }
         public Stage OpeningASW { get; }
         public Stage OpeningTorpedo { get; }
         public Stage FireStage1 { get; }
@@ -203,6 +203,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
         public void NightBattle(sortie_battle api)
         {
+            if (api.api_n_support_info != null)
+                Support = new SupportAttack(this, api.api_n_support_info, api.api_n_support_flag);
             if (api.api_active_deck != null)
                 Night = new NightCombat(this, api, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
             else Night = new NightCombat(this, api, NightOrTorpedo, EnemyFleet);
