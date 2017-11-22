@@ -124,14 +124,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         {
             for (int i = 0; i < damageList.Length; i++)
             {
-                ShipInBattle source;
-                // TODO: api bug
-                bool torpedo = i < torpedoFlags.Length && torpedoFlags[i] != 0,
-                    bomb = i < bombFlags.Length && bombFlags[i] != 0;
-                if (torpedo && bomb) source = null;
-                else if (torpedo) source = torpedoSource;
-                else if (bomb) source = bombSource;
-                else continue;
+                ShipInBattle source = null;
+                if (torpedoSource != null && torpedoSource == bombSource) source = torpedoSource;
+                else
+                {
+                    // TODO: api bug
+                    bool torpedo = i < torpedoFlags.Length && torpedoFlags[i] != 0,
+                        bomb = i < bombFlags.Length && bombFlags[i] != 0;
+                    if (torpedo && bomb) source = null;
+                    else if (torpedo) source = torpedoSource;
+                    else if (bomb) source = bombSource;
+                    else if (damageList[i] == 0) continue;
+                }
                 var damage = Attack.ParseDamage(damageList[i]);
                 (var friend, var enemy) = direction ? (source, fleet[i]) : (fleet[i], source);
                 yield return new Attack
