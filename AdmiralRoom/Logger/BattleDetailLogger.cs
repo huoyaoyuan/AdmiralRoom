@@ -115,7 +115,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 date = today;
             }
             AddFleets();
-            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime:yyyy/M/dd h:mm:ss}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
+            File.AppendAllLines($@"logs\battlelog\{date:yyyy-MM-dd}.log", new[] { $"{{\"time\":\"{utctime:yyyy/M/dd H:mm:ss}\"{datastring.Replace(Environment.NewLine, string.Empty)}}}" });
             datastring = string.Empty;
         }
 
@@ -171,7 +171,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 }
                 else return null;
             }
-            return cacheList[index][utctime];
+            return cacheList[index][utctime] ?? cacheList[index][utctime.AddHours(-12)];
         }
         private static string FixBrokenLog(string input)
         {
