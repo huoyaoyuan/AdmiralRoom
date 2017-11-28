@@ -156,6 +156,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             api.api_escape_idx?.ForEach(x => Fleet1[x - 1].IsEscaped = true);
             api.api_escape_idx_combined?.ForEach(x => Fleet2[x - 1].IsEscaped = true);
 
+            if (api.api_n_support_info != null)
+                Support = new SupportAttack(this, api.api_n_support_info, api.api_n_support_flag);
             if (api.api_n_hougeki1 != null)
                 NightToDay1 = new FireCombat(this, api.api_n_hougeki1);
             if (api.api_n_hougeki2 != null)
@@ -212,7 +214,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         break;
                 }
             else
-                switch(fleettype)
+                switch (fleettype)
                 {
                     case CombinedFleetType.None:
                         if (api.api_hougeki1 != null)
@@ -250,8 +252,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
         public void NightBattle(sortie_battle api)
         {
-            if (api.api_n_support_info != null)
-                Support = new SupportAttack(this, api.api_n_support_info, api.api_n_support_flag);
             if (api.api_active_deck != null)
                 Night = new NightCombat(this, api, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
             else Night = new NightCombat(this, api, NightOrTorpedo, EnemyFleet);
