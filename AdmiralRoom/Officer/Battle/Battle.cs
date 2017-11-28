@@ -92,6 +92,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             Fleet1 = fleet1;
             Fleet2 = fleet2;
 
+            bool isEnemyCombined = battletype == MapNodeType.Combined || battletype == MapNodeType.CombinedBOSS;
+
             if (api.api_formation != null)
             {
                 FriendFormation = (Formation)api.api_formation[0];
@@ -174,14 +176,74 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 OpeningASW = new FireCombat(this, api.api_opening_taisen);
             if (api.api_opening_atack != null)
                 OpeningTorpedo = new TorpedoCombat(this, api.api_opening_atack);
-            if (api.api_hougeki1 != null)
-                FireStage1 = new FireCombat(this, api.api_hougeki1);
-            if (api.api_hougeki2 != null)
-                FireStage2 = new FireCombat(this, api.api_hougeki2);
-            if (api.api_hougeki3 != null)
-                FireStage3 = new FireCombat(this, api.api_hougeki3);
-            if (api.api_raigeki != null)
-                TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+            if (isEnemyCombined)
+                switch (fleettype)
+                {
+                    case CombinedFleetType.None:
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(this, api.api_hougeki1);
+                        if (api.api_raigeki != null)
+                            TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(this, api.api_hougeki2);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(this, api.api_hougeki3);
+                        break;
+                    case CombinedFleetType.Carrier:
+                    case CombinedFleetType.Transport:
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(this, api.api_hougeki1);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(this, api.api_hougeki2);
+                        if (api.api_raigeki != null)
+                            TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(this, api.api_hougeki3);
+                        break;
+                    case CombinedFleetType.Surface:
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(this, api.api_hougeki1);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(this, api.api_hougeki2);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(this, api.api_hougeki3);
+                        if (api.api_raigeki != null)
+                            TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+                        break;
+                }
+            else
+                switch(fleettype)
+                {
+                    case CombinedFleetType.None:
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(this, api.api_hougeki1);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(this, api.api_hougeki2);
+                        if (api.api_raigeki != null)
+                            TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+                        break;
+                    case CombinedFleetType.Carrier:
+                    case CombinedFleetType.Transport:
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(this, api.api_hougeki1);
+                        if (api.api_raigeki != null)
+                            TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(this, api.api_hougeki2);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(this, api.api_hougeki3);
+                        break;
+                    case CombinedFleetType.Surface:
+                        if (api.api_hougeki1 != null)
+                            FireStage1 = new FireCombat(this, api.api_hougeki1);
+                        if (api.api_hougeki2 != null)
+                            FireStage2 = new FireCombat(this, api.api_hougeki2);
+                        if (api.api_hougeki3 != null)
+                            FireStage3 = new FireCombat(this, api.api_hougeki3);
+                        if (api.api_raigeki != null)
+                            TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
+                        break;
+                }
             if (api.api_hougeki != null)
                 NightBattle(api);
             else EndApplyBattle();
