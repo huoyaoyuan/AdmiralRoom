@@ -26,7 +26,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public bool Direction { get; set; }
         public bool Shield { get; set; }
         private bool applied;
-        public void Apply(Battle battle = null)
+        public void Apply(Battle battle)
         {
             if (applied) return;
             applied = true;
@@ -68,12 +68,17 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     }
     public abstract class Stage
     {
-        public Attack[] Attacks { get; private set; }
-        public void ApplyAttacks(IEnumerable<Attack> attacks, Battle battle = null)
+        private readonly Battle battle;
+        private readonly List<Attack> attacks = new List<Attack>();
+        public IReadOnlyList<Attack> Attacks => attacks;
+
+        public Stage(Battle battle) => this.battle = battle;
+
+        protected void AddAttack(Attack attack)
         {
-            Attacks = attacks.Where(x => x.Damage >= 0).ToArray();
-            foreach (var attack in Attacks)
-                attack.Apply(battle);
+            if (attack.Damage < 0) return;
+            attack.Apply(battle);
+            attacks.Add(attack);
         }
     }
 
@@ -86,7 +91,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public LimitedValue EnemyStage1 { get; protected set; }
         public LimitedValue FriendStage2 { get; protected set; }
         public LimitedValue EnemyStage2 { get; protected set; }
-        protected AerialBase(sortie_battle.airbattle api)
+        protected AerialBase(Battle battle, sortie_battle.airbattle api) : base(battle)
         {
             if (api.api_stage1 != null)
             {
@@ -101,25 +106,21 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
         protected void ParseAttacks(Battle battle, sortie_battle.airbattle api, ShipInBattle friendtorpedo, ShipInBattle friendbomb, ShipInBattle enemytorpedo, ShipInBattle enemybomb)
         {
-            var result = Enumerable.Empty<Attack>();
-
             void ParseStage3(sortie_battle.airbattle.stage3 stage3, ShipInBattle[] friend, ShipInBattle[] enemy)
             {
                 if (stage3 == null) return;
                 if (stage3.api_fdam != null)
-                    result = result.Concat(ParseAttack(stage3.api_fdam, stage3.api_frai_flag, stage3.api_fbak_flag, stage3.api_fcl_flag,
-                        false, friend, enemytorpedo, enemybomb));
+                    ParseAttack(stage3.api_fdam, stage3.api_frai_flag, stage3.api_fbak_flag, stage3.api_fcl_flag,
+                        false, friend, enemytorpedo, enemybomb);
                 if (stage3.api_edam != null)
-                    result = result.Concat(ParseAttack(stage3.api_edam, stage3.api_erai_flag, stage3.api_ebak_flag, stage3.api_ecl_flag,
-                        true, enemy, friendtorpedo, friendbomb));
+                    ParseAttack(stage3.api_edam, stage3.api_erai_flag, stage3.api_ebak_flag, stage3.api_ecl_flag,
+                        true, enemy, friendtorpedo, friendbomb);
             }
 
             ParseStage3(api.api_stage3, battle.Fleet1, battle.EnemyFleet);
             ParseStage3(api.api_stage3_combined, battle.Fleet2, battle.EnemyFleet2);
-
-            ApplyAttacks(result, battle);
         }
-        private static IEnumerable<Attack> ParseAttack(decimal[] damageList, int[] torpedoFlags, int[] bombFlags, int[] criticalList, bool direction,
+        private void ParseAttack(decimal[] damageList, int[] torpedoFlags, int[] bombFlags, int[] criticalList, bool direction,
             ShipInBattle[] fleet, ShipInBattle torpedoSource, ShipInBattle bombSource)
         {
             for (int i = 0; i < damageList.Length; i++)
@@ -138,7 +139,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 }
                 var damage = Attack.ParseDamage(damageList[i]);
                 (var friend, var enemy) = direction ? (source, fleet[i]) : (fleet[i], source);
-                yield return new Attack
+                AddAttack(new Attack
                 {
                     Friend = friend,
                     Enemy = enemy,
@@ -146,7 +147,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     IsCritical = criticalList[i] == 2,
                     Damage = damage.damage,
                     Shield = damage.shield
-                };
+                });
             }
         }
     }
@@ -170,7 +171,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             }
         }
         public AntiAirCutin AntiAir { get; }
-        public AerialCombat(Battle battle, sortie_battle.airbattle api) : base(api)
+        public AerialCombat(Battle battle, sortie_battle.airbattle api) : base(battle, api)
         {
             if (api.api_stage1 != null)
             {
@@ -193,7 +194,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     }
     public class AerialSupport : AerialBase
     {
-        public AerialSupport(Battle battle, sortie_battle.airbattle api) : base(api)
+        public AerialSupport(Battle battle, sortie_battle.airbattle api) : base(battle, api)
         {
             if (api.api_stage1 != null)
                 AirControl = (AirControl)api.api_stage1.api_disp_seiku;
@@ -207,7 +208,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     }
     public class JetPlaneAttack : AerialBase
     {
-        public JetPlaneAttack(Battle battle, sortie_battle.airbattle api, bool isSupport) : base(api)
+        public JetPlaneAttack(Battle battle, sortie_battle.airbattle api, bool isSupport) : base(battle, api)
         {
             ShipInBattle friendjet = null, enemyjet = null;
             if (!isSupport)
@@ -231,7 +232,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         /// not works
         /// </summary>
         public Squadron[] SquadronList { get; }
-        public AirBaseAttack(Battle battle, sortie_battle.airbattle api) : base(api)
+        public AirBaseAttack(Battle battle, sortie_battle.airbattle api) : base(battle, api)
         {
             //SquadronList = api.api_squadron_plane.Select(x => new Squadron
             //{
@@ -249,10 +250,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     #region 砲雷撃戦
     public class FireCombat : Stage
     {
-        public FireCombat(Battle battle, sortie_battle.fire api)
+        public FireCombat(Battle battle, sortie_battle.fire api) : base(battle)
         {
             if (api.api_at_list == null) return;
-            var result = new List<Attack>();
             for (int i = 0; i < api.api_df_list.Length; i++)
             {
                 int sourceidx = api.api_at_list[i];
@@ -268,7 +268,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         battle.FindFriend(destidx);
                     var damage = Attack.ParseDamage(api.api_damage[i][j]);
                     (var friend, var enemy) = direction ? (source, dest) : (dest, source);
-                    result.Add(new Attack
+                    AddAttack(new Attack
                     {
                         Friend = friend,
                         Enemy = enemy,
@@ -279,20 +279,18 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     });
                 }
             }
-            ApplyAttacks(result);
         }
     }
     public class TorpedoCombat : Stage
     {
-        public TorpedoCombat(Battle battle, sortie_battle.torpedo api)
+        public TorpedoCombat(Battle battle, sortie_battle.torpedo api) : base(battle)
         {
-            var result = new List<Attack>();
             for (int i = 0; i < api.api_fydam.Length; i++)
             {
                 int target = api.api_frai[i];
                 if (target == -1) continue;
                 var damage = Attack.ParseDamage(api.api_fydam[i]);
-                result.Add(new Attack
+                AddAttack(new Attack
                 {
                     Friend = battle.FindFriend(i),
                     Enemy = battle.FindEnemy(target),
@@ -307,7 +305,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 int target = api.api_erai[i];
                 if (target == -1) continue;
                 var damage = Attack.ParseDamage(api.api_eydam[i]);
-                result.Add(new Attack
+                AddAttack(new Attack
                 {
                     Friend = battle.FindFriend(target),
                     Enemy = battle.FindEnemy(i),
@@ -317,7 +315,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                     IsCritical = api.api_ecl[i] == 2
                 });
             }
-            ApplyAttacks(result);
         }
     }
     public class NightCombat : FireCombat
@@ -380,7 +377,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     {
         public SupportType Type { get; }
         public AerialSupport Aerial { get; }
-        public SupportAttack(Battle battle, sortie_battle.support api, int type)
+        public SupportAttack(Battle battle, sortie_battle.support api, int type) : base(battle)
         {
             Type = (SupportType)type;
             if (Type == SupportType.Aerial || Type == SupportType.ASW)
@@ -388,12 +385,11 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             else
             {
                 if (api.api_support_hourai == null) return;
-                var result = new List<Attack>();
                 for (int i = 0; i < api.api_support_hourai.api_damage.Length; i++)
                 {
                     var damage = Attack.ParseDamage(api.api_support_hourai.api_damage[i]);
                     if (damage.damage == 0 && !damage.shield) continue;
-                    result.Add(new Attack
+                    AddAttack(new Attack
                     {
                         Friend = null,
                         Enemy = battle.FindEnemy(i),
@@ -403,7 +399,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                         IsCritical = api.api_support_hourai.api_cl_list[i] == 2
                     });
                 }
-                ApplyAttacks(result);
             }
         }
     }
