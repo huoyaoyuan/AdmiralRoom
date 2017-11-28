@@ -251,6 +251,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
     {
         public FireCombat(Battle battle, sortie_battle.fire api)
         {
+            if (api.api_at_list == null) return;
             var result = new List<Attack>();
             for (int i = 0; i < api.api_df_list.Length; i++)
             {
