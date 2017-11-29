@@ -34,6 +34,9 @@
         public class airbattle
         {
             public int api_base_id { get; set; }
+            /// <summary>
+            /// 1基
+            /// </summary>
             public int[][] api_plane_from { get; set; }
             public class squadron
             {

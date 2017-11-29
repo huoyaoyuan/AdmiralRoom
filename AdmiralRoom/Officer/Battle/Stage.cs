@@ -214,9 +214,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             if (!isSupport)
             {
                 if (api.api_plane_from[0]?.Length == 1 && api.api_plane_from[0][0] > 0)
-                    friendjet = battle.Fleet1[api.api_plane_from[0][0]];
+                    friendjet = battle.Fleet1[api.api_plane_from[0][0] - 1];
                 if (api.api_plane_from.Length >= 2 && api.api_plane_from[1]?.Length == 1 && api.api_plane_from[1][0] > 0)
-                    enemyjet = battle.EnemyFleet[api.api_plane_from[1][0]];
+                    enemyjet = battle.EnemyFleet[api.api_plane_from[1][0] - 1];
             }
             ParseAttacks(battle, api, null, friendjet, null, enemyjet);
         }
