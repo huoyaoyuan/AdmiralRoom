@@ -366,68 +366,73 @@
             <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Torpedo}"
                                     Visibility="{Binding Battle.TorpedoStage, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
                                     Content="{Binding Battle.TorpedoStage, Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Night}" DataContext="{Binding Battle.Night, Mode=OneTime}"
-                                    Visibility="{Binding Battle.Night, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"
-                               Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_NightTouch}"
-                               Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <Image Grid.Row="0" Grid.Column="1" Height="16"
-                           Source="{Binding FriendTouch.Icon, Mode=OneTime}"
-                           Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"
-                               Text="{Binding FriendTouch.Name, Mode=OneTime}"
-                               Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"
-                               Foreground="Red" Text="{ex:Localizable BattleDetail_NightTouch}"
-                               Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <Image Grid.Row="0" Grid.Column="4" Height="16"
-                           Source="{Binding EnemyTouch.Icon, Mode=OneTime}"
-                           Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left"
-                               Text="{Binding EnemyTouch.Name, Mode=OneTime}"
-                               Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"
-                               Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_FlareShip}"
-                               Visibility="{Binding FriendFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                               Text="{Binding FriendFlare.DisplayName, Mode=OneTime}"
-                               Visibility="{Binding FriendFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
-                               Foreground="Red" Text="{ex:Localizable BattleDetail_FlareShip}"
-                               Visibility="{Binding EnemyFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                               Text="{Binding EnemyFlare.DisplayName, Mode=OneTime}"
-                               Visibility="{Binding EnemyFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"
-                               Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_LightShip}"
-                               Visibility="{Binding FriendLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                               Text="{Binding FriendLight.DisplayName, Mode=OneTime}"
-                               Visibility="{Binding FriendLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"
-                               Foreground="Red" Text="{ex:Localizable BattleDetail_LightShip}"
-                               Visibility="{Binding EnemyLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
-                               Text="{Binding EnemyLight.DisplayName, Mode=OneTime}"
-                               Visibility="{Binding EnemyLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
-                    <ContentPresenter Grid.Row="3" Grid.ColumnSpan="6"
-                                      Content="{Binding Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
-                </Grid>
+            <HeaderedContentControl Header="{ex:Localizable BattleDetail_Stage_Night}"
+                                    Visibility="{Binding Battle.Night, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"
+                                    Content="{Binding Battle.Night, Mode=OneTime}">
+                <HeaderedContentControl.ContentTemplate>
+                    <DataTemplate DataType="{x:Type battle:NightCombat}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"
+                                       Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_NightTouch}"
+                                       Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <Image Grid.Row="0" Grid.Column="1" Height="16"
+                                   Source="{Binding FriendTouch.Icon, Mode=OneTime}"
+                                   Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"
+                                   Text="{Binding FriendTouch.Name, Mode=OneTime}"
+                                   Visibility="{Binding FriendTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"
+                                   Foreground="Red" Text="{ex:Localizable BattleDetail_NightTouch}"
+                                   Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <Image Grid.Row="0" Grid.Column="4" Height="16"
+                                   Source="{Binding EnemyTouch.Icon, Mode=OneTime}"
+                                   Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left"
+                                       Text="{Binding EnemyTouch.Name, Mode=OneTime}"
+                                       Visibility="{Binding EnemyTouch, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"
+                                       Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_FlareShip}"
+                                       Visibility="{Binding FriendFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                                       Text="{Binding FriendFlare.DisplayName, Mode=OneTime}"
+                                       Visibility="{Binding FriendFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"
+                                       Foreground="Red" Text="{ex:Localizable BattleDetail_FlareShip}"
+                                       Visibility="{Binding EnemyFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                                       Text="{Binding EnemyFlare.DisplayName, Mode=OneTime}"
+                                       Visibility="{Binding EnemyFlare, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"
+                                       Foreground="MediumSeaGreen" Text="{ex:Localizable BattleDetail_LightShip}"
+                                       Visibility="{Binding FriendLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                                       Text="{Binding FriendLight.DisplayName, Mode=OneTime}"
+                                       Visibility="{Binding FriendLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"
+                                       Foreground="Red" Text="{ex:Localizable BattleDetail_LightShip}"
+                                       Visibility="{Binding EnemyLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                                       Text="{Binding EnemyLight.DisplayName, Mode=OneTime}"
+                                       Visibility="{Binding EnemyLight, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}"/>
+                            <ContentPresenter Grid.Row="3" Grid.ColumnSpan="6"
+                                              Content="{Binding Mode=OneTime}" ContentTemplate="{StaticResource StageTemplate}"/>
+                        </Grid>
+                    </DataTemplate>
+                </HeaderedContentControl.ContentTemplate>
             </HeaderedContentControl>
         </StackPanel>
     </ScrollViewer>
