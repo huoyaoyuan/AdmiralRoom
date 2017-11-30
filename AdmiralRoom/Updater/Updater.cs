@@ -83,7 +83,6 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         }
         public Timer Timer { get; } = new Timer(3600 * 12 * 1000);
         public static Updater Instance { get; } = new Updater();
-        public static readonly string[] ProtectedFolders = { "logs", "information", "modules", "sound" };
         private Uri updateurl;
         private string downloadfilename;
 
@@ -208,13 +207,10 @@ namespace Huoyaoyuan.AdmiralRoom.Updater
         {
             Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
             var rootfolder = new DirectoryInfo(".");
-            foreach (var file in rootfolder.GetFiles())
-                if (!file.Name.EndsWith(".xml") && file.Name != downloadfilename)
-                    file.MoveTo(file.FullName + ".old");
-            foreach (var folder in rootfolder.GetDirectories())
-                if (!ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
-                    foreach (var file in folder.GetFiles())
-                        file.MoveTo(file.FullName + ".old");
+            foreach (var file in rootfolder.GetFiles("*.exe", SearchOption.AllDirectories)
+                                           .Concat(rootfolder.GetFiles("*.dll", SearchOption.AllDirectories))
+                                           .Concat(rootfolder.GetFiles("*.config", SearchOption.AllDirectories)))
+                file.MoveTo(file.FullName + ".old");
             using (var zip = ZipFile.OpenRead(downloadfilename))
                 foreach (var entry in zip.Entries)
                 {

@@ -23,13 +23,6 @@ namespace Huoyaoyuan.AdmiralRoom
                 if (file.Name.EndsWith(".xml.old"))
                     file.MoveTo(file.FullName.Replace(".old", ""));
                 else file.Delete();
-            foreach (var folder in rootfolder.GetDirectories())
-                if (!Updater.Updater.ProtectedFolders.Contains(folder.Name.ToLowerInvariant()))
-                    try
-                    {
-                        folder.Delete();
-                    }
-                    catch { }
 
             Win32Helper.SetIEEmulation(11001);
             Win32Helper.SetGPURendering(true);
