@@ -27,7 +27,7 @@
             /// <summary>
             /// api_rate
             /// </summary>
-            public int api_wuhnhojjxmke { get; set; }
+            public long api_wuhnhojjxmke { get; set; }
             //public int api_flag { get; set; }
             //public int api_medals { get; set; }
         }

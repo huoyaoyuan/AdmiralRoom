@@ -106,11 +106,11 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 }
             }
         }
-        private static DateTime ApiDate = new DateTime(2016, 11, 4);
-        private static int[] magic = { 20, 25, 49, 49, 54, 66, 73, 63, 67, 96 };
-        private static int[] magic_r = { 8831, 1201, 1175, 555, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6569 };
+        private static DateTime ApiDate = new DateTime(2017, 11, 30);
+        private static int[] magic = { 80, 64, 60, 81, 87, 56, 51, 96, 90, 50 };
+        private static int[] magic_r = { 8931, 1201, 1156, 5061, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6586 };
         private int DecodeRate(ranking_getlist.ranking_list api)
-            => api.api_wuhnhojjxmke / magic_r[api.api_mxltvkpyuklh % 13] / magic[Staff.Current.Admiral.MemberID % 10] - 91;
+            => (int)(api.api_wuhnhojjxmke / magic_r[api.api_mxltvkpyuklh % 13] / magic[Staff.Current.Admiral.MemberID % 10]) - 91;
 
         private void OnExpChanged(object sender, PropertyChangedEventArgs e)
         {
