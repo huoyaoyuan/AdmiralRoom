@@ -1225,7 +1225,7 @@
     <EnhancementInfo EquipId="40" CostItem1="0" CostItem2="30" CostItem3="20" CostItem4="10">
         <EnhancementInfo.Secretaries>
             <SecretaryInfo WeekDays="14" Secratary="五十鈴" RedText="改二"/>
-            <SecretaryInfo WeekDays="15" Secratary="摩耶" RedText="改二"/>
+            <SecretaryInfo WeekDays="31" Secratary="摩耶" RedText="改二"/>
             <SecretaryInfo WeekDays="6" Secratary="鬼怒" RedText="改二"/>
             <SecretaryInfo WeekDays="24" Secratary="皐月" RedText="改二"/>
         </EnhancementInfo.Secretaries>
@@ -1239,7 +1239,7 @@
     </EnhancementInfo>
     <EnhancementInfo EquipId="40" CostItem1="0" CostItem2="30" CostItem3="20" CostItem4="10">
         <EnhancementInfo.Secretaries>
-            <SecretaryInfo WeekDays="28" Secratary="摩耶" RedText="改二不可"/>
+            <SecretaryInfo WeekDays="28" Secratary="摩耶"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
             <RangeInfo CostDevelopment="1" CostDevelopmentConfirmed="2" CostImprovement="1" CostImprovementConfirmed="1"/>
@@ -1249,7 +1249,7 @@
     </EnhancementInfo>
     <EnhancementInfo EquipId="131" CostItem1="0" CostItem2="90" CostItem3="90" CostItem4="150">
         <EnhancementInfo.Secretaries>
-            <SecretaryInfo WeekDays="112" Secratary="摩耶" RedText="改二"/>
+            <SecretaryInfo WeekDays="28" Secratary="摩耶" RedText="改二"/>
             <SecretaryInfo WeekDays="97" Secratary="鬼怒" RedText="改二"/>
         </EnhancementInfo.Secretaries>
         <EnhancementInfo.Ranges>
