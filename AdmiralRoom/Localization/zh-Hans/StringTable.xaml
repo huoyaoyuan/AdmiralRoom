@@ -339,6 +339,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Update_Text_UpdateFile">更新已完成下载。</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Update_UsingProxy">使用代理进行更新</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_AdmiralView">司令部</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BattleDetail">战斗详情</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BattleView">战况</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BuildingView">建造</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_CompassView">罗盘</s:String>

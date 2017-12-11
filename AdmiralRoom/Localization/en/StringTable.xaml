@@ -339,6 +339,7 @@ Expedition {1} - {2}</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Update_Text_UpdateFile">Update downloaded.</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Update_UsingProxy">Update using proxy</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_AdmiralView">Admiral</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BattleDetail">Battle Detail</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BattleView">Battle</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BuildingView">Building</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_CompassView">Compass</s:String>

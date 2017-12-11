@@ -1102,6 +1102,9 @@
   <data name="ViewTitle_AdmiralView" xml:space="preserve">
     <value>司令部</value>
   </data>
+  <data name="ViewTitle_BattleDetail" xml:space="preserve">
+    <value>戦闘詳報</value>
+  </data>
   <data name="ViewTitle_BattleView" xml:space="preserve">
     <value>戦況</value>
   </data>

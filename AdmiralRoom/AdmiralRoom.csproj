@@ -319,8 +319,8 @@
     <Compile Include="Views\Standalone\BattleCatalog.xaml.cs">
       <DependentUpon>BattleCatalog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Standalone\BattleDetail.xaml.cs">
-      <DependentUpon>BattleDetail.xaml</DependentUpon>
+    <Compile Include="Views\Standalone\BattleDetailView.xaml.cs">
+      <DependentUpon>BattleDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Standalone\BattleDropLogViewWindow.cs" />
     <Compile Include="Views\Standalone\EquipmentCatalog.xaml.cs">
@@ -453,7 +453,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Standalone\BattleDetail.xaml">
+    <Page Include="Views\Standalone\BattleDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

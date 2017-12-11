@@ -1345,6 +1345,10 @@
         ///</summary>
         public static string ViewTitle_AdmiralView => ResourceService.GetString("ViewTitle_AdmiralView");
         ///<summary>
+        ///   查找类似 战斗详情 的本地化字符串。
+        ///</summary>
+        public static string ViewTitle_BattleDetail => ResourceService.GetString("ViewTitle_BattleDetail");
+        ///<summary>
         ///   查找类似 战况 的本地化字符串。
         ///</summary>
         public static string ViewTitle_BattleView => ResourceService.GetString("ViewTitle_BattleView");

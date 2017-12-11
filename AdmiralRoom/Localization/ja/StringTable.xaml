@@ -333,6 +333,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_Update_Text_UpdateFile">更新ダウンロード完了。</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_Update_UsingProxy">プロキシを使用しての更新します</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_AdmiralView">司令部</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BattleDetail">戦闘詳報</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BattleView">戦況</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_BuildingView">建造</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_ViewTitle_CompassView">羅針盤</s:String>

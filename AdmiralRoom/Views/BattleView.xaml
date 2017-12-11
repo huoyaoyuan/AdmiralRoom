@@ -213,12 +213,17 @@
                             <Run Text="{Binding Battle.CurrentBattle.AnonymousEnemyDamage, Mode=OneWay}"/>
                         </TextBlock>
                     </Grid>
-                    <CheckBox Grid.Row="3" Margin="2,0,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{ex:Localizable Battle_Drop}"/>
-                            <TextBlock Visibility="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}, Converter={StaticResource VisibilityConverter}}" Text="{Binding Battle.CurrentBattle.GetShip}"/>
-                        </StackPanel>
-                    </CheckBox>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button Margin="2,0,0,0"
+                                Content="{ex:Localizable ViewTitle_BattleDetail}" Click="ShowBattleDetail"
+                                IsEnabled="{Binding Battle.CurrentBattle.IsBattling}"/>
+                        <CheckBox Margin="2,0,0,0" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{ex:Localizable Battle_Drop}"/>
+                                <TextBlock Visibility="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}, Converter={StaticResource VisibilityConverter}}" Text="{Binding Battle.CurrentBattle.GetShip}"/>
+                            </StackPanel>
+                        </CheckBox>
+                    </StackPanel>
                 </Grid>
             </ScrollViewer>
         </TabItem>
