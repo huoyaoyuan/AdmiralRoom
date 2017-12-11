@@ -10,7 +10,7 @@ function Main
         $bin = '..\AdmiralRoom\bin\'
  
         $targetKeywords = '*.exe','*.dll','*.exe.config','*.json'
-        $ignoreKeywords ='Xceed.Wpf.AvalonDock.resources.dll','BasicFormatsForCore.dll','BCMakeCert.dll','CertMaker.dll','Microsoft.WindowsAPICodePack.ShellExtensions.dll','Xceed.Wpf.DataGrid.dll','Xceed.Wpf.Toolkit.dll'
+        $ignoreKeywords ='Xceed.Wpf.AvalonDock.resources.dll','BasicFormatsForCore.dll','BCMakeCert.dll','CertMaker.dll','Microsoft.WindowsAPICodePack.ShellExtensions.dll','Xceed.Wpf.DataGrid.dll','Xceed.Wpf.Toolkit.dll','Xceed.Wpf.AvalonDock.Themes.Aero.dll','Xceed.Wpf.AvalonDock.Themes.Metro.dll','Xceed.Wpf.AvalonDock.Themes.VS2010.dll'
  
         $exeSource  = 'AdmiralRoom.exe'
 
