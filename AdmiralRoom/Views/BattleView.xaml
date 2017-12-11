@@ -11,7 +11,7 @@
              xmlns:meowtrix="urn:meowtrix"
              DataContext="{x:Static officer:Staff.Current}"
              mc:Ignorable="d">
-    <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
+    <TabControl Style="{StaticResource YesNoTabControlKey}">
         <TabItem Header="{ex:Localizable Predict_Enable}" Background="SpringGreen">
             <ScrollViewer Visibility="{Binding Battle.CurrentBattle, Converter={StaticResource NullToVisibilityConverter}}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Grid HorizontalAlignment="Left">

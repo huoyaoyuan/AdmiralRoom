@@ -11,7 +11,7 @@
              DataContext="{x:Static officer:Staff.Current}"
              d:DesignHeight="300" d:DesignWidth="300"
              mc:Ignorable="d">
-    <TabControl SelectedIndex="1" Style="{StaticResource YesNoTabControlKey}">
+    <TabControl Style="{StaticResource YesNoTabControlKey}">
         <TabItem Background="SpringGreen" Header="{ex:Localizable Predict_Enable}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <StackPanel d:DataContext="{d:DesignInstance battle:BattleManager}"
