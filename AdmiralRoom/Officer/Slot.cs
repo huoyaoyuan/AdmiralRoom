@@ -206,8 +206,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     }
     public struct AirFightPower
     {
-        public double TotalMin => Raw + BonusMin;
-        public double TotalMax => Raw + BonusMax;
+        public double TotalMin { get; private set; }
+        public double TotalMax { get; private set; }
         public double FighterMin => FighterRaw + FighterBonusMin;
         public double FighterMax => FighterRaw + FighterBonusMax;
         public double Raw => FighterRaw + BomberRaw;
@@ -227,7 +227,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 FighterBonusMin = a.FighterBonusMin + b.FighterBonusMin,
                 FighterBonusMax = a.FighterBonusMax + b.FighterBonusMax,
                 BomberBonusMin = a.BomberBonusMin + b.BomberBonusMin,
-                BomberBonusMax = a.BomberBonusMax + b.BomberBonusMax
+                BomberBonusMax = a.BomberBonusMax + b.BomberBonusMax,
+                TotalMin = Math.Floor(a.TotalMin) + Math.Floor(b.TotalMin),
+                TotalMax = Math.Floor(a.TotalMax) + Math.Floor(b.TotalMax)
             };
         public AirFightPower(bool isfighter, double raw, double bonusmin, double bonusmax)
         {
@@ -249,6 +251,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                 BomberBonusMin = bonusmin;
                 BomberBonusMax = bonusmax;
             }
+            TotalMin = raw + bonusmin;
+            TotalMax = raw + bonusmax;
         }
     }
 }
