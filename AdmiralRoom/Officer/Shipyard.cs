@@ -136,7 +136,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         }
         private void DestroyShipHandler(NameValueCollection req, kousyou_destroyship api)
         {
-            Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[req.GetInt("api_ship_id")]);
+            foreach (int id in req.GetInts("api_ship_id"))
+                Staff.Current.Homeport.RemoveShip(Staff.Current.Homeport.Ships[id]);
             Staff.Current.Homeport.Material.UpdateMaterial(api.api_material);
         }
         private void DestroyItemHandler(NameValueCollection req, kousyou_destroyitem2 api)
