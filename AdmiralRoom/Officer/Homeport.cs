@@ -140,7 +140,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             Staff.Current.Admiral.EquipCount = Equipments.Count;
         }
 
-        public void RemoveShip(Ship ship)
+        public void RemoveShip(Ship ship, bool removeEquip = true)
         {
             var infleet = ship.InFleet;
             if (infleet != null)
@@ -149,11 +149,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                     infleet.Ships?.Remove(ship);
                     infleet.UpdateStatus();
                 });
-            foreach (var slot in ship.Slots)
-                if (slot.HasItem)
-                    Equipments.Remove(slot.Item);
-            if (ship.SlotEx.HasItem)
-                Equipments.Remove(ship.SlotEx.Item);
+            if (removeEquip)
+            {
+                foreach (var slot in ship.Slots)
+                    if (slot.HasItem)
+                        Equipments.Remove(slot.Item);
+                if (ship.SlotEx.HasItem)
+                    Equipments.Remove(ship.SlotEx.Item);
+            }
             Ships.Remove(ship);
             UpdateCounts();
         }
