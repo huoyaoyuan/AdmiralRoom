@@ -34,13 +34,13 @@
                       Width="5"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Stretch"/>
-        <ex:TabControlEx Grid.RowSpan="2" Grid.Column="3">
-            <TabItem Header="Text">
+        <ex:TabControlEx Grid.RowSpan="2" Grid.Column="3" FontFamily="Consolas">
+            <TabItem Header="Response/Text">
                 <TextBox Text="{Binding SelectedItem.Session.Response, Mode=OneWay}"
-                         FontFamily="Consolas" TextWrapping="Wrap"
+                         TextWrapping="Wrap"
                          IsReadOnly="True" AcceptsReturn="True"/>
             </TabItem>
-            <TabItem Header="Json">
+            <TabItem Header="Response/Json">
                 <TreeView ItemsSource="{Binding SelectedJTokens}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Converter={StaticResource JsonConverter}, ConverterParameter=Children}">
@@ -48,6 +48,11 @@
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
                 </TreeView>
+            </TabItem>
+            <TabItem Header="Request">
+                <TextBox Text="{Binding SelectedItem.Session.Request, Mode=OneWay}"
+                         TextWrapping="Wrap"
+                         IsReadOnly="True" AcceptsReturn="True"/>
             </TabItem>
         </ex:TabControlEx>
     </Grid>
