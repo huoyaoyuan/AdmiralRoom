@@ -3,6 +3,10 @@
 
 An open source browser-like tool for KanColle.
 
+## Obsolete
+
+This project is going to be obsolete. Further development collaborates with [Intelligent Navel Gun](https://github.com/amatukaze).
+
 ## Features
 ---
 
