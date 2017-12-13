@@ -96,11 +96,12 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 }
                 if (player.api_mtjmdcwtvhdr == Staff.Current.Admiral.Nickname && player.api_itbrdpdbkynm == Staff.Current.Admiral.Comment)
                 {
-                    if (MyLastPoint != rate || MyRank != player.api_mxltvkpyuklh)
+                    if (myLastPoint != rate || MyRank != player.api_mxltvkpyuklh)
                     {
                         MyRank = player.api_mxltvkpyuklh;
-                        MyLastPoint = rate;
+                        myLastPoint = rate;
                         myLastExp = myLastExpStore;
+                        OnPropertyChanged(nameof(MyDiff));
                         OnPropertyChanged(nameof(MyPoint));
                     }
                 }
@@ -126,6 +127,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                 myExp = (sender as Admiral).Exp.Current;
                 if (myLastExp == 0) myLastExp = myLastExpStore = myExp;
                 lastExpUpdateTime = time;
+                OnPropertyChanged(nameof(MyDiff));
                 OnPropertyChanged(nameof(MyPoint));
             }
         }
@@ -150,7 +152,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                     Number500 = new RankRecord { Point = int.Parse(line[0]), Diff = int.Parse(line[1]) };
                     line = reader.ReadLine().Split(',');
                     MyRank = int.Parse(line[0]);
-                    MyLastPoint = int.Parse(line[1]);
+                    myLastPoint = int.Parse(line[1]);
                     myLastExp = int.Parse(line[2]);
                     myLastExpStore = int.Parse(line[3]);
                     myExp = int.Parse(line[4]);
@@ -171,7 +173,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
                     writer.WriteLine($"{Number20.Point},{Number20.Diff}");
                     writer.WriteLine($"{Number100.Point},{Number100.Diff}");
                     writer.WriteLine($"{Number500.Point},{Number500.Diff}");
-                    writer.WriteLine($"{MyRank},{MyLastPoint},{myLastExp},{myLastExpStore},{myExp}");
+                    writer.WriteLine($"{MyRank},{myLastPoint},{myLastExp},{myLastExpStore},{myExp}");
                     writer.Flush();
                 }
             }
@@ -265,23 +267,11 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
         }
         #endregion
 
-        #region MyLastPoint
-        private int _mylastpoint;
-        public int MyLastPoint
-        {
-            get { return _mylastpoint; }
-            set
-            {
-                if (_mylastpoint != value)
-                {
-                    _mylastpoint = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        #endregion
+        private int myLastPoint;
 
-        public double MyPoint => MyLastPoint + (myExp - myLastExp) / 1428.0;
+        public double MyDiff => (myExp - myLastExp) * 7 / 10000;
+
+        public int MyPoint => myLastPoint + (int)MyDiff;
 
         private int myLastExp;
         private int myLastExpStore;

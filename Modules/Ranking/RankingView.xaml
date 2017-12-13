@@ -43,7 +43,14 @@
         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Number500.Point}"/>
         <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Number500.Diff, StringFormat=(↑{0})}"/>
         <TextBlock Grid.Row="5" Text="MyRank"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding MyPoint, StringFormat={}{0:F2}}"/>
+        <TextBlock Grid.Row="5" Grid.Column="1">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}(+{1:F2})">
+                    <Binding Path="MyPoint"/>
+                    <Binding Path="MyDiff"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
         <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding MyRank, StringFormat=(#{0})}"/>
 
         <TextBlock Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
