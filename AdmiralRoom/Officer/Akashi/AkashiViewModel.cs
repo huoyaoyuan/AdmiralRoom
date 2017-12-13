@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Huoyaoyuan.AdmiralRoom.Officer;
 using Meowtrix.ComponentModel;
 
-namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
+namespace Huoyaoyuan.AdmiralRoom.Officer.Akashi
 {
     class AkashiViewModel : NotificationObject
     {
@@ -28,7 +27,7 @@ namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
 
         public IReadOnlyList<EnhancementInfo> TodayInfo => AllInfo.Select(x => x.CopyOfWeekDay(WeekDay)).Where(x => x.Secretaries.Any()).ToArray();
         private readonly IReadOnlyList<EnhancementInfo> AllInfo
-            = (IReadOnlyList<EnhancementInfo>)Application.LoadComponent(new Uri("Akashi;component/AkashiData.xaml", UriKind.Relative));
+            = (IReadOnlyList<EnhancementInfo>)Application.LoadComponent(new Uri("AdmiralRoom;component/Officer/Akashi/AkashiData.xaml", UriKind.Relative));
     }
     class EnhancementInfo
     {

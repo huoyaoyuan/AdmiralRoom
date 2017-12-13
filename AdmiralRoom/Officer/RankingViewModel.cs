@@ -2,10 +2,9 @@
 using System.ComponentModel;
 using System.IO;
 using Huoyaoyuan.AdmiralRoom.API;
-using Huoyaoyuan.AdmiralRoom.Officer;
 using Meowtrix.ComponentModel;
 
-namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
+namespace Huoyaoyuan.AdmiralRoom.Officer
 {
     class RankingViewModel : NotificationObject
     {

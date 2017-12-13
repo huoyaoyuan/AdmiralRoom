@@ -1,7 +1,6 @@
-﻿using Huoyaoyuan.AdmiralRoom;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
-namespace RawApiViewer
+namespace Huoyaoyuan.AdmiralRoom.Models
 {
     class ApiModel
     {

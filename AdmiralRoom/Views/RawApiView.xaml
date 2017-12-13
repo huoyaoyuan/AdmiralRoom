@@ -1,15 +1,16 @@
-﻿<UserControl x:Class="RawApiViewer.RawApiView"
+﻿<UserControl x:Class="Huoyaoyuan.AdmiralRoom.Views.RawApiView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:RawApiViewer"
+             xmlns:officer="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer"
+             xmlns:converters="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Converter"
              xmlns:ex="urn:controlzex"
              d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{x:Static local:RawApiViewModel.Instance}"
+             DataContext="{x:Static officer:RawApi.Instance}"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <local:JsonConverter x:Key="JsonConverter"/>
+        <converters:JsonConverter x:Key="JsonConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

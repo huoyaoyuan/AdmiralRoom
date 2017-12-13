@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Huoyaoyuan.AdmiralRoom;
-using Huoyaoyuan.AdmiralRoom.Officer;
+using Huoyaoyuan.AdmiralRoom.Models;
 using Meowtrix.ComponentModel;
 using Newtonsoft.Json.Linq;
 
-namespace RawApiViewer
+namespace Huoyaoyuan.AdmiralRoom.Officer
 {
-    class RawApiViewModel : NotificationObject
+    class RawApi : NotificationObject
     {
-        public static RawApiViewModel Instance { get; } = new RawApiViewModel();
-        private RawApiViewModel()
+        public static RawApi Instance { get; } = new RawApi();
+        private RawApi()
         {
             Staff.API("").Subscribe(AddSession);
         }

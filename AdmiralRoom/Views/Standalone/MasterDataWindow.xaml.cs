@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
-namespace Huoyaoyuan.AdmiralRoom.Modules.MasterDataViewer
+namespace Huoyaoyuan.AdmiralRoom.Views
 {
     /// <summary>
     /// MasterDataWindow.xaml 的交互逻辑

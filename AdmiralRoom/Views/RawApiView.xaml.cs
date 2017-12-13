@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
-namespace RawApiViewer
+namespace Huoyaoyuan.AdmiralRoom.Views
 {
     /// <summary>
     /// RawApiView.xaml 的交互逻辑

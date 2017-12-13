@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
-namespace Huoyaoyuan.AdmiralRoom.Modules.Ranking
+namespace Huoyaoyuan.AdmiralRoom.Views
 {
     /// <summary>
     /// RankingView.xaml 的交互逻辑

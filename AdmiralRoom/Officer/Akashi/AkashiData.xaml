@@ -1,4 +1,4 @@
-﻿<x:Array xmlns="clr-namespace:Huoyaoyuan.AdmiralRoom.Modules.Akashi"
+﻿<x:Array xmlns="clr-namespace:Huoyaoyuan.AdmiralRoom.Officer.Akashi"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          Type="{x:Type EnhancementInfo}">
     <EnhancementInfo EquipId="2" CostItem1="10" CostItem2="30" CostItem3="60" CostItem4="0">

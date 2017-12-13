@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using Newtonsoft.Json.Linq;
 
-namespace RawApiViewer
+namespace Huoyaoyuan.AdmiralRoom.Views.Converter
 {
     class JsonConverter : IValueConverter
     {

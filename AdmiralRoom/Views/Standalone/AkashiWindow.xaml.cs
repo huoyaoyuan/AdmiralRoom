@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using Huoyaoyuan.AdmiralRoom.Composition;
 
-namespace Huoyaoyuan.AdmiralRoom.Modules.Akashi
+namespace Huoyaoyuan.AdmiralRoom.Views.Standalone
 {
     /// <summary>
     /// AkashiWindow.xaml 的交互逻辑

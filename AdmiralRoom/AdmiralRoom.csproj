@@ -142,6 +142,7 @@
     <Compile Include="API\map_start_next.cs" />
     <Compile Include="API\mission_result.cs" />
     <Compile Include="API\port_port.cs" />
+    <Compile Include="API\ranking_getlist.cs" />
     <Compile Include="API\req_getship.cs" />
     <Compile Include="API\sortie_battle.old.cs" />
     <Compile Include="API\sortie_battle.cs" />
@@ -160,13 +161,17 @@
     <Compile Include="Logger\BattleDetail.old.cs" />
     <Compile Include="Logger\BattleDetail.cs" />
     <Compile Include="Logger\IBattleDetail.cs" />
+    <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Notifier\MessageBoxNotifierFactory.cs" />
     <Compile Include="Notifier\NotifierFactory.cs" />
+    <Compile Include="Officer\Akashi\AkashiViewModel.cs" />
     <Compile Include="Officer\Battle\InBattle.cs" />
     <Compile Include="Officer\Battle\Old\Battle.cs" />
     <Compile Include="Officer\Battle\Old\Stage.cs" />
     <Compile Include="Officer\Battle\Stage.cs" />
     <Compile Include="Officer\General\IdentifiableEqualityComparer.cs" />
+    <Compile Include="Officer\RankingViewModel.cs" />
+    <Compile Include="Officer\RawApi.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Composition\IModuleMetadata.cs" />
     <Compile Include="Composition\ISubView.cs" />
@@ -275,6 +280,9 @@
     <Compile Include="Views\AdmiralView.xaml.cs">
       <DependentUpon>AdmiralView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Standalone\AkashiWindow.xaml.cs">
+      <DependentUpon>AkashiWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BattleView.xaml.cs">
       <DependentUpon>BattleView.xaml</DependentUpon>
     </Compile>
@@ -287,6 +295,7 @@
     <Compile Include="Views\Converter\CondColorConverter.cs" />
     <Compile Include="Views\Converter\DateTimeOffsetConverter.cs" />
     <Compile Include="Views\Converter\EnumVisibilityConverter.cs" />
+    <Compile Include="Views\Converter\JsonConverter.cs" />
     <Compile Include="Views\Converter\LVColorConverter.cs" />
     <Compile Include="Views\Converter\NullToVisibilityConverter.cs" />
     <Compile Include="Views\Converter\RadioButtonConverter.cs" />
@@ -310,6 +319,12 @@
     <Compile Include="Views\QuestOverview.xaml.cs">
       <DependentUpon>QuestOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RankingView.xaml.cs">
+      <DependentUpon>RankingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RawApiView.xaml.cs">
+      <DependentUpon>RawApiView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RepairView.xaml.cs">
       <DependentUpon>RepairView.xaml</DependentUpon>
     </Compile>
@@ -329,6 +344,9 @@
     <Compile Include="Views\Standalone\LoggerExports.cs" />
     <Compile Include="Views\Standalone\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Standalone\MasterDataWindow.xaml.cs">
+      <DependentUpon>MasterDataWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Standalone\MaterialCatalog.xaml.cs">
       <DependentUpon>MaterialCatalog.xaml</DependentUpon>
@@ -385,6 +403,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Officer\Akashi\AkashiData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>AkashiData.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Designer</SubType>
+      <DesignTime>True</DesignTime>
+    </Page>
     <Page Include="Resources\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -408,6 +433,10 @@
     <Page Include="Views\AdmiralView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Standalone\AkashiWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BattleView.xaml">
       <SubType>Designer</SubType>
@@ -441,6 +470,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RankingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RawApiView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\RepairView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -464,6 +501,10 @@
     <Page Include="Views\Standalone\LogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Standalone\MasterDataWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Standalone\MaterialCatalog.xaml">
       <SubType>Designer</SubType>
@@ -585,6 +626,11 @@
     <Content Include="Localization\zh-Hans\StringTable.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>StringTable.xaml</LastGenOutput>
+    </Content>
+    <Resource Include="Officer\Akashi\AkashiData.txt" />
+    <Content Include="Officer\Akashi\AkashiData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AkashiData.xaml</LastGenOutput>
     </Content>
     <Content Include="Officer\StaticCounters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
