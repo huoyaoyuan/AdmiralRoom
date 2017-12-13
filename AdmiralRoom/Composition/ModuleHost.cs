@@ -11,15 +11,7 @@ namespace Huoyaoyuan.AdmiralRoom.Composition
     {
         private ModuleHost()
         {
-            var a = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            ComposablePartCatalog catalog;
-            try
-            {
-                var d = new DirectoryCatalog("modules");
-                catalog = new AggregateCatalog(a, d);
-            }
-            catch { catalog = a; }
-            container = new CompositionContainer(catalog);
+            container = new CompositionContainer(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             container.ComposeParts(this);
         }
         public static ModuleHost Instance { get; } = new ModuleHost();
