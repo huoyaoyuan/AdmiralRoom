@@ -268,7 +268,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         private int myLastPoint;
 
-        public double MyDiff => (myExp - myLastExp) * 7 / 10000;
+        public double MyDiff => (myExp - myLastExp) * 7.0 / 10000;
 
         public int MyPoint => myLastPoint + (int)MyDiff;
 
