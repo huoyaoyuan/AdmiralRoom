@@ -69,6 +69,7 @@ namespace Huoyaoyuan.AdmiralRoom
             Officer.Staff.Stop();
             Config.Current.Save();
             Officer.Staff.Current.Quests.Save();
+            Officer.RankingViewModel.Instance.Save();
             (NotifierFactories.Current as IDisposable)?.Dispose();
             ModuleHost.Instance.Dispose();
         }
