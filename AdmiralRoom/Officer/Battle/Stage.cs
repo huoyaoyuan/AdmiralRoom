@@ -263,6 +263,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 for (int j = 0; j < api.api_df_list[i].Length; j++)
                 {
                     int destidx = api.api_df_list[i][j];
+                    if (destidx == -1) continue;
                     var dest = direction ?
                         battle.FindEnemy(destidx) :
                         battle.FindFriend(destidx);
