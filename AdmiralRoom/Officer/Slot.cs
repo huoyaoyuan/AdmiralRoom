@@ -165,14 +165,13 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                                 break;
                             case 9://艦上偵察機
                             case 94://艦上偵察機(II)
-                                factor = 1.0;
-                                break;
                             case 10://水上偵察機
                                 factor = 1.2;
                                 improvementfactor = 1.2;
                                 break;
                             case 11://水上爆撃機
                                 factor = 1.1;
+                                improvementfactor = 1.15;
                                 break;
                             case 6://艦上戦闘機
                             case 7://艦上爆撃機
@@ -190,17 +189,20 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
                                 factor = 0.6;
                                 break;
                             case 12://小型電探
+                                factor = 0.6;
+                                improvementfactor = 1.25;
+                                break;
                             case 13://大型電探
                             case 93://大型電探(II)
                                 factor = 0.6;
-                                improvementfactor = 1.25;
+                                improvementfactor = 1.4;
                                 break;
                             default:
                                 return 0;
                         }
                         break;
                 }
-                return factor * Item.EquipInfo.LoS + improvementfactor * Math.Sqrt(Item.ImproveLevel);
+                return factor * (Item.EquipInfo.LoS + improvementfactor * Math.Sqrt(Item.ImproveLevel));
             }
         }
     }
