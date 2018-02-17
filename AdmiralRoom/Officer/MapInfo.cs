@@ -123,5 +123,5 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
 
         public MapInfo(api_mst_mapinfo api) : base(api) { }
     }
-    public enum EventMapDifficulty { None = 0, Easy = 1, Medium = 2, Hard = 3 }
+    public enum EventMapDifficulty { None = 0, Casual = 1, Easy = 2, Medium = 3, Hard = 4 }
 }

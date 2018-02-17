@@ -82,6 +82,9 @@
                                 <DataTrigger Binding="{Binding Difficulty}" Value="Easy">
                                     <Setter TargetName="difficulty" Property="Text" Value="丙"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Difficulty}" Value="Casual">
+                                    <Setter TargetName="difficulty" Property="Text" Value="丁"/>
+                                </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
