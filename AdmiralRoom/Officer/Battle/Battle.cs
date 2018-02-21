@@ -17,6 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public int EnemySearching { get; set; }
         public int AnonymousFriendDamage { get; set; }
         public int AnonymousEnemyDamage { get; set; }
+        public ShipInBattle[] FriendFleet { get; private set; }
         public double FriendDamageRate => (double)AllFriends.Sum(x => x.FromHP - x.ToHP)
             / Fleet1.ConcatNotNull(Fleet2).Sum(x => x.FromHP);
         public double EnemyDamageRate => (double)AllEnemies.Sum(x => x.FromHP - x.ToHP) / AllEnemies.Sum(x => x.FromHP);
@@ -80,7 +81,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public FireCombat FireStage2 { get; }
         public FireCombat FireStage3 { get; }
         public TorpedoCombat TorpedoStage { get; }
-        public FireCombat Night { get; private set; }
+        public NightCombat FriendNight { get; private set; }
+        public NightCombat Night { get; private set; }
         public FireCombat NightToDay1 { get; }
         public FireCombat NightToDay2 { get; }
         #endregion
@@ -136,17 +138,6 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                 .ToArray();
 
             EnemyShipIds = api.api_ship_ke.ConcatNotNull(api.api_ship_ke_combined).ToArray();
-
-            void SetHPs(ShipInBattle[] fleet, int[] hps, int[] maxhps)
-            {
-                if (fleet == null) return;
-                for (int i = 0; i < fleet.Length; i++)
-                {
-                    var ship = fleet[i];
-                    ship.MaxHP = maxhps[i];
-                    ship.FromHP = ship.ToHP = hps[i];
-                }
-            }
 
             SetHPs(Fleet1, api.api_f_nowhps, api.api_f_maxhps);
             SetHPs(EnemyFleet, api.api_e_nowhps, api.api_e_maxhps);
@@ -246,12 +237,45 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                             TorpedoStage = new TorpedoCombat(this, api.api_raigeki);
                         break;
                 }
-            if (api.api_hougeki != null)
+            if (api.api_hougeki != null || api.api_friendly_info != null)
                 NightBattle(api);
             else EndApplyBattle();
         }
+        private static void SetHPs(ShipInBattle[] fleet, int[] hps, int[] maxhps)
+        {
+            if (fleet == null) return;
+            for (int i = 0; i < fleet.Length; i++)
+            {
+                var ship = fleet[i];
+                ship.MaxHP = maxhps[i];
+                ship.FromHP = ship.ToHP = hps[i];
+            }
+        }
+
         public void NightBattle(sortie_battle api)
         {
+            if (api.api_friendly_info != null)
+            {
+                var friend = api.api_friendly_info;
+                FriendFleet = friend.api_ship_id
+                    .Select((x, i) => new ShipInBattle
+                    {
+                        Index = i + 1,
+                        ShipInfo = Staff.Current.MasterData.ShipInfo[x],
+                        Level = friend.api_ship_lv[i],
+                        Equipments = friend.api_Slot[i].Select(y => Staff.Current.MasterData.EquipInfo[y]).Where(y => y != null).Select(y => new EquipInBattle(y)).ToArray(),
+                        Firepower = friend.api_Param[i][0],
+                        Torpedo = friend.api_Param[i][1],
+                        AA = friend.api_Param[i][2],
+                        Armor = friend.api_Param[i][3]
+                    }).ToArray();
+                SetHPs(FriendFleet, friend.api_nowhps, friend.api_maxhps);
+                var fleet1 = Fleet1;
+                Fleet1 = FriendFleet;
+                FriendNight = new NightCombat(this, api.api_friendly_battle, FriendFleet, AllEnemies.ToArray());
+                Fleet1 = fleet1;
+            }
+
             if (api.api_active_deck != null)
                 Night = new NightCombat(this, api, NightOrTorpedo, api.api_active_deck[1] == 1 ? EnemyFleet : EnemyFleet2);
             else Night = new NightCombat(this, api, NightOrTorpedo, EnemyFleet);

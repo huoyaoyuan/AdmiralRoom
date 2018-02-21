@@ -207,6 +207,9 @@
   <data name="BattleDetail_Stage_Fire3" xml:space="preserve">
     <value>Fire stage 3</value>
   </data>
+  <data name="BattleDetail_Stage_FriendNight" xml:space="preserve">
+    <value>Friend fleet night battle</value>
+  </data>
   <data name="BattleDetail_Stage_Jet" xml:space="preserve">
     <value>Jet plane attack</value>
   </data>

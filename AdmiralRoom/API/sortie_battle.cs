@@ -166,5 +166,19 @@
         public fire api_hougeki { get; set; }
         public fire api_n_hougeki1 { get; set; }
         public fire api_n_hougeki2 { get; set; }
+        public class friend
+        {
+            public int api_production_type { get; set; }
+            public int[] api_ship_id { get; set; }
+            public int[] api_ship_lv { get; set; }
+            public int[] api_nowhps { get; set; }
+            public int[] api_maxhps { get; set; }
+            public int[][] api_Slot { get; set; }
+            public int[][] api_Param { get; set; }
+            public int[] api_voice_id { get; set; }
+            public int[] api_voice_p_no { get; set; }
+        }
+        public friend api_friendly_info { get; set; }
+        public sortie_battle api_friendly_battle { get; set; }
     }
 }

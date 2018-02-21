@@ -128,6 +128,10 @@
         ///</summary>
         public static string BattleDetail_Stage_Fire3 => ResourceService.GetString("BattleDetail_Stage_Fire3");
         ///<summary>
+        ///   查找类似 友军舰队夜战 的本地化字符串。
+        ///</summary>
+        public static string BattleDetail_Stage_FriendNight => ResourceService.GetString("BattleDetail_Stage_FriendNight");
+        ///<summary>
         ///   查找类似 喷气强袭 的本地化字符串。
         ///</summary>
         public static string BattleDetail_Stage_Jet => ResourceService.GetString("BattleDetail_Stage_Jet");

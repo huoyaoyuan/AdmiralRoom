@@ -34,6 +34,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire1">砲撃戦1巡目</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire2">砲撃戦2巡目</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">砲撃戦3巡目</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_FriendNight">友軍艦隊夜戦</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">噴式強襲</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">夜戦</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_NightToDay1">連合艦隊夜戦1巡目</s:String>

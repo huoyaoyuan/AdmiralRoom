@@ -34,6 +34,7 @@
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire1">Fire stage 1</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire2">Fire stage 2</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Fire3">Fire stage 3</s:String>
+    <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_FriendNight">Friend fleet night battle</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Jet">Jet plane attack</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_Night">Night battle</s:String>
     <s:String xml:space="preserve" x:Key="LocalizedString_BattleDetail_Stage_NightToDay1">Combined night stage 1</s:String>
