@@ -164,7 +164,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             public EquipInfo[] EquipList { get; }
             public AntiAirCutin(Battle battle, sortie_battle.airbattle.stage2.anti_air_cutin api)
             {
-                if (api.api_idx < 6) Ship = battle.Fleet1[api.api_idx];
+                if (api.api_idx < battle.Fleet1.Length) Ship = battle.Fleet1[api.api_idx];
                 else Ship = battle.Fleet2[api.api_idx - 6];
                 Type = api.api_kind;
                 EquipList = api.api_use_items.Select(x => Staff.Current.MasterData.EquipInfo[x]).ToArray();
