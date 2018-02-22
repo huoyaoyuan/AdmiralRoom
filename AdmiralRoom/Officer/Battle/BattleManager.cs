@@ -57,21 +57,14 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             Staff.API("api_req_practice/midnight_battle").Subscribe<sortie_battle>(NightBattle);
             Staff.API("api_req_sortie/airbattle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_sortie/ld_airbattle").Subscribe<sortie_battle>(StartBattle);
+            Staff.API("api_req_sortie/goback_port").Subscribe(EscapeHandler);
             Staff.API("api_req_combined_battle/airbattle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/battle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/midnight_battle").Subscribe<sortie_battle>(NightBattle);
             Staff.API("api_req_combined_battle/sp_midnight").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/battle_water").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/ld_airbattle").Subscribe<sortie_battle>(StartBattle);
-            Staff.API("api_req_combined_battle/goback_port").Subscribe((Fiddler.Session x) =>
-            {
-                if (lastescapeinfo != null)
-                {
-                    FindShip(lastescapeinfo.api_escape_idx[0]).IsEscaped = true;
-                    if (lastescapeinfo.api_tow_idx != null)
-                        FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
-                }
-            });
+            Staff.API("api_req_combined_battle/goback_port").Subscribe(EscapeHandler);
             Staff.API("api_req_combined_battle/ec_battle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/ec_midnight_battle").Subscribe<sortie_battle>(NightBattle);
             Staff.API("api_req_combined_battle/each_battle").Subscribe<sortie_battle>(StartBattle);
@@ -80,7 +73,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }
-        private Ship FindShip(int index) => index <= 6 ? SortieFleet1.Ships[index - 1] : SortieFleet2.Ships[index - 7];
+        private Ship FindShip(int index) => index <= SortieFleet1.Ships.Count ? SortieFleet1.Ships[index - 1] : SortieFleet2.Ships[index - 7];
 
         #region InSortie
         private bool _insortie;
@@ -274,6 +267,15 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
                             break;
                     }
             Staff.Current.Quests.Save();
+        }
+        private void EscapeHandler(CachedSession x)
+        {
+            if (lastescapeinfo != null)
+            {
+                FindShip(lastescapeinfo.api_escape_idx[0]).IsEscaped = true;
+                if (lastescapeinfo.api_tow_idx != null)
+                    FindShip(lastescapeinfo.api_tow_idx[0]).IsEscaped = true;
+            }
         }
     }
 }
