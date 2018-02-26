@@ -50,10 +50,10 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
         public int Torpedo { get; set; }
         public int AA { get; set; }
         public int Armor { get; set; }
-        public Param TotalFirepower => new Param { Raw = Firepower, Equip = Equipments.Sum(x => x.EquipInfo.FirePower) + EquipmentEx?.EquipInfo.FirePower ?? 0 };
-        public Param TotalTorpedo => new Param { Raw = Torpedo, Equip = Equipments.Sum(x => x.EquipInfo.Torpedo) + EquipmentEx?.EquipInfo.Torpedo ?? 0 };
-        public Param TotalAA => new Param { Raw = AA, Equip = Equipments.Sum(x => x.EquipInfo.AA) + EquipmentEx?.EquipInfo.AA ?? 0 };
-        public Param TotalArmor => new Param { Raw = Armor, Equip = Equipments.Sum(x => x.EquipInfo.Armor) + EquipmentEx?.EquipInfo.Armor ?? 0 };
+        public Param TotalFirepower => new Param { Raw = Firepower, Equip = Equipments.Sum(x => x.EquipInfo.FirePower) + (EquipmentEx?.EquipInfo.FirePower ?? 0) };
+        public Param TotalTorpedo => new Param { Raw = Torpedo, Equip = Equipments.Sum(x => x.EquipInfo.Torpedo) + (EquipmentEx?.EquipInfo.Torpedo ?? 0) };
+        public Param TotalAA => new Param { Raw = AA, Equip = Equipments.Sum(x => x.EquipInfo.AA) + (EquipmentEx?.EquipInfo.AA ?? 0) };
+        public Param TotalArmor => new Param { Raw = Armor, Equip = Equipments.Sum(x => x.EquipInfo.Armor) + (EquipmentEx?.EquipInfo.Armor ?? 0) };
         public struct Param
         {
             public int Raw { get; set; }
