@@ -92,7 +92,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 Torpedo = ship.raisou,
                 AA = ship.taiku,
                 Armor = ship.soukou,
-                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+                Equipments = ship.slots.Where(x => x != null)
                         .Select(EquipSelector).ToArray(),
                 EquipmentEx = EquipSelector(ship.slotex)
             }).ToArray();
@@ -105,7 +105,7 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
                 Torpedo = ship.raisou,
                 AA = ship.taiku,
                 Armor = ship.soukou,
-                Equipments = new[] { ship.slotex }.Concat(ship.slots).Where(x => x != null)
+                Equipments = ship.slots.Where(x => x != null)
                             .Select(EquipSelector).ToArray(),
                 EquipmentEx = EquipSelector(ship.slotex)
             }).ToArray();
