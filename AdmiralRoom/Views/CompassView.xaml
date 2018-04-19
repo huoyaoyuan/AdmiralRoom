@@ -33,7 +33,14 @@
                         <Run Text="{Binding CurrentMap.OperationName, Mode=OneWay}"/>
                         <LineBreak/>
                         <Run Text="{ex:Localizable Compass_Position}"/>
-                        <Run Text="{Binding CurrentNode.Id, Mode=OneWay}"/>
+                        <Run Text="{Binding CurrentNode.Id , Mode=OneWay}"/>
+                        <LineBreak/> 
+                        <Image Width="42" Height="42" Source="pack://application:,,,/AdmiralRoom;component/Images/Compass2.png"  Stretch="None"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin=" 0.5,0.5">
+                             <Image.RenderTransform>                    
+                                  <RotateTransform Angle="{Binding CurrentNode.AfterPath.Angle, Mode=OneWay }"/>
+                             </Image.RenderTransform>    
+                        </Image>    
+                        <TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="{Binding CurrentNode.AfterPath.Name , Mode=OneWay}"/>                                                                          
                         <TextBlock>
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
@@ -86,18 +93,11 @@
                                             <Setter Property="Text" Value="{ex:Localizable Compass_AirDefence}"/>
                                             <Setter Property="Foreground" Value="Orange"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentNode.Type}" Value="Combined">
-                                            <Setter Property="Text" Value="{ex:Localizable Compass_Combined}"/>
-                                            <Setter Property="Foreground" Value="Red"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentNode.Type}" Value="CombinedBOSS">
-                                            <Setter Property="Text" Value="{ex:Localizable Compass_CombinedBOSS}"/>
-                                            <Setter Property="Foreground" Value="Red"/>
-                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
+                        <Run Text="   "/>
                         <ItemsControl ItemsSource="{Binding CurrentNode.Material}" TextBlock.BaselineOffset="{Binding FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

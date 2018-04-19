@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Huoyaoyuan.AdmiralRoom.API;
-
+using Huoyaoyuan.AdmiralRoom.Officer.CompassData;
 #pragma warning disable CC0014
 
 namespace Huoyaoyuan.AdmiralRoom.Officer
@@ -15,6 +15,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
         public MapArea MapArea => Staff.Current.MasterData.MapAreas[MapAreaId];
         public int MapNo => rawdata.api_mapinfo_no;
         public MapInfo Map => MapArea[MapNo];
+        public PathData AfterPath => MapData.SelectPath(MapAreaId, MapNo,Id);
         /// <summary>
         /// 后续分歧个数
         /// </summary>
