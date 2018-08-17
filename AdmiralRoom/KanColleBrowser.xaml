@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Huoyaoyuan.AdmiralRoom"
              xmlns:ex="clr-namespace:Huoyaoyuan.AdmiralRoom.Views.Extensions"
              xmlns:models="clr-namespace:Huoyaoyuan.AdmiralRoom.Models"
+             xmlns:cef="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary Source="Icons/VectorIcons.xaml"/>
@@ -70,7 +71,7 @@
         <Button x:Name="btnStop" Grid.Column="5" ToolTip="{ex:Localizable Stop}">
             <Image Source="{DynamicResource IconStop}"/>
         </Button>
-        <WindowsFormsHost x:Name="WinFormHost" Grid.Row="1" Grid.ColumnSpan="10"/>
+        <cef:ChromiumWebBrowser x:Name="Browser" Grid.Row="1" Grid.ColumnSpan="10"/>
         <ToggleButton Grid.Column="6"
                       Margin="2"
                       VerticalAlignment="Center"

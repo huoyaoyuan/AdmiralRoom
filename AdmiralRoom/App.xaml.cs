@@ -17,7 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom
             base.OnStartup(e);
             Environment.CurrentDirectory = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            Gecko.Xpcom.Initialize(".\\Firefox");
+            //Gecko.Xpcom.Initialize(".\\Firefox");
 
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
@@ -31,8 +31,8 @@ namespace Huoyaoyuan.AdmiralRoom
             Config.Current.MemberwiseCopy(Config.Load());
 
             var random = new Random();
-            for (int listenPort = AdmiralRoom.Properties.Settings.Default.ListenPort; !Officer.Staff.Start(listenPort); listenPort = random.Next() % 32768 + 32768)
-                if (MessageBox.Show($"Listen on port {listenPort} failed. Change and retry?", "", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            for (ListenedPort = AdmiralRoom.Properties.Settings.Default.ListenPort; !Officer.Staff.Start(ListenedPort); ListenedPort = random.Next() % 32768 + 32768)
+                if (MessageBox.Show($"Listen on port {ListenedPort} failed. Change and retry?", "", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
                     break;
 
             Officer.Staff.Proxy = Config.Current.Proxy;
@@ -50,6 +50,8 @@ namespace Huoyaoyuan.AdmiralRoom
 
             Updater.Updater.Instance.Timer.Start();
         }
+
+        internal static int ListenedPort;
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {

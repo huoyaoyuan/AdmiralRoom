@@ -83,9 +83,9 @@ namespace Huoyaoyuan.AdmiralRoom
         public static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int lpdwBufferLength);
         public static bool RefreshProxySetting(string address, int port)//strProxy为代理IP:端口
         {
-            GeckoPreferences.Default["network.proxy.type"] = 1;
-            GeckoPreferences.Default["network.proxy.http"] = address;
-            GeckoPreferences.Default["network.proxy.http_port"] = port;
+            //GeckoPreferences.Default["network.proxy.type"] = 1;
+            //GeckoPreferences.Default["network.proxy.http"] = address;
+            //GeckoPreferences.Default["network.proxy.http_port"] = port;
             return true;
         }
         [DllImport("user32.dll")]
