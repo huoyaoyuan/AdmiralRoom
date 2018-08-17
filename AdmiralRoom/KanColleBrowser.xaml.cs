@@ -34,6 +34,8 @@ namespace Huoyaoyuan.AdmiralRoom
 
         public KanColleBrowser()
         {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+                return;
             InitializeComponent();
             WinFormHost.Child = Browser;
             Browser.Navigated += (_, __) => ApplyZoomFactor(zoomFactor);
