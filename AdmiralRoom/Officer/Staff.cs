@@ -45,7 +45,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             FiddlerApplication.BeforeRequest += SetSessionProxy;
             FiddlerApplication.AfterSessionComplete += AfterSessionComplete;
 
-            Win32Helper.RefreshIESettings($"localhost:{port}");
+            Win32Helper.RefreshProxySetting("localhost", port);
             return IsStarted = true;
         }
 
