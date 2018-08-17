@@ -17,6 +17,7 @@ namespace Huoyaoyuan.AdmiralRoom
             base.OnStartup(e);
             Environment.CurrentDirectory = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Gecko.Xpcom.Initialize(".\\Firefox");
 
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))

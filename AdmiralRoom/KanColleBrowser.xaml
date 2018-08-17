@@ -70,7 +70,7 @@
         <Button x:Name="btnStop" Grid.Column="5" ToolTip="{ex:Localizable Stop}">
             <Image Source="{DynamicResource IconStop}"/>
         </Button>
-        <WebBrowser x:Name="WebBrowser" Grid.Row="1" Grid.ColumnSpan="10"/>
+        <WindowsFormsHost x:Name="WinFormHost" Grid.Row="1" Grid.ColumnSpan="10"/>
         <ToggleButton Grid.Column="6"
                       Margin="2"
                       VerticalAlignment="Center"
