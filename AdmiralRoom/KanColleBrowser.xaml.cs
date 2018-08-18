@@ -3,8 +3,6 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using CefSharp;
-using Gecko;
 using Size = System.Windows.Size;
 
 namespace Huoyaoyuan.AdmiralRoom
@@ -31,20 +29,15 @@ namespace Huoyaoyuan.AdmiralRoom
 
         public ICommand GotoUrlCommand { get; }
 
+        private readonly CefSharp.WinForms.ChromiumWebBrowser Browser;
         public KanColleBrowser()
         {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+                return;
+
             InitializeComponent();
-            Cef.UIThreadTaskFactory.StartNew(() =>
-            {
-                var rc = new RequestContext();
-                var v = new System.Collections.Generic.Dictionary<string, object>
-                {
-                    ["mode"] = "fixed_servers",
-                    ["server"] = "http://127.0.0.1:" + App.ListenedPort
-                };
-                bool success = rc.SetPreference("proxy", v, out var r);
-                Browser.RequestContext = rc;
-            });
+            Browser = new CefSharp.WinForms.ChromiumWebBrowser("", null);
+            WinFormHost.Child = Browser;
             ApplyZoomFactor(zoomFactor);
 
             //btnBack.Click += (_, __) => WebBrowser.GoBack();
@@ -55,7 +48,8 @@ namespace Huoyaoyuan.AdmiralRoom
                     txtAddress.Text = "http://" + txtAddress.Text;
                 try
                 {
-                    Browser.Address = txtAddress.Text;
+                    //Browser.Address = txtAddress.Text;
+                    Browser.Load(txtAddress.Text);
                 }
                 catch (Exception e)
                 {
@@ -63,7 +57,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 }
             });
             btnRefresh.Click += (_, __) => Browser.GetBrowser().Reload();
-            btnBackToGame.Click += (_, __) => Browser.Address = Properties.Settings.Default.GameUrl;
+            btnBackToGame.Click += (_, __) => Browser.Load(Properties.Settings.Default.GameUrl);
             //Browser.Navigating += (_, e) =>
             //{
             //    txtAddress.Text = e.Uri.AbsoluteUri;
@@ -86,7 +80,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     var url = Config.Current.OverrideGameUrl;
                     if (string.IsNullOrWhiteSpace(url)) url = Properties.Settings.Default.GameUrl;
-                    Browser.Address = url;
+                    Browser.Load(url);
                     firstLoad = false;
                 }
             };
@@ -133,13 +127,8 @@ namespace Huoyaoyuan.AdmiralRoom
         public void ApplyZoomFactor(double zoomFactor)
         {
             this.zoomFactor = zoomFactor;
-            //if (Browser.WebBrowserFocus != null)
-            //{
-            //    var cv = Xpcom.QueryInterface<nsIDocShell>(Browser.WebBrowserFocus).GetContentViewerAttribute();
-            //    cv.SetFullZoomAttribute((float)zoomFactor);
-            //}
             if (Browser.IsBrowserInitialized)
-                Browser.ZoomLevel = zoomFactor;
+                Browser.GetBrowser().GetHost().SetZoomLevel((zoomFactor - GetSystemDpiRate()) / 0.25);
         }
     }
 }

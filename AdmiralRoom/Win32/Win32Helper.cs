@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using Gecko;
 using Microsoft.Win32;
 
 #pragma warning disable CC0108
@@ -83,9 +82,7 @@ namespace Huoyaoyuan.AdmiralRoom
         public static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int lpdwBufferLength);
         public static bool RefreshProxySetting(string address, int port)//strProxy为代理IP:端口
         {
-            //GeckoPreferences.Default["network.proxy.type"] = 1;
-            //GeckoPreferences.Default["network.proxy.http"] = address;
-            //GeckoPreferences.Default["network.proxy.http_port"] = port;
+            CefSharp.CefSharpSettings.Proxy = new CefSharp.ProxyOptions(address, port.ToString());
             return true;
         }
         [DllImport("user32.dll")]

@@ -15,9 +15,9 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
     {
         public MasterData()
         {
-            Staff.API("api_start2").Subscribe<api_start2>(MasterHandler);
-            Staff.API("api_start2").Subscribe(Save);
-            Staff.API("api_start2").Subscribe((Session x) => Models.Status.Current.IsGameLoaded = true);
+            Staff.API("api_start2/getData").Subscribe<api_start2>(MasterHandler);
+            Staff.API("api_start2/getData").Subscribe(Save);
+            Staff.API("api_start2/getData").Subscribe((Session x) => Models.Status.Current.IsGameLoaded = true);
             LoadFinalHPs();
         }
 

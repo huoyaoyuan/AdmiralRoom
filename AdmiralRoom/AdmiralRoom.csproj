@@ -85,13 +85,10 @@
     <CodeAnalysisRuleSet>AdmiralRoom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CefSharp.Wpf" Version="65.0.1" />
+    <PackageReference Include="CefSharp.WinForms" Version="65.0.1" />
     <PackageReference Include="ControlzEx" Version="3.0.2.4" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.1.0" />
     <PackageReference Include="FiddlerCore" Version="4.6.2.0" />
-    <PackageReference Include="Geckofx45">
-      <Version>45.0.34</Version>
-    </PackageReference>
     <PackageReference Include="Meowtrix.UniversalClassLibrary" Version="1.3.2" />
     <PackageReference Include="Meowtrix.WPF.Extend" Version="1.4.0" />
     <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0.0" />

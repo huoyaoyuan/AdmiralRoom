@@ -17,7 +17,6 @@ namespace Huoyaoyuan.AdmiralRoom
             base.OnStartup(e);
             Environment.CurrentDirectory = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            //Gecko.Xpcom.Initialize(".\\Firefox");
 
             var rootfolder = new DirectoryInfo(".");
             foreach (var file in rootfolder.GetFiles("*.old", SearchOption.AllDirectories))
@@ -25,15 +24,18 @@ namespace Huoyaoyuan.AdmiralRoom
                     file.MoveTo(file.FullName.Replace(".old", ""));
                 else file.Delete();
 
-            Win32Helper.SetIEEmulation(11001);
-            Win32Helper.SetGPURendering(true);
-            Win32Helper.SetMMCSSTask();
+
             Config.Current.MemberwiseCopy(Config.Load());
 
             var random = new Random();
             for (ListenedPort = AdmiralRoom.Properties.Settings.Default.ListenPort; !Officer.Staff.Start(ListenedPort); ListenedPort = random.Next() % 32768 + 32768)
                 if (MessageBox.Show($"Listen on port {ListenedPort} failed. Change and retry?", "", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
                     break;
+
+            var s = new CefSharp.CefSettings();
+            //s.DisableGpuAcceleration();
+            s.CachePath = ".\\Cache";
+            CefSharp.Cef.Initialize(s);
 
             Officer.Staff.Proxy = Config.Current.Proxy;
             Reporter.KancolleDBReporter.Initialize();
