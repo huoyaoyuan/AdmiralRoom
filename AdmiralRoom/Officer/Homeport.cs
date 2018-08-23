@@ -212,7 +212,7 @@ namespace Huoyaoyuan.AdmiralRoom.Officer
             var fleet = Fleets[fleetid];
             DispatcherHelper.UIDispatcher.Invoke(() =>
             {
-                if (idx == -1)//旗艦以外全解除
+                if (idx == -1 || shipid == -2)//旗艦以外全解除
                 {
                     for (int i = fleet.Ships.Count - 1; i > 0; i--)
                     {
