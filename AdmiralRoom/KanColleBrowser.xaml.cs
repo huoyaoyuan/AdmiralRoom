@@ -29,16 +29,36 @@ namespace Huoyaoyuan.AdmiralRoom
 
         public ICommand GotoUrlCommand { get; }
 
+        private const string styleJs = @"var sheet = document.createElement('style');
+sheet.innerHTML = '#game_frame { position: fixed; left: 0; top: -16px; z-index: 255; }';
+document.body.appendChild(sheet);";
+
         private readonly CefSharp.WinForms.ChromiumWebBrowser Browser;
+        private bool gameLocked;
         public KanColleBrowser()
         {
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
                 return;
 
             InitializeComponent();
-            Browser = new CefSharp.WinForms.ChromiumWebBrowser("", null);
+            Browser = new CefSharp.WinForms.ChromiumWebBrowser("");
             WinFormHost.Child = Browser;
             ApplyZoomFactor(zoomFactor);
+
+            Browser.AddressChanged += (s, e) => Dispatcher.Invoke(() => txtAddress.Text = e.Address);
+            Browser.IsBrowserInitializedChanged += (s, e) => ApplyZoomFactor(zoomFactor);
+            Browser.LoadingStateChanged += (s, e) =>
+            {
+                ApplyZoomFactor(zoomFactor);
+                if (e.Browser.GetFrame("game_frame") != null)
+                {
+                    e.Browser.MainFrame.ExecuteJavaScriptAsync(styleJs);
+                    gameLocked = true;
+                }
+                else
+                    gameLocked = false;
+                //UpdateBrowserSize();
+            };
 
             //btnBack.Click += (_, __) => WebBrowser.GoBack();
             //btnFoward.Click += (_, __) => WebBrowser.GoForward();
@@ -80,6 +100,7 @@ namespace Huoyaoyuan.AdmiralRoom
                 {
                     var url = Config.Current.OverrideGameUrl;
                     if (string.IsNullOrWhiteSpace(url)) url = Properties.Settings.Default.GameUrl;
+                    txtAddress.Text = url;
                     Browser.Load(url);
                     firstLoad = false;
                 }
@@ -98,6 +119,20 @@ namespace Huoyaoyuan.AdmiralRoom
         {
             var dpi = GetSystemDpi();
             return dpi.Height == dpi.Width ? dpi.Height / OriginDpi : 1;
+        }
+        private void UpdateBrowserSize()
+        {
+            if (gameLocked)
+            {
+                double rate = GetSystemDpiRate();
+                WinFormHost.Width = 1200 * zoomFactor / rate;
+                WinFormHost.Height = 700 * zoomFactor / rate;
+            }
+            else
+            {
+                WinFormHost.Width = double.NaN;
+                WinFormHost.Height = double.NaN;
+            }
         }
         public bool TakeScreenShot(string path)
         {
@@ -129,6 +164,7 @@ namespace Huoyaoyuan.AdmiralRoom
             this.zoomFactor = zoomFactor;
             if (Browser.IsBrowserInitialized)
                 Browser.GetBrowser().GetHost().SetZoomLevel((zoomFactor - GetSystemDpiRate()) / 0.25);
+            //UpdateBrowserSize();
         }
     }
 }
