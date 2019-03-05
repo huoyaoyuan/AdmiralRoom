@@ -70,6 +70,8 @@ namespace Huoyaoyuan.AdmiralRoom.Officer.Battle
             Staff.API("api_req_combined_battle/each_battle").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/each_battle_water").Subscribe<sortie_battle>(StartBattle);
             Staff.API("api_req_combined_battle/ec_night_to_day").Subscribe<sortie_battle>(StartBattle);
+            Staff.API("api_req_sortie/ld_shooting").Subscribe<sortie_battle>(StartBattle);
+            Staff.API("api_req_combined_battle/ld_shooting").Subscribe<sortie_battle>(StartBattle);
         }
         public Fleet SortieFleet1 { get; private set; }
         public Fleet SortieFleet2 { get; private set; }

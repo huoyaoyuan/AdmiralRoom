@@ -68,7 +68,9 @@ namespace Huoyaoyuan.AdmiralRoom.Logger
             ["api_req_combined_battle/ld_airbattle"] = CombinedFleetType.Carrier,
             ["api_req_combined_battle/ec_battle"] = CombinedFleetType.None,
             ["api_req_combined_battle/each_battle"] = CombinedFleetType.Carrier,
-            ["api_req_combined_battle/each_battle_water"] = CombinedFleetType.Surface
+            ["api_req_combined_battle/each_battle_water"] = CombinedFleetType.Surface,
+            ["api_req_sortie/ld_shooting"] = CombinedFleetType.None,
+            ["api_req_combined_battle/ld_shooting"] = CombinedFleetType.Carrier
         };
 
         public BattleDetailViewModel ToViewModel(BattleDropLog log)
